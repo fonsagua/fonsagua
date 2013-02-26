@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LAYER alias="valoracion_sistema">
+       <TABLENAME>valoracion_sistema</TABLENAME>
+       <PRIMARYKEY>
+	<PKELEMENT>gid</PKELEMENT>
+       </PRIMARYKEY>
+
+       <RECORDSET>
+       	    <FIELD>
+		<FIELDNAME>dinero_invertido</FIELDNAME>
+
+
+
+
+		<DOMAINREADER>
+			<DRTYPE>db</DRTYPE>
+			<DRDBSCHEMA>public</DRDBSCHEMA>
+			<DRDBTABLE>dinero_invertido</DRDBTABLE>
+			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
+			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
+		</DOMAINREADER>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>tiempo_invertido</FIELDNAME>
+
+
+
+
+		<DOMAINREADER>
+			<DRTYPE>db</DRTYPE>
+			<DRDBSCHEMA>public</DRDBSCHEMA>
+			<DRDBTABLE>tiempo_invertido</DRDBTABLE>
+			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
+			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
+		</DOMAINREADER>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>descripcion_sist_cobros</FIELDNAME>
+
+
+
+
+		<DOMAINREADER>
+			<DRTYPE>db</DRTYPE>
+			<DRDBSCHEMA>public</DRDBSCHEMA>
+			<DRDBTABLE>descripcion_sist_cobros</DRDBTABLE>
+			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
+			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
+		</DOMAINREADER>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>eval_servicio_prestado</FIELDNAME>
+
+
+
+
+		<DOMAINREADER>
+			<DRTYPE>db</DRTYPE>
+			<DRDBSCHEMA>public</DRDBSCHEMA>
+			<DRDBTABLE>eval_servicio_prestado</DRDBTABLE>
+			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
+			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
+		</DOMAINREADER>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>comodidad_acceso_toma</FIELDNAME>
+
+
+
+
+		<DOMAINREADER>
+			<DRTYPE>db</DRTYPE>
+			<DRDBSCHEMA>public</DRDBSCHEMA>
+			<DRDBTABLE>comodidad_acceso_toma</DRDBTABLE>
+			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
+			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
+		</DOMAINREADER>
+	    </FIELD>
+       </RECORDSET>
+
+</LAYER>

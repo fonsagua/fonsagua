@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LAYER alias="centros_actividad_economica">
+       <TABLENAME>centros_actividad_economica</TABLENAME>
+       <PRIMARYKEY>
+	<PKELEMENT>gid</PKELEMENT>
+       </PRIMARYKEY>
+
+       <RECORDSET>
+       	    <FIELD>
+		<FIELDNAME>sector_act</FIELDNAME>
+
+
+
+
+		<DOMAINREADER>
+			<DRTYPE>db</DRTYPE>
+			<DRDBSCHEMA>public</DRDBSCHEMA>
+			<DRDBTABLE>sector_act</DRDBTABLE>
+			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
+			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
+		</DOMAINREADER>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>tipo_act</FIELDNAME>
+
+
+
+
+		<DOMAINREADER>
+			<DRTYPE>db</DRTYPE>
+			<DRDBSCHEMA>public</DRDBSCHEMA>
+			<DRDBTABLE>tipo_act</DRDBTABLE>
+			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
+			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
+		</DOMAINREADER>
+	    </FIELD>
+       </RECORDSET>
+
+</LAYER>

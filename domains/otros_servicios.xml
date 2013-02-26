@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LAYER alias="otros_servicios">
+       <TABLENAME>otros_servicios</TABLENAME>
+       <PRIMARYKEY>
+	<PKELEMENT>gid</PKELEMENT>
+       </PRIMARYKEY>
+
+       <RECORDSET>
+       	    <FIELD>
+		<FIELDNAME>tipo_servicio</FIELDNAME>
+
+
+
+
+		<DOMAINREADER>
+			<DRTYPE>db</DRTYPE>
+			<DRDBSCHEMA>public</DRDBSCHEMA>
+			<DRDBTABLE>tipo_servicio</DRDBTABLE>
+			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
+			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
+		</DOMAINREADER>
+	    </FIELD>
+       </RECORDSET>
+
+</LAYER>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LAYER alias="habitos_consumo">
+       <TABLENAME>habitos_consumo</TABLENAME>
+       <PRIMARYKEY>
+	<PKELEMENT>gid</PKELEMENT>
+       </PRIMARYKEY>
+
+       <RECORDSET>
+       	    <FIELD>
+		<FIELDNAME>quien</FIELDNAME>
+
+
+
+
+		<DOMAINREADER>
+			<DRTYPE>db</DRTYPE>
+			<DRDBSCHEMA>public</DRDBSCHEMA>
+			<DRDBTABLE>quien</DRDBTABLE>
+			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
+			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
+		</DOMAINREADER>
+	    </FIELD>
+       </RECORDSET>
+
+</LAYER>
