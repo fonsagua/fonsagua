@@ -2,10 +2,15 @@ package es.udc.cartolab.gvsig.fonsagua;
 
 import com.iver.andami.PluginServices;
 import com.iver.andami.plugins.Extension;
+import com.iver.andami.ui.mdiManager.IWindow;
+import com.iver.cit.gvsig.fmap.layers.FLayers;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
+import com.iver.cit.gvsig.project.documents.view.gui.View;
 
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.fonsagua.forms.BasicAbstractForm;
 import es.udc.cartolab.fonsagua.forms.ComunidadesForm;
+import es.udc.cartolab.fonsagua.forms.PuntosViviendasForm;
 
 public class FormsExtension extends Extension {
 
@@ -13,15 +18,20 @@ public class FormsExtension extends Extension {
 
     @Override
     public void execute(String actionCommand) {
-	layer = getLayerFromTOC();
-	ComunidadesForm dialog = new ComunidadesForm(layer);
+
+	BasicAbstractForm dialog = null;
+
+	if (layer.getName().equals(ComunidadesForm.NAME)) {
+	    dialog = new ComunidadesForm(layer);
+	} else {
+	    dialog = new PuntosViviendasForm(layer);
+	}
 	if (dialog.init()) {
 	    PluginServices.getMDIManager().addWindow(dialog);
 	}
     }
 
-    private FLyrVect getLayerFromTOC() {
-	String layerName = ComunidadesForm.NAME;
+    private FLyrVect getLayerFromTOC(String layerName) {
 	TOCLayerManager toc = new TOCLayerManager();
 	return toc.getLayerByName(layerName);
     }
@@ -47,10 +57,27 @@ public class FormsExtension extends Extension {
     }
 
     private boolean isExampleDataSetLoaded() {
-	if (getLayerFromTOC() == null) {
-	    return false;
+	IWindow iWindow = PluginServices.getMDIManager().getActiveWindow();
+	if (iWindow instanceof View) {
+	    View view = (View) iWindow;
+	    FLayers layers = view.getMapControl().getMapContext().getLayers();
+	    if (layers != null) {
+		if (layers.getActives().length > 0) {
+		    TOCLayerManager toc = new TOCLayerManager();
+		    layer = toc.getActiveLayer();
+		    String layerName = layer.getName();
+		    if (layerName.equals(ComunidadesForm.NAME)
+			    || layerName.equals(PuntosViviendasForm.NAME)) {
+			return true;
+		    }
+
+		}
+	    }
+
 	}
-	return true;
+
+	return false;
+
     }
 
     @Override
