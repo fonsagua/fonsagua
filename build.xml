@@ -1,8 +1,4 @@
-<project name="fonsagua3" default="batch-build" basedir=".">
-
-	<description>
-    	Fonsagua2.
-    </description>
+<project name="fonsagua" default="batch-build" basedir=".">
 
   	<!-- set global properties for this build -->
 	<property name="src" location="src"/>
@@ -15,7 +11,7 @@
 
 	<target name="batch-build" depends="init, compile, create-jar, copy-data-files, copy-libs, move-to-andami, clean">
 	</target>
-  	
+
 	<target name="init">
     	<tstamp/>
     	<mkdir dir="${dist}/lib" />
