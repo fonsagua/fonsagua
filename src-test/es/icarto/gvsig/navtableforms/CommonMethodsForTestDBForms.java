@@ -56,7 +56,8 @@ public abstract class CommonMethodsForTestDBForms {
     }
 
     private static void initgvSIGDrivers() {
-	final String fwAndamiDriverPath = "/home/development/gvsigTrunk/frameworks/_fwAndami/gvSIG/extensiones/com.iver.cit.gvsig/drivers";
+
+	final String fwAndamiDriverPath = TestProperties.driversPath;
 
 	final File baseDriversPath = new File(fwAndamiDriverPath);
 	if (!baseDriversPath.exists()) {
