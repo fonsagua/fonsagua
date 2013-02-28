@@ -26,9 +26,14 @@ How to build the first time
 * Configure a valid gvSIG workspace
 * Add the following aditional projects:
 
-  * extNavtable
-  * extELLE
-  * fonsagua
+  * extNavtable: https://github.com/navtable/navtable
+  * extELLE: http://gitorious.org/elle
+  * fonsagua: https://github.com/fonsagua/fonsagua
+  * extDBConnection: http://gitorious.org/extdbconnection/
+
+* It's also suggested add extNavtableForms (with this project name) to the workspace.
+
+  * extNavtableForms: https://github.com/navtable/navtableforms
 
 * TODO: Create a script / ant target that allows checks that the needed dependencies are configured on the workspace. Also this should compile all the projects that are not from gvSIG
 * Compile gvSIG, extNavtable, extELLE and fonsagua
