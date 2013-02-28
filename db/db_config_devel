@@ -2,7 +2,7 @@ server=localhost
 port=5432
 superuser=postgres
 user=fonsagua
+userpwd=f
 # template=fonsagua_template
 template=template_postgis
 dbname=fonsagua
-

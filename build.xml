@@ -9,7 +9,12 @@
 	<property name="extensionsDir" location="../_fwAndami/gvSIG/extensiones"/>
 	<import file="../binaries/ant/utilities.xml" />
 
-	<target name="batch-build" depends="init, compile, create-jar, copy-data-files, copy-libs, move-to-andami, clean">
+	<target name="generate-without-source" 
+		depends="init, create-jar, copy-data-files, copy-libs, move-to-andami, clean" >
+	</target>
+	
+	<target name="batch-build" 
+		depends="init, compile, create-jar, copy-data-files, copy-libs, move-to-andami, clean">
 	</target>
 
 	<target name="init">
@@ -35,10 +40,13 @@
 		<copy todir="${dist}/images">
 			<fileset dir="images" includes="*" />
 		</copy>
-		<copy todir="${dist}">
-			<fileset dir="forms" includes="*" />
+		<copy todir="${dist}/ui">
+			<fileset dir="ui" includes="*" excludes="*.jfrm"/>
 		</copy>
-		<copy file="data/comunidades.xml" todir="${dist}" overwrite="yes" />
+		<copy todir="${dist}/metadata">
+	 		<fileset dir="metadata" includes="*" />
+		</copy>
+
 	</target>
 
 	<target name="copy-libs">
@@ -52,12 +60,7 @@
 	    	<fileset dir="${dist}" includes="**/**"/>
 	    </move>
 	</target>
-
-	<target name="generate-without-source"
-		description="generate the distribution without the source file"
-		depends="init, create-jar, copy-data-files, copy-libs, move-to-andami, clean" >
-	</target>
-
+	
 	<target name="clean">
 		<delete dir="${dist}"/>
 		<delete dir="${build}"/>

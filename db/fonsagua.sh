@@ -13,7 +13,7 @@ usage() {
 create-db() {
     $DROPDB -h $server -p $port -U $superuser $dbname;
     $DROPUSER -h $server -p $port -U $superuser $user
-    $CREATEUSER -h $server -p $port -U $superuser -SDRPl $user
+    $CREATEUSER -h $server -p $port -U $superuser -SDRl $user
     $CREATEDB -h $server -p $port -U $superuser -T $template $dbname;
 
     $PSQL -h $server -p $port -U $superuser $dbname -c \
