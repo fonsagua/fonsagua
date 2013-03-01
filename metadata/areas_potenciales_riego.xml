@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LAYER alias="areas_potenciales_riego">
+       <TABLENAME>areas_potenciales_riego</TABLENAME>
+       <PRIMARYKEY>
+	<PKELEMENT>gid</PKELEMENT>
+       </PRIMARYKEY>
+
+<RECORDSET>
+<FIELD>
+		<FIELDNAME>id_comunidad</FIELDNAME>
+		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+	</FIELD>
+  </RECORDSET>
+
+</LAYER>

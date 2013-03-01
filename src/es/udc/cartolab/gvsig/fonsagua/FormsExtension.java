@@ -8,6 +8,7 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.iver.cit.gvsig.project.documents.view.gui.View;
 
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.fonsagua.forms.AreasPotencialesRiegoForms;
 import es.udc.cartolab.fonsagua.forms.BasicAbstractForm;
 import es.udc.cartolab.fonsagua.forms.ComunidadesForm;
 import es.udc.cartolab.fonsagua.forms.PuntosViviendasForm;
@@ -24,8 +25,17 @@ public class FormsExtension extends Extension {
 	if (layer.getName().equals(ComunidadesForm.NAME)) {
 	    dialog = new ComunidadesForm(layer);
 	} else {
-	    dialog = new PuntosViviendasForm(layer);
+	    if (layer.getName().equals(AreasPotencialesRiegoForms.NAME)) {
+
+		dialog = new AreasPotencialesRiegoForms(layer);
+	    }
+
+	    else {
+
+		dialog = new PuntosViviendasForm(layer);
+	    }
 	}
+
 	if (dialog.init()) {
 	    PluginServices.getMDIManager().addWindow(dialog);
 	}
@@ -67,7 +77,9 @@ public class FormsExtension extends Extension {
 		    layer = toc.getActiveLayer();
 		    String layerName = layer.getName();
 		    if (layerName.equals(ComunidadesForm.NAME)
-			    || layerName.equals(PuntosViviendasForm.NAME)) {
+			    || layerName.equals(PuntosViviendasForm.NAME)
+			    || layerName
+				    .equals(AreasPotencialesRiegoForms.NAME)) {
 			return true;
 		    }
 
