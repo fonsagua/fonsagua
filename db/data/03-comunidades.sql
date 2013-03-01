@@ -1,6 +1,7 @@
 
 CREATE TABLE comunidades (
 	gid SERIAL NOT NULL, 
+	nom_com VARCHAR, 
 	id_comunidad INTEGER, 
 	fecha DATE, 
 	communic VARCHAR, 
@@ -10,8 +11,6 @@ CREATE TABLE comunidades (
 	codmunic INTEGER, 
 	nomcanton VARCHAR, 
 	codcanton INTEGER, 
-	nom_com VARCHAR, 
-	cod_cas INTEGER, 
 	x INTEGER, 
 	y INTEGER, 
 	alturac FLOAT, 
@@ -417,7 +416,7 @@ CREATE TABLE amenazas (
 	familiasaf INTEGER, 
 	x INTEGER, 
 	y INTEGER, 
-	altura INTEGER, 
+	z INTEGER, 
 	PRIMARY KEY (gid), 
 	FOREIGN KEY(tipofr) REFERENCES tipofr (item), 
 	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
