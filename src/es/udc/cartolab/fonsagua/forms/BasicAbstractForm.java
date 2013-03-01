@@ -8,6 +8,7 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.jeta.forms.components.panel.FormPanel;
 import com.jeta.forms.gui.common.FormException;
 
+import es.icarto.gvisg.navtableforms.AbeilleUtils;
 import es.icarto.gvsig.navtableforms.AbstractForm;
 
 @SuppressWarnings("serial")
@@ -15,6 +16,9 @@ public abstract class BasicAbstractForm extends AbstractForm {
 
     public BasicAbstractForm(FLyrVect layer) {
 	super(layer);
+	AbeilleUtils au = new AbeilleUtils();
+	au.formatLabels(getFormBody());
+	au.formatTextArea(getFormBody());
     }
 
     @Override

@@ -9,6 +9,13 @@ public class PuntosViviendasForm extends BasicAbstractForm {
 
     public PuntosViviendasForm(FLyrVect layer) {
 	super(layer);
+	initWindow();
+    }
+
+    private void initWindow() {
+	viewInfo.setHeight(550);
+	viewInfo.setWidth(550);
+	viewInfo.setTitle(NAME);
     }
 
     @Override

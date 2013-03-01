@@ -13,8 +13,8 @@ usage() {
 create-db() {
     $DROPDB -h $server -p $port -U $superuser $dbname;
     $DROPUSER -h $server -p $port -U $superuser $user
-    $CREATEUSER -h $server -p $port -U $superuser -SDRl $user
-    $CREATEDB -h $server -p $port -U $superuser -T $template $dbname;
+    $CREATEUSER -h $server -p $port -U $superuser -SPDRl $user
+    $CREATEDB -h $server -p $port -U $superuser -T $template --owner $user $dbname;
 
     $PSQL -h $server -p $port -U $superuser $dbname -c \
 	"ALTER DATABASE $dbname OWNER TO $user; \
@@ -87,7 +87,7 @@ if [ $schema == "all" ] ; then
     echo "LOG: drop & create database"
     create-db
     for file in `ls ./data/*.sql` ; do
-	$PSQL -h $server -U $superuser -p $port -d $dbname -f $file
+	$PSQL -h $server -U $user -p $port -d $dbname -f $file
     done
     # ./create-db.sh $config_file
 fi
