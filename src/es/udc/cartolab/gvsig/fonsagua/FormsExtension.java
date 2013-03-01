@@ -8,6 +8,7 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.iver.cit.gvsig.project.documents.view.gui.View;
 
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.fonsagua.forms.AmenazasForm;
 import es.udc.cartolab.fonsagua.forms.AreasPotencialesRiegoForms;
 import es.udc.cartolab.fonsagua.forms.BasicAbstractForm;
 import es.udc.cartolab.fonsagua.forms.ComunidadesForm;
@@ -24,18 +25,13 @@ public class FormsExtension extends Extension {
 
 	if (layer.getName().equals(ComunidadesForm.NAME)) {
 	    dialog = new ComunidadesForm(layer);
-	} else {
-	    if (layer.getName().equals(AreasPotencialesRiegoForms.NAME)) {
-
-		dialog = new AreasPotencialesRiegoForms(layer);
-	    }
-
-	    else {
-
-		dialog = new PuntosViviendasForm(layer);
-	    }
+	} else if (layer.getName().equals(AmenazasForm.NAME)) {
+	    dialog = new AmenazasForm(layer);
+	} else if (layer.getName().equals(PuntosViviendasForm.NAME)) {
+	    dialog = new PuntosViviendasForm(layer);
+	} else if (layer.getName().equals(AreasPotencialesRiegoForms.NAME)) {
+	    dialog = new AreasPotencialesRiegoForms(layer);
 	}
-
 	if (dialog.init()) {
 	    PluginServices.getMDIManager().addWindow(dialog);
 	}
@@ -50,7 +46,7 @@ public class FormsExtension extends Extension {
 	PluginServices.getIconTheme().registerDefault(
 		"example1-ntforms",
 		this.getClass().getClassLoader()
-			.getResource("images/example1.png"));
+		.getResource("images/example1.png"));
     }
 
     @Override
@@ -79,7 +75,9 @@ public class FormsExtension extends Extension {
 		    if (layerName.equals(ComunidadesForm.NAME)
 			    || layerName.equals(PuntosViviendasForm.NAME)
 			    || layerName
-				    .equals(AreasPotencialesRiegoForms.NAME)) {
+				    .equals(AreasPotencialesRiegoForms.NAME)
+			    || layerName.equals(AmenazasForm.NAME)) {
+
 			return true;
 		    }
 
