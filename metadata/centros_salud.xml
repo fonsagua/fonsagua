@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LAYER alias="centros_salud">
+       <TABLENAME>centros_salud</TABLENAME>
+       <PRIMARYKEY>
+	<PKELEMENT>gid</PKELEMENT>
+       </PRIMARYKEY>
+
+       <RECORDSET>	    
+	    <FIELD>
+	    	<FIELDNAME>id_comunidad</FIELDNAME>
+	    	<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+	    </FIELD>
+	    
+	    <FIELD>
+	    	<FIELDNAME>codcsal</FIELDNAME>
+	    	<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+	    </FIELD>
+	    
+	    <FIELD>
+	    	<FIELDNAME>x</FIELDNAME>
+	    	<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+	    </FIELD>
+	    
+	    <FIELD>
+	    	<FIELDNAME>y</FIELDNAME>
+	    	<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+	    </FIELD>
+	    
+	    <FIELD>
+	    	<FIELDNAME>z</FIELDNAME>
+	    	<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+	    </FIELD>
+       </RECORDSET>
+
+</LAYER>

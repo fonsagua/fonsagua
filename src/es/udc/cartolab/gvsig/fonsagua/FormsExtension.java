@@ -12,7 +12,9 @@ import es.udc.cartolab.fonsagua.forms.AmenazasForm;
 import es.udc.cartolab.fonsagua.forms.AreasPotencialesRiegoForms;
 import es.udc.cartolab.fonsagua.forms.BasicAbstractForm;
 import es.udc.cartolab.fonsagua.forms.CentrosEducativosForms;
+import es.udc.cartolab.fonsagua.forms.CentrosSaludForm;
 import es.udc.cartolab.fonsagua.forms.ComunidadesForm;
+import es.udc.cartolab.fonsagua.forms.OtrosServiciosForm;
 import es.udc.cartolab.fonsagua.forms.PuntosViviendasForm;
 
 public class FormsExtension extends Extension {
@@ -26,27 +28,18 @@ public class FormsExtension extends Extension {
 
 	if (layer.getName().equals(ComunidadesForm.NAME)) {
 	    dialog = new ComunidadesForm(layer);
-<<<<<<< HEAD
-	} else {
-	    if (layer.getName().equals(AreasPotencialesRiegoForms.NAME)) {
-		dialog = new AreasPotencialesRiegoForms(layer);
-	    } else {
-		if (layer.getName().equals(AreasPotencialesRiegoForms.NAME)) {
-		    dialog = new PuntosViviendasForm(layer);
-		} else {
-		    if (layer.getName().equals(CentrosEducativosForms.NAME)) {
-			dialog = new CentrosEducativosForms(layer);
-		    }
-		}
-	    }
-=======
 	} else if (layer.getName().equals(AmenazasForm.NAME)) {
 	    dialog = new AmenazasForm(layer);
 	} else if (layer.getName().equals(PuntosViviendasForm.NAME)) {
 	    dialog = new PuntosViviendasForm(layer);
 	} else if (layer.getName().equals(AreasPotencialesRiegoForms.NAME)) {
 	    dialog = new AreasPotencialesRiegoForms(layer);
->>>>>>> branch 'master' of http://github.com/fonsagua/fonsagua.git
+	} else if (layer.getName().equals(CentrosSaludForm.NAME)) {
+	    dialog = new CentrosSaludForm(layer);
+	} else if (layer.getName().equals(OtrosServiciosForm.NAME)) {
+	    dialog = new OtrosServiciosForm(layer);
+	} else if (layer.getName().equals(CentrosEducativosForms.NAME)) {
+	    dialog = new CentrosEducativosForms(layer);
 	}
 	if (dialog.init()) {
 	    PluginServices.getMDIManager().addWindow(dialog);
@@ -91,8 +84,11 @@ public class FormsExtension extends Extension {
 		    if (layerName.equals(ComunidadesForm.NAME)
 			    || layerName.equals(PuntosViviendasForm.NAME)
 			    || layerName
-				    .equals(AreasPotencialesRiegoForms.NAME)
-			    || layerName.equals(AmenazasForm.NAME)) {
+			    .equals(AreasPotencialesRiegoForms.NAME)
+			    || layerName.equals(AmenazasForm.NAME)
+			    || layerName.equals(CentrosSaludForm.NAME)
+			    || layerName.equals(OtrosServiciosForm.NAME)
+			    || layerName.equals(CentrosEducativosForms.NAME)) {
 
 			return true;
 		    }
