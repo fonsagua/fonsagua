@@ -20,6 +20,40 @@
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>
 	    </FIELD>
+       
+       
+       <FIELD>
+       <FIELDNAME>id_comunidad</FIELDNAME>
+       <VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+       </FIELD>
+       
+       <FIELD>
+       <FIELDNAME>codigofr</FIELDNAME>
+       <VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+       </FIELD>
+       
+       <FIELD>
+       <FIELDNAME>familiasaf</FIELDNAME>
+       <VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+       </FIELD>
+       
+       <FIELD>
+       <FIELDNAME>x</FIELDNAME>
+       <VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+       </FIELD>
+       
+       <FIELD>
+       <FIELDNAME>y</FIELDNAME>
+       <VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+       </FIELD>
+       
+       <FIELD>
+       <FIELDNAME>altura</FIELDNAME>
+       <VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+       </FIELD>
+       
        </RECORDSET>
+       
+       
 
 </LAYER>
