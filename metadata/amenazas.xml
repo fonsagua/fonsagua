@@ -48,7 +48,7 @@
        </FIELD>
        
        <FIELD>
-       <FIELDNAME>altura</FIELDNAME>
+       <FIELDNAME>z</FIELDNAME>
        <VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
        </FIELD>
        

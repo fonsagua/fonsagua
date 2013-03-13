@@ -24,7 +24,7 @@
     </at>
     <at name="componentclass">com.jeta.forms.gui.form.FormComponent</at>
    </super>
-   <at name="id">C:\Documents and Settings\Emilson\workspaceGvSig\fonsagua\ui\amenazas.xml</at>
+   <at name="id">/home/development/fonsagua/fonsagua/ui/amenazas.xml</at>
    <at name="rowspecs">CENTER:1.0MM:NONE,CENTER:DEFAULT:NONE,CENTER:1.0MM:NONE,CENTER:1.0MM:NONE,CENTER:DEFAULT:NONE,CENTER:1.0MM:NONE,CENTER:DEFAULT:NONE,CENTER:1.0MM:NONE,CENTER:DEFAULT:NONE,CENTER:1.0MM:NONE,CENTER:DEFAULT:NONE,CENTER:1.0MM:NONE</at>
    <at name="colspecs">FILL:2.0MM:NONE,FILL:2.0MM:NONE,FILL:40.0MM:NONE,FILL:2.0MM:NONE,FILL:37.0MM:NONE,FILL:2.0MM:NONE,FILL:2.0MM:NONE,FILL:46.0MM:NONE,FILL:2.0MM:NONE,FILL:27.5MM:NONE,FILL:2.0MM:NONE</at>
    <at name="components">
@@ -62,8 +62,8 @@
               <at name="size">12</at>
              </object>
             </at>
+            <at name="name"/>
             <at name="width">155</at>
-            <at name="name"></at>
             <at name="fill">
              <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
               <at name="name">fill</at>
@@ -498,8 +498,8 @@
               <at name="size">11</at>
              </object>
             </at>
+            <at name="name"/>
             <at name="width">170</at>
-            <at name="name"></at>
             <at name="fill">
              <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
               <at name="name">fill</at>
@@ -921,7 +921,7 @@
            <object classname="com.jeta.forms.store.support.PropertyMap">
             <at name="height">20</at>
             <at name="width">136</at>
-            <at name="name">altura</at>
+            <at name="name">z</at>
             <at name="border">
              <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
               <super classname="com.jeta.forms.store.properties.BorderProperty">
@@ -956,7 +956,7 @@
      <at name="classname">com.jeta.forms.gui.form.GridView</at>
      <at name="properties">
       <object classname="com.jeta.forms.store.support.PropertyMap">
-       <at name="name"></at>
+       <at name="name"/>
        <at name="fill">
         <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
          <at name="name">fill</at>

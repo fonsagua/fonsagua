@@ -56,7 +56,8 @@ alias/comunidades.alias
 src/**/ComunidadesForm.java
 
 * The form java files must inherit from BasicAbstractForm
-* Don't upload a Form without tests. For the test, create a JUnit class that inherits from CommonMethodsForTestDBForms. After run the test for first time an error related to the ui file will raise. Open the debug configuration of the test, classpath->user entry->Advanced->Add folder->select fonsagua/ui and run again. 
+* Don't upload a Form without tests. For the test, create a JUnit class that inherits from CommonMethodsForTestDBForms. 
+
 
 TODO
 ====

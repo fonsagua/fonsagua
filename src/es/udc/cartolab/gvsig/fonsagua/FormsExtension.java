@@ -9,9 +9,9 @@ import com.iver.cit.gvsig.project.documents.view.gui.View;
 
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.fonsagua.forms.AmenazasForm;
-import es.udc.cartolab.fonsagua.forms.AreasPotencialesRiegoForms;
+import es.udc.cartolab.fonsagua.forms.AreasPotencialesRiegoForm;
 import es.udc.cartolab.fonsagua.forms.BasicAbstractForm;
-import es.udc.cartolab.fonsagua.forms.CentrosEducativosForms;
+import es.udc.cartolab.fonsagua.forms.CentrosEducativosForm;
 import es.udc.cartolab.fonsagua.forms.CentrosSaludForm;
 import es.udc.cartolab.fonsagua.forms.ComunidadesForm;
 import es.udc.cartolab.fonsagua.forms.OtrosServiciosForm;
@@ -32,14 +32,14 @@ public class FormsExtension extends Extension {
 	    dialog = new AmenazasForm(layer);
 	} else if (layer.getName().equals(PuntosViviendasForm.NAME)) {
 	    dialog = new PuntosViviendasForm(layer);
-	} else if (layer.getName().equals(AreasPotencialesRiegoForms.NAME)) {
-	    dialog = new AreasPotencialesRiegoForms(layer);
+	} else if (layer.getName().equals(AreasPotencialesRiegoForm.NAME)) {
+	    dialog = new AreasPotencialesRiegoForm(layer);
 	} else if (layer.getName().equals(CentrosSaludForm.NAME)) {
 	    dialog = new CentrosSaludForm(layer);
 	} else if (layer.getName().equals(OtrosServiciosForm.NAME)) {
 	    dialog = new OtrosServiciosForm(layer);
-	} else if (layer.getName().equals(CentrosEducativosForms.NAME)) {
-	    dialog = new CentrosEducativosForms(layer);
+	} else if (layer.getName().equals(CentrosEducativosForm.NAME)) {
+	    dialog = new CentrosEducativosForm(layer);
 	}
 	if (dialog.init()) {
 	    PluginServices.getMDIManager().addWindow(dialog);
@@ -55,7 +55,7 @@ public class FormsExtension extends Extension {
 	PluginServices.getIconTheme().registerDefault(
 		"example1-ntforms",
 		this.getClass().getClassLoader()
-		.getResource("images/example1.png"));
+			.getResource("images/example1.png"));
     }
 
     @Override
@@ -83,12 +83,11 @@ public class FormsExtension extends Extension {
 		    String layerName = layer.getName();
 		    if (layerName.equals(ComunidadesForm.NAME)
 			    || layerName.equals(PuntosViviendasForm.NAME)
-			    || layerName
-			    .equals(AreasPotencialesRiegoForms.NAME)
+			    || layerName.equals(AreasPotencialesRiegoForm.NAME)
 			    || layerName.equals(AmenazasForm.NAME)
 			    || layerName.equals(CentrosSaludForm.NAME)
 			    || layerName.equals(OtrosServiciosForm.NAME)
-			    || layerName.equals(CentrosEducativosForms.NAME)) {
+			    || layerName.equals(CentrosEducativosForm.NAME)) {
 
 			return true;
 		    }

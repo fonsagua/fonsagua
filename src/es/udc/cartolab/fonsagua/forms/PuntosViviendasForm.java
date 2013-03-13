@@ -15,7 +15,7 @@ public class PuntosViviendasForm extends BasicAbstractForm {
     private void initWindow() {
 	viewInfo.setHeight(550);
 	viewInfo.setWidth(550);
-	viewInfo.setTitle(NAME);
+	viewInfo.setTitle("Puntos Viviendas");
     }
 
     @Override
