@@ -6,7 +6,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -26,6 +28,7 @@ import org.xml.sax.SAXException;
 import com.iver.cit.gvsig.fmap.drivers.DBException;
 import com.iver.cit.gvsig.fmap.layers.LayerFactory;
 import com.jeta.forms.components.panel.FormPanel;
+import com.jeta.forms.gui.common.FormException;
 
 import es.icarto.gvsig.navtableforms.ormlite.ORMLite;
 import es.icarto.gvsig.navtableforms.ormlite.ORMLiteAppDomain;
@@ -76,7 +79,12 @@ public abstract class CommonMethodsForTestDBForms {
     public void doSetup() {
 	ORMLite ormLite = new ORMLite(getMetadataFile());
 	ado = ormLite.getAppDomain();
-	form = new FormPanel(getUIFile());
+	try {
+	    InputStream file = new FileInputStream(getUIFile());
+	    form = new FormPanel(file);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
 	widgets = AbeilleParser.getWidgetsFromContainer(form);
     }
 
@@ -178,7 +186,7 @@ public abstract class CommonMethodsForTestDBForms {
     }
 
     protected String getUIFile() {
-	return getTableName() + ".xml";
+	return "ui/" + getTableName() + ".xml";
     }
 
     protected String getMetadataFile() {
