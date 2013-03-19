@@ -8,14 +8,14 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.iver.cit.gvsig.project.documents.view.gui.View;
 
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
-import es.udc.cartolab.fonsagua.forms.AmenazasForm;
-import es.udc.cartolab.fonsagua.forms.AreasPotencialesRiegoForm;
-import es.udc.cartolab.fonsagua.forms.BasicAbstractForm;
-import es.udc.cartolab.fonsagua.forms.CentrosEducativosForm;
-import es.udc.cartolab.fonsagua.forms.CentrosSaludForm;
-import es.udc.cartolab.fonsagua.forms.ComunidadesForm;
-import es.udc.cartolab.fonsagua.forms.OtrosServiciosForm;
-import es.udc.cartolab.fonsagua.forms.PuntosViviendasForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.AmenazasForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.AreasPotencialesRiegoForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.BasicAbstractForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.CentrosEducativosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.CentrosSaludForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.ComunidadesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.OtrosServiciosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.PuntosViviendasForm;
 
 public class FormsExtension extends Extension {
 

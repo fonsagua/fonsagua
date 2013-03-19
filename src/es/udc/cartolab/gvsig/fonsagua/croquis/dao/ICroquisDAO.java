@@ -1,10 +1,10 @@
-package es.udc.cartolab.gvsig.fonsagua.croquis;
+package es.udc.cartolab.gvsig.fonsagua.croquis.dao;
 
 import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public interface ICroquis {
+public interface ICroquisDAO {
 
     public void insertCroquisIntoDb(Connection connection, int comunidadId,
 	    File image, boolean update);

@@ -1,4 +1,4 @@
-package es.udc.cartolab.gvsig.fonsagua.croquis;
+package es.udc.cartolab.gvsig.fonsagua.croquis.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +12,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import com.iver.andami.PluginServices;
+
+import es.udc.cartolab.gvsig.fonsagua.croquis.dao.DBFacade;
+import es.udc.cartolab.gvsig.fonsagua.croquis.dao.PostgresCroquisDAO;
 
 public class AddCroquisListener implements ActionListener {
 
@@ -56,7 +59,7 @@ public class AddCroquisListener implements ActionListener {
 	int returnVal = fileChooser.showOpenDialog(null);
 	if (returnVal == JFileChooser.APPROVE_OPTION) {
 	    File croquis = fileChooser.getSelectedFile();
-	    new PostgresCroquis().insertCroquisIntoDb(connection, comunidadId,
+	    new PostgresCroquisDAO().insertCroquisIntoDb(connection, comunidadId,
 		    croquis, update);
 	    JOptionPane.showMessageDialog(null,
 		    PluginServices.getText(this, "croquis_msg_added_croquis"));

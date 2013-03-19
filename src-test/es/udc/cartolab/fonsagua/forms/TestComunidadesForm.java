@@ -14,7 +14,8 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import es.icarto.gvsig.navtableforms.CommonMethodsForTestDBForms;
-import es.udc.cartolab.gvsig.fonsagua.croquis.PostgresCroquis;
+import es.udc.cartolab.gvsig.fonsagua.croquis.dao.PostgresCroquisDAO;
+import es.udc.cartolab.gvsig.fonsagua.forms.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
 
 public class TestComunidadesForm extends CommonMethodsForTestDBForms {
@@ -56,7 +57,7 @@ public class TestComunidadesForm extends CommonMethodsForTestDBForms {
 	    statement.execute();
 	    connection.commit();
 
-	    PostgresCroquis postgresCroquis = new PostgresCroquis();
+	    PostgresCroquisDAO postgresCroquis = new PostgresCroquisDAO();
 	    postgresCroquis.insertCroquisIntoDb(connection, 1, image, false);
 	    byte[] imageDbBytes = postgresCroquis.readCroquisFromDb(connection,
 		    1);
@@ -102,7 +103,7 @@ public class TestComunidadesForm extends CommonMethodsForTestDBForms {
 	    statement.execute();
 	    connection.commit();
 
-	    PostgresCroquis postgresCroquis = new PostgresCroquis();
+	    PostgresCroquisDAO postgresCroquis = new PostgresCroquisDAO();
 	    postgresCroquis.insertCroquisIntoDb(connection, 1, image, false);
 	    File imageToUpdate = new File("data-test/test2.jpg");
 	    postgresCroquis.insertCroquisIntoDb(connection, 1, imageToUpdate,

@@ -1,8 +1,11 @@
-package es.udc.cartolab.gvsig.fonsagua.croquis;
+package es.udc.cartolab.gvsig.fonsagua.croquis.ui;
 
 import javax.swing.JButton;
 
 import com.iver.andami.PluginServices;
+
+import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.AddCroquisListener;
+import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.ShowCroquisListener;
 
 public class CroquisButtons {
 

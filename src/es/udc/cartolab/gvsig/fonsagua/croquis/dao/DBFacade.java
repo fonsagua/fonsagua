@@ -1,4 +1,4 @@
-package es.udc.cartolab.gvsig.fonsagua.croquis;
+package es.udc.cartolab.gvsig.fonsagua.croquis.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

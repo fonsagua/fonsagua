@@ -1,11 +1,11 @@
-package es.udc.cartolab.fonsagua.forms;
+package es.udc.cartolab.gvsig.fonsagua.forms;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
-import es.udc.cartolab.gvsig.fonsagua.croquis.CroquisButtons;
+import es.udc.cartolab.gvsig.fonsagua.croquis.ui.CroquisButtons;
 
 @SuppressWarnings("serial")
 public class ComunidadesForm extends BasicAbstractForm {

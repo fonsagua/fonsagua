@@ -1,4 +1,4 @@
-package es.udc.cartolab.gvsig.fonsagua.croquis;
+package es.udc.cartolab.gvsig.fonsagua.croquis.listeners;
 
 import java.awt.BorderLayout;
 import java.awt.Image;
@@ -15,6 +15,8 @@ import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.andami.ui.mdiManager.WindowInfo;
 
+import es.udc.cartolab.gvsig.fonsagua.croquis.dao.DBFacade;
+import es.udc.cartolab.gvsig.fonsagua.croquis.dao.PostgresCroquisDAO;
 import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
 
 public class ShowCroquisListener implements ActionListener {
@@ -56,7 +58,7 @@ public class ShowCroquisListener implements ActionListener {
 
 	    }
 
-	    byte[] imageBytes = new PostgresCroquis().readCroquisFromDb(
+	    byte[] imageBytes = new PostgresCroquisDAO().readCroquisFromDb(
 		    connection, comunidadId);
 	    Image image = ImageUtils.convertByteaToImage(imageBytes);
 	    JLabel label = new JLabel(new ImageIcon(image));

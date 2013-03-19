@@ -1,4 +1,4 @@
-package es.udc.cartolab.gvsig.fonsagua.croquis;
+package es.udc.cartolab.gvsig.fonsagua.croquis.dao;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
 
-public class PostgresCroquis implements ICroquis {
+public class PostgresCroquisDAO implements ICroquisDAO {
 
     private final String CROQUIS_TABLENAME = "comunidades_croquis";
     private final String CROQUIS_FIELDNAME = "croquis";
