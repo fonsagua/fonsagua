@@ -37,6 +37,9 @@
 
 	<target name="copy-data-files">
 	    <copy file="config/config.xml" todir="${dist}" />
+		<copy todir="${dist}">
+			<fileset dir="config" includes="text*.properties" />
+		</copy>
 		<copy todir="${dist}/images">
 			<fileset dir="images" includes="*" />
 		</copy>

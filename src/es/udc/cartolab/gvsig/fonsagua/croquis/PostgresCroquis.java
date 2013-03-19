@@ -17,16 +17,27 @@ public class PostgresCroquis implements ICroquis {
 
     @Override
     public void insertCroquisIntoDb(Connection connection, int comunidadId,
-	    File image) {
+	    File image, boolean update) {
 	try {
 	    byte[] imageBytes = ImageUtils.convertImageToBytea(image);
 	    PreparedStatement statement;
-	    statement = connection.prepareStatement("INSERT INTO "
-		    + CROQUIS_TABLENAME + " VALUES (?, ?)");
-	    statement.setInt(1, comunidadId);
-	    statement.setBytes(2, imageBytes);
+	    if (update) {
+		statement = connection.prepareStatement("UPDATE "
+			+ CROQUIS_TABLENAME + " SET " + CROQUIS_FIELDNAME
+			+ " = " + "? WHERE " + CROQUIS_COMUNIDAD_FK_FIELDNAME
+			+ " = ?");
+		statement.setBytes(1, imageBytes);
+		statement.setInt(2, comunidadId);
+	    } else {
+		statement = connection.prepareStatement("INSERT INTO "
+			+ CROQUIS_TABLENAME + " VALUES (?, ?)");
+		statement.setInt(1, comunidadId);
+		statement.setBytes(2, imageBytes);
+	    }
 	    statement.executeUpdate();
-	    connection.commit();
+	    if (!connection.getAutoCommit()) {
+		connection.commit();
+	    }
 	    statement.close();
 	} catch (SQLException e) {
 	    e.printStackTrace();
