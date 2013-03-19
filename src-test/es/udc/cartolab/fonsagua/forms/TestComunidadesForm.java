@@ -45,7 +45,7 @@ public class TestComunidadesForm extends CommonMethodsForTestDBForms {
 
 	try {
 	    // TODO: Change by example croquis
-	    File image = new File("/tmp/test.jpg");
+	    File image = new File("data-test/test.jpg");
 	    String query = "DELETE FROM comunidades_croquis; DELETE FROM comunidades";
 	    PreparedStatement statement = connection.prepareStatement(query);
 	    statement.execute();
@@ -91,7 +91,7 @@ public class TestComunidadesForm extends CommonMethodsForTestDBForms {
 
 	try {
 	    // TODO: Change by example croquis
-	    File image = new File("/tmp/test.jpg");
+	    File image = new File("data-test/test.jpg");
 	    String query = "DELETE FROM comunidades_croquis; DELETE FROM comunidades";
 	    PreparedStatement statement = connection.prepareStatement(query);
 	    statement.execute();
@@ -104,7 +104,7 @@ public class TestComunidadesForm extends CommonMethodsForTestDBForms {
 
 	    PostgresCroquis postgresCroquis = new PostgresCroquis();
 	    postgresCroquis.insertCroquisIntoDb(connection, 1, image, false);
-	    File imageToUpdate = new File("/tmp/test2.jpg");
+	    File imageToUpdate = new File("data-test/test2.jpg");
 	    postgresCroquis.insertCroquisIntoDb(connection, 1, imageToUpdate,
 		    true);
 
