@@ -8,6 +8,8 @@ import javax.swing.JTable;
 
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 
+import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
+
 public class TableHandler {
 
     private AbstractSubForm form;
@@ -25,6 +27,14 @@ public class TableHandler {
 	this.foreingKeyId = foreingKeyId;
 	this.colNames = colNames;
 	this.colAliases = colAliases;
+	try {
+	    TOCTableManager toc = new TOCTableManager();
+	    if (toc.getTableByName(tablename) == null) {
+		AlphanumericTableLoader.loadTable(tablename);
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
     }
 
     public void reload(AbstractSubForm form) {
