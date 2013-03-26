@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LAYER alias="ongs">
-       <TABLENAME>ongs</TABLENAME>
+<LAYER alias="implicacion_comunidad">
+       <TABLENAME>implicacion_comunidad</TABLENAME>
        <PRIMARYKEY>
 	<PKELEMENT>gid</PKELEMENT>
        </PRIMARYKEY>
@@ -11,11 +11,21 @@
 		<VALIDATIONRULE>MANDATORY</VALIDATIONRULE>
 	    </FIELD>
        	    <FIELD>
-		<FIELDNAME>valoracion</FIELDNAME>
+		<FIELDNAME>dinero_inv</FIELDNAME>
 		<DOMAINREADER>
 			<DRTYPE>db</DRTYPE>
 			<DRDBSCHEMA>public</DRDBSCHEMA>
-			<DRDBTABLE>valoracion</DRDBTABLE>
+			<DRDBTABLE>dinero_inv</DRDBTABLE>
+			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
+			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
+		</DOMAINREADER>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>tiempo_inv</FIELDNAME>
+		<DOMAINREADER>
+			<DRTYPE>db</DRTYPE>
+			<DRDBSCHEMA>public</DRDBSCHEMA>
+			<DRDBTABLE>tiempo_inv</DRDBTABLE>
 			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>

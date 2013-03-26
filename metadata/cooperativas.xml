@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LAYER alias="ongs">
-       <TABLENAME>ongs</TABLENAME>
+<LAYER alias="cooperativas">
+       <TABLENAME>cooperativas</TABLENAME>
        <PRIMARYKEY>
 	<PKELEMENT>gid</PKELEMENT>
        </PRIMARYKEY>
@@ -11,14 +11,8 @@
 		<VALIDATIONRULE>MANDATORY</VALIDATIONRULE>
 	    </FIELD>
        	    <FIELD>
-		<FIELDNAME>valoracion</FIELDNAME>
-		<DOMAINREADER>
-			<DRTYPE>db</DRTYPE>
-			<DRDBSCHEMA>public</DRDBSCHEMA>
-			<DRDBTABLE>valoracion</DRDBTABLE>
-			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
-			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
-		</DOMAINREADER>
+		<FIELDNAME>n_asociados</FIELDNAME>
+		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 	    </FIELD>
        </RECORDSET>
 

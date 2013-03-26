@@ -7,71 +7,35 @@
 
        <RECORDSET>
        	    <FIELD>
-		<FIELDNAME>dinero_invertido</FIELDNAME>
-
-
-
-
+		<FIELDNAME>cod_comunidad</FIELDNAME>
+		<VALIDATIONRULE>MANDATORY</VALIDATIONRULE>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>sist_cobros</FIELDNAME>
 		<DOMAINREADER>
 			<DRTYPE>db</DRTYPE>
 			<DRDBSCHEMA>public</DRDBSCHEMA>
-			<DRDBTABLE>dinero_invertido</DRDBTABLE>
+			<DRDBTABLE>sist_cobros</DRDBTABLE>
 			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>
 	    </FIELD>
        	    <FIELD>
-		<FIELDNAME>tiempo_invertido</FIELDNAME>
-
-
-
-
+		<FIELDNAME>nivel_serv</FIELDNAME>
 		<DOMAINREADER>
 			<DRTYPE>db</DRTYPE>
 			<DRDBSCHEMA>public</DRDBSCHEMA>
-			<DRDBTABLE>tiempo_invertido</DRDBTABLE>
+			<DRDBTABLE>nivel_serv</DRDBTABLE>
 			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>
 	    </FIELD>
        	    <FIELD>
-		<FIELDNAME>descripcion_sist_cobros</FIELDNAME>
-
-
-
-
+		<FIELDNAME>acceso_tomas</FIELDNAME>
 		<DOMAINREADER>
 			<DRTYPE>db</DRTYPE>
 			<DRDBSCHEMA>public</DRDBSCHEMA>
-			<DRDBTABLE>descripcion_sist_cobros</DRDBTABLE>
-			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
-			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
-		</DOMAINREADER>
-	    </FIELD>
-       	    <FIELD>
-		<FIELDNAME>eval_servicio_prestado</FIELDNAME>
-
-
-
-
-		<DOMAINREADER>
-			<DRTYPE>db</DRTYPE>
-			<DRDBSCHEMA>public</DRDBSCHEMA>
-			<DRDBTABLE>eval_servicio_prestado</DRDBTABLE>
-			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
-			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
-		</DOMAINREADER>
-	    </FIELD>
-       	    <FIELD>
-		<FIELDNAME>comodidad_acceso_toma</FIELDNAME>
-
-
-
-
-		<DOMAINREADER>
-			<DRTYPE>db</DRTYPE>
-			<DRDBSCHEMA>public</DRDBSCHEMA>
-			<DRDBTABLE>comodidad_acceso_toma</DRDBTABLE>
+			<DRDBTABLE>acceso_tomas</DRDBTABLE>
 			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>

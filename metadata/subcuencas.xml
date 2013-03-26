@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LAYER alias="areas_potenciales_riego">
-       <TABLENAME>areas_potenciales_riego</TABLENAME>
+<LAYER alias="subcuencas">
+       <TABLENAME>subcuencas</TABLENAME>
        <PRIMARYKEY>
 	<PKELEMENT>gid</PKELEMENT>
        </PRIMARYKEY>

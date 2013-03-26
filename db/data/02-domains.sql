@@ -1,366 +1,477 @@
+CREATE TABLE public.tip_nucleo (
+       item VARCHAR
+	       PRIMARY KEY
 
-CREATE TABLE si_no (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
 );
-INSERT INTO si_no (item) VALUES (' ');
-INSERT INTO si_no (item) VALUES ('Si');
-INSERT INTO si_no (item) VALUES ('No');
 
-CREATE TABLE tiponuc (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO tiponuc (item) VALUES (' ');
-INSERT INTO tiponuc (item) VALUES ('Concentrado');
-INSERT INTO tiponuc (item) VALUES ('disperso');
+INSERT INTO public.tip_nucleo (item) VALUES
+       ('0'),
+       ('1'),
+       ('2');
 
-CREATE TABLE tipoporige (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO tipoporige (item) VALUES (' ');
-INSERT INTO tipoporige (item) VALUES ('Oriunda');
-INSERT INTO tipoporige (item) VALUES ('desplazada');
-INSERT INTO tipoporige (item) VALUES ('mixta');
 
-CREATE TABLE antigdesp (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO antigdesp (item) VALUES (' ');
-INSERT INTO antigdesp (item) VALUES ('más de 5 años');
-INSERT INTO antigdesp (item) VALUES ('menos de 5 años');
+ALTER TABLE public.tip_nucleo OWNER TO fonsagua;
+CREATE TABLE public.tip_origen (
+       item VARCHAR
+	       PRIMARY KEY
 
-CREATE TABLE tipoevacag (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
 );
-INSERT INTO tipoevacag (item) VALUES (' ');
-INSERT INTO tipoevacag (item) VALUES ('Calle');
-INSERT INTO tipoevacag (item) VALUES ('Sistema comunal');
-INSERT INTO tipoevacag (item) VALUES ('Sistema familiar');
-INSERT INTO tipoevacag (item) VALUES ('Otros');
 
-CREATE TABLE agua_gris_calle (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO agua_gris_calle (item) VALUES (' ');
-INSERT INTO agua_gris_calle (item) VALUES ('Mucho');
-INSERT INTO agua_gris_calle (item) VALUES ('Poco');
-INSERT INTO agua_gris_calle (item) VALUES ('Nada');
+INSERT INTO public.tip_origen (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3');
 
-CREATE TABLE trataboner (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO trataboner (item) VALUES (' ');
-INSERT INTO trataboner (item) VALUES ('ceniza');
-INSERT INTO trataboner (item) VALUES ('cal');
-INSERT INTO trataboner (item) VALUES ('aserrín');
-INSERT INTO trataboner (item) VALUES ('otros');
 
-CREATE TABLE dletrcap (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO dletrcap (item) VALUES (' ');
-INSERT INTO dletrcap (item) VALUES ('mas de 30m');
-INSERT INTO dletrcap (item) VALUES ('menos de 30 m');
+ALTER TABLE public.tip_origen OWNER TO fonsagua;
+CREATE TABLE public.antiguedad (
+       item VARCHAR
+	       PRIMARY KEY
 
-CREATE TABLE dispbasur (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
 );
-INSERT INTO dispbasur (item) VALUES (' ');
-INSERT INTO dispbasur (item) VALUES ('No se hace nada');
-INSERT INTO dispbasur (item) VALUES ('se traslada a otro lugar');
-INSERT INTO dispbasur (item) VALUES ('se entierra');
-INSERT INTO dispbasur (item) VALUES ('se quema');
-INSERT INTO dispbasur (item) VALUES ('pasa el trend e aseo ( camión)');
-INSERT INTO dispbasur (item) VALUES ('otros');
 
-CREATE TABLE principal (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO principal (item) VALUES (' ');
-INSERT INTO principal (item) VALUES ('Deslizamientos');
-INSERT INTO principal (item) VALUES ('Desbordamiento de río');
-INSERT INTO principal (item) VALUES ('Inundaciones');
-INSERT INTO principal (item) VALUES ('Puntos de asalto');
-INSERT INTO principal (item) VALUES ('Otros');
-INSERT INTO principal (item) VALUES ('Ninguno');
+INSERT INTO public.antiguedad (item) VALUES
+       ('0'),
+       ('1'),
+       ('2');
 
-CREATE TABLE hayabast (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO hayabast (item) VALUES (' ');
-INSERT INTO hayabast (item) VALUES ('Si');
-INSERT INTO hayabast (item) VALUES ('No');
-INSERT INTO hayabast (item) VALUES ('Parcial');
 
-CREATE TABLE origaguas (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO origaguas (item) VALUES (' ');
-INSERT INTO origaguas (item) VALUES ('manantial');
-INSERT INTO origaguas (item) VALUES ('río');
-INSERT INTO origaguas (item) VALUES ('Pozo');
-INSERT INTO origaguas (item) VALUES ('Anda');
+ALTER TABLE public.antiguedad OWNER TO fonsagua;
+CREATE TABLE public.emigracion (
+       item VARCHAR
+	       PRIMARY KEY
 
-CREATE TABLE usos (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
 );
-INSERT INTO usos (item) VALUES (' ');
-INSERT INTO usos (item) VALUES ('Manantial');
-INSERT INTO usos (item) VALUES ('río');
-INSERT INTO usos (item) VALUES ('pozo');
-INSERT INTO usos (item) VALUES ('quebrada');
-INSERT INTO usos (item) VALUES ('compra');
 
-CREATE TABLE hay_migracion (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO hay_migracion (item) VALUES (' ');
-INSERT INTO hay_migracion (item) VALUES ('mucha');
-INSERT INTO hay_migracion (item) VALUES ('media');
-INSERT INTO hay_migracion (item) VALUES ('poca');
+INSERT INTO public.emigracion (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3');
 
-CREATE TABLE tiporegad (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO tiporegad (item) VALUES (' ');
-INSERT INTO tiporegad (item) VALUES ('Inundacion');
-INSERT INTO tiporegad (item) VALUES ('Aspersion');
-INSERT INTO tiporegad (item) VALUES ('Goteo');
-INSERT INTO tiporegad (item) VALUES ('Ninguno');
 
-CREATE TABLE tipo_acceso (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO tipo_acceso (item) VALUES (' ');
-INSERT INTO tipo_acceso (item) VALUES ('Vereda');
-INSERT INTO tipo_acceso (item) VALUES ('Calle');
-INSERT INTO tipo_acceso (item) VALUES ('Carretera');
+ALTER TABLE public.emigracion OWNER TO fonsagua;
+CREATE TABLE public.tip_regadio (
+       item VARCHAR
+	       PRIMARY KEY
 
-CREATE TABLE tipo_superficie (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
 );
-INSERT INTO tipo_superficie (item) VALUES (' ');
-INSERT INTO tipo_superficie (item) VALUES ('Tierra');
-INSERT INTO tipo_superficie (item) VALUES ('Balastro');
-INSERT INTO tipo_superficie (item) VALUES ('Empedrado');
-INSERT INTO tipo_superficie (item) VALUES ('Pavimentado');
 
-CREATE TABLE carrtinv (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO carrtinv (item) VALUES (' ');
-INSERT INTO carrtinv (item) VALUES ('Transitable');
-INSERT INTO carrtinv (item) VALUES ('Intransitable');
+INSERT INTO public.tip_regadio (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3'),
+       ('4');
 
-CREATE TABLE carrtveran (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO carrtveran (item) VALUES (' ');
-INSERT INTO carrtveran (item) VALUES ('Transitable');
-INSERT INTO carrtveran (item) VALUES ('Intransitable');
 
-CREATE TABLE deforest (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO deforest (item) VALUES (' ');
-INSERT INTO deforest (item) VALUES ('alta');
-INSERT INTO deforest (item) VALUES ('media');
-INSERT INTO deforest (item) VALUES ('baja');
+ALTER TABLE public.tip_regadio OWNER TO fonsagua;
+CREATE TABLE public.tip_acceso (
+       item VARCHAR
+	       PRIMARY KEY
 
-CREATE TABLE avanfragr (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
 );
-INSERT INTO avanfragr (item) VALUES (' ');
-INSERT INTO avanfragr (item) VALUES ('alta');
-INSERT INTO avanfragr (item) VALUES ('media');
-INSERT INTO avanfragr (item) VALUES ('baja');
 
-CREATE TABLE riesgeros (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO riesgeros (item) VALUES (' ');
-INSERT INTO riesgeros (item) VALUES ('alta');
-INSERT INTO riesgeros (item) VALUES ('media');
-INSERT INTO riesgeros (item) VALUES ('baja');
+INSERT INTO public.tip_acceso (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3');
 
-CREATE TABLE tipo (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO tipo (item) VALUES (' ');
-INSERT INTO tipo (item) VALUES ('Punto de referencia');
-INSERT INTO tipo (item) VALUES ('Casa extremos norte');
-INSERT INTO tipo (item) VALUES ('Casa extremo sur');
-INSERT INTO tipo (item) VALUES ('Casa extremo oriente');
-INSERT INTO tipo (item) VALUES ('Casa extremo poniente');
-INSERT INTO tipo (item) VALUES ('Casa mas alta');
-INSERT INTO tipo (item) VALUES ('Primera casa con electricidad');
-INSERT INTO tipo (item) VALUES ('Última casa con electricidad');
-INSERT INTO tipo (item) VALUES ('Otras casas');
 
-CREATE TABLE valoracion (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO valoracion (item) VALUES (' ');
-INSERT INTO valoracion (item) VALUES ('bien');
-INSERT INTO valoracion (item) VALUES ('regular');
-INSERT INTO valoracion (item) VALUES ('mal');
+ALTER TABLE public.tip_acceso OWNER TO fonsagua;
+CREATE TABLE public.tip_sup_acceso (
+       item VARCHAR
+	       PRIMARY KEY
 
-CREATE TABLE tipo_org (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
 );
-INSERT INTO tipo_org (item) VALUES (' ');
-INSERT INTO tipo_org (item) VALUES ('Asociación de padres y madres de familia');
-INSERT INTO tipo_org (item) VALUES ('cooperativa de producción');
-INSERT INTO tipo_org (item) VALUES ('Comité de iglesia');
-INSERT INTO tipo_org (item) VALUES ('Comité de  jóvenes');
-INSERT INTO tipo_org (item) VALUES ('otros');
 
-CREATE TABLE tipofc (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO tipofc (item) VALUES (' ');
-INSERT INTO tipofc (item) VALUES ('Puntos de vertido al río');
-INSERT INTO tipofc (item) VALUES ('basureros');
-INSERT INTO tipofc (item) VALUES ('puntos de lavado y bañado');
-INSERT INTO tipofc (item) VALUES ('Abrevaderos');
-INSERT INTO tipofc (item) VALUES ('otras fuentes de contaminación');
+INSERT INTO public.tip_sup_acceso (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3'),
+       ('4');
 
-CREATE TABLE tipofr (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO tipofr (item) VALUES (' ');
-INSERT INTO tipofr (item) VALUES ('Deslizamientos');
-INSERT INTO tipofr (item) VALUES ('Desbordamiento de río');
-INSERT INTO tipofr (item) VALUES ('Inundaciones');
-INSERT INTO tipofr (item) VALUES ('Puntos de asalto');
-INSERT INTO tipofr (item) VALUES ('Otros');
 
-CREATE TABLE dinero_invertido (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO dinero_invertido (item) VALUES (' ');
-INSERT INTO dinero_invertido (item) VALUES ('alto');
-INSERT INTO dinero_invertido (item) VALUES ('medio');
-INSERT INTO dinero_invertido (item) VALUES ('bajo');
+ALTER TABLE public.tip_sup_acceso OWNER TO fonsagua;
+CREATE TABLE public.acceso_ver (
+       item VARCHAR
+	       PRIMARY KEY
 
-CREATE TABLE tiempo_invertido (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
 );
-INSERT INTO tiempo_invertido (item) VALUES (' ');
-INSERT INTO tiempo_invertido (item) VALUES ('alto');
-INSERT INTO tiempo_invertido (item) VALUES ('medio');
-INSERT INTO tiempo_invertido (item) VALUES ('bajo');
 
-CREATE TABLE descripcion_sist_cobros (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO descripcion_sist_cobros (item) VALUES (' ');
-INSERT INTO descripcion_sist_cobros (item) VALUES ('Bueno');
-INSERT INTO descripcion_sist_cobros (item) VALUES ('regular');
-INSERT INTO descripcion_sist_cobros (item) VALUES ('malo');
+INSERT INTO public.acceso_ver (item) VALUES
+       ('0'),
+       ('1'),
+       ('2');
 
-CREATE TABLE eval_servicio_prestado (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO eval_servicio_prestado (item) VALUES (' ');
-INSERT INTO eval_servicio_prestado (item) VALUES ('Bueno');
-INSERT INTO eval_servicio_prestado (item) VALUES ('regular');
-INSERT INTO eval_servicio_prestado (item) VALUES ('malo');
 
-CREATE TABLE comodidad_acceso_toma (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO comodidad_acceso_toma (item) VALUES (' ');
-INSERT INTO comodidad_acceso_toma (item) VALUES ('difícil');
-INSERT INTO comodidad_acceso_toma (item) VALUES ('fácil');
+ALTER TABLE public.acceso_ver OWNER TO fonsagua;
+CREATE TABLE public.acceso_inv (
+       item VARCHAR
+	       PRIMARY KEY
 
-CREATE TABLE tipo_abast (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
 );
-INSERT INTO tipo_abast (item) VALUES (' ');
-INSERT INTO tipo_abast (item) VALUES ('Chorro');
-INSERT INTO tipo_abast (item) VALUES ('cantarera');
 
-CREATE TABLE quien (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO quien (item) VALUES (' ');
-INSERT INTO quien (item) VALUES ('mujeres');
-INSERT INTO quien (item) VALUES ('niños');
-INSERT INTO quien (item) VALUES ('niñas');
-INSERT INTO quien (item) VALUES ('hombres');
+INSERT INTO public.acceso_inv (item) VALUES
+       ('0'),
+       ('1'),
+       ('2');
 
-CREATE TABLE sector_act (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO sector_act (item) VALUES (' ');
-INSERT INTO sector_act (item) VALUES ('primario');
-INSERT INTO sector_act (item) VALUES ('secundario');
-INSERT INTO sector_act (item) VALUES ('terciario');
 
-CREATE TABLE tipo_act (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
-);
-INSERT INTO tipo_act (item) VALUES (' ');
-INSERT INTO tipo_act (item) VALUES ('Agropecuario');
-INSERT INTO tipo_act (item) VALUES ('industria');
-INSERT INTO tipo_act (item) VALUES ('construcción');
-INSERT INTO tipo_act (item) VALUES ('maquila');
-INSERT INTO tipo_act (item) VALUES ('comercio');
-INSERT INTO tipo_act (item) VALUES ('otros');
+ALTER TABLE public.acceso_inv OWNER TO fonsagua;
+CREATE TABLE public.veg_agr_tip (
+       item VARCHAR
+	       PRIMARY KEY
 
-CREATE TABLE gradosexis (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
 );
-INSERT INTO gradosexis (item) VALUES (' ');
-INSERT INTO gradosexis (item) VALUES ('Parvularia');
-INSERT INTO gradosexis (item) VALUES ('Primaria');
-INSERT INTO gradosexis (item) VALUES ('Báasica');
-INSERT INTO gradosexis (item) VALUES ('Media');
 
-CREATE TABLE tipo_servicio (
-	item VARCHAR NOT NULL, 
-	PRIMARY KEY (item)
+INSERT INTO public.veg_agr_tip (item) VALUES
+       ('0'),
+       ('1'),
+       ('2');
+
+
+ALTER TABLE public.veg_agr_tip OWNER TO fonsagua;
+CREATE TABLE public.veg_for_tip (
+       item VARCHAR
+	       PRIMARY KEY
+
 );
-INSERT INTO tipo_servicio (item) VALUES (' ');
-INSERT INTO tipo_servicio (item) VALUES ('Iglesia');
-INSERT INTO tipo_servicio (item) VALUES ('Intalación deportiva');
-INSERT INTO tipo_servicio (item) VALUES ('Centro comunitario');
-INSERT INTO tipo_servicio (item) VALUES ('Puesto policial');
-INSERT INTO tipo_servicio (item) VALUES ('Otros');
+
+INSERT INTO public.veg_for_tip (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3'),
+       ('4');
+
+
+ALTER TABLE public.veg_for_tip OWNER TO fonsagua;
+CREATE TABLE public.deforestacion (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.deforestacion (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3');
+
+
+ALTER TABLE public.deforestacion OWNER TO fonsagua;
+CREATE TABLE public.avance_fagricola (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.avance_fagricola (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3');
+
+
+ALTER TABLE public.avance_fagricola OWNER TO fonsagua;
+CREATE TABLE public.riesgo_erosion (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.riesgo_erosion (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3');
+
+
+ALTER TABLE public.riesgo_erosion OWNER TO fonsagua;
+CREATE TABLE public.sist_abastecimiento (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.sist_abastecimiento (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3');
+
+
+ALTER TABLE public.sist_abastecimiento OWNER TO fonsagua;
+CREATE TABLE public.origen_aguas (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.origen_aguas (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3'),
+       ('4');
+
+
+ALTER TABLE public.origen_aguas OWNER TO fonsagua;
+CREATE TABLE public.ag_gris_calle (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.ag_gris_calle (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3');
+
+
+ALTER TABLE public.ag_gris_calle OWNER TO fonsagua;
+CREATE TABLE public.trat_aboneras (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.trat_aboneras (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3'),
+       ('4');
+
+
+ALTER TABLE public.trat_aboneras OWNER TO fonsagua;
+CREATE TABLE public.dist_let_agua (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.dist_let_agua (item) VALUES
+       ('0'),
+       ('1'),
+       ('2');
+
+
+ALTER TABLE public.dist_let_agua OWNER TO fonsagua;
+CREATE TABLE public.disp_basuras (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.disp_basuras (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3'),
+       ('4'),
+       ('5'),
+       ('6');
+
+
+ALTER TABLE public.disp_basuras OWNER TO fonsagua;
+CREATE TABLE public.tipo (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.tipo (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3'),
+       ('4'),
+       ('5'),
+       ('6'),
+       ('7'),
+       ('8'),
+       ('9');
+
+
+ALTER TABLE public.tipo OWNER TO fonsagua;
+CREATE TABLE public.valoracion (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.valoracion (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3');
+
+
+ALTER TABLE public.valoracion OWNER TO fonsagua;
+CREATE TABLE public.tipo_organizacion (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.tipo_organizacion (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3'),
+       ('4'),
+       ('5');
+
+
+ALTER TABLE public.tipo_organizacion OWNER TO fonsagua;
+CREATE TABLE public.niveles (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.niveles (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3'),
+       ('4');
+
+
+ALTER TABLE public.niveles OWNER TO fonsagua;
+CREATE TABLE public.tipo_servicio (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.tipo_servicio (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3'),
+       ('4'),
+       ('5');
+
+
+ALTER TABLE public.tipo_servicio OWNER TO fonsagua;
+CREATE TABLE public.tipo_amenaza (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.tipo_amenaza (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3'),
+       ('4'),
+       ('5');
+
+
+ALTER TABLE public.tipo_amenaza OWNER TO fonsagua;
+CREATE TABLE public.dinero_inv (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.dinero_inv (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3');
+
+
+ALTER TABLE public.dinero_inv OWNER TO fonsagua;
+CREATE TABLE public.tiempo_inv (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.tiempo_inv (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3');
+
+
+ALTER TABLE public.tiempo_inv OWNER TO fonsagua;
+CREATE TABLE public.sist_cobros (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.sist_cobros (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3');
+
+
+ALTER TABLE public.sist_cobros OWNER TO fonsagua;
+CREATE TABLE public.nivel_serv (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.nivel_serv (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3');
+
+
+ALTER TABLE public.nivel_serv OWNER TO fonsagua;
+CREATE TABLE public.acceso_tomas (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.acceso_tomas (item) VALUES
+       ('0'),
+       ('1'),
+       ('2');
+
+
+ALTER TABLE public.acceso_tomas OWNER TO fonsagua;
+CREATE TABLE public.tipo_abastecimiento (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.tipo_abastecimiento (item) VALUES
+       ('0'),
+       ('1'),
+       ('2');
+
+
+ALTER TABLE public.tipo_abastecimiento OWNER TO fonsagua;
+CREATE TABLE public.tipo_contaminzacion (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.tipo_contaminzacion (item) VALUES
+       ('0'),
+       ('1'),
+       ('2'),
+       ('3'),
+       ('4'),
+       ('5');
+
+
+ALTER TABLE public.tipo_contaminzacion OWNER TO fonsagua;

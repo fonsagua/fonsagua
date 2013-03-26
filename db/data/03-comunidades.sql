@@ -1,602 +1,1092 @@
+CREATE TABLE public.comunidades (
+       gid SERIAL PRIMARY KEY,
+       comunidad VARCHAR
+	       ,
+       cod_comunidad VARCHAR
+	       UNIQUE
+	       NOT NULL
+	       ,
+       fecha Date
+	       ,
+       coment_gen VARCHAR
+	       ,
+       departamento VARCHAR
+	       ,
+       cod_departamento VARCHAR
+	       NOT NULL
+	       ,
+       municipio VARCHAR
+	       ,
+       cod_municipio VARCHAR
+	       NOT NULL
+	       ,
+       canton VARCHAR
+	       ,
+       cod_canton VARCHAR
+	       NOT NULL
+	       ,
+       caserio VARCHAR
+	       ,
+       cod_caserio VARCHAR
+	       NOT NULL
+	       ,
+       utm_x FLOAT
+	       ,
+       utm_y FLOAT
+	       ,
+       utm_z FLOAT
+	       ,
+       punto_descripcion VARCHAR
+	       ,
+       cuenca VARCHAR
+	       ,
+       coment_loc VARCHAR
+	       ,
+       tip_nucleo VARCHAR
+	       REFERENCES tip_nucleo
+	       ,
+       anho_establecimiento INTEGER
+	       ,
+       n_familias INTEGER
+	       ,
+       n_viviendas INTEGER
+	       ,
+       n_habitantes INTEGER
+	       ,
+       tip_origen VARCHAR
+	       REFERENCES tip_origen
+	       ,
+       antiguedad VARCHAR
+	       REFERENCES antiguedad
+	       ,
+       lug_origen VARCHAR
+	       ,
+       n_ninhas INTEGER
+	       ,
+       n_ninhos INTEGER
+	       ,
+       tot_ninhos INTEGER
+	       ,
+       n_muj_jovenes INTEGER
+	       ,
+       n_hom_jovenes INTEGER
+	       ,
+       n_mujeres INTEGER
+	       ,
+       n_hombres INTEGER
+	       ,
+       tot_adultos INTEGER
+	       ,
+       n_ancianas INTEGER
+	       ,
+       n_ancianos INTEGER
+	       ,
+       tot_ancianos INTEGER
+	       ,
+       resum_censo VARCHAR
+	       ,
+       coment_pob VARCHAR
+	       ,
+       h_adescos BOOLEAN
+	       ,
+       n_adescos INTEGER
+	       ,
+       h_cargos_publicos BOOLEAN
+	       ,
+       exp_ongs BOOLEAN
+	       ,
+       coment_org VARCHAR
+	       ,
+       emigracion VARCHAR
+	       REFERENCES emigracion
+	       ,
+       f_primario FLOAT
+	       ,
+       f_secundario FLOAT
+	       ,
+       f_terciario FLOAT
+	       ,
+       resum_econ VARCHAR
+	       ,
+       cp_granos INTEGER
+	       ,
+       sub_granos BOOLEAN
+	       ,
+       cp_ganaderia INTEGER
+	       ,
+       sub_ganaderia BOOLEAN
+	       ,
+       cp_frutales INTEGER
+	       ,
+       sub_frutales BOOLEAN
+	       ,
+       cp_otros INTEGER
+	       ,
+       sub_otros BOOLEAN
+	       ,
+       f_c_propia INTEGER
+	       ,
+       ca_cafe INTEGER
+	       ,
+       ca_canha INTEGER
+	       ,
+       ca_frutales INTEGER
+	       ,
+       ca_otros INTEGER
+	       ,
+       f_c_ajena INTEGER
+	       ,
+       ind_tall_maq BOOLEAN
+	       ,
+       f_industria INTEGER
+	       ,
+       f_indus_for INTEGER
+	       ,
+       f_indus_inf INTEGER
+	       ,
+       f_construccion INTEGER
+	       ,
+       f_const_for INTEGER
+	       ,
+       f_const_inf INTEGER
+	       ,
+       f_maquila INTEGER
+	       ,
+       f_otros_sec INTEGER
+	       ,
+       comer_serv BOOLEAN
+	       ,
+       f_comercio INTEGER
+	       ,
+       f_comer_for INTEGER
+	       ,
+       f_comer_inf INTEGER
+	       ,
+       f_otros_ter INTEGER
+	       ,
+       n_agropecuario INTEGER
+	       ,
+       n_industria INTEGER
+	       ,
+       n_construccion INTEGER
+	       ,
+       n_maquila INTEGER
+	       ,
+       n_comercio INTEGER
+	       ,
+       n_otros INTEGER
+	       ,
+       coment_eco VARCHAR
+	       ,
+       f_propietarias INTEGER
+	       ,
+       prop_hombres INTEGER
+	       ,
+       prop_mujeres INTEGER
+	       ,
+       prop_registrada INTEGER
+	       ,
+       prop_tramites INTEGER
+	       ,
+       prop_noregistrada INTEGER
+	       ,
+       prop_area_cultivada FLOAT
+	       ,
+       f_arrendatarias INTEGER
+	       ,
+       arre_hombres INTEGER
+	       ,
+       arre_mujeres INTEGER
+	       ,
+       arre_area_cultivada FLOAT
+	       ,
+       f_medias INTEGER
+	       ,
+       med_hombres INTEGER
+	       ,
+       med_mujeres INTEGER
+	       ,
+       med_area_cultivada FLOAT
+	       ,
+       area_cultivada FLOAT
+	       ,
+       tip_cultivos VARCHAR
+	       ,
+       produccion FLOAT
+	       ,
+       consumo FLOAT
+	       ,
+       lug_agua_cercano VARCHAR
+	       ,
+       tip_regadio VARCHAR
+	       REFERENCES tip_regadio
+	       ,
+       sup_total_riego FLOAT
+	       ,
+       areas_pot_riego BOOLEAN
+	       ,
+       agroquimicos BOOLEAN
+	       ,
+       tip_agroquimicos VARCHAR
+	       ,
+       tec_conservacion BOOLEAN
+	       ,
+       tip_tec_conservacion VARCHAR
+	       ,
+       form_agricola BOOLEAN
+	       ,
+       f_form_agricola VARCHAR
+	       ,
+       form_ambiental BOOLEAN
+	       ,
+       f_form_ambiental VARCHAR
+	       ,
+       n_vacas INTEGER
+	       ,
+       n_gallinas INTEGER
+	       ,
+       n_cerdos INTEGER
+	       ,
+       n_burros INTEGER
+	       ,
+       n_caballos INTEGER
+	       ,
+       h_cooperativas BOOLEAN
+	       ,
+       f_viv_prop INTEGER
+	       ,
+       viv_prop_hombres INTEGER
+	       ,
+       viv_prop_mujeres INTEGER
+	       ,
+       f_viv_noprop INTEGER
+	       ,
+       viv_bahareque INTEGER
+	       ,
+       viv_adobe INTEGER
+	       ,
+       viv_mixto INTEGER
+	       ,
+       viv_otros INTEGER
+	       ,
+       coc_lenha INTEGER
+	       ,
+       coc_lenha_mej INTEGER
+	       ,
+       electricidad BOOLEAN
+	       ,
+       viv_electricidad INTEGER
+	       ,
+       tarifa_electricidad FLOAT
+	       ,
+       alumbrado BOOLEAN
+	       ,
+       telf_fijo BOOLEAN
+	       ,
+       telf_movil BOOLEAN
+	       ,
+       cent_educativos BOOLEAN
+	       ,
+       n_cent_educativos INTEGER
+	       ,
+       h_prog_salud VARCHAR
+	       ,
+       prog_salud VARCHAR
+	       ,
+       frec_prog_salud VARCHAR
+	       ,
+       as_unidad_salud BOOLEAN
+	       ,
+       as_clinica_comunal BOOLEAN
+	       ,
+       as_promotor BOOLEAN
+	       ,
+       as_otros BOOLEAN
+	       ,
+       as_otros_detalle VARCHAR
+	       ,
+       n_cent_salud INTEGER
+	       ,
+       t_unidad_salud INTEGER
+	       ,
+       t_clinica_comunal INTEGER
+	       ,
+       frec_med_clinica INTEGER
+	       ,
+       frec_promotor INTEGER
+	       ,
+       enf_tip_ninhos VARCHAR
+	       ,
+       muertes_ninhos INTEGER
+	       ,
+       enf_tip_adultos VARCHAR
+	       ,
+       muertes_adultos INTEGER
+	       ,
+       f_dat_sanidad VARCHAR
+	       ,
+       n_iglesias INTEGER
+	       ,
+       tip_acceso VARCHAR
+	       REFERENCES tip_acceso
+	       ,
+       tip_sup_acceso VARCHAR
+	       REFERENCES tip_sup_acceso
+	       ,
+       acceso_ver VARCHAR
+	       REFERENCES acceso_ver
+	       ,
+       acceso_inv VARCHAR
+	       REFERENCES acceso_inv
+	       ,
+       trans_publico BOOLEAN
+	       ,
+       frec_tpublico INTEGER
+	       ,
+       t_parada INTEGER
+	       ,
+       t_cabmunicipal INTEGER
+	       ,
+       otros_transportes VARCHAR
+	       ,
+       coment_ser VARCHAR
+	       ,
+       llano FLOAT
+	       ,
+       pend_media FLOAT
+	       ,
+       pend_elevada FLOAT
+	       ,
+       veg_residencial BOOLEAN
+	       ,
+       veg_res_sup FLOAT
+	       ,
+       veg_industrial BOOLEAN
+	       ,
+       veg_ind_sup FLOAT
+	       ,
+       veg_agricola BOOLEAN
+	       ,
+       veg_agr_tip VARCHAR
+	       REFERENCES veg_agr_tip
+	       ,
+       veg_agr_sup FLOAT
+	       ,
+       veg_forestal BOOLEAN
+	       ,
+       veg_for_tip VARCHAR
+	       REFERENCES veg_for_tip
+	       ,
+       veg_for_sup FLOAT
+	       ,
+       deforestacion VARCHAR
+	       REFERENCES deforestacion
+	       ,
+       avance_fagricola VARCHAR
+	       REFERENCES avance_fagricola
+	       ,
+       riesgo_erosion VARCHAR
+	       REFERENCES riesgo_erosion
+	       ,
+       frec_incendios VARCHAR
+	       ,
+       est_hidrogeologicos BOOLEAN
+	       ,
+       autor_hidrogeo VARCHAR
+	       ,
+       pozos_extraccion BOOLEAN
+	       ,
+       pozos_nivel BOOLEAN
+	       ,
+       conserv_ma BOOLEAN
+	       ,
+       desc_conserv_ma VARCHAR
+	       ,
+       fr_deslizam BOOLEAN
+	       ,
+       fr_desbord BOOLEAN
+	       ,
+       fr_inundac BOOLEAN
+	       ,
+       fr_asaltos BOOLEAN
+	       ,
+       fr_ninguno BOOLEAN
+	       ,
+       fr_otros BOOLEAN
+	       ,
+       fr_otros_detalle VARCHAR
+	       ,
+       ult_fenomeno VARCHAR
+	       ,
+       f_dat_frg VARCHAR
+	       ,
+       comite_riesgos BOOLEAN
+	       ,
+       comite_activo BOOLEAN
+	       ,
+       comite VARCHAR
+	       ,
+       capac_riesgos BOOLEAN
+	       ,
+       coment_frg VARCHAR
+	       ,
+       sist_abastecimiento VARCHAR
+	       REFERENCES sist_abastecimiento
+	       ,
+       n_viv_abast INTEGER
+	       ,
+       origen_aguas VARCHAR
+	       REFERENCES origen_aguas
+	       ,
+       f_dat_abast VARCHAR
+	       ,
+       resum_abast VARCHAR
+	       ,
+       aba_cantareras INTEGER
+	       ,
+       aba_domiciliar INTEGER
+	       ,
+       tot_abast INTEGER
+	       ,
+       aba_nacimiento INTEGER
+	       ,
+       aba_quebrada INTEGER
+	       ,
+       aba_rio INTEGER
+	       ,
+       aba_broquel INTEGER
+	       ,
+       aba_broquel_com INTEGER
+	       ,
+       aba_compra INTEGER
+	       ,
+       aba_lluvia INTEGER
+	       ,
+       aba_vecino INTEGER
+	       ,
+       tot_sin_abast INTEGER
+	       ,
+       cons_dom FLOAT
+	       ,
+       cons_ag_gan FLOAT
+	       ,
+       tot_consumo FLOAT
+	       ,
+       comen_cons VARCHAR
+	       ,
+       cons_hab FLOAT
+	       ,
+       f_rio BOOLEAN
+	       ,
+       f_manantial BOOLEAN
+	       ,
+       f_pozo BOOLEAN
+	       ,
+       f_quebrada BOOLEAN
+	       ,
+       f_compra BOOLEAN
+	       ,
+       coste_agua FLOAT
+	       ,
+       t_medio_fuente INTEGER
+	       ,
+       seca_suficiencia BOOLEAN
+	       ,
+       seca_t_espera INTEGER
+	       ,
+       lluvia_suficiencia BOOLEAN
+	       ,
+       lluvia_t_espera INTEGER
+	       ,
+       res_hab_agua VARCHAR
+	       ,
+       coment_agua VARCHAR
+	       ,
+       coment_hab VARCHAR
+	       ,
+       sist_alcantarillado BOOLEAN
+	       ,
+       alc_completo BOOLEAN
+	       ,
+       evac_calle BOOLEAN
+	       ,
+       evac_familiar BOOLEAN
+	       ,
+       evac_comunal BOOLEAN
+	       ,
+       evac_otros BOOLEAN
+	       ,
+       ag_gris_calle VARCHAR
+	       REFERENCES ag_gris_calle
+	       ,
+       a_gris_quebrada BOOLEAN
+	       ,
+       trat_ag_residuales BOOLEAN
+	       ,
+       trat_trampa INTEGER
+	       ,
+       trat_biofiltro INTEGER
+	       ,
+       trat_otros INTEGER
+	       ,
+       sin_tratamiento INTEGER
+	       ,
+       trat_comunal VARCHAR
+	       ,
+       let_vivienda INTEGER
+	       ,
+       let_comunal INTEGER
+	       ,
+       let_monte INTEGER
+	       ,
+       let_hoyo INTEGER
+	       ,
+       let_septica INTEGER
+	       ,
+       let_hidra INTEGER
+	       ,
+       h_let_abonera BOOLEAN
+	       ,
+       let_abonera INTEGER
+	       ,
+       pq_no_aboneras VARCHAR
+	       ,
+       trat_aboneras VARCHAR
+	       REFERENCES trat_aboneras
+	       ,
+       disp_abono VARCHAR
+	       ,
+       uso_letrinas BOOLEAN
+	       ,
+       dist_let_agua VARCHAR
+	       REFERENCES dist_let_agua
+	       ,
+       h_lavad_comun BOOLEAN
+	       ,
+       n_lavaderos INTEGER
+	       ,
+       tip_almacenamiento VARCHAR
+	       ,
+       n_pilas INTEGER
+	       ,
+       n_barriles INTEGER
+	       ,
+       disp_basuras VARCHAR
+	       REFERENCES disp_basuras
+	       ,
+       coment_san VARCHAR
+	       ,
+       necesidad1 VARCHAR
+	       ,
+       necesidad2 VARCHAR
+	       ,
+       necesidad3 VARCHAR
+	       ,
+       necesidad4 VARCHAR
 
-CREATE TABLE comunidades (
-	gid SERIAL NOT NULL, 
-	nom_com VARCHAR, 
-	id_comunidad INTEGER, 
-	fecha DATE, 
-	communic VARCHAR, 
-	nomdep VARCHAR, 
-	coddep INTEGER, 
-	nommunic VARCHAR, 
-	codmunic INTEGER, 
-	nomcanton VARCHAR, 
-	codcanton INTEGER, 
-	x INTEGER, 
-	y INTEGER, 
-	alturac FLOAT, 
-	descrpt VARCHAR, 
-	cuenca VARCHAR, 
-	loccomen VARCHAR, 
-	tiponuc VARCHAR, 
-	nacicom DATE, 
-	tipoporige VARCHAR, 
-	lugar_desp VARCHAR, 
-	antigdesp VARCHAR, 
-	numfam INTEGER, 
-	numviv INTEGER, 
-	numhab INTEGER, 
-	numninhas INTEGER, 
-	numninhos INTEGER, 
-	totalnin INTEGER, 
-	nummujeres INTEGER, 
-	numhombres INTEGER, 
-	nummujpt INTEGER, 
-	numhompt INTEGER, 
-	totaladult INTEGER, 
-	numanciana INTEGER, 
-	numanciano INTEGER, 
-	totalancia INTEGER, 
-	resdatpob VARCHAR, 
-	comdatpob VARCHAR, 
-	necesidad1 VARCHAR, 
-	necesidad2 VARCHAR, 
-	necesidad3 VARCHAR, 
-	necesidad4 VARCHAR, 
-	hay_adesco VARCHAR, 
-	n_adescos INTEGER, 
-	perscpub VARCHAR, 
-	expongs VARCHAR, 
-	obsasporg VARCHAR, 
-	hayevacagr VARCHAR, 
-	alc_toda_c VARCHAR, 
-	tipoevacag VARCHAR, 
-	agua_gris_calle VARCHAR, 
-	agua_gris_quebrada VARCHAR, 
-	haytratagr VARCHAR, 
-	trat_trampa INTEGER, 
-	trat_biofiltro INTEGER, 
-	trat_otros INTEGER, 
-	trat_nada INTEGER, 
-	trataggris VARCHAR, 
-	haylavc VARCHAR, 
-	nlavad INTEGER, 
-	tipoalma VARCHAR, 
-	npilas INTEGER, 
-	nbarr INTEGER, 
-	usolet VARCHAR, 
-	fam_let_vivienda INTEGER, 
-	fam_let_comunal INTEGER, 
-	fam_let_monte INTEGER, 
-	let_hoyo INTEGER, 
-	let_abonera INTEGER, 
-	let_septica INTEGER, 
-	let_hidra INTEGER, 
-	usoletabo VARCHAR, 
-	pqnouso VARCHAR, 
-	trataboner VARCHAR, 
-	dispfinab VARCHAR, 
-	dletrcap VARCHAR, 
-	dispbasur VARCHAR, 
-	comentsan VARCHAR, 
-	principal VARCHAR, 
-	otrosfr VARCHAR, 
-	fuentdatos VARCHAR, 
-	ultimof VARCHAR, 
-	comiter VARCHAR, 
-	comite_riesgo_act VARCHAR, 
-	comite_riesgo_nom_cont VARCHAR, 
-	capacit VARCHAR, 
-	comentfr VARCHAR, 
-	hayabast VARCHAR, 
-	parcviv INTEGER, 
-	origaguas VARCHAR, 
-	resabagua VARCHAR, 
-	fam_manant INTEGER, 
-	fam_quebra INTEGER, 
-	fam_rio INTEGER, 
-	fam_broquel INTEGER, 
-	fam_broquel_comunal INTEGER, 
-	fam_compran INTEGER, 
-	fam_lluvia INTEGER, 
-	fam_vecino INTEGER, 
-	totnocom INTEGER, 
-	llavepub INTEGER, 
-	abastdom INTEGER, 
-	totcom INTEGER, 
-	fuentedat VARCHAR, 
-	cominfraag VARCHAR, 
-	constotal FLOAT, 
-	consdom FLOAT, 
-	cons_agr_gan FLOAT, 
-	cons_coment VARCHAR, 
-	consumhab FLOAT, 
-	tmediofu FLOAT, 
-	vdeposito FLOAT, 
-	usos VARCHAR, 
-	seca_tespera FLOAT, 
-	seca_suficiencia VARCHAR, 
-	lluvia_tespera FLOAT, 
-	lluvia_suficiencia VARCHAR, 
-	cosaguaext FLOAT, 
-	comhabitan VARCHAR, 
-	reshabitos VARCHAR, 
-	hay_migracion VARCHAR, 
-	econ_clas VARCHAR, 
-	famagropec FLOAT, 
-	famcuenpro INTEGER, 
-	granosbasi INTEGER, 
-	granbassub VARCHAR, 
-	ganad INTEGER, 
-	ganadsubs VARCHAR, 
-	fam_propia_frut INTEGER, 
-	cpotrsubs VARCHAR, 
-	fam_propia_otros INTEGER, 
-	fam_propia_otros_subs VARCHAR, 
-	nfamcuenaj INTEGER, 
-	cortacafe INTEGER, 
-	cortacanha INTEGER, 
-	fam_ajena_frut INTEGER, 
-	fam_ajena_otros INTEGER, 
-	hayindustr VARCHAR, 
-	famindust FLOAT, 
-	numfamindu INTEGER, 
-	fam_ingresos_industria_formal INTEGER, 
-	fam_ingresos_industria_informal INTEGER, 
-	numfconstr INTEGER, 
-	fam_ingresos_construccion_formal INTEGER, 
-	fam_ingresos_construccion_informal INTEGER, 
-	numfammaq INTEGER, 
-	numfamotro INTEGER, 
-	haycomerc VARCHAR, 
-	famserv FLOAT, 
-	fam_ingresos_comercio INTEGER, 
-	fam_ingresos_comercio_formal INTEGER, 
-	fam_ingresos_comercio_informal INTEGER, 
-	numfamcotr INTEGER, 
-	resaeco VARCHAR, 
-	comaeco VARCHAR, 
-	nfampropie INTEGER, 
-	nprophomb INTEGER, 
-	npropmuj INTEGER, 
-	legalreg INTEGER, 
-	legaltram INTEGER, 
-	legalnoreg INTEGER, 
-	acultivfam FLOAT, 
-	nfamarrend INTEGER, 
-	famamedh INTEGER, 
-	famamedm INTEGER, 
-	aculfarren FLOAT, 
-	famamedias INTEGER, 
-	narrcabh INTEGER, 
-	narrcabm INTEGER, 
-	aculfcolon FLOAT, 
-	ncomppt INTEGER, 
-	cmtipocult VARCHAR, 
-	sacosfam FLOAT, 
-	sacfconspr FLOAT, 
-	lugarprox VARCHAR, 
-	supregtot FLOAT, 
-	tiporegad VARCHAR, 
-	areapotrie VARCHAR, 
-	agroquim VARCHAR, 
-	tipoagroq VARCHAR, 
-	consrvsuel VARCHAR, 
-	tipocsrvs VARCHAR, 
-	formacagro VARCHAR, 
-	nfamforagr VARCHAR, 
-	formamb VARCHAR, 
-	nfamformam VARCHAR, 
-	vacas INTEGER, 
-	gallinas INTEGER, 
-	cerdos INTEGER, 
-	burros INTEGER, 
-	caballos INTEGER, 
-	hay_coop_prod VARCHAR, 
-	hayelectr VARCHAR, 
-	numvivelec INTEGER, 
-	cuota FLOAT, 
-	hay_alum_pub VARCHAR, 
-	haytelfijo VARCHAR, 
-	hay_tlf_movil VARCHAR, 
-	hayesc VARCHAR, 
-	n_ccedu INTEGER, 
-	prog_salud_hay VARCHAR, 
-	prog_salud VARCHAR, 
-	prog_salud_frec VARCHAR, 
-	tipo_as_unidad_salud BOOLEAN, 
-	tipo_as_clinica_comunal BOOLEAN, 
-	tipo_as_promotor_salud BOOLEAN, 
-	tipo_as_otros BOOLEAN, 
-	tipo_sanitaria_otro VARCHAR, 
-	ccsalud_hay VARCHAR, 
-	ccsalud_n INTEGER, 
-	tcensalud INTEGER, 
-	tcesamo INTEGER, 
-	frqcesamo INTEGER, 
-	vispromsal VARCHAR, 
-	frqvisprom INTEGER, 
-	enf_n_tipos VARCHAR, 
-	enf_n_muertes INTEGER, 
-	enf_a_tipos VARCHAR, 
-	enf_a_muertes INTEGER, 
-	fnteinfosa VARCHAR, 
-	iglesias_n INTEGER, 
-	tipo_acceso VARCHAR, 
-	tipo_superficie VARCHAR, 
-	carrtinv VARCHAR, 
-	carrtveran VARCHAR, 
-	transpub VARCHAR, 
-	frqtrpub INTEGER, 
-	distaparad FLOAT, 
-	tcabmunvh FLOAT, 
-	otro_tipo_transporte VARCHAR, 
-	fpropviv INTEGER, 
-	mujprop INTEGER, 
-	homprop INTEGER, 
-	fnoprptviv INTEGER, 
-	famvivbarq INTEGER, 
-	famvivadob INTEGER, 
-	famvivladr INTEGER, 
-	famvivotro INTEGER, 
-	estufa INTEGER, 
-	fogon INTEGER, 
-	obsserv VARCHAR, 
-	sillano FLOAT, 
-	simedia FLOAT, 
-	sielevada FLOAT, 
-	veg_residencial FLOAT, 
-	veg_industrial FLOAT, 
-	veg_pastizal FLOAT, 
-	veg_cultivos FLOAT, 
-	veg_frondoso FLOAT, 
-	veg_raleado FLOAT, 
-	veg_matorral FLOAT, 
-	veg_mangle FLOAT, 
-	deforest VARCHAR, 
-	avanfragr VARCHAR, 
-	riesgeros VARCHAR, 
-	freqincend VARCHAR, 
-	hayhidrog VARCHAR, 
-	hidrgaut VARCHAR, 
-	nivpozos VARCHAR, 
-	hayconsvma VARCHAR, 
-	descconsma VARCHAR, 
-	PRIMARY KEY (gid), 
-	UNIQUE (id_comunidad), 
-	FOREIGN KEY(tiponuc) REFERENCES tiponuc (item), 
-	FOREIGN KEY(tipoporige) REFERENCES tipoporige (item), 
-	FOREIGN KEY(antigdesp) REFERENCES antigdesp (item), 
-	FOREIGN KEY(tipoevacag) REFERENCES tipoevacag (item), 
-	FOREIGN KEY(agua_gris_calle) REFERENCES agua_gris_calle (item), 
-	FOREIGN KEY(trataboner) REFERENCES trataboner (item), 
-	FOREIGN KEY(dletrcap) REFERENCES dletrcap (item), 
-	FOREIGN KEY(dispbasur) REFERENCES dispbasur (item), 
-	FOREIGN KEY(principal) REFERENCES principal (item), 
-	FOREIGN KEY(hayabast) REFERENCES hayabast (item), 
-	FOREIGN KEY(origaguas) REFERENCES origaguas (item), 
-	FOREIGN KEY(usos) REFERENCES usos (item), 
-	FOREIGN KEY(hay_migracion) REFERENCES hay_migracion (item), 
-	FOREIGN KEY(tiporegad) REFERENCES tiporegad (item), 
-	FOREIGN KEY(tipo_acceso) REFERENCES tipo_acceso (item), 
-	FOREIGN KEY(tipo_superficie) REFERENCES tipo_superficie (item), 
-	FOREIGN KEY(carrtinv) REFERENCES carrtinv (item), 
-	FOREIGN KEY(carrtveran) REFERENCES carrtveran (item), 
-	FOREIGN KEY(deforest) REFERENCES deforest (item), 
-	FOREIGN KEY(avanfragr) REFERENCES avanfragr (item), 
-	FOREIGN KEY(riesgeros) REFERENCES riesgeros (item)
 );
+
 SELECT addgeometrycolumn('public', 'comunidades', 'geom', 32616, 'POINT', 2);
 
-CREATE TABLE puntos_viviendas (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	id_vivienda VARCHAR, 
-	tipo VARCHAR, 
-	x INTEGER, 
-	y INTEGER, 
-	z FLOAT, 
-	descripc VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(tipo) REFERENCES tipo (item), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+ALTER TABLE public.comunidades OWNER TO fonsagua;CREATE TABLE public.puntos_viviendas (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       cod_vivienda INTEGER
+	       UNIQUE
+	       NOT NULL
+	       ,
+       tipo VARCHAR
+	       REFERENCES tipo
+	       ,
+       utm_x FLOAT
+	       ,
+       utm_y FLOAT
+	       ,
+       utm_z FLOAT
+	       ,
+       descripcion VARCHAR
+
 );
+
 SELECT addgeometrycolumn('public', 'puntos_viviendas', 'geom', 32616, 'POINT', 2);
 
-CREATE TABLE interlocutores (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	cargoentrv VARCHAR, 
-	entrev VARCHAR, 
-	telefono INTEGER, 
-	fecha VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+ALTER TABLE public.puntos_viviendas OWNER TO fonsagua;CREATE TABLE public.entrevistadores (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       nombre VARCHAR
+	       ,
+       cargo VARCHAR
+	       ,
+       instit VARCHAR
+	       ,
+       telefono INTEGER
+
 );
 
-CREATE TABLE entrevistados (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	cargo VARCHAR, 
-	entrevist VARCHAR, 
-	instit VARCHAR, 
-	telefono INTEGER, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+
+ALTER TABLE public.entrevistadores OWNER TO fonsagua;CREATE TABLE public.entrevistados (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       nombre VARCHAR
+	       ,
+       cargo VARCHAR
+	       ,
+       telefono INTEGER
+	       ,
+       fecha Date
+
 );
 
-CREATE TABLE subcuencas (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	subcuenca VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+
+ALTER TABLE public.entrevistados OWNER TO fonsagua;CREATE TABLE public.subcuencas (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       subcuenca VARCHAR
+
 );
 
-CREATE TABLE adescos (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	nombre VARCHAR, 
-	ano_const DATE, 
-	legalizada VARCHAR, 
-	nsocios INTEGER, 
-	antiguedad INTEGER, 
-	nom_presi VARCHAR, 
-	nhombres INTEGER, 
-	nmujeres INTEGER, 
-	ntotal INTEGER, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+
+ALTER TABLE public.subcuencas OWNER TO fonsagua;CREATE TABLE public.adescos (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       nombre VARCHAR
+	       ,
+       anho_const INTEGER
+	       ,
+       legalizada BOOLEAN
+	       ,
+       n_socios INTEGER
+	       ,
+       antiguedad INTEGER
+	       ,
+       presidente VARCHAR
+	       ,
+       n_hombres INTEGER
+	       ,
+       n_mujeres INTEGER
+	       ,
+       tot_miembros INTEGER
+
 );
 
-CREATE TABLE cargos_publicos (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	cargo VARCHAR, 
-	nombre VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+
+ALTER TABLE public.adescos OWNER TO fonsagua;CREATE TABLE public.cargos_publicos (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       nombre VARCHAR
+	       ,
+       cargo VARCHAR
+
 );
 
-CREATE TABLE ongs (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	ong VARCHAR, 
-	fechas VARCHAR, 
-	tipoproy VARCHAR, 
-	capacit VARCHAR, 
-	tipocapac VARCHAR, 
-	valoracion VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(valoracion) REFERENCES valoracion (item), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+
+ALTER TABLE public.cargos_publicos OWNER TO fonsagua;CREATE TABLE public.ongs (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       ong VARCHAR
+	       ,
+       fechas VARCHAR
+	       ,
+       tipo_proy VARCHAR
+	       ,
+       capacitacion BOOLEAN
+	       ,
+       tipo_capac VARCHAR
+	       ,
+       valoracion VARCHAR
+	       REFERENCES valoracion
+
 );
 
-CREATE TABLE otras_organizaciones (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	tipo_org VARCHAR, 
-	nombre VARCHAR, 
-	fecha_cre VARCHAR, 
-	actividad VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(tipo_org) REFERENCES tipo_org (item), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+
+ALTER TABLE public.ongs OWNER TO fonsagua;CREATE TABLE public.otras_organizaciones (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       tipo_organizacion VARCHAR
+	       REFERENCES tipo_organizacion
+	       ,
+       nombre VARCHAR
+	       ,
+       f_creacion Date
+	       ,
+       actividad VARCHAR
+
 );
 
-CREATE TABLE fuentes_contaminacion (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	codigofc INTEGER, 
-	tipofc VARCHAR, 
-	tipoactivi INTEGER, 
-	x INTEGER, 
-	y INTEGER, 
-	altura INTEGER, 
-	descripc VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(tipofc) REFERENCES tipofc (item), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+
+ALTER TABLE public.otras_organizaciones OWNER TO fonsagua;CREATE TABLE public.tipos_cultivos (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       tipo VARCHAR
+	       ,
+       n_familias INTEGER
+	       ,
+       f_propietarias INTEGER
+	       ,
+       f_arrendatarias INTEGER
+	       ,
+       superficie FLOAT
+	       ,
+       rendimiento FLOAT
+	       ,
+       rubro VARCHAR
+
 );
 
-CREATE TABLE capacitaciones_gestion_riesgos (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	instit VARCHAR, 
-	fecha VARCHAR, 
-	temas VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+
+ALTER TABLE public.tipos_cultivos OWNER TO fonsagua;CREATE TABLE public.produccion_consumo (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       n_miembros INTEGER
+	       ,
+       produccion FLOAT
+	       ,
+       consumo FLOAT
+
 );
 
-CREATE TABLE amenazas (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	codigofr INTEGER, 
-	tipofr VARCHAR, 
-	familiasaf INTEGER, 
-	x INTEGER, 
-	y INTEGER, 
-	z INTEGER, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(tipofr) REFERENCES tipofr (item), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
-);
-SELECT addgeometrycolumn('public', 'amenazas', 'geom', 32616, 'POINT', 2);
 
-CREATE TABLE r_comunidades_abastecimientos (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	id_abastecimiento VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+ALTER TABLE public.produccion_consumo OWNER TO fonsagua;CREATE TABLE public.areas_potenciales_riego (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       descripcion VARCHAR
+
 );
 
-CREATE TABLE valoracion_sistema (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	dinero_invertido VARCHAR, 
-	tiempo_invertido VARCHAR, 
-	descripcion_sist_cobros VARCHAR, 
-	eval_servicio_prestado VARCHAR, 
-	cantidad_suficiente VARCHAR, 
-	servicio_continuo VARCHAR, 
-	comodidad_acceso_toma VARCHAR, 
-	comentarios_usuarios VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(dinero_invertido) REFERENCES dinero_invertido (item), 
-	FOREIGN KEY(tiempo_invertido) REFERENCES tiempo_invertido (item), 
-	FOREIGN KEY(descripcion_sist_cobros) REFERENCES descripcion_sist_cobros (item), 
-	FOREIGN KEY(eval_servicio_prestado) REFERENCES eval_servicio_prestado (item), 
-	FOREIGN KEY(comodidad_acceso_toma) REFERENCES comodidad_acceso_toma (item), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+SELECT addgeometrycolumn('public', 'areas_potenciales_riego', 'geom', 32616, 'MULTIPOLYGON', 2);
+
+ALTER TABLE public.areas_potenciales_riego OWNER TO fonsagua;CREATE TABLE public.ganaderia (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       tipo VARCHAR
+	       ,
+       n_familias INTEGER
+	       ,
+       f_propietarias INTEGER
+	       ,
+       f_arrendatarias INTEGER
+	       ,
+       areafam INTEGER
+	       ,
+       rendimiento FLOAT
+	       ,
+       rubro VARCHAR
+
 );
 
-CREATE TABLE datos_consumo (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	codigoab INTEGER, 
-	id INTEGER, 
-	tipo_abast VARCHAR, 
-	usosagua VARCHAR, 
-	nveces FLOAT, 
-	nmiembros INTEGER, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(tipo_abast) REFERENCES tipo_abast (item), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+
+ALTER TABLE public.ganaderia OWNER TO fonsagua;CREATE TABLE public.cooperativas (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       tipo VARCHAR
+	       ,
+       n_asociados INTEGER
+	       ,
+       recursos VARCHAR
+	       ,
+       rubros VARCHAR
+
 );
 
-CREATE TABLE habitos_consumo (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	id INTEGER, 
-	con_fam_dia FLOAT, 
-	quien VARCHAR, 
-	nmiembros INTEGER, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(quien) REFERENCES quien (item), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+
+ALTER TABLE public.cooperativas OWNER TO fonsagua;CREATE TABLE public.centros_educativos (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       cod_c_educativo INTEGER
+	       UNIQUE
+	       NOT NULL
+	       ,
+       nombre VARCHAR
+	       ,
+       niveles VARCHAR
+	       REFERENCES niveles
+	       ,
+       tot_alumnos INTEGER
+	       ,
+       n_ninhas INTEGER
+	       ,
+       n_ninhos INTEGER
+	       ,
+       n_profesores INTEGER
+	       ,
+       n_prof_com INTEGER
+	       ,
+       prog_esc_salud BOOLEAN
+	       ,
+       programa VARCHAR
+	       ,
+       frec_prog VARCHAR
+	       ,
+       utm_x FLOAT
+	       ,
+       utm_y FLOAT
+	       ,
+       utm_z FLOAT
+	       ,
+       comentarios VARCHAR
+
 );
 
-CREATE TABLE centros_actividad_economica (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	sector_act VARCHAR, 
-	tipo_act VARCHAR, 
-	numero VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(sector_act) REFERENCES sector_act (item), 
-	FOREIGN KEY(tipo_act) REFERENCES tipo_act (item), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
-);
-
-CREATE TABLE tipos_cultivos (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	tipo VARCHAR, 
-	numfam INTEGER, 
-	nfamprop INTEGER, 
-	nfamarrend INTEGER, 
-	areafam FLOAT, 
-	rendim FLOAT, 
-	rubro VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
-);
-
-CREATE TABLE produccion_consumo_comparado (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	id_familia INTEGER, 
-	nmiembros INTEGER, 
-	produccion FLOAT, 
-	consumo FLOAT, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
-);
-
-CREATE TABLE areas_potenciales_riego (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	id_area_pot VARCHAR, 
-	descripcion VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
-);
-SELECT addgeometrycolumn('public', 'areas_potenciales_riego', 'geom', 32616, 'POLYGON', 2);
-
-CREATE TABLE ganaderia (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	tipo VARCHAR, 
-	numfam INTEGER, 
-	nfamprop INTEGER, 
-	nfamarrend INTEGER, 
-	areafam FLOAT, 
-	rendim FLOAT, 
-	rubro VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
-);
-
-CREATE TABLE cooperativas (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	tipoorg VARCHAR, 
-	nasoc INTEGER, 
-	recursos VARCHAR, 
-	rubros VARCHAR, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
-);
-
-CREATE TABLE centros_educativos (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	id_cedu INTEGER, 
-	nombre VARCHAR, 
-	gradosexis VARCHAR, 
-	alumnostot INTEGER, 
-	alumninhas INTEGER, 
-	alumninhos INTEGER, 
-	profesotot INTEGER, 
-	profescom INTEGER, 
-	escsalud VARCHAR, 
-	escsaludcu VARCHAR, 
-	escsaludfre VARCHAR, 
-	comesc VARCHAR, 
-	x INTEGER, 
-	y INTEGER, 
-	z INTEGER, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(gradosexis) REFERENCES gradosexis (item), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
-);
 SELECT addgeometrycolumn('public', 'centros_educativos', 'geom', 32616, 'POINT', 2);
 
-CREATE TABLE centros_salud (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	codcsal INTEGER, 
-	nombre VARCHAR, 
-	x INTEGER, 
-	y INTEGER, 
-	z INTEGER, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+ALTER TABLE public.centros_educativos OWNER TO fonsagua;CREATE TABLE public.centros_salud (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       cod_c_salud INTEGER
+	       UNIQUE
+	       NOT NULL
+	       ,
+       nombre VARCHAR
+	       ,
+       utm_x FLOAT
+	       ,
+       utm_y FLOAT
+	       ,
+       utm_z FLOAT
+
 );
+
 SELECT addgeometrycolumn('public', 'centros_salud', 'geom', 32616, 'POINT', 2);
 
-CREATE TABLE otros_servicios (
-	gid SERIAL NOT NULL, 
-	id_comunidad INTEGER, 
-	id_servicio INTEGER, 
-	nombre VARCHAR, 
-	tipo_servicio VARCHAR, 
-	x INTEGER, 
-	y INTEGER, 
-	z INTEGER, 
-	PRIMARY KEY (gid), 
-	FOREIGN KEY(tipo_servicio) REFERENCES tipo_servicio (item), 
-	FOREIGN KEY(id_comunidad) REFERENCES comunidades (id_comunidad)
+ALTER TABLE public.centros_salud OWNER TO fonsagua;CREATE TABLE public.otros_servicios (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       cod_servicio INTEGER
+	       UNIQUE
+	       NOT NULL
+	       ,
+       nombre VARCHAR
+	       ,
+       tipo_servicio VARCHAR
+	       REFERENCES tipo_servicio
+	       ,
+       utm_x FLOAT
+	       ,
+       utm_y FLOAT
+	       ,
+       utm_z FLOAT
+
 );
+
 SELECT addgeometrycolumn('public', 'otros_servicios', 'geom', 32616, 'POINT', 2);
+
+ALTER TABLE public.otros_servicios OWNER TO fonsagua;CREATE TABLE public.capacitaciones_riesgos (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       institucion VARCHAR
+	       ,
+       fecha Date
+	       ,
+       temas VARCHAR
+
+);
+
+
+ALTER TABLE public.capacitaciones_riesgos OWNER TO fonsagua;CREATE TABLE public.amenazas (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       cod_amenaza INTEGER
+	       UNIQUE
+	       NOT NULL
+	       ,
+       tipo_amenaza VARCHAR
+	       REFERENCES tipo_amenaza
+	       ,
+       n_fam_afectadas INTEGER
+	       ,
+       utm_x FLOAT
+	       ,
+       utm_y FLOAT
+	       ,
+       utm_z FLOAT
+
+);
+
+SELECT addgeometrycolumn('public', 'amenazas', 'geom', 32616, 'POINT', 2);
+
+ALTER TABLE public.amenazas OWNER TO fonsagua;CREATE TABLE public.r_comunidades_abastecimientos (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       cod_abastecimiento VARCHAR
+	       NOT NULL
+
+);
+
+
+ALTER TABLE public.r_comunidades_abastecimientos OWNER TO fonsagua;CREATE TABLE public.implicacion_comunidad (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       dinero_inv VARCHAR
+	       REFERENCES dinero_inv
+	       ,
+       tiempo_inv VARCHAR
+	       REFERENCES tiempo_inv
+
+);
+
+
+ALTER TABLE public.implicacion_comunidad OWNER TO fonsagua;CREATE TABLE public.valoracion_sistema (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       sist_cobros VARCHAR
+	       REFERENCES sist_cobros
+	       ,
+       nivel_serv VARCHAR
+	       REFERENCES nivel_serv
+	       ,
+       agua_suf BOOLEAN
+	       ,
+       serv_continuo BOOLEAN
+	       ,
+       acceso_tomas VARCHAR
+	       REFERENCES acceso_tomas
+	       ,
+       comentarios_usuarios VARCHAR
+
+);
+
+
+ALTER TABLE public.valoracion_sistema OWNER TO fonsagua;CREATE TABLE public.datos_consumo (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       cod_abastecimiento VARCHAR
+	       ,
+       tipo_abastecimiento VARCHAR
+	       REFERENCES tipo_abastecimiento
+	       ,
+       mujeres BOOLEAN
+	       ,
+       hombres BOOLEAN
+	       ,
+       ninhas BOOLEAN
+	       ,
+       ninhos BOOLEAN
+	       ,
+       tiempo INTEGER
+	       ,
+       usos_agua VARCHAR
+	       ,
+       consumo FLOAT
+	       ,
+       n_miembros INTEGER
+
+);
+
+
+ALTER TABLE public.datos_consumo OWNER TO fonsagua;CREATE TABLE public.habitos_consumo (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       mujeres BOOLEAN
+	       ,
+       hombres BOOLEAN
+	       ,
+       ninhas BOOLEAN
+	       ,
+       ninhos BOOLEAN
+	       ,
+       tiempo INTEGER
+	       ,
+       consumo FLOAT
+	       ,
+       n_miembros INTEGER
+
+);
+
+
+ALTER TABLE public.habitos_consumo OWNER TO fonsagua;CREATE TABLE public.fuentes_contaminacion (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES comunidades(cod_comunidad)
+	       ,
+       cod_f_contaminacion INTEGER
+	       UNIQUE
+	       NOT NULL
+	       ,
+       tipo_contaminzacion VARCHAR
+	       REFERENCES tipo_contaminzacion
+	       ,
+       n_fam_vierten INTEGER
+	       ,
+       utm_x FLOAT
+	       ,
+       utm_y FLOAT
+	       ,
+       utm_z FLOAT
+	       ,
+       descripcion VARCHAR
+
+);
+
+SELECT addgeometrycolumn('public', 'fuentes_contaminacion', 'geom', 32616, 'POINT', 2);
+
+ALTER TABLE public.fuentes_contaminacion OWNER TO fonsagua;
