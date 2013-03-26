@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public interface ICroquisDAO {
 
-    public void insertCroquisIntoDb(Connection connection, int comunidadId,
+    public void insertCroquisIntoDb(Connection connection, String comunidadId,
 	    File image, boolean update);
 
-    public byte[] readCroquisFromDb(Connection connection, int comunidadId)
+    public byte[] readCroquisFromDb(Connection connection, String comunidadId)
 	    throws SQLException;
 
 }

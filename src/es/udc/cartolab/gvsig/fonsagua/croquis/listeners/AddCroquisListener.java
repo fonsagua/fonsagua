@@ -18,10 +18,10 @@ import es.udc.cartolab.gvsig.fonsagua.croquis.dao.PostgresCroquisDAO;
 
 public class AddCroquisListener implements ActionListener {
 
-    private final int comunidadId;
+    private final String comunidadId;
     private Connection connection;
 
-    public AddCroquisListener(int comunidadId) {
+    public AddCroquisListener(String comunidadId) {
 	this.comunidadId = comunidadId;
     }
 

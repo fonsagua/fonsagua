@@ -21,10 +21,10 @@ import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
 
 public class ShowCroquisListener implements ActionListener {
 
-    private final int comunidadId;
+    private final String comunidadId;
     private Connection connection;
 
-    public ShowCroquisListener(int comunidadId) {
+    public ShowCroquisListener(String comunidadId) {
 	this.comunidadId = comunidadId;
     }
 

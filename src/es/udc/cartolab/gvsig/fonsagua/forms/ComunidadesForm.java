@@ -26,8 +26,8 @@ public class ComunidadesForm extends BasicAbstractForm {
     @Override
     protected void fillSpecificValues() {
 	JPanel actionsToolBar = this.getActionsToolBar();
-	int comunidadId = Integer.parseInt(((JTextField) getFormBody()
-		.getComponentByName("id_comunidad")).getText());
+	String comunidadId = ((JTextField) getFormBody()
+		.getComponentByName("cod_comunidad")).getText();
 	actionsToolBar.add(new CroquisButtons(comunidadId)
 		.getAddCroquisButton());
 	actionsToolBar.add(new CroquisButtons(comunidadId)

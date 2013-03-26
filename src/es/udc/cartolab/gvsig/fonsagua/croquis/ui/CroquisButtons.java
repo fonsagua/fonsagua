@@ -12,7 +12,7 @@ public class CroquisButtons {
     private final JButton addCroquisButton;
     private final JButton showCroquisButton;
 
-    public CroquisButtons(int comunidadId) {
+    public CroquisButtons(String comunidadId) {
 	addCroquisButton = new JButton();
 	addCroquisButton.setText("Añadir Croquis");
 	addCroquisButton.setToolTipText(PluginServices.getText(this,

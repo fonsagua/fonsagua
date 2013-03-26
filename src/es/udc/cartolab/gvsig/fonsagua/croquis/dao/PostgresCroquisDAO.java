@@ -13,10 +13,10 @@ public class PostgresCroquisDAO implements ICroquisDAO {
 
     private final String CROQUIS_TABLENAME = "comunidades_croquis";
     private final String CROQUIS_FIELDNAME = "croquis";
-    private final String CROQUIS_COMUNIDAD_FK_FIELDNAME = "id_comunidad";
+    private final String CROQUIS_COMUNIDAD_FK_FIELDNAME = "cod_comunidad";
 
     @Override
-    public void insertCroquisIntoDb(Connection connection, int comunidadId,
+    public void insertCroquisIntoDb(Connection connection, String comunidadId,
 	    File image, boolean update) {
 	try {
 	    byte[] imageBytes = ImageUtils.convertImageToBytea(image);
@@ -27,11 +27,11 @@ public class PostgresCroquisDAO implements ICroquisDAO {
 			+ " = " + "? WHERE " + CROQUIS_COMUNIDAD_FK_FIELDNAME
 			+ " = ?");
 		statement.setBytes(1, imageBytes);
-		statement.setInt(2, comunidadId);
+		statement.setString(2, comunidadId);
 	    } else {
 		statement = connection.prepareStatement("INSERT INTO "
 			+ CROQUIS_TABLENAME + " VALUES (?, ?)");
-		statement.setInt(1, comunidadId);
+		statement.setString(1, comunidadId);
 		statement.setBytes(2, imageBytes);
 	    }
 	    statement.executeUpdate();
@@ -47,14 +47,14 @@ public class PostgresCroquisDAO implements ICroquisDAO {
     }
 
     @Override
-    public byte[] readCroquisFromDb(Connection connection, int comunidadId)
+    public byte[] readCroquisFromDb(Connection connection, String comunidadId)
 	    throws SQLException {
 	PreparedStatement statement = null;
 	try {
 	    statement = connection.prepareStatement("SELECT "
 		    + CROQUIS_FIELDNAME + " FROM " + CROQUIS_TABLENAME
 		    + " WHERE " + CROQUIS_COMUNIDAD_FK_FIELDNAME + " = ?");
-	    statement.setInt(1, comunidadId);
+	    statement.setString(1, comunidadId);
 	    ResultSet rs = statement.executeQuery();
 	    if (rs.next()) {
 		return rs.getBytes(1);

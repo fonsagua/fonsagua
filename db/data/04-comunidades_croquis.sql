@@ -1,4 +1,4 @@
 CREATE TABLE comunidades_croquis (
-       id_comunidad INTEGER REFERENCES comunidades(id_comunidad),
+       cod_comunidad VARCHAR REFERENCES comunidades(cod_comunidad),
        croquis bytea
 );
