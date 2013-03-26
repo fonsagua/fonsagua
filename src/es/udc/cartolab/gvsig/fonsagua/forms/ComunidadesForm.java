@@ -20,6 +20,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
 	viewInfo.setTitle("Comunidades");
+	addCroquisButtons();
 	try {
 	    TOCTableManager toc = new TOCTableManager();
 	    if (toc.getTableByName(AdescosForm.NAME) == null) {
@@ -33,15 +34,18 @@ public class ComunidadesForm extends BasicAbstractForm {
 		AdescosForm.colAlias);
     }
 
-    @Override
-    protected void fillSpecificValues() {
+    private void addCroquisButtons() {
 	JPanel actionsToolBar = this.getActionsToolBar();
 	String comunidadId = ((JTextField) getFormBody().getComponentByName(
 		"cod_comunidad")).getText();
 	actionsToolBar.add(new CroquisButtons(comunidadId)
-		.getAddCroquisButton());
+	.getAddCroquisButton());
 	actionsToolBar.add(new CroquisButtons(comunidadId)
-		.getShowCroquisButton());
+	.getShowCroquisButton());
+    }
+    
+    @Override
+    protected void fillSpecificValues() {
 	adescosHandler
 		.fillValues(getFormController().getValue("cod_comunidad"));
     }
