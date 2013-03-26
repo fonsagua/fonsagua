@@ -41,9 +41,9 @@ import es.udc.cartolab.gvsig.users.utils.DBSession;
 public abstract class CommonMethodsForTestDBForms {
 
     private ORMLiteAppDomain ado;
-    private FormPanel form;
+    private FormPanel formPanel;
     private HashMap<String, JComponent> widgets;
-    AbstractForm abstractForm = null;
+    IValidatableForm form = null;
 
     @BeforeClass
     public static void doSetupBeforeClass() {
@@ -81,11 +81,11 @@ public abstract class CommonMethodsForTestDBForms {
 	ado = ormLite.getAppDomain();
 	try {
 	    InputStream file = new FileInputStream(getUIFile());
-	    form = new FormPanel(file);
+	    formPanel = new FormPanel(file);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
-	widgets = AbeilleParser.getWidgetsFromContainer(form);
+	widgets = AbeilleParser.getWidgetsFromContainer(formPanel);
     }
 
     @Test
