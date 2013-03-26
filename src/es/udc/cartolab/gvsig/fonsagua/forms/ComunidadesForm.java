@@ -49,7 +49,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     @Override
     protected void setListeners() {
 	super.setListeners();
-	adescosHandler.reload(new EntrevistadosForm());
+	adescosHandler.reload(new AdescosForm());
     }
 
     @Override
