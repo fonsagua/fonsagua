@@ -2,6 +2,8 @@ package es.udc.cartolab.gvsig.fonsagua.forms;
 
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
+import es.icarto.gvisg.navtableforms.BasicAbstractForm;
+
 @SuppressWarnings("serial")
 public class OtrosServiciosForm extends BasicAbstractForm {
 

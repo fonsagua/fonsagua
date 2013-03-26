@@ -5,9 +5,8 @@ import javax.swing.JTextField;
 
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
-import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericTableLoader;
+import es.icarto.gvisg.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
-import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
 import es.udc.cartolab.gvsig.fonsagua.croquis.ui.CroquisButtons;
 import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 
@@ -21,14 +20,6 @@ public class ComunidadesForm extends BasicAbstractForm {
 	super(layer);
 	viewInfo.setTitle("Comunidades");
 	addCroquisButtons();
-	try {
-	    TOCTableManager toc = new TOCTableManager();
-	    if (toc.getTableByName(AdescosForm.NAME) == null) {
-		AlphanumericTableLoader.loadTable(AdescosForm.NAME);
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
 	adescosHandler = new TableHandler(AdescosForm.NAME,
 		getWidgetComponents(), "cod_comunidad", AdescosForm.colNames,
 		AdescosForm.colAlias);
@@ -39,11 +30,11 @@ public class ComunidadesForm extends BasicAbstractForm {
 	String comunidadId = ((JTextField) getFormBody().getComponentByName(
 		"cod_comunidad")).getText();
 	actionsToolBar.add(new CroquisButtons(comunidadId)
-	.getAddCroquisButton());
+		.getAddCroquisButton());
 	actionsToolBar.add(new CroquisButtons(comunidadId)
-	.getShowCroquisButton());
+		.getShowCroquisButton());
     }
-    
+
     @Override
     protected void fillSpecificValues() {
 	adescosHandler

@@ -1,14 +1,11 @@
-package es.udc.cartolab.gvsig.fonsagua.forms;
+package es.icarto.gvisg.navtableforms;
 
 import java.io.InputStream;
-
-import org.apache.log4j.Logger;
 
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.jeta.forms.components.panel.FormPanel;
 import com.jeta.forms.gui.common.FormException;
 
-import es.icarto.gvisg.navtableforms.AbeilleUtils;
 import es.icarto.gvsig.navtableforms.AbstractForm;
 
 @SuppressWarnings("serial")
@@ -16,9 +13,6 @@ public abstract class BasicAbstractForm extends AbstractForm {
 
     public BasicAbstractForm(FLyrVect layer) {
 	super(layer);
-	AbeilleUtils au = new AbeilleUtils();
-	au.formatLabels(getFormBody());
-	au.formatTextArea(getFormBody());
     }
 
     @Override
@@ -42,11 +36,5 @@ public abstract class BasicAbstractForm extends AbstractForm {
     }
 
     protected abstract String getBasicName();
-
-    @Override
-    @Deprecated
-    public Logger getLoggerName() {
-	return Logger.getLogger(this.getClass());
-    }
 
 }
