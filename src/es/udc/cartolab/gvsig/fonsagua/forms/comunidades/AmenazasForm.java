@@ -1,23 +1,23 @@
-package es.udc.cartolab.gvsig.fonsagua.forms;
+package es.udc.cartolab.gvsig.fonsagua.forms.comunidades;
 
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvisg.navtableforms.BasicAbstractForm;
 
 @SuppressWarnings("serial")
-public class OtrosServiciosForm extends BasicAbstractForm {
+public class AmenazasForm extends BasicAbstractForm {
 
-    public static final String NAME = "otros_servicios";
+    public static final String NAME = "amenazas";
 
-    public OtrosServiciosForm(FLyrVect layer) {
+    public AmenazasForm(FLyrVect layer) {
 	super(layer);
 	initWindow();
     }
 
     private void initWindow() {
 	viewInfo.setHeight(500);
-	viewInfo.setWidth(600);
-	viewInfo.setTitle("Otros Servicios");
+	viewInfo.setWidth(650);
+	viewInfo.setTitle("Amenazas");
     }
 
     @Override

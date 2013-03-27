@@ -1,4 +1,4 @@
-package es.udc.cartolab.gvsig.fonsagua.forms;
+package es.udc.cartolab.gvsig.fonsagua.forms.comunidades;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;

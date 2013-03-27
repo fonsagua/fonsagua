@@ -1,4 +1,4 @@
-package es.udc.cartolab.gvsig.fonsagua.forms;
+package es.udc.cartolab.gvsig.fonsagua.forms.comunidades;
 
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 

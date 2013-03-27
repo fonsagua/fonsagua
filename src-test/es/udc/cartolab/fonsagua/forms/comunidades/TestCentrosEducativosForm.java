@@ -1,7 +1,7 @@
-package es.udc.cartolab.fonsagua.forms;
+package es.udc.cartolab.fonsagua.forms.comunidades;
 
 import es.icarto.gvsig.navtableforms.CommonMethodsForTestDBForms;
-import es.udc.cartolab.gvsig.fonsagua.forms.CentrosEducativosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosEducativosForm;
 
 public class TestCentrosEducativosForm extends CommonMethodsForTestDBForms {
 

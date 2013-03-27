@@ -1,4 +1,4 @@
-package es.udc.cartolab.fonsagua.forms;
+package es.udc.cartolab.fonsagua.forms.comunidades;
 
 import static org.junit.Assert.assertTrue;
 
@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import es.icarto.gvsig.navtableforms.CommonMethodsForTestDBForms;
 import es.udc.cartolab.gvsig.fonsagua.croquis.dao.PostgresCroquisDAO;
-import es.udc.cartolab.gvsig.fonsagua.forms.ComunidadesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
 
 public class TestComunidadesForm extends CommonMethodsForTestDBForms {
