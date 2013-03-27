@@ -7,10 +7,10 @@ import com.iver.cit.gvsig.fmap.layers.FLayers;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.iver.cit.gvsig.project.documents.view.gui.View;
 
+import es.icarto.gvisg.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.forms.AmenazasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.AreasPotencialesRiegoForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.BasicAbstractForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.CentrosEducativosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.CentrosSaludForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.ComunidadesForm;
