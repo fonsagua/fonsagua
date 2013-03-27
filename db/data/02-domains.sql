@@ -5,9 +5,9 @@ CREATE TABLE public.tip_nucleo (
 );
 
 INSERT INTO public.tip_nucleo (item) VALUES
-       ('0'),
-       ('1'),
-       ('2');
+       (' '),
+       ('Concentrado'),
+       ('Disperso');
 
 
 ALTER TABLE public.tip_nucleo OWNER TO fonsagua;
@@ -18,10 +18,10 @@ CREATE TABLE public.tip_origen (
 );
 
 INSERT INTO public.tip_origen (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3');
+       (' '),
+       ('Oriunda'),
+       ('Desplazada'),
+       ('Mixta');
 
 
 ALTER TABLE public.tip_origen OWNER TO fonsagua;
@@ -32,9 +32,9 @@ CREATE TABLE public.antiguedad (
 );
 
 INSERT INTO public.antiguedad (item) VALUES
-       ('0'),
-       ('1'),
-       ('2');
+       (' '),
+       ('Más de 5 años'),
+       ('Menos de 5 años');
 
 
 ALTER TABLE public.antiguedad OWNER TO fonsagua;
@@ -45,10 +45,10 @@ CREATE TABLE public.emigracion (
 );
 
 INSERT INTO public.emigracion (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3');
+       (' '),
+       ('Mucha'),
+       ('Media'),
+       ('Poca');
 
 
 ALTER TABLE public.emigracion OWNER TO fonsagua;
@@ -59,11 +59,11 @@ CREATE TABLE public.tip_regadio (
 );
 
 INSERT INTO public.tip_regadio (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3'),
-       ('4');
+       (' '),
+       ('Inundación'),
+       ('Aspersión'),
+       ('Goteo'),
+       ('Ninguno');
 
 
 ALTER TABLE public.tip_regadio OWNER TO fonsagua;
@@ -74,10 +74,10 @@ CREATE TABLE public.tip_acceso (
 );
 
 INSERT INTO public.tip_acceso (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3');
+       (' '),
+       ('Vereda'),
+       ('Calle'),
+       ('Carretera');
 
 
 ALTER TABLE public.tip_acceso OWNER TO fonsagua;
@@ -88,11 +88,11 @@ CREATE TABLE public.tip_sup_acceso (
 );
 
 INSERT INTO public.tip_sup_acceso (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3'),
-       ('4');
+       (' '),
+       ('Tierra'),
+       ('Balastro'),
+       ('Empedrado'),
+       ('Pavimentado');
 
 
 ALTER TABLE public.tip_sup_acceso OWNER TO fonsagua;
@@ -103,9 +103,9 @@ CREATE TABLE public.acceso_ver (
 );
 
 INSERT INTO public.acceso_ver (item) VALUES
-       ('0'),
-       ('1'),
-       ('2');
+       (' '),
+       ('Transitable'),
+       ('Intransitable');
 
 
 ALTER TABLE public.acceso_ver OWNER TO fonsagua;
@@ -116,9 +116,9 @@ CREATE TABLE public.acceso_inv (
 );
 
 INSERT INTO public.acceso_inv (item) VALUES
-       ('0'),
-       ('1'),
-       ('2');
+       (' '),
+       ('Transitable'),
+       ('Intransitable');
 
 
 ALTER TABLE public.acceso_inv OWNER TO fonsagua;
@@ -129,9 +129,9 @@ CREATE TABLE public.veg_agr_tip (
 );
 
 INSERT INTO public.veg_agr_tip (item) VALUES
-       ('0'),
-       ('1'),
-       ('2');
+       (' '),
+       ('Pastizal'),
+       ('Cultivos');
 
 
 ALTER TABLE public.veg_agr_tip OWNER TO fonsagua;
@@ -142,11 +142,11 @@ CREATE TABLE public.veg_for_tip (
 );
 
 INSERT INTO public.veg_for_tip (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3'),
-       ('4');
+       (' '),
+       ('Raleado'),
+       ('Frondoso'),
+       ('Matorral'),
+       ('Mangle');
 
 
 ALTER TABLE public.veg_for_tip OWNER TO fonsagua;
@@ -157,10 +157,10 @@ CREATE TABLE public.deforestacion (
 );
 
 INSERT INTO public.deforestacion (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3');
+       (' '),
+       ('Alta'),
+       ('Media'),
+       ('Baja');
 
 
 ALTER TABLE public.deforestacion OWNER TO fonsagua;
@@ -171,10 +171,10 @@ CREATE TABLE public.avance_fagricola (
 );
 
 INSERT INTO public.avance_fagricola (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3');
+       (' '),
+       ('Alta'),
+       ('Media'),
+       ('Baja');
 
 
 ALTER TABLE public.avance_fagricola OWNER TO fonsagua;
@@ -185,10 +185,10 @@ CREATE TABLE public.riesgo_erosion (
 );
 
 INSERT INTO public.riesgo_erosion (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3');
+       (' '),
+       ('Alto'),
+       ('Medio'),
+       ('Bajo');
 
 
 ALTER TABLE public.riesgo_erosion OWNER TO fonsagua;
@@ -199,10 +199,10 @@ CREATE TABLE public.sist_abastecimiento (
 );
 
 INSERT INTO public.sist_abastecimiento (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3');
+       (' '),
+       ('Si'),
+       ('No'),
+       ('Parcial');
 
 
 ALTER TABLE public.sist_abastecimiento OWNER TO fonsagua;
@@ -213,11 +213,11 @@ CREATE TABLE public.origen_aguas (
 );
 
 INSERT INTO public.origen_aguas (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3'),
-       ('4');
+       (' '),
+       ('Manantial'),
+       ('Río'),
+       ('Pozo'),
+       ('Anda');
 
 
 ALTER TABLE public.origen_aguas OWNER TO fonsagua;
@@ -228,10 +228,10 @@ CREATE TABLE public.ag_gris_calle (
 );
 
 INSERT INTO public.ag_gris_calle (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3');
+       (' '),
+       ('Mucho'),
+       ('Poco'),
+       ('Nada');
 
 
 ALTER TABLE public.ag_gris_calle OWNER TO fonsagua;
@@ -242,11 +242,11 @@ CREATE TABLE public.trat_aboneras (
 );
 
 INSERT INTO public.trat_aboneras (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3'),
-       ('4');
+       (' '),
+       ('Ceniza'),
+       ('Cal'),
+       ('Aserrín'),
+       ('Otros');
 
 
 ALTER TABLE public.trat_aboneras OWNER TO fonsagua;
@@ -257,9 +257,9 @@ CREATE TABLE public.dist_let_agua (
 );
 
 INSERT INTO public.dist_let_agua (item) VALUES
-       ('0'),
-       ('1'),
-       ('2');
+       (' '),
+       ('Más de 30 m'),
+       ('Menos de 30 m');
 
 
 ALTER TABLE public.dist_let_agua OWNER TO fonsagua;
@@ -270,13 +270,13 @@ CREATE TABLE public.disp_basuras (
 );
 
 INSERT INTO public.disp_basuras (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3'),
-       ('4'),
-       ('5'),
-       ('6');
+       (' '),
+       ('No se hace nada'),
+       ('Se traslada a otro lugar'),
+       ('Se entierra'),
+       ('Se quema'),
+       ('Pasa el tren de aseo ( camión)'),
+       ('Otros');
 
 
 ALTER TABLE public.disp_basuras OWNER TO fonsagua;
@@ -287,16 +287,16 @@ CREATE TABLE public.tipo (
 );
 
 INSERT INTO public.tipo (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3'),
-       ('4'),
-       ('5'),
-       ('6'),
-       ('7'),
-       ('8'),
-       ('9');
+       (' '),
+       ('Punto de referencia'),
+       ('Casa extremo norte'),
+       ('Casa extremo sur'),
+       ('Casa extremo oriente'),
+       ('Casa extremo poniente'),
+       ('Casa mas alta'),
+       ('Primera casa con electricidad'),
+       ('Última casa con electricidad'),
+       ('Otras casas');
 
 
 ALTER TABLE public.tipo OWNER TO fonsagua;
@@ -307,10 +307,10 @@ CREATE TABLE public.valoracion (
 );
 
 INSERT INTO public.valoracion (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3');
+       (' '),
+       ('Bien'),
+       ('Regular'),
+       ('Mal');
 
 
 ALTER TABLE public.valoracion OWNER TO fonsagua;
@@ -321,12 +321,12 @@ CREATE TABLE public.tipo_organizacion (
 );
 
 INSERT INTO public.tipo_organizacion (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3'),
-       ('4'),
-       ('5');
+       (' '),
+       ('Asociación de padres y madres de familia'),
+       ('Cooperativa de producción'),
+       ('Comité de iglesia'),
+       ('Comité de jóvenes'),
+       ('Otros');
 
 
 ALTER TABLE public.tipo_organizacion OWNER TO fonsagua;
@@ -337,11 +337,11 @@ CREATE TABLE public.niveles (
 );
 
 INSERT INTO public.niveles (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3'),
-       ('4');
+       (' '),
+       ('Parvularia'),
+       ('Primaria'),
+       ('Básica'),
+       ('Media');
 
 
 ALTER TABLE public.niveles OWNER TO fonsagua;
@@ -352,12 +352,12 @@ CREATE TABLE public.tipo_servicio (
 );
 
 INSERT INTO public.tipo_servicio (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3'),
-       ('4'),
-       ('5');
+       (' '),
+       ('Iglesia'),
+       ('Intalación deportiva'),
+       ('Centro comunitario'),
+       ('Puesto policial'),
+       ('Otros');
 
 
 ALTER TABLE public.tipo_servicio OWNER TO fonsagua;
@@ -368,12 +368,12 @@ CREATE TABLE public.tipo_amenaza (
 );
 
 INSERT INTO public.tipo_amenaza (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3'),
-       ('4'),
-       ('5');
+       (' '),
+       ('Deslizamientos'),
+       ('Desbordamiento de río'),
+       ('Inundaciones'),
+       ('Puntos de asalto'),
+       ('Otros');
 
 
 ALTER TABLE public.tipo_amenaza OWNER TO fonsagua;
@@ -384,10 +384,10 @@ CREATE TABLE public.dinero_inv (
 );
 
 INSERT INTO public.dinero_inv (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3');
+       (' '),
+       ('Alto'),
+       ('Medio'),
+       ('Bajo');
 
 
 ALTER TABLE public.dinero_inv OWNER TO fonsagua;
@@ -398,10 +398,10 @@ CREATE TABLE public.tiempo_inv (
 );
 
 INSERT INTO public.tiempo_inv (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3');
+       (' '),
+       ('Alto'),
+       ('Medio'),
+       ('Bajo');
 
 
 ALTER TABLE public.tiempo_inv OWNER TO fonsagua;
@@ -412,10 +412,10 @@ CREATE TABLE public.sist_cobros (
 );
 
 INSERT INTO public.sist_cobros (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3');
+       (' '),
+       ('Bueno'),
+       ('Regular'),
+       ('Malo');
 
 
 ALTER TABLE public.sist_cobros OWNER TO fonsagua;
@@ -426,10 +426,10 @@ CREATE TABLE public.nivel_serv (
 );
 
 INSERT INTO public.nivel_serv (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3');
+       (' '),
+       ('Bueno'),
+       ('Regular'),
+       ('Malo');
 
 
 ALTER TABLE public.nivel_serv OWNER TO fonsagua;
@@ -440,9 +440,9 @@ CREATE TABLE public.acceso_tomas (
 );
 
 INSERT INTO public.acceso_tomas (item) VALUES
-       ('0'),
-       ('1'),
-       ('2');
+       (' '),
+       ('Fácil'),
+       ('Difícil');
 
 
 ALTER TABLE public.acceso_tomas OWNER TO fonsagua;
@@ -453,9 +453,9 @@ CREATE TABLE public.tipo_abastecimiento (
 );
 
 INSERT INTO public.tipo_abastecimiento (item) VALUES
-       ('0'),
-       ('1'),
-       ('2');
+       (' '),
+       ('Cantareras'),
+       ('Domiciliar');
 
 
 ALTER TABLE public.tipo_abastecimiento OWNER TO fonsagua;
@@ -466,12 +466,12 @@ CREATE TABLE public.tipo_contaminzacion (
 );
 
 INSERT INTO public.tipo_contaminzacion (item) VALUES
-       ('0'),
-       ('1'),
-       ('2'),
-       ('3'),
-       ('4'),
-       ('5');
+       (' '),
+       ('Puntos de vertido a río'),
+       ('Basurero'),
+       ('Puntos de lavado y baño'),
+       ('Abrevaderos'),
+       ('Otras');
 
 
 ALTER TABLE public.tipo_contaminzacion OWNER TO fonsagua;
