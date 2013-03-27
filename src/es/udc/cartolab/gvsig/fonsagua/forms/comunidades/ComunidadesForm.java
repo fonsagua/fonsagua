@@ -18,6 +18,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     private TableHandler entrevistadoresHandler;
     private TableHandler entrevistadosHandler;
     private TableHandler subcuencasHandler;
+    private TableHandler cargosPublicosHandler;
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
@@ -35,6 +36,9 @@ public class ComunidadesForm extends BasicAbstractForm {
 	subcuencasHandler = new TableHandler(SubcuencasForm.NAME,
 		getWidgetComponents(), "cod_comunidad",
 		SubcuencasForm.colNames, SubcuencasForm.colAlias);
+	cargosPublicosHandler = new TableHandler(CargosPublicosForm.NAME,
+		getWidgetComponents(), "cod_comunidad",
+		CargosPublicosForm.colNames, CargosPublicosForm.colAlias);
     }
 
     private void addCroquisButtons() {
@@ -57,6 +61,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 		"cod_comunidad"));
 	subcuencasHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
+	cargosPublicosHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
     }
 
     @Override
@@ -66,6 +72,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	entrevistadoresHandler.reload(new EntrevistadoresForm());
 	entrevistadosHandler.reload(new EntrevistadosForm());
 	subcuencasHandler.reload(new SubcuencasForm());
+	cargosPublicosHandler.reload(new CargosPublicosForm());
     }
 
     @Override
@@ -75,6 +82,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	entrevistadoresHandler.removeListeners();
 	entrevistadosHandler.removeListeners();
 	subcuencasHandler.removeListeners();
+	cargosPublicosHandler.removeListeners();
     }
 
     @Override
@@ -87,6 +95,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	entrevistadosHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	subcuencasHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
+	cargosPublicosHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	this.repaint(); // will force embedded tables to refresh
     }
