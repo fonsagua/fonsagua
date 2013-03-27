@@ -19,6 +19,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     private TableHandler entrevistadosHandler;
     private TableHandler subcuencasHandler;
     private TableHandler cargosPublicosHandler;
+    private TableHandler ongsHandler;
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
@@ -39,6 +40,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	cargosPublicosHandler = new TableHandler(CargosPublicosForm.NAME,
 		getWidgetComponents(), "cod_comunidad",
 		CargosPublicosForm.colNames, CargosPublicosForm.colAlias);
+	ongsHandler = new TableHandler(OngsForm.NAME, getWidgetComponents(),
+		"cod_comunidad", OngsForm.colNames, OngsForm.colAlias);
     }
 
     private void addCroquisButtons() {
@@ -63,6 +66,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 		"cod_comunidad"));
 	cargosPublicosHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
+	ongsHandler.fillValues(getFormController().getValue("cod_comunidad"));
     }
 
     @Override
@@ -73,6 +77,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	entrevistadosHandler.reload(new EntrevistadosForm());
 	subcuencasHandler.reload(new SubcuencasForm());
 	cargosPublicosHandler.reload(new CargosPublicosForm());
+	ongsHandler.reload(new OngsForm());
     }
 
     @Override
@@ -83,6 +88,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	entrevistadosHandler.removeListeners();
 	subcuencasHandler.removeListeners();
 	cargosPublicosHandler.removeListeners();
+	ongsHandler.removeListeners();
     }
 
     @Override
@@ -98,6 +104,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 		"cod_comunidad"));
 	cargosPublicosHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
+	ongsHandler.fillValues(getFormController().getValue("cod_comunidad"));
 	this.repaint(); // will force embedded tables to refresh
     }
 
