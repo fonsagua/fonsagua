@@ -15,6 +15,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 
     public static final String NAME = "comunidades";
     private TableHandler adescosHandler;
+    private TableHandler entrevistadoresHandler;
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
@@ -23,6 +24,9 @@ public class ComunidadesForm extends BasicAbstractForm {
 	adescosHandler = new TableHandler(AdescosForm.NAME,
 		getWidgetComponents(), "cod_comunidad", AdescosForm.colNames,
 		AdescosForm.colAlias);
+	entrevistadoresHandler = new TableHandler(EntrevistadoresForm.NAME,
+		getWidgetComponents(), "cod_comunidad", EntrevistadoresForm.colNames,
+		EntrevistadoresForm.colAlias);
     }
 
     private void addCroquisButtons() {
@@ -39,18 +43,22 @@ public class ComunidadesForm extends BasicAbstractForm {
     protected void fillSpecificValues() {
 	adescosHandler
 		.fillValues(getFormController().getValue("cod_comunidad"));
+	entrevistadoresHandler
+	.fillValues(getFormController().getValue("cod_comunidad"));
     }
 
     @Override
     protected void setListeners() {
 	super.setListeners();
 	adescosHandler.reload(new AdescosForm());
+	entrevistadoresHandler.reload(new EntrevistadoresForm());
     }
 
     @Override
     protected void removeListeners() {
 	super.removeListeners();
 	adescosHandler.removeListeners();
+	entrevistadoresHandler.removeListeners();
     }
 
     @Override
@@ -58,6 +66,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	super.onPositionChange(e);
 	adescosHandler
 		.fillValues(getFormController().getValue("cod_comunidad"));
+	entrevistadoresHandler
+	.fillValues(getFormController().getValue("cod_comunidad"));
 	this.repaint(); // will force embedded tables to refresh
     }
 
