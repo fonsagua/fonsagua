@@ -16,6 +16,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     public static final String NAME = "comunidades";
     private TableHandler adescosHandler;
     private TableHandler entrevistadoresHandler;
+    private TableHandler entrevistadosHandler;
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
@@ -25,8 +26,11 @@ public class ComunidadesForm extends BasicAbstractForm {
 		getWidgetComponents(), "cod_comunidad", AdescosForm.colNames,
 		AdescosForm.colAlias);
 	entrevistadoresHandler = new TableHandler(EntrevistadoresForm.NAME,
-		getWidgetComponents(), "cod_comunidad", EntrevistadoresForm.colNames,
-		EntrevistadoresForm.colAlias);
+		getWidgetComponents(), "cod_comunidad",
+		EntrevistadoresForm.colNames, EntrevistadoresForm.colAlias);
+	entrevistadosHandler = new TableHandler(EntrevistadosForm.NAME,
+		getWidgetComponents(), "cod_comunidad",
+		EntrevistadosForm.colNames, EntrevistadosForm.colAlias);
     }
 
     private void addCroquisButtons() {
@@ -43,8 +47,10 @@ public class ComunidadesForm extends BasicAbstractForm {
     protected void fillSpecificValues() {
 	adescosHandler
 		.fillValues(getFormController().getValue("cod_comunidad"));
-	entrevistadoresHandler
-	.fillValues(getFormController().getValue("cod_comunidad"));
+	entrevistadoresHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
+	entrevistadosHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
     }
 
     @Override
@@ -52,6 +58,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	super.setListeners();
 	adescosHandler.reload(new AdescosForm());
 	entrevistadoresHandler.reload(new EntrevistadoresForm());
+	entrevistadosHandler.reload(new EntrevistadosForm());
     }
 
     @Override
@@ -59,6 +66,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	super.removeListeners();
 	adescosHandler.removeListeners();
 	entrevistadoresHandler.removeListeners();
+	entrevistadosHandler.removeListeners();
     }
 
     @Override
@@ -66,8 +74,10 @@ public class ComunidadesForm extends BasicAbstractForm {
 	super.onPositionChange(e);
 	adescosHandler
 		.fillValues(getFormController().getValue("cod_comunidad"));
-	entrevistadoresHandler
-	.fillValues(getFormController().getValue("cod_comunidad"));
+	entrevistadoresHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
+	entrevistadosHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
 	this.repaint(); // will force embedded tables to refresh
     }
 
