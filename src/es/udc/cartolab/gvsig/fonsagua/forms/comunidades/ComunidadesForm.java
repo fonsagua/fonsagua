@@ -21,6 +21,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     private TableHandler cargosPublicosHandler;
     private TableHandler ongsHandler;
     private TableHandler otrasOrganizacionesHandler;
+    private TableHandler tiposCultivosHandler;
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
@@ -47,6 +48,9 @@ public class ComunidadesForm extends BasicAbstractForm {
 		OtrasOrganizacionesForm.NAME, getWidgetComponents(),
 		"cod_comunidad", OtrasOrganizacionesForm.colNames,
 		OtrasOrganizacionesForm.colAlias);
+	tiposCultivosHandler = new TableHandler(TiposCultivosForm.NAME,
+		getWidgetComponents(), "cod_comunidad",
+		TiposCultivosForm.colNames, TiposCultivosForm.colAlias);
     }
 
     private void addCroquisButtons() {
@@ -74,6 +78,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	ongsHandler.fillValues(getFormController().getValue("cod_comunidad"));
 	otrasOrganizacionesHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
+	tiposCultivosHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
     }
 
     @Override
@@ -86,6 +92,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	cargosPublicosHandler.reload(new CargosPublicosForm());
 	ongsHandler.reload(new OngsForm());
 	otrasOrganizacionesHandler.reload(new OtrasOrganizacionesForm());
+	tiposCultivosHandler.reload(new TiposCultivosForm());
     }
 
     @Override
@@ -98,6 +105,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	cargosPublicosHandler.removeListeners();
 	ongsHandler.removeListeners();
 	otrasOrganizacionesHandler.removeListeners();
+	tiposCultivosHandler.removeListeners();
     }
 
     @Override
@@ -115,6 +123,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 		"cod_comunidad"));
 	ongsHandler.fillValues(getFormController().getValue("cod_comunidad"));
 	otrasOrganizacionesHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
+	tiposCultivosHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	this.repaint(); // will force embedded tables to refresh
     }
