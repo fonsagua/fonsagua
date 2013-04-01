@@ -30,6 +30,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     private TableHandler valoracionSistemaHandler;
     private TableHandler datosConsumoHandler;
     private TableHandler habitosConsumoHandler;
+    private TableHandler fuentesContaminacionHandler;
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
@@ -85,6 +86,10 @@ public class ComunidadesForm extends BasicAbstractForm {
 	habitosConsumoHandler = new TableHandler(HabitosConsumoForm.NAME,
 		getWidgetComponents(), "cod_comunidad",
 		HabitosConsumoForm.colNames, HabitosConsumoForm.colAlias);
+	fuentesContaminacionHandler = new TableHandler(
+		FuentesContaminacionForm.NAME, getWidgetComponents(),
+		"cod_comunidad", FuentesContaminacionForm.colNames,
+		FuentesContaminacionForm.colAlias);
     }
 
     private void addCroquisButtons() {
@@ -130,6 +135,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 		"cod_comunidad"));
 	habitosConsumoHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
+	fuentesContaminacionHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
     }
 
     @Override
@@ -151,6 +158,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	valoracionSistemaHandler.reload(new ValoracionSistemaForm());
 	datosConsumoHandler.reload(new DatosConsumoForm());
 	habitosConsumoHandler.reload(new HabitosConsumoForm());
+	fuentesContaminacionHandler.reload(new FuentesContaminacionForm());
     }
 
     @Override
@@ -172,6 +180,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	valoracionSistemaHandler.removeListeners();
 	datosConsumoHandler.removeListeners();
 	habitosConsumoHandler.removeListeners();
+	fuentesContaminacionHandler.removeListeners();
     }
 
     @Override
@@ -207,6 +216,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	datosConsumoHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	habitosConsumoHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
+	fuentesContaminacionHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	this.repaint(); // will force embedded tables to refresh
     }
