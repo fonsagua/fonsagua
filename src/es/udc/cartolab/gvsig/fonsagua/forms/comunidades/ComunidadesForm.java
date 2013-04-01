@@ -29,6 +29,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     private TableHandler implicacionComunidadHandler;
     private TableHandler valoracionSistemaHandler;
     private TableHandler datosConsumoHandler;
+    private TableHandler habitosConsumoHandler;
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
@@ -81,6 +82,9 @@ public class ComunidadesForm extends BasicAbstractForm {
 	datosConsumoHandler = new TableHandler(DatosConsumoForm.NAME,
 		getWidgetComponents(), "cod_comunidad",
 		DatosConsumoForm.colNames, DatosConsumoForm.colAlias);
+	habitosConsumoHandler = new TableHandler(HabitosConsumoForm.NAME,
+		getWidgetComponents(), "cod_comunidad",
+		HabitosConsumoForm.colNames, HabitosConsumoForm.colAlias);
     }
 
     private void addCroquisButtons() {
@@ -124,6 +128,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 		"cod_comunidad"));
 	datosConsumoHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
+	habitosConsumoHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
     }
 
     @Override
@@ -144,6 +150,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	implicacionComunidadHandler.reload(new ImplicacionComunidadForm());
 	valoracionSistemaHandler.reload(new ValoracionSistemaForm());
 	datosConsumoHandler.reload(new DatosConsumoForm());
+	habitosConsumoHandler.reload(new HabitosConsumoForm());
     }
 
     @Override
@@ -164,6 +171,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	implicacionComunidadHandler.removeListeners();
 	valoracionSistemaHandler.removeListeners();
 	datosConsumoHandler.removeListeners();
+	habitosConsumoHandler.removeListeners();
     }
 
     @Override
@@ -197,6 +205,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	valoracionSistemaHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	datosConsumoHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
+	habitosConsumoHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	this.repaint(); // will force embedded tables to refresh
     }
