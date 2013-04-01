@@ -23,6 +23,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     private TableHandler otrasOrganizacionesHandler;
     private TableHandler tiposCultivosHandler;
     private TableHandler produccionConsumoHandler;
+    private TableHandler ganaderiaHandler;
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
@@ -55,6 +56,9 @@ public class ComunidadesForm extends BasicAbstractForm {
 	produccionConsumoHandler = new TableHandler(ProduccionConsumoForm.NAME,
 		getWidgetComponents(), "cod_comunidad",
 		ProduccionConsumoForm.colNames, ProduccionConsumoForm.colAlias);
+	ganaderiaHandler = new TableHandler(GanaderiaForm.NAME,
+		getWidgetComponents(), "cod_comunidad", GanaderiaForm.colNames,
+		GanaderiaForm.colAlias);
     }
 
     private void addCroquisButtons() {
@@ -86,6 +90,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 		"cod_comunidad"));
 	produccionConsumoHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
+	ganaderiaHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
     }
 
     @Override
@@ -100,6 +106,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	otrasOrganizacionesHandler.reload(new OtrasOrganizacionesForm());
 	tiposCultivosHandler.reload(new TiposCultivosForm());
 	produccionConsumoHandler.reload(new ProduccionConsumoForm());
+	ganaderiaHandler.reload(new GanaderiaForm());
     }
 
     @Override
@@ -114,6 +121,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	otrasOrganizacionesHandler.removeListeners();
 	tiposCultivosHandler.removeListeners();
 	produccionConsumoHandler.removeListeners();
+	ganaderiaHandler.removeListeners();
     }
 
     @Override
@@ -135,6 +143,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	tiposCultivosHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	produccionConsumoHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
+	ganaderiaHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	this.repaint(); // will force embedded tables to refresh
     }
