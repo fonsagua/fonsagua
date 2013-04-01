@@ -25,6 +25,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     private TableHandler produccionConsumoHandler;
     private TableHandler ganaderiaHandler;
     private TableHandler cooperativasHandler;
+    private TableHandler capacitacionesRiesgosHandler;
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
@@ -63,6 +64,10 @@ public class ComunidadesForm extends BasicAbstractForm {
 	cooperativasHandler = new TableHandler(CooperativasForm.NAME,
 		getWidgetComponents(), "cod_comunidad",
 		CooperativasForm.colNames, CooperativasForm.colAlias);
+	capacitacionesRiesgosHandler = new TableHandler(
+		CapacitacionesRiesgosForm.NAME, getWidgetComponents(),
+		"cod_comunidad", CapacitacionesRiesgosForm.colNames,
+		CapacitacionesRiesgosForm.colAlias);
     }
 
     private void addCroquisButtons() {
@@ -98,6 +103,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 		"cod_comunidad"));
 	cooperativasHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
+	capacitacionesRiesgosHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
     }
 
     @Override
@@ -114,6 +121,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	produccionConsumoHandler.reload(new ProduccionConsumoForm());
 	ganaderiaHandler.reload(new GanaderiaForm());
 	cooperativasHandler.reload(new CooperativasForm());
+	capacitacionesRiesgosHandler.reload(new CapacitacionesRiesgosForm());
     }
 
     @Override
@@ -130,6 +138,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	produccionConsumoHandler.removeListeners();
 	ganaderiaHandler.removeListeners();
 	cooperativasHandler.removeListeners();
+	capacitacionesRiesgosHandler.removeListeners();
     }
 
     @Override
@@ -155,6 +164,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	ganaderiaHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	cooperativasHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
+	capacitacionesRiesgosHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	this.repaint(); // will force embedded tables to refresh
     }
