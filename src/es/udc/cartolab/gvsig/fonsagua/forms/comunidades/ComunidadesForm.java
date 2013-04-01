@@ -24,6 +24,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     private TableHandler tiposCultivosHandler;
     private TableHandler produccionConsumoHandler;
     private TableHandler ganaderiaHandler;
+    private TableHandler cooperativasHandler;
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
@@ -59,6 +60,9 @@ public class ComunidadesForm extends BasicAbstractForm {
 	ganaderiaHandler = new TableHandler(GanaderiaForm.NAME,
 		getWidgetComponents(), "cod_comunidad", GanaderiaForm.colNames,
 		GanaderiaForm.colAlias);
+	cooperativasHandler = new TableHandler(CooperativasForm.NAME,
+		getWidgetComponents(), "cod_comunidad",
+		CooperativasForm.colNames, CooperativasForm.colAlias);
     }
 
     private void addCroquisButtons() {
@@ -92,6 +96,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 		"cod_comunidad"));
 	ganaderiaHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
+	cooperativasHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
     }
 
     @Override
@@ -107,6 +113,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	tiposCultivosHandler.reload(new TiposCultivosForm());
 	produccionConsumoHandler.reload(new ProduccionConsumoForm());
 	ganaderiaHandler.reload(new GanaderiaForm());
+	cooperativasHandler.reload(new CooperativasForm());
     }
 
     @Override
@@ -122,6 +129,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	tiposCultivosHandler.removeListeners();
 	produccionConsumoHandler.removeListeners();
 	ganaderiaHandler.removeListeners();
+	cooperativasHandler.removeListeners();
     }
 
     @Override
@@ -145,6 +153,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	produccionConsumoHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	ganaderiaHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
+	cooperativasHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	this.repaint(); // will force embedded tables to refresh
     }
