@@ -20,6 +20,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     private TableHandler subcuencasHandler;
     private TableHandler cargosPublicosHandler;
     private TableHandler ongsHandler;
+    private TableHandler otrasOrganizacionesHandler;
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
@@ -42,6 +43,10 @@ public class ComunidadesForm extends BasicAbstractForm {
 		CargosPublicosForm.colNames, CargosPublicosForm.colAlias);
 	ongsHandler = new TableHandler(OngsForm.NAME, getWidgetComponents(),
 		"cod_comunidad", OngsForm.colNames, OngsForm.colAlias);
+	otrasOrganizacionesHandler = new TableHandler(
+		OtrasOrganizacionesForm.NAME, getWidgetComponents(),
+		"cod_comunidad", OtrasOrganizacionesForm.colNames,
+		OtrasOrganizacionesForm.colAlias);
     }
 
     private void addCroquisButtons() {
@@ -67,6 +72,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	cargosPublicosHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	ongsHandler.fillValues(getFormController().getValue("cod_comunidad"));
+	otrasOrganizacionesHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
     }
 
     @Override
@@ -78,6 +85,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	subcuencasHandler.reload(new SubcuencasForm());
 	cargosPublicosHandler.reload(new CargosPublicosForm());
 	ongsHandler.reload(new OngsForm());
+	otrasOrganizacionesHandler.reload(new OtrasOrganizacionesForm());
     }
 
     @Override
@@ -89,6 +97,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	subcuencasHandler.removeListeners();
 	cargosPublicosHandler.removeListeners();
 	ongsHandler.removeListeners();
+	otrasOrganizacionesHandler.removeListeners();
     }
 
     @Override
@@ -105,6 +114,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	cargosPublicosHandler.fillValues(getFormController().getValue(
 		"cod_comunidad"));
 	ongsHandler.fillValues(getFormController().getValue("cod_comunidad"));
+	otrasOrganizacionesHandler.fillValues(getFormController().getValue(
+		"cod_comunidad"));
 	this.repaint(); // will force embedded tables to refresh
     }
 
