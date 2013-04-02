@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LAYER alias="juntas_agua">
+       <TABLENAME>juntas_agua</TABLENAME>
+       <PRIMARYKEY>
+	<PKELEMENT>gid</PKELEMENT>
+       </PRIMARYKEY>
+
+       <RECORDSET>
+       	    <FIELD>
+		<FIELDNAME>cod_abastecimiento</FIELDNAME>
+		<VALIDATIONRULE>MANDATORY</VALIDATIONRULE>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>n_miembros</FIELDNAME>
+		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>n_mujeres</FIELDNAME>
+		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>antiguedad</FIELDNAME>
+		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>nit</FIELDNAME>
+		<ENABLEIF>
+			<COMPONENT>per_juridica</COMPONENT>
+			<VALUE>true</VALUE>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>anho_per_juridica</FIELDNAME>
+		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+		<ENABLEIF>
+			<COMPONENT>per_juridica</COMPONENT>
+			<VALUE>true</VALUE>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>nom_red_juntas</FIELDNAME>
+		<ENABLEIF>
+			<COMPONENT>red_juntas</COMPONENT>
+			<VALUE>true</VALUE>
+		</ENABLEIF>
+	    </FIELD>
+       </RECORDSET>
+
+</LAYER>

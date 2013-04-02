@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LAYER alias="gest_financiera">
+       <TABLENAME>gest_financiera</TABLENAME>
+       <PRIMARYKEY>
+	<PKELEMENT>gid</PKELEMENT>
+       </PRIMARYKEY>
+
+       <RECORDSET>
+       	    <FIELD>
+		<FIELDNAME>cod_abastecimiento</FIELDNAME>
+		<VALIDATIONRULE>MANDATORY</VALIDATIONRULE>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>fecha</FIELDNAME>
+		<VALIDATIONRULE>DATE</VALIDATIONRULE>
+	    </FIELD>
+       </RECORDSET>
+
+</LAYER>

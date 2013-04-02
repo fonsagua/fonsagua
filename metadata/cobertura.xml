@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LAYER alias="cobertura">
+       <TABLENAME>cobertura</TABLENAME>
+       <PRIMARYKEY>
+	<PKELEMENT>gid</PKELEMENT>
+       </PRIMARYKEY>
+
+       <RECORDSET>
+       	    <FIELD>
+		<FIELDNAME>cod_abastecimiento</FIELDNAME>
+		<VALIDATIONRULE>MANDATORY</VALIDATIONRULE>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>fecha</FIELDNAME>
+		<VALIDATIONRULE>DATE</VALIDATIONRULE>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>acometidas</FIELDNAME>
+		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>viviendas</FIELDNAME>
+		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+	    </FIELD>
+       </RECORDSET>
+
+</LAYER>
