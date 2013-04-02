@@ -28,7 +28,6 @@ import org.xml.sax.SAXException;
 import com.iver.cit.gvsig.fmap.drivers.DBException;
 import com.iver.cit.gvsig.fmap.layers.LayerFactory;
 import com.jeta.forms.components.panel.FormPanel;
-import com.jeta.forms.gui.common.FormException;
 
 import es.icarto.gvsig.navtableforms.ormlite.ORMLite;
 import es.icarto.gvsig.navtableforms.ormlite.ORMLiteAppDomain;
@@ -91,6 +90,8 @@ public abstract class CommonMethodsForTestDBForms {
     @Test
     public void testXMLIsValid() throws SAXException {
 	boolean thrown = false;
+	File file = new File(getMetadataFile());
+	assertTrue("File not exists: " + getMetadataFile(), file.exists());
 	try {
 	    new XMLSAXParser(getMetadataFile());
 	} catch (ParserConfigurationException e) {
