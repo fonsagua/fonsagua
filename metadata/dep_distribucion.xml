@@ -36,7 +36,7 @@
 		</DOMAINREADER>
 	    </FIELD>
        	    <FIELD>
-		<FIELDNAME>anho_contruccion</FIELDNAME>
+		<FIELDNAME>anho_construccion</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 	    </FIELD>
        	    <FIELD>

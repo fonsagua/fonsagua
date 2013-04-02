@@ -578,13 +578,72 @@ CREATE TABLE public.tipo_fuente (
 
 INSERT INTO public.tipo_fuente (item) VALUES
        (' '),
-       ('Río'),
        ('Manantial'),
-       ('Aguas lluvia'),
-       ('ANDA'),
-       ('Pozo');
+       ('Pozo'),
+       ('Punto rio'),
+       ('Embalse'),
+       ('Infraestructura ANDA');
 
 ALTER TABLE public.tipo_fuente OWNER TO fonsagua;
+
+
+CREATE TABLE public.tipo_vegetacion (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.tipo_vegetacion (item) VALUES
+       (' '),
+       ('Bosque'),
+       ('Arbustiva'),
+       ('Pastizales'),
+       ('Otros');
+
+ALTER TABLE public.tipo_vegetacion OWNER TO fonsagua;
+
+
+CREATE TABLE public.propietario (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.propietario (item) VALUES
+       (' '),
+       ('Privado'),
+       ('Comunitario');
+
+ALTER TABLE public.propietario OWNER TO fonsagua;
+
+
+CREATE TABLE public.tipo_pozo (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.tipo_pozo (item) VALUES
+       (' '),
+       ('Excavado'),
+       ('Perforado');
+
+ALTER TABLE public.tipo_pozo OWNER TO fonsagua;
+
+
+CREATE TABLE public.cond_muestra (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.cond_muestra (item) VALUES
+       (' '),
+       ('Buenas'),
+       ('Regulares'),
+       ('Malas');
+
+ALTER TABLE public.cond_muestra OWNER TO fonsagua;
 
 
 CREATE TABLE public.sistema (
@@ -599,6 +658,19 @@ INSERT INTO public.sistema (item) VALUES
        ('Bombeo');
 
 ALTER TABLE public.sistema OWNER TO fonsagua;
+
+
+CREATE TABLE public.cod_bombeo (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.cod_bombeo (item) VALUES
+       (' '),
+       ('bombeos.cod_bombeo');
+
+ALTER TABLE public.cod_bombeo OWNER TO fonsagua;
 
 
 CREATE TABLE public.tipo_construccion (
@@ -629,22 +701,6 @@ INSERT INTO public.estado (item) VALUES
        ('Malo');
 
 ALTER TABLE public.estado OWNER TO fonsagua;
-
-
-CREATE TABLE public.ubicación (
-       item VARCHAR
-	       PRIMARY KEY
-
-);
-
-INSERT INTO public.ubicación (item) VALUES
-       (' '),
-       ('Elevado'),
-       ('Superficie'),
-       ('Soterrado'),
-       ('Otros');
-
-ALTER TABLE public.ubicación OWNER TO fonsagua;
 
 
 CREATE TABLE public.ubicacion (
