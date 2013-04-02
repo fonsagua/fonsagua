@@ -12,7 +12,7 @@ public class TestProperties {
 	Properties p = new Properties();
 	FileInputStream in;
 	try {
-	    in = new FileInputStream("config/test.properties");
+	    in = new FileInputStream("data-test/test.properties");
 	    p.load(in);
 	    in.close();
 	    driversPath = p.getProperty("driversPath");
