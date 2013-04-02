@@ -788,9 +788,6 @@ CREATE TABLE public.abastecimientos (
        a_medidor INTEGER,
        a_sin_medidor INTEGER,
        coment_sis VARCHAR,
-       can_familia INTEGER,
-       can_dia_familia INTEGER,
-       distllpub NUMERIC(5,2),
        des_agua BOOLEAN,
        des_cloracion BOOLEAN,
        des_quimicos BOOLEAN,
@@ -887,8 +884,6 @@ CREATE TABLE public.dep_intermedios (
 	       UNIQUE
 	       NOT NULL,
        denominacion VARCHAR,
-       funcion VARCHAR
-	       REFERENCES funcion,
        ubicación VARCHAR
 	       REFERENCES ubicación,
        altura NUMERIC(5,2),
@@ -921,8 +916,6 @@ CREATE TABLE public.dep_distribucion (
 	       UNIQUE
 	       NOT NULL,
        denominacion VARCHAR,
-       funcion VARCHAR
-	       REFERENCES funcion,
        ubicacion VARCHAR
 	       REFERENCES ubicacion,
        altura NUMERIC(5,2),
@@ -992,7 +985,7 @@ CREATE TABLE public.bombeos (
        tiempo NUMERIC(5,2),
        altura INTEGER,
        n_bombas INTEGER,
-       anho_contruccion INTEGER,
+       anho_construccion INTEGER,
        estado VARCHAR
 	       REFERENCES estado,
        utm_x NUMERIC(5,3),

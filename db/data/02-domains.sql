@@ -631,22 +631,6 @@ INSERT INTO public.estado (item) VALUES
 ALTER TABLE public.estado OWNER TO fonsagua;
 
 
-CREATE TABLE public.funcion (
-       item VARCHAR
-	       PRIMARY KEY
-
-);
-
-INSERT INTO public.funcion (item) VALUES
-       (' '),
-       ('Cabecera'),
-       ('Intermedio'),
-       ('Bombeo'),
-       ('Cola');
-
-ALTER TABLE public.funcion OWNER TO fonsagua;
-
-
 CREATE TABLE public.ubicación (
        item VARCHAR
 	       PRIMARY KEY
