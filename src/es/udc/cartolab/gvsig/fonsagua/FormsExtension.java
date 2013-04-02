@@ -9,6 +9,7 @@ import com.iver.cit.gvsig.project.documents.view.gui.View;
 
 import es.icarto.gvisg.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AmenazasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AreasPotencialesRiegoForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosEducativosForm;
@@ -40,6 +41,8 @@ public class FormsExtension extends Extension {
 	    dialog = new OtrosServiciosForm(layer);
 	} else if (layer.getName().equals(CentrosEducativosForm.NAME)) {
 	    dialog = new CentrosEducativosForm(layer);
+	} else if (layer.getName().equals(AbastecimientosForm.NAME)) {
+	    dialog = new AbastecimientosForm(layer);
 	}
 	if (dialog.init()) {
 	    PluginServices.getMDIManager().addWindow(dialog);
