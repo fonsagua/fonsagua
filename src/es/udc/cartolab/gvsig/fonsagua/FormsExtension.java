@@ -14,6 +14,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.BombeosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.CaptacionesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepDistribucionForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepIntermediosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.TuberiasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AmenazasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AreasPotencialesRiegoForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosEducativosForm;
