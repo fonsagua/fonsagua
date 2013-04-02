@@ -11,6 +11,9 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.BombeosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.CaptacionesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepDistribucionForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepIntermediosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AmenazasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AreasPotencialesRiegoForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosEducativosForm;
@@ -46,6 +49,14 @@ public class FormsExtension extends Extension {
 	    dialog = new AbastecimientosForm(layer);
 	} else if (layer.getName().equals(BombeosForm.NAME)) {
 	    dialog = new BombeosForm(layer);
+	} else if (layer.getName().equals(CaptacionesForm.NAME)) {
+	    dialog = new CaptacionesForm(layer);
+	} else if (layer.getName().equals(DepIntermediosForm.NAME)) {
+	    dialog = new DepIntermediosForm(layer);
+	} else if (layer.getName().equals(DepDistribucionForm.NAME)) {
+	    dialog = new DepDistribucionForm(layer);
+	} else if (layer.getName().equals(TuberiasForm.NAME)) {
+	    dialog = new TuberiasForm(layer);
 	}
 	if (dialog.init()) {
 	    PluginServices.getMDIManager().addWindow(dialog);
