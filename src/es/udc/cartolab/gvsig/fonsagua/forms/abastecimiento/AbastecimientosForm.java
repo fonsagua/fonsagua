@@ -2,7 +2,7 @@ package es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento;
 
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
-import es.icarto.gvisg.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
 import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 

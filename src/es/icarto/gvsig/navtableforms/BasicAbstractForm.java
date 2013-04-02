@@ -1,4 +1,4 @@
-package es.icarto.gvisg.navtableforms;
+package es.icarto.gvsig.navtableforms;
 
 import java.io.InputStream;
 

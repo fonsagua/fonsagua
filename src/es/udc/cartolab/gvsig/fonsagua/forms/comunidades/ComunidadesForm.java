@@ -5,7 +5,7 @@ import javax.swing.JTextField;
 
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
-import es.icarto.gvisg.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
 import es.udc.cartolab.gvsig.fonsagua.croquis.ui.CroquisButtons;
 import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
