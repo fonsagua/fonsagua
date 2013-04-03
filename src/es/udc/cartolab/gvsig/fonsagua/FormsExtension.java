@@ -22,6 +22,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosSaludForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.OtrosServiciosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.PuntosViviendasForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 
 public class FormsExtension extends Extension {
 
@@ -58,6 +59,8 @@ public class FormsExtension extends Extension {
 	    dialog = new DepDistribucionForm(layer);
 	} else if (layer.getName().equals(TuberiasForm.NAME)) {
 	    dialog = new TuberiasForm(layer);
+	} else if (layer.getName().equals(FuentesForm.NAME)) {
+	    dialog = new FuentesForm(layer);
 	}
 	if (dialog.init()) {
 	    PluginServices.getMDIManager().addWindow(dialog);
