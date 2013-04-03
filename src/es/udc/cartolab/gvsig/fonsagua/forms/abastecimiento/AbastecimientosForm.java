@@ -14,6 +14,7 @@ public class AbastecimientosForm extends BasicAbstractForm {
     private TableHandler coberturaHandler;
     private TableHandler gestionComercialHandler;
     private TableHandler gestionFinancieraHandler;
+    private TableHandler evaluacionHandler;
 
     public AbastecimientosForm(FLyrVect layer) {
 	super(layer);
@@ -30,6 +31,9 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	gestionFinancieraHandler = new TableHandler(GestionFinancieraForm.NAME,
 		getWidgetComponents(), "cod_abastecimiento",
 		GestionFinancieraForm.colNames, GestionFinancieraForm.colAlias);
+	evaluacionHandler = new TableHandler(EvaluacionForm.NAME,
+		getWidgetComponents(), "cod_abastecimiento",
+		EvaluacionForm.colNames, EvaluacionForm.colAlias);
     }
 
     @Override
@@ -42,6 +46,8 @@ public class AbastecimientosForm extends BasicAbstractForm {
 		"cod_abastecimiento"));
 	gestionFinancieraHandler.fillValues(getFormController().getValue(
 		"cod_abastecimiento"));
+	evaluacionHandler.fillValues(getFormController().getValue(
+		"cod_abastecimiento"));
     }
 
     @Override
@@ -51,6 +57,7 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	coberturaHandler.reload(new CoberturaForm());
 	gestionComercialHandler.reload(new GestionComercialForm());
 	gestionFinancieraHandler.reload(new GestionFinancieraForm());
+	evaluacionHandler.reload(new EvaluacionForm());
     }
 
     @Override
@@ -60,6 +67,7 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	coberturaHandler.removeListeners();
 	gestionComercialHandler.removeListeners();
 	gestionFinancieraHandler.removeListeners();
+	evaluacionHandler.removeListeners();
     }
 
     @Override
@@ -72,6 +80,8 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	gestionComercialHandler.fillValues(getFormController().getValue(
 		"cod_abastecimiento"));
 	gestionFinancieraHandler.fillValues(getFormController().getValue(
+		"cod_abastecimiento"));
+	evaluacionHandler.fillValues(getFormController().getValue(
 		"cod_abastecimiento"));
     }
 
