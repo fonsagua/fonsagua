@@ -53,10 +53,13 @@ public class AlphanumericTableLoader {
 	}
 	DBSession session = DBSession.getCurrentSession();
 
+	String completeTableName = (session.getSchema().length() > 0) ? session
+		.getSchema() + "." + tableName : tableName;
+
 	LayerFactory.getDataSourceFactory().addDBDataSourceByTable(tableName,
 		session.getServer(), session.getPort(), session.getUserName(),
 		session.getPassword(), session.getDatabase(),
-		session.getSchema() + "." + tableName,
+		completeTableName,
 		"PostgreSQL Alphanumeric");
 
 	DataSource dataSource;
