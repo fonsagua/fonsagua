@@ -7,7 +7,10 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
+import es.icarto.gvsig.navtableforms.gui.tables.VectorialTableHandler;
+import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.croquis.ui.CroquisButtons;
+import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 
 @SuppressWarnings("serial")
@@ -31,11 +34,18 @@ public class ComunidadesForm extends BasicAbstractForm {
     private TableHandler datosConsumoHandler;
     private TableHandler habitosConsumoHandler;
     private TableHandler fuentesContaminacionHandler;
+    private VectorialTableHandler puntosViviendasHandler;
+    private VectorialTableHandler centrosEducativosHandler;
+    private VectorialTableHandler centrosSaludHandler;
+    private VectorialTableHandler areasPotencialesRiegoHandler;
+    private VectorialTableHandler otrosServiciosHandler;
+    private VectorialTableHandler amenazasHandler;
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
 	viewInfo.setTitle("Comunidades");
 	addCroquisButtons();
+	TOCLayerManager toc = new TOCLayerManager();
 	adescosHandler = new TableHandler(AdescosForm.NAME,
 		getWidgetComponents(), "cod_comunidad", AdescosForm.colNames,
 		AdescosForm.colAlias);
@@ -90,6 +100,30 @@ public class ComunidadesForm extends BasicAbstractForm {
 		FuentesContaminacionForm.NAME, getWidgetComponents(),
 		"cod_comunidad", FuentesContaminacionForm.colNames,
 		FuentesContaminacionForm.colAlias);
+	puntosViviendasHandler = new VectorialTableHandler(toc.getLayerByName(PuntosViviendasForm.NAME),
+		getWidgetComponents(), "cod_comunidad", PuntosViviendasForm.colNames,
+		PuntosViviendasForm.colAlias);
+	centrosEducativosHandler = new VectorialTableHandler(
+		toc.getLayerByName(CentrosEducativosForm.NAME),
+		getWidgetComponents(), "cod_comunidad",
+		CentrosEducativosForm.colNames, CentrosEducativosForm.colAlias);
+	centrosSaludHandler = new VectorialTableHandler(
+		toc.getLayerByName(CentrosSaludForm.NAME),
+		getWidgetComponents(), "cod_comunidad",
+		CentrosSaludForm.colNames, CentrosSaludForm.colAlias);
+	areasPotencialesRiegoHandler = new VectorialTableHandler(
+		toc.getLayerByName(AreasPotencialesRiegoForm.NAME),
+		getWidgetComponents(), "cod_comunidad",
+		AreasPotencialesRiegoForm.colNames,
+		AreasPotencialesRiegoForm.colAlias);
+	otrosServiciosHandler = new VectorialTableHandler(
+		toc.getLayerByName(OtrosServiciosForm.NAME),
+		getWidgetComponents(), "cod_comunidad",
+		OtrosServiciosForm.colNames, OtrosServiciosForm.colAlias);
+	amenazasHandler = new VectorialTableHandler(
+		toc.getLayerByName(AmenazasForm.NAME), getWidgetComponents(),
+		"cod_comunidad", AmenazasForm.colNames, AmenazasForm.colAlias);
+	
     }
 
     private void addCroquisButtons() {
@@ -104,44 +138,37 @@ public class ComunidadesForm extends BasicAbstractForm {
 
     @Override
     protected void fillSpecificValues() {
+	String codComunidad = getFormController().getValue("cod_comunidad");
 	adescosHandler
-		.fillValues(getFormController().getValue("cod_comunidad"));
-	entrevistadoresHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	entrevistadosHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	subcuencasHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	cargosPublicosHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	ongsHandler.fillValues(getFormController().getValue("cod_comunidad"));
-	otrasOrganizacionesHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	tiposCultivosHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	produccionConsumoHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	ganaderiaHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	cooperativasHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	capacitacionesRiesgosHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	implicacionComunidadHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	valoracionSistemaHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	datosConsumoHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	habitosConsumoHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	fuentesContaminacionHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
+		.fillValues(codComunidad);
+	entrevistadoresHandler.fillValues(codComunidad);
+	entrevistadosHandler.fillValues(codComunidad);
+	subcuencasHandler.fillValues(codComunidad);
+	cargosPublicosHandler.fillValues(codComunidad);
+	ongsHandler.fillValues(codComunidad);
+	otrasOrganizacionesHandler.fillValues(codComunidad);
+	tiposCultivosHandler.fillValues(codComunidad);
+	produccionConsumoHandler.fillValues(codComunidad);
+	ganaderiaHandler.fillValues(codComunidad);
+	cooperativasHandler.fillValues(codComunidad);
+	capacitacionesRiesgosHandler.fillValues(codComunidad);
+	implicacionComunidadHandler.fillValues(codComunidad);
+	valoracionSistemaHandler.fillValues(codComunidad);
+	datosConsumoHandler.fillValues(codComunidad);
+	habitosConsumoHandler.fillValues(codComunidad);
+	fuentesContaminacionHandler.fillValues(codComunidad);
+	puntosViviendasHandler.fillValues(codComunidad);
+	centrosEducativosHandler.fillValues(codComunidad);
+	centrosSaludHandler.fillValues(codComunidad);
+	areasPotencialesRiegoHandler.fillValues(codComunidad);
+	otrosServiciosHandler.fillValues(codComunidad);
+	amenazasHandler.fillValues(codComunidad);
     }
 
     @Override
     protected void setListeners() {
 	super.setListeners();
+	TOCLayerManager toc = new TOCLayerManager();
 	adescosHandler.reload(new AdescosForm());
 	entrevistadoresHandler.reload(new EntrevistadoresForm());
 	entrevistadosHandler.reload(new EntrevistadosForm());
@@ -159,6 +186,18 @@ public class ComunidadesForm extends BasicAbstractForm {
 	datosConsumoHandler.reload(new DatosConsumoForm());
 	habitosConsumoHandler.reload(new HabitosConsumoForm());
 	fuentesContaminacionHandler.reload(new FuentesContaminacionForm());
+	puntosViviendasHandler.reload(PuntosViviendasForm.NAME,
+		FonsaguaTableFormFactory.getInstance());
+	centrosEducativosHandler.reload(CentrosEducativosForm.NAME,
+		FonsaguaTableFormFactory.getInstance());
+	centrosSaludHandler.reload(CentrosSaludForm.NAME,
+		FonsaguaTableFormFactory.getInstance());
+	areasPotencialesRiegoHandler.reload(AreasPotencialesRiegoForm.NAME,
+		FonsaguaTableFormFactory.getInstance());
+	otrosServiciosHandler.reload(OtrosServiciosForm.NAME,
+		FonsaguaTableFormFactory.getInstance());
+	amenazasHandler.reload(AmenazasForm.NAME,
+		FonsaguaTableFormFactory.getInstance());
     }
 
     @Override
@@ -181,44 +220,18 @@ public class ComunidadesForm extends BasicAbstractForm {
 	datosConsumoHandler.removeListeners();
 	habitosConsumoHandler.removeListeners();
 	fuentesContaminacionHandler.removeListeners();
+	puntosViviendasHandler.removeListeners();
+	centrosEducativosHandler.removeListeners();
+	centrosSaludHandler.removeListeners();
+	areasPotencialesRiegoHandler.removeListeners();
+	otrosServiciosHandler.removeListeners();
+	amenazasHandler.removeListeners();
     }
 
     @Override
     public void onPositionChange(PositionEvent e) {
 	super.onPositionChange(e);
-	adescosHandler
-		.fillValues(getFormController().getValue("cod_comunidad"));
-	entrevistadoresHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	entrevistadosHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	subcuencasHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	cargosPublicosHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	ongsHandler.fillValues(getFormController().getValue("cod_comunidad"));
-	otrasOrganizacionesHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	tiposCultivosHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	produccionConsumoHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	ganaderiaHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	cooperativasHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	capacitacionesRiesgosHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	implicacionComunidadHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	valoracionSistemaHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	datosConsumoHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	habitosConsumoHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
-	fuentesContaminacionHandler.fillValues(getFormController().getValue(
-		"cod_comunidad"));
+	fillSpecificValues();
 	this.repaint(); // will force embedded tables to refresh
     }
 

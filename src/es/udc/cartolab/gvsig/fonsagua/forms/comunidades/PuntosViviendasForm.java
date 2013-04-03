@@ -8,6 +8,8 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public class PuntosViviendasForm extends BasicAbstractForm {
 
     public static final String NAME = "puntos_viviendas";
+    public static String[] colNames = { "cod_comunidad", "cod_vivienda", "tipo", "descripcion"};
+    public static String[] colAlias = { "Código de comunidad", "Código de vivienda", "Tipo", "Descripción" };
 
     public PuntosViviendasForm(FLyrVect layer) {
 	super(layer);
