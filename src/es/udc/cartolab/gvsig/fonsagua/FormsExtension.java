@@ -8,13 +8,8 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.iver.cit.gvsig.project.documents.view.gui.View;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
-import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.BombeosForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.CaptacionesForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepDistribucionForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepIntermediosForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.TuberiasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AmenazasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AreasPotencialesRiegoForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosEducativosForm;
@@ -22,47 +17,21 @@ import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosSaludForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.OtrosServiciosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.PuntosViviendasForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 
 public class FormsExtension extends Extension {
 
     private FLyrVect layer;
+    private final TableFormFactory factory = FonsaguaTableFormFactory
+	    .getInstance();
 
     @Override
     public void execute(String actionCommand) {
 
 	BasicAbstractForm dialog = null;
+	dialog = factory.createForm(layer);
 
-	if (layer.getName().equals(ComunidadesForm.NAME)) {
-	    dialog = new ComunidadesForm(layer);
-	} else if (layer.getName().equals(AmenazasForm.NAME)) {
-	    dialog = new AmenazasForm(layer);
-	} else if (layer.getName().equals(PuntosViviendasForm.NAME)) {
-	    dialog = new PuntosViviendasForm(layer);
-	} else if (layer.getName().equals(AreasPotencialesRiegoForm.NAME)) {
-	    dialog = new AreasPotencialesRiegoForm(layer);
-	} else if (layer.getName().equals(CentrosSaludForm.NAME)) {
-	    dialog = new CentrosSaludForm(layer);
-	} else if (layer.getName().equals(OtrosServiciosForm.NAME)) {
-	    dialog = new OtrosServiciosForm(layer);
-	} else if (layer.getName().equals(CentrosEducativosForm.NAME)) {
-	    dialog = new CentrosEducativosForm(layer);
-	} else if (layer.getName().equals(AbastecimientosForm.NAME)) {
-	    dialog = new AbastecimientosForm(layer);
-	} else if (layer.getName().equals(BombeosForm.NAME)) {
-	    dialog = new BombeosForm(layer);
-	} else if (layer.getName().equals(CaptacionesForm.NAME)) {
-	    dialog = new CaptacionesForm(layer);
-	} else if (layer.getName().equals(DepIntermediosForm.NAME)) {
-	    dialog = new DepIntermediosForm(layer);
-	} else if (layer.getName().equals(DepDistribucionForm.NAME)) {
-	    dialog = new DepDistribucionForm(layer);
-	} else if (layer.getName().equals(TuberiasForm.NAME)) {
-	    dialog = new TuberiasForm(layer);
-	} else if (layer.getName().equals(FuentesForm.NAME)) {
-	    dialog = new FuentesForm(layer);
-	}
-	if (dialog.init()) {
+	if ((dialog != null) && (dialog.init())) {
 	    PluginServices.getMDIManager().addWindow(dialog);
 	}
     }
