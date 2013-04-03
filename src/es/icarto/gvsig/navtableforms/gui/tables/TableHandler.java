@@ -15,16 +15,16 @@ public class TableHandler {
     private AbstractSubForm form;
     private JTable jtable;
     private JTableContextualMenu listener;
-    private String foreingKeyId;
+    private String foreignKeyId;
     private String[] colNames;
     private String[] colAliases;
     private String tablename;
 
     public TableHandler(String tablename, HashMap<String, JComponent> widgets,
-	    String foreingKeyId, String[] colNames, String[] colAliases) {
+	    String foreignKeyId, String[] colNames, String[] colAliases) {
 	this.tablename = tablename;
 	jtable = (JTable) widgets.get(tablename);
-	this.foreingKeyId = foreingKeyId;
+	this.foreignKeyId = foreignKeyId;
 	this.colNames = colNames;
 	this.colAliases = colAliases;
 	try {
@@ -53,10 +53,10 @@ public class TableHandler {
 
 	TableModelAlphanumeric model;
 	Map<String, String> foreingKey = new HashMap<String, String>(1);
-	foreingKey.put(foreingKeyId, foreingKeyValue);
+	foreingKey.put(foreignKeyId, foreingKeyValue);
 	form.setForeingKey(foreingKey);
 	try {
-	    model = TableModelFactory.createFromTable(tablename, foreingKeyId,
+	    model = TableModelFactory.createFromTable(tablename, foreignKeyId,
 		    foreingKeyValue, colNames, colAliases);
 	    jtable.setModel(model);
 	    form.setModel(model);

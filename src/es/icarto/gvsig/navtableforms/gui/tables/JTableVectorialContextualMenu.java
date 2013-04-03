@@ -8,7 +8,7 @@ import javax.swing.JTable;
 import com.iver.andami.PluginServices;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
-import es.icarto.gvisg.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 
 public class JTableVectorialContextualMenu implements MouseListener {
