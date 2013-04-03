@@ -8,6 +8,10 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public class BombeosForm extends BasicAbstractForm {
 
     public static final String NAME = "bombeos";
+    public static String[] colNames = { "cod_abastecimiento", "cod_bombeo",
+	    "denominacion", "tipologia", "energia" };
+    public static String[] colAlias = { "Código de abastecimiento",
+	    "Código de bombeo", "Denominación", "Tipología", "Energía" };
 
     public BombeosForm(FLyrVect layer) {
 	super(layer);
