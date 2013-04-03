@@ -10,6 +10,7 @@ import com.iver.cit.gvsig.project.documents.view.gui.View;
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AmenazasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AreasPotencialesRiegoForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosEducativosForm;
@@ -18,6 +19,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.OtrosServiciosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.PuntosViviendasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
+import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 
 public class FormsExtension extends Extension {
 
@@ -72,7 +74,9 @@ public class FormsExtension extends Extension {
 			    || layerName.equals(AmenazasForm.NAME)
 			    || layerName.equals(CentrosSaludForm.NAME)
 			    || layerName.equals(OtrosServiciosForm.NAME)
-			    || layerName.equals(CentrosEducativosForm.NAME)) {
+			    || layerName.equals(CentrosEducativosForm.NAME)
+			    || layerName.equals(FuentesForm.NAME)
+			    || layerName.equals(AbastecimientosForm.NAME)) {
 
 			return true;
 		    }
