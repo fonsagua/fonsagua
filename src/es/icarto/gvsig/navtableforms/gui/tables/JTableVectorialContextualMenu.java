@@ -6,30 +6,38 @@ import java.awt.event.MouseListener;
 import javax.swing.JTable;
 
 import com.iver.andami.PluginServices;
+import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
-import es.icarto.gvsig.navtableforms.AbstractForm;
+import es.icarto.gvisg.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 
 public class JTableVectorialContextualMenu implements MouseListener {
 
-    private AbstractForm form;
+    private String layerName;
     private JTable table;
+    private TableFormFactory factory;
 
-    public JTableVectorialContextualMenu(AbstractForm form) {
-	this.form = form;
+    public JTableVectorialContextualMenu(String layerName,
+	    TableFormFactory factory) {
+	this.layerName = layerName;
+	this.factory = factory;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
 	table = (JTable) e.getComponent();
-	if (doubleOrRigthClickOnARow(e)) {
-	    if (form.init()) {
-		form.setPosition(0);
-		PluginServices.getMDIManager().addWindow(form);
-	    }
+	if (doubleOrRightClickOnARow(e)) {
+	    TOCLayerManager toc = new TOCLayerManager();
+	    FLyrVect layer = toc.getLayerByName(layerName);
+	    BasicAbstractForm form = factory.createForm(layer);
+	    form.init();
+	    form.setPosition(table.convertRowIndexToModel(table
+		    .getSelectedRow()));
+	    PluginServices.getMDIManager().addWindow(form);
 	}
     }
 
-    private boolean doubleOrRigthClickOnARow(MouseEvent e) {
+    private boolean doubleOrRightClickOnARow(MouseEvent e) {
 	return (table.getSelectedRow() > -1)
 		&& ((e.getClickCount() == 2) || (e.getButton() == MouseEvent.BUTTON3));
 

@@ -43,6 +43,10 @@ public class TableModelVectorial extends AbstractTableModel {
 	return colAliases[column];
     }
 
+    public String getLayerColumnName(int column) {
+	return colNames[column];
+    }
+
     @Override
     public boolean isCellEditable(int arg0, int arg1) {
 	return false;
@@ -51,7 +55,8 @@ public class TableModelVectorial extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
 	try {
-	    return layer.getRecordset().getFieldValue(rowIndex, columnIndex);
+	    return layer.getRecordset().getFieldValue(rowIndex,
+		    layer.getRecordset().getFieldIndexByName(colNames[columnIndex]));
 	} catch (ReadDriverException e) {
 	    e.printStackTrace();
 	    return null;
