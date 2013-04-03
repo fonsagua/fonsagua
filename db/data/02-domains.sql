@@ -587,65 +587,6 @@ INSERT INTO public.tipo_fuente (item) VALUES
 ALTER TABLE public.tipo_fuente OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipo_vegetacion (
-       item VARCHAR
-	       PRIMARY KEY
-
-);
-
-INSERT INTO public.tipo_vegetacion (item) VALUES
-       (' '),
-       ('Bosque'),
-       ('Arbustiva'),
-       ('Pastizales'),
-       ('Otros');
-
-ALTER TABLE public.tipo_vegetacion OWNER TO fonsagua;
-
-
-CREATE TABLE public.propietario (
-       item VARCHAR
-	       PRIMARY KEY
-
-);
-
-INSERT INTO public.propietario (item) VALUES
-       (' '),
-       ('Privado'),
-       ('Comunitario');
-
-ALTER TABLE public.propietario OWNER TO fonsagua;
-
-
-CREATE TABLE public.tipo_pozo (
-       item VARCHAR
-	       PRIMARY KEY
-
-);
-
-INSERT INTO public.tipo_pozo (item) VALUES
-       (' '),
-       ('Excavado'),
-       ('Perforado');
-
-ALTER TABLE public.tipo_pozo OWNER TO fonsagua;
-
-
-CREATE TABLE public.cond_muestra (
-       item VARCHAR
-	       PRIMARY KEY
-
-);
-
-INSERT INTO public.cond_muestra (item) VALUES
-       (' '),
-       ('Buenas'),
-       ('Regulares'),
-       ('Malas');
-
-ALTER TABLE public.cond_muestra OWNER TO fonsagua;
-
-
 CREATE TABLE public.sistema (
        item VARCHAR
 	       PRIMARY KEY
@@ -778,3 +719,62 @@ INSERT INTO public.calidad_agua (item) VALUES
        ('Mala');
 
 ALTER TABLE public.calidad_agua OWNER TO fonsagua;
+
+
+CREATE TABLE public.tipo_vegetacion (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.tipo_vegetacion (item) VALUES
+       (' '),
+       ('Bosque'),
+       ('Arbustiva'),
+       ('Pastizales'),
+       ('Otros');
+
+ALTER TABLE public.tipo_vegetacion OWNER TO fonsagua;
+
+
+CREATE TABLE public.propietario (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.propietario (item) VALUES
+       (' '),
+       ('Privado'),
+       ('Comunitario');
+
+ALTER TABLE public.propietario OWNER TO fonsagua;
+
+
+CREATE TABLE public.tipo_pozo (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.tipo_pozo (item) VALUES
+       (' '),
+       ('Excavado'),
+       ('Perforado');
+
+ALTER TABLE public.tipo_pozo OWNER TO fonsagua;
+
+
+CREATE TABLE public.cond_muestra (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO public.cond_muestra (item) VALUES
+       (' '),
+       ('Buenas'),
+       ('Regulares'),
+       ('Malas');
+
+ALTER TABLE public.cond_muestra OWNER TO fonsagua;

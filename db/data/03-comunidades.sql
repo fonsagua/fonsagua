@@ -639,19 +639,6 @@ SELECT addgeometrycolumn('public', 'amenazas', 'geom', 32616, 'POINT', 2);
 
 ALTER TABLE public.amenazas OWNER TO fonsagua;
 
-CREATE TABLE public.r_comunidades_abastecimientos (
-       gid SERIAL PRIMARY KEY,
-       cod_comunidad VARCHAR
-	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
-       cod_abastecimiento VARCHAR
-	       NOT NULL
-
-);
-
-
-ALTER TABLE public.r_comunidades_abastecimientos OWNER TO fonsagua;
-
 CREATE TABLE public.implicacion_comunidad (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
@@ -748,10 +735,10 @@ ALTER TABLE public.fuentes_contaminacion OWNER TO fonsagua;
 
 CREATE TABLE public.abastecimientos (
        gid SERIAL PRIMARY KEY,
-       abastecimiento VARCHAR,
        cod_abastecimiento VARCHAR
 	       UNIQUE
 	       NOT NULL,
+       abastecimiento VARCHAR,
        fecha Date,
        gestion VARCHAR
 	       REFERENCES gestion,
@@ -843,147 +830,6 @@ CREATE TABLE public.juntas_agua (
 
 
 ALTER TABLE public.juntas_agua OWNER TO fonsagua;
-
-CREATE TABLE public.fuentes (
-       gid SERIAL PRIMARY KEY,
-       fuente VARCHAR
-	       REFERENCES abastecimientos(fuente),
-       cod_fuente VARCHAR
-	       UNIQUE
-	       NOT NULL,
-       tipo_fuente VARCHAR
-	       NOT NULL
-	       REFERENCES tipo_fuente,
-       comunidad VARCHAR,
-       fecha Date,
-       dist_comunidad FLOAT,
-       dist_linea_electrica FLOAT,
-       utm_x FLOAT,
-       utm_y FLOAT,
-       utm_z FLOAT,
-       uso BOOLEAN,
-       dom_numero INTEGER,
-       dom_cantaradas INTEGER,
-       agr_numero INTEGER,
-       agr_cantaradas INTEGER,
-       gan_numero INTEGER,
-       gan_cantaradas INTEGER,
-       cob_vegetal BOOLEAN,
-       tipo_vegetacion VARCHAR
-	       REFERENCES tipo_vegetacion,
-       especies INTEGER,
-       deforestacion INTEGER
-	       REFERENCES deforestacion,
-       naci_terremoto BOOLEAN,
-       cambios_terremoto BOOLEAN,
-       propietario VARCHAR
-	       REFERENCES propietario,
-       nom_propietario VARCHAR,
-       escritura BOOLEAN,
-       tipo_pozo VARCHAR
-	       REFERENCES tipo_pozo,
-       prof_pozo FLOAT,
-       diametro_interior FLOAT,
-       altura_brocal FLOAT,
-       prof_bomba FLOAT,
-       reperforado BOOLEAN,
-       rep_distancia FLOAT,
-       limpiezas BOOLEAN,
-       rep_metodo VARCHAR,
-       n_limpiezas INTEGER,
-       comentarios VARCHAR
-
-);
-
-SELECT addgeometrycolumn('public', 'fuentes', 'geom', 32616, 'POINT', 2);
-
-ALTER TABLE public.fuentes OWNER TO fonsagua;
-
-CREATE TABLE public.aforos (
-       gid SERIAL PRIMARY KEY,
-       cod_fuente VARCHAR
-	       NOT NULL
-	       REFERENCES fuentes(cod_fuente),
-       aforo FLOAT,
-       fecha Date,
-       hora VARCHAR
-
-);
-
-
-ALTER TABLE public.aforos OWNER TO fonsagua;
-
-CREATE TABLE public.analiticas (
-       gid SERIAL PRIMARY KEY,
-       fuente VARCHAR
-	       REFERENCES fuentes(fuente),
-       cod_fuente VARCHAR
-	       NOT NULL,
-       fecha_muestra Date,
-       hora_muestra VARCHAR,
-       c_temperatura FLOAT,
-       c_conductividad FLOAT,
-       c_color INTEGER,
-       c_olor VARCHAR,
-       c_ph FLOAT,
-       para_rango BOOLEAN,
-       cond_muestra VARCHAR
-	       REFERENCES cond_muestra,
-       coment_muestra VARCHAR,
-       laboratorio VARCHAR,
-       fecha_analisis Date,
-       temperatura FLOAT,
-       color FLOAT,
-       turbidez FLOAT,
-       conductividad FLOAT,
-       ph FLOAT,
-       alcalinidad FLOAT,
-       dureza FLOAT,
-       oxigeno_disuelto FLOAT,
-       dbo FLOAT,
-       dqo FLOAT,
-       mo FLOAT,
-       sol_suspension FLOAT,
-       sol_disueltos FLOAT,
-       sol_totales FLOAT,
-       nitratos FLOAT,
-       nitritos FLOAT,
-       coli_fecales FLOAT,
-       coli_totales FLOAT,
-       ecoli FLOAT,
-       bac_het_tot FLOAT,
-       pes_cloro FLOAT,
-       pes_fosforo FLOAT,
-       sulfatos FLOAT,
-       cl_residual FLOAT,
-       cloruros FLOAT,
-       fosfatos FLOAT,
-       ca FLOAT,
-       mg FLOAT,
-       amonio FLOAT,
-       arsenico FLOAT,
-       k FLOAT,
-       na FLOAT,
-       si FLOAT,
-       fe FLOAT,
-       mn FLOAT,
-       al FLOAT,
-       b FLOAT,
-       cd FLOAT,
-       co FLOAT,
-       cr3 FLOAT,
-       cr6 FLOAT,
-       cu FLOAT,
-       hg FLOAT,
-       ni FLOAT,
-       pb FLOAT,
-       zn FLOAT,
-       coment_laboratorio VARCHAR
-
-);
-
-
-ALTER TABLE public.analiticas OWNER TO fonsagua;
 
 CREATE TABLE public.captaciones (
        gid SERIAL PRIMARY KEY,
@@ -1223,3 +1069,143 @@ CREATE TABLE public.evaluacion (
 
 
 ALTER TABLE public.evaluacion OWNER TO fonsagua;
+
+CREATE TABLE public.fuentes (
+       gid SERIAL PRIMARY KEY,
+       cod_fuente VARCHAR
+	       UNIQUE
+	       NOT NULL,
+       fuente VARCHAR,
+       tipo_fuente VARCHAR
+	       NOT NULL
+	       REFERENCES tipo_fuente,
+       comunidad VARCHAR,
+       fecha Date,
+       dist_comunidad FLOAT,
+       dist_linea_electrica FLOAT,
+       utm_x FLOAT,
+       utm_y FLOAT,
+       utm_z FLOAT,
+       uso BOOLEAN,
+       dom_numero INTEGER,
+       dom_cantaradas INTEGER,
+       agr_numero INTEGER,
+       agr_cantaradas INTEGER,
+       gan_numero INTEGER,
+       gan_cantaradas INTEGER,
+       cob_vegetal BOOLEAN,
+       tipo_vegetacion VARCHAR
+	       REFERENCES tipo_vegetacion,
+       especies INTEGER,
+       deforestacion VARCHAR
+	       REFERENCES deforestacion,
+       naci_terremoto BOOLEAN,
+       cambios_terremoto BOOLEAN,
+       propietario VARCHAR
+	       REFERENCES propietario,
+       nom_propietario VARCHAR,
+       escritura BOOLEAN,
+       tipo_pozo VARCHAR
+	       REFERENCES tipo_pozo,
+       prof_pozo FLOAT,
+       diametro_interior FLOAT,
+       altura_brocal FLOAT,
+       prof_bomba FLOAT,
+       reperforado BOOLEAN,
+       rep_distancia FLOAT,
+       limpiezas BOOLEAN,
+       rep_metodo VARCHAR,
+       n_limpiezas INTEGER,
+       comentarios VARCHAR
+
+);
+
+SELECT addgeometrycolumn('public', 'fuentes', 'geom', 32616, 'POINT', 2);
+
+ALTER TABLE public.fuentes OWNER TO fonsagua;
+
+CREATE TABLE public.aforos (
+       gid SERIAL PRIMARY KEY,
+       cod_fuente VARCHAR
+	       NOT NULL
+	       REFERENCES fuentes(cod_fuente),
+       aforo FLOAT,
+       fecha Date,
+       hora VARCHAR
+
+);
+
+
+ALTER TABLE public.aforos OWNER TO fonsagua;
+
+CREATE TABLE public.analiticas (
+       gid SERIAL PRIMARY KEY,
+       cod_fuente VARCHAR
+	       NOT NULL
+	       REFERENCES fuentes(cod_fuente),
+       fuente VARCHAR,
+       fecha_muestra Date,
+       hora_muestra VARCHAR,
+       c_temperatura FLOAT,
+       c_conductividad FLOAT,
+       c_color INTEGER,
+       c_olor VARCHAR,
+       c_ph FLOAT,
+       para_rango BOOLEAN,
+       cond_muestra VARCHAR
+	       REFERENCES cond_muestra,
+       coment_muestra VARCHAR,
+       laboratorio VARCHAR,
+       fecha_analisis Date,
+       temperatura FLOAT,
+       color FLOAT,
+       turbidez FLOAT,
+       conductividad FLOAT,
+       ph FLOAT,
+       alcalinidad FLOAT,
+       dureza FLOAT,
+       oxigeno_disuelto FLOAT,
+       dbo FLOAT,
+       dqo FLOAT,
+       mo FLOAT,
+       sol_suspension FLOAT,
+       sol_disueltos FLOAT,
+       sol_totales FLOAT,
+       nitratos FLOAT,
+       nitritos FLOAT,
+       coli_fecales FLOAT,
+       coli_totales FLOAT,
+       ecoli FLOAT,
+       bac_het_tot FLOAT,
+       pes_cloro FLOAT,
+       pes_fosforo FLOAT,
+       sulfatos FLOAT,
+       cl_residual FLOAT,
+       cloruros FLOAT,
+       fosfatos FLOAT,
+       ca FLOAT,
+       mg FLOAT,
+       amonio FLOAT,
+       arsenico FLOAT,
+       k FLOAT,
+       na FLOAT,
+       si FLOAT,
+       fe FLOAT,
+       mn FLOAT,
+       al FLOAT,
+       b FLOAT,
+       cd FLOAT,
+       co FLOAT,
+       cr3 FLOAT,
+       cr6 FLOAT,
+       cu FLOAT,
+       hg FLOAT,
+       ni FLOAT,
+       pb FLOAT,
+       zn FLOAT,
+       coment_laboratorio VARCHAR
+
+);
+
+
+ALTER TABLE public.analiticas OWNER TO fonsagua;

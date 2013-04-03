@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LAYER alias="r_abastecimientos_comunidades">
+       <TABLENAME>r_abastecimientos_comunidades</TABLENAME>
+       <PRIMARYKEY>
+	<PKELEMENT>gid</PKELEMENT>
+       </PRIMARYKEY>
+
+       <RECORDSET>
+       	    <FIELD>
+		<FIELDNAME>cod_abastecimiento</FIELDNAME>
+		<VALIDATIONRULE>MANDATORY</VALIDATIONRULE>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>cod_comunidad</FIELDNAME>
+		<VALIDATIONRULE>MANDATORY</VALIDATIONRULE>
+	    </FIELD>
+       </RECORDSET>
+
+</LAYER>
