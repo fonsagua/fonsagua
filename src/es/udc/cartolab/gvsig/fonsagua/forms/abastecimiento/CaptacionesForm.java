@@ -8,10 +8,11 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public class CaptacionesForm extends BasicAbstractForm {
 
     public static final String NAME = "captaciones";
-    public static String[] colNames = { "cod_abastecimiento", "cod_captacion",
-	    "denominacion", "tipo_fuente", "sistema" };
+    public static String[] colNames = { "cod_abastecimiento", "denominacion",
+	    "tipo_fuente", "sistema", "anho_construccion", "volumen" };
     public static String[] colAlias = { "Código de abastecimiento",
-	    "Código de captación", "Denominación", "Tipo de fuente", "Sistema" };
+	    "Denominación", "Tipo de fuente", "Sistema", "Año de construcción",
+	    "Volumen (m³)" };
 
     public CaptacionesForm(FLyrVect layer) {
 	super(layer);
