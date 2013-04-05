@@ -40,7 +40,7 @@ INSERT INTO _map VALUES
 	--('Vista general', 'Comunidades', 'cargos_publicos', 0, true, null, null, null, 'public', false)
 	--('Vista general', 'Comunidades', 'ongs', 0, true, null, null, null, 'public', false)
 	--('Vista general', 'Comunidades', 'otras_organizaciones', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'fuentes_contaminacion', 0, true, null, null, null, 'public', false)
+	('Vista general', 'fuentes_contaminacion', 'fuentes_contaminacion', 0, true, null, null, null, 'public', false),
 	--('Vista general', 'Comunidades', 'capacitaciones_gestion_riesgos', 0, true, null, null, null, 'public', false)
 	('Vista general', 'amenazas', 'amenazas', 0, true, null, null, null, 'public', false),
 	--('Vista general', 'Comunidades', 'r_comunidades_abastecimientos', 0, true, null, null, null, 'public', false)
@@ -55,8 +55,14 @@ INSERT INTO _map VALUES
 	--('Vista general', 'Comunidades', 'cooperativas', 0, true, null, null, null, 'public', false)
 	('Vista general', 'centros_educativos', 'centros_educativos', 0, true, null, null, null, 'public', false),
 	('Vista general', 'centros_salud', 'centros_salud', 0, true, null, null, null, 'public', false),
-	('Vista general', 'otros_servicios', 'otros_servicios', 0, true, null, null, null, 'public', false);
-
+	('Vista general', 'otros_servicios', 'otros_servicios', 0, true, null, null, null, 'public', false),
+	('Vista general', 'abastecimientos', 'abastecimientos', 0, true, null, null, null, 'public', false),
+	('Vista general', 'captaciones', 'captaciones', 0, true, null, null, null, 'public', false),
+	('Vista general', 'dep_intermedios', 'dep_intermedios', 0, true, null, null, null, 'public', false),
+	('Vista general', 'dep_distribucion', 'dep_distribucion', 0, true, null, null, null, 'public', false),
+	('Vista general', 'tuberias', 'tuberias', 0, true, null, null, null, 'public', false),
+	('Vista general', 'bombeos', 'bombeos', 0, true, null, null, null, 'public', false),
+	('Vista general', 'fuentes', 'fuentes', 0, true, null, null, null, 'public', false);
 
 CREATE TABLE _map_overview (
     mapa character varying NOT NULL,
