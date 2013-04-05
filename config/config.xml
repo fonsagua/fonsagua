@@ -6,11 +6,26 @@
 	<libraries library-dir="lib"/>
 	<resourceBundle name="text"/>
 	<extensions>
-		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsExtension" description="FONSAGUA_PANEL" active="true">
+		
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsExtension" active="true">
 			<tool-bar name="fonsagua">
-				<action-tool icon="example1-ntforms" tooltip="Example Fonsagua"
-					action-command="NTFormsExample1" position="50"/>
+				<action-tool icon="example1-ntforms" tooltip="open_form"
+					action-command="" position="50"/>
 			</tool-bar>
 		</extension>
+		
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.AutoFormsExtension" active="true">
+			<tool-bar name="fonsagua">
+				<selectable-tool icon="auto-forms" tooltip="enable_auto_forms"
+					action-command="auto-forms" position="60" group="fonsagua" name="auto-forms" />
+			</tool-bar>
+		</extension>
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.EmptyExtension" active="true">
+			<tool-bar name="fonsagua">
+				<selectable-tool icon="auto-forms" tooltip="disable_auto_forms"
+					action-command="empty" position="60" group="fonsagua" name="auto-forms" />
+			</tool-bar>
+		</extension>
+		
 	</extensions>
 </plugin-config>
