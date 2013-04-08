@@ -11,7 +11,6 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class TableRelationship {
@@ -21,6 +20,7 @@ public class TableRelationship {
     private String secondaryTableName;
     private String secondaryPKName;
     private String relationTableName;
+    private String dbSchema;
 
     private JTable relationJTable;
     private String primaryPKValue;
@@ -30,12 +30,13 @@ public class TableRelationship {
     public TableRelationship(HashMap<String, JComponent> widgets,
 	    String primaryTableName, String primaryPKName,
 	    String secondaryTableName, String secondaryPKName,
-	    String relationTableName) {
+	    String relationTableName, String dbSchema) {
 	this.primaryTableName = primaryTableName;
 	this.primaryPKName = primaryPKName;
 	this.secondaryTableName = secondaryTableName;
 	this.secondaryPKName = secondaryPKName;
 	this.relationTableName = relationTableName;
+	this.dbSchema = dbSchema;
 	if (widgets != null) {
 	    relationJTable = (JTable) widgets.get(relationTableName);
 	}
@@ -61,8 +62,8 @@ public class TableRelationship {
     private void fillRows() {
 	try {
 	    PreparedStatement statement;
-	    String query = "SELECT * FROM " + FonsaguaConstants.dataSchema
-		    + "." + relationTableName + ";";
+	    String query = "SELECT * FROM " + dbSchema + "."
+		    + relationTableName + ";";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
 		    .prepareStatement(query);
 	    statement.execute();
@@ -92,9 +93,8 @@ public class TableRelationship {
     private ArrayList<String> getSecondaryValues() {
 	try {
 	    PreparedStatement statement;
-	    String query = "SELECT " + secondaryPKName + " FROM "
-		    + FonsaguaConstants.dataSchema + "." + secondaryTableName
-		    + ";";
+	    String query = "SELECT " + secondaryPKName + " FROM " + dbSchema
+		    + "." + secondaryTableName + ";";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
 		    .prepareStatement(query);
 	    statement.execute();
@@ -113,7 +113,7 @@ public class TableRelationship {
     public void insertRow(String secondaryPKValue) {
 	try {
 	    PreparedStatement statement;
-	    String query = "INSERT INTO " + FonsaguaConstants.dataSchema + "."
+	    String query = "INSERT INTO " + dbSchema + "."
 		    + relationTableName + " VALUES ( " + "'" + secondaryPKValue
 		    + "','" + primaryPKValue + "');";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
@@ -127,7 +127,7 @@ public class TableRelationship {
     public void deleteRow(String secondaryPKValue) {
 	try {
 	    PreparedStatement statement;
-	    String query = "DELETE FROM " + FonsaguaConstants.dataSchema + "."
+	    String query = "DELETE FROM " + dbSchema + "."
 		    + relationTableName + " WHERE " + secondaryPKName + " = '"
 		    + secondaryPKValue + "';";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
@@ -176,6 +176,14 @@ public class TableRelationship {
 
     public void setRelationTableName(String relationTableName) {
 	this.relationTableName = relationTableName;
+    }
+
+    public String getRelationTableSchema() {
+	return dbSchema;
+    }
+
+    public void setRelationTableSchema(String relationTableSchema) {
+	this.dbSchema = relationTableSchema;
     }
 
     public JTable getRelationJTable() {

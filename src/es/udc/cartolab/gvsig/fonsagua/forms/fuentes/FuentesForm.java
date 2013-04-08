@@ -32,7 +32,8 @@ public class FuentesForm extends BasicAbstractForm {
 		AnaliticasForm.colNames, AnaliticasForm.colAlias);
 	abastecimientosRelationship = new TableRelationship(
 		getWidgetComponents(), NAME, PKFIELD, AbastecimientosForm.NAME,
-		AbastecimientosForm.PKFIELD, "r_abastecimientos_fuentes");
+		AbastecimientosForm.PKFIELD, "r_abastecimientos_fuentes",
+		FonsaguaConstants.dataSchema);
     }
 
     @Override

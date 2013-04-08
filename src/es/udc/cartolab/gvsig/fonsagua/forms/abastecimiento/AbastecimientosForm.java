@@ -75,13 +75,12 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	bombeosHandler = new VectorialTableHandler(
 		toc.getLayerByName(BombeosForm.NAME), getWidgetComponents(),
 		PKFIELD, BombeosForm.colNames, BombeosForm.colAlias);
-
 	comunidadesRelationship = new TableRelationship(getWidgetComponents(),
 		NAME, PKFIELD, ComunidadesForm.NAME, ComunidadesForm.PKFIELD,
-		"r_abastecimientos_comunidades");
+		"r_abastecimientos_comunidades", FonsaguaConstants.dataSchema);
 	fuentesRelationship = new TableRelationship(getWidgetComponents(),
 		NAME, PKFIELD, FuentesForm.NAME, FuentesForm.PKFIELD,
-		"r_abastecimientos_fuentes");
+		"r_abastecimientos_fuentes", FonsaguaConstants.dataSchema);
     }
 
     @Override

@@ -17,6 +17,7 @@ import com.iver.cit.gvsig.fmap.layers.LayerFactory;
 
 import es.icarto.gvsig.navtableforms.DataBaseProperties;
 import es.icarto.gvsig.navtableforms.TestProperties;
+import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class TestTableRelationship {
@@ -72,7 +73,7 @@ public class TestTableRelationship {
 
 	testingRelationship = new TableRelationship(null, "comunidades",
 		"cod_comunidad", "abastecimientos", "cod_abastecimiento",
-		"r_abastecimientos_comunidades");
+		"r_abastecimientos_comunidades", FonsaguaConstants.dataSchema);
 	testingRelationship.setPrimaryPKValue("999");
     }
 

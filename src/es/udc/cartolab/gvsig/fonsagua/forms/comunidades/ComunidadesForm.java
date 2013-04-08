@@ -140,7 +140,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 		PKFIELD, AmenazasForm.colNames, AmenazasForm.colAlias);
 	abastecimientosRelationship = new TableRelationship(
 		getWidgetComponents(), NAME, PKFIELD, AbastecimientosForm.NAME,
-		AbastecimientosForm.PKFIELD, "r_abastecimientos_comunidades");
+		AbastecimientosForm.PKFIELD, "r_abastecimientos_comunidades",
+		FonsaguaConstants.dataSchema);
 
     }
 
