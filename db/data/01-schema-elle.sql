@@ -90,21 +90,21 @@ ALTER TABLE elle._map_style OWNER TO fonsagua;
 -- Data for Name: _map; Type: TABLE DATA; Schema: elle; Owner: fonsagua
 --
 
-INSERT INTO _map VALUES ('Vista general', 'fuentes', 'fuentes', 15, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'bombeos', 'bombeos', 14, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'dep_distribucion', 'dep_distribucion', 13, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'dep_intermedios', 'dep_intermedios', 12, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'captaciones', 'captaciones', 11, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'otros_servicios', 'otros_servicios', 10, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'centros_salud', 'centros_salud', 9, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'centros_educativos', 'centros_educativos', 8, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'amenazas', 'amenazas', 7, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'fuentes_contaminacion', 'fuentes_contaminacion', 6, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'puntos_viviendas', 'puntos_viviendas', 5, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'comunidades', 'comunidades', 4, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'tuberias', 'tuberias', 3, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'areas_potenciales_riego', 'areas_potenciales_riego', 2, true, NULL, NULL, '', 'public', NULL);
-INSERT INTO _map VALUES ('Vista general', 'abastecimientos', 'abastecimientos', 1, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'fuentes', 'fuentes', 15, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'bombeos', 'bombeos', 14, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'dep_distribucion', 'dep_distribucion', 13, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'dep_intermedios', 'dep_intermedios', 12, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'captaciones', 'captaciones', 11, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'otros_servicios', 'otros_servicios', 10, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'centros_salud', 'centros_salud', 9, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'centros_educativos', 'centros_educativos', 8, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'amenazas', 'amenazas', 7, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'fuentes_contaminacion', 'fuentes_contaminacion', 6, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'puntos_viviendas', 'puntos_viviendas', 5, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'comunidades', 'comunidades', 4, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'tuberias', 'tuberias', 3, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'areas_potenciales_riego', 'areas_potenciales_riego', 2, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO _map VALUES ('Vista general', 'abastecimientos', 'abastecimientos', 1, true, NULL, NULL, '', 'fonsagua', NULL);
 
 
 --

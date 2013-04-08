@@ -1,5 +1,5 @@
 
-CREATE TABLE public.comunidades (
+CREATE TABLE fonsagua.comunidades (
        gid SERIAL PRIMARY KEY,
        comunidad VARCHAR,
        cod_comunidad VARCHAR
@@ -26,15 +26,15 @@ CREATE TABLE public.comunidades (
        cuenca VARCHAR,
        coment_loc VARCHAR,
        tip_nucleo VARCHAR
-	       REFERENCES tip_nucleo,
+	       REFERENCES dominios.tip_nucleo,
        anho_establecimiento INTEGER,
        n_familias INTEGER,
        n_viviendas INTEGER,
        n_habitantes INTEGER,
        tip_origen VARCHAR
-	       REFERENCES tip_origen,
+	       REFERENCES dominios.tip_origen,
        antiguedad VARCHAR
-	       REFERENCES antiguedad,
+	       REFERENCES dominios.antiguedad,
        lug_origen VARCHAR,
        n_ninhas INTEGER,
        n_ninhos INTEGER,
@@ -55,7 +55,7 @@ CREATE TABLE public.comunidades (
        exp_ongs BOOLEAN,
        coment_org VARCHAR,
        emigracion VARCHAR
-	       REFERENCES emigracion,
+	       REFERENCES dominios.emigracion,
        f_primario FLOAT,
        f_secundario FLOAT,
        f_terciario FLOAT,
@@ -116,7 +116,7 @@ CREATE TABLE public.comunidades (
        consumo FLOAT,
        lug_agua_cercano VARCHAR,
        tip_regadio VARCHAR
-	       REFERENCES tip_regadio,
+	       REFERENCES dominios.tip_regadio,
        sup_total_riego FLOAT,
        areas_pot_riego BOOLEAN,
        agroquimicos BOOLEAN,
@@ -172,13 +172,13 @@ CREATE TABLE public.comunidades (
        f_dat_sanidad VARCHAR,
        n_iglesias INTEGER,
        tip_acceso VARCHAR
-	       REFERENCES tip_acceso,
+	       REFERENCES dominios.tip_acceso,
        tip_sup_acceso VARCHAR
-	       REFERENCES tip_sup_acceso,
+	       REFERENCES dominios.tip_sup_acceso,
        acceso_ver VARCHAR
-	       REFERENCES acceso_ver,
+	       REFERENCES dominios.acceso_ver,
        acceso_inv VARCHAR
-	       REFERENCES acceso_inv,
+	       REFERENCES dominios.acceso_inv,
        trans_publico BOOLEAN,
        frec_tpublico INTEGER,
        t_parada INTEGER,
@@ -194,18 +194,18 @@ CREATE TABLE public.comunidades (
        veg_ind_sup FLOAT,
        veg_agricola BOOLEAN,
        veg_agr_tip VARCHAR
-	       REFERENCES veg_agr_tip,
+	       REFERENCES dominios.veg_agr_tip,
        veg_agr_sup FLOAT,
        veg_forestal BOOLEAN,
        veg_for_tip VARCHAR
-	       REFERENCES veg_for_tip,
+	       REFERENCES dominios.veg_for_tip,
        veg_for_sup FLOAT,
        deforestacion VARCHAR
-	       REFERENCES deforestacion,
+	       REFERENCES dominios.deforestacion,
        avance_fagricola VARCHAR
-	       REFERENCES avance_fagricola,
+	       REFERENCES dominios.avance_fagricola,
        riesgo_erosion VARCHAR
-	       REFERENCES riesgo_erosion,
+	       REFERENCES dominios.riesgo_erosion,
        frec_incendios VARCHAR,
        est_hidrogeologicos BOOLEAN,
        autor_hidrogeo VARCHAR,
@@ -228,10 +228,10 @@ CREATE TABLE public.comunidades (
        capac_riesgos BOOLEAN,
        coment_frg VARCHAR,
        sist_abastecimiento VARCHAR
-	       REFERENCES sist_abastecimiento,
+	       REFERENCES dominios.sist_abastecimiento,
        n_viv_abast INTEGER,
        origen_aguas VARCHAR
-	       REFERENCES origen_aguas,
+	       REFERENCES dominios.origen_aguas,
        f_dat_abast VARCHAR,
        resum_abast VARCHAR,
        aba_s_cantareras INTEGER,
@@ -284,7 +284,7 @@ CREATE TABLE public.comunidades (
        evac_comunal BOOLEAN,
        evac_otros BOOLEAN,
        ag_gris_calle VARCHAR
-	       REFERENCES ag_gris_calle,
+	       REFERENCES dominios.ag_gris_calle,
        a_gris_quebrada BOOLEAN,
        trat_ag_residuales BOOLEAN,
        trat_trampa INTEGER,
@@ -302,18 +302,18 @@ CREATE TABLE public.comunidades (
        let_abonera INTEGER,
        pq_no_aboneras VARCHAR,
        trat_aboneras VARCHAR
-	       REFERENCES trat_aboneras,
+	       REFERENCES dominios.trat_aboneras,
        disp_abono VARCHAR,
        uso_letrinas BOOLEAN,
        dist_let_agua VARCHAR
-	       REFERENCES dist_let_agua,
+	       REFERENCES dominios.dist_let_agua,
        h_lavad_comun BOOLEAN,
        n_lavaderos INTEGER,
        tip_almacenamiento VARCHAR,
        n_pilas INTEGER,
        n_barriles INTEGER,
        disp_basuras VARCHAR
-	       REFERENCES disp_basuras,
+	       REFERENCES dominios.disp_basuras,
        coment_san VARCHAR,
        necesidad1 VARCHAR,
        necesidad2 VARCHAR,
@@ -322,20 +322,20 @@ CREATE TABLE public.comunidades (
 
 );
 
-SELECT addgeometrycolumn('public', 'comunidades', 'geom', 32616, 'POINT', 2);
+SELECT addgeometrycolumn('fonsagua', 'comunidades', 'geom', 32616, 'POINT', 2);
 
-ALTER TABLE public.comunidades OWNER TO fonsagua;
+ALTER TABLE fonsagua.comunidades OWNER TO fonsagua;
 
-CREATE TABLE public.puntos_viviendas (
+CREATE TABLE fonsagua.puntos_viviendas (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        cod_vivienda VARCHAR
 	       UNIQUE
 	       NOT NULL,
        tipo VARCHAR
-	       REFERENCES tipo,
+	       REFERENCES dominios.tipo,
        utm_x FLOAT,
        utm_y FLOAT,
        utm_z FLOAT,
@@ -343,15 +343,15 @@ CREATE TABLE public.puntos_viviendas (
 
 );
 
-SELECT addgeometrycolumn('public', 'puntos_viviendas', 'geom', 32616, 'POINT', 2);
+SELECT addgeometrycolumn('fonsagua', 'puntos_viviendas', 'geom', 32616, 'POINT', 2);
 
-ALTER TABLE public.puntos_viviendas OWNER TO fonsagua;
+ALTER TABLE fonsagua.puntos_viviendas OWNER TO fonsagua;
 
-CREATE TABLE public.entrevistadores (
+CREATE TABLE fonsagua.entrevistadores (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        nombre VARCHAR,
        cargo VARCHAR,
        instit VARCHAR,
@@ -360,13 +360,13 @@ CREATE TABLE public.entrevistadores (
 );
 
 
-ALTER TABLE public.entrevistadores OWNER TO fonsagua;
+ALTER TABLE fonsagua.entrevistadores OWNER TO fonsagua;
 
-CREATE TABLE public.entrevistados (
+CREATE TABLE fonsagua.entrevistados (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        nombre VARCHAR,
        cargo VARCHAR,
        telefono VARCHAR,
@@ -375,25 +375,25 @@ CREATE TABLE public.entrevistados (
 );
 
 
-ALTER TABLE public.entrevistados OWNER TO fonsagua;
+ALTER TABLE fonsagua.entrevistados OWNER TO fonsagua;
 
-CREATE TABLE public.subcuencas (
+CREATE TABLE fonsagua.subcuencas (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        subcuenca VARCHAR
 
 );
 
 
-ALTER TABLE public.subcuencas OWNER TO fonsagua;
+ALTER TABLE fonsagua.subcuencas OWNER TO fonsagua;
 
-CREATE TABLE public.adescos (
+CREATE TABLE fonsagua.adescos (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        nombre VARCHAR,
        anho_const INTEGER,
        legalizada BOOLEAN,
@@ -407,46 +407,46 @@ CREATE TABLE public.adescos (
 );
 
 
-ALTER TABLE public.adescos OWNER TO fonsagua;
+ALTER TABLE fonsagua.adescos OWNER TO fonsagua;
 
-CREATE TABLE public.cargos_publicos (
+CREATE TABLE fonsagua.cargos_publicos (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        nombre VARCHAR,
        cargo VARCHAR
 
 );
 
 
-ALTER TABLE public.cargos_publicos OWNER TO fonsagua;
+ALTER TABLE fonsagua.cargos_publicos OWNER TO fonsagua;
 
-CREATE TABLE public.ongs (
+CREATE TABLE fonsagua.ongs (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        ong VARCHAR,
        fechas VARCHAR,
        tipo_proy VARCHAR,
        capacitacion BOOLEAN,
        tipo_capac VARCHAR,
        valoracion VARCHAR
-	       REFERENCES valoracion
+	       REFERENCES dominios.valoracion
 
 );
 
 
-ALTER TABLE public.ongs OWNER TO fonsagua;
+ALTER TABLE fonsagua.ongs OWNER TO fonsagua;
 
-CREATE TABLE public.otras_organizaciones (
+CREATE TABLE fonsagua.otras_organizaciones (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        tipo_organizacion VARCHAR
-	       REFERENCES tipo_organizacion,
+	       REFERENCES dominios.tipo_organizacion,
        nombre VARCHAR,
        f_creacion Date,
        actividad VARCHAR
@@ -454,13 +454,13 @@ CREATE TABLE public.otras_organizaciones (
 );
 
 
-ALTER TABLE public.otras_organizaciones OWNER TO fonsagua;
+ALTER TABLE fonsagua.otras_organizaciones OWNER TO fonsagua;
 
-CREATE TABLE public.tipos_cultivos (
+CREATE TABLE fonsagua.tipos_cultivos (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        tipo VARCHAR,
        n_familias INTEGER,
        f_propietarias INTEGER,
@@ -472,13 +472,13 @@ CREATE TABLE public.tipos_cultivos (
 );
 
 
-ALTER TABLE public.tipos_cultivos OWNER TO fonsagua;
+ALTER TABLE fonsagua.tipos_cultivos OWNER TO fonsagua;
 
-CREATE TABLE public.produccion_consumo (
+CREATE TABLE fonsagua.produccion_consumo (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        n_miembros INTEGER,
        produccion FLOAT,
        consumo FLOAT
@@ -486,26 +486,26 @@ CREATE TABLE public.produccion_consumo (
 );
 
 
-ALTER TABLE public.produccion_consumo OWNER TO fonsagua;
+ALTER TABLE fonsagua.produccion_consumo OWNER TO fonsagua;
 
-CREATE TABLE public.areas_potenciales_riego (
+CREATE TABLE fonsagua.areas_potenciales_riego (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        descripcion VARCHAR
 
 );
 
-SELECT addgeometrycolumn('public', 'areas_potenciales_riego', 'geom', 32616, 'MULTIPOLYGON', 2);
+SELECT addgeometrycolumn('fonsagua', 'areas_potenciales_riego', 'geom', 32616, 'MULTIPOLYGON', 2);
 
-ALTER TABLE public.areas_potenciales_riego OWNER TO fonsagua;
+ALTER TABLE fonsagua.areas_potenciales_riego OWNER TO fonsagua;
 
-CREATE TABLE public.ganaderia (
+CREATE TABLE fonsagua.ganaderia (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        tipo VARCHAR,
        n_familias INTEGER,
        f_propietarias INTEGER,
@@ -517,13 +517,13 @@ CREATE TABLE public.ganaderia (
 );
 
 
-ALTER TABLE public.ganaderia OWNER TO fonsagua;
+ALTER TABLE fonsagua.ganaderia OWNER TO fonsagua;
 
-CREATE TABLE public.cooperativas (
+CREATE TABLE fonsagua.cooperativas (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        tipo VARCHAR,
        n_asociados INTEGER,
        recursos VARCHAR,
@@ -532,19 +532,19 @@ CREATE TABLE public.cooperativas (
 );
 
 
-ALTER TABLE public.cooperativas OWNER TO fonsagua;
+ALTER TABLE fonsagua.cooperativas OWNER TO fonsagua;
 
-CREATE TABLE public.centros_educativos (
+CREATE TABLE fonsagua.centros_educativos (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        cod_c_educativo VARCHAR
 	       UNIQUE
 	       NOT NULL,
        nombre VARCHAR,
        niveles VARCHAR
-	       REFERENCES niveles,
+	       REFERENCES dominios.niveles,
        tot_alumnos INTEGER,
        n_ninhas INTEGER,
        n_ninhos INTEGER,
@@ -560,15 +560,15 @@ CREATE TABLE public.centros_educativos (
 
 );
 
-SELECT addgeometrycolumn('public', 'centros_educativos', 'geom', 32616, 'POINT', 2);
+SELECT addgeometrycolumn('fonsagua', 'centros_educativos', 'geom', 32616, 'POINT', 2);
 
-ALTER TABLE public.centros_educativos OWNER TO fonsagua;
+ALTER TABLE fonsagua.centros_educativos OWNER TO fonsagua;
 
-CREATE TABLE public.centros_salud (
+CREATE TABLE fonsagua.centros_salud (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        cod_c_salud VARCHAR
 	       UNIQUE
 	       NOT NULL,
@@ -579,36 +579,36 @@ CREATE TABLE public.centros_salud (
 
 );
 
-SELECT addgeometrycolumn('public', 'centros_salud', 'geom', 32616, 'POINT', 2);
+SELECT addgeometrycolumn('fonsagua', 'centros_salud', 'geom', 32616, 'POINT', 2);
 
-ALTER TABLE public.centros_salud OWNER TO fonsagua;
+ALTER TABLE fonsagua.centros_salud OWNER TO fonsagua;
 
-CREATE TABLE public.otros_servicios (
+CREATE TABLE fonsagua.otros_servicios (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        cod_servicio VARCHAR
 	       UNIQUE
 	       NOT NULL,
        nombre VARCHAR,
        tipo_servicio VARCHAR
-	       REFERENCES tipo_servicio,
+	       REFERENCES dominios.tipo_servicio,
        utm_x FLOAT,
        utm_y FLOAT,
        utm_z FLOAT
 
 );
 
-SELECT addgeometrycolumn('public', 'otros_servicios', 'geom', 32616, 'POINT', 2);
+SELECT addgeometrycolumn('fonsagua', 'otros_servicios', 'geom', 32616, 'POINT', 2);
 
-ALTER TABLE public.otros_servicios OWNER TO fonsagua;
+ALTER TABLE fonsagua.otros_servicios OWNER TO fonsagua;
 
-CREATE TABLE public.capacitaciones_riesgos (
+CREATE TABLE fonsagua.capacitaciones_riesgos (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        institucion VARCHAR,
        fecha Date,
        temas VARCHAR
@@ -616,18 +616,18 @@ CREATE TABLE public.capacitaciones_riesgos (
 );
 
 
-ALTER TABLE public.capacitaciones_riesgos OWNER TO fonsagua;
+ALTER TABLE fonsagua.capacitaciones_riesgos OWNER TO fonsagua;
 
-CREATE TABLE public.amenazas (
+CREATE TABLE fonsagua.amenazas (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        cod_amenaza VARCHAR
 	       UNIQUE
 	       NOT NULL,
        tipo_amenaza VARCHAR
-	       REFERENCES tipo_amenaza,
+	       REFERENCES dominios.tipo_amenaza,
        n_fam_afectadas INTEGER,
        utm_x FLOAT,
        utm_y FLOAT,
@@ -635,53 +635,53 @@ CREATE TABLE public.amenazas (
 
 );
 
-SELECT addgeometrycolumn('public', 'amenazas', 'geom', 32616, 'POINT', 2);
+SELECT addgeometrycolumn('fonsagua', 'amenazas', 'geom', 32616, 'POINT', 2);
 
-ALTER TABLE public.amenazas OWNER TO fonsagua;
+ALTER TABLE fonsagua.amenazas OWNER TO fonsagua;
 
-CREATE TABLE public.implicacion_comunidad (
+CREATE TABLE fonsagua.implicacion_comunidad (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        dinero_inv VARCHAR
-	       REFERENCES dinero_inv,
+	       REFERENCES dominios.dinero_inv,
        tiempo_inv VARCHAR
-	       REFERENCES tiempo_inv
+	       REFERENCES dominios.tiempo_inv
 
 );
 
 
-ALTER TABLE public.implicacion_comunidad OWNER TO fonsagua;
+ALTER TABLE fonsagua.implicacion_comunidad OWNER TO fonsagua;
 
-CREATE TABLE public.valoracion_sistema (
+CREATE TABLE fonsagua.valoracion_sistema (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        sist_cobros VARCHAR
-	       REFERENCES sist_cobros,
+	       REFERENCES dominios.sist_cobros,
        nivel_serv VARCHAR
-	       REFERENCES nivel_serv,
+	       REFERENCES dominios.nivel_serv,
        agua_suf BOOLEAN,
        serv_continuo BOOLEAN,
        acceso_tomas VARCHAR
-	       REFERENCES acceso_tomas,
+	       REFERENCES dominios.acceso_tomas,
        comentarios_usuarios VARCHAR
 
 );
 
 
-ALTER TABLE public.valoracion_sistema OWNER TO fonsagua;
+ALTER TABLE fonsagua.valoracion_sistema OWNER TO fonsagua;
 
-CREATE TABLE public.datos_consumo (
+CREATE TABLE fonsagua.datos_consumo (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        cod_abastecimiento VARCHAR,
        tipo_abastecimiento VARCHAR
-	       REFERENCES tipo_abastecimiento,
+	       REFERENCES dominios.tipo_abastecimiento,
        mujeres BOOLEAN,
        hombres BOOLEAN,
        ninhas BOOLEAN,
@@ -694,13 +694,13 @@ CREATE TABLE public.datos_consumo (
 );
 
 
-ALTER TABLE public.datos_consumo OWNER TO fonsagua;
+ALTER TABLE fonsagua.datos_consumo OWNER TO fonsagua;
 
-CREATE TABLE public.habitos_consumo (
+CREATE TABLE fonsagua.habitos_consumo (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        mujeres BOOLEAN,
        hombres BOOLEAN,
        ninhas BOOLEAN,
@@ -712,15 +712,15 @@ CREATE TABLE public.habitos_consumo (
 );
 
 
-ALTER TABLE public.habitos_consumo OWNER TO fonsagua;
+ALTER TABLE fonsagua.habitos_consumo OWNER TO fonsagua;
 
-CREATE TABLE public.fuentes_contaminacion (
+CREATE TABLE fonsagua.fuentes_contaminacion (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad),
        tipo_contaminacion VARCHAR
-	       REFERENCES tipo_contaminacion,
+	       REFERENCES dominios.tipo_contaminacion,
        n_fam_vierten INTEGER,
        utm_x FLOAT,
        utm_y FLOAT,
@@ -729,11 +729,11 @@ CREATE TABLE public.fuentes_contaminacion (
 
 );
 
-SELECT addgeometrycolumn('public', 'fuentes_contaminacion', 'geom', 32616, 'POINT', 2);
+SELECT addgeometrycolumn('fonsagua', 'fuentes_contaminacion', 'geom', 32616, 'POINT', 2);
 
-ALTER TABLE public.fuentes_contaminacion OWNER TO fonsagua;
+ALTER TABLE fonsagua.fuentes_contaminacion OWNER TO fonsagua;
 
-CREATE TABLE public.abastecimientos (
+CREATE TABLE fonsagua.abastecimientos (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       UNIQUE
@@ -741,7 +741,7 @@ CREATE TABLE public.abastecimientos (
        abastecimiento VARCHAR,
        fecha Date,
        gestion VARCHAR
-	       REFERENCES gestion,
+	       REFERENCES dominios.gestion,
        ong VARCHAR,
        h_juntas_agua BOOLEAN,
        h_adescos BOOLEAN,
@@ -759,7 +759,7 @@ CREATE TABLE public.abastecimientos (
        cons_ag_gan NUMERIC(5,2),
        tot_consumo NUMERIC(5,2),
        tipo_sistema VARCHAR
-	       REFERENCES tipo_sistema,
+	       REFERENCES dominios.tipo_sistema,
        ent_constructora VARCHAR,
        anho_construccion INTEGER,
        coste_energia NUMERIC(5,2),
@@ -789,7 +789,7 @@ CREATE TABLE public.abastecimientos (
        coste_desinfeccion NUMERIC(5,2),
        coment_desinfeccion VARCHAR,
        tipo_mantenimiento VARCHAR
-	       REFERENCES tipo_mantenimiento,
+	       REFERENCES dominios.tipo_mantenimiento,
        zona_mantenimiento VARCHAR,
        coste_mantenimiento NUMERIC(5,2),
        con_calidad BOOLEAN,
@@ -798,20 +798,20 @@ CREATE TABLE public.abastecimientos (
        fre_con_funcionamiento INTEGER,
        mant_tecnicos BOOLEAN,
        proced_tecnicos VARCHAR
-	       REFERENCES proced_tecnicos,
+	       REFERENCES dominios.proced_tecnicos,
        proced_tec_detalle VARCHAR
 
 );
 
-SELECT addgeometrycolumn('public', 'abastecimientos', 'geom', 32616, 'MULTIPOLYGON', 2);
+SELECT addgeometrycolumn('fonsagua', 'abastecimientos', 'geom', 32616, 'MULTIPOLYGON', 2);
 
-ALTER TABLE public.abastecimientos OWNER TO fonsagua;
+ALTER TABLE fonsagua.abastecimientos OWNER TO fonsagua;
 
-CREATE TABLE public.juntas_agua (
+CREATE TABLE fonsagua.juntas_agua (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
        nombre VARCHAR,
        ubicacion VARCHAR,
        contacto VARCHAR,
@@ -829,22 +829,22 @@ CREATE TABLE public.juntas_agua (
 );
 
 
-ALTER TABLE public.juntas_agua OWNER TO fonsagua;
+ALTER TABLE fonsagua.juntas_agua OWNER TO fonsagua;
 
 
-CREATE TABLE public.bombeos (
+CREATE TABLE fonsagua.bombeos (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
        cod_bombeo VARCHAR
 	       UNIQUE
 	       NOT NULL,
        denominacion VARCHAR,
        tipologia VARCHAR
-	       REFERENCES tipologia,
+	       REFERENCES dominios.tipologia,
        energia VARCHAR
-	       REFERENCES energia,
+	       REFERENCES dominios.energia,
        potencia NUMERIC(5,2),
        caudal NUMERIC(5,2),
        prof_succion NUMERIC(5,2),
@@ -853,7 +853,7 @@ CREATE TABLE public.bombeos (
        n_bombas INTEGER,
        anho_construccion INTEGER,
        estado VARCHAR
-	       REFERENCES estado,
+	       REFERENCES dominios.estado,
        utm_x NUMERIC(5,3),
        utm_y NUMERIC(5,3),
        utm_z NUMERIC(5,3),
@@ -861,32 +861,32 @@ CREATE TABLE public.bombeos (
 
 );
 
-SELECT addgeometrycolumn('public', 'bombeos', 'geom', 32616, 'POINT', 2);
+SELECT addgeometrycolumn('fonsagua', 'bombeos', 'geom', 32616, 'POINT', 2);
 
-ALTER TABLE public.bombeos OWNER TO fonsagua;
+ALTER TABLE fonsagua.bombeos OWNER TO fonsagua;
 
 
-CREATE TABLE public.captaciones (
+CREATE TABLE fonsagua.captaciones (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
        cod_captacion VARCHAR
 	       UNIQUE
 	       NOT NULL,
        denominacion VARCHAR,
        tipo_fuente VARCHAR
-	       REFERENCES tipo_fuente,
+	       REFERENCES dominios.tipo_fuente,
        sistema VARCHAR
-	       REFERENCES sistema,
+	       REFERENCES dominios.sistema,
        cod_bombeo VARCHAR
-	       REFERENCES bombeos(cod_bombeo),
+	       REFERENCES fonsagua.bombeos(cod_bombeo),
        tipo_construccion VARCHAR
-	       REFERENCES tipo_construccion,
+	       REFERENCES dominios.tipo_construccion,
        anho_construccion INTEGER,
        volumen NUMERIC(5,2),
        estado VARCHAR
-	       REFERENCES estado,
+	       REFERENCES dominios.estado,
        utm_x NUMERIC(5,3),
        utm_y NUMERIC(5,3),
        utm_z NUMERIC(5,3),
@@ -894,32 +894,32 @@ CREATE TABLE public.captaciones (
 
 );
 
-SELECT addgeometrycolumn('public', 'captaciones', 'geom', 32616, 'POINT', 2);
+SELECT addgeometrycolumn('fonsagua', 'captaciones', 'geom', 32616, 'POINT', 2);
 
-ALTER TABLE public.captaciones OWNER TO fonsagua;
+ALTER TABLE fonsagua.captaciones OWNER TO fonsagua;
 
-CREATE TABLE public.dep_intermedios (
+CREATE TABLE fonsagua.dep_intermedios (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
        cod_dep_intermedio VARCHAR
 	       UNIQUE
 	       NOT NULL,
        denominacion VARCHAR,
        ubicacion VARCHAR
-	       REFERENCES ubicacion,
+	       REFERENCES dominios.ubicacion,
        altura NUMERIC(5,2),
        sistema VARCHAR
-	       REFERENCES sistema,
+	       REFERENCES dominios.sistema,
        cod_bombeo VARCHAR
-	       REFERENCES bombeos(cod_bombeo),
+	       REFERENCES fonsagua.bombeos(cod_bombeo),
        tipo_construccion VARCHAR
-	       REFERENCES tipo_construccion,
+	       REFERENCES dominios.tipo_construccion,
        anho_construccion INTEGER,
        volumen NUMERIC(5,2),
        estado VARCHAR
-	       REFERENCES estado,
+	       REFERENCES dominios.estado,
        utm_x NUMERIC(5,3),
        utm_y NUMERIC(5,3),
        utm_z NUMERIC(5,3),
@@ -927,29 +927,29 @@ CREATE TABLE public.dep_intermedios (
 
 );
 
-SELECT addgeometrycolumn('public', 'dep_intermedios', 'geom', 32616, 'POINT', 2);
+SELECT addgeometrycolumn('fonsagua', 'dep_intermedios', 'geom', 32616, 'POINT', 2);
 
-ALTER TABLE public.dep_intermedios OWNER TO fonsagua;
+ALTER TABLE fonsagua.dep_intermedios OWNER TO fonsagua;
 
-CREATE TABLE public.dep_distribucion (
+CREATE TABLE fonsagua.dep_distribucion (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
        cod_dep_distribucion VARCHAR
 	       UNIQUE
 	       NOT NULL,
        denominacion VARCHAR,
        ubicacion VARCHAR
-	       REFERENCES ubicacion,
+	       REFERENCES dominios.ubicacion,
        altura NUMERIC(5,2),
        tipo_construccion VARCHAR
-	       REFERENCES tipo_construccion,
+	       REFERENCES dominios.tipo_construccion,
        anho_construccion INTEGER,
        volumen NUMERIC(5,2),
        t_llenado NUMERIC(5,2),
        estado VARCHAR
-	       REFERENCES estado,
+	       REFERENCES dominios.estado,
        utm_x NUMERIC(5,3),
        utm_y NUMERIC(5,3),
        utm_z NUMERIC(5,3),
@@ -957,45 +957,45 @@ CREATE TABLE public.dep_distribucion (
 
 );
 
-SELECT addgeometrycolumn('public', 'dep_distribucion', 'geom', 32616, 'POINT', 2);
+SELECT addgeometrycolumn('fonsagua', 'dep_distribucion', 'geom', 32616, 'POINT', 2);
 
-ALTER TABLE public.dep_distribucion OWNER TO fonsagua;
+ALTER TABLE fonsagua.dep_distribucion OWNER TO fonsagua;
 
-CREATE TABLE public.tuberias (
+CREATE TABLE fonsagua.tuberias (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
        cod_tuberia VARCHAR
 	       UNIQUE
 	       NOT NULL,
        denominacion VARCHAR,
        tipologia VARCHAR
-	       REFERENCES tipologia,
+	       REFERENCES dominios.tipologia,
        sistema VARCHAR
-	       REFERENCES sistema,
+	       REFERENCES dominios.sistema,
        material VARCHAR
-	       REFERENCES material,
+	       REFERENCES dominios.material,
        diametro NUMERIC(5,2),
        anho_construccion INTEGER,
        estado VARCHAR
-	       REFERENCES estado,
+	       REFERENCES dominios.estado,
        fugas BOOLEAN,
        loc_fugas VARCHAR,
        coment_tub VARCHAR
 
 );
 
-SELECT addgeometrycolumn('public', 'tuberias', 'geom', 32616, 'MULTILINESTRING', 2);
+SELECT addgeometrycolumn('fonsagua', 'tuberias', 'geom', 32616, 'MULTILINESTRING', 2);
 
-ALTER TABLE public.tuberias OWNER TO fonsagua;
+ALTER TABLE fonsagua.tuberias OWNER TO fonsagua;
 
 
-CREATE TABLE public.cobertura (
+CREATE TABLE fonsagua.cobertura (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
        fecha Date,
        acometidas INTEGER,
        viviendas INTEGER,
@@ -1004,13 +1004,13 @@ CREATE TABLE public.cobertura (
 );
 
 
-ALTER TABLE public.cobertura OWNER TO fonsagua;
+ALTER TABLE fonsagua.cobertura OWNER TO fonsagua;
 
-CREATE TABLE public.gest_comercial (
+CREATE TABLE fonsagua.gest_comercial (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
        fecha Date,
        produccion NUMERIC(5,2),
        facturacion NUMERIC(5,2),
@@ -1023,13 +1023,13 @@ CREATE TABLE public.gest_comercial (
 );
 
 
-ALTER TABLE public.gest_comercial OWNER TO fonsagua;
+ALTER TABLE fonsagua.gest_comercial OWNER TO fonsagua;
 
-CREATE TABLE public.gest_financiera (
+CREATE TABLE fonsagua.gest_financiera (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
        fecha Date,
        cost_energetico NUMERIC(5,2),
        cost_quimico NUMERIC(5,2),
@@ -1050,19 +1050,19 @@ CREATE TABLE public.gest_financiera (
 );
 
 
-ALTER TABLE public.gest_financiera OWNER TO fonsagua;
+ALTER TABLE fonsagua.gest_financiera OWNER TO fonsagua;
 
-CREATE TABLE public.evaluacion (
+CREATE TABLE fonsagua.evaluacion (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
        fecha Date,
        cobertura NUMERIC(5,2),
        agua_no_contabilizada NUMERIC(5,2),
        micromedicion NUMERIC(5,2),
        calidad_agua VARCHAR
-	       REFERENCES calidad_agua,
+	       REFERENCES dominios.calidad_agua,
        cob_saneamiento NUMERIC(5,2),
        margen_utilidad NUMERIC(5,2),
        razon_liquidez NUMERIC(5,2),
@@ -1071,9 +1071,9 @@ CREATE TABLE public.evaluacion (
 );
 
 
-ALTER TABLE public.evaluacion OWNER TO fonsagua;
+ALTER TABLE fonsagua.evaluacion OWNER TO fonsagua;
 
-CREATE TABLE public.fuentes (
+CREATE TABLE fonsagua.fuentes (
        gid SERIAL PRIMARY KEY,
        cod_fuente VARCHAR
 	       UNIQUE
@@ -1081,7 +1081,7 @@ CREATE TABLE public.fuentes (
        fuente VARCHAR,
        tipo_fuente VARCHAR
 	       NOT NULL
-	       REFERENCES tipo_fuente,
+	       REFERENCES dominios.tipo_fuente,
        comunidad VARCHAR,
        fecha Date,
        dist_comunidad FLOAT,
@@ -1098,18 +1098,18 @@ CREATE TABLE public.fuentes (
        gan_cantaradas INTEGER,
        cob_vegetal BOOLEAN,
        tipo_vegetacion VARCHAR
-	       REFERENCES tipo_vegetacion,
+	       REFERENCES dominios.tipo_vegetacion,
        especies INTEGER,
        deforestacion VARCHAR
-	       REFERENCES deforestacion,
+	       REFERENCES dominios.deforestacion,
        naci_terremoto BOOLEAN,
        cambios_terremoto BOOLEAN,
        propietario VARCHAR
-	       REFERENCES propietario,
+	       REFERENCES dominios.propietario,
        nom_propietario VARCHAR,
        escritura BOOLEAN,
        tipo_pozo VARCHAR
-	       REFERENCES tipo_pozo,
+	       REFERENCES dominios.tipo_pozo,
        prof_pozo FLOAT,
        diametro_interior FLOAT,
        altura_brocal FLOAT,
@@ -1123,15 +1123,15 @@ CREATE TABLE public.fuentes (
 
 );
 
-SELECT addgeometrycolumn('public', 'fuentes', 'geom', 32616, 'POINT', 2);
+SELECT addgeometrycolumn('fonsagua', 'fuentes', 'geom', 32616, 'POINT', 2);
 
-ALTER TABLE public.fuentes OWNER TO fonsagua;
+ALTER TABLE fonsagua.fuentes OWNER TO fonsagua;
 
-CREATE TABLE public.aforos (
+CREATE TABLE fonsagua.aforos (
        gid SERIAL PRIMARY KEY,
        cod_fuente VARCHAR
 	       NOT NULL
-	       REFERENCES fuentes(cod_fuente),
+	       REFERENCES fonsagua.fuentes(cod_fuente),
        aforo FLOAT,
        fecha Date,
        hora VARCHAR
@@ -1139,13 +1139,13 @@ CREATE TABLE public.aforos (
 );
 
 
-ALTER TABLE public.aforos OWNER TO fonsagua;
+ALTER TABLE fonsagua.aforos OWNER TO fonsagua;
 
-CREATE TABLE public.analiticas (
+CREATE TABLE fonsagua.analiticas (
        gid SERIAL PRIMARY KEY,
        cod_fuente VARCHAR
 	       NOT NULL
-	       REFERENCES fuentes(cod_fuente),
+	       REFERENCES fonsagua.fuentes(cod_fuente),
        fuente VARCHAR,
        fecha_muestra Date,
        hora_muestra VARCHAR,
@@ -1156,7 +1156,7 @@ CREATE TABLE public.analiticas (
        c_ph FLOAT,
        para_rango BOOLEAN,
        cond_muestra VARCHAR
-	       REFERENCES cond_muestra,
+	       REFERENCES dominios.cond_muestra,
        coment_muestra VARCHAR,
        laboratorio VARCHAR,
        fecha_analisis Date,
@@ -1211,4 +1211,4 @@ CREATE TABLE public.analiticas (
 );
 
 
-ALTER TABLE public.analiticas OWNER TO fonsagua;
+ALTER TABLE fonsagua.analiticas OWNER TO fonsagua;

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-tag xmlns="http://www.gvsig.gva.es">
+    <xml-tag>
+        <property key="com.iver.andami.pluginName" value="com.iver.cit.gvsig"/>
+        <property key="DefaultProjection" value="EPSG:32616"/>
+    </xml-tag>
+</xml-tag>

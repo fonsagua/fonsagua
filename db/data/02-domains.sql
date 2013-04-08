@@ -1,296 +1,296 @@
 
 
-CREATE TABLE public.tip_nucleo (
+CREATE TABLE dominios.tip_nucleo (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tip_nucleo (item) VALUES
+INSERT INTO dominios.tip_nucleo (item) VALUES
        (' '),
        ('Concentrado'),
        ('Disperso');
 
-ALTER TABLE public.tip_nucleo OWNER TO fonsagua;
+ALTER TABLE dominios.tip_nucleo OWNER TO fonsagua;
 
 
-CREATE TABLE public.tip_origen (
+CREATE TABLE dominios.tip_origen (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tip_origen (item) VALUES
+INSERT INTO dominios.tip_origen (item) VALUES
        (' '),
        ('Oriunda'),
        ('Desplazada'),
        ('Mixta');
 
-ALTER TABLE public.tip_origen OWNER TO fonsagua;
+ALTER TABLE dominios.tip_origen OWNER TO fonsagua;
 
 
-CREATE TABLE public.antiguedad (
+CREATE TABLE dominios.antiguedad (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.antiguedad (item) VALUES
+INSERT INTO dominios.antiguedad (item) VALUES
        (' '),
        ('Más de 5 años'),
        ('Menos de 5 años');
 
-ALTER TABLE public.antiguedad OWNER TO fonsagua;
+ALTER TABLE dominios.antiguedad OWNER TO fonsagua;
 
 
-CREATE TABLE public.emigracion (
+CREATE TABLE dominios.emigracion (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.emigracion (item) VALUES
+INSERT INTO dominios.emigracion (item) VALUES
        (' '),
        ('Mucha'),
        ('Media'),
        ('Poca');
 
-ALTER TABLE public.emigracion OWNER TO fonsagua;
+ALTER TABLE dominios.emigracion OWNER TO fonsagua;
 
 
-CREATE TABLE public.tip_regadio (
+CREATE TABLE dominios.tip_regadio (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tip_regadio (item) VALUES
+INSERT INTO dominios.tip_regadio (item) VALUES
        (' '),
        ('Inundación'),
        ('Aspersión'),
        ('Goteo'),
        ('Ninguno');
 
-ALTER TABLE public.tip_regadio OWNER TO fonsagua;
+ALTER TABLE dominios.tip_regadio OWNER TO fonsagua;
 
 
-CREATE TABLE public.tip_acceso (
+CREATE TABLE dominios.tip_acceso (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tip_acceso (item) VALUES
+INSERT INTO dominios.tip_acceso (item) VALUES
        (' '),
        ('Vereda'),
        ('Calle'),
        ('Carretera');
 
-ALTER TABLE public.tip_acceso OWNER TO fonsagua;
+ALTER TABLE dominios.tip_acceso OWNER TO fonsagua;
 
 
-CREATE TABLE public.tip_sup_acceso (
+CREATE TABLE dominios.tip_sup_acceso (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tip_sup_acceso (item) VALUES
+INSERT INTO dominios.tip_sup_acceso (item) VALUES
        (' '),
        ('Tierra'),
        ('Balastro'),
        ('Empedrado'),
        ('Pavimentado');
 
-ALTER TABLE public.tip_sup_acceso OWNER TO fonsagua;
+ALTER TABLE dominios.tip_sup_acceso OWNER TO fonsagua;
 
 
-CREATE TABLE public.acceso_ver (
+CREATE TABLE dominios.acceso_ver (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.acceso_ver (item) VALUES
+INSERT INTO dominios.acceso_ver (item) VALUES
        (' '),
        ('Transitable'),
        ('Intransitable');
 
-ALTER TABLE public.acceso_ver OWNER TO fonsagua;
+ALTER TABLE dominios.acceso_ver OWNER TO fonsagua;
 
 
-CREATE TABLE public.acceso_inv (
+CREATE TABLE dominios.acceso_inv (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.acceso_inv (item) VALUES
+INSERT INTO dominios.acceso_inv (item) VALUES
        (' '),
        ('Transitable'),
        ('Intransitable');
 
-ALTER TABLE public.acceso_inv OWNER TO fonsagua;
+ALTER TABLE dominios.acceso_inv OWNER TO fonsagua;
 
 
-CREATE TABLE public.veg_agr_tip (
+CREATE TABLE dominios.veg_agr_tip (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.veg_agr_tip (item) VALUES
+INSERT INTO dominios.veg_agr_tip (item) VALUES
        (' '),
        ('Pastizal'),
        ('Cultivos');
 
-ALTER TABLE public.veg_agr_tip OWNER TO fonsagua;
+ALTER TABLE dominios.veg_agr_tip OWNER TO fonsagua;
 
 
-CREATE TABLE public.veg_for_tip (
+CREATE TABLE dominios.veg_for_tip (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.veg_for_tip (item) VALUES
+INSERT INTO dominios.veg_for_tip (item) VALUES
        (' '),
        ('Raleado'),
        ('Frondoso'),
        ('Matorral'),
        ('Mangle');
 
-ALTER TABLE public.veg_for_tip OWNER TO fonsagua;
+ALTER TABLE dominios.veg_for_tip OWNER TO fonsagua;
 
 
-CREATE TABLE public.deforestacion (
+CREATE TABLE dominios.deforestacion (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.deforestacion (item) VALUES
+INSERT INTO dominios.deforestacion (item) VALUES
        (' '),
        ('Alta'),
        ('Media'),
        ('Baja');
 
-ALTER TABLE public.deforestacion OWNER TO fonsagua;
+ALTER TABLE dominios.deforestacion OWNER TO fonsagua;
 
 
-CREATE TABLE public.avance_fagricola (
+CREATE TABLE dominios.avance_fagricola (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.avance_fagricola (item) VALUES
+INSERT INTO dominios.avance_fagricola (item) VALUES
        (' '),
        ('Alta'),
        ('Media'),
        ('Baja');
 
-ALTER TABLE public.avance_fagricola OWNER TO fonsagua;
+ALTER TABLE dominios.avance_fagricola OWNER TO fonsagua;
 
 
-CREATE TABLE public.riesgo_erosion (
+CREATE TABLE dominios.riesgo_erosion (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.riesgo_erosion (item) VALUES
+INSERT INTO dominios.riesgo_erosion (item) VALUES
        (' '),
        ('Alto'),
        ('Medio'),
        ('Bajo');
 
-ALTER TABLE public.riesgo_erosion OWNER TO fonsagua;
+ALTER TABLE dominios.riesgo_erosion OWNER TO fonsagua;
 
 
-CREATE TABLE public.sist_abastecimiento (
+CREATE TABLE dominios.sist_abastecimiento (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.sist_abastecimiento (item) VALUES
+INSERT INTO dominios.sist_abastecimiento (item) VALUES
        (' '),
        ('Si'),
        ('No'),
        ('Parcial');
 
-ALTER TABLE public.sist_abastecimiento OWNER TO fonsagua;
+ALTER TABLE dominios.sist_abastecimiento OWNER TO fonsagua;
 
 
-CREATE TABLE public.origen_aguas (
+CREATE TABLE dominios.origen_aguas (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.origen_aguas (item) VALUES
+INSERT INTO dominios.origen_aguas (item) VALUES
        (' '),
        ('Manantial'),
        ('Río'),
        ('Pozo'),
        ('Anda');
 
-ALTER TABLE public.origen_aguas OWNER TO fonsagua;
+ALTER TABLE dominios.origen_aguas OWNER TO fonsagua;
 
 
-CREATE TABLE public.ag_gris_calle (
+CREATE TABLE dominios.ag_gris_calle (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.ag_gris_calle (item) VALUES
+INSERT INTO dominios.ag_gris_calle (item) VALUES
        (' '),
        ('Mucho'),
        ('Poco'),
        ('Nada');
 
-ALTER TABLE public.ag_gris_calle OWNER TO fonsagua;
+ALTER TABLE dominios.ag_gris_calle OWNER TO fonsagua;
 
 
-CREATE TABLE public.trat_aboneras (
+CREATE TABLE dominios.trat_aboneras (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.trat_aboneras (item) VALUES
+INSERT INTO dominios.trat_aboneras (item) VALUES
        (' '),
        ('Ceniza'),
        ('Cal'),
        ('Aserrín'),
        ('Otros');
 
-ALTER TABLE public.trat_aboneras OWNER TO fonsagua;
+ALTER TABLE dominios.trat_aboneras OWNER TO fonsagua;
 
 
-CREATE TABLE public.dist_let_agua (
+CREATE TABLE dominios.dist_let_agua (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.dist_let_agua (item) VALUES
+INSERT INTO dominios.dist_let_agua (item) VALUES
        (' '),
        ('Más de 30 m'),
        ('Menos de 30 m');
 
-ALTER TABLE public.dist_let_agua OWNER TO fonsagua;
+ALTER TABLE dominios.dist_let_agua OWNER TO fonsagua;
 
 
-CREATE TABLE public.disp_basuras (
+CREATE TABLE dominios.disp_basuras (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.disp_basuras (item) VALUES
+INSERT INTO dominios.disp_basuras (item) VALUES
        (' '),
        ('No se hace nada'),
        ('Se traslada a otro lugar'),
@@ -299,16 +299,16 @@ INSERT INTO public.disp_basuras (item) VALUES
        ('Pasa el tren de aseo ( camión)'),
        ('Otros');
 
-ALTER TABLE public.disp_basuras OWNER TO fonsagua;
+ALTER TABLE dominios.disp_basuras OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipo (
+CREATE TABLE dominios.tipo (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tipo (item) VALUES
+INSERT INTO dominios.tipo (item) VALUES
        (' '),
        ('Punto de referencia'),
        ('Casa extremo norte'),
@@ -320,31 +320,31 @@ INSERT INTO public.tipo (item) VALUES
        ('Última casa con electricidad'),
        ('Otras casas');
 
-ALTER TABLE public.tipo OWNER TO fonsagua;
+ALTER TABLE dominios.tipo OWNER TO fonsagua;
 
 
-CREATE TABLE public.valoracion (
+CREATE TABLE dominios.valoracion (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.valoracion (item) VALUES
+INSERT INTO dominios.valoracion (item) VALUES
        (' '),
        ('Bien'),
        ('Regular'),
        ('Mal');
 
-ALTER TABLE public.valoracion OWNER TO fonsagua;
+ALTER TABLE dominios.valoracion OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipo_organizacion (
+CREATE TABLE dominios.tipo_organizacion (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tipo_organizacion (item) VALUES
+INSERT INTO dominios.tipo_organizacion (item) VALUES
        (' '),
        ('Asociación de padres y madres de familia'),
        ('Cooperativa de producción'),
@@ -352,32 +352,32 @@ INSERT INTO public.tipo_organizacion (item) VALUES
        ('Comité de jóvenes'),
        ('Otros');
 
-ALTER TABLE public.tipo_organizacion OWNER TO fonsagua;
+ALTER TABLE dominios.tipo_organizacion OWNER TO fonsagua;
 
 
-CREATE TABLE public.niveles (
+CREATE TABLE dominios.niveles (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.niveles (item) VALUES
+INSERT INTO dominios.niveles (item) VALUES
        (' '),
        ('Parvularia'),
        ('Primaria'),
        ('Básica'),
        ('Media');
 
-ALTER TABLE public.niveles OWNER TO fonsagua;
+ALTER TABLE dominios.niveles OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipo_servicio (
+CREATE TABLE dominios.tipo_servicio (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tipo_servicio (item) VALUES
+INSERT INTO dominios.tipo_servicio (item) VALUES
        (' '),
        ('Iglesia'),
        ('Intalación deportiva'),
@@ -385,16 +385,16 @@ INSERT INTO public.tipo_servicio (item) VALUES
        ('Puesto policial'),
        ('Otros');
 
-ALTER TABLE public.tipo_servicio OWNER TO fonsagua;
+ALTER TABLE dominios.tipo_servicio OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipo_amenaza (
+CREATE TABLE dominios.tipo_amenaza (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tipo_amenaza (item) VALUES
+INSERT INTO dominios.tipo_amenaza (item) VALUES
        (' '),
        ('Deslizamientos'),
        ('Desbordamiento de río'),
@@ -402,104 +402,104 @@ INSERT INTO public.tipo_amenaza (item) VALUES
        ('Puntos de asalto'),
        ('Otros');
 
-ALTER TABLE public.tipo_amenaza OWNER TO fonsagua;
+ALTER TABLE dominios.tipo_amenaza OWNER TO fonsagua;
 
 
-CREATE TABLE public.dinero_inv (
+CREATE TABLE dominios.dinero_inv (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.dinero_inv (item) VALUES
+INSERT INTO dominios.dinero_inv (item) VALUES
        (' '),
        ('Alto'),
        ('Medio'),
        ('Bajo');
 
-ALTER TABLE public.dinero_inv OWNER TO fonsagua;
+ALTER TABLE dominios.dinero_inv OWNER TO fonsagua;
 
 
-CREATE TABLE public.tiempo_inv (
+CREATE TABLE dominios.tiempo_inv (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tiempo_inv (item) VALUES
+INSERT INTO dominios.tiempo_inv (item) VALUES
        (' '),
        ('Alto'),
        ('Medio'),
        ('Bajo');
 
-ALTER TABLE public.tiempo_inv OWNER TO fonsagua;
+ALTER TABLE dominios.tiempo_inv OWNER TO fonsagua;
 
 
-CREATE TABLE public.sist_cobros (
+CREATE TABLE dominios.sist_cobros (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.sist_cobros (item) VALUES
+INSERT INTO dominios.sist_cobros (item) VALUES
        (' '),
        ('Bueno'),
        ('Regular'),
        ('Malo');
 
-ALTER TABLE public.sist_cobros OWNER TO fonsagua;
+ALTER TABLE dominios.sist_cobros OWNER TO fonsagua;
 
 
-CREATE TABLE public.nivel_serv (
+CREATE TABLE dominios.nivel_serv (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.nivel_serv (item) VALUES
+INSERT INTO dominios.nivel_serv (item) VALUES
        (' '),
        ('Bueno'),
        ('Regular'),
        ('Malo');
 
-ALTER TABLE public.nivel_serv OWNER TO fonsagua;
+ALTER TABLE dominios.nivel_serv OWNER TO fonsagua;
 
 
-CREATE TABLE public.acceso_tomas (
+CREATE TABLE dominios.acceso_tomas (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.acceso_tomas (item) VALUES
+INSERT INTO dominios.acceso_tomas (item) VALUES
        (' '),
        ('Fácil'),
        ('Difícil');
 
-ALTER TABLE public.acceso_tomas OWNER TO fonsagua;
+ALTER TABLE dominios.acceso_tomas OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipo_abastecimiento (
+CREATE TABLE dominios.tipo_abastecimiento (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tipo_abastecimiento (item) VALUES
+INSERT INTO dominios.tipo_abastecimiento (item) VALUES
        (' '),
        ('Cantareras'),
        ('Domiciliar');
 
-ALTER TABLE public.tipo_abastecimiento OWNER TO fonsagua;
+ALTER TABLE dominios.tipo_abastecimiento OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipo_contaminacion (
+CREATE TABLE dominios.tipo_contaminacion (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tipo_contaminacion (item) VALUES
+INSERT INTO dominios.tipo_contaminacion (item) VALUES
        (' '),
        ('Puntos de vertido a río'),
        ('Basurero'),
@@ -507,76 +507,76 @@ INSERT INTO public.tipo_contaminacion (item) VALUES
        ('Abrevaderos'),
        ('Otras');
 
-ALTER TABLE public.tipo_contaminacion OWNER TO fonsagua;
+ALTER TABLE dominios.tipo_contaminacion OWNER TO fonsagua;
 
 
-CREATE TABLE public.gestion (
+CREATE TABLE dominios.gestion (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.gestion (item) VALUES
+INSERT INTO dominios.gestion (item) VALUES
        (' '),
        ('Municipal'),
        ('Comunidad'),
        ('ONG'),
        ('ANDA');
 
-ALTER TABLE public.gestion OWNER TO fonsagua;
+ALTER TABLE dominios.gestion OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipo_sistema (
+CREATE TABLE dominios.tipo_sistema (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tipo_sistema (item) VALUES
+INSERT INTO dominios.tipo_sistema (item) VALUES
        (' '),
        ('Gravedad'),
        ('Bombeo'),
        ('Mixto');
 
-ALTER TABLE public.tipo_sistema OWNER TO fonsagua;
+ALTER TABLE dominios.tipo_sistema OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipo_mantenimiento (
+CREATE TABLE dominios.tipo_mantenimiento (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tipo_mantenimiento (item) VALUES
+INSERT INTO dominios.tipo_mantenimiento (item) VALUES
        (' '),
        ('Preventivo'),
        ('Correctivo');
 
-ALTER TABLE public.tipo_mantenimiento OWNER TO fonsagua;
+ALTER TABLE dominios.tipo_mantenimiento OWNER TO fonsagua;
 
 
-CREATE TABLE public.proced_tecnicos (
+CREATE TABLE dominios.proced_tecnicos (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.proced_tecnicos (item) VALUES
+INSERT INTO dominios.proced_tecnicos (item) VALUES
        (' '),
        ('De la comunidad'),
        ('De otra comunidad'),
        ('Otros');
 
-ALTER TABLE public.proced_tecnicos OWNER TO fonsagua;
+ALTER TABLE dominios.proced_tecnicos OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipo_fuente (
+CREATE TABLE dominios.tipo_fuente (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tipo_fuente (item) VALUES
+INSERT INTO dominios.tipo_fuente (item) VALUES
        (' '),
        ('Manantial'),
        ('Pozo'),
@@ -584,197 +584,197 @@ INSERT INTO public.tipo_fuente (item) VALUES
        ('Embalse'),
        ('Infraestructura ANDA');
 
-ALTER TABLE public.tipo_fuente OWNER TO fonsagua;
+ALTER TABLE dominios.tipo_fuente OWNER TO fonsagua;
 
 
-CREATE TABLE public.sistema (
+CREATE TABLE dominios.sistema (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.sistema (item) VALUES
+INSERT INTO dominios.sistema (item) VALUES
        (' '),
        ('Gravedad'),
        ('Bombeo');
 
-ALTER TABLE public.sistema OWNER TO fonsagua;
+ALTER TABLE dominios.sistema OWNER TO fonsagua;
 
 
-CREATE TABLE public.cod_bombeo (
+CREATE TABLE dominios.cod_bombeo (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.cod_bombeo (item) VALUES
+INSERT INTO dominios.cod_bombeo (item) VALUES
        (' '),
        ('bombeos.cod_bombeo');
 
-ALTER TABLE public.cod_bombeo OWNER TO fonsagua;
+ALTER TABLE dominios.cod_bombeo OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipo_construccion (
+CREATE TABLE dominios.tipo_construccion (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tipo_construccion (item) VALUES
+INSERT INTO dominios.tipo_construccion (item) VALUES
        (' '),
        ('Ladrillo'),
        ('Fibrocemento'),
        ('Concreto');
 
-ALTER TABLE public.tipo_construccion OWNER TO fonsagua;
+ALTER TABLE dominios.tipo_construccion OWNER TO fonsagua;
 
 
-CREATE TABLE public.estado (
+CREATE TABLE dominios.estado (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.estado (item) VALUES
+INSERT INTO dominios.estado (item) VALUES
        (' '),
        ('Bueno'),
        ('Deteriorado'),
        ('Malo');
 
-ALTER TABLE public.estado OWNER TO fonsagua;
+ALTER TABLE dominios.estado OWNER TO fonsagua;
 
 
-CREATE TABLE public.ubicacion (
+CREATE TABLE dominios.ubicacion (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.ubicacion (item) VALUES
+INSERT INTO dominios.ubicacion (item) VALUES
        (' '),
        ('Elevado'),
        ('Superficie'),
        ('Soterrado'),
        ('Otros');
 
-ALTER TABLE public.ubicacion OWNER TO fonsagua;
+ALTER TABLE dominios.ubicacion OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipologia (
+CREATE TABLE dominios.tipologia (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tipologia (item) VALUES
+INSERT INTO dominios.tipologia (item) VALUES
        (' '),
        ('Aducción'),
        ('Impulsión'),
        ('Distribución');
 
-ALTER TABLE public.tipologia OWNER TO fonsagua;
+ALTER TABLE dominios.tipologia OWNER TO fonsagua;
 
 
-CREATE TABLE public.material (
+CREATE TABLE dominios.material (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.material (item) VALUES
+INSERT INTO dominios.material (item) VALUES
        (' '),
        ('PVC'),
        ('HG'),
        ('HF');
 
-ALTER TABLE public.material OWNER TO fonsagua;
+ALTER TABLE dominios.material OWNER TO fonsagua;
 
 
-CREATE TABLE public.energia (
+CREATE TABLE dominios.energia (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.energia (item) VALUES
+INSERT INTO dominios.energia (item) VALUES
        (' '),
        ('Red Eléctrica'),
        ('Motor Diésel'),
        ('Solar'),
        ('Otros');
 
-ALTER TABLE public.energia OWNER TO fonsagua;
+ALTER TABLE dominios.energia OWNER TO fonsagua;
 
 
-CREATE TABLE public.calidad_agua (
+CREATE TABLE dominios.calidad_agua (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.calidad_agua (item) VALUES
+INSERT INTO dominios.calidad_agua (item) VALUES
        (' '),
        ('Buena'),
        ('Regular'),
        ('Mala');
 
-ALTER TABLE public.calidad_agua OWNER TO fonsagua;
+ALTER TABLE dominios.calidad_agua OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipo_vegetacion (
+CREATE TABLE dominios.tipo_vegetacion (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tipo_vegetacion (item) VALUES
+INSERT INTO dominios.tipo_vegetacion (item) VALUES
        (' '),
        ('Bosque'),
        ('Arbustiva'),
        ('Pastizales'),
        ('Otros');
 
-ALTER TABLE public.tipo_vegetacion OWNER TO fonsagua;
+ALTER TABLE dominios.tipo_vegetacion OWNER TO fonsagua;
 
 
-CREATE TABLE public.propietario (
+CREATE TABLE dominios.propietario (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.propietario (item) VALUES
+INSERT INTO dominios.propietario (item) VALUES
        (' '),
        ('Privado'),
        ('Comunitario');
 
-ALTER TABLE public.propietario OWNER TO fonsagua;
+ALTER TABLE dominios.propietario OWNER TO fonsagua;
 
 
-CREATE TABLE public.tipo_pozo (
+CREATE TABLE dominios.tipo_pozo (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.tipo_pozo (item) VALUES
+INSERT INTO dominios.tipo_pozo (item) VALUES
        (' '),
        ('Excavado'),
        ('Perforado');
 
-ALTER TABLE public.tipo_pozo OWNER TO fonsagua;
+ALTER TABLE dominios.tipo_pozo OWNER TO fonsagua;
 
 
-CREATE TABLE public.cond_muestra (
+CREATE TABLE dominios.cond_muestra (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO public.cond_muestra (item) VALUES
+INSERT INTO dominios.cond_muestra (item) VALUES
        (' '),
        ('Buenas'),
        ('Regulares'),
        ('Malas');
 
-ALTER TABLE public.cond_muestra OWNER TO fonsagua;
+ALTER TABLE dominios.cond_muestra OWNER TO fonsagua;
