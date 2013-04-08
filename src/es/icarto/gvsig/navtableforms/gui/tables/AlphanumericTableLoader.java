@@ -20,29 +20,13 @@ import com.iver.cit.gvsig.project.documents.table.ProjectTable;
 import com.iver.cit.gvsig.project.documents.table.gui.Table;
 import com.iver.cit.gvsig.project.documents.view.gui.BaseView;
 
-import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class AlphanumericTableLoader {
 
-    public static void loadTables() throws DriverLoadException,
-	    NoSuchTableException, ReadDriverException, PropertyVetoException {
-
-	// Alphanumeric tables needed by this form
-	String[] tableNames = new String[1];
-	tableNames[0] = "carretera_municipio";
-
-	TOCTableManager t = new TOCTableManager();
-
-	for (int i = 0; i < tableNames.length; i++) {
-	    if (t.getTableByName(tableNames[i]) == null) {
-		loadTable(tableNames[i]);
-	    }
-	}
-    }
-
-    public static void loadTable(String tableName) throws DriverLoadException,
-	    NoSuchTableException, ReadDriverException, PropertyVetoException {
+    public static void loadTable(String schema, String tableName)
+	    throws DriverLoadException, NoSuchTableException,
+	    ReadDriverException, PropertyVetoException {
 
 	IWindow[] ws = PluginServices.getMDIManager().getAllWindows();
 	IWindow baseView = null;
@@ -53,14 +37,12 @@ public class AlphanumericTableLoader {
 	}
 	DBSession session = DBSession.getCurrentSession();
 
-	String completeTableName = (session.getSchema().length() > 0) ? session
-		.getSchema() + "." + tableName : tableName;
+	String completeTableName = schema + "." + tableName;
 
 	LayerFactory.getDataSourceFactory().addDBDataSourceByTable(tableName,
 		session.getServer(), session.getPort(), session.getUserName(),
 		session.getPassword(), session.getDatabase(),
-		completeTableName,
-		"PostgreSQL Alphanumeric");
+		completeTableName, "PostgreSQL Alphanumeric");
 
 	DataSource dataSource;
 	dataSource = LayerFactory.getDataSourceFactory()

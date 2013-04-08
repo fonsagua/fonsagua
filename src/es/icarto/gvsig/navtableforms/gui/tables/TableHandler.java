@@ -20,8 +20,9 @@ public class TableHandler {
     private String[] colAliases;
     private String tablename;
 
-    public TableHandler(String tablename, HashMap<String, JComponent> widgets,
-	    String foreignKeyId, String[] colNames, String[] colAliases) {
+    public TableHandler(String schema, String tablename,
+	    HashMap<String, JComponent> widgets, String foreignKeyId,
+	    String[] colNames, String[] colAliases) {
 	this.tablename = tablename;
 	jtable = (JTable) widgets.get(tablename);
 	this.foreignKeyId = foreignKeyId;
@@ -30,7 +31,7 @@ public class TableHandler {
 	try {
 	    TOCTableManager toc = new TOCTableManager();
 	    if (toc.getTableByName(tablename) == null) {
-		AlphanumericTableLoader.loadTable(tablename);
+		AlphanumericTableLoader.loadTable(schema, tablename);
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();

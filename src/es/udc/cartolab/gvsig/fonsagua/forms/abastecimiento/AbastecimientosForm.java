@@ -8,6 +8,7 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.VectorialTableHandler;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
@@ -39,22 +40,23 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	super(layer);
 	TOCLayerManager toc = new TOCLayerManager();
 	viewInfo.setTitle("Abastecimientos");
-	juntasAguaHandler = new TableHandler(JuntasAguaForm.NAME,
-		getWidgetComponents(), PKFIELD, JuntasAguaForm.colNames,
-		JuntasAguaForm.colAlias);
-	coberturaHandler = new TableHandler(CoberturaForm.NAME,
-		getWidgetComponents(), PKFIELD, CoberturaForm.colNames,
-		CoberturaForm.colAlias);
-	gestionComercialHandler = new TableHandler(GestionComercialForm.NAME,
+	juntasAguaHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		JuntasAguaForm.NAME, getWidgetComponents(), PKFIELD,
+		JuntasAguaForm.colNames, JuntasAguaForm.colAlias);
+	coberturaHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		CoberturaForm.NAME, getWidgetComponents(), PKFIELD,
+		CoberturaForm.colNames, CoberturaForm.colAlias);
+	gestionComercialHandler = new TableHandler(
+		FonsaguaConstants.dataSchema, GestionComercialForm.NAME,
 		getWidgetComponents(), PKFIELD, GestionComercialForm.colNames,
 		GestionComercialForm.colAlias);
-	gestionFinancieraHandler = new TableHandler(GestionFinancieraForm.NAME,
+	gestionFinancieraHandler = new TableHandler(
+		FonsaguaConstants.dataSchema, GestionFinancieraForm.NAME,
 		getWidgetComponents(), PKFIELD, GestionFinancieraForm.colNames,
 		GestionFinancieraForm.colAlias);
-	evaluacionHandler = new TableHandler(EvaluacionForm.NAME,
-		getWidgetComponents(), PKFIELD, EvaluacionForm.colNames,
-		EvaluacionForm.colAlias);
-
+	evaluacionHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		EvaluacionForm.NAME, getWidgetComponents(), PKFIELD,
+		EvaluacionForm.colNames, EvaluacionForm.colAlias);
 	captacionesHandler = new VectorialTableHandler(
 		toc.getLayerByName(CaptacionesForm.NAME),
 		getWidgetComponents(), PKFIELD, CaptacionesForm.colNames,

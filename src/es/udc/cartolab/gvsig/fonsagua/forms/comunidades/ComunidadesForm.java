@@ -9,6 +9,7 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.VectorialTableHandler;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.croquis.ui.CroquisButtons;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
@@ -52,58 +53,65 @@ public class ComunidadesForm extends BasicAbstractForm {
 	viewInfo.setTitle("Comunidades");
 	addCroquisButtons();
 	TOCLayerManager toc = new TOCLayerManager();
-	adescosHandler = new TableHandler(AdescosForm.NAME,
-		getWidgetComponents(), PKFIELD, AdescosForm.colNames,
-		AdescosForm.colAlias);
-	entrevistadoresHandler = new TableHandler(EntrevistadoresForm.NAME,
-		getWidgetComponents(), PKFIELD, EntrevistadoresForm.colNames,
-		EntrevistadoresForm.colAlias);
-	entrevistadosHandler = new TableHandler(EntrevistadosForm.NAME,
-		getWidgetComponents(), PKFIELD, EntrevistadosForm.colNames,
-		EntrevistadosForm.colAlias);
-	subcuencasHandler = new TableHandler(SubcuencasForm.NAME,
-		getWidgetComponents(), PKFIELD, SubcuencasForm.colNames,
-		SubcuencasForm.colAlias);
-	cargosPublicosHandler = new TableHandler(CargosPublicosForm.NAME,
-		getWidgetComponents(), PKFIELD, CargosPublicosForm.colNames,
-		CargosPublicosForm.colAlias);
-	ongsHandler = new TableHandler(OngsForm.NAME, getWidgetComponents(),
-		PKFIELD, OngsForm.colNames, OngsForm.colAlias);
+	adescosHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		AdescosForm.NAME, getWidgetComponents(), PKFIELD,
+		AdescosForm.colNames, AdescosForm.colAlias);
+	entrevistadoresHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		EntrevistadoresForm.NAME, getWidgetComponents(), PKFIELD,
+		EntrevistadoresForm.colNames, EntrevistadoresForm.colAlias);
+	entrevistadosHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		EntrevistadosForm.NAME, getWidgetComponents(), PKFIELD,
+		EntrevistadosForm.colNames, EntrevistadosForm.colAlias);
+	subcuencasHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		SubcuencasForm.NAME, getWidgetComponents(), PKFIELD,
+		SubcuencasForm.colNames, SubcuencasForm.colAlias);
+	cargosPublicosHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		CargosPublicosForm.NAME, getWidgetComponents(), PKFIELD,
+		CargosPublicosForm.colNames, CargosPublicosForm.colAlias);
+	ongsHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		OngsForm.NAME, getWidgetComponents(), PKFIELD,
+		OngsForm.colNames, OngsForm.colAlias);
 	otrasOrganizacionesHandler = new TableHandler(
-		OtrasOrganizacionesForm.NAME, getWidgetComponents(), PKFIELD,
+		FonsaguaConstants.dataSchema, OtrasOrganizacionesForm.NAME,
+		getWidgetComponents(), PKFIELD,
 		OtrasOrganizacionesForm.colNames,
 		OtrasOrganizacionesForm.colAlias);
-	tiposCultivosHandler = new TableHandler(TiposCultivosForm.NAME,
-		getWidgetComponents(), PKFIELD, TiposCultivosForm.colNames,
-		TiposCultivosForm.colAlias);
-	produccionConsumoHandler = new TableHandler(ProduccionConsumoForm.NAME,
+	tiposCultivosHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		TiposCultivosForm.NAME, getWidgetComponents(), PKFIELD,
+		TiposCultivosForm.colNames, TiposCultivosForm.colAlias);
+	produccionConsumoHandler = new TableHandler(
+		FonsaguaConstants.dataSchema, ProduccionConsumoForm.NAME,
 		getWidgetComponents(), PKFIELD, ProduccionConsumoForm.colNames,
 		ProduccionConsumoForm.colAlias);
-	ganaderiaHandler = new TableHandler(GanaderiaForm.NAME,
-		getWidgetComponents(), PKFIELD, GanaderiaForm.colNames,
-		GanaderiaForm.colAlias);
-	cooperativasHandler = new TableHandler(CooperativasForm.NAME,
-		getWidgetComponents(), PKFIELD, CooperativasForm.colNames,
-		CooperativasForm.colAlias);
+	ganaderiaHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		GanaderiaForm.NAME, getWidgetComponents(), PKFIELD,
+		GanaderiaForm.colNames, GanaderiaForm.colAlias);
+	cooperativasHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		CooperativasForm.NAME, getWidgetComponents(), PKFIELD,
+		CooperativasForm.colNames, CooperativasForm.colAlias);
 	capacitacionesRiesgosHandler = new TableHandler(
-		CapacitacionesRiesgosForm.NAME, getWidgetComponents(), PKFIELD,
+		FonsaguaConstants.dataSchema, CapacitacionesRiesgosForm.NAME,
+		getWidgetComponents(), PKFIELD,
 		CapacitacionesRiesgosForm.colNames,
 		CapacitacionesRiesgosForm.colAlias);
 	implicacionComunidadHandler = new TableHandler(
-		ImplicacionComunidadForm.NAME, getWidgetComponents(), PKFIELD,
+		FonsaguaConstants.dataSchema, ImplicacionComunidadForm.NAME,
+		getWidgetComponents(), PKFIELD,
 		ImplicacionComunidadForm.colNames,
 		ImplicacionComunidadForm.colAlias);
-	valoracionSistemaHandler = new TableHandler(ValoracionSistemaForm.NAME,
+	valoracionSistemaHandler = new TableHandler(
+		FonsaguaConstants.dataSchema, ValoracionSistemaForm.NAME,
 		getWidgetComponents(), PKFIELD, ValoracionSistemaForm.colNames,
 		ValoracionSistemaForm.colAlias);
-	datosConsumoHandler = new TableHandler(DatosConsumoForm.NAME,
-		getWidgetComponents(), PKFIELD, DatosConsumoForm.colNames,
-		DatosConsumoForm.colAlias);
-	habitosConsumoHandler = new TableHandler(HabitosConsumoForm.NAME,
-		getWidgetComponents(), PKFIELD, HabitosConsumoForm.colNames,
-		HabitosConsumoForm.colAlias);
+	datosConsumoHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		DatosConsumoForm.NAME, getWidgetComponents(), PKFIELD,
+		DatosConsumoForm.colNames, DatosConsumoForm.colAlias);
+	habitosConsumoHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		HabitosConsumoForm.NAME, getWidgetComponents(), PKFIELD,
+		HabitosConsumoForm.colNames, HabitosConsumoForm.colAlias);
 	fuentesContaminacionHandler = new TableHandler(
-		FuentesContaminacionForm.NAME, getWidgetComponents(), PKFIELD,
+		FonsaguaConstants.dataSchema, FuentesContaminacionForm.NAME,
+		getWidgetComponents(), PKFIELD,
 		FuentesContaminacionForm.colNames,
 		FuentesContaminacionForm.colAlias);
 	puntosViviendasHandler = new VectorialTableHandler(
@@ -130,10 +138,10 @@ public class ComunidadesForm extends BasicAbstractForm {
 	amenazasHandler = new VectorialTableHandler(
 		toc.getLayerByName(AmenazasForm.NAME), getWidgetComponents(),
 		PKFIELD, AmenazasForm.colNames, AmenazasForm.colAlias);
-
 	abastecimientosRelationship = new TableRelationship(
 		getWidgetComponents(), NAME, PKFIELD, AbastecimientosForm.NAME,
 		AbastecimientosForm.PKFIELD, "r_abastecimientos_comunidades");
+
     }
 
     private void addCroquisButtons() {

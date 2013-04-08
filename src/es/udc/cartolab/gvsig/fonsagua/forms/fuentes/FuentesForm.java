@@ -6,6 +6,7 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
+import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.relationship.TableRelationship;
 import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
@@ -23,13 +24,12 @@ public class FuentesForm extends BasicAbstractForm {
     public FuentesForm(FLyrVect layer) {
 	super(layer);
 	viewInfo.setTitle("Fuentes");
-	aforosHandler = new TableHandler(AforosForm.NAME,
-		getWidgetComponents(), PKFIELD, AforosForm.colNames,
-		AforosForm.colAlias);
-	analiticasHandler = new TableHandler(AnaliticasForm.NAME,
-		getWidgetComponents(), PKFIELD, AnaliticasForm.colNames,
-		AnaliticasForm.colAlias);
-
+	aforosHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		AforosForm.NAME, getWidgetComponents(), PKFIELD,
+		AforosForm.colNames, AforosForm.colAlias);
+	analiticasHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		AnaliticasForm.NAME, getWidgetComponents(), PKFIELD,
+		AnaliticasForm.colNames, AnaliticasForm.colAlias);
 	abastecimientosRelationship = new TableRelationship(
 		getWidgetComponents(), NAME, PKFIELD, AbastecimientosForm.NAME,
 		AbastecimientosForm.PKFIELD, "r_abastecimientos_fuentes");
