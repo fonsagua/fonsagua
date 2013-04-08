@@ -3,13 +3,21 @@ package es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento;
 import javax.swing.JTextField;
 
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
+import com.iver.cit.gvsig.project.documents.table.gui.Table;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericRelNNTableHandler;
+import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericTableLoader;
 import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.VectorialTableHandler;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.DatosConsumoForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ImplicacionComunidadForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ValoracionSistemaForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.relationship.TableRelationship;
@@ -26,13 +34,15 @@ public class AbastecimientosForm extends BasicAbstractForm {
     private TableHandler gestionComercialHandler;
     private TableHandler gestionFinancieraHandler;
     private TableHandler evaluacionHandler;
-
+    private TableHandler datosConsumoHandler;
     private VectorialTableHandler captacionesHandler;
     private VectorialTableHandler depIntermediosHandler;
     private VectorialTableHandler depDistribucionHandler;
     private VectorialTableHandler tuberiasHandler;
     private VectorialTableHandler bombeosHandler;
-
+    private AlphanumericRelNNTableHandler adescosHandler;
+    private AlphanumericRelNNTableHandler implicacionComunidadHandler;
+    private AlphanumericRelNNTableHandler valoracionSistemaHandler;
     private TableRelationship comunidadesRelationship;
     private TableRelationship fuentesRelationship;
 
@@ -57,6 +67,10 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	evaluacionHandler = new TableHandler(FonsaguaConstants.dataSchema,
 		EvaluacionForm.NAME, getWidgetComponents(), PKFIELD,
 		EvaluacionForm.colNames, EvaluacionForm.colAlias);
+	datosConsumoHandler = new TableHandler(FonsaguaConstants.dataSchema,
+		DatosConsumoForm.NAME, getWidgetComponents(),
+		"cod_abastecimiento", DatosConsumoForm.colNames,
+		DatosConsumoForm.colAlias);
 	captacionesHandler = new VectorialTableHandler(
 		toc.getLayerByName(CaptacionesForm.NAME),
 		getWidgetComponents(), PKFIELD, CaptacionesForm.colNames,
@@ -81,6 +95,40 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	fuentesRelationship = new TableRelationship(getWidgetComponents(),
 		NAME, PKFIELD, FuentesForm.NAME, FuentesForm.PKFIELD,
 		"r_abastecimientos_fuentes", FonsaguaConstants.dataSchema);
+	adescosHandler = new AlphanumericRelNNTableHandler(loadTable(
+		AdescosForm.NAME).getModel(), getWidgetComponents(), NAME,
+		"cod_abastecimiento", FonsaguaConstants.dataSchema
+			+ ".r_abastecimientos_comunidades", "cod_comunidad",
+		AdescosForm.colNames, AdescosForm.colAlias);
+	implicacionComunidadHandler = new AlphanumericRelNNTableHandler(
+		loadTable(ImplicacionComunidadForm.NAME).getModel(),
+		getWidgetComponents(),
+		NAME,
+		"cod_abastecimiento",
+		FonsaguaConstants.dataSchema + ".r_abastecimientos_comunidades",
+		"cod_comunidad", ImplicacionComunidadForm.colNames,
+		ImplicacionComunidadForm.colAlias);
+	valoracionSistemaHandler = new AlphanumericRelNNTableHandler(loadTable(
+		ValoracionSistemaForm.NAME).getModel(), getWidgetComponents(),
+		NAME, "cod_abastecimiento", FonsaguaConstants.dataSchema
+			+ ".r_abastecimientos_comunidades", "cod_comunidad",
+		ValoracionSistemaForm.colNames, ValoracionSistemaForm.colAlias);
+    }
+
+    private Table loadTable(String name) {
+	TOCTableManager tocTable = new TOCTableManager();
+	Table table = tocTable.getTableByName(name);
+	try {
+	    if (table == null) {
+		AlphanumericTableLoader.loadTable(FonsaguaConstants.dataSchema,
+			name);
+		tocTable = new TOCTableManager();
+		table = tocTable.getTableByName(name);
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	return table;
     }
 
     @Override
@@ -91,18 +139,21 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	gestionComercialHandler.fillValues(codAbastecimiento);
 	gestionFinancieraHandler.fillValues(codAbastecimiento);
 	evaluacionHandler.fillValues(codAbastecimiento);
+	datosConsumoHandler.fillValues(codAbastecimiento);
 	captacionesHandler.fillValues(codAbastecimiento);
 	depIntermediosHandler.fillValues(codAbastecimiento);
 	depDistribucionHandler.fillValues(codAbastecimiento);
 	tuberiasHandler.fillValues(codAbastecimiento);
 	bombeosHandler.fillValues(codAbastecimiento);
-
 	comunidadesRelationship
 		.setPrimaryPKValue(((JTextField) getWidgetComponents().get(
 			comunidadesRelationship.getPrimaryPKName())).getText());
 	fuentesRelationship
 		.setPrimaryPKValue(((JTextField) getWidgetComponents().get(
 			fuentesRelationship.getPrimaryPKName())).getText());
+	adescosHandler.fillValues(codAbastecimiento);
+	implicacionComunidadHandler.fillValues(codAbastecimiento);
+	valoracionSistemaHandler.fillValues(codAbastecimiento);
     }
 
     @Override
@@ -113,7 +164,7 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	gestionComercialHandler.reload(new GestionComercialForm());
 	gestionFinancieraHandler.reload(new GestionFinancieraForm());
 	evaluacionHandler.reload(new EvaluacionForm());
-
+	datosConsumoHandler.reload(new DatosConsumoForm());
 	captacionesHandler.reload(CaptacionesForm.NAME,
 		FonsaguaTableFormFactory.getInstance());
 	depIntermediosHandler.reload(DepIntermediosForm.NAME,
@@ -124,10 +175,11 @@ public class AbastecimientosForm extends BasicAbstractForm {
 		FonsaguaTableFormFactory.getInstance());
 	bombeosHandler.reload(BombeosForm.NAME,
 		FonsaguaTableFormFactory.getInstance());
-
 	comunidadesRelationship.reload();
 	fuentesRelationship.reload();
-
+	adescosHandler.reload(new AdescosForm());
+	implicacionComunidadHandler.reload(new ImplicacionComunidadForm());
+	valoracionSistemaHandler.reload(new ValoracionSistemaForm());
     }
 
     @Override
@@ -138,16 +190,17 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	gestionComercialHandler.removeListeners();
 	gestionFinancieraHandler.removeListeners();
 	evaluacionHandler.removeListeners();
-
+	datosConsumoHandler.removeListeners();
 	captacionesHandler.removeListeners();
 	depIntermediosHandler.removeListeners();
 	depDistribucionHandler.removeListeners();
 	tuberiasHandler.removeListeners();
 	bombeosHandler.removeListeners();
-
 	comunidadesRelationship.removeListeners();
 	fuentesRelationship.removeListeners();
-
+	adescosHandler.removeListeners();
+	implicacionComunidadHandler.removeListeners();
+	valoracionSistemaHandler.removeListeners();
     }
 
     @Override
