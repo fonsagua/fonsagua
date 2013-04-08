@@ -19,6 +19,8 @@ import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 public class ComunidadesForm extends BasicAbstractForm {
 
     public static final String NAME = "comunidades";
+    public static final String PKFIELD = "cod_comunidad";
+
     private TableHandler adescosHandler;
     private TableHandler entrevistadoresHandler;
     private TableHandler entrevistadosHandler;
@@ -51,94 +53,93 @@ public class ComunidadesForm extends BasicAbstractForm {
 	addCroquisButtons();
 	TOCLayerManager toc = new TOCLayerManager();
 	adescosHandler = new TableHandler(AdescosForm.NAME,
-		getWidgetComponents(), "cod_comunidad", AdescosForm.colNames,
+		getWidgetComponents(), PKFIELD, AdescosForm.colNames,
 		AdescosForm.colAlias);
 	entrevistadoresHandler = new TableHandler(EntrevistadoresForm.NAME,
-		getWidgetComponents(), "cod_comunidad",
-		EntrevistadoresForm.colNames, EntrevistadoresForm.colAlias);
+		getWidgetComponents(), PKFIELD, EntrevistadoresForm.colNames,
+		EntrevistadoresForm.colAlias);
 	entrevistadosHandler = new TableHandler(EntrevistadosForm.NAME,
-		getWidgetComponents(), "cod_comunidad",
-		EntrevistadosForm.colNames, EntrevistadosForm.colAlias);
+		getWidgetComponents(), PKFIELD, EntrevistadosForm.colNames,
+		EntrevistadosForm.colAlias);
 	subcuencasHandler = new TableHandler(SubcuencasForm.NAME,
-		getWidgetComponents(), "cod_comunidad",
-		SubcuencasForm.colNames, SubcuencasForm.colAlias);
+		getWidgetComponents(), PKFIELD, SubcuencasForm.colNames,
+		SubcuencasForm.colAlias);
 	cargosPublicosHandler = new TableHandler(CargosPublicosForm.NAME,
-		getWidgetComponents(), "cod_comunidad",
-		CargosPublicosForm.colNames, CargosPublicosForm.colAlias);
+		getWidgetComponents(), PKFIELD, CargosPublicosForm.colNames,
+		CargosPublicosForm.colAlias);
 	ongsHandler = new TableHandler(OngsForm.NAME, getWidgetComponents(),
-		"cod_comunidad", OngsForm.colNames, OngsForm.colAlias);
+		PKFIELD, OngsForm.colNames, OngsForm.colAlias);
 	otrasOrganizacionesHandler = new TableHandler(
-		OtrasOrganizacionesForm.NAME, getWidgetComponents(),
-		"cod_comunidad", OtrasOrganizacionesForm.colNames,
+		OtrasOrganizacionesForm.NAME, getWidgetComponents(), PKFIELD,
+		OtrasOrganizacionesForm.colNames,
 		OtrasOrganizacionesForm.colAlias);
 	tiposCultivosHandler = new TableHandler(TiposCultivosForm.NAME,
-		getWidgetComponents(), "cod_comunidad",
-		TiposCultivosForm.colNames, TiposCultivosForm.colAlias);
+		getWidgetComponents(), PKFIELD, TiposCultivosForm.colNames,
+		TiposCultivosForm.colAlias);
 	produccionConsumoHandler = new TableHandler(ProduccionConsumoForm.NAME,
-		getWidgetComponents(), "cod_comunidad",
-		ProduccionConsumoForm.colNames, ProduccionConsumoForm.colAlias);
+		getWidgetComponents(), PKFIELD, ProduccionConsumoForm.colNames,
+		ProduccionConsumoForm.colAlias);
 	ganaderiaHandler = new TableHandler(GanaderiaForm.NAME,
-		getWidgetComponents(), "cod_comunidad", GanaderiaForm.colNames,
+		getWidgetComponents(), PKFIELD, GanaderiaForm.colNames,
 		GanaderiaForm.colAlias);
 	cooperativasHandler = new TableHandler(CooperativasForm.NAME,
-		getWidgetComponents(), "cod_comunidad",
-		CooperativasForm.colNames, CooperativasForm.colAlias);
+		getWidgetComponents(), PKFIELD, CooperativasForm.colNames,
+		CooperativasForm.colAlias);
 	capacitacionesRiesgosHandler = new TableHandler(
-		CapacitacionesRiesgosForm.NAME, getWidgetComponents(),
-		"cod_comunidad", CapacitacionesRiesgosForm.colNames,
+		CapacitacionesRiesgosForm.NAME, getWidgetComponents(), PKFIELD,
+		CapacitacionesRiesgosForm.colNames,
 		CapacitacionesRiesgosForm.colAlias);
 	implicacionComunidadHandler = new TableHandler(
-		ImplicacionComunidadForm.NAME, getWidgetComponents(),
-		"cod_comunidad", ImplicacionComunidadForm.colNames,
+		ImplicacionComunidadForm.NAME, getWidgetComponents(), PKFIELD,
+		ImplicacionComunidadForm.colNames,
 		ImplicacionComunidadForm.colAlias);
 	valoracionSistemaHandler = new TableHandler(ValoracionSistemaForm.NAME,
-		getWidgetComponents(), "cod_comunidad",
-		ValoracionSistemaForm.colNames, ValoracionSistemaForm.colAlias);
+		getWidgetComponents(), PKFIELD, ValoracionSistemaForm.colNames,
+		ValoracionSistemaForm.colAlias);
 	datosConsumoHandler = new TableHandler(DatosConsumoForm.NAME,
-		getWidgetComponents(), "cod_comunidad",
-		DatosConsumoForm.colNames, DatosConsumoForm.colAlias);
+		getWidgetComponents(), PKFIELD, DatosConsumoForm.colNames,
+		DatosConsumoForm.colAlias);
 	habitosConsumoHandler = new TableHandler(HabitosConsumoForm.NAME,
-		getWidgetComponents(), "cod_comunidad",
-		HabitosConsumoForm.colNames, HabitosConsumoForm.colAlias);
+		getWidgetComponents(), PKFIELD, HabitosConsumoForm.colNames,
+		HabitosConsumoForm.colAlias);
 	fuentesContaminacionHandler = new TableHandler(
-		FuentesContaminacionForm.NAME, getWidgetComponents(),
-		"cod_comunidad", FuentesContaminacionForm.colNames,
+		FuentesContaminacionForm.NAME, getWidgetComponents(), PKFIELD,
+		FuentesContaminacionForm.colNames,
 		FuentesContaminacionForm.colAlias);
 	puntosViviendasHandler = new VectorialTableHandler(
 		toc.getLayerByName(PuntosViviendasForm.NAME),
-		getWidgetComponents(), "cod_comunidad",
-		PuntosViviendasForm.colNames, PuntosViviendasForm.colAlias);
+		getWidgetComponents(), PKFIELD, PuntosViviendasForm.colNames,
+		PuntosViviendasForm.colAlias);
 	centrosEducativosHandler = new VectorialTableHandler(
 		toc.getLayerByName(CentrosEducativosForm.NAME),
-		getWidgetComponents(), "cod_comunidad",
-		CentrosEducativosForm.colNames, CentrosEducativosForm.colAlias);
+		getWidgetComponents(), PKFIELD, CentrosEducativosForm.colNames,
+		CentrosEducativosForm.colAlias);
 	centrosSaludHandler = new VectorialTableHandler(
 		toc.getLayerByName(CentrosSaludForm.NAME),
-		getWidgetComponents(), "cod_comunidad",
-		CentrosSaludForm.colNames, CentrosSaludForm.colAlias);
+		getWidgetComponents(), PKFIELD, CentrosSaludForm.colNames,
+		CentrosSaludForm.colAlias);
 	areasPotencialesRiegoHandler = new VectorialTableHandler(
 		toc.getLayerByName(AreasPotencialesRiegoForm.NAME),
-		getWidgetComponents(), "cod_comunidad",
+		getWidgetComponents(), PKFIELD,
 		AreasPotencialesRiegoForm.colNames,
 		AreasPotencialesRiegoForm.colAlias);
 	otrosServiciosHandler = new VectorialTableHandler(
 		toc.getLayerByName(OtrosServiciosForm.NAME),
-		getWidgetComponents(), "cod_comunidad",
-		OtrosServiciosForm.colNames, OtrosServiciosForm.colAlias);
+		getWidgetComponents(), PKFIELD, OtrosServiciosForm.colNames,
+		OtrosServiciosForm.colAlias);
 	amenazasHandler = new VectorialTableHandler(
 		toc.getLayerByName(AmenazasForm.NAME), getWidgetComponents(),
-		"cod_comunidad", AmenazasForm.colNames, AmenazasForm.colAlias);
+		PKFIELD, AmenazasForm.colNames, AmenazasForm.colAlias);
 
 	abastecimientosRelationship = new TableRelationship(
-		getWidgetComponents(), NAME, "cod_comunidad",
-		AbastecimientosForm.NAME, "cod_abastecimiento",
-		"r_abastecimientos_comunidades");
+		getWidgetComponents(), NAME, PKFIELD, AbastecimientosForm.NAME,
+		AbastecimientosForm.PKFIELD, "r_abastecimientos_comunidades");
     }
 
     private void addCroquisButtons() {
 	JPanel actionsToolBar = this.getActionsToolBar();
 	String comunidadId = ((JTextField) getFormBody().getComponentByName(
-		"cod_comunidad")).getText();
+		PKFIELD)).getText();
 	actionsToolBar.add(new CroquisButtons(comunidadId)
 		.getAddCroquisButton());
 	actionsToolBar.add(new CroquisButtons(comunidadId)
@@ -147,7 +148,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 
     @Override
     protected void fillSpecificValues() {
-	String codComunidad = getFormController().getValue("cod_comunidad");
+	String codComunidad = getFormController().getValue(PKFIELD);
 	adescosHandler.fillValues(codComunidad);
 	entrevistadoresHandler.fillValues(codComunidad);
 	entrevistadosHandler.fillValues(codComunidad);

@@ -14,6 +14,8 @@ import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 public class FuentesForm extends BasicAbstractForm {
 
     public static final String NAME = "fuentes";
+    public static final String PKFIELD = "cod_fuente";
+
     private TableHandler aforosHandler;
     private TableHandler analiticasHandler;
     private TableRelationship abastecimientosRelationship;
@@ -22,23 +24,21 @@ public class FuentesForm extends BasicAbstractForm {
 	super(layer);
 	viewInfo.setTitle("Fuentes");
 	aforosHandler = new TableHandler(AforosForm.NAME,
-		getWidgetComponents(), "cod_fuente", AforosForm.colNames,
+		getWidgetComponents(), PKFIELD, AforosForm.colNames,
 		AforosForm.colAlias);
 	analiticasHandler = new TableHandler(AnaliticasForm.NAME,
-		getWidgetComponents(), "cod_fuente", AnaliticasForm.colNames,
+		getWidgetComponents(), PKFIELD, AnaliticasForm.colNames,
 		AnaliticasForm.colAlias);
 
 	abastecimientosRelationship = new TableRelationship(
-		getWidgetComponents(), NAME, "cod_fuente",
-		AbastecimientosForm.NAME, "cod_abastecimiento",
-		"r_abastecimientos_fuentes");
+		getWidgetComponents(), NAME, PKFIELD, AbastecimientosForm.NAME,
+		AbastecimientosForm.PKFIELD, "r_abastecimientos_fuentes");
     }
 
     @Override
     protected void fillSpecificValues() {
-	aforosHandler.fillValues(getFormController().getValue("cod_fuente"));
-	analiticasHandler
-		.fillValues(getFormController().getValue("cod_fuente"));
+	aforosHandler.fillValues(getFormController().getValue(PKFIELD));
+	analiticasHandler.fillValues(getFormController().getValue(PKFIELD));
 
 	abastecimientosRelationship
 		.setPrimaryPKValue(((JTextField) getWidgetComponents().get(
@@ -67,9 +67,8 @@ public class FuentesForm extends BasicAbstractForm {
     @Override
     public void onPositionChange(PositionEvent e) {
 	super.onPositionChange(e);
-	aforosHandler.fillValues(getFormController().getValue("cod_fuente"));
-	analiticasHandler
-		.fillValues(getFormController().getValue("cod_fuente"));
+	aforosHandler.fillValues(getFormController().getValue(PKFIELD));
+	analiticasHandler.fillValues(getFormController().getValue(PKFIELD));
     }
 
     @Override

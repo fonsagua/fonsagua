@@ -18,6 +18,8 @@ import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 public class AbastecimientosForm extends BasicAbstractForm {
 
     public static final String NAME = "abastecimientos";
+    public static final String PKFIELD = "cod_abastecimiento";
+
     private TableHandler juntasAguaHandler;
     private TableHandler coberturaHandler;
     private TableHandler gestionComercialHandler;
@@ -38,54 +40,51 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	TOCLayerManager toc = new TOCLayerManager();
 	viewInfo.setTitle("Abastecimientos");
 	juntasAguaHandler = new TableHandler(JuntasAguaForm.NAME,
-		getWidgetComponents(), "cod_abastecimiento",
-		JuntasAguaForm.colNames, JuntasAguaForm.colAlias);
+		getWidgetComponents(), PKFIELD, JuntasAguaForm.colNames,
+		JuntasAguaForm.colAlias);
 	coberturaHandler = new TableHandler(CoberturaForm.NAME,
-		getWidgetComponents(), "cod_abastecimiento",
-		CoberturaForm.colNames, CoberturaForm.colAlias);
+		getWidgetComponents(), PKFIELD, CoberturaForm.colNames,
+		CoberturaForm.colAlias);
 	gestionComercialHandler = new TableHandler(GestionComercialForm.NAME,
-		getWidgetComponents(), "cod_abastecimiento",
-		GestionComercialForm.colNames, GestionComercialForm.colAlias);
+		getWidgetComponents(), PKFIELD, GestionComercialForm.colNames,
+		GestionComercialForm.colAlias);
 	gestionFinancieraHandler = new TableHandler(GestionFinancieraForm.NAME,
-		getWidgetComponents(), "cod_abastecimiento",
-		GestionFinancieraForm.colNames, GestionFinancieraForm.colAlias);
+		getWidgetComponents(), PKFIELD, GestionFinancieraForm.colNames,
+		GestionFinancieraForm.colAlias);
 	evaluacionHandler = new TableHandler(EvaluacionForm.NAME,
-		getWidgetComponents(), "cod_abastecimiento",
-		EvaluacionForm.colNames, EvaluacionForm.colAlias);
+		getWidgetComponents(), PKFIELD, EvaluacionForm.colNames,
+		EvaluacionForm.colAlias);
 
 	captacionesHandler = new VectorialTableHandler(
 		toc.getLayerByName(CaptacionesForm.NAME),
-		getWidgetComponents(), "cod_abastecimiento",
-		CaptacionesForm.colNames, CaptacionesForm.colAlias);
+		getWidgetComponents(), PKFIELD, CaptacionesForm.colNames,
+		CaptacionesForm.colAlias);
 	depIntermediosHandler = new VectorialTableHandler(
 		toc.getLayerByName(DepIntermediosForm.NAME),
-		getWidgetComponents(), "cod_abastecimiento",
-		DepIntermediosForm.colNames, DepIntermediosForm.colAlias);
+		getWidgetComponents(), PKFIELD, DepIntermediosForm.colNames,
+		DepIntermediosForm.colAlias);
 	depDistribucionHandler = new VectorialTableHandler(
 		toc.getLayerByName(DepDistribucionForm.NAME),
-		getWidgetComponents(), "cod_abastecimiento",
-		DepDistribucionForm.colNames, DepDistribucionForm.colAlias);
+		getWidgetComponents(), PKFIELD, DepDistribucionForm.colNames,
+		DepDistribucionForm.colAlias);
 	tuberiasHandler = new VectorialTableHandler(
 		toc.getLayerByName(TuberiasForm.NAME), getWidgetComponents(),
-		"cod_abastecimiento", TuberiasForm.colNames,
-		TuberiasForm.colAlias);
+		PKFIELD, TuberiasForm.colNames, TuberiasForm.colAlias);
 	bombeosHandler = new VectorialTableHandler(
 		toc.getLayerByName(BombeosForm.NAME), getWidgetComponents(),
-		"cod_abastecimiento", BombeosForm.colNames,
-		BombeosForm.colAlias);
+		PKFIELD, BombeosForm.colNames, BombeosForm.colAlias);
 
 	comunidadesRelationship = new TableRelationship(getWidgetComponents(),
-		NAME, "cod_abastecimiento", ComunidadesForm.NAME,
-		"cod_comunidad", "r_abastecimientos_comunidades");
+		NAME, PKFIELD, ComunidadesForm.NAME, ComunidadesForm.PKFIELD,
+		"r_abastecimientos_comunidades");
 	fuentesRelationship = new TableRelationship(getWidgetComponents(),
-		NAME, "cod_abastecimiento", FuentesForm.NAME, "cod_fuente",
+		NAME, PKFIELD, FuentesForm.NAME, FuentesForm.PKFIELD,
 		"r_abastecimientos_fuentes");
     }
 
     @Override
     protected void fillSpecificValues() {
-	String codAbastecimiento = getFormController().getValue(
-		"cod_abastecimiento");
+	String codAbastecimiento = getFormController().getValue(PKFIELD);
 	juntasAguaHandler.fillValues(codAbastecimiento);
 	coberturaHandler.fillValues(codAbastecimiento);
 	gestionComercialHandler.fillValues(codAbastecimiento);
