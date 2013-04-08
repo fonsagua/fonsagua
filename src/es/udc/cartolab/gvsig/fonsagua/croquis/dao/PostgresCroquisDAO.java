@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
 
 public class PostgresCroquisDAO implements ICroquisDAO {
@@ -23,6 +24,7 @@ public class PostgresCroquisDAO implements ICroquisDAO {
 	    PreparedStatement statement;
 	    if (update) {
 		statement = connection.prepareStatement("UPDATE "
+			+ FonsaguaConstants.dataSchema + "."
 			+ CROQUIS_TABLENAME + " SET " + CROQUIS_FIELDNAME
 			+ " = " + "? WHERE " + CROQUIS_COMUNIDAD_FK_FIELDNAME
 			+ " = ?");
@@ -30,6 +32,7 @@ public class PostgresCroquisDAO implements ICroquisDAO {
 		statement.setString(2, comunidadId);
 	    } else {
 		statement = connection.prepareStatement("INSERT INTO "
+			+ FonsaguaConstants.dataSchema + "."
 			+ CROQUIS_TABLENAME + " VALUES (?, ?)");
 		statement.setString(1, comunidadId);
 		statement.setBytes(2, imageBytes);
@@ -52,7 +55,8 @@ public class PostgresCroquisDAO implements ICroquisDAO {
 	PreparedStatement statement = null;
 	try {
 	    statement = connection.prepareStatement("SELECT "
-		    + CROQUIS_FIELDNAME + " FROM " + CROQUIS_TABLENAME
+		    + CROQUIS_FIELDNAME + " FROM "
+		    + FonsaguaConstants.dataSchema + "." + CROQUIS_TABLENAME
 		    + " WHERE " + CROQUIS_COMUNIDAD_FK_FIELDNAME + " = ?");
 	    statement.setString(1, comunidadId);
 	    ResultSet rs = statement.executeQuery();
