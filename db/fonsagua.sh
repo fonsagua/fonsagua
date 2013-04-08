@@ -89,5 +89,15 @@ if [ $schema == "all" ] ; then
     for file in `ls ./data/*.sql` ; do
 	$PSQL -h $server -U $user -p $port -d $dbname -f $file
     done
+
+    if [ $config_file == "./db_config_devel" ] ; then
+	$PSQL -h $server -U $user -p $port -d $dbname -f ../data-test/data-test-geometry-tables.sql
+    fi
     # ./create-db.sh $config_file
 fi
+
+
+
+# ./pg_dump -U postgres --column-inserts --data-only --table comunidades --table puntos_viviendas --table areas_potenciales_riego --table centros_educativos --table centros_salud --table otros_servicios --table amenazas --table fuentes_contaminacion --table abastecimientos --table captaciones --table dep_intermedios --table dep_distribucion --table tuberias --table bombeos --table fuentes --file=/tmp/data-test-geometry-tables.sql fonsagua
+
+# ./pg_dump -U postgres --schema elle --inserts fonsagua --file=/tmp/01-schema-elle.sql

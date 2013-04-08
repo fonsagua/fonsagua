@@ -1,19 +1,31 @@
+--
+-- PostgreSQL database dump
+--
+
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
-SET standard_conforming_strings = off;
+SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET escape_string_warning = off;
 
-DROP SCHEMA IF EXISTS elle CASCADE;
+--
+-- Name: elle; Type: SCHEMA; Schema: -; Owner: fonsagua
+--
+
 CREATE SCHEMA elle;
 
+
+ALTER SCHEMA elle OWNER TO fonsagua;
 
 SET search_path = elle, pg_catalog;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
+
+--
+-- Name: _map; Type: TABLE; Schema: elle; Owner: fonsagua; Tablespace: 
+--
 
 CREATE TABLE _map (
     mapa character varying(255) NOT NULL,
@@ -28,41 +40,12 @@ CREATE TABLE _map (
     localizador boolean
 );
 
--- for s in `grep TABLE 02-comunidades.sql | cut -f 3 -d ' '` ; do echo "('Vista general', '$s', '$s', 0, true, null, null, null, 'public', false)" ; done
 
-INSERT INTO _map VALUES
-       ('Vista general', 'comunidades', 'comunidades', 0, true, null, null, null, 'public', false),
-	('Vista general', 'puntos_viviendas', 'puntos_viviendas', 0, true, null, null, null, 'public', false),
-	--('Vista general', 'Comunidades', 'interlocutores', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'entrevistados', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'subcuencas', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'adescos', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'cargos_publicos', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'ongs', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'otras_organizaciones', 0, true, null, null, null, 'public', false)
-	('Vista general', 'fuentes_contaminacion', 'fuentes_contaminacion', 0, true, null, null, null, 'public', false),
-	--('Vista general', 'Comunidades', 'capacitaciones_gestion_riesgos', 0, true, null, null, null, 'public', false)
-	('Vista general', 'amenazas', 'amenazas', 0, true, null, null, null, 'public', false),
-	--('Vista general', 'Comunidades', 'r_comunidades_abastecimientos', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'valoracion_sistema', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'datos_consumo', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'habitos_consumo', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'centros_actividad_economica', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'tipos_cultivos', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'produccion_consumo_comparado', 0, true, null, null, null, 'public', false)
-	('Vista general', 'areas_potenciales_riego', 'areas_potenciales_riego', 0, true, null, null, null, 'public', false),
-	--('Vista general', 'Comunidades', 'ganaderia', 0, true, null, null, null, 'public', false)
-	--('Vista general', 'Comunidades', 'cooperativas', 0, true, null, null, null, 'public', false)
-	('Vista general', 'centros_educativos', 'centros_educativos', 0, true, null, null, null, 'public', false),
-	('Vista general', 'centros_salud', 'centros_salud', 0, true, null, null, null, 'public', false),
-	('Vista general', 'otros_servicios', 'otros_servicios', 0, true, null, null, null, 'public', false),
-	('Vista general', 'abastecimientos', 'abastecimientos', 0, true, null, null, null, 'public', false),
-	('Vista general', 'captaciones', 'captaciones', 0, true, null, null, null, 'public', false),
-	('Vista general', 'dep_intermedios', 'dep_intermedios', 0, true, null, null, null, 'public', false),
-	('Vista general', 'dep_distribucion', 'dep_distribucion', 0, true, null, null, null, 'public', false),
-	('Vista general', 'tuberias', 'tuberias', 0, true, null, null, null, 'public', false),
-	('Vista general', 'bombeos', 'bombeos', 0, true, null, null, null, 'public', false),
-	('Vista general', 'fuentes', 'fuentes', 0, true, null, null, null, 'public', false);
+ALTER TABLE elle._map OWNER TO fonsagua;
+
+--
+-- Name: _map_overview; Type: TABLE; Schema: elle; Owner: fonsagua; Tablespace: 
+--
 
 CREATE TABLE _map_overview (
     mapa character varying NOT NULL,
@@ -73,6 +56,12 @@ CREATE TABLE _map_overview (
 );
 
 
+ALTER TABLE elle._map_overview OWNER TO fonsagua;
+
+--
+-- Name: _map_overview_style; Type: TABLE; Schema: elle; Owner: fonsagua; Tablespace: 
+--
+
 CREATE TABLE _map_overview_style (
     nombre_capa character varying NOT NULL,
     nombre_estilo character varying NOT NULL,
@@ -80,6 +69,12 @@ CREATE TABLE _map_overview_style (
     definicion xml
 );
 
+
+ALTER TABLE elle._map_overview_style OWNER TO fonsagua;
+
+--
+-- Name: _map_style; Type: TABLE; Schema: elle; Owner: fonsagua; Tablespace: 
+--
 
 CREATE TABLE _map_style (
     nombre_capa character varying NOT NULL,
@@ -89,18 +84,385 @@ CREATE TABLE _map_style (
 );
 
 
+ALTER TABLE elle._map_style OWNER TO fonsagua;
+
+--
+-- Data for Name: _map; Type: TABLE DATA; Schema: elle; Owner: fonsagua
+--
+
+INSERT INTO _map VALUES ('Vista general', 'fuentes', 'fuentes', 15, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'bombeos', 'bombeos', 14, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'dep_distribucion', 'dep_distribucion', 13, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'dep_intermedios', 'dep_intermedios', 12, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'captaciones', 'captaciones', 11, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'otros_servicios', 'otros_servicios', 10, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'centros_salud', 'centros_salud', 9, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'centros_educativos', 'centros_educativos', 8, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'amenazas', 'amenazas', 7, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'fuentes_contaminacion', 'fuentes_contaminacion', 6, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'puntos_viviendas', 'puntos_viviendas', 5, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'comunidades', 'comunidades', 4, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'tuberias', 'tuberias', 3, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'areas_potenciales_riego', 'areas_potenciales_riego', 2, true, NULL, NULL, '', 'public', NULL);
+INSERT INTO _map VALUES ('Vista general', 'abastecimientos', 'abastecimientos', 1, true, NULL, NULL, '', 'public', NULL);
+
+
+--
+-- Data for Name: _map_overview; Type: TABLE DATA; Schema: elle; Owner: fonsagua
+--
+
+
+
+--
+-- Data for Name: _map_overview_style; Type: TABLE DATA; Schema: elle; Owner: fonsagua
+--
+
+
+
+--
+-- Data for Name: _map_style; Type: TABLE DATA; Schema: elle; Owner: fonsagua
+--
+
+INSERT INTO _map_style VALUES ('fuentes', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="color" value="60,235,235,255"/>
+        <property key="rotation" value="0.0"/>
+        <property key="offsetX" value="0.0"/>
+        <property key="offsetY" value="0.0"/>
+        <property key="size" value="4.0"/>
+        <property key="outline" value="false"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="markerStyle" value="0"/>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('bombeos', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="color" value="60,235,235,255"/>
+        <property key="rotation" value="0.0"/>
+        <property key="offsetX" value="0.0"/>
+        <property key="offsetY" value="0.0"/>
+        <property key="size" value="4.0"/>
+        <property key="outline" value="false"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="markerStyle" value="0"/>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('dep_distribucion', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="color" value="60,235,235,255"/>
+        <property key="rotation" value="0.0"/>
+        <property key="offsetX" value="0.0"/>
+        <property key="offsetY" value="0.0"/>
+        <property key="size" value="4.0"/>
+        <property key="outline" value="false"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="markerStyle" value="0"/>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('dep_intermedios', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="color" value="60,235,235,255"/>
+        <property key="rotation" value="0.0"/>
+        <property key="offsetX" value="0.0"/>
+        <property key="offsetY" value="0.0"/>
+        <property key="size" value="4.0"/>
+        <property key="outline" value="false"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="markerStyle" value="0"/>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('captaciones', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="color" value="60,235,235,255"/>
+        <property key="rotation" value="0.0"/>
+        <property key="offsetX" value="0.0"/>
+        <property key="offsetY" value="0.0"/>
+        <property key="size" value="4.0"/>
+        <property key="outline" value="false"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="markerStyle" value="0"/>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('otros_servicios', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="color" value="60,235,235,255"/>
+        <property key="rotation" value="0.0"/>
+        <property key="offsetX" value="0.0"/>
+        <property key="offsetY" value="0.0"/>
+        <property key="size" value="4.0"/>
+        <property key="outline" value="false"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="markerStyle" value="0"/>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('centros_salud', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="color" value="60,235,235,255"/>
+        <property key="rotation" value="0.0"/>
+        <property key="offsetX" value="0.0"/>
+        <property key="offsetY" value="0.0"/>
+        <property key="size" value="4.0"/>
+        <property key="outline" value="false"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="markerStyle" value="0"/>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('centros_educativos', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="color" value="60,235,235,255"/>
+        <property key="rotation" value="0.0"/>
+        <property key="offsetX" value="0.0"/>
+        <property key="offsetY" value="0.0"/>
+        <property key="size" value="4.0"/>
+        <property key="outline" value="false"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="markerStyle" value="0"/>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('amenazas', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="color" value="60,235,235,255"/>
+        <property key="rotation" value="0.0"/>
+        <property key="offsetX" value="0.0"/>
+        <property key="offsetY" value="0.0"/>
+        <property key="size" value="4.0"/>
+        <property key="outline" value="false"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="markerStyle" value="0"/>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('fuentes_contaminacion', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="color" value="60,235,235,255"/>
+        <property key="rotation" value="0.0"/>
+        <property key="offsetX" value="0.0"/>
+        <property key="offsetY" value="0.0"/>
+        <property key="size" value="4.0"/>
+        <property key="outline" value="false"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="markerStyle" value="0"/>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('puntos_viviendas', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="color" value="60,235,235,255"/>
+        <property key="rotation" value="0.0"/>
+        <property key="offsetX" value="0.0"/>
+        <property key="offsetY" value="0.0"/>
+        <property key="size" value="4.0"/>
+        <property key="outline" value="false"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="markerStyle" value="0"/>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('comunidades', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="color" value="255,0,0,255"/>
+        <property key="rotation" value="0.0"/>
+        <property key="offsetX" value="0.0"/>
+        <property key="offsetY" value="0.0"/>
+        <property key="size" value="10.0"/>
+        <property key="outline" value="false"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="markerStyle" value="5"/>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('tuberias', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleLineSymbol"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="desc"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="color" value="60,235,235,255"/>
+        <xml-tag>
+            <property key="className" value="com.iver.cit.gvsig.fmap.core.styles.SimpleLineStyle"/>
+            <property key="desc"/>
+            <property key="lineWidth" value="1.0"/>
+            <property key="dashPhase" value="0.0"/>
+            <property key="endCap" value="0"/>
+            <property key="lineJoin" value="2"/>
+            <property key="miterLimit" value="10.0"/>
+            <property key="offset" value="0.0"/>
+            <property key="unit" value="0"/>
+        </xml-tag>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('areas_potenciales_riego', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleFillSymbol"/>
+        <property key="color" value="60,235,235,255"/>
+        <property key="hasFill" value="true"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="unit" value="-1"/>
+        <property key="hasOutline" value="true"/>
+        <xml-tag>
+            <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleLineSymbol"/>
+            <property key="isShapeVisible" value="true"/>
+            <property key="desc"/>
+            <property key="unit" value="-1"/>
+            <property key="referenceSystem" value="0"/>
+            <property key="color" value="128,128,128,255"/>
+            <xml-tag>
+                <property key="className" value="com.iver.cit.gvsig.fmap.core.styles.SimpleLineStyle"/>
+                <property key="desc"/>
+                <property key="lineWidth" value="1.0"/>
+                <property key="dashPhase" value="0.0"/>
+                <property key="endCap" value="0"/>
+                <property key="lineJoin" value="2"/>
+                <property key="miterLimit" value="10.0"/>
+                <property key="offset" value="0.0"/>
+                <property key="unit" value="0"/>
+            </xml-tag>
+        </xml-tag>
+    </xml-tag>
+</xml-tag>
+');
+INSERT INTO _map_style VALUES ('abastecimientos', 'Vista general', 'gvl', '<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleFillSymbol"/>
+        <property key="color" value="204,255,255,77"/>
+        <property key="hasFill" value="true"/>
+        <property key="desc" value=""/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="unit" value="-1"/>
+        <property key="hasOutline" value="true"/>
+        <xml-tag>
+            <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleLineSymbol"/>
+            <property key="isShapeVisible" value="true"/>
+            <property key="desc"/>
+            <property key="unit" value="-1"/>
+            <property key="referenceSystem" value="0"/>
+            <property key="color" value="128,128,128,255"/>
+            <xml-tag>
+                <property key="className" value="com.iver.cit.gvsig.fmap.core.styles.SimpleLineStyle"/>
+                <property key="desc"/>
+                <property key="lineWidth" value="1.0"/>
+                <property key="dashPhase" value="0.0"/>
+                <property key="endCap" value="0"/>
+                <property key="lineJoin" value="2"/>
+                <property key="miterLimit" value="10.0"/>
+                <property key="offset" value="0.0"/>
+                <property key="unit" value="0"/>
+            </xml-tag>
+        </xml-tag>
+    </xml-tag>
+</xml-tag>
+');
+
+
+--
+-- Name: _map_overview_pkey; Type: CONSTRAINT; Schema: elle; Owner: fonsagua; Tablespace: 
+--
+
 ALTER TABLE ONLY _map_overview
     ADD CONSTRAINT _map_overview_pkey PRIMARY KEY (mapa, nombre_capa);
 
+
+--
+-- Name: _map_overview_style_pkey; Type: CONSTRAINT; Schema: elle; Owner: fonsagua; Tablespace: 
+--
 
 ALTER TABLE ONLY _map_overview_style
     ADD CONSTRAINT _map_overview_style_pkey PRIMARY KEY (nombre_capa, nombre_estilo);
 
 
+--
+-- Name: _map_pkey; Type: CONSTRAINT; Schema: elle; Owner: fonsagua; Tablespace: 
+--
+
 ALTER TABLE ONLY _map
     ADD CONSTRAINT _map_pkey PRIMARY KEY (mapa, nombre_capa);
 
 
+--
+-- Name: _map_style_pkey; Type: CONSTRAINT; Schema: elle; Owner: fonsagua; Tablespace: 
+--
+
 ALTER TABLE ONLY _map_style
     ADD CONSTRAINT _map_style_pkey PRIMARY KEY (nombre_capa, nombre_estilo);
+
+
+--
+-- PostgreSQL database dump complete
+--
 

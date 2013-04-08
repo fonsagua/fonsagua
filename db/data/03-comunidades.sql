@@ -331,7 +331,7 @@ CREATE TABLE public.puntos_viviendas (
        cod_comunidad VARCHAR
 	       NOT NULL
 	       REFERENCES comunidades(cod_comunidad),
-       cod_vivienda INTEGER
+       cod_vivienda VARCHAR
 	       UNIQUE
 	       NOT NULL,
        tipo VARCHAR
@@ -539,7 +539,7 @@ CREATE TABLE public.centros_educativos (
        cod_comunidad VARCHAR
 	       NOT NULL
 	       REFERENCES comunidades(cod_comunidad),
-       cod_c_educativo INTEGER
+       cod_c_educativo VARCHAR
 	       UNIQUE
 	       NOT NULL,
        nombre VARCHAR,
@@ -569,7 +569,7 @@ CREATE TABLE public.centros_salud (
        cod_comunidad VARCHAR
 	       NOT NULL
 	       REFERENCES comunidades(cod_comunidad),
-       cod_c_salud INTEGER
+       cod_c_salud VARCHAR
 	       UNIQUE
 	       NOT NULL,
        nombre VARCHAR,
@@ -588,7 +588,7 @@ CREATE TABLE public.otros_servicios (
        cod_comunidad VARCHAR
 	       NOT NULL
 	       REFERENCES comunidades(cod_comunidad),
-       cod_servicio INTEGER
+       cod_servicio VARCHAR
 	       UNIQUE
 	       NOT NULL,
        nombre VARCHAR,
@@ -623,7 +623,7 @@ CREATE TABLE public.amenazas (
        cod_comunidad VARCHAR
 	       NOT NULL
 	       REFERENCES comunidades(cod_comunidad),
-       cod_amenaza INTEGER
+       cod_amenaza VARCHAR
 	       UNIQUE
 	       NOT NULL,
        tipo_amenaza VARCHAR
@@ -831,6 +831,41 @@ CREATE TABLE public.juntas_agua (
 
 ALTER TABLE public.juntas_agua OWNER TO fonsagua;
 
+
+CREATE TABLE public.bombeos (
+       gid SERIAL PRIMARY KEY,
+       cod_abastecimiento VARCHAR
+	       NOT NULL
+	       REFERENCES abastecimientos(cod_abastecimiento),
+       cod_bombeo VARCHAR
+	       UNIQUE
+	       NOT NULL,
+       denominacion VARCHAR,
+       tipologia VARCHAR
+	       REFERENCES tipologia,
+       energia VARCHAR
+	       REFERENCES energia,
+       potencia NUMERIC(5,2),
+       caudal NUMERIC(5,2),
+       prof_succion NUMERIC(5,2),
+       tiempo NUMERIC(5,2),
+       altura INTEGER,
+       n_bombas INTEGER,
+       anho_construccion INTEGER,
+       estado VARCHAR
+	       REFERENCES estado,
+       utm_x NUMERIC(5,3),
+       utm_y NUMERIC(5,3),
+       utm_z NUMERIC(5,3),
+       coment_bom VARCHAR
+
+);
+
+SELECT addgeometrycolumn('public', 'bombeos', 'geom', 32616, 'POINT', 2);
+
+ALTER TABLE public.bombeos OWNER TO fonsagua;
+
+
 CREATE TABLE public.captaciones (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
@@ -845,7 +880,7 @@ CREATE TABLE public.captaciones (
        sistema VARCHAR
 	       REFERENCES sistema,
        cod_bombeo VARCHAR
-	       REFERENCES cod_bombeo,
+	       REFERENCES bombeos(cod_bombeo),
        tipo_construccion VARCHAR
 	       REFERENCES tipo_construccion,
        anho_construccion INTEGER,
@@ -878,7 +913,7 @@ CREATE TABLE public.dep_intermedios (
        sistema VARCHAR
 	       REFERENCES sistema,
        cod_bombeo VARCHAR
-	       REFERENCES cod_bombeo,
+	       REFERENCES bombeos(cod_bombeo),
        tipo_construccion VARCHAR
 	       REFERENCES tipo_construccion,
        anho_construccion INTEGER,
@@ -901,7 +936,7 @@ CREATE TABLE public.dep_distribucion (
        cod_abastecimiento VARCHAR
 	       NOT NULL
 	       REFERENCES abastecimientos(cod_abastecimiento),
-       cod_dep_distribucion INTEGER
+       cod_dep_distribucion VARCHAR
 	       UNIQUE
 	       NOT NULL,
        denominacion VARCHAR,
@@ -955,38 +990,6 @@ SELECT addgeometrycolumn('public', 'tuberias', 'geom', 32616, 'MULTILINESTRING',
 
 ALTER TABLE public.tuberias OWNER TO fonsagua;
 
-CREATE TABLE public.bombeos (
-       gid SERIAL PRIMARY KEY,
-       cod_abastecimiento VARCHAR
-	       NOT NULL
-	       REFERENCES abastecimientos(cod_abastecimiento),
-       cod_bombeo VARCHAR
-	       UNIQUE
-	       NOT NULL,
-       denominacion VARCHAR,
-       tipologia VARCHAR
-	       REFERENCES tipologia,
-       energia VARCHAR
-	       REFERENCES energia,
-       potencia NUMERIC(5,2),
-       caudal NUMERIC(5,2),
-       prof_succion NUMERIC(5,2),
-       tiempo NUMERIC(5,2),
-       altura INTEGER,
-       n_bombas INTEGER,
-       anho_construccion INTEGER,
-       estado VARCHAR
-	       REFERENCES estado,
-       utm_x NUMERIC(5,3),
-       utm_y NUMERIC(5,3),
-       utm_z NUMERIC(5,3),
-       coment_bom VARCHAR
-
-);
-
-SELECT addgeometrycolumn('public', 'bombeos', 'geom', 32616, 'POINT', 2);
-
-ALTER TABLE public.bombeos OWNER TO fonsagua;
 
 CREATE TABLE public.cobertura (
        gid SERIAL PRIMARY KEY,
