@@ -10,7 +10,9 @@ import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.VectorialTableHandler;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.croquis.ui.CroquisButtons;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
+import es.udc.cartolab.gvsig.fonsagua.forms.relationship.TableRelationship;
 import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 
 @SuppressWarnings("serial")
@@ -40,6 +42,8 @@ public class ComunidadesForm extends BasicAbstractForm {
     private VectorialTableHandler areasPotencialesRiegoHandler;
     private VectorialTableHandler otrosServiciosHandler;
     private VectorialTableHandler amenazasHandler;
+
+    private TableRelationship abastecimientosRelationship;
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
@@ -100,9 +104,10 @@ public class ComunidadesForm extends BasicAbstractForm {
 		FuentesContaminacionForm.NAME, getWidgetComponents(),
 		"cod_comunidad", FuentesContaminacionForm.colNames,
 		FuentesContaminacionForm.colAlias);
-	puntosViviendasHandler = new VectorialTableHandler(toc.getLayerByName(PuntosViviendasForm.NAME),
-		getWidgetComponents(), "cod_comunidad", PuntosViviendasForm.colNames,
-		PuntosViviendasForm.colAlias);
+	puntosViviendasHandler = new VectorialTableHandler(
+		toc.getLayerByName(PuntosViviendasForm.NAME),
+		getWidgetComponents(), "cod_comunidad",
+		PuntosViviendasForm.colNames, PuntosViviendasForm.colAlias);
 	centrosEducativosHandler = new VectorialTableHandler(
 		toc.getLayerByName(CentrosEducativosForm.NAME),
 		getWidgetComponents(), "cod_comunidad",
@@ -123,7 +128,11 @@ public class ComunidadesForm extends BasicAbstractForm {
 	amenazasHandler = new VectorialTableHandler(
 		toc.getLayerByName(AmenazasForm.NAME), getWidgetComponents(),
 		"cod_comunidad", AmenazasForm.colNames, AmenazasForm.colAlias);
-	
+
+	abastecimientosRelationship = new TableRelationship(
+		getWidgetComponents(), NAME, "cod_comunidad",
+		AbastecimientosForm.NAME, "cod_abastecimiento",
+		"r_abastecimientos_comunidades");
     }
 
     private void addCroquisButtons() {
@@ -139,8 +148,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     @Override
     protected void fillSpecificValues() {
 	String codComunidad = getFormController().getValue("cod_comunidad");
-	adescosHandler
-		.fillValues(codComunidad);
+	adescosHandler.fillValues(codComunidad);
 	entrevistadoresHandler.fillValues(codComunidad);
 	entrevistadosHandler.fillValues(codComunidad);
 	subcuencasHandler.fillValues(codComunidad);
@@ -163,6 +171,11 @@ public class ComunidadesForm extends BasicAbstractForm {
 	areasPotencialesRiegoHandler.fillValues(codComunidad);
 	otrosServiciosHandler.fillValues(codComunidad);
 	amenazasHandler.fillValues(codComunidad);
+
+	abastecimientosRelationship
+		.setPrimaryPKValue(((JTextField) getWidgetComponents().get(
+			abastecimientosRelationship.getPrimaryPKName()))
+			.getText());
     }
 
     @Override
@@ -198,6 +211,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 		FonsaguaTableFormFactory.getInstance());
 	amenazasHandler.reload(AmenazasForm.NAME,
 		FonsaguaTableFormFactory.getInstance());
+
+	abastecimientosRelationship.reload();
     }
 
     @Override
