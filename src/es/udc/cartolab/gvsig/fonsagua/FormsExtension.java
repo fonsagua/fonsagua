@@ -11,11 +11,17 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.BombeosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.CaptacionesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepDistribucionForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepIntermediosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.TuberiasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AmenazasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AreasPotencialesRiegoForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosEducativosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosSaludForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.FuentesContaminacionForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.OtrosServiciosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.PuntosViviendasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
@@ -76,7 +82,13 @@ public class FormsExtension extends Extension {
 			    || layerName.equals(OtrosServiciosForm.NAME)
 			    || layerName.equals(CentrosEducativosForm.NAME)
 			    || layerName.equals(FuentesForm.NAME)
-			    || layerName.equals(AbastecimientosForm.NAME)) {
+			    || layerName.equals(AbastecimientosForm.NAME)
+			    || layerName.equals(DepIntermediosForm.NAME)
+			    || layerName.equals(CaptacionesForm.NAME)
+			    || layerName.equals(BombeosForm.NAME)
+			    || layerName.equals(DepDistribucionForm.NAME)
+			    || layerName.equals(FuentesContaminacionForm.NAME)
+			    || layerName.equals(TuberiasForm.NAME)) {
 
 			return true;
 		    }
