@@ -11,6 +11,7 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class TableRelationship {
@@ -60,7 +61,8 @@ public class TableRelationship {
     private void fillRows() {
 	try {
 	    PreparedStatement statement;
-	    String query = "SELECT * FROM " + relationTableName + ";";
+	    String query = "SELECT * FROM " + FonsaguaConstants.dataSchema
+		    + "." + relationTableName + ";";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
 		    .prepareStatement(query);
 	    statement.execute();
@@ -91,7 +93,8 @@ public class TableRelationship {
 	try {
 	    PreparedStatement statement;
 	    String query = "SELECT " + secondaryPKName + " FROM "
-		    + secondaryTableName + ";";
+		    + FonsaguaConstants.dataSchema + "." + secondaryTableName
+		    + ";";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
 		    .prepareStatement(query);
 	    statement.execute();
@@ -110,8 +113,9 @@ public class TableRelationship {
     public void insertRow(String secondaryPKValue) {
 	try {
 	    PreparedStatement statement;
-	    String query = "INSERT INTO " + relationTableName + " VALUES ( "
-		    + "'" + secondaryPKValue + "','" + primaryPKValue + "');";
+	    String query = "INSERT INTO " + FonsaguaConstants.dataSchema + "."
+		    + relationTableName + " VALUES ( " + "'" + secondaryPKValue
+		    + "','" + primaryPKValue + "');";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
 		    .prepareStatement(query);
 	    statement.execute();
@@ -123,8 +127,9 @@ public class TableRelationship {
     public void deleteRow(String secondaryPKValue) {
 	try {
 	    PreparedStatement statement;
-	    String query = "DELETE FROM " + relationTableName + " WHERE "
-		    + secondaryPKName + " = '" + secondaryPKValue + "';";
+	    String query = "DELETE FROM " + FonsaguaConstants.dataSchema + "."
+		    + relationTableName + " WHERE " + secondaryPKName + " = '"
+		    + secondaryPKValue + "';";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
 		    .prepareStatement(query);
 	    statement.execute();
