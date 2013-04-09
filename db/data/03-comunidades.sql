@@ -971,7 +971,7 @@ CREATE TABLE fonsagua.tuberias (
 	       NOT NULL,
        denominacion VARCHAR,
        tipologia VARCHAR
-	       REFERENCES dominios.tipologia,
+	       REFERENCES dominios.tipologia_tuberia,
        sistema VARCHAR
 	       REFERENCES dominios.sistema,
        material VARCHAR

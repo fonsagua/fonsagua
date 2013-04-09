@@ -660,19 +660,19 @@ INSERT INTO dominios.ubicacion (item) VALUES
 ALTER TABLE dominios.ubicacion OWNER TO fonsagua;
 
 
-CREATE TABLE dominios.tipologia (
+CREATE TABLE dominios.tipologia_tuberia (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO dominios.tipologia (item) VALUES
+INSERT INTO dominios.tipologia_tuberia (item) VALUES
        (' '),
        ('Aducción'),
        ('Impulsión'),
        ('Distribución');
 
-ALTER TABLE dominios.tipologia OWNER TO fonsagua;
+ALTER TABLE dominios.tipologia_tuberia OWNER TO fonsagua;
 
 
 CREATE TABLE dominios.tipologia_bomba (
