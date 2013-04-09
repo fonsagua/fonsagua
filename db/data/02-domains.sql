@@ -675,6 +675,21 @@ INSERT INTO dominios.tipologia (item) VALUES
 ALTER TABLE dominios.tipologia OWNER TO fonsagua;
 
 
+CREATE TABLE dominios.tipologia_bomba (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO dominios.tipologia_bomba (item) VALUES
+       (' '),
+       ('Sumergible'),
+       ('Externa'),
+       ('Otros');
+
+ALTER TABLE dominios.tipologia_bomba OWNER TO fonsagua;
+
+
 CREATE TABLE dominios.material (
        item VARCHAR
 	       PRIMARY KEY

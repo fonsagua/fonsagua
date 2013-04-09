@@ -842,7 +842,7 @@ CREATE TABLE fonsagua.bombeos (
 	       NOT NULL,
        denominacion VARCHAR,
        tipologia VARCHAR
-	       REFERENCES dominios.tipologia,
+	       REFERENCES dominios.tipologia_bomba,
        energia VARCHAR
 	       REFERENCES dominios.energia,
        potencia NUMERIC(5,2),
