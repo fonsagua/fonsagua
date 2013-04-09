@@ -12,19 +12,23 @@ public class CroquisButtons {
     private final JButton addCroquisButton;
     private final JButton showCroquisButton;
 
+    private AddCroquisListener addCroquisListener;
+    private ShowCroquisListener showCroquisListener;
+
     public CroquisButtons(String comunidadId) {
+	addCroquisListener = new AddCroquisListener(comunidadId);
+	showCroquisListener = new ShowCroquisListener(comunidadId);
 	addCroquisButton = new JButton();
 	addCroquisButton.setText("Añadir Croquis");
 	addCroquisButton.setToolTipText(PluginServices.getText(this,
 		"croquisButton_addCroquis"));
-	addCroquisButton.addActionListener(new AddCroquisListener(comunidadId));
+	addCroquisButton.addActionListener(addCroquisListener);
 
 	showCroquisButton = new JButton();
 	showCroquisButton.setText("Ver Croquis");
 	showCroquisButton.setToolTipText(PluginServices.getText(this,
 		"croquisButton_showCroquis"));
-	showCroquisButton
-		.addActionListener(new ShowCroquisListener(comunidadId));
+	showCroquisButton.addActionListener(showCroquisListener);
     }
 
     public JButton getAddCroquisButton() {
@@ -35,4 +39,15 @@ public class CroquisButtons {
 	return showCroquisButton;
     }
 
+    public void setAddlistener(AddCroquisListener addListener) {
+	addCroquisButton.removeActionListener(addCroquisListener);
+	addCroquisListener = addListener;
+	addCroquisButton.addActionListener(addCroquisListener);
+    }
+
+    public void setShowlistener(ShowCroquisListener showListener) {
+	showCroquisButton.removeActionListener(showCroquisListener);
+	showCroquisListener = showListener;
+	showCroquisButton.addActionListener(showCroquisListener);
+    }
 }

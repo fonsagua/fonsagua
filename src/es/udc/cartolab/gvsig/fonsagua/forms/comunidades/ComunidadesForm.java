@@ -10,6 +10,8 @@ import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.VectorialTableHandler;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
+import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.AddCroquisListener;
+import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.ShowCroquisListener;
 import es.udc.cartolab.gvsig.fonsagua.croquis.ui.CroquisButtons;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
@@ -48,10 +50,11 @@ public class ComunidadesForm extends BasicAbstractForm {
 
     private TableRelationship abastecimientosRelationship;
 
+    private CroquisButtons croquisButtons;
+
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
 	viewInfo.setTitle("Comunidades");
-	addCroquisButtons();
 	TOCLayerManager toc = new TOCLayerManager();
 	adescosHandler = new TableHandler(FonsaguaConstants.dataSchema,
 		AdescosForm.NAME, getWidgetComponents(), PKFIELD,
@@ -146,17 +149,25 @@ public class ComunidadesForm extends BasicAbstractForm {
     }
 
     private void addCroquisButtons() {
-	JPanel actionsToolBar = this.getActionsToolBar();
 	String comunidadId = ((JTextField) getFormBody().getComponentByName(
 		PKFIELD)).getText();
-	actionsToolBar.add(new CroquisButtons(comunidadId)
-		.getAddCroquisButton());
-	actionsToolBar.add(new CroquisButtons(comunidadId)
-		.getShowCroquisButton());
+	JPanel actionsToolBar = this.getActionsToolBar();
+	if (croquisButtons == null) {
+	    croquisButtons = new CroquisButtons(comunidadId);
+	    actionsToolBar.add(croquisButtons.getAddCroquisButton());
+	    actionsToolBar.add(croquisButtons.getShowCroquisButton());
+	} else {
+	    croquisButtons.setAddlistener(new AddCroquisListener(comunidadId));
+	    croquisButtons
+		    .setShowlistener(new ShowCroquisListener(comunidadId));
+	}
+
     }
 
     @Override
     protected void fillSpecificValues() {
+	addCroquisButtons();
+
 	String codComunidad = getFormController().getValue(PKFIELD);
 	adescosHandler.fillValues(codComunidad);
 	entrevistadoresHandler.fillValues(codComunidad);

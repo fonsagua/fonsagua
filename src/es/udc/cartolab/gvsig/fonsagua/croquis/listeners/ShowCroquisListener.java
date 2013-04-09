@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.iver.andami.PluginServices;
@@ -60,11 +61,16 @@ public class ShowCroquisListener implements ActionListener {
 
 	    byte[] imageBytes = new PostgresCroquisDAO().readCroquisFromDb(
 		    connection, comunidadId);
-	    Image image = ImageUtils.convertByteaToImage(imageBytes);
-	    JLabel label = new JLabel(new ImageIcon(image));
-	    CroquisWindow panel = new CroquisWindow();
-	    panel.add(label, BorderLayout.CENTER);
-	    PluginServices.getMDIManager().addWindow(panel);
+	    if (imageBytes == null) {
+		JOptionPane.showMessageDialog(null, PluginServices.getText(
+			this, "croquis_msg_not_exits_croquis"));
+	    } else {
+		Image image = ImageUtils.convertByteaToImage(imageBytes);
+		JLabel label = new JLabel(new ImageIcon(image));
+		CroquisWindow panel = new CroquisWindow();
+		panel.add(label, BorderLayout.CENTER);
+		PluginServices.getMDIManager().addWindow(panel);
+	    }
 	} catch (SQLException e1) {
 	    e1.printStackTrace();
 	} finally {
