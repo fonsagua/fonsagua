@@ -7,5 +7,7 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public interface TableFormFactory {
     
     public abstract BasicAbstractForm createForm(FLyrVect layer);
+
+    public abstract boolean hasMainForm(String layerName);
     
 }

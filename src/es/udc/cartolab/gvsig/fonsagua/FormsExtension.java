@@ -2,30 +2,12 @@ package es.udc.cartolab.gvsig.fonsagua;
 
 import com.iver.andami.PluginServices;
 import com.iver.andami.plugins.Extension;
-import com.iver.andami.ui.mdiManager.IWindow;
-import com.iver.cit.gvsig.fmap.layers.FLayers;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
-import com.iver.cit.gvsig.project.documents.view.gui.View;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
-import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.BombeosForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.CaptacionesForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepDistribucionForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepIntermediosForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.TuberiasForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AmenazasForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AreasPotencialesRiegoForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosEducativosForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosSaludForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.FuentesContaminacionForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.OtrosServiciosForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.PuntosViviendasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
-import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 
 public class FormsExtension extends Extension {
 
@@ -65,40 +47,8 @@ public class FormsExtension extends Extension {
     }
 
     private boolean isExampleDataSetLoaded() {
-	IWindow iWindow = PluginServices.getMDIManager().getActiveWindow();
-	if (iWindow instanceof View) {
-	    View view = (View) iWindow;
-	    FLayers layers = view.getMapControl().getMapContext().getLayers();
-	    if (layers != null) {
-		if (layers.getActives().length > 0) {
-		    TOCLayerManager toc = new TOCLayerManager();
-		    layer = toc.getActiveLayer();
-		    String layerName = layer.getName();
-		    if (layerName.equals(ComunidadesForm.NAME)
-			    || layerName.equals(PuntosViviendasForm.NAME)
-			    || layerName.equals(AreasPotencialesRiegoForm.NAME)
-			    || layerName.equals(AmenazasForm.NAME)
-			    || layerName.equals(CentrosSaludForm.NAME)
-			    || layerName.equals(OtrosServiciosForm.NAME)
-			    || layerName.equals(CentrosEducativosForm.NAME)
-			    || layerName.equals(FuentesForm.NAME)
-			    || layerName.equals(AbastecimientosForm.NAME)
-			    || layerName.equals(DepIntermediosForm.NAME)
-			    || layerName.equals(CaptacionesForm.NAME)
-			    || layerName.equals(BombeosForm.NAME)
-			    || layerName.equals(DepDistribucionForm.NAME)
-			    || layerName.equals(FuentesContaminacionForm.NAME)
-			    || layerName.equals(TuberiasForm.NAME)) {
-
-			return true;
-		    }
-
-		}
-	    }
-
-	}
-
-	return false;
+	layer = new TOCLayerManager().getActiveLayer();
+	return (layer != null) ? factory.hasMainForm(layer.getName()) : false;
 
     }
 

@@ -1,5 +1,8 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.factories;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
@@ -22,6 +25,24 @@ import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 public class FonsaguaTableFormFactory implements TableFormFactory {
     
     private static FonsaguaTableFormFactory instance = null;
+    private static final Set<String> mainFormNames = new HashSet<String>();
+
+    static {
+	mainFormNames.add(ComunidadesForm.NAME);
+	mainFormNames.add(AmenazasForm.NAME);
+	mainFormNames.add(PuntosViviendasForm.NAME);
+	mainFormNames.add(AreasPotencialesRiegoForm.NAME);
+	mainFormNames.add(CentrosSaludForm.NAME);
+	mainFormNames.add(OtrosServiciosForm.NAME);
+	mainFormNames.add(CentrosEducativosForm.NAME);
+	mainFormNames.add(AbastecimientosForm.NAME);
+	mainFormNames.add(BombeosForm.NAME);
+	mainFormNames.add(CaptacionesForm.NAME);
+	mainFormNames.add(DepIntermediosForm.NAME);
+	mainFormNames.add(DepDistribucionForm.NAME);
+	mainFormNames.add(TuberiasForm.NAME);
+	mainFormNames.add(FuentesForm.NAME);
+    }
     
     public static FonsaguaTableFormFactory getInstance() {
 	if (instance == null) {
@@ -67,6 +88,11 @@ public class FonsaguaTableFormFactory implements TableFormFactory {
 	    }
 	}
 	return null;
+    }
+
+    @Override
+    public boolean hasMainForm(String layerName) {
+	return mainFormNames.contains(layerName);
     }
 
 }
