@@ -17,8 +17,6 @@ public class CentrosSaludForm extends BasicAbstractForm {
     }
 
     private void initWindow() {
-	viewInfo.setHeight(500);
-	viewInfo.setWidth(560);
 	viewInfo.setTitle("Centros Salud");
     }
 

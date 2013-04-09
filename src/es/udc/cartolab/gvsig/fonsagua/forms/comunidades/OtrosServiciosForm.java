@@ -17,8 +17,6 @@ public class OtrosServiciosForm extends BasicAbstractForm {
     }
 
     private void initWindow() {
-	viewInfo.setHeight(500);
-	viewInfo.setWidth(600);
 	viewInfo.setTitle("Otros Servicios");
     }
 

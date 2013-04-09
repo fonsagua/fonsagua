@@ -19,8 +19,6 @@ public class CentrosEducativosForm extends BasicAbstractForm {
     }
 
     private void initWindow() {
-	viewInfo.setHeight(550);
-	viewInfo.setWidth(350);
 	viewInfo.setTitle("Centros Educativos");
     }
 

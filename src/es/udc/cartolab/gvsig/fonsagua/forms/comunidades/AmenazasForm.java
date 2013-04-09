@@ -19,8 +19,6 @@ public class AmenazasForm extends BasicAbstractForm {
     }
 
     private void initWindow() {
-	viewInfo.setHeight(500);
-	viewInfo.setWidth(650);
 	viewInfo.setTitle("Amenazas");
     }
 

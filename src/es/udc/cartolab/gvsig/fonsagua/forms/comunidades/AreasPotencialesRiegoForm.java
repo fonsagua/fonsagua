@@ -18,8 +18,6 @@ public class AreasPotencialesRiegoForm extends BasicAbstractForm {
     }
 
     private void initWindow() {
-	viewInfo.setHeight(550);
-	viewInfo.setWidth(350);
 	viewInfo.setTitle("Areas Potenciales Riego");
     }
 
