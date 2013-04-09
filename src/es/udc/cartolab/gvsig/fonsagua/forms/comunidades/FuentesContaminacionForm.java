@@ -1,13 +1,26 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.comunidades;
 
-import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
+import com.iver.cit.gvsig.fmap.layers.FLyrVect;
+
+import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 
 @SuppressWarnings("serial")
-public class FuentesContaminacionForm extends AbstractSubForm {
+public class FuentesContaminacionForm extends BasicAbstractForm {
 
     public static final String NAME = "fuentes_contaminacion";
-    public static String[] colNames = { "tipo_contaminacion", "n_fam_vierten" };
-    public static String[] colAlias = { "Tipo", "Nº familias que vierten" };
+    public static String[] colNames = { "cod_comunidad", "tipo_contaminacion",
+	    "n_fam_vierten" };
+    public static String[] colAlias = { "Código de comunidad", "Tipo",
+	    "Nº familias que vierten" };
+
+    public FuentesContaminacionForm(FLyrVect layer) {
+	super(layer);
+	initWindow();
+    }
+
+    private void initWindow() {
+	viewInfo.setTitle("Fuentes Contaminación");
+    }
 
     @Override
     protected void fillSpecificValues() {

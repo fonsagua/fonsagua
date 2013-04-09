@@ -18,13 +18,15 @@ import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AreasPotencialesRiegoFor
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosEducativosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosSaludForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.FuentesContaminacionForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.OtrosServiciosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.PuntosViviendasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 
 public class FonsaguaTableFormFactory implements TableFormFactory {
-    
+
     private static FonsaguaTableFormFactory instance = null;
+
     private static final Set<String> mainFormNames = new HashSet<String>();
 
     static {
@@ -42,15 +44,16 @@ public class FonsaguaTableFormFactory implements TableFormFactory {
 	mainFormNames.add(DepDistribucionForm.NAME);
 	mainFormNames.add(TuberiasForm.NAME);
 	mainFormNames.add(FuentesForm.NAME);
+	mainFormNames.add(FuentesContaminacionForm.NAME);
     }
-    
+
     public static FonsaguaTableFormFactory getInstance() {
 	if (instance == null) {
 	    instance = new FonsaguaTableFormFactory();
 	}
 	return instance;
     }
-    
+
     private FonsaguaTableFormFactory() {
     }
 
@@ -85,6 +88,8 @@ public class FonsaguaTableFormFactory implements TableFormFactory {
 		return new TuberiasForm(layer);
 	    } else if (layer.getName().equals(FuentesForm.NAME)) {
 		return new FuentesForm(layer);
+	    } else if (layer.getName().equals(FuentesContaminacionForm.NAME)) {
+		return new FuentesContaminacionForm(layer);
 	    }
 	}
 	return null;

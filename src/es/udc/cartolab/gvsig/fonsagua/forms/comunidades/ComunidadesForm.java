@@ -40,7 +40,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     private TableHandler valoracionSistemaHandler;
     private TableHandler datosConsumoHandler;
     private TableHandler habitosConsumoHandler;
-    private TableHandler fuentesContaminacionHandler;
+    private VectorialTableHandler fuentesContaminacionHandler;
     private VectorialTableHandler puntosViviendasHandler;
     private VectorialTableHandler centrosEducativosHandler;
     private VectorialTableHandler centrosSaludHandler;
@@ -112,8 +112,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	habitosConsumoHandler = new TableHandler(FonsaguaConstants.dataSchema,
 		HabitosConsumoForm.NAME, getWidgetComponents(), PKFIELD,
 		HabitosConsumoForm.colNames, HabitosConsumoForm.colAlias);
-	fuentesContaminacionHandler = new TableHandler(
-		FonsaguaConstants.dataSchema, FuentesContaminacionForm.NAME,
+	fuentesContaminacionHandler = new VectorialTableHandler(
+		toc.getLayerByName(FuentesContaminacionForm.NAME),
 		getWidgetComponents(), PKFIELD,
 		FuentesContaminacionForm.colNames,
 		FuentesContaminacionForm.colAlias);
@@ -219,7 +219,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	valoracionSistemaHandler.reload(new ValoracionSistemaForm());
 	datosConsumoHandler.reload(new DatosConsumoForm());
 	habitosConsumoHandler.reload(new HabitosConsumoForm());
-	fuentesContaminacionHandler.reload(new FuentesContaminacionForm());
+	fuentesContaminacionHandler.reload(FuentesContaminacionForm.NAME,
+		FonsaguaTableFormFactory.getInstance());
 	puntosViviendasHandler.reload(PuntosViviendasForm.NAME,
 		FonsaguaTableFormFactory.getInstance());
 	centrosEducativosHandler.reload(CentrosEducativosForm.NAME,
