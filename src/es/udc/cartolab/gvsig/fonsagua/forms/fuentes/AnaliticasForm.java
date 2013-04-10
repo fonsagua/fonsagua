@@ -6,9 +6,9 @@ import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
 public class AnaliticasForm extends AbstractSubForm {
 
     public static final String NAME = "analiticas";
-    public static String[] colNames = { "fuente", "cod_fuente", "ph",
-	    "oxigeno_disuelto", "coli_totales" };
-    public static String[] colAlias = { "Nombre Fuente", "Código Fuente", "PH",
+    public static String[] colNames = { "fecha", "ph", "oxigeno_disuelto",
+	    "coli_totales" };
+    public static String[] colAlias = { "Fecha muestra", "PH",
 	    "Oxígeno disuelto", "Colif. totales" };
 
     @Override
