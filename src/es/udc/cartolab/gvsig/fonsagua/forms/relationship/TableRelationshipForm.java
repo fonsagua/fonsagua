@@ -95,6 +95,8 @@ public class TableRelationshipForm extends JPanel implements IWindow,
 	    Vector<String> newRow = new Vector<String>();
 	    newRow.add(secondaryPKValueCB.getSelectedItem().toString());
 	    tableModel.addRow(newRow);
+	    PluginServices.getMDIManager().closeWindow(this);
 	}
     }
+
 }
