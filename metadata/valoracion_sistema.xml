@@ -10,6 +10,17 @@
 		<FIELDNAME>cod_comunidad</FIELDNAME>
 		<VALIDATIONRULE>MANDATORY</VALIDATIONRULE>
 	    </FIELD>
+	    	 <FIELD>
+		<FIELDNAME>cod_abastecimiento</FIELDNAME>
+		<DOMAINREADER>
+			<DRTYPE>db</DRTYPE>
+			<DRDBSCHEMA>fonsagua</DRDBSCHEMA>
+			<DRDBTABLE>r_abastecimientos_comunidades</DRDBTABLE>
+			<DRDBCOLUMNALIAS>cod_abastecimiento</DRDBCOLUMNALIAS>
+			<DRDBCOLUMNVALUE>cod_abastecimiento</DRDBCOLUMNVALUE>
+			<DRDBFOREIGNKEY>cod_comunidad</DRDBFOREIGNKEY>
+		</DOMAINREADER>
+	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>sist_cobros</FIELDNAME>
 		<DOMAINREADER>

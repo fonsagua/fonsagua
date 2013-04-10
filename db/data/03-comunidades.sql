@@ -659,6 +659,7 @@ CREATE TABLE fonsagua.valoracion_sistema (
        cod_comunidad VARCHAR
 	       NOT NULL
 	       REFERENCES fonsagua.comunidades(cod_comunidad),
+       cod_abastecimiento VARCHAR,
        sist_cobros VARCHAR
 	       REFERENCES dominios.sist_cobros,
        nivel_serv VARCHAR
