@@ -9,7 +9,7 @@ public class OtrasOrganizacionesForm extends AbstractSubForm {
     public static String[] colNames = { "tipo_organizacion", "nombre",
 	    "f_creacion", "actividad" };
     public static String[] colAlias = { "Organización", "Nombre",
-	    "Fecha de creación", "Actividades que realizan" };
+	    "Fecha creación", "Actividades" };
 
     @Override
     protected void fillSpecificValues() {
