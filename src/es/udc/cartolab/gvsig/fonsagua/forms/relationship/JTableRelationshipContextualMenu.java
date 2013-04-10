@@ -52,9 +52,7 @@ public class JTableRelationshipContextualMenu implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 	table = (JTable) e.getComponent();
-	if ((e.getClickCount() == 2) && (table.getSelectedRow() > -1)) {
-
-	} else if (e.getButton() == BUTTON_RIGHT) {
+	if (e.getButton() == BUTTON_RIGHT) {
 	    if (!JTableUtils.hasRows(table)
 		    || (table.getSelectedRow() == NO_ROW_SELECTED)) {
 		deleteMenuItem.setEnabled(false);

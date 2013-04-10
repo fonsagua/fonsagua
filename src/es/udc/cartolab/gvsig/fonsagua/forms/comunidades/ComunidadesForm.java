@@ -202,7 +202,6 @@ public class ComunidadesForm extends BasicAbstractForm {
     @Override
     protected void setListeners() {
 	super.setListeners();
-	TOCLayerManager toc = new TOCLayerManager();
 	adescosHandler.reload(new AdescosForm());
 	entrevistadoresHandler.reload(new EntrevistadoresForm());
 	entrevistadosHandler.reload(new EntrevistadosForm());
