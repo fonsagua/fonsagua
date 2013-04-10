@@ -84,7 +84,7 @@ public class TestTableRelationship {
 	testingRelationship = new TableRelationship(null, "comunidades",
 		"cod_comunidad", "abastecimientos", "cod_abastecimiento",
 		"r_abastecimientos_comunidades", FonsaguaConstants.dataSchema);
-	testingRelationship.setPrimaryPKValue("999");
+	testingRelationship.fillValues("999");
     }
 
     @Test

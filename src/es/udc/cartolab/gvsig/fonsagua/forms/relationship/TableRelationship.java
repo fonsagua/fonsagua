@@ -11,6 +11,7 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import es.icarto.gvsig.navtableforms.gui.tables.NotEditableTableModel;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class TableRelationship {
@@ -37,23 +38,13 @@ public class TableRelationship {
 	this.secondaryPKName = secondaryPKName;
 	this.relationTableName = relationTableName;
 	this.dbSchema = dbSchema;
-	if (widgets != null) {
-	    relationJTable = (JTable) widgets.get(relationTableName);
-	}
+	relationJTable = (JTable) widgets.get(relationTableName);
 	secondaryTableValues = getSecondaryValues();
-	if (relationJTable != null) {
-	    initializeJTable();
-	}
     }
 
-    private void initializeJTable() {
-	@SuppressWarnings("serial")
-	DefaultTableModel tableModel = new DefaultTableModel() {
-	    @Override
-	    public boolean isCellEditable(int row, int column) {
-		return false;
-	    }
-	};
+    public void fillValues(String primaryPKValue) {
+	this.primaryPKValue = primaryPKValue;
+	DefaultTableModel tableModel = new NotEditableTableModel();
 	tableModel.addColumn("Código");
 	relationJTable.setModel(tableModel);
 	fillRows();
@@ -63,7 +54,8 @@ public class TableRelationship {
 	try {
 	    PreparedStatement statement;
 	    String query = "SELECT * FROM " + dbSchema + "."
-		    + relationTableName + ";";
+		    + relationTableName + " WHERE " + primaryPKName + "='"
+		    + primaryPKValue + "';";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
 		    .prepareStatement(query);
 	    statement.execute();
@@ -194,14 +186,6 @@ public class TableRelationship {
 
     public void setRelationJTable(JTable relationJTable) {
 	this.relationJTable = relationJTable;
-    }
-
-    public String getPrimaryPKValue() {
-	return primaryPKValue;
-    }
-
-    public void setPrimaryPKValue(String primaryPKValue) {
-	this.primaryPKValue = primaryPKValue;
     }
 
     public JTableRelationshipContextualMenu getListener() {

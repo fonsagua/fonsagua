@@ -193,10 +193,9 @@ public class ComunidadesForm extends BasicAbstractForm {
 	otrosServiciosHandler.fillValues(codComunidad);
 	amenazasHandler.fillValues(codComunidad);
 
-	abastecimientosRelationship
-		.setPrimaryPKValue(((JTextField) getWidgetComponents().get(
-			abastecimientosRelationship.getPrimaryPKName()))
-			.getText());
+	final String pkvalue = ((JTextField) getWidgetComponents().get(PKFIELD))
+		.getText();
+	abastecimientosRelationship.fillValues(pkvalue);
     }
 
     @Override

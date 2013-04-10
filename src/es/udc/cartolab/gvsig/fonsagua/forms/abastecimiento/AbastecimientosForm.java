@@ -93,7 +93,7 @@ public class AbastecimientosForm extends BasicAbstractForm {
 		NAME, PKFIELD, ComunidadesForm.NAME, ComunidadesForm.PKFIELD,
 		"r_abastecimientos_comunidades", FonsaguaConstants.dataSchema);
 	fuentesRelationship = new TableRelationship(getWidgetComponents(),
-		NAME, PKFIELD, FuentesForm.NAME, FuentesForm.PKFIELD,
+		NAME, PKFIELD, FuentesForm.NAME, FuentesForm.PKNAME,
 		"r_abastecimientos_fuentes", FonsaguaConstants.dataSchema);
 	adescosHandler = new AlphanumericRelNNTableHandler(loadTable(
 		AdescosForm.NAME).getModel(), getWidgetComponents(), NAME,
@@ -145,12 +145,10 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	depDistribucionHandler.fillValues(codAbastecimiento);
 	tuberiasHandler.fillValues(codAbastecimiento);
 	bombeosHandler.fillValues(codAbastecimiento);
-	comunidadesRelationship
-		.setPrimaryPKValue(((JTextField) getWidgetComponents().get(
-			comunidadesRelationship.getPrimaryPKName())).getText());
-	fuentesRelationship
-		.setPrimaryPKValue(((JTextField) getWidgetComponents().get(
-			fuentesRelationship.getPrimaryPKName())).getText());
+	final String pkValue = ((JTextField) getWidgetComponents().get(PKFIELD))
+		.getText();
+	comunidadesRelationship.fillValues(pkValue);
+	fuentesRelationship.fillValues(pkValue);
 	adescosHandler.fillValues(codAbastecimiento);
 	implicacionComunidadHandler.fillValues(codAbastecimiento);
 	valoracionSistemaHandler.fillValues(codAbastecimiento);
