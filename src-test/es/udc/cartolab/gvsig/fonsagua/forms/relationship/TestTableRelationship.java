@@ -24,11 +24,13 @@ public class TestTableRelationship {
 
     private TableRelationship testingRelationship;
 
+    static DBSession connection;
+
     @BeforeClass
     public static void doSetupBeforeClass() {
 	initgvSIGDrivers();
 	try {
-	    DBSession.createConnection(DataBaseProperties.server,
+	    connection = DBSession.createConnection(DataBaseProperties.server,
 		    DataBaseProperties.port, DataBaseProperties.dbname, null,
 		    DataBaseProperties.superuser, "postgres");
 	} catch (DBException e) {
@@ -58,9 +60,9 @@ public class TestTableRelationship {
     public void doSetup() {
 	try {
 	    PreparedStatement statement;
-	    String query = "INSERT INTO comunidades (cod_comunidad, cod_departamento, cod_municipio, "
+	    String query = "INSERT INTO fonsagua.comunidades (cod_comunidad, cod_departamento, cod_municipio, "
 		    + "cod_canton, cod_caserio) VALUES ('999', '01', '01', '01', '01')";
-	    String query2 = "INSERT INTO abastecimientos (cod_abastecimiento) VALUES ('998')";
+	    String query2 = "INSERT INTO fonsagua.abastecimientos (cod_abastecimiento) VALUES ('998')";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
 		    .prepareStatement(query);
 	    statement.execute();
@@ -68,7 +70,15 @@ public class TestTableRelationship {
 		    .prepareStatement(query2);
 	    statement.execute();
 	} catch (SQLException e) {
-	    e.printStackTrace();
+	    try {
+		connection.close();
+		connection = DBSession.createConnection(
+			DataBaseProperties.server, DataBaseProperties.port,
+			DataBaseProperties.dbname, null,
+			DataBaseProperties.superuser, "postgres");
+	    } catch (DBException e1) {
+		e1.printStackTrace();
+	    }
 	}
 
 	testingRelationship = new TableRelationship(null, "comunidades",
@@ -82,7 +92,7 @@ public class TestTableRelationship {
 	testingRelationship.insertRow("998");
 	try {
 	    PreparedStatement statement;
-	    String query = "SELECT cod_abastecimiento FROM r_abastecimientos_comunidades "
+	    String query = "SELECT cod_abastecimiento FROM fonsagua.r_abastecimientos_comunidades "
 		    + "WHERE cod_comunidad='999'";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
 		    .prepareStatement(query);
@@ -101,7 +111,7 @@ public class TestTableRelationship {
 	testingRelationship.deleteRow("998");
 	try {
 	    PreparedStatement statement;
-	    String query = "SELECT cod_abastecimiento FROM r_abastecimientos_comunidades "
+	    String query = "SELECT cod_abastecimiento FROM fonsagua.r_abastecimientos_comunidades "
 		    + "WHERE cod_comunidad='999'";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
 		    .prepareStatement(query);
