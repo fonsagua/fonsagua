@@ -9,10 +9,9 @@ public class DepIntermediosForm extends BasicAbstractForm {
 
     public static final String NAME = "dep_intermedios";
     public static String[] colNames = { "cod_abastecimiento", "denominacion",
-	    "ubicacion", "sistema", "anho_construccion", "volumen" };
+	    "ubicacion", "sistema", "volumen" };
     public static String[] colAlias = { "Código de abastecimiento",
-	    "Denominación", "Ubicación", "Sistema", "Año de construcción",
-	    "Volumen (m³)" };
+	    "Denominación", "Ubicación", "Sistema", "Volumen (m³)" };
 
     public DepIntermediosForm(FLyrVect layer) {
 	super(layer);

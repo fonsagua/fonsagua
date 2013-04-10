@@ -7,8 +7,8 @@ public class AforosForm extends AbstractSubForm {
 
     public static final String NAME = "aforos";
     public static String[] colNames = { "cod_fuente", "aforo", "fecha", "hora" };
-    public static String[] colAlias = { "Código fuente",
-	    "Aforo(caudal, nivel freático, capacidad)", "Fecha", "Hora" };
+    public static String[] colAlias = { "Código fuente", "Aforo", "Fecha",
+	    "Hora" };
 
     @Override
     protected void fillSpecificValues() {

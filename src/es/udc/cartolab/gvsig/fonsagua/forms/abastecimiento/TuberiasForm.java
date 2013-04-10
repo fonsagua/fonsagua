@@ -9,10 +9,10 @@ public class TuberiasForm extends BasicAbstractForm {
 
     public static final String NAME = "tuberias";
     public static String[] colNames = { "cod_abastecimiento", "denominacion",
-	    "tipologia", "sistema", "material", "diametro", "anho_construccion" };
+	    "tipologia", "sistema", "material", "diametro" };
     public static String[] colAlias = { "Código de abastecimiento",
 	    "Denominación", "Tipología", "Sistema", "Material",
-	    "Diámetro (pulgadas)", "Año de construcción" };
+	    "Diámetro (pulgadas)" };
 
     public TuberiasForm(FLyrVect layer) {
 	super(layer);

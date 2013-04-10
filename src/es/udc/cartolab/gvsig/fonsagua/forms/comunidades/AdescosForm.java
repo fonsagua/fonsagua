@@ -9,7 +9,7 @@ public class AdescosForm extends AbstractSubForm {
     public static String[] colNames = { "nombre", "anho_const", "legalizada",
 	    "n_socios", "tot_miembros" };
     public static String[] colAlias = { "Nombre", "Año constitución",
-	    "Legalizada", "Nº de socios", "Nº total de miembros" };
+	    "Legalizada", "Nº de socios", "Nº de miembros" };
 
     @Override
     protected void fillSpecificValues() {

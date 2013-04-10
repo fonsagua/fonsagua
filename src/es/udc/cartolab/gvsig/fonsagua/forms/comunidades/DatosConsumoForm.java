@@ -7,10 +7,9 @@ public class DatosConsumoForm extends AbstractSubForm {
 
     public static final String NAME = "datos_consumo";
     public static String[] colNames = { "cod_abastecimiento",
-	    "tipo_abastecimiento", "usos_agua", "consumo", "n_miembros" };
+	    "tipo_abastecimiento", "consumo", "n_miembros" };
     public static String[] colAlias = { "Código abastecimiento",
-	    "Tipo abastecimiento", "Usos del agua", "Consumo (l/dia)",
-	    "Nº miembros familia" };
+	    "Tipo abastecimiento", "Consumo (l/dia)", "Nº miembros familia" };
 
     @Override
     protected void fillSpecificValues() {

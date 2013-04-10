@@ -7,10 +7,9 @@ public class GestionFinancieraForm extends AbstractSubForm {
 
     public static final String NAME = "gest_financiera";
     public static String[] colNames = { "fecha", "cost_produccion",
-	    "ingr_produccion", "margen_utilidad", "razon_liquidez" };
+	    "ingr_produccion" };
     public static String[] colAlias = { "Fecha", "Coste unitario ($/m3)",
-	    "Ingreso unitario ($/m3)", "Margen de utilidad",
-	    "Razón de liquidez" };
+	    "Ingreso unitario ($/m3)" };
 
     @Override
     protected void fillSpecificValues() {

@@ -138,17 +138,9 @@
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>naci_terremoto</FIELDNAME>
-		<ENABLEIF>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo o manantial</VALUE>
-		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>cambios_terremoto</FIELDNAME>
-		<ENABLEIF>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo o manantial</VALUE>
-		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>propietario</FIELDNAME>
@@ -159,24 +151,12 @@
 			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>
-		<ENABLEIF>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo o manantial</VALUE>
-		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>nom_propietario</FIELDNAME>
-		<ENABLEIF>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo o manantial</VALUE>
-		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>escritura</FIELDNAME>
-		<ENABLEIF>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo o manantial</VALUE>
-		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>tipo_pozo</FIELDNAME>
