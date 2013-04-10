@@ -142,9 +142,9 @@ public class ComunidadesForm extends BasicAbstractForm {
 		toc.getLayerByName(AmenazasForm.NAME), getWidgetComponents(),
 		PKFIELD, AmenazasForm.colNames, AmenazasForm.colAlias);
 	abastecimientosRelationship = new TableRelationship(
-		getWidgetComponents(), NAME, PKFIELD, AbastecimientosForm.NAME,
-		AbastecimientosForm.PKFIELD, "r_abastecimientos_comunidades",
-		FonsaguaConstants.dataSchema);
+		getWidgetComponents(), AbastecimientosForm.NAME,
+		AbastecimientosForm.PKFIELD, NAME, PKFIELD,
+		"r_abastecimientos_comunidades", FonsaguaConstants.dataSchema);
 
     }
 

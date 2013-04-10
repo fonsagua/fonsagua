@@ -113,9 +113,10 @@ public class TableRelationship {
     public void insertRow(String secondaryPKValue) {
 	try {
 	    PreparedStatement statement;
-	    String query = "INSERT INTO " + dbSchema + "."
-		    + relationTableName + " VALUES ( " + "'" + secondaryPKValue
-		    + "','" + primaryPKValue + "');";
+	    String query = "INSERT INTO " + dbSchema + "." + relationTableName
+		    + "( " + primaryPKName + ", " + secondaryPKName + ")"
+		    + " VALUES ( " + "'" + primaryPKValue + "','"
+		    + secondaryPKValue + "');";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
 		    .prepareStatement(query);
 	    statement.execute();
@@ -127,9 +128,10 @@ public class TableRelationship {
     public void deleteRow(String secondaryPKValue) {
 	try {
 	    PreparedStatement statement;
-	    String query = "DELETE FROM " + dbSchema + "."
-		    + relationTableName + " WHERE " + secondaryPKName + " = '"
-		    + secondaryPKValue + "';";
+	    String query = "DELETE FROM " + dbSchema + "." + relationTableName
+		    + " WHERE " + primaryPKName + " = '" + primaryPKValue
+		    + "' AND " + secondaryPKName + " = '" + secondaryPKValue
+		    + "';";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
 		    .prepareStatement(query);
 	    statement.execute();
