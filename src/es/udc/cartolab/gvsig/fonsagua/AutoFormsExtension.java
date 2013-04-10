@@ -127,6 +127,7 @@ public class AutoFormsExtension extends Extension {
 	    if (layer instanceof FLyrVect) {
 		BasicAbstractForm form = factory.createForm((FLyrVect) layer);
 		if (form.init()) {
+		    form.last();
 		    PluginServices.getMDIManager().addWindow(form);
 		}
 	    }
