@@ -7,6 +7,10 @@ import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+
+import javax.swing.JComponent;
+import javax.swing.JTable;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -81,9 +85,12 @@ public class TestTableRelationship {
 	    }
 	}
 
-	testingRelationship = new TableRelationship(null, "comunidades",
+	HashMap<String, JComponent> widgetsMock = new HashMap<String, JComponent>();
+	final String relationTableName = "r_abastecimientos_comunidades";
+	widgetsMock.put(relationTableName, new JTable());
+	testingRelationship = new TableRelationship(widgetsMock, "comunidades",
 		"cod_comunidad", "abastecimientos", "cod_abastecimiento",
-		"r_abastecimientos_comunidades", FonsaguaConstants.dataSchema);
+		relationTableName, FonsaguaConstants.dataSchema);
 	testingRelationship.fillValues("999");
     }
 
