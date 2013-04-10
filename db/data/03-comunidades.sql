@@ -841,7 +841,7 @@ CREATE TABLE fonsagua.bombeos (
 	       UNIQUE
 	       NOT NULL,
        denominacion VARCHAR,
-       tipologia VARCHAR
+       tipologia_bomba VARCHAR
 	       REFERENCES dominios.tipologia_bomba,
        energia VARCHAR
 	       REFERENCES dominios.energia,
@@ -970,7 +970,7 @@ CREATE TABLE fonsagua.tuberias (
 	       UNIQUE
 	       NOT NULL,
        denominacion VARCHAR,
-       tipologia VARCHAR
+       tipologia_tuberia VARCHAR
 	       REFERENCES dominios.tipologia_tuberia,
        sistema VARCHAR
 	       REFERENCES dominios.sistema,

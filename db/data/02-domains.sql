@@ -675,21 +675,6 @@ INSERT INTO dominios.tipologia_tuberia (item) VALUES
 ALTER TABLE dominios.tipologia_tuberia OWNER TO fonsagua;
 
 
-CREATE TABLE dominios.tipologia_bomba (
-       item VARCHAR
-	       PRIMARY KEY
-
-);
-
-INSERT INTO dominios.tipologia_bomba (item) VALUES
-       (' '),
-       ('Sumergible'),
-       ('Externa'),
-       ('Otros');
-
-ALTER TABLE dominios.tipologia_bomba OWNER TO fonsagua;
-
-
 CREATE TABLE dominios.material (
        item VARCHAR
 	       PRIMARY KEY
@@ -703,6 +688,21 @@ INSERT INTO dominios.material (item) VALUES
        ('HF');
 
 ALTER TABLE dominios.material OWNER TO fonsagua;
+
+
+CREATE TABLE dominios.tipologia_bomba (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO dominios.tipologia_bomba (item) VALUES
+       (' '),
+       ('Sumergible'),
+       ('Externa'),
+       ('Otros');
+
+ALTER TABLE dominios.tipologia_bomba OWNER TO fonsagua;
 
 
 CREATE TABLE dominios.energia (
