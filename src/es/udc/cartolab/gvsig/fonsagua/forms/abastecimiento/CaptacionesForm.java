@@ -9,10 +9,9 @@ public class CaptacionesForm extends BasicAbstractForm {
 
     public static final String NAME = "captaciones";
     public static String[] colNames = { "cod_abastecimiento", "denominacion",
-	    "tipo_fuente", "sistema", "anho_construccion", "volumen" };
+	    "tipo_fuente", "sistema", "volumen" };
     public static String[] colAlias = { "Código de abastecimiento",
-	    "Denominación", "Tipo de fuente", "Sistema", "Año de construcción",
-	    "Volumen (m³)" };
+	    "Denominación", "Tipo de fuente", "Sistema", "Volumen (m³)" };
 
     public CaptacionesForm(FLyrVect layer) {
 	super(layer);
