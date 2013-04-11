@@ -96,21 +96,23 @@ public class AbastecimientosForm extends BasicAbstractForm {
 		NAME, PKFIELD, FuentesForm.NAME, FuentesForm.PKNAME,
 		"r_abastecimientos_fuentes", FonsaguaConstants.dataSchema);
 	adescosHandler = new AlphanumericRelNNTableHandler(loadTable(
-		AdescosForm.NAME).getModel(), getWidgetComponents(), NAME,
+		AdescosForm.NAME).getModel(), getWidgetComponents(),
+		FonsaguaConstants.dataSchema + "." + NAME,
 		"cod_abastecimiento", FonsaguaConstants.dataSchema
 			+ ".r_abastecimientos_comunidades", "cod_comunidad",
 		AdescosForm.colNames, AdescosForm.colAlias);
 	implicacionComunidadHandler = new AlphanumericRelNNTableHandler(
 		loadTable(ImplicacionComunidadForm.NAME).getModel(),
 		getWidgetComponents(),
-		NAME,
+		FonsaguaConstants.dataSchema + "." + NAME,
 		"cod_abastecimiento",
 		FonsaguaConstants.dataSchema + ".r_abastecimientos_comunidades",
 		"cod_comunidad", ImplicacionComunidadForm.colNames,
 		ImplicacionComunidadForm.colAlias);
 	valoracionSistemaHandler = new AlphanumericRelNNTableHandler(loadTable(
 		ValoracionSistemaForm.NAME).getModel(), getWidgetComponents(),
-		NAME, "cod_abastecimiento", FonsaguaConstants.dataSchema
+		FonsaguaConstants.dataSchema + "." + NAME,
+		"cod_abastecimiento", FonsaguaConstants.dataSchema
 			+ ".r_abastecimientos_comunidades", "cod_comunidad",
 		ValoracionSistemaForm.colNames, ValoracionSistemaForm.colAlias);
     }
