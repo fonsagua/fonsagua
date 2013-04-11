@@ -601,19 +601,6 @@ INSERT INTO dominios.sistema (item) VALUES
 ALTER TABLE dominios.sistema OWNER TO fonsagua;
 
 
-CREATE TABLE dominios.cod_bombeo (
-       item VARCHAR
-	       PRIMARY KEY
-
-);
-
-INSERT INTO dominios.cod_bombeo (item) VALUES
-       (' '),
-       ('bombeos.cod_bombeo');
-
-ALTER TABLE dominios.cod_bombeo OWNER TO fonsagua;
-
-
 CREATE TABLE dominios.tipo_construccion (
        item VARCHAR
 	       PRIMARY KEY

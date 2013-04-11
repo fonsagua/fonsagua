@@ -10,7 +10,7 @@
 		<FIELDNAME>cod_comunidad</FIELDNAME>
 		<VALIDATIONRULE>MANDATORY</VALIDATIONRULE>
 	    </FIELD>
-	        <FIELD>
+       	    <FIELD>
 		<FIELDNAME>cod_abastecimiento</FIELDNAME>
 		<DOMAINREADER>
 			<DRTYPE>db</DRTYPE>

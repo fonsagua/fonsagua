@@ -26,15 +26,15 @@ CREATE TABLE fonsagua.comunidades (
        cuenca VARCHAR,
        coment_loc VARCHAR,
        tip_nucleo VARCHAR
-	       REFERENCES dominios.tip_nucleo,
+	       REFERENCES dominios.tip_nucleo(item),
        anho_establecimiento INTEGER,
        n_familias INTEGER,
        n_viviendas INTEGER,
        n_habitantes INTEGER,
        tip_origen VARCHAR
-	       REFERENCES dominios.tip_origen,
+	       REFERENCES dominios.tip_origen(item),
        antiguedad VARCHAR
-	       REFERENCES dominios.antiguedad,
+	       REFERENCES dominios.antiguedad(item),
        lug_origen VARCHAR,
        n_ninhas INTEGER,
        n_ninhos INTEGER,
@@ -55,7 +55,7 @@ CREATE TABLE fonsagua.comunidades (
        exp_ongs BOOLEAN,
        coment_org VARCHAR,
        emigracion VARCHAR
-	       REFERENCES dominios.emigracion,
+	       REFERENCES dominios.emigracion(item),
        f_primario FLOAT,
        f_secundario FLOAT,
        f_terciario FLOAT,
@@ -116,7 +116,7 @@ CREATE TABLE fonsagua.comunidades (
        consumo FLOAT,
        lug_agua_cercano VARCHAR,
        tip_regadio VARCHAR
-	       REFERENCES dominios.tip_regadio,
+	       REFERENCES dominios.tip_regadio(item),
        sup_total_riego FLOAT,
        areas_pot_riego BOOLEAN,
        agroquimicos BOOLEAN,
@@ -172,13 +172,13 @@ CREATE TABLE fonsagua.comunidades (
        f_dat_sanidad VARCHAR,
        n_iglesias INTEGER,
        tip_acceso VARCHAR
-	       REFERENCES dominios.tip_acceso,
+	       REFERENCES dominios.tip_acceso(item),
        tip_sup_acceso VARCHAR
-	       REFERENCES dominios.tip_sup_acceso,
+	       REFERENCES dominios.tip_sup_acceso(item),
        acceso_ver VARCHAR
-	       REFERENCES dominios.acceso_ver,
+	       REFERENCES dominios.acceso_ver(item),
        acceso_inv VARCHAR
-	       REFERENCES dominios.acceso_inv,
+	       REFERENCES dominios.acceso_inv(item),
        trans_publico BOOLEAN,
        frec_tpublico INTEGER,
        t_parada INTEGER,
@@ -194,18 +194,18 @@ CREATE TABLE fonsagua.comunidades (
        veg_ind_sup FLOAT,
        veg_agricola BOOLEAN,
        veg_agr_tip VARCHAR
-	       REFERENCES dominios.veg_agr_tip,
+	       REFERENCES dominios.veg_agr_tip(item),
        veg_agr_sup FLOAT,
        veg_forestal BOOLEAN,
        veg_for_tip VARCHAR
-	       REFERENCES dominios.veg_for_tip,
+	       REFERENCES dominios.veg_for_tip(item),
        veg_for_sup FLOAT,
        deforestacion VARCHAR
-	       REFERENCES dominios.deforestacion,
+	       REFERENCES dominios.deforestacion(item),
        avance_fagricola VARCHAR
-	       REFERENCES dominios.avance_fagricola,
+	       REFERENCES dominios.avance_fagricola(item),
        riesgo_erosion VARCHAR
-	       REFERENCES dominios.riesgo_erosion,
+	       REFERENCES dominios.riesgo_erosion(item),
        frec_incendios VARCHAR,
        est_hidrogeologicos BOOLEAN,
        autor_hidrogeo VARCHAR,
@@ -228,10 +228,10 @@ CREATE TABLE fonsagua.comunidades (
        capac_riesgos BOOLEAN,
        coment_frg VARCHAR,
        sist_abastecimiento VARCHAR
-	       REFERENCES dominios.sist_abastecimiento,
+	       REFERENCES dominios.sist_abastecimiento(item),
        n_viv_abast INTEGER,
        origen_aguas VARCHAR
-	       REFERENCES dominios.origen_aguas,
+	       REFERENCES dominios.origen_aguas(item),
        f_dat_abast VARCHAR,
        resum_abast VARCHAR,
        aba_s_cantareras INTEGER,
@@ -284,7 +284,7 @@ CREATE TABLE fonsagua.comunidades (
        evac_comunal BOOLEAN,
        evac_otros BOOLEAN,
        ag_gris_calle VARCHAR
-	       REFERENCES dominios.ag_gris_calle,
+	       REFERENCES dominios.ag_gris_calle(item),
        a_gris_quebrada BOOLEAN,
        trat_ag_residuales BOOLEAN,
        trat_trampa INTEGER,
@@ -302,18 +302,18 @@ CREATE TABLE fonsagua.comunidades (
        let_abonera INTEGER,
        pq_no_aboneras VARCHAR,
        trat_aboneras VARCHAR
-	       REFERENCES dominios.trat_aboneras,
+	       REFERENCES dominios.trat_aboneras(item),
        disp_abono VARCHAR,
        uso_letrinas BOOLEAN,
        dist_let_agua VARCHAR
-	       REFERENCES dominios.dist_let_agua,
+	       REFERENCES dominios.dist_let_agua(item),
        h_lavad_comun BOOLEAN,
        n_lavaderos INTEGER,
        tip_almacenamiento VARCHAR,
        n_pilas INTEGER,
        n_barriles INTEGER,
        disp_basuras VARCHAR
-	       REFERENCES dominios.disp_basuras,
+	       REFERENCES dominios.disp_basuras(item),
        coment_san VARCHAR,
        necesidad1 VARCHAR,
        necesidad2 VARCHAR,
@@ -326,6 +326,114 @@ SELECT addgeometrycolumn('fonsagua', 'comunidades', 'geom', 32616, 'POINT', 2);
 
 ALTER TABLE fonsagua.comunidades OWNER TO fonsagua;
 
+
+CREATE TABLE fonsagua.abastecimientos (
+       gid SERIAL PRIMARY KEY,
+       cod_abastecimiento VARCHAR
+	       UNIQUE
+	       NOT NULL,
+       abastecimiento VARCHAR,
+       fecha Date,
+       gestion VARCHAR
+	       REFERENCES dominios.gestion(item),
+       ong VARCHAR,
+       h_juntas_agua BOOLEAN,
+       h_adescos BOOLEAN,
+       tarifa_agua BOOLEAN,
+       cuota_domiciliar NUMERIC(5,2),
+       cuota_comercial NUMERIC(5,2),
+       cuota_cantarera NUMERIC(5,2),
+       cuota_otros NUMERIC(5,2),
+       frec_pago VARCHAR,
+       gastos_cubiertos VARCHAR,
+       mora_porcent NUMERIC(5,2),
+       coment_tarifa VARCHAR,
+       coment_gestion VARCHAR,
+       cons_domestico NUMERIC(5,2),
+       cons_ag_gan NUMERIC(5,2),
+       tot_consumo NUMERIC(5,2),
+       tipo_sistema VARCHAR
+	       REFERENCES dominios.tipo_sistema(item),
+       ent_constructora VARCHAR,
+       anho_construccion INTEGER,
+       coste_energia NUMERIC(5,2),
+       a_domiciliar BOOLEAN,
+       n_a_domiciliar INTEGER,
+       a_cantarera BOOLEAN,
+       n_a_cantarera INTEGER,
+       a_comercial BOOLEAN,
+       n_a_comercial INTEGER,
+       a_otras BOOLEAN,
+       n_a_otras INTEGER,
+       tot_acometidas INTEGER,
+       a_medidor INTEGER,
+       a_sin_medidor INTEGER,
+       coment_sis VARCHAR,
+       des_agua BOOLEAN,
+       des_cloracion BOOLEAN,
+       des_quimicos BOOLEAN,
+       des_otros BOOLEAN,
+       des_otros_detalle VARCHAR,
+       des_tanque BOOLEAN,
+       des_impelencia BOOLEAN,
+       des_otra BOOLEAN,
+       des_otra_detalle VARCHAR,
+       metodo VARCHAR,
+       frec_desinfeccion VARCHAR,
+       coste_desinfeccion NUMERIC(5,2),
+       coment_desinfeccion VARCHAR,
+       tipo_mantenimiento VARCHAR
+	       REFERENCES dominios.tipo_mantenimiento(item),
+       zona_mantenimiento VARCHAR,
+       coste_mantenimiento NUMERIC(5,2),
+       con_calidad BOOLEAN,
+       frec_con_calidad INTEGER,
+       con_funcionamiento BOOLEAN,
+       fre_con_funcionamiento INTEGER,
+       mant_tecnicos BOOLEAN,
+       proced_tecnicos VARCHAR
+	       REFERENCES dominios.proced_tecnicos(item),
+       proced_tec_detalle VARCHAR
+
+);
+
+SELECT addgeometrycolumn('fonsagua', 'abastecimientos', 'geom', 32616, 'MULTIPOLYGON', 2);
+
+ALTER TABLE fonsagua.abastecimientos OWNER TO fonsagua;
+
+CREATE TABLE fonsagua.bombeos (
+       gid SERIAL PRIMARY KEY,
+       cod_abastecimiento VARCHAR
+	       NOT NULL
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+       cod_bombeo VARCHAR
+	       UNIQUE
+	       NOT NULL,
+       denominacion VARCHAR,
+       tipologia_bomba VARCHAR
+	       REFERENCES dominios.tipologia_bomba(item),
+       energia VARCHAR
+	       REFERENCES dominios.energia(item),
+       potencia NUMERIC(5,2),
+       caudal NUMERIC(5,2),
+       prof_succion NUMERIC(5,2),
+       tiempo NUMERIC(5,2),
+       altura INTEGER,
+       n_bombas INTEGER,
+       anho_construccion INTEGER,
+       estado VARCHAR
+	       REFERENCES dominios.estado(item),
+       utm_x NUMERIC(5,3),
+       utm_y NUMERIC(5,3),
+       utm_z NUMERIC(5,3),
+       coment_bom VARCHAR
+
+);
+
+SELECT addgeometrycolumn('fonsagua', 'bombeos', 'geom', 32616, 'POINT', 2);
+
+ALTER TABLE fonsagua.bombeos OWNER TO fonsagua;
+
 CREATE TABLE fonsagua.puntos_viviendas (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
@@ -335,7 +443,7 @@ CREATE TABLE fonsagua.puntos_viviendas (
 	       UNIQUE
 	       NOT NULL,
        tipo VARCHAR
-	       REFERENCES dominios.tipo,
+	       REFERENCES dominios.tipo(item),
        utm_x FLOAT,
        utm_y FLOAT,
        utm_z FLOAT,
@@ -433,7 +541,7 @@ CREATE TABLE fonsagua.ongs (
        capacitacion BOOLEAN,
        tipo_capac VARCHAR,
        valoracion VARCHAR
-	       REFERENCES dominios.valoracion
+	       REFERENCES dominios.valoracion(item)
 
 );
 
@@ -446,7 +554,7 @@ CREATE TABLE fonsagua.otras_organizaciones (
 	       NOT NULL
 	       REFERENCES fonsagua.comunidades(cod_comunidad),
        tipo_organizacion VARCHAR
-	       REFERENCES dominios.tipo_organizacion,
+	       REFERENCES dominios.tipo_organizacion(item),
        nombre VARCHAR,
        f_creacion Date,
        actividad VARCHAR
@@ -544,7 +652,7 @@ CREATE TABLE fonsagua.centros_educativos (
 	       NOT NULL,
        nombre VARCHAR,
        niveles VARCHAR
-	       REFERENCES dominios.niveles,
+	       REFERENCES dominios.niveles(item),
        tot_alumnos INTEGER,
        n_ninhas INTEGER,
        n_ninhos INTEGER,
@@ -593,7 +701,7 @@ CREATE TABLE fonsagua.otros_servicios (
 	       NOT NULL,
        nombre VARCHAR,
        tipo_servicio VARCHAR
-	       REFERENCES dominios.tipo_servicio,
+	       REFERENCES dominios.tipo_servicio(item),
        utm_x FLOAT,
        utm_y FLOAT,
        utm_z FLOAT
@@ -627,7 +735,7 @@ CREATE TABLE fonsagua.amenazas (
 	       UNIQUE
 	       NOT NULL,
        tipo_amenaza VARCHAR
-	       REFERENCES dominios.tipo_amenaza,
+	       REFERENCES dominios.tipo_amenaza(item),
        n_fam_afectadas INTEGER,
        utm_x FLOAT,
        utm_y FLOAT,
@@ -645,9 +753,9 @@ CREATE TABLE fonsagua.implicacion_comunidad (
 	       NOT NULL
 	       REFERENCES fonsagua.comunidades(cod_comunidad),
        dinero_inv VARCHAR
-	       REFERENCES dominios.dinero_inv,
+	       REFERENCES dominios.dinero_inv(item),
        tiempo_inv VARCHAR
-	       REFERENCES dominios.tiempo_inv
+	       REFERENCES dominios.tiempo_inv(item)
 
 );
 
@@ -659,15 +767,16 @@ CREATE TABLE fonsagua.valoracion_sistema (
        cod_comunidad VARCHAR
 	       NOT NULL
 	       REFERENCES fonsagua.comunidades(cod_comunidad),
-       cod_abastecimiento VARCHAR,
+       cod_abastecimiento VARCHAR
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
        sist_cobros VARCHAR
-	       REFERENCES dominios.sist_cobros,
+	       REFERENCES dominios.sist_cobros(item),
        nivel_serv VARCHAR
-	       REFERENCES dominios.nivel_serv,
+	       REFERENCES dominios.nivel_serv(item),
        agua_suf BOOLEAN,
        serv_continuo BOOLEAN,
        acceso_tomas VARCHAR
-	       REFERENCES dominios.acceso_tomas,
+	       REFERENCES dominios.acceso_tomas(item),
        comentarios_usuarios VARCHAR
 
 );
@@ -680,9 +789,10 @@ CREATE TABLE fonsagua.datos_consumo (
        cod_comunidad VARCHAR
 	       NOT NULL
 	       REFERENCES fonsagua.comunidades(cod_comunidad),
-       cod_abastecimiento VARCHAR,
+       cod_abastecimiento VARCHAR
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
        tipo_abastecimiento VARCHAR
-	       REFERENCES dominios.tipo_abastecimiento,
+	       REFERENCES dominios.tipo_abastecimiento(item),
        mujeres BOOLEAN,
        hombres BOOLEAN,
        ninhas BOOLEAN,
@@ -721,7 +831,7 @@ CREATE TABLE fonsagua.fuentes_contaminacion (
 	       NOT NULL
 	       REFERENCES fonsagua.comunidades(cod_comunidad),
        tipo_contaminacion VARCHAR
-	       REFERENCES dominios.tipo_contaminacion,
+	       REFERENCES dominios.tipo_contaminacion(item),
        n_fam_vierten INTEGER,
        utm_x FLOAT,
        utm_y FLOAT,
@@ -734,79 +844,7 @@ SELECT addgeometrycolumn('fonsagua', 'fuentes_contaminacion', 'geom', 32616, 'PO
 
 ALTER TABLE fonsagua.fuentes_contaminacion OWNER TO fonsagua;
 
-CREATE TABLE fonsagua.abastecimientos (
-       gid SERIAL PRIMARY KEY,
-       cod_abastecimiento VARCHAR
-	       UNIQUE
-	       NOT NULL,
-       abastecimiento VARCHAR,
-       fecha Date,
-       gestion VARCHAR
-	       REFERENCES dominios.gestion,
-       ong VARCHAR,
-       h_juntas_agua BOOLEAN,
-       h_adescos BOOLEAN,
-       tarifa_agua BOOLEAN,
-       cuota_domiciliar NUMERIC(5,2),
-       cuota_comercial NUMERIC(5,2),
-       cuota_cantarera NUMERIC(5,2),
-       cuota_otros NUMERIC(5,2),
-       frec_pago VARCHAR,
-       gastos_cubiertos VARCHAR,
-       mora_porcent NUMERIC(5,2),
-       coment_tarifa VARCHAR,
-       coment_gestion VARCHAR,
-       cons_domestico NUMERIC(5,2),
-       cons_ag_gan NUMERIC(5,2),
-       tot_consumo NUMERIC(5,2),
-       tipo_sistema VARCHAR
-	       REFERENCES dominios.tipo_sistema,
-       ent_constructora VARCHAR,
-       anho_construccion INTEGER,
-       coste_energia NUMERIC(5,2),
-       a_domiciliar BOOLEAN,
-       n_a_domiciliar INTEGER,
-       a_cantarera BOOLEAN,
-       n_a_cantarera INTEGER,
-       a_comercial BOOLEAN,
-       n_a_comercial INTEGER,
-       a_otras BOOLEAN,
-       n_a_otras INTEGER,
-       tot_acometidas INTEGER,
-       a_medidor INTEGER,
-       a_sin_medidor INTEGER,
-       coment_sis VARCHAR,
-       des_agua BOOLEAN,
-       des_cloracion BOOLEAN,
-       des_quimicos BOOLEAN,
-       des_otros BOOLEAN,
-       des_otros_detalle VARCHAR,
-       des_tanque BOOLEAN,
-       des_impelencia BOOLEAN,
-       des_otra BOOLEAN,
-       des_otra_detalle VARCHAR,
-       metodo VARCHAR,
-       frec_desinfeccion VARCHAR,
-       coste_desinfeccion NUMERIC(5,2),
-       coment_desinfeccion VARCHAR,
-       tipo_mantenimiento VARCHAR
-	       REFERENCES dominios.tipo_mantenimiento,
-       zona_mantenimiento VARCHAR,
-       coste_mantenimiento NUMERIC(5,2),
-       con_calidad BOOLEAN,
-       frec_con_calidad INTEGER,
-       con_funcionamiento BOOLEAN,
-       fre_con_funcionamiento INTEGER,
-       mant_tecnicos BOOLEAN,
-       proced_tecnicos VARCHAR
-	       REFERENCES dominios.proced_tecnicos,
-       proced_tec_detalle VARCHAR
 
-);
-
-SELECT addgeometrycolumn('fonsagua', 'abastecimientos', 'geom', 32616, 'MULTIPOLYGON', 2);
-
-ALTER TABLE fonsagua.abastecimientos OWNER TO fonsagua;
 
 CREATE TABLE fonsagua.juntas_agua (
        gid SERIAL PRIMARY KEY,
@@ -832,41 +870,6 @@ CREATE TABLE fonsagua.juntas_agua (
 
 ALTER TABLE fonsagua.juntas_agua OWNER TO fonsagua;
 
-
-CREATE TABLE fonsagua.bombeos (
-       gid SERIAL PRIMARY KEY,
-       cod_abastecimiento VARCHAR
-	       NOT NULL
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
-       cod_bombeo VARCHAR
-	       UNIQUE
-	       NOT NULL,
-       denominacion VARCHAR,
-       tipologia_bomba VARCHAR
-	       REFERENCES dominios.tipologia_bomba,
-       energia VARCHAR
-	       REFERENCES dominios.energia,
-       potencia NUMERIC(5,2),
-       caudal NUMERIC(5,2),
-       prof_succion NUMERIC(5,2),
-       tiempo NUMERIC(5,2),
-       altura INTEGER,
-       n_bombas INTEGER,
-       anho_construccion INTEGER,
-       estado VARCHAR
-	       REFERENCES dominios.estado,
-       utm_x NUMERIC(5,3),
-       utm_y NUMERIC(5,3),
-       utm_z NUMERIC(5,3),
-       coment_bom VARCHAR
-
-);
-
-SELECT addgeometrycolumn('fonsagua', 'bombeos', 'geom', 32616, 'POINT', 2);
-
-ALTER TABLE fonsagua.bombeos OWNER TO fonsagua;
-
-
 CREATE TABLE fonsagua.captaciones (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
@@ -877,17 +880,17 @@ CREATE TABLE fonsagua.captaciones (
 	       NOT NULL,
        denominacion VARCHAR,
        tipo_fuente VARCHAR
-	       REFERENCES dominios.tipo_fuente,
+	       REFERENCES dominios.tipo_fuente(item),
        sistema VARCHAR
-	       REFERENCES dominios.sistema,
+	       REFERENCES dominios.sistema(item),
        cod_bombeo VARCHAR
 	       REFERENCES fonsagua.bombeos(cod_bombeo),
        tipo_construccion VARCHAR
-	       REFERENCES dominios.tipo_construccion,
+	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
        volumen NUMERIC(5,2),
        estado VARCHAR
-	       REFERENCES dominios.estado,
+	       REFERENCES dominios.estado(item),
        utm_x NUMERIC(5,3),
        utm_y NUMERIC(5,3),
        utm_z NUMERIC(5,3),
@@ -909,18 +912,18 @@ CREATE TABLE fonsagua.dep_intermedios (
 	       NOT NULL,
        denominacion VARCHAR,
        ubicacion VARCHAR
-	       REFERENCES dominios.ubicacion,
+	       REFERENCES dominios.ubicacion(item),
        altura NUMERIC(5,2),
        sistema VARCHAR
-	       REFERENCES dominios.sistema,
+	       REFERENCES dominios.sistema(item),
        cod_bombeo VARCHAR
 	       REFERENCES fonsagua.bombeos(cod_bombeo),
        tipo_construccion VARCHAR
-	       REFERENCES dominios.tipo_construccion,
+	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
        volumen NUMERIC(5,2),
        estado VARCHAR
-	       REFERENCES dominios.estado,
+	       REFERENCES dominios.estado(item),
        utm_x NUMERIC(5,3),
        utm_y NUMERIC(5,3),
        utm_z NUMERIC(5,3),
@@ -942,15 +945,15 @@ CREATE TABLE fonsagua.dep_distribucion (
 	       NOT NULL,
        denominacion VARCHAR,
        ubicacion VARCHAR
-	       REFERENCES dominios.ubicacion,
+	       REFERENCES dominios.ubicacion(item),
        altura NUMERIC(5,2),
        tipo_construccion VARCHAR
-	       REFERENCES dominios.tipo_construccion,
+	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
        volumen NUMERIC(5,2),
        t_llenado NUMERIC(5,2),
        estado VARCHAR
-	       REFERENCES dominios.estado,
+	       REFERENCES dominios.estado(item),
        utm_x NUMERIC(5,3),
        utm_y NUMERIC(5,3),
        utm_z NUMERIC(5,3),
@@ -972,15 +975,15 @@ CREATE TABLE fonsagua.tuberias (
 	       NOT NULL,
        denominacion VARCHAR,
        tipologia_tuberia VARCHAR
-	       REFERENCES dominios.tipologia_tuberia,
+	       REFERENCES dominios.tipologia_tuberia(item),
        sistema VARCHAR
-	       REFERENCES dominios.sistema,
+	       REFERENCES dominios.sistema(item),
        material VARCHAR
-	       REFERENCES dominios.material,
+	       REFERENCES dominios.material(item),
        diametro NUMERIC(5,2),
        anho_construccion INTEGER,
        estado VARCHAR
-	       REFERENCES dominios.estado,
+	       REFERENCES dominios.estado(item),
        fugas BOOLEAN,
        loc_fugas VARCHAR,
        coment_tub VARCHAR
@@ -990,6 +993,7 @@ CREATE TABLE fonsagua.tuberias (
 SELECT addgeometrycolumn('fonsagua', 'tuberias', 'geom', 32616, 'MULTILINESTRING', 2);
 
 ALTER TABLE fonsagua.tuberias OWNER TO fonsagua;
+
 
 
 CREATE TABLE fonsagua.cobertura (
@@ -1063,7 +1067,7 @@ CREATE TABLE fonsagua.evaluacion (
        agua_no_contabilizada NUMERIC(5,2),
        micromedicion NUMERIC(5,2),
        calidad_agua VARCHAR
-	       REFERENCES dominios.calidad_agua,
+	       REFERENCES dominios.calidad_agua(item),
        cob_saneamiento NUMERIC(5,2),
        margen_utilidad NUMERIC(5,2),
        razon_liquidez NUMERIC(5,2),
@@ -1082,7 +1086,7 @@ CREATE TABLE fonsagua.fuentes (
        fuente VARCHAR,
        tipo_fuente VARCHAR
 	       NOT NULL
-	       REFERENCES dominios.tipo_fuente,
+	       REFERENCES dominios.tipo_fuente(item),
        comunidad VARCHAR,
        fecha Date,
        dist_comunidad FLOAT,
@@ -1099,18 +1103,18 @@ CREATE TABLE fonsagua.fuentes (
        gan_cantaradas INTEGER,
        cob_vegetal BOOLEAN,
        tipo_vegetacion VARCHAR
-	       REFERENCES dominios.tipo_vegetacion,
+	       REFERENCES dominios.tipo_vegetacion(item),
        especies INTEGER,
        deforestacion VARCHAR
-	       REFERENCES dominios.deforestacion,
+	       REFERENCES dominios.deforestacion(item),
        naci_terremoto BOOLEAN,
        cambios_terremoto BOOLEAN,
        propietario VARCHAR
-	       REFERENCES dominios.propietario,
+	       REFERENCES dominios.propietario(item),
        nom_propietario VARCHAR,
        escritura BOOLEAN,
        tipo_pozo VARCHAR
-	       REFERENCES dominios.tipo_pozo,
+	       REFERENCES dominios.tipo_pozo(item),
        prof_pozo FLOAT,
        diametro_interior FLOAT,
        altura_brocal FLOAT,
@@ -1157,7 +1161,7 @@ CREATE TABLE fonsagua.analiticas (
        c_ph FLOAT,
        para_rango BOOLEAN,
        cond_muestra VARCHAR
-	       REFERENCES dominios.cond_muestra,
+	       REFERENCES dominios.cond_muestra(item),
        coment_muestra VARCHAR,
        laboratorio VARCHAR,
        fecha_analisis Date,

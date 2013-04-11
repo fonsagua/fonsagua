@@ -137,12 +137,6 @@
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
-		<FIELDNAME>naci_terremoto</FIELDNAME>
-	    </FIELD>
-       	    <FIELD>
-		<FIELDNAME>cambios_terremoto</FIELDNAME>
-	    </FIELD>
-       	    <FIELD>
 		<FIELDNAME>propietario</FIELDNAME>
 		<DOMAINREADER>
 			<DRTYPE>db</DRTYPE>
@@ -151,12 +145,6 @@
 			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>
-	    </FIELD>
-       	    <FIELD>
-		<FIELDNAME>nom_propietario</FIELDNAME>
-	    </FIELD>
-       	    <FIELD>
-		<FIELDNAME>escritura</FIELDNAME>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>tipo_pozo</FIELDNAME>

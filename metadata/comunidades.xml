@@ -87,17 +87,6 @@
 			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>
-		<ENABLEIF>
-			<COMPONENT>tip_origen</COMPONENT>
-			<VALUE>desplazada o mixta</VALUE>
-		</ENABLEIF>
-	    </FIELD>
-       	    <FIELD>
-		<FIELDNAME>lug_origen</FIELDNAME>
-		<ENABLEIF>
-			<COMPONENT>tip_origen</COMPONENT>
-			<VALUE>desplazada o mixta</VALUE>
-		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>n_ninhas</FIELDNAME>
