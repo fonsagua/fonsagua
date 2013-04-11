@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import es.icarto.gvsig.navtableforms.gui.tables.NotEditableTableModel;
+import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class TableRelationship {
@@ -25,7 +26,6 @@ public class TableRelationship {
 
     private JTable relationJTable;
     private String primaryPKValue;
-    private ArrayList<String> secondaryTableValues;
     private JTableRelationshipContextualMenu listener;
 
     public TableRelationship(HashMap<String, JComponent> widgets,
@@ -39,7 +39,6 @@ public class TableRelationship {
 	this.relationTableName = relationTableName;
 	this.dbSchema = dbSchema;
 	relationJTable = (JTable) widgets.get(relationTableName);
-	secondaryTableValues = getSecondaryValues();
     }
 
     public void fillValues(String primaryPKValue) {
@@ -82,11 +81,15 @@ public class TableRelationship {
 	relationJTable.removeMouseListener(listener);
     }
 
-    private ArrayList<String> getSecondaryValues() {
+    public ArrayList<String> getSecondaryValues() {
 	try {
 	    PreparedStatement statement;
 	    String query = "SELECT " + secondaryPKName + " FROM " + dbSchema
-		    + "." + secondaryTableName + ";";
+		    + "." + secondaryTableName + " WHERE " + secondaryPKName
+		    + " NOT IN (SELECT " + secondaryPKName + " FROM "
+		    + FonsaguaConstants.dataSchema + "." + relationTableName
+		    + " WHERE " + primaryPKName + " = '" + primaryPKValue
+		    + "');";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
 		    .prepareStatement(query);
 	    statement.execute();
@@ -194,14 +197,6 @@ public class TableRelationship {
 
     public void setListener(JTableRelationshipContextualMenu listener) {
 	this.listener = listener;
-    }
-
-    public ArrayList<String> getSecondaryTableValues() {
-	return secondaryTableValues;
-    }
-
-    public void setSecondaryTableValues(ArrayList<String> secondaryTableValues) {
-	this.secondaryTableValues = secondaryTableValues;
     }
 
 }

@@ -46,7 +46,7 @@ public class TableRelationshipForm extends JPanel implements IWindow,
 	secondaryPKValueCB = (JComboBox) formPanel
 		.getComponentByName("secondaryPKValueCB");
 	addButton = (JButton) formPanel.getComponentByName("addButton");
-	for (String value : tableRelationship.getSecondaryTableValues()) {
+	for (String value : tableRelationship.getSecondaryValues()) {
 	    secondaryPKValueCB.addItem(value);
 	}
 	addButton.addActionListener(this);
@@ -88,14 +88,16 @@ public class TableRelationshipForm extends JPanel implements IWindow,
     @Override
     public void actionPerformed(ActionEvent event) {
 	if (event.getSource() == addButton) {
-	    tableRelationship.insertRow(secondaryPKValueCB.getSelectedItem()
-		    .toString());
-	    DefaultTableModel tableModel = (DefaultTableModel) tableRelationship
-		    .getRelationJTable().getModel();
-	    Vector<String> newRow = new Vector<String>();
-	    newRow.add(secondaryPKValueCB.getSelectedItem().toString());
-	    tableModel.addRow(newRow);
-	    PluginServices.getMDIManager().closeWindow(this);
+	    if (secondaryPKValueCB.getSelectedItem() != null) {
+		tableRelationship.insertRow(secondaryPKValueCB
+			.getSelectedItem().toString());
+		DefaultTableModel tableModel = (DefaultTableModel) tableRelationship
+			.getRelationJTable().getModel();
+		Vector<String> newRow = new Vector<String>();
+		newRow.add(secondaryPKValueCB.getSelectedItem().toString());
+		tableModel.addRow(newRow);
+		PluginServices.getMDIManager().closeWindow(this);
+	    }
 	}
     }
 
