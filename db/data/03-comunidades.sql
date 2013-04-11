@@ -1,3 +1,4 @@
+RESET search_path;
 
 CREATE TABLE fonsagua.comunidades (
        gid SERIAL PRIMARY KEY,

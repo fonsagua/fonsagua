@@ -17,8 +17,7 @@ create-db() {
     $CREATEDB -h $server -p $port -U $superuser -T $template --owner $user $dbname;
 
     $PSQL -h $server -p $port -U $superuser $dbname -c \
-	"ALTER DATABASE $dbname OWNER TO $user; \
-         ALTER SCHEMA public OWNER TO $user;
+    	"ALTER SCHEMA public OWNER TO $user; \
          ALTER TABLE public.geometry_columns OWNER TO $user; \
          ALTER TABLE public.spatial_ref_sys OWNER TO $user;"
 }
