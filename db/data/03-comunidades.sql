@@ -883,8 +883,7 @@ CREATE TABLE fonsagua.captaciones (
 	       REFERENCES dominios.tipo_fuente(item),
        sistema VARCHAR
 	       REFERENCES dominios.sistema(item),
-       cod_bombeo VARCHAR
-	       REFERENCES fonsagua.bombeos(cod_bombeo),
+       cod_bombeo VARCHAR,
        tipo_construccion VARCHAR
 	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
@@ -916,8 +915,7 @@ CREATE TABLE fonsagua.dep_intermedios (
        altura NUMERIC(5,2),
        sistema VARCHAR
 	       REFERENCES dominios.sistema(item),
-       cod_bombeo VARCHAR
-	       REFERENCES fonsagua.bombeos(cod_bombeo),
+       cod_bombeo VARCHAR,
        tipo_construccion VARCHAR
 	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
