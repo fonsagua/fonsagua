@@ -27,7 +27,7 @@
        	    <FIELD>
 		<FIELDNAME>ong</FIELDNAME>
 		<ENABLEIF>
-			<COMPONENT>gestor</COMPONENT>
+			<COMPONENT>gestion</COMPONENT>
 			<VALUE>ONG</VALUE>
 		</ENABLEIF>
 	    </FIELD>

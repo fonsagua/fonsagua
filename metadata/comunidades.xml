@@ -690,7 +690,7 @@
        	    <FIELD>
 		<FIELDNAME>pozos_nivel</FIELDNAME>
 		<ENABLEIF>
-			<COMPONENT>pozos_estraccion</COMPONENT>
+			<COMPONENT>pozos_extraccion</COMPONENT>
 			<VALUE>true</VALUE>
 		</ENABLEIF>
 	    </FIELD>
@@ -1001,14 +1001,14 @@
 		<FIELDNAME>let_abonera</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
-			<COMPONENT>h_let_aboneras</COMPONENT>
+			<COMPONENT>h_let_abonera</COMPONENT>
 			<VALUE>true</VALUE>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>pq_no_aboneras</FIELDNAME>
 		<ENABLEIF>
-			<COMPONENT>h_let_aboneras</COMPONENT>
+			<COMPONENT>h_let_abonera</COMPONENT>
 			<VALUE>false</VALUE>
 		</ENABLEIF>
 	    </FIELD>
@@ -1022,14 +1022,14 @@
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>
 		<ENABLEIF>
-			<COMPONENT>h_let_aboneras</COMPONENT>
+			<COMPONENT>h_let_abonera</COMPONENT>
 			<VALUE>true</VALUE>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>disp_abono</FIELDNAME>
 		<ENABLEIF>
-			<COMPONENT>h_let_aboneras</COMPONENT>
+			<COMPONENT>h_let_abonera</COMPONENT>
 			<VALUE>true</VALUE>
 		</ENABLEIF>
 	    </FIELD>
