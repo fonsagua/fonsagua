@@ -27,10 +27,11 @@ public class FormsExtension extends Extension {
     }
 
     protected void registerIcons() {
-	PluginServices.getIconTheme().registerDefault(
-		"example1-ntforms",
-		this.getClass().getClassLoader()
-			.getResource("images/example1.png"));
+	PluginServices.getIconTheme()
+		.registerDefault(
+			"forms-icon",
+			this.getClass().getClassLoader()
+				.getResource("images/form.png"));
     }
 
     @Override

@@ -9,7 +9,7 @@
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsExtension" active="true">
 			<tool-bar name="fonsagua">
-				<action-tool icon="example1-ntforms" tooltip="open_form"
+				<action-tool icon="forms-icon" tooltip="open_form"
 					action-command="" position="50"/>
 			</tool-bar>
 		</extension>

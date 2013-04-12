@@ -1,5 +1,10 @@
 package es.udc.cartolab.gvsig.fonsagua.croquis.ui;
 
+import java.awt.Image;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import com.iver.andami.PluginServices;
@@ -9,26 +14,36 @@ import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.ShowCroquisListener;
 
 public class CroquisButtons {
 
-    private final JButton addCroquisButton;
-    private final JButton showCroquisButton;
+    private JButton addCroquisButton;
+    private JButton showCroquisButton;
 
     private AddCroquisListener addCroquisListener;
     private ShowCroquisListener showCroquisListener;
 
     public CroquisButtons(String comunidadId) {
-	addCroquisListener = new AddCroquisListener(comunidadId);
-	showCroquisListener = new ShowCroquisListener(comunidadId);
-	addCroquisButton = new JButton();
-	addCroquisButton.setText("Añadir Croquis");
-	addCroquisButton.setToolTipText(PluginServices.getText(this,
-		"croquisButton_addCroquis"));
-	addCroquisButton.addActionListener(addCroquisListener);
+	try {
+	    Image addIcon = ImageIO.read(getClass().getClassLoader()
+		    .getResourceAsStream("images/croquis_add.png"));
+	    Image showIcon = ImageIO.read(getClass().getClassLoader()
+		    .getResourceAsStream("images/croquis_view.png"));
 
-	showCroquisButton = new JButton();
-	showCroquisButton.setText("Ver Croquis");
-	showCroquisButton.setToolTipText(PluginServices.getText(this,
-		"croquisButton_showCroquis"));
-	showCroquisButton.addActionListener(showCroquisListener);
+	    addCroquisListener = new AddCroquisListener(comunidadId);
+	    showCroquisListener = new ShowCroquisListener(comunidadId);
+
+	    addCroquisButton = new JButton();
+	    addCroquisButton.setIcon(new ImageIcon(addIcon));
+	    addCroquisButton.setToolTipText(PluginServices.getText(this,
+		    "croquisButton_addCroquis"));
+	    addCroquisButton.addActionListener(addCroquisListener);
+
+	    showCroquisButton = new JButton();
+	    showCroquisButton.setIcon(new ImageIcon(showIcon));
+	    showCroquisButton.setToolTipText(PluginServices.getText(this,
+		    "croquisButton_showCroquis"));
+	    showCroquisButton.addActionListener(showCroquisListener);
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
     }
 
     public JButton getAddCroquisButton() {
