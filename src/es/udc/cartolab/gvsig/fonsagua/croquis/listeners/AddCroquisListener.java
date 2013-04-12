@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JFileChooser;
@@ -67,20 +65,16 @@ public class AddCroquisListener implements ActionListener {
     }
 
     private boolean hasAlreadyCroquis() {
-	String query = "SELECT croquis FROM comunidades_croquis where cod_comunidad = '"
-		+ comunidadId + "';";
-	PreparedStatement statement;
 	try {
-	    statement = connection.prepareStatement(query);
-	    statement.execute();
-	    ResultSet rs = statement.getResultSet();
-	    if (rs.next()) {
+	    byte[] croquis = new PostgresCroquisDAO().readCroquisFromDb(
+		    connection, comunidadId);
+	    if (croquis != null) {
 		return true;
 	    } else {
 		return false;
 	    }
-	} catch (SQLException e) {
-	    e.printStackTrace();
+	} catch (SQLException e1) {
+	    e1.printStackTrace();
 	}
 	return false;
     }
