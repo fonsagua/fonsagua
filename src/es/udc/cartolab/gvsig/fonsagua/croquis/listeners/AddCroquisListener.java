@@ -59,16 +59,16 @@ public class AddCroquisListener implements ActionListener {
 	int returnVal = fileChooser.showOpenDialog(null);
 	if (returnVal == JFileChooser.APPROVE_OPTION) {
 	    File croquis = fileChooser.getSelectedFile();
-	    new PostgresCroquisDAO().insertCroquisIntoDb(connection, comunidadId,
-		    croquis, update);
+	    new PostgresCroquisDAO().insertCroquisIntoDb(connection,
+		    comunidadId, croquis, update);
 	    JOptionPane.showMessageDialog(null,
 		    PluginServices.getText(this, "croquis_msg_added_croquis"));
 	}
     }
 
     private boolean hasAlreadyCroquis() {
-	String query = "SELECT croquis FROM comunidades_croquis where id_comunidad = "
-		+ comunidadId;
+	String query = "SELECT croquis FROM comunidades_croquis where cod_comunidad = '"
+		+ comunidadId + "';";
 	PreparedStatement statement;
 	try {
 	    statement = connection.prepareStatement(query);
