@@ -12,7 +12,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import es.icarto.gvsig.navtableforms.gui.tables.NotEditableTableModel;
-import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class TableRelationship {
@@ -87,7 +86,7 @@ public class TableRelationship {
 	    String query = "SELECT " + secondaryPKName + " FROM " + dbSchema
 		    + "." + secondaryTableName + " WHERE " + secondaryPKName
 		    + " NOT IN (SELECT " + secondaryPKName + " FROM "
-		    + FonsaguaConstants.dataSchema + "." + relationTableName
+		    + dbSchema + "." + relationTableName
 		    + " WHERE " + primaryPKName + " = '" + primaryPKValue
 		    + "');";
 	    statement = DBSession.getCurrentSession().getJavaConnection()
