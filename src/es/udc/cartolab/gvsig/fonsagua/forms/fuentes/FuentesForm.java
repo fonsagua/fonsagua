@@ -6,8 +6,10 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
+import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 import es.udc.cartolab.gvsig.fonsagua.forms.relationship.TableRelationship;
 import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 
@@ -52,7 +54,10 @@ public class FuentesForm extends BasicAbstractForm {
 	aforosHandler.reload(new AforosForm());
 	analiticasHandler.reload(new AnaliticasForm());
 
-	abastecimientosRelationship.reload();
+	abastecimientosRelationship.reload(FonsaguaTableFormFactory
+		.getInstance().createForm(
+			new TOCLayerManager()
+				.getLayerByName(AbastecimientosForm.NAME)));
     }
 
     @Override

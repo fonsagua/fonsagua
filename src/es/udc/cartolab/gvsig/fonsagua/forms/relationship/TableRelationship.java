@@ -11,6 +11,7 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.NotEditableTableModel;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
@@ -70,8 +71,8 @@ public class TableRelationship {
 	}
     }
 
-    public void reload() {
-	listener = new JTableRelationshipContextualMenu(this);
+    public void reload(BasicAbstractForm dialog) {
+	listener = new JTableRelationshipContextualMenu(this, dialog);
 	relationJTable.addMouseListener(listener);
 	relationJTable.setFillsViewportHeight(true);
     }

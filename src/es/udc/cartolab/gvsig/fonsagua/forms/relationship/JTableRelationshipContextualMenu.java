@@ -9,20 +9,30 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 
+import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
+import com.iver.andami.PluginServices;
+
+import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.JTableUtils;
+import es.udc.cartolab.gvsig.navtable.dataacces.IController;
 
 public class JTableRelationshipContextualMenu implements MouseListener {
     private static final int NO_ROW_SELECTED = -1;
     private static final int BUTTON_RIGHT = 3;
 
     private JTable table;
+    private JMenuItem newMenuItem;
     private JMenuItem openMenuItem;
     private JMenuItem deleteMenuItem;
     private JPopupMenu popupMenu;
 
     private TableRelationship tableRelationship;
+    private BasicAbstractForm dialog;
+    private boolean dialogInitialized = false;
 
-    public JTableRelationshipContextualMenu(TableRelationship tableRelationship) {
+    public JTableRelationshipContextualMenu(
+	    TableRelationship tableRelationship, BasicAbstractForm dialog) {
+	this.dialog = dialog;
 	this.tableRelationship = tableRelationship;
 	initContextualMenu();
     }
@@ -30,11 +40,20 @@ public class JTableRelationshipContextualMenu implements MouseListener {
     private void initContextualMenu() {
 	popupMenu = new JPopupMenu();
 
-	openMenuItem = new JMenuItem("Crear nuevo");
-	openMenuItem.addActionListener(new ActionListener() {
+	newMenuItem = new JMenuItem("Crear nuevo");
+	newMenuItem.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		new TableRelationshipForm(tableRelationship).addAction();
+	    }
+	});
+	popupMenu.add(newMenuItem);
+
+	openMenuItem = new JMenuItem("Abrir formulario");
+	openMenuItem.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent arg0) {
+		openDialog();
 	    }
 	});
 	popupMenu.add(openMenuItem);
@@ -52,7 +71,9 @@ public class JTableRelationshipContextualMenu implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 	table = (JTable) e.getComponent();
-	if (e.getButton() == BUTTON_RIGHT) {
+	if ((e.getClickCount() == 2) && (table.getSelectedRow() > -1)) {
+	    openDialog();
+	} else if (e.getButton() == BUTTON_RIGHT) {
 	    if (!JTableUtils.hasRows(table)
 		    || (table.getSelectedRow() == NO_ROW_SELECTED)) {
 		deleteMenuItem.setEnabled(false);
@@ -77,6 +98,37 @@ public class JTableRelationshipContextualMenu implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
+    }
+
+    private void openDialog() {
+	if (!dialogInitialized) {
+	    if ((dialog != null) && (dialog.init())) {
+		dialogInitialized = true;
+		readSelectedPosition();
+		PluginServices.getMDIManager().addWindow(dialog);
+	    }
+	} else {
+	    readSelectedPosition();
+	    PluginServices.getMDIManager().addWindow(dialog);
+	}
+    }
+
+    private void readSelectedPosition() {
+	IController controller = dialog.getFormController();
+	String keySelected = table.getModel()
+		.getValueAt(table.getSelectedRow(), 0).toString();
+	try {
+	    for (long i = controller.getRowCount() - 1; i >= 0; i--) {
+		controller.read(i);
+		if (controller.getValue(tableRelationship.getSecondaryPKName())
+			.equals(keySelected)) {
+		    dialog.setPosition(i);
+		    break;
+		}
+	    }
+	} catch (ReadDriverException e) {
+	    e.printStackTrace();
+	}
     }
 
 }

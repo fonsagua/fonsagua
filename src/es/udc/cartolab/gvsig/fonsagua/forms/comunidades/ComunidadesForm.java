@@ -232,7 +232,10 @@ public class ComunidadesForm extends BasicAbstractForm {
 	amenazasHandler.reload(AmenazasForm.NAME,
 		FonsaguaTableFormFactory.getInstance());
 
-	abastecimientosRelationship.reload();
+	abastecimientosRelationship.reload(FonsaguaTableFormFactory
+		.getInstance().createForm(
+			new TOCLayerManager()
+				.getLayerByName(AbastecimientosForm.NAME)));
     }
 
     @Override
