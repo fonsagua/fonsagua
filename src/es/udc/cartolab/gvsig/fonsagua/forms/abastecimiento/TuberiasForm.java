@@ -12,7 +12,7 @@ public class TuberiasForm extends BasicAbstractForm {
 	    "tipologia_tuberia", "sistema", "material", "diametro" };
     public static String[] colAlias = { "Código de abastecimiento",
 	    "Denominación", "Tipología", "Sistema", "Material",
-	    "Diámetro (pulgadas)" };
+	    "Diámetro (pul.)" };
 
     public TuberiasForm(FLyrVect layer) {
 	super(layer);

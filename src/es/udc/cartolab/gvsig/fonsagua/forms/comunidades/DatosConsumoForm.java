@@ -8,7 +8,7 @@ public class DatosConsumoForm extends AbstractSubForm {
     public static final String NAME = "datos_consumo";
     public static String[] colNames = { "cod_abastecimiento",
 	    "tipo_abastecimiento", "consumo", "n_miembros" };
-    public static String[] colAlias = { "Código abastecimiento",
+    public static String[] colAlias = { "Cód. abastecimiento",
 	    "Tipo abastecimiento", "Consumo (l/dia)", "Nº miembros familia" };
 
     @Override
