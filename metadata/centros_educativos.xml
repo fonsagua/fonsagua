@@ -44,22 +44,20 @@
 		<FIELDNAME>n_prof_com</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 	    </FIELD>
-	    <FIELD>
+       	    <FIELD>
 		<FIELDNAME>programa</FIELDNAME>
 		<ENABLEIF>
 			<COMPONENT>prog_esc_salud</COMPONENT>
 			<VALUE>true</VALUE>
 		</ENABLEIF>
 	    </FIELD>
-
-	    <FIELD>
+       	    <FIELD>
 		<FIELDNAME>frec_prog</FIELDNAME>
 		<ENABLEIF>
 			<COMPONENT>prog_esc_salud</COMPONENT>
 			<VALUE>true</VALUE>
 		</ENABLEIF>
 	    </FIELD>
-
        	    <FIELD>
 		<FIELDNAME>utm_x</FIELDNAME>
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>

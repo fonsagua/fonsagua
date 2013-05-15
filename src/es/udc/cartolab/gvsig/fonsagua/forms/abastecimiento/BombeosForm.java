@@ -9,7 +9,7 @@ public class BombeosForm extends BasicAbstractForm {
 
     public static final String NAME = "bombeos";
     public static String[] colNames = { "cod_abastecimiento", "denominacion",
-	    "tipologia", "potencia", "caudal", "altura" };
+	    "tipologia_bomba", "potencia", "caudal", "altura" };
     public static String[] colAlias = { "Código de abastecimiento",
 	    "Denominación", "Tipología", "Potencia (CV)", "Caudal (l/min)",
 	    "Altura (m)" };

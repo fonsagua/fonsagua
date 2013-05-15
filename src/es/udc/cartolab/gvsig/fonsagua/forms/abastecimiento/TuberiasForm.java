@@ -9,7 +9,7 @@ public class TuberiasForm extends BasicAbstractForm {
 
     public static final String NAME = "tuberias";
     public static String[] colNames = { "cod_abastecimiento", "denominacion",
-	    "tipologia", "sistema", "material", "diametro" };
+	    "tipologia_tuberia", "sistema", "material", "diametro" };
     public static String[] colAlias = { "Código de abastecimiento",
 	    "Denominación", "Tipología", "Sistema", "Material",
 	    "Diámetro (pulgadas)" };
