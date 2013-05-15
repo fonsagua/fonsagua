@@ -233,7 +233,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 		FonsaguaTableFormFactory.getInstance());
 
 	abastecimientosRelationship.reload(FonsaguaTableFormFactory
-		.getInstance().createForm(
+		.getInstance().createSingletonForm(
 			new TOCLayerManager()
 				.getLayerByName(AbastecimientosForm.NAME)));
     }

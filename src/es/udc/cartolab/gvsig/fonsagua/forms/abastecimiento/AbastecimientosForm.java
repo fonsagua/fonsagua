@@ -176,11 +176,12 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	bombeosHandler.reload(BombeosForm.NAME,
 		FonsaguaTableFormFactory.getInstance());
 	comunidadesRelationship.reload(FonsaguaTableFormFactory.getInstance()
-		.createForm(
+		.createSingletonForm(
 			new TOCLayerManager()
 				.getLayerByName(ComunidadesForm.NAME)));
 	fuentesRelationship
-		.reload(FonsaguaTableFormFactory.getInstance().createForm(
+		.reload(FonsaguaTableFormFactory.getInstance()
+			.createSingletonForm(
 			new TOCLayerManager().getLayerByName(FuentesForm.NAME)));
 	adescosHandler.reload(new AdescosForm());
 	implicacionComunidadHandler.reload(new ImplicacionComunidadForm());

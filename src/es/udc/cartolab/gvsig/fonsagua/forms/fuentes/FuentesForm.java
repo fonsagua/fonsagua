@@ -55,7 +55,7 @@ public class FuentesForm extends BasicAbstractForm {
 	analiticasHandler.reload(new AnaliticasForm());
 
 	abastecimientosRelationship.reload(FonsaguaTableFormFactory
-		.getInstance().createForm(
+		.getInstance().createSingletonForm(
 			new TOCLayerManager()
 				.getLayerByName(AbastecimientosForm.NAME)));
     }

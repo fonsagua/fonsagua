@@ -13,6 +13,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.BombeosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.CaptacionesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepDistribucionForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepIntermediosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.SingletonAbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.TuberiasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AmenazasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AreasPotencialesRiegoForm;
@@ -22,7 +23,9 @@ import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.FuentesContaminacionForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.OtrosServiciosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.PuntosViviendasForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.SingletonComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.SingletonFuentesForm;
 
 public class FonsaguaTableFormFactory implements TableFormFactory {
 
@@ -91,6 +94,20 @@ public class FonsaguaTableFormFactory implements TableFormFactory {
 		return new FuentesForm(layer);
 	    } else if (layer.getName().equals(FuentesContaminacionForm.NAME)) {
 		return new FuentesContaminacionForm(layer);
+	    }
+	}
+	return null;
+    }
+
+    @Override
+    public BasicAbstractForm createSingletonForm(FLyrVect layer) {
+	if (layer != null) {
+	    if (layer.getName().equals(ComunidadesForm.NAME)) {
+		return new SingletonComunidadesForm(layer);
+	    } else if (layer.getName().equals(FuentesForm.NAME)) {
+		return new SingletonFuentesForm(layer);
+	    } else if (layer.getName().equals(AbastecimientosForm.NAME)) {
+		return new SingletonAbastecimientosForm(layer);
 	    }
 	}
 	return null;
