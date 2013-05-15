@@ -7,6 +7,7 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
+import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.BombeosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.CaptacionesForm;
@@ -98,6 +99,16 @@ public class FonsaguaTableFormFactory implements TableFormFactory {
     @Override
     public boolean hasMainForm(String layerName) {
 	return mainFormNames.contains(layerName);
+    }
+
+    @Override
+    public boolean allLayersLoaded() {
+	for (String layer : mainFormNames) {
+	    if (new TOCLayerManager().getLayerByName(layer) == null) {
+		return false;
+	    }
+	}
+	return true;
     }
 
 }

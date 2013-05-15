@@ -9,48 +9,39 @@ import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 
-public class FormsExtension extends Extension {
+public class FormsMenuExtension extends Extension {
 
-    private FLyrVect layer;
     private final TableFormFactory factory = FonsaguaTableFormFactory
 	    .getInstance();
 
     @Override
     public void execute(String actionCommand) {
-	BasicAbstractForm dialog = factory.createForm(layer);
+	BasicAbstractForm dialog = null;
+	if (factory.hasMainForm(actionCommand)) {
+	    FLyrVect layer = new TOCLayerManager()
+		    .getLayerByName(actionCommand);
+	    if (layer != null) {
+		dialog = factory.createForm(layer);
+	    }
+	}
 
 	if ((dialog != null) && (dialog.init())) {
 	    PluginServices.getMDIManager().addWindow(dialog);
 	}
     }
 
-    protected void registerIcons() {
-	PluginServices.getIconTheme()
-		.registerDefault(
-			"forms-icon",
-			this.getClass().getClassLoader()
-				.getResource("images/form.png"));
-    }
-
-    @Override
-    public void initialize() {
-	registerIcons();
-    }
-
     @Override
     public boolean isEnabled() {
-	return isActiveLayerValid();
-    }
-
-    private boolean isActiveLayerValid() {
-	layer = new TOCLayerManager().getActiveLayer();
-	return (layer != null) ? factory.hasMainForm(layer.getName()) : false;
-
+	return factory.allLayersLoaded();
     }
 
     @Override
     public boolean isVisible() {
 	return true;
+    }
+
+    @Override
+    public void initialize() {
     }
 
 }
