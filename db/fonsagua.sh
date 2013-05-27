@@ -10,18 +10,12 @@ usage() {
     exit -1
 }
 
-create-db() {
-    $DROPDB -h $server -p $port -U $superuser $dbname;
-    $DROPUSER -h $server -p $port -U $superuser $user
-    $CREATEUSER -h $server -p $port -U $superuser -SPDRl $user
-    $CREATEDB -h $server -p $port -U $superuser -T $template --owner $user $dbname;
-
-    $PSQL -h $server -p $port -U $superuser $dbname -c \
-    	"ALTER SCHEMA public OWNER TO $user; \
-         ALTER TABLE public.geometry_columns OWNER TO $user; \
-         ALTER TABLE public.spatial_ref_sys OWNER TO $user;"
+error() {
+    echo "Ha habido un error"
+    exit
 }
 
+. create-db.sh
 # comment the following lines if you prefer
 # to force the use of the arguments
 config_file=./db_config_devel
@@ -84,7 +78,8 @@ fi
 
 if [ $schema == "all" ] ; then
     echo "LOG: drop & create database"
-    create-db
+    create-db || error
+
     for file in `ls ./data/*.sql` ; do
 	$PSQL -h $server -U $user -p $port -d $dbname -f $file
     done
