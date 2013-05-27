@@ -1650,7 +1650,7 @@
           <at name="classname">com.jeta.forms.components.label.JETALabel</at>
           <at name="properties">
            <object classname="com.jeta.forms.store.support.PropertyMap">
-            <at name="text">Año de construcción:</at>
+            <at name="text">Año de instalación:</at>
             <at name="height">13</at>
             <at name="font">
              <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -2223,7 +2223,7 @@
      <at name="classname">com.jeta.forms.gui.form.GridView</at>
      <at name="properties">
       <object classname="com.jeta.forms.store.support.PropertyMap">
-       <at name="name"/>
+       <at name="name"></at>
        <at name="fill">
         <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
          <at name="name">fill</at>
