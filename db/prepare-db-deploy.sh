@@ -3,11 +3,12 @@
 CARTOGRAFIA_BASE=
 output=/tmp/`date +%Y%m%d`-fonsagua-bbdd.sql
 
-cat ./data/01-schemas-data.sql  > $output
+cat ./data/01-create-data-schemas.sql  > $output
 cat ./data/02-domains.sql >> $output
 cat ./data/03-comunidades.sql >> $output
 cat ./data/04-comunidades_croquis.sql >> $output
 cat ./data/05-relations.sql >> $output
+cat ./data/06-triggers.sql >> $output
 
 cat $CARTOGRAFIA_BASE/elle.sql >> $output
 cat $CARTOGRAFIA_BASE/c_base.sql >> $output
