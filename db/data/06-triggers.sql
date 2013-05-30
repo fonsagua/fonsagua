@@ -37,7 +37,15 @@ CREATE OR REPLACE FUNCTION gest_financiera_compute_fields_trigger() RETURNS TRIG
 	IF (NEW.cost_personal IS NOT NULL) THEN NEW.cost_totales = NEW.cost_totales + NEW.cost_personal; END IF;
 	IF (NEW.cost_diversos IS NOT NULL) THEN NEW.cost_totales = NEW.cost_totales + NEW.cost_diversos; END IF;
 
-	IF ((NEW.activos_corrientes IS NOT NULL) AND (NEW.pasivos_corrientes IS NOT NULL)) THEN NEW.razon_liquidez = NEW.activos_corrientes - NEW.pasivos_corrientes; ELSE NEW.razon_liquidez = NULL; END IF;
+	IF ((NEW.produccion IS NOT NULL) AND (NEW.produccion > 0)) THEN NEW.cost_produccion = cost_totales / produccion; ELSE NEW.cost_produccion = NULL; END IF;
+
+	IF ((NEW.produccion IS NOT NULL) AND (NEW.produccion > 0) AND (NEW.ingr_totales IS NOT NULL)) THEN NEW.ingr_produccion = ingr_totales / produccion; ELSE NEW.ingr_produccion = NULL; END IF;
+
+	IF ((NEW.produccion IS NOT NULL) AND (NEW.produccion > 0) AND (NEW.facturacion IS NOT NULL)) THEN NEW.fact_produc = facturacion / produccion; ELSE NEW.fact_produc = NULL; END IF;
+
+	IF ((NEW.ingr_totales IS NOT NULL) AND (NEW.fact_produc IS NOT NULL) AND (NEW.fact_produc > 0)) THEN NEW.margen_utilidad = (NEW.ingr_totales - NEW.cost_totales) / NEW.fact_produc; ELSE NEW.margen_utilidad = NULL; END IF;
+
+	IF ((NEW.activos_corrientes IS NOT NULL) AND (NEW.pasivos_corrientes IS NOT NULL)) THEN NEW.razon_liquidez = NEW.activos_corrientes / NEW.pasivos_corrientes; ELSE NEW.razon_liquidez = NULL; END IF;
         RETURN NEW;
     END;
 $gest_financiera_compute_fields_trigger$ LANGUAGE plpgsql;
@@ -50,6 +58,8 @@ BEFORE INSERT OR UPDATE ON fonsagua.gest_financiera
 
 CREATE OR REPLACE FUNCTION comunidades_compute_fields_trigger() RETURNS TRIGGER AS $comunidades_compute_fields_trigger$
     BEGIN
+	NEW.caserio = NEW.comunidad;
+
 	NEW.tot_ninhos = 0;
 	IF (NEW.n_ninhos IS NOT NULL) THEN NEW.tot_ninhos = NEW.tot_ninhos + NEW.n_ninhos; END IF;
 	IF (NEW.n_ninhas IS NOT NULL) THEN NEW.tot_ninhos = NEW.tot_ninhos + NEW.n_ninhas; END IF;
@@ -156,4 +166,33 @@ CREATE TRIGGER adescos_compute_fields_trigger
 BEFORE INSERT OR UPDATE ON fonsagua.adescos
     FOR EACH ROW EXECUTE PROCEDURE adescos_compute_fields_trigger();
 
-    
+
+CREATE OR REPLACE FUNCTION cobertura_compute_fields_trigger() RETURNS TRIGGER AS $cobertura_compute_fields_trigger$
+    BEGIN
+	IF ((NEW.acometidas IS NOT NULL) AND (NEW.viviendas IS NOT NULL) AND (NEW.viviendas > 0)) THEN NEW.cobertura = NEW.acometidas * 100 / NEW.viviendas; ELSE NEW.cobertura = NULL; END IF;
+        RETURN NEW;
+    END;
+$cobertura_compute_fields_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS cobertura_compute_fields_trigger ON fonsagua.cobertura;
+CREATE TRIGGER cobertura_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.cobertura
+    FOR EACH ROW EXECUTE PROCEDURE cobertura_compute_fields_trigger();
+
+
+CREATE OR REPLACE FUNCTION gest_comercial_compute_fields_trigger() RETURNS TRIGGER AS $gest_comercial_compute_fields_trigger$
+    BEGIN
+	IF ((NEW.produccion IS NOT NULL) AND (NEW.facturacion IS NOT NULL)) THEN NEW.a_no_contabilizada = NEW.produccion - NEW.facturacion; ELSE NEW.a_no_contabilizada = NULL; END IF;
+
+	IF ((NEW.a_no_contabilizada IS NOT NULL) AND (NEW.produccion > 0)) THEN NEW.pct_a_no_contabilizada = NEW.a_no_contabilizada * 100 / NEW.produccion; ELSE NEW.pct_a_no_contabilizada = NULL; END IF;
+
+	IF ((NEW.con_medidor IS NOT NULL) AND (NEW.acometidas IS NOT NULL) AND (NEW.acometidas > 0)) THEN NEW.micromedicion = NEW.con_medidor * 100 / NEW.acometidas; ELSE NEW.micromedicion = NULL; END IF;
+        RETURN NEW;
+    END;
+$gest_comercial_compute_fields_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS gest_comercial_compute_fields_trigger ON fonsagua.gest_comercial;
+CREATE TRIGGER gest_comercial_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.gest_comercial
+    FOR EACH ROW EXECUTE PROCEDURE gest_comercial_compute_fields_trigger();
+
