@@ -19,5 +19,4 @@ public class CoberturaForm extends AbstractSubForm {
     protected String getBasicName() {
 	return NAME;
     }
-
 }

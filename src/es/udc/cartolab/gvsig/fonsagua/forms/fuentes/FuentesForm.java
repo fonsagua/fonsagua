@@ -25,7 +25,6 @@ public class FuentesForm extends BasicAbstractForm {
 
     public FuentesForm(FLyrVect layer) {
 	super(layer);
-	viewInfo.setTitle("Fuentes");
 	aforosHandler = new TableHandler(FonsaguaConstants.dataSchema,
 		AforosForm.NAME, getWidgetComponents(), PKNAME,
 		AforosForm.colNames, AforosForm.colAlias);

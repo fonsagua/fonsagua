@@ -2,6 +2,7 @@ package es.icarto.gvsig.navtableforms;
 
 import java.io.InputStream;
 
+import com.iver.andami.PluginServices;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.jeta.forms.components.panel.FormPanel;
 import com.jeta.forms.gui.common.FormException;
@@ -13,6 +14,7 @@ public abstract class BasicAbstractForm extends AbstractForm {
 
     public BasicAbstractForm(FLyrVect layer) {
 	super(layer);
+	viewInfo.setTitle(PluginServices.getText(this, getBasicName()));
     }
 
     @Override

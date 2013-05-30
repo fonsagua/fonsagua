@@ -49,7 +49,6 @@ public class AbastecimientosForm extends BasicAbstractForm {
     public AbastecimientosForm(FLyrVect layer) {
 	super(layer);
 	TOCLayerManager toc = new TOCLayerManager();
-	viewInfo.setTitle("Abastecimientos");
 	juntasAguaHandler = new TableHandler(FonsaguaConstants.dataSchema,
 		JuntasAguaForm.NAME, getWidgetComponents(), PKFIELD,
 		JuntasAguaForm.colNames, JuntasAguaForm.colAlias);

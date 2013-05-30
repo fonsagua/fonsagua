@@ -16,7 +16,6 @@ public class BombeosForm extends BasicAbstractForm {
 
     public BombeosForm(FLyrVect layer) {
 	super(layer);
-	viewInfo.setTitle("Bombeos");
     }
 
     @Override

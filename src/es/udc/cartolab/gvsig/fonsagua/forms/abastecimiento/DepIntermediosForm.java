@@ -15,7 +15,6 @@ public class DepIntermediosForm extends BasicAbstractForm {
 
     public DepIntermediosForm(FLyrVect layer) {
 	super(layer);
-	viewInfo.setTitle("Dep Intermedios");
     }
 
     @Override
@@ -25,8 +24,6 @@ public class DepIntermediosForm extends BasicAbstractForm {
 
     @Override
     protected void fillSpecificValues() {
-	// TODO Auto-generated method stub
-
     }
 
 }

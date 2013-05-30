@@ -15,7 +15,6 @@ public class CaptacionesForm extends BasicAbstractForm {
 
     public CaptacionesForm(FLyrVect layer) {
 	super(layer);
-	viewInfo.setTitle("Captaciones");
     }
 
     @Override
@@ -25,8 +24,6 @@ public class CaptacionesForm extends BasicAbstractForm {
 
     @Override
     protected void fillSpecificValues() {
-	// TODO Auto-generated method stub
-
     }
 
 }

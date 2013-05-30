@@ -15,11 +15,6 @@ public class FuentesContaminacionForm extends BasicAbstractForm {
 
     public FuentesContaminacionForm(FLyrVect layer) {
 	super(layer);
-	initWindow();
-    }
-
-    private void initWindow() {
-	viewInfo.setTitle("Fuentes Contaminación");
     }
 
     @Override

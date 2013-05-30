@@ -13,12 +13,6 @@ public class AreasPotencialesRiegoForm extends BasicAbstractForm {
 
     public AreasPotencialesRiegoForm(FLyrVect layer) {
 	super(layer);
-	initWindow();
-
-    }
-
-    private void initWindow() {
-	viewInfo.setTitle("Areas Potenciales Riego");
     }
 
     @Override

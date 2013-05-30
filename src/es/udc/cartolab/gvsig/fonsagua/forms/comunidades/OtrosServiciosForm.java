@@ -13,11 +13,6 @@ public class OtrosServiciosForm extends BasicAbstractForm {
 
     public OtrosServiciosForm(FLyrVect layer) {
 	super(layer);
-	initWindow();
-    }
-
-    private void initWindow() {
-	viewInfo.setTitle("Otros Servicios");
     }
 
     @Override

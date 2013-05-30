@@ -15,11 +15,6 @@ public class CentrosEducativosForm extends BasicAbstractForm {
 
     public CentrosEducativosForm(FLyrVect layer) {
 	super(layer);
-	initWindow();
-    }
-
-    private void initWindow() {
-	viewInfo.setTitle("Centros Educativos");
     }
 
     @Override

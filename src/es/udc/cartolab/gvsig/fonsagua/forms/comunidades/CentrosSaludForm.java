@@ -13,11 +13,6 @@ public class CentrosSaludForm extends BasicAbstractForm {
 
     public CentrosSaludForm(FLyrVect layer) {
 	super(layer);
-	initWindow();
-    }
-
-    private void initWindow() {
-	viewInfo.setTitle("Centros Salud");
     }
 
     @Override

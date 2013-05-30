@@ -15,11 +15,6 @@ public class AmenazasForm extends BasicAbstractForm {
 
     public AmenazasForm(FLyrVect layer) {
 	super(layer);
-	initWindow();
-    }
-
-    private void initWindow() {
-	viewInfo.setTitle("Amenazas");
     }
 
     @Override

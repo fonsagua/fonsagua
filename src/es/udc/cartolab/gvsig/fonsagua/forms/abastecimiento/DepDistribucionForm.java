@@ -15,7 +15,6 @@ public class DepDistribucionForm extends BasicAbstractForm {
 
     public DepDistribucionForm(FLyrVect layer) {
 	super(layer);
-	viewInfo.setTitle("Dep Distribución");
     }
 
     @Override
@@ -25,8 +24,6 @@ public class DepDistribucionForm extends BasicAbstractForm {
 
     @Override
     protected void fillSpecificValues() {
-	// TODO Auto-generated method stub
-
     }
 
 }

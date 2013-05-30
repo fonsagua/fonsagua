@@ -16,7 +16,6 @@ public class TuberiasForm extends BasicAbstractForm {
 
     public TuberiasForm(FLyrVect layer) {
 	super(layer);
-	viewInfo.setTitle("Tuberías");
     }
 
     @Override
@@ -26,8 +25,6 @@ public class TuberiasForm extends BasicAbstractForm {
 
     @Override
     protected void fillSpecificValues() {
-	// TODO Auto-generated method stub
-
     }
 
 }
