@@ -2,9 +2,9 @@ package es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento;
 
 import es.icarto.gvsig.navtableforms.CommonMethodsForTestDBForms;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
-import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.GestionFinancieraForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.GestComercialForm;
 
-public class TestGestionFinancieraForm extends CommonMethodsForTestDBForms {
+public class TestGestComercialForm extends CommonMethodsForTestDBForms {
 
     @Override
     protected String getSchema() {
@@ -13,7 +13,7 @@ public class TestGestionFinancieraForm extends CommonMethodsForTestDBForms {
 
     @Override
     protected String getTableName() {
-	return GestionFinancieraForm.NAME;
+	return GestComercialForm.NAME;
     }
 
 }
