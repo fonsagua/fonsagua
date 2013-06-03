@@ -195,6 +195,13 @@
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
+		<FIELDNAME>des_otros_detalle</FIELDNAME>
+		<ENABLEIF>
+			<COMPONENT>des_agua</COMPONENT>
+			<VALUE>true</VALUE>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
 		<FIELDNAME>des_tanque</FIELDNAME>
 		<ENABLEIF>
 			<COMPONENT>des_agua</COMPONENT>
@@ -210,6 +217,13 @@
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>des_otra</FIELDNAME>
+		<ENABLEIF>
+			<COMPONENT>des_agua</COMPONENT>
+			<VALUE>true</VALUE>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>des_otra_detalle</FIELDNAME>
 		<ENABLEIF>
 			<COMPONENT>des_agua</COMPONENT>
 			<VALUE>true</VALUE>
@@ -276,6 +290,13 @@
 			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>
+		<ENABLEIF>
+			<COMPONENT>mant_tecnicos</COMPONENT>
+			<VALUE>true</VALUE>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>proced_tec_detalle</FIELDNAME>
 		<ENABLEIF>
 			<COMPONENT>mant_tecnicos</COMPONENT>
 			<VALUE>true</VALUE>

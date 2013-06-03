@@ -327,114 +327,6 @@ SELECT addgeometrycolumn('fonsagua', 'comunidades', 'geom', 32616, 'POINT', 2);
 
 ALTER TABLE fonsagua.comunidades OWNER TO fonsagua;
 
-
-CREATE TABLE fonsagua.abastecimientos (
-       gid SERIAL PRIMARY KEY,
-       cod_abastecimiento VARCHAR
-	       UNIQUE
-	       NOT NULL,
-       abastecimiento VARCHAR,
-       fecha Date,
-       gestion VARCHAR
-	       REFERENCES dominios.gestion(item),
-       ong VARCHAR,
-       h_juntas_agua BOOLEAN,
-       h_adescos BOOLEAN,
-       tarifa_agua BOOLEAN,
-       cuota_domiciliar NUMERIC(5,2),
-       cuota_comercial NUMERIC(5,2),
-       cuota_cantarera NUMERIC(5,2),
-       cuota_otros NUMERIC(5,2),
-       frec_pago VARCHAR,
-       gastos_cubiertos VARCHAR,
-       mora_porcent NUMERIC(5,2),
-       coment_tarifa VARCHAR,
-       coment_gestion VARCHAR,
-       cons_domestico NUMERIC(5,2),
-       cons_ag_gan NUMERIC(5,2),
-       tot_consumo NUMERIC(5,2),
-       tipo_sistema VARCHAR
-	       REFERENCES dominios.tipo_sistema(item),
-       ent_constructora VARCHAR,
-       anho_construccion INTEGER,
-       coste_energia NUMERIC(5,2),
-       a_domiciliar BOOLEAN,
-       n_a_domiciliar INTEGER,
-       a_cantarera BOOLEAN,
-       n_a_cantarera INTEGER,
-       a_comercial BOOLEAN,
-       n_a_comercial INTEGER,
-       a_otras BOOLEAN,
-       n_a_otras INTEGER,
-       tot_acometidas INTEGER,
-       a_medidor INTEGER,
-       a_sin_medidor INTEGER,
-       coment_sis VARCHAR,
-       des_agua BOOLEAN,
-       des_cloracion BOOLEAN,
-       des_quimicos BOOLEAN,
-       des_otros BOOLEAN,
-       des_otros_detalle VARCHAR,
-       des_tanque BOOLEAN,
-       des_impelencia BOOLEAN,
-       des_otra BOOLEAN,
-       des_otra_detalle VARCHAR,
-       metodo VARCHAR,
-       frec_desinfeccion VARCHAR,
-       coste_desinfeccion NUMERIC(5,2),
-       coment_desinfeccion VARCHAR,
-       tipo_mantenimiento VARCHAR
-	       REFERENCES dominios.tipo_mantenimiento(item),
-       zona_mantenimiento VARCHAR,
-       coste_mantenimiento NUMERIC(5,2),
-       con_calidad BOOLEAN,
-       frec_con_calidad INTEGER,
-       con_funcionamiento BOOLEAN,
-       fre_con_funcionamiento INTEGER,
-       mant_tecnicos BOOLEAN,
-       proced_tecnicos VARCHAR
-	       REFERENCES dominios.proced_tecnicos(item),
-       proced_tec_detalle VARCHAR
-
-);
-
-SELECT addgeometrycolumn('fonsagua', 'abastecimientos', 'geom', 32616, 'MULTIPOLYGON', 2);
-
-ALTER TABLE fonsagua.abastecimientos OWNER TO fonsagua;
-
-CREATE TABLE fonsagua.bombeos (
-       gid SERIAL PRIMARY KEY,
-       cod_abastecimiento VARCHAR
-	       NOT NULL
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
-       cod_bombeo VARCHAR
-	       UNIQUE
-	       NOT NULL,
-       denominacion VARCHAR,
-       tipologia_bomba VARCHAR
-	       REFERENCES dominios.tipologia_bomba(item),
-       energia VARCHAR
-	       REFERENCES dominios.energia(item),
-       potencia NUMERIC(5,2),
-       caudal NUMERIC(5,2),
-       prof_succion NUMERIC(5,2),
-       tiempo NUMERIC(5,2),
-       altura INTEGER,
-       n_bombas INTEGER,
-       anho_construccion INTEGER,
-       estado VARCHAR
-	       REFERENCES dominios.estado(item),
-       utm_x NUMERIC(5,3),
-       utm_y NUMERIC(5,3),
-       utm_z NUMERIC(5,3),
-       coment_bom VARCHAR
-
-);
-
-SELECT addgeometrycolumn('fonsagua', 'bombeos', 'geom', 32616, 'POINT', 2);
-
-ALTER TABLE fonsagua.bombeos OWNER TO fonsagua;
-
 CREATE TABLE fonsagua.puntos_viviendas (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
@@ -508,7 +400,7 @@ CREATE TABLE fonsagua.adescos (
        legalizada BOOLEAN,
        n_socios INTEGER,
        antiguedad INTEGER,
-       presidente VARCHAR,
+       presidencia VARCHAR,
        n_hombres INTEGER,
        n_mujeres INTEGER,
        tot_miembros INTEGER
@@ -763,6 +655,82 @@ CREATE TABLE fonsagua.implicacion_comunidad (
 
 ALTER TABLE fonsagua.implicacion_comunidad OWNER TO fonsagua;
 
+
+CREATE TABLE fonsagua.abastecimientos (
+       gid SERIAL PRIMARY KEY,
+       cod_abastecimiento VARCHAR
+	       UNIQUE
+	       NOT NULL,
+       abastecimiento VARCHAR,
+       fecha Date,
+       gestion VARCHAR
+	       REFERENCES dominios.gestion(item),
+       ong VARCHAR,
+       h_juntas_agua BOOLEAN,
+       h_adescos BOOLEAN,
+       tarifa_agua BOOLEAN,
+       cuota_domiciliar NUMERIC(5,2),
+       cuota_comercial NUMERIC(5,2),
+       cuota_cantarera NUMERIC(5,2),
+       cuota_otros NUMERIC(5,2),
+       frec_pago VARCHAR,
+       gastos_cubiertos VARCHAR,
+       mora_porcent NUMERIC(5,2),
+       coment_tarifa VARCHAR,
+       coment_gestion VARCHAR,
+       cons_domestico NUMERIC(5,2),
+       cons_ag_gan NUMERIC(5,2),
+       tot_consumo NUMERIC(5,2),
+       tipo_sistema VARCHAR
+	       REFERENCES dominios.tipo_sistema(item),
+       ent_constructora VARCHAR,
+       anho_construccion INTEGER,
+       coste_energia NUMERIC(5,2),
+       a_domiciliar BOOLEAN,
+       n_a_domiciliar INTEGER,
+       a_cantarera BOOLEAN,
+       n_a_cantarera INTEGER,
+       a_comercial BOOLEAN,
+       n_a_comercial INTEGER,
+       a_otras BOOLEAN,
+       n_a_otras INTEGER,
+       tot_acometidas INTEGER,
+       a_medidor INTEGER,
+       a_sin_medidor INTEGER,
+       coment_sis VARCHAR,
+       des_agua BOOLEAN,
+       des_cloracion BOOLEAN,
+       des_quimicos BOOLEAN,
+       des_otros BOOLEAN,
+       des_otros_detalle VARCHAR,
+       des_tanque BOOLEAN,
+       des_impelencia BOOLEAN,
+       des_otra BOOLEAN,
+       des_otra_detalle VARCHAR,
+       metodo VARCHAR,
+       frec_desinfeccion VARCHAR,
+       coste_desinfeccion NUMERIC(5,2),
+       coment_desinfeccion VARCHAR,
+       tipo_mantenimiento VARCHAR
+	       REFERENCES dominios.tipo_mantenimiento(item),
+       zona_mantenimiento VARCHAR,
+       coste_mantenimiento NUMERIC(5,2),
+       con_calidad BOOLEAN,
+       frec_con_calidad INTEGER,
+       con_funcionamiento BOOLEAN,
+       fre_con_funcionamiento INTEGER,
+       mant_tecnicos BOOLEAN,
+       proced_tecnicos VARCHAR
+	       REFERENCES dominios.proced_tecnicos(item),
+       proced_tec_detalle VARCHAR
+
+);
+
+SELECT addgeometrycolumn('fonsagua', 'abastecimientos', 'geom', 32616, 'MULTIPOLYGON', 2);
+
+ALTER TABLE fonsagua.abastecimientos OWNER TO fonsagua;
+
+
 CREATE TABLE fonsagua.valoracion_sistema (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
@@ -871,6 +839,53 @@ CREATE TABLE fonsagua.juntas_agua (
 
 ALTER TABLE fonsagua.juntas_agua OWNER TO fonsagua;
 
+
+CREATE TABLE fonsagua.bombeos (
+       gid SERIAL PRIMARY KEY,
+       cod_abastecimiento VARCHAR
+	       NOT NULL
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+       cod_bombeo VARCHAR
+	       UNIQUE
+	       NOT NULL,
+       denominacion VARCHAR,
+       tipologia_bomba VARCHAR
+	       REFERENCES dominios.tipologia_bomba(item),
+       energia VARCHAR
+	       REFERENCES dominios.energia(item),
+       potencia NUMERIC(5,2),
+       caudal NUMERIC(5,2),
+       prof_succion NUMERIC(5,2),
+       tiempo NUMERIC(5,2),
+       altura INTEGER,
+       n_bombas INTEGER,
+       anho_construccion INTEGER,
+       estado VARCHAR
+	       REFERENCES dominios.estado(item),
+       utm_x NUMERIC(5,3),
+       utm_y NUMERIC(5,3),
+       utm_z NUMERIC(5,3),
+       coment_bom VARCHAR
+
+);
+
+SELECT addgeometrycolumn('fonsagua', 'bombeos', 'geom', 32616, 'POINT', 2);
+
+ALTER TABLE fonsagua.bombeos OWNER TO fonsagua;
+
+CREATE TABLE fonsagua.cobertura (
+       gid SERIAL PRIMARY KEY,
+       cod_abastecimiento VARCHAR
+	       NOT NULL
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+       fecha Date,
+       acometidas INTEGER,
+       viviendas INTEGER,
+       cobertura NUMERIC(5,2)
+
+);
+
+
 CREATE TABLE fonsagua.captaciones (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
@@ -884,7 +899,8 @@ CREATE TABLE fonsagua.captaciones (
 	       REFERENCES dominios.tipo_fuente(item),
        sistema VARCHAR
 	       REFERENCES dominios.sistema(item),
-       cod_bombeo VARCHAR,
+       cod_bombeo VARCHAR
+	       REFERENCES fonsagua.bombeos(cod_bombeo),
        tipo_construccion VARCHAR
 	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
@@ -916,7 +932,8 @@ CREATE TABLE fonsagua.dep_intermedios (
        altura NUMERIC(5,2),
        sistema VARCHAR
 	       REFERENCES dominios.sistema(item),
-       cod_bombeo VARCHAR,
+       cod_bombeo VARCHAR
+	       REFERENCES fonsagua.bombeos(cod_bombeo),
        tipo_construccion VARCHAR
 	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
@@ -993,19 +1010,6 @@ SELECT addgeometrycolumn('fonsagua', 'tuberias', 'geom', 32616, 'MULTILINESTRING
 
 ALTER TABLE fonsagua.tuberias OWNER TO fonsagua;
 
-
-
-CREATE TABLE fonsagua.cobertura (
-       gid SERIAL PRIMARY KEY,
-       cod_abastecimiento VARCHAR
-	       NOT NULL
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
-       fecha Date,
-       acometidas INTEGER,
-       viviendas INTEGER,
-       cobertura NUMERIC(5,2)
-
-);
 
 
 ALTER TABLE fonsagua.cobertura OWNER TO fonsagua;
