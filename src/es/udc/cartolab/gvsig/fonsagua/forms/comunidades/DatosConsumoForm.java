@@ -6,18 +6,19 @@ import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
 public class DatosConsumoForm extends AbstractSubForm {
 
     public static final String NAME = "datos_consumo";
-    public static String[] colNames = { "cod_abastecimiento",
-	    "tipo_abastecimiento", "consumo", "n_miembros" };
-    public static String[] colAlias = { "Cód. abastecimiento",
-	    "Tipo abastecimiento", "Consumo (l/dia)", "Nº miembros familia" };
-
-    @Override
-    protected void fillSpecificValues() {
-    }
+    public static String[] colNames = {
+"cod_comunidad", "tipo_abastecimiento", "consumo", "n_miembros"
+    };
+    public static String[] colAlias = {
+"ID Comunidad", "Tipo abastecimiento", "Consumo (l/día)", "Nº miembros familia"
+    };
 
     @Override
     protected String getBasicName() {
 	return NAME;
     }
 
+    @Override
+    protected void fillSpecificValues() {
+    }
 }

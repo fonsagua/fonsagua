@@ -8,10 +8,12 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public class DepIntermediosForm extends BasicAbstractForm {
 
     public static final String NAME = "dep_intermedios";
-    public static String[] colNames = { "cod_abastecimiento", "denominacion",
-	    "ubicacion", "sistema", "volumen" };
-    public static String[] colAlias = { "Código de abastecimiento",
-	    "Denominación", "Ubicación", "Sistema", "Volumen (m³)" };
+    public static String[] colNames = {
+"denominacion", "altura", "sistema", "volumen"
+    };
+    public static String[] colAlias = {
+"Denominación", "Altura (m)", "Sistema", "Volumen (m³)"
+    };
 
     public DepIntermediosForm(FLyrVect layer) {
 	super(layer);

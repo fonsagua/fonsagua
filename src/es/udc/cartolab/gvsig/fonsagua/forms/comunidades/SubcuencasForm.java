@@ -6,16 +6,19 @@ import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
 public class SubcuencasForm extends AbstractSubForm {
 
     public static final String NAME = "subcuencas";
-    public static String[] colNames = { "subcuenca" };
-    public static String[] colAlias = { "Subcuenca" };
-
-    @Override
-    protected void fillSpecificValues() {
-    }
+    public static String[] colNames = {
+"subcuenca"
+    };
+    public static String[] colAlias = {
+"Subcuencas"
+    };
 
     @Override
     protected String getBasicName() {
 	return NAME;
     }
 
+    @Override
+    protected void fillSpecificValues() {
+    }
 }

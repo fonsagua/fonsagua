@@ -8,22 +8,24 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public class FuentesContaminacionForm extends BasicAbstractForm {
 
     public static final String NAME = "fuentes_contaminacion";
-    public static String[] colNames = { "cod_comunidad", "tipo_contaminacion",
-	    "n_fam_vierten" };
-    public static String[] colAlias = { "Código de comunidad", "Tipo",
-	    "Nº familias que vierten" };
+    public static String[] colNames = {
+"tipo_contaminacion", "n_fam_vierten"
+    };
+    public static String[] colAlias = {
+"Tipo de contaminación", "Nº familias que vierten"
+    };
 
     public FuentesContaminacionForm(FLyrVect layer) {
 	super(layer);
     }
 
     @Override
-    protected void fillSpecificValues() {
+    protected String getBasicName() {
+	return NAME;
     }
 
     @Override
-    protected String getBasicName() {
-	return NAME;
+    protected void fillSpecificValues() {
     }
 
 }

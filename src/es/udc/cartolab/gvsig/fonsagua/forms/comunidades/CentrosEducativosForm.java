@@ -8,10 +8,12 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public class CentrosEducativosForm extends BasicAbstractForm {
 
     public static final String NAME = "centros_educativos";
-    public static String[] colNames = { "cod_comunidad", "nombre", "niveles",
-	    "tot_alumnos", "n_profesores" };
-    public static String[] colAlias = { "Código de comunidad", "Nombre",
-	    "Niveles de enseñanza", "Alumnos", "Profesores" };
+    public static String[] colNames = {
+"nombre", "niveles", "tot_alumnos", "n_profesores"
+    };
+    public static String[] colAlias = {
+"Nombre", "Niveles de enseñanza", "Nº de alumnos", "Nº de profesores"
+    };
 
     public CentrosEducativosForm(FLyrVect layer) {
 	super(layer);

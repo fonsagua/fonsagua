@@ -8,8 +8,12 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public class AreasPotencialesRiegoForm extends BasicAbstractForm {
 
     public static final String NAME = "areas_potenciales_riego";
-    public static String[] colNames = { "cod_comunidad", "descripcion" };
-    public static String[] colAlias = { "Código de comunidad", "Descripción" };
+    public static String[] colNames = {
+"descripcion"
+    };
+    public static String[] colAlias = {
+"Áreas potenciales riego"
+    };
 
     public AreasPotencialesRiegoForm(FLyrVect layer) {
 	super(layer);

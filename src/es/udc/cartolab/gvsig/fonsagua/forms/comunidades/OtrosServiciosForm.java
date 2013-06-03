@@ -8,8 +8,12 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public class OtrosServiciosForm extends BasicAbstractForm {
 
     public static final String NAME = "otros_servicios";
-    public static String[] colNames = { "cod_comunidad", "nombre", "tipo" };
-    public static String[] colAlias = { "Código de comunidad", "Nombre", "Tipo" };
+    public static String[] colNames = {
+"nombre", "tipo_servicio"
+    };
+    public static String[] colAlias = {
+"Nombre", "Tipo"
+    };
 
     public OtrosServiciosForm(FLyrVect layer) {
 	super(layer);

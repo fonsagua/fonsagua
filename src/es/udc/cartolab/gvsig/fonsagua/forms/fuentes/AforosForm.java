@@ -6,17 +6,19 @@ import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
 public class AforosForm extends AbstractSubForm {
 
     public static final String NAME = "aforos";
-    public static String[] colNames = { "cod_fuente", "aforo", "fecha", "hora" };
-    public static String[] colAlias = { "Código fuente", "Aforo", "Fecha",
-	    "Hora" };
-
-    @Override
-    protected void fillSpecificValues() {
-    }
+    public static String[] colNames = {
+"aforo", "fecha", "hora"
+    };
+    public static String[] colAlias = {
+"Aforo", "Fecha", "Hora"
+    };
 
     @Override
     protected String getBasicName() {
 	return NAME;
     }
 
+    @Override
+    protected void fillSpecificValues() {
+    }
 }

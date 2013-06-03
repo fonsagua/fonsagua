@@ -8,10 +8,12 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public class AmenazasForm extends BasicAbstractForm {
 
     public static final String NAME = "amenazas";
-    public static String[] colNames = { "cod_comunidad", "tipo_amenaza",
-	    "n_fam_afectadas" };
-    public static String[] colAlias = { "Código de comunidad", "Tipo",
-	    "Nº familias afectadas" };
+    public static String[] colNames = {
+"tipo_amenaza", "n_fam_afectadas"
+    };
+    public static String[] colAlias = {
+"Tipo", "Nº familias afectadas"
+    };
 
     public AmenazasForm(FLyrVect layer) {
 	super(layer);

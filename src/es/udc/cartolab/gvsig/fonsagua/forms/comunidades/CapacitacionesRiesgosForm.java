@@ -6,17 +6,19 @@ import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
 public class CapacitacionesRiesgosForm extends AbstractSubForm {
 
     public static final String NAME = "capacitaciones_riesgos";
-    public static String[] colNames = { "institucion", "fecha", "temas" };
-    public static String[] colAlias = { "Institución", "Fecha",
-	    "Temas de capacitación" };
-
-    @Override
-    protected void fillSpecificValues() {
-    }
+    public static String[] colNames = {
+"institucion", "fecha", "temas"
+    };
+    public static String[] colAlias = {
+"Institución", "Fecha", "Temas de capacitación"
+    };
 
     @Override
     protected String getBasicName() {
 	return NAME;
     }
 
+    @Override
+    protected void fillSpecificValues() {
+    }
 }
