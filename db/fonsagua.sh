@@ -16,9 +16,11 @@ error() {
 }
 
 . create-db.sh
+. create-pgpass.sh
 # comment the following lines if you prefer
 # to force the use of the arguments
 config_file=./db_config_devel
+
 schema=all
 
 
@@ -74,6 +76,8 @@ if [ -z $config_file ] ; then
 fi
 
 . $config_file
+create-pgpass $config_file
+
 . db_binaries $DB_BINARIES
 
 if [ $schema == "all" ] ; then
@@ -90,7 +94,7 @@ if [ $schema == "all" ] ; then
     # ./create-db.sh $config_file
 fi
 
-
+delete-pgpass $config_file
 
 # ./pg_dump -U postgres --column-inserts --data-only --table comunidades --table puntos_viviendas --table areas_potenciales_riego --table centros_educativos --table centros_salud --table otros_servicios --table amenazas --table fuentes_contaminacion --table abastecimientos --table captaciones --table dep_intermedios --table dep_distribucion --table tuberias --table bombeos --table fuentes --file=/tmp/data-test-geometry-tables.sql fonsagua
 
