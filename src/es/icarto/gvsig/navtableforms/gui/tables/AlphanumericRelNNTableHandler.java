@@ -1,7 +1,6 @@
 package es.icarto.gvsig.navtableforms.gui.tables;
 
 import java.awt.event.MouseListener;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,23 +18,23 @@ public class AlphanumericRelNNTableHandler {
     private IEditableSource source;
     private AbstractSubForm form;
     private JTable jtable;
-    private String originTable;
     private String originKey;
     private String relTable;
+    private String dbSchema;
     private String destinyKey;
     private String[] colNames;
     private String[] colAliases;
     private MouseListener listener;
 
     public AlphanumericRelNNTableHandler(ProjectTable sourceTable,
-	    HashMap<String, JComponent> widgets, String originTable,
+	    HashMap<String, JComponent> widgets, String dbSchema,
 	    String originKey, String relTable, String destinyKey,
 	    String[] colNames, String[] colAliases) {
 	this.source = sourceTable.getModelo();
 	jtable = (JTable) widgets.get(sourceTable.getName());
 	jtable.setAutoCreateRowSorter(true);
-	this.originTable = originTable;
 	this.originKey = originKey;
+	this.dbSchema = dbSchema;
 	this.relTable = relTable;
 	this.destinyKey = destinyKey;
 	this.colNames = colNames;
@@ -58,37 +57,25 @@ public class AlphanumericRelNNTableHandler {
 	try {
 	    DBSession session = DBSession.getCurrentSession();
 	    if (session != null) {
-		String sql = getSQLSentence(value);
-		ResultSet results = session.getJavaConnection()
-			.createStatement().executeQuery(sql);
+		String[] secPkValues = session.getDistinctValues(relTable,
+			dbSchema, destinyKey, false, false, "WHERE "
+				+ originKey + "='" + value + "'");
 		int foreignKeyColumn = source.getRecordset()
 			.getFieldIndexByName(destinyKey);
-		if (foreignKeyColumn > -1) {
-		    String destinyValue;
-		    List<IRowFilter> filters = new ArrayList<IRowFilter>();
-		    while (results.next()) {
-			destinyValue = results.getString(1);
-			filters.add(new IRowFilterImplementer(foreignKeyColumn,
-				destinyValue));
-		    }
-		    TableModelAlphanumeric model = new TableModelAlphanumeric(
-			    source,
-			    new IRowMultipleOrFilterImplementer(filters),
-			    colNames, colAliases);
-		    jtable.setModel(model);
-		    form.setModel(model);
+		List<IRowFilter> filters = new ArrayList<IRowFilter>();
+		for (String val : secPkValues) {
+		    filters.add(new IRowFilterImplementer(foreignKeyColumn, val));
 		}
+		TableModelAlphanumeric model = new TableModelAlphanumeric(
+			source, new IRowMultipleOrFilterImplementer(filters),
+			colNames, colAliases);
+		jtable.setModel(model);
+		form.setModel(model);
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
 
-    }
-
-    private String getSQLSentence(String value) {
-	return "SELECT b." + destinyKey + " FROM " + originTable + " a JOIN "
-		+ relTable + " b ON a." + originKey + " = b." + originKey
-		+ " WHERE a." + originKey + " = '" + value + "';";
     }
 
 }

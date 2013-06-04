@@ -96,23 +96,19 @@ public class AbastecimientosForm extends BasicAbstractForm {
 		"r_abastecimientos_fuentes", FonsaguaConstants.dataSchema);
 	adescosHandler = new AlphanumericRelNNTableHandler(loadTable(
 		AdescosForm.NAME).getModel(), getWidgetComponents(),
-		FonsaguaConstants.dataSchema + "." + NAME,
-		"cod_abastecimiento", FonsaguaConstants.dataSchema
-			+ ".r_abastecimientos_comunidades", "cod_comunidad",
+		FonsaguaConstants.dataSchema, "cod_abastecimiento",
+		"r_abastecimientos_comunidades", "cod_comunidad",
 		AdescosForm.colNames, AdescosForm.colAlias);
 	implicacionComunidadHandler = new AlphanumericRelNNTableHandler(
 		loadTable(ImplicacionComunidadForm.NAME).getModel(),
-		getWidgetComponents(),
-		FonsaguaConstants.dataSchema + "." + NAME,
-		"cod_abastecimiento",
-		FonsaguaConstants.dataSchema + ".r_abastecimientos_comunidades",
+		getWidgetComponents(), FonsaguaConstants.dataSchema,
+		"cod_abastecimiento", "r_abastecimientos_comunidades",
 		"cod_comunidad", ImplicacionComunidadForm.colNames,
 		ImplicacionComunidadForm.colAlias);
 	valoracionSistemaHandler = new AlphanumericRelNNTableHandler(loadTable(
 		ValoracionSistemaForm.NAME).getModel(), getWidgetComponents(),
-		FonsaguaConstants.dataSchema + "." + NAME,
-		"cod_abastecimiento", FonsaguaConstants.dataSchema
-			+ ".r_abastecimientos_comunidades", "cod_comunidad",
+		FonsaguaConstants.dataSchema, "cod_abastecimiento",
+		"r_abastecimientos_comunidades", "cod_comunidad",
 		ValoracionSistemaForm.colNames, ValoracionSistemaForm.colAlias);
     }
 

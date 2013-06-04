@@ -1,11 +1,9 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.relationship;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Vector;
+import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JTable;
@@ -23,6 +21,7 @@ public class TableRelationship {
     private String secondaryPKName;
     private String relationTableName;
     private String dbSchema;
+    private String[] secPkValues;
 
     private JTable relationJTable;
     private String primaryPKValue;
@@ -51,21 +50,15 @@ public class TableRelationship {
 
     private void fillRows() {
 	try {
-	    PreparedStatement statement;
-	    String query = "SELECT * FROM " + dbSchema + "."
-		    + relationTableName + " WHERE " + primaryPKName + "='"
-		    + primaryPKValue + "';";
-	    statement = DBSession.getCurrentSession().getJavaConnection()
-		    .prepareStatement(query);
-	    statement.execute();
-	    ResultSet rs = statement.getResultSet();
-	    while (rs.next()) {
-		Vector<String> rowValues = new Vector<String>();
-		rowValues.add(rs.getString(secondaryPKName));
+	    secPkValues = DBSession.getCurrentSession().getDistinctValues(
+		    relationTableName, dbSchema, secondaryPKName, false, false,
+		    "WHERE " + primaryPKName + "='" + primaryPKValue + "'");
+	    String[] auxValue = new String[1];
+	    for (String val : secPkValues) {
+		auxValue[0] = val;
 		((DefaultTableModel) relationJTable.getModel())
-			.addRow(rowValues);
+			.addRow(auxValue);
 	    }
-
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
@@ -81,24 +74,20 @@ public class TableRelationship {
 	relationJTable.removeMouseListener(listener);
     }
 
-    public ArrayList<String> getSecondaryValues() {
+    public List<String> getSecondaryValues() {
 	try {
-	    PreparedStatement statement;
-	    String query = "SELECT " + secondaryPKName + " FROM " + dbSchema
-		    + "." + secondaryTableName + " WHERE " + secondaryPKName
-		    + " NOT IN (SELECT " + secondaryPKName + " FROM "
-		    + dbSchema + "." + relationTableName
-		    + " WHERE " + primaryPKName + " = '" + primaryPKValue
-		    + "');";
-	    statement = DBSession.getCurrentSession().getJavaConnection()
-		    .prepareStatement(query);
-	    statement.execute();
-	    ResultSet rs = statement.getResultSet();
-	    ArrayList<String> values = new ArrayList<String>();
-	    while (rs.next()) {
-		values.add(rs.getString(secondaryPKName));
+	    String where = "";
+	    if (secPkValues.length > 0) {
+		where = " WHERE " + secondaryPKName + " NOT IN (";
+		for (String val : secPkValues) {
+		    where += "'" + val + "', ";
+		}
+		where = where.substring(0, where.length() - 2) + ")";
 	    }
-	    return values;
+	    String[] values = DBSession.getCurrentSession().getDistinctValues(
+		    secondaryTableName, dbSchema, secondaryPKName, false, false,
+		    where);
+	    return Arrays.asList(values);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
@@ -107,14 +96,10 @@ public class TableRelationship {
 
     public void insertRow(String secondaryPKValue) {
 	try {
-	    PreparedStatement statement;
-	    String query = "INSERT INTO " + dbSchema + "." + relationTableName
-		    + "( " + primaryPKName + ", " + secondaryPKName + ")"
-		    + " VALUES ( " + "'" + primaryPKValue + "','"
-		    + secondaryPKValue + "');";
-	    statement = DBSession.getCurrentSession().getJavaConnection()
-		    .prepareStatement(query);
-	    statement.execute();
+	    String[] columns = { primaryPKName, secondaryPKName };
+	    String[] values = { primaryPKValue, secondaryPKValue };
+	    DBSession.getCurrentSession().insertRow(dbSchema,
+		    relationTableName, columns, values);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
@@ -122,14 +107,11 @@ public class TableRelationship {
 
     public void deleteRow(String secondaryPKValue) {
 	try {
-	    PreparedStatement statement;
-	    String query = "DELETE FROM " + dbSchema + "." + relationTableName
-		    + " WHERE " + primaryPKName + " = '" + primaryPKValue
+	    String where = "WHERE " + primaryPKName + " = '" + primaryPKValue
 		    + "' AND " + secondaryPKName + " = '" + secondaryPKValue
-		    + "';";
-	    statement = DBSession.getCurrentSession().getJavaConnection()
-		    .prepareStatement(query);
-	    statement.execute();
+		    + "'";
+	    DBSession.getCurrentSession().deleteRows(dbSchema,
+		    relationTableName, where);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
