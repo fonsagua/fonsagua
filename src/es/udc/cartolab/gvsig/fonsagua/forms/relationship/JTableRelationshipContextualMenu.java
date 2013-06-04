@@ -77,8 +77,10 @@ public class JTableRelationshipContextualMenu implements MouseListener {
 	    if (!JTableUtils.hasRows(table)
 		    || (table.getSelectedRow() == NO_ROW_SELECTED)) {
 		deleteMenuItem.setEnabled(false);
+		openMenuItem.setEnabled(false);
 	    } else {
 		deleteMenuItem.setEnabled(true);
+		openMenuItem.setEnabled(true);
 	    }
 	    popupMenu.show(e.getComponent(), e.getX(), e.getY());
 	}
