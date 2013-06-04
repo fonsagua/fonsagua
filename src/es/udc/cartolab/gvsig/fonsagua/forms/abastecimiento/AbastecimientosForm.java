@@ -56,13 +56,13 @@ public class AbastecimientosForm extends BasicAbstractForm {
 		CoberturaForm.NAME, getWidgetComponents(), PKFIELD,
 		CoberturaForm.colNames, CoberturaForm.colAlias);
 	gestionComercialHandler = new TableHandler(
-		FonsaguaConstants.dataSchema, GestionComercialForm.NAME,
-		getWidgetComponents(), PKFIELD, GestionComercialForm.colNames,
-		GestionComercialForm.colAlias);
+		FonsaguaConstants.dataSchema, GestComercialForm.NAME,
+		getWidgetComponents(), PKFIELD, GestComercialForm.colNames,
+		GestComercialForm.colAlias);
 	gestionFinancieraHandler = new TableHandler(
-		FonsaguaConstants.dataSchema, GestionFinancieraForm.NAME,
-		getWidgetComponents(), PKFIELD, GestionFinancieraForm.colNames,
-		GestionFinancieraForm.colAlias);
+		FonsaguaConstants.dataSchema, GestFinancieraForm.NAME,
+		getWidgetComponents(), PKFIELD, GestFinancieraForm.colNames,
+		GestFinancieraForm.colAlias);
 	evaluacionHandler = new TableHandler(FonsaguaConstants.dataSchema,
 		EvaluacionForm.NAME, getWidgetComponents(), PKFIELD,
 		EvaluacionForm.colNames, EvaluacionForm.colAlias);
@@ -160,8 +160,8 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	super.setListeners();
 	juntasAguaHandler.reload(new JuntasAguaForm());
 	coberturaHandler.reload(new CoberturaForm());
-	gestionComercialHandler.reload(new GestionComercialForm());
-	gestionFinancieraHandler.reload(new GestionFinancieraForm());
+	gestionComercialHandler.reload(new GestComercialForm());
+	gestionFinancieraHandler.reload(new GestFinancieraForm());
 	evaluacionHandler.reload(new EvaluacionForm());
 	datosConsumoHandler.reload(new DatosConsumoForm());
 	captacionesHandler.reload(CaptacionesForm.NAME,
