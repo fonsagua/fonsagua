@@ -15,18 +15,6 @@ BEFORE INSERT OR UPDATE ON fonsagua.abastecimientos
     FOR EACH ROW EXECUTE PROCEDURE abastecimientos_compute_fields_trigger();
 
 
-CREATE OR REPLACE FUNCTION gest_comercial_compute_fields_trigger() RETURNS TRIGGER AS $gest_comercial_compute_fields_trigger$
-    BEGIN
-	IF ((NEW.produccion IS NOT NULL) AND (NEW.facturacion IS NOT NULL)) THEN NEW.a_no_contabilizada = NEW.produccion - NEW.facturacion; ELSE NEW.a_no_contabilizada = NULL; END IF;
-	IF ((NEW.a_no_contabilizada IS NOT NULL) AND (NEW.produccion > 0)) THEN NEW.pct_a_no_contabilizada = NEW.a_no_contabilizada * 100 / NEW.produccion; ELSE NEW.pct_a_no_contabilizada = NULL; END IF;
-        RETURN NEW;
-    END;
-$gest_comercial_compute_fields_trigger$ LANGUAGE plpgsql;
-
-DROP TRIGGER IF EXISTS gest_comercial_compute_fields_trigger ON fonsagua.gest_comercial;
-CREATE TRIGGER gest_comercial_compute_fields_trigger
-BEFORE INSERT OR UPDATE ON fonsagua.gest_comercial
-    FOR EACH ROW EXECUTE PROCEDURE gest_comercial_compute_fields_trigger();
 
 
 CREATE OR REPLACE FUNCTION gest_financiera_compute_fields_trigger() RETURNS TRIGGER AS $gest_financiera_compute_fields_trigger$
@@ -195,4 +183,3 @@ DROP TRIGGER IF EXISTS gest_comercial_compute_fields_trigger ON fonsagua.gest_co
 CREATE TRIGGER gest_comercial_compute_fields_trigger
 BEFORE INSERT OR UPDATE ON fonsagua.gest_comercial
     FOR EACH ROW EXECUTE PROCEDURE gest_comercial_compute_fields_trigger();
-

@@ -11,7 +11,7 @@ usage() {
 }
 
 error() {
-    echo "Ha habido un error"
+    echo $1
     exit
 }
 
@@ -93,6 +93,14 @@ if [ $schema == "all" ] ; then
     fi
     # ./create-db.sh $config_file
 fi
+
+if hash pg_prove 2>/dev/null ; then
+    psql -U $superuser -d $dbname -c "CREATE EXTENSION pgtap;"
+    pg_prove -U $superuser -d $dbname -h $server ./tests/*.sql
+else 
+    echo >&2 "pg_prove not installed db tests skipped"
+fi
+
 
 delete-pgpass $config_file
 
