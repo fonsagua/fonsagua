@@ -199,7 +199,6 @@ public class ComunidadesForm extends BasicAbstractForm {
 
     @Override
     protected void setListeners() {
-	super.setListeners();
 	adescosHandler.reload(new AdescosForm());
 	entrevistadoresHandler.reload(new EntrevistadoresForm());
 	entrevistadosHandler.reload(new EntrevistadosForm());
@@ -235,11 +234,11 @@ public class ComunidadesForm extends BasicAbstractForm {
 		.getInstance().createSingletonForm(
 			new TOCLayerManager()
 				.getLayerByName(AbastecimientosForm.NAME)));
+	super.setListeners();
     }
 
     @Override
     protected void removeListeners() {
-	super.removeListeners();
 	adescosHandler.removeListeners();
 	entrevistadoresHandler.removeListeners();
 	entrevistadosHandler.removeListeners();
@@ -263,6 +262,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	areasPotencialesRiegoHandler.removeListeners();
 	otrosServiciosHandler.removeListeners();
 	amenazasHandler.removeListeners();
+	super.removeListeners();
     }
 
     @Override

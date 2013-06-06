@@ -141,6 +141,27 @@
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
+		<FIELDNAME>adescos</FIELDNAME>
+		<ENABLEIF>
+			<COMPONENT>h_adescos</COMPONENT>
+			<VALUE>true</VALUE>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>cargos_publicos</FIELDNAME>
+		<ENABLEIF>
+			<COMPONENT>h_cargos_publicos</COMPONENT>
+			<VALUE>true</VALUE>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>ongs</FIELDNAME>
+		<ENABLEIF>
+			<COMPONENT>exp_ongs</COMPONENT>
+			<VALUE>true</VALUE>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
 		<FIELDNAME>emigracion</FIELDNAME>
 		<DOMAINREADER>
 			<DRTYPE>db</DRTYPE>
@@ -409,6 +430,13 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 	    </FIELD>
        	    <FIELD>
+		<FIELDNAME>areas_potenciales_riego</FIELDNAME>
+		<ENABLEIF>
+			<COMPONENT>areas_pot_riego</COMPONENT>
+			<VALUE>true</VALUE>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
 		<FIELDNAME>tip_agroquimicos</FIELDNAME>
 		<ENABLEIF>
 			<COMPONENT>agroquimicos</COMPONENT>
@@ -455,6 +483,13 @@
        	    <FIELD>
 		<FIELDNAME>n_caballos</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>cooperativas</FIELDNAME>
+		<ENABLEIF>
+			<COMPONENT>h_cooperativas</COMPONENT>
+			<VALUE>true</VALUE>
+		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>f_viv_prop</FIELDNAME>
@@ -515,6 +550,13 @@
        	    <FIELD>
 		<FIELDNAME>n_cent_educativos</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
+		<ENABLEIF>
+			<COMPONENT>cent_educativos</COMPONENT>
+			<VALUE>true</VALUE>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>centros_educativos</FIELDNAME>
 		<ENABLEIF>
 			<COMPONENT>cent_educativos</COMPONENT>
 			<VALUE>true</VALUE>
@@ -778,6 +820,13 @@
 		<FIELDNAME>comite</FIELDNAME>
 		<ENABLEIF>
 			<COMPONENT>comite_riesgos</COMPONENT>
+			<VALUE>true</VALUE>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>capacitaciones_riesgos</FIELDNAME>
+		<ENABLEIF>
+			<COMPONENT>capac_riesgos</COMPONENT>
 			<VALUE>true</VALUE>
 		</ENABLEIF>
 	    </FIELD>
