@@ -11,6 +11,9 @@ import javax.swing.table.TableRowSorter;
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
+import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
+
 public class VectorialTableHandler {
 
     private FLyrVect layer;
@@ -20,15 +23,24 @@ public class VectorialTableHandler {
     private String[] colAliases;
     private MouseListener listener;
 
-    public VectorialTableHandler(FLyrVect layer,
+    public VectorialTableHandler(String layerName,
 	    HashMap<String, JComponent> widgets, String foreignKeyId,
 	    String[] colNames, String[] colAliases) {
-	this.layer = layer;
+	FonsaguaTableFormFactory.getInstance().checkLayerLoaded(layerName);
+	this.layer = new TOCLayerManager().getLayerByName(layerName);
 	jtable = (JTable) widgets.get(layer.getName());
 	jtable.setAutoCreateRowSorter(true);
 	this.foreignKeyId = foreignKeyId;
 	this.colNames = colNames;
 	this.colAliases = colAliases;
+    }
+
+    private FLyrVect getLayer(String layerName) {
+	FLyrVect layer = new TOCLayerManager().getLayerByName(layerName);
+	if (layer == null) {
+
+	}
+	return layer;
     }
 
     public void reload(String layerName, TableFormFactory factory) {

@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.NotEditableTableModel;
+import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class TableRelationship {
@@ -31,6 +32,8 @@ public class TableRelationship {
 	    String primaryTableName, String primaryPKName,
 	    String secondaryTableName, String secondaryPKName,
 	    String relationTableName, String dbSchema) {
+	FonsaguaTableFormFactory.getInstance().checkLayerLoaded(
+		secondaryTableName);
 	this.primaryTableName = primaryTableName;
 	this.primaryPKName = primaryPKName;
 	this.secondaryTableName = secondaryTableName;

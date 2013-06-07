@@ -48,7 +48,7 @@ public class AbastecimientosForm extends BasicAbstractForm {
 
     public AbastecimientosForm(FLyrVect layer) {
 	super(layer);
-	TOCLayerManager toc = new TOCLayerManager();
+
 	juntasAguaHandler = new TableHandler(FonsaguaConstants.dataSchema,
 		JuntasAguaForm.NAME, getWidgetComponents(), PKFIELD,
 		JuntasAguaForm.colNames, JuntasAguaForm.colAlias);
@@ -70,24 +70,22 @@ public class AbastecimientosForm extends BasicAbstractForm {
 		DatosConsumoForm.NAME, getWidgetComponents(),
 		"cod_abastecimiento", DatosConsumoForm.colNames,
 		DatosConsumoForm.colAlias);
-	captacionesHandler = new VectorialTableHandler(
-		toc.getLayerByName(CaptacionesForm.NAME),
+	captacionesHandler = new VectorialTableHandler(CaptacionesForm.NAME,
 		getWidgetComponents(), PKFIELD, CaptacionesForm.colNames,
 		CaptacionesForm.colAlias);
 	depIntermediosHandler = new VectorialTableHandler(
-		toc.getLayerByName(DepIntermediosForm.NAME),
-		getWidgetComponents(), PKFIELD, DepIntermediosForm.colNames,
-		DepIntermediosForm.colAlias);
+		DepIntermediosForm.NAME, getWidgetComponents(), PKFIELD,
+		DepIntermediosForm.colNames, DepIntermediosForm.colAlias);
 	depDistribucionHandler = new VectorialTableHandler(
-		toc.getLayerByName(DepDistribucionForm.NAME),
-		getWidgetComponents(), PKFIELD, DepDistribucionForm.colNames,
+		DepDistribucionForm.NAME, getWidgetComponents(), PKFIELD,
+		DepDistribucionForm.colNames,
 		DepDistribucionForm.colAlias);
-	tuberiasHandler = new VectorialTableHandler(
-		toc.getLayerByName(TuberiasForm.NAME), getWidgetComponents(),
-		PKFIELD, TuberiasForm.colNames, TuberiasForm.colAlias);
-	bombeosHandler = new VectorialTableHandler(
-		toc.getLayerByName(BombeosForm.NAME), getWidgetComponents(),
-		PKFIELD, BombeosForm.colNames, BombeosForm.colAlias);
+	tuberiasHandler = new VectorialTableHandler(TuberiasForm.NAME,
+		getWidgetComponents(), PKFIELD, TuberiasForm.colNames,
+		TuberiasForm.colAlias);
+	bombeosHandler = new VectorialTableHandler(BombeosForm.NAME,
+		getWidgetComponents(), PKFIELD, BombeosForm.colNames,
+		BombeosForm.colAlias);
 	comunidadesRelationship = new TableRelationship(getWidgetComponents(),
 		NAME, PKFIELD, ComunidadesForm.NAME, ComunidadesForm.PKFIELD,
 		"r_abastecimientos_comunidades", FonsaguaConstants.dataSchema);

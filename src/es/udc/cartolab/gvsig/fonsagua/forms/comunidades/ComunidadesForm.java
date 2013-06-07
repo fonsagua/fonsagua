@@ -112,34 +112,29 @@ public class ComunidadesForm extends BasicAbstractForm {
 		HabitosConsumoForm.NAME, getWidgetComponents(), PKFIELD,
 		HabitosConsumoForm.colNames, HabitosConsumoForm.colAlias);
 	fuentesContaminacionHandler = new VectorialTableHandler(
-		toc.getLayerByName(FuentesContaminacionForm.NAME),
-		getWidgetComponents(), PKFIELD,
+		FuentesContaminacionForm.NAME, getWidgetComponents(), PKFIELD,
 		FuentesContaminacionForm.colNames,
 		FuentesContaminacionForm.colAlias);
 	puntosViviendasHandler = new VectorialTableHandler(
-		toc.getLayerByName(PuntosViviendasForm.NAME),
-		getWidgetComponents(), PKFIELD, PuntosViviendasForm.colNames,
-		PuntosViviendasForm.colAlias);
+		PuntosViviendasForm.NAME, getWidgetComponents(), PKFIELD,
+		PuntosViviendasForm.colNames, PuntosViviendasForm.colAlias);
 	centrosEducativosHandler = new VectorialTableHandler(
-		toc.getLayerByName(CentrosEducativosForm.NAME),
-		getWidgetComponents(), PKFIELD, CentrosEducativosForm.colNames,
-		CentrosEducativosForm.colAlias);
-	centrosSaludHandler = new VectorialTableHandler(
-		toc.getLayerByName(CentrosSaludForm.NAME),
+		CentrosEducativosForm.NAME, getWidgetComponents(), PKFIELD,
+		CentrosEducativosForm.colNames, CentrosEducativosForm.colAlias);
+	centrosSaludHandler = new VectorialTableHandler(CentrosSaludForm.NAME,
 		getWidgetComponents(), PKFIELD, CentrosSaludForm.colNames,
 		CentrosSaludForm.colAlias);
 	areasPotencialesRiegoHandler = new VectorialTableHandler(
-		toc.getLayerByName(AreasPotencialesRiegoForm.NAME),
+		AreasPotencialesRiegoForm.NAME,
 		getWidgetComponents(), PKFIELD,
 		AreasPotencialesRiegoForm.colNames,
 		AreasPotencialesRiegoForm.colAlias);
 	otrosServiciosHandler = new VectorialTableHandler(
-		toc.getLayerByName(OtrosServiciosForm.NAME),
-		getWidgetComponents(), PKFIELD, OtrosServiciosForm.colNames,
-		OtrosServiciosForm.colAlias);
-	amenazasHandler = new VectorialTableHandler(
-		toc.getLayerByName(AmenazasForm.NAME), getWidgetComponents(),
-		PKFIELD, AmenazasForm.colNames, AmenazasForm.colAlias);
+		OtrosServiciosForm.NAME, getWidgetComponents(), PKFIELD,
+		OtrosServiciosForm.colNames, OtrosServiciosForm.colAlias);
+	amenazasHandler = new VectorialTableHandler(AmenazasForm.NAME,
+		getWidgetComponents(), PKFIELD, AmenazasForm.colNames,
+		AmenazasForm.colAlias);
 	abastecimientosRelationship = new TableRelationship(
 		getWidgetComponents(), NAME, PKFIELD, AbastecimientosForm.NAME,
 		AbastecimientosForm.PKFIELD, "r_abastecimientos_comunidades",
