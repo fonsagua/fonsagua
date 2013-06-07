@@ -13,5 +13,7 @@ public interface TableFormFactory {
     public abstract boolean hasMainForm(String layerName);
 
     public abstract boolean allLayersLoaded();
+
+    public abstract void checkLayerLoaded(String layerName);
     
 }

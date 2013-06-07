@@ -3,11 +3,15 @@ package es.udc.cartolab.gvsig.fonsagua.forms.factories;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.iver.andami.PluginServices;
+import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
+import com.iver.cit.gvsig.project.documents.view.gui.BaseView;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.BombeosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.CaptacionesForm;
@@ -26,6 +30,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.PuntosViviendasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.SingletonComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.SingletonFuentesForm;
+import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class FonsaguaTableFormFactory implements TableFormFactory {
 
@@ -126,6 +131,36 @@ public class FonsaguaTableFormFactory implements TableFormFactory {
 	    }
 	}
 	return true;
+    }
+
+    @Override
+    public void checkLayerLoaded(String layerName) {
+	// We check whether the secondary layer is loaded
+	if (new TOCLayerManager().getLayerByName(layerName) == null) {
+	    // If it isn't, we retrieve the current view,
+	    // load the layer and add it
+	    IWindow[] windows = PluginServices.getMDIManager()
+		    .getOrderedWindows();
+	    BaseView view = null;
+	    for (IWindow w : windows) {
+		if (w instanceof BaseView) {
+		    view = (BaseView) w;
+		    break;
+		}
+	    }
+	    try {
+		view.getMapControl()
+			.getMapContext()
+			.getLayers()
+			.addLayer(
+				DBSession.getCurrentSession().getLayer(
+					layerName,
+					FonsaguaConstants.dataSchema,
+					view.getProjection()));
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+	}
     }
 
 }
