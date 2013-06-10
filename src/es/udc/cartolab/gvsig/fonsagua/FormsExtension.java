@@ -3,6 +3,7 @@ package es.udc.cartolab.gvsig.fonsagua;
 import com.iver.andami.PluginServices;
 import com.iver.andami.plugins.Extension;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
+import com.iver.cit.gvsig.gui.cad.tools.SelectionCADTool;
 import com.iver.utiles.extensionPoints.ExtensionPoints;
 import com.iver.utiles.extensionPoints.ExtensionPointsSingleton;
 
@@ -46,6 +47,12 @@ public class FormsExtension extends Extension {
 		.getInstance();
 	extensionPoints.add("View_TocActions", "Fonsagua",
 		new FonsaguaTocMenuEntry());
+    }
+
+    @Override
+    public void postInitialize() {
+	// Workaround to increase the snap tolerance
+	SelectionCADTool.tolerance = 12;
     }
 
     @Override
