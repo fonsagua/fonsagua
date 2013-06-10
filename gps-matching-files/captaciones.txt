@@ -1,0 +1,5 @@
+cod_captacion=name
+cod_abastecimiento:substring(name,0,8)
+utm_x:getX
+utm_y:getY
+utm_z=elev
