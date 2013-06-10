@@ -89,10 +89,12 @@ if [ $schema == "all" ] ; then
     done
 
     if [ $config_file == "./db_config_devel" ] ; then
-	$PSQL -h $server -U $user -p $port -d $dbname -f ../data-test/data-test-geometry-tables.sql
+	$PSQL -h $server -U $user -p $port -d $dbname -f ../data-test/20130610-fonsagua-test-data.sql
     fi
     # ./create-db.sh $config_file
 fi
+
+$PSQL -h $server -U $superuser -p $port -d $dbname -c "VACUUM ANALYZE;"
 
 if hash pg_prove 2>/dev/null ; then
     psql -U $superuser -d $dbname -c "CREATE EXTENSION pgtap;"
@@ -103,7 +105,5 @@ fi
 
 
 delete-pgpass $config_file
-
-# ./pg_dump -U postgres --column-inserts --data-only --table comunidades --table puntos_viviendas --table areas_potenciales_riego --table centros_educativos --table centros_salud --table otros_servicios --table amenazas --table fuentes_contaminacion --table abastecimientos --table captaciones --table dep_intermedios --table dep_distribucion --table tuberias --table bombeos --table fuentes --file=/tmp/data-test-geometry-tables.sql fonsagua
 
 # ./pg_dump -U postgres --schema elle --inserts fonsagua --file=/tmp/01-schema-elle.sql
