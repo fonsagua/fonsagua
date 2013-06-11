@@ -28,6 +28,8 @@ public class AbastecimientosForm extends BasicAbstractForm {
 
     public static final String NAME = "abastecimientos";
     public static final String PKFIELD = "cod_abastecimiento";
+    public static String[] colNames = { "abastecimiento", "cod_abastecimiento" };
+    public static String[] colAlias = { "Abastecimiento", "Código" };
 
     private TableHandler juntasAguaHandler;
     private TableHandler coberturaHandler;
@@ -88,10 +90,12 @@ public class AbastecimientosForm extends BasicAbstractForm {
 		BombeosForm.colAlias);
 	comunidadesRelationship = new TableRelationship(getWidgetComponents(),
 		NAME, PKFIELD, ComunidadesForm.NAME, ComunidadesForm.PKFIELD,
-		"r_abastecimientos_comunidades", FonsaguaConstants.dataSchema);
+		"r_abastecimientos_comunidades", FonsaguaConstants.dataSchema,
+		ComunidadesForm.colNames, ComunidadesForm.colAlias);
 	fuentesRelationship = new TableRelationship(getWidgetComponents(),
 		NAME, PKFIELD, FuentesForm.NAME, FuentesForm.PKNAME,
-		"r_abastecimientos_fuentes", FonsaguaConstants.dataSchema);
+		"r_abastecimientos_fuentes", FonsaguaConstants.dataSchema,
+		FuentesForm.colNames, FuentesForm.colAlias);
 	adescosHandler = new AlphanumericRelNNTableHandler(loadTable(
 		AdescosForm.NAME).getModel(), getWidgetComponents(),
 		FonsaguaConstants.dataSchema, "cod_abastecimiento",

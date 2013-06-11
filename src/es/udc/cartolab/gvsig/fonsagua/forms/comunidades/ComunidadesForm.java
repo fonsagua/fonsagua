@@ -23,6 +23,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 
     public static final String NAME = "comunidades";
     public static final String PKFIELD = "cod_comunidad";
+    public static String[] colNames = { "comunidad", "cod_comunidad" };
+    public static String[] colAlias = { "Comunidad", "Código" };
 
     private TableHandler adescosHandler;
     private TableHandler entrevistadoresHandler;
@@ -138,7 +140,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	abastecimientosRelationship = new TableRelationship(
 		getWidgetComponents(), NAME, PKFIELD, AbastecimientosForm.NAME,
 		AbastecimientosForm.PKFIELD, "r_abastecimientos_comunidades",
-		FonsaguaConstants.dataSchema);
+		FonsaguaConstants.dataSchema, AbastecimientosForm.colNames,
+		AbastecimientosForm.colAlias);
 
     }
 

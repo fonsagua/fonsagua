@@ -23,6 +23,8 @@ public class TableRelationship {
     private String relationTableName;
     private String dbSchema;
     private String[] secPkValues;
+    private String[] colNames;
+    private String[] colAlias;
 
     private JTable relationJTable;
     private String primaryPKValue;
@@ -31,7 +33,8 @@ public class TableRelationship {
     public TableRelationship(HashMap<String, JComponent> widgets,
 	    String primaryTableName, String primaryPKName,
 	    String secondaryTableName, String secondaryPKName,
-	    String relationTableName, String dbSchema) {
+	    String relationTableName, String dbSchema, String[] colNames,
+	    String[] colAlias) {
 	FonsaguaTableFormFactory.getInstance().checkLayerLoaded(
 		secondaryTableName);
 	this.primaryTableName = primaryTableName;
@@ -40,27 +43,55 @@ public class TableRelationship {
 	this.secondaryPKName = secondaryPKName;
 	this.relationTableName = relationTableName;
 	this.dbSchema = dbSchema;
+	this.colNames = colNames;
+	this.colAlias = colAlias;
 	relationJTable = (JTable) widgets.get(relationTableName);
     }
 
     public void fillValues(String primaryPKValue) {
 	this.primaryPKValue = primaryPKValue;
 	DefaultTableModel tableModel = new NotEditableTableModel();
-	tableModel.addColumn("Código");
+	for (String col : colAlias) {
+	    tableModel.addColumn(col);
+	}
 	relationJTable.setModel(tableModel);
 	fillRows();
     }
 
+    // private void fillRows() {
+    // try {
+    // secPkValues = DBSession.getCurrentSession().getDistinctValues(
+    // relationTableName, dbSchema, secondaryPKName, false, false,
+    // "WHERE " + primaryPKName + "='" + primaryPKValue + "'");
+    // String[] auxValue = new String[1];
+    // for (String val : secPkValues) {
+    // auxValue[0] = val;
+    // ((DefaultTableModel) relationJTable.getModel())
+    // .addRow(auxValue);
+    // }
+    // } catch (SQLException e) {
+    // e.printStackTrace();
+    // }
+    // }
+
     private void fillRows() {
 	try {
-	    secPkValues = DBSession.getCurrentSession().getDistinctValues(
+	    DBSession session = DBSession.getCurrentSession();
+	    secPkValues = session.getDistinctValues(
 		    relationTableName, dbSchema, secondaryPKName, false, false,
 		    "WHERE " + primaryPKName + "='" + primaryPKValue + "'");
-	    String[] auxValue = new String[1];
-	    for (String val : secPkValues) {
-		auxValue[0] = val;
-		((DefaultTableModel) relationJTable.getModel())
-			.addRow(auxValue);
+	    String where = "";
+	    if (secPkValues.length > 0) {
+		where = "WHERE " + secondaryPKName + " IN (";
+		for (String val : secPkValues) {
+		    where += "'" + val + "', ";
+		}
+		where = where.substring(0, where.length() - 2) + ")";
+		String[][] rows = session.getTable(secondaryTableName,
+			dbSchema, colNames, where, colNames, false);
+		for (String[] row : rows) {
+		    ((DefaultTableModel) relationJTable.getModel()).addRow(row);
+		}
 	    }
 	} catch (SQLException e) {
 	    e.printStackTrace();

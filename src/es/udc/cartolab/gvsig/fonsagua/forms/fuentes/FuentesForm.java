@@ -18,6 +18,8 @@ public class FuentesForm extends BasicAbstractForm {
 
     public static final String NAME = "fuentes";
     public static final String PKNAME = "cod_fuente";
+    public static String[] colNames = { "fuente", "cod_fuente" };
+    public static String[] colAlias = { "Fuente", "Código" };
 
     private TableHandler aforosHandler;
     private TableHandler analiticasHandler;
@@ -34,7 +36,8 @@ public class FuentesForm extends BasicAbstractForm {
 	abastecimientosRelationship = new TableRelationship(
 		getWidgetComponents(), NAME, PKNAME, AbastecimientosForm.NAME,
 		AbastecimientosForm.PKFIELD, "r_abastecimientos_fuentes",
-		FonsaguaConstants.dataSchema);
+		FonsaguaConstants.dataSchema, AbastecimientosForm.colNames,
+		AbastecimientosForm.colAlias);
     }
 
     @Override
