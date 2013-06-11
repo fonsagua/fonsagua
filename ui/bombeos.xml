@@ -514,8 +514,8 @@
           <at name="properties">
            <object classname="com.jeta.forms.store.support.PropertyMap">
             <at name="height">1</at>
-            <at name="name"/>
             <at name="width">565</at>
+            <at name="name"></at>
             <at name="border">
              <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
               <super classname="com.jeta.forms.store.properties.BorderProperty">
@@ -2244,6 +2244,7 @@
             </at>
             <at name="width">124</at>
             <at name="name">utm_x</at>
+            <at name="background" object="color">240,240,240</at>
             <at name="border">
              <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
               <super classname="com.jeta.forms.store.properties.BorderProperty">
@@ -2264,6 +2265,7 @@
               </at>
              </object>
             </at>
+            <at name="editable">false</at>
            </object>
           </at>
          </object>
@@ -2306,6 +2308,7 @@
             </at>
             <at name="width">124</at>
             <at name="name">utm_y</at>
+            <at name="background" object="color">240,240,240</at>
             <at name="border">
              <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
               <super classname="com.jeta.forms.store.properties.BorderProperty">
@@ -2326,6 +2329,7 @@
               </at>
              </object>
             </at>
+            <at name="editable">false</at>
            </object>
           </at>
          </object>
@@ -2368,6 +2372,7 @@
             </at>
             <at name="width">124</at>
             <at name="name">utm_z</at>
+            <at name="background" object="color">240,240,240</at>
             <at name="border">
              <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
               <super classname="com.jeta.forms.store.properties.BorderProperty">
@@ -2388,6 +2393,7 @@
               </at>
              </object>
             </at>
+            <at name="editable">false</at>
            </object>
           </at>
          </object>
@@ -3364,7 +3370,7 @@
      <at name="classname">com.jeta.forms.gui.form.GridView</at>
      <at name="properties">
       <object classname="com.jeta.forms.store.support.PropertyMap">
-       <at name="name"></at>
+       <at name="name"/>
        <at name="fill">
         <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
          <at name="name">fill</at>

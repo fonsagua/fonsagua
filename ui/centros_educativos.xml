@@ -1685,6 +1685,7 @@
             </at>
             <at name="width">124</at>
             <at name="name">utm_x</at>
+            <at name="background" object="color">240,240,240</at>
             <at name="border">
              <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
               <super classname="com.jeta.forms.store.properties.BorderProperty">
@@ -1705,6 +1706,7 @@
               </at>
              </object>
             </at>
+            <at name="editable">false</at>
            </object>
           </at>
          </object>
@@ -1747,6 +1749,7 @@
             </at>
             <at name="width">124</at>
             <at name="name">utm_y</at>
+            <at name="background" object="color">240,240,240</at>
             <at name="border">
              <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
               <super classname="com.jeta.forms.store.properties.BorderProperty">
@@ -1767,6 +1770,7 @@
               </at>
              </object>
             </at>
+            <at name="editable">false</at>
            </object>
           </at>
          </object>
@@ -1809,6 +1813,7 @@
             </at>
             <at name="width">124</at>
             <at name="name">utm_z</at>
+            <at name="background" object="color">240,240,240</at>
             <at name="border">
              <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
               <super classname="com.jeta.forms.store.properties.BorderProperty">
@@ -1829,6 +1834,7 @@
               </at>
              </object>
             </at>
+            <at name="editable">false</at>
            </object>
           </at>
          </object>
