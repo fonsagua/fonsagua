@@ -1,4 +1,4 @@
-﻿CREATE OR REPLACE FUNCTION abastecimientos_compute_fields_trigger() RETURNS TRIGGER AS $abastecimientos_compute_fields_trigger$
+﻿CREATE OR REPLACE FUNCTION fonsagua.abastecimientos_compute_fields_trigger() RETURNS TRIGGER AS $abastecimientos_compute_fields_trigger$
     BEGIN
 	NEW.tot_acometidas = 0;
 	IF (NEW.n_a_domiciliar IS NOT NULL) THEN NEW.tot_acometidas = NEW.tot_acometidas + NEW.n_a_domiciliar; END IF;
@@ -12,41 +12,123 @@ $abastecimientos_compute_fields_trigger$ LANGUAGE plpgsql;
 DROP TRIGGER IF EXISTS abastecimientos_compute_fields_trigger ON fonsagua.abastecimientos;
 CREATE TRIGGER abastecimientos_compute_fields_trigger
 BEFORE INSERT OR UPDATE ON fonsagua.abastecimientos
-    FOR EACH ROW EXECUTE PROCEDURE abastecimientos_compute_fields_trigger();
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.abastecimientos_compute_fields_trigger();
 
 
 
 
-CREATE OR REPLACE FUNCTION gest_financiera_compute_fields_trigger() RETURNS TRIGGER AS $gest_financiera_compute_fields_trigger$
+CREATE OR REPLACE FUNCTION fonsagua.adescos_compute_fields_trigger() RETURNS TRIGGER AS $adescos_compute_fields_trigger$
     BEGIN
-	NEW.cost_totales = 0;
-	IF (NEW.cost_energetico IS NOT NULL) THEN NEW.cost_totales = NEW.cost_totales + NEW.cost_energetico; END IF;
-	IF (NEW.cost_quimico IS NOT NULL) THEN NEW.cost_totales = NEW.cost_totales + NEW.cost_quimico; END IF;
-	IF (NEW.cost_personal IS NOT NULL) THEN NEW.cost_totales = NEW.cost_totales + NEW.cost_personal; END IF;
-	IF (NEW.cost_diversos IS NOT NULL) THEN NEW.cost_totales = NEW.cost_totales + NEW.cost_diversos; END IF;
-
-	IF ((NEW.produccion IS NOT NULL) AND (NEW.produccion > 0)) THEN NEW.cost_produccion = cost_totales / produccion; ELSE NEW.cost_produccion = NULL; END IF;
-
-	IF ((NEW.produccion IS NOT NULL) AND (NEW.produccion > 0) AND (NEW.ingr_totales IS NOT NULL)) THEN NEW.ingr_produccion = ingr_totales / produccion; ELSE NEW.ingr_produccion = NULL; END IF;
-
-	IF ((NEW.produccion IS NOT NULL) AND (NEW.produccion > 0) AND (NEW.facturacion IS NOT NULL)) THEN NEW.fact_produc = facturacion / produccion; ELSE NEW.fact_produc = NULL; END IF;
-
-	IF ((NEW.ingr_totales IS NOT NULL) AND (NEW.fact_produc IS NOT NULL) AND (NEW.fact_produc > 0)) THEN NEW.margen_utilidad = (NEW.ingr_totales - NEW.cost_totales) / NEW.fact_produc; ELSE NEW.margen_utilidad = NULL; END IF;
-
-	IF ((NEW.activos_corrientes IS NOT NULL) AND (NEW.pasivos_corrientes IS NOT NULL)) THEN NEW.razon_liquidez = NEW.activos_corrientes / NEW.pasivos_corrientes; ELSE NEW.razon_liquidez = NULL; END IF;
+	NEW.tot_miembros = 0;
+	IF (NEW.n_hombres IS NOT NULL) THEN NEW.tot_miembros = NEW.tot_miembros + NEW.n_hombres; END IF;
+	IF (NEW.n_mujeres IS NOT NULL) THEN NEW.tot_miembros = NEW.tot_miembros + NEW.n_mujeres; END IF;
         RETURN NEW;
     END;
-$gest_financiera_compute_fields_trigger$ LANGUAGE plpgsql;
+$adescos_compute_fields_trigger$ LANGUAGE plpgsql;
 
-DROP TRIGGER IF EXISTS gest_financiera_compute_fields_trigger ON fonsagua.gest_financiera;
-CREATE TRIGGER gest_financiera_compute_fields_trigger
-BEFORE INSERT OR UPDATE ON fonsagua.gest_financiera
-    FOR EACH ROW EXECUTE PROCEDURE gest_financiera_compute_fields_trigger();
+DROP TRIGGER IF EXISTS adescos_compute_fields_trigger ON fonsagua.adescos;
+CREATE TRIGGER adescos_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.adescos
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.adescos_compute_fields_trigger();
 
 
-CREATE OR REPLACE FUNCTION comunidades_compute_fields_trigger() RETURNS TRIGGER AS $comunidades_compute_fields_trigger$
+
+
+CREATE OR REPLACE FUNCTION fonsagua.amenazas_compute_fields_trigger() RETURNS TRIGGER AS $amenazas_compute_fields_trigger$
+    BEGIN
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+        RETURN NEW;
+    END;
+$amenazas_compute_fields_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS amenazas_compute_fields_trigger ON fonsagua.amenazas;
+CREATE TRIGGER amenazas_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.amenazas
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.amenazas_compute_fields_trigger();
+
+
+
+
+CREATE OR REPLACE FUNCTION fonsagua.bombeos_compute_fields_trigger() RETURNS TRIGGER AS $bombeos_compute_fields_trigger$
+    BEGIN
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+        RETURN NEW;
+    END;
+$bombeos_compute_fields_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS bombeos_compute_fields_trigger ON fonsagua.bombeos;
+CREATE TRIGGER bombeos_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.bombeos
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.bombeos_compute_fields_trigger();
+
+
+
+
+CREATE OR REPLACE FUNCTION fonsagua.captaciones_compute_fields_trigger() RETURNS TRIGGER AS $captaciones_compute_fields_trigger$
+    BEGIN
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+        RETURN NEW;
+    END;
+$captaciones_compute_fields_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS captaciones_compute_fields_trigger ON fonsagua.captaciones;
+CREATE TRIGGER captaciones_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.captaciones
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.captaciones_compute_fields_trigger();
+
+
+
+
+CREATE OR REPLACE FUNCTION fonsagua.centros_educativos_compute_fields_trigger() RETURNS TRIGGER AS $centros_educativos_compute_fields_trigger$
+    BEGIN
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+        RETURN NEW;
+    END;
+$centros_educativos_compute_fields_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS centros_educativos_compute_fields_trigger ON fonsagua.centros_educativos;
+CREATE TRIGGER centros_educativos_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.centros_educativos
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.centros_educativos_compute_fields_trigger();
+
+
+
+
+CREATE OR REPLACE FUNCTION fonsagua.centros_salud_compute_fields_trigger() RETURNS TRIGGER AS $centros_salud_compute_fields_trigger$
+    BEGIN
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+        RETURN NEW;
+    END;
+$centros_salud_compute_fields_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS centros_salud_compute_fields_trigger ON fonsagua.centros_salud;
+CREATE TRIGGER centros_salud_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.centros_salud
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.centros_salud_compute_fields_trigger();
+
+
+
+
+CREATE OR REPLACE FUNCTION fonsagua.cobertura_compute_fields_trigger() RETURNS TRIGGER AS $cobertura_compute_fields_trigger$
+    BEGIN
+	IF ((NEW.acometidas IS NOT NULL) AND (NEW.viviendas IS NOT NULL) AND (NEW.viviendas > 0)) THEN NEW.cobertura = NEW.acometidas * 100 / NEW.viviendas; ELSE NEW.cobertura = NULL; END IF;
+        RETURN NEW;
+    END;
+$cobertura_compute_fields_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS cobertura_compute_fields_trigger ON fonsagua.cobertura;
+CREATE TRIGGER cobertura_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.cobertura
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.cobertura_compute_fields_trigger();
+
+
+
+
+CREATE OR REPLACE FUNCTION fonsagua.comunidades_compute_fields_trigger() RETURNS TRIGGER AS $comunidades_compute_fields_trigger$
     BEGIN
 	NEW.caserio = NEW.comunidad;
+
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
 
 	NEW.tot_ninhos = 0;
 	IF (NEW.n_ninhos IS NOT NULL) THEN NEW.tot_ninhos = NEW.tot_ninhos + NEW.n_ninhos; END IF;
@@ -137,38 +219,73 @@ $comunidades_compute_fields_trigger$ LANGUAGE plpgsql;
 DROP TRIGGER IF EXISTS comunidades_compute_fields_trigger ON fonsagua.comunidades;
 CREATE TRIGGER comunidades_compute_fields_trigger
 BEFORE INSERT OR UPDATE ON fonsagua.comunidades
-    FOR EACH ROW EXECUTE PROCEDURE comunidades_compute_fields_trigger();
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.comunidades_compute_fields_trigger();
 
 
-CREATE OR REPLACE FUNCTION adescos_compute_fields_trigger() RETURNS TRIGGER AS $adescos_compute_fields_trigger$
+
+
+CREATE OR REPLACE FUNCTION fonsagua.dep_distribucion_compute_fields_trigger() RETURNS TRIGGER AS $dep_distribucion_compute_fields_trigger$
     BEGIN
-	NEW.tot_miembros = 0;
-	IF (NEW.n_hombres IS NOT NULL) THEN NEW.tot_miembros = NEW.tot_miembros + NEW.n_hombres; END IF;
-	IF (NEW.n_mujeres IS NOT NULL) THEN NEW.tot_miembros = NEW.tot_miembros + NEW.n_mujeres; END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
         RETURN NEW;
     END;
-$adescos_compute_fields_trigger$ LANGUAGE plpgsql;
+$dep_distribucion_compute_fields_trigger$ LANGUAGE plpgsql;
 
-DROP TRIGGER IF EXISTS adescos_compute_fields_trigger ON fonsagua.adescos;
-CREATE TRIGGER adescos_compute_fields_trigger
-BEFORE INSERT OR UPDATE ON fonsagua.adescos
-    FOR EACH ROW EXECUTE PROCEDURE adescos_compute_fields_trigger();
+DROP TRIGGER IF EXISTS dep_distribucion_compute_fields_trigger ON fonsagua.dep_distribucion;
+CREATE TRIGGER dep_distribucion_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.dep_distribucion
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.dep_distribucion_compute_fields_trigger();
 
 
-CREATE OR REPLACE FUNCTION cobertura_compute_fields_trigger() RETURNS TRIGGER AS $cobertura_compute_fields_trigger$
+
+
+CREATE OR REPLACE FUNCTION fonsagua.dep_intermedios_compute_fields_trigger() RETURNS TRIGGER AS $dep_intermedios_compute_fields_trigger$
     BEGIN
-	IF ((NEW.acometidas IS NOT NULL) AND (NEW.viviendas IS NOT NULL) AND (NEW.viviendas > 0)) THEN NEW.cobertura = NEW.acometidas * 100 / NEW.viviendas; ELSE NEW.cobertura = NULL; END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
         RETURN NEW;
     END;
-$cobertura_compute_fields_trigger$ LANGUAGE plpgsql;
+$dep_intermedios_compute_fields_trigger$ LANGUAGE plpgsql;
 
-DROP TRIGGER IF EXISTS cobertura_compute_fields_trigger ON fonsagua.cobertura;
-CREATE TRIGGER cobertura_compute_fields_trigger
-BEFORE INSERT OR UPDATE ON fonsagua.cobertura
-    FOR EACH ROW EXECUTE PROCEDURE cobertura_compute_fields_trigger();
+DROP TRIGGER IF EXISTS dep_intermedios_compute_fields_trigger ON fonsagua.dep_intermedios;
+CREATE TRIGGER dep_intermedios_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.dep_intermedios
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.dep_intermedios_compute_fields_trigger();
 
 
-CREATE OR REPLACE FUNCTION gest_comercial_compute_fields_trigger() RETURNS TRIGGER AS $gest_comercial_compute_fields_trigger$
+
+
+CREATE OR REPLACE FUNCTION fonsagua.fuentes_compute_fields_trigger() RETURNS TRIGGER AS $fuentes_compute_fields_trigger$
+    BEGIN
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+        RETURN NEW;
+    END;
+$fuentes_compute_fields_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS fuentes_compute_fields_trigger ON fonsagua.fuentes;
+CREATE TRIGGER fuentes_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.fuentes
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.fuentes_compute_fields_trigger();
+
+
+
+
+CREATE OR REPLACE FUNCTION fonsagua.fuentes_contaminacion_compute_fields_trigger() RETURNS TRIGGER AS $fuentes_contaminacion_compute_fields_trigger$
+    BEGIN
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+        RETURN NEW;
+    END;
+$fuentes_contaminacion_compute_fields_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS fuentes_contaminacion_compute_fields_trigger ON fonsagua.fuentes_contaminacion;
+CREATE TRIGGER fuentes_contaminacion_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.fuentes_contaminacion
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.fuentes_contaminacion_compute_fields_trigger();
+
+
+
+
+
+CREATE OR REPLACE FUNCTION fonsagua.gest_comercial_compute_fields_trigger() RETURNS TRIGGER AS $gest_comercial_compute_fields_trigger$
     BEGIN
 	IF ((NEW.produccion IS NOT NULL) AND (NEW.facturacion IS NOT NULL)) THEN NEW.a_no_contabilizada = NEW.produccion - NEW.facturacion; ELSE NEW.a_no_contabilizada = NULL; END IF;
 
@@ -182,4 +299,63 @@ $gest_comercial_compute_fields_trigger$ LANGUAGE plpgsql;
 DROP TRIGGER IF EXISTS gest_comercial_compute_fields_trigger ON fonsagua.gest_comercial;
 CREATE TRIGGER gest_comercial_compute_fields_trigger
 BEFORE INSERT OR UPDATE ON fonsagua.gest_comercial
-    FOR EACH ROW EXECUTE PROCEDURE gest_comercial_compute_fields_trigger();
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.gest_comercial_compute_fields_trigger();
+
+
+
+
+CREATE OR REPLACE FUNCTION fonsagua.gest_financiera_compute_fields_trigger() RETURNS TRIGGER AS $gest_financiera_compute_fields_trigger$
+    BEGIN
+	NEW.cost_totales = 0;
+	IF (NEW.cost_energetico IS NOT NULL) THEN NEW.cost_totales = NEW.cost_totales + NEW.cost_energetico; END IF;
+	IF (NEW.cost_quimico IS NOT NULL) THEN NEW.cost_totales = NEW.cost_totales + NEW.cost_quimico; END IF;
+	IF (NEW.cost_personal IS NOT NULL) THEN NEW.cost_totales = NEW.cost_totales + NEW.cost_personal; END IF;
+	IF (NEW.cost_diversos IS NOT NULL) THEN NEW.cost_totales = NEW.cost_totales + NEW.cost_diversos; END IF;
+
+	IF ((NEW.produccion IS NOT NULL) AND (NEW.produccion > 0)) THEN NEW.cost_produccion = cost_totales / produccion; ELSE NEW.cost_produccion = NULL; END IF;
+
+	IF ((NEW.produccion IS NOT NULL) AND (NEW.produccion > 0) AND (NEW.ingr_totales IS NOT NULL)) THEN NEW.ingr_produccion = ingr_totales / produccion; ELSE NEW.ingr_produccion = NULL; END IF;
+
+	IF ((NEW.produccion IS NOT NULL) AND (NEW.produccion > 0) AND (NEW.facturacion IS NOT NULL)) THEN NEW.fact_produc = facturacion / produccion; ELSE NEW.fact_produc = NULL; END IF;
+
+	IF ((NEW.ingr_totales IS NOT NULL) AND (NEW.fact_produc IS NOT NULL) AND (NEW.fact_produc > 0)) THEN NEW.margen_utilidad = (NEW.ingr_totales - NEW.cost_totales) / NEW.fact_produc; ELSE NEW.margen_utilidad = NULL; END IF;
+
+	IF ((NEW.activos_corrientes IS NOT NULL) AND (NEW.pasivos_corrientes IS NOT NULL)) THEN NEW.razon_liquidez = NEW.activos_corrientes / NEW.pasivos_corrientes; ELSE NEW.razon_liquidez = NULL; END IF;
+        RETURN NEW;
+    END;
+$gest_financiera_compute_fields_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS gest_financiera_compute_fields_trigger ON fonsagua.gest_financiera;
+CREATE TRIGGER gest_financiera_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.gest_financiera
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.gest_financiera_compute_fields_trigger();
+
+
+
+
+CREATE OR REPLACE FUNCTION fonsagua.otros_servicios_compute_fields_trigger() RETURNS TRIGGER AS $otros_servicios_compute_fields_trigger$
+    BEGIN
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+        RETURN NEW;
+    END;
+$otros_servicios_compute_fields_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS otros_servicios_compute_fields_trigger ON fonsagua.otros_servicios;
+CREATE TRIGGER otros_servicios_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.otros_servicios
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.otros_servicios_compute_fields_trigger();
+
+
+
+
+CREATE OR REPLACE FUNCTION fonsagua.puntos_viviendas_compute_fields_trigger() RETURNS TRIGGER AS $puntos_viviendas_compute_fields_trigger$
+    BEGIN
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+        RETURN NEW;
+    END;
+$puntos_viviendas_compute_fields_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS puntos_viviendas_compute_fields_trigger ON fonsagua.puntos_viviendas;
+CREATE TRIGGER puntos_viviendas_compute_fields_trigger
+BEFORE INSERT OR UPDATE ON fonsagua.puntos_viviendas
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.puntos_viviendas_compute_fields_trigger();
