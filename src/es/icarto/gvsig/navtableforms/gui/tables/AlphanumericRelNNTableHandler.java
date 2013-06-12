@@ -70,7 +70,9 @@ public class AlphanumericRelNNTableHandler {
 			source, new IRowMultipleOrFilterImplementer(filters),
 			colNames, colAliases);
 		jtable.setModel(model);
-		form.setModel(model);
+		if (form != null) {
+		    form.setModel(model);
+		}
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();
