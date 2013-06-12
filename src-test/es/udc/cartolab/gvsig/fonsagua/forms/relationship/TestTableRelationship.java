@@ -22,6 +22,8 @@ import com.iver.cit.gvsig.fmap.layers.LayerFactory;
 import es.icarto.gvsig.navtableforms.DataBaseProperties;
 import es.icarto.gvsig.navtableforms.TestProperties;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class TestTableRelationship {
@@ -88,9 +90,11 @@ public class TestTableRelationship {
 	HashMap<String, JComponent> widgetsMock = new HashMap<String, JComponent>();
 	final String relationTableName = "r_abastecimientos_comunidades";
 	widgetsMock.put(relationTableName, new JTable());
-	testingRelationship = new TableRelationship(widgetsMock, "comunidades",
-		"cod_comunidad", "abastecimientos", "cod_abastecimiento",
-		relationTableName, FonsaguaConstants.dataSchema);
+	testingRelationship = new TableRelationship(widgetsMock,
+		ComunidadesForm.NAME, ComunidadesForm.PKFIELD,
+		AbastecimientosForm.NAME, AbastecimientosForm.PKFIELD,
+		relationTableName, FonsaguaConstants.dataSchema,
+		AbastecimientosForm.colNames, AbastecimientosForm.colAlias);
 	testingRelationship.fillValues("999");
     }
 

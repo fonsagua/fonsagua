@@ -93,7 +93,7 @@ public class AbastecimientosForm extends BasicAbstractForm {
 		"r_abastecimientos_comunidades", FonsaguaConstants.dataSchema,
 		ComunidadesForm.colNames, ComunidadesForm.colAlias);
 	fuentesRelationship = new TableRelationship(getWidgetComponents(),
-		NAME, PKFIELD, FuentesForm.NAME, FuentesForm.PKNAME,
+		NAME, PKFIELD, FuentesForm.NAME, FuentesForm.PKFIELD,
 		"r_abastecimientos_fuentes", FonsaguaConstants.dataSchema,
 		FuentesForm.colNames, FuentesForm.colAlias);
 	adescosHandler = new AlphanumericRelNNTableHandler(loadTable(
