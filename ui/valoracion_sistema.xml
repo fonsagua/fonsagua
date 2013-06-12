@@ -63,8 +63,8 @@
               <at name="size">16</at>
              </object>
             </at>
-            <at name="name"/>
             <at name="width">271</at>
+            <at name="name"></at>
             <at name="fill">
              <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
               <at name="name">fill</at>
@@ -404,6 +404,7 @@
           <at name="classname">com.jeta.forms.components.border.TitledBorderLabel</at>
           <at name="properties">
            <object classname="com.jeta.forms.store.support.PropertyMap">
+            <at name="text"></at>
             <at name="height">6</at>
             <at name="width">281</at>
             <at name="name"></at>
