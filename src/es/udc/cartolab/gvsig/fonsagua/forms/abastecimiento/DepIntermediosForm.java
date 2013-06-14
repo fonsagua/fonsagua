@@ -1,8 +1,13 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento;
 
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JTextField;
+
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.listeners.DependentComboboxesHandler;
 
 @SuppressWarnings("serial")
 public class DepIntermediosForm extends BasicAbstractForm {
@@ -15,6 +20,9 @@ public class DepIntermediosForm extends BasicAbstractForm {
 "Denominación", "Altura (m)", "Sistema", "Volumen (m³)"
     };
 
+    private JComponent codAbastecimiento;
+    private DependentComboboxesHandler bombeosDomainHandler;
+
     public DepIntermediosForm(FLyrVect layer) {
 	super(layer);
     }
@@ -26,6 +34,26 @@ public class DepIntermediosForm extends BasicAbstractForm {
 
     @Override
     protected void fillSpecificValues() {
+	bombeosDomainHandler.updateComboBoxValues();
+    }
+
+    @Override
+    public void setListeners() {
+	super.setListeners();
+	codAbastecimiento = getWidgetComponents().get("cod_abastecimiento");
+	JComboBox codBombeo = (JComboBox) getWidgetComponents().get(
+		"cod_bombeo");
+	bombeosDomainHandler = new DependentComboboxesHandler(this,
+		codAbastecimiento, codBombeo);
+	((JTextField) codAbastecimiento)
+		.addActionListener(bombeosDomainHandler);
+    }
+
+    @Override
+    public void removeListeners() {
+	super.removeListeners();
+	((JTextField) codAbastecimiento)
+		.addActionListener(bombeosDomainHandler);
     }
 
 }
