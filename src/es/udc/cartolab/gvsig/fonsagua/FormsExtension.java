@@ -11,16 +11,18 @@ import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 
 public class FormsExtension extends Extension {
 
-    private FLyrVect layer;
+    private FLyrVect[] layers;
     private final TableFormFactory factory = FonsaguaTableFormFactory
 	    .getInstance();
 
     @Override
     public void execute(String actionCommand) {
-	BasicAbstractForm dialog = factory.createForm(layer);
+	for (FLyrVect layer : layers) {
+	    BasicAbstractForm dialog = factory.createForm(layer);
 
-	if ((dialog != null) && (dialog.init())) {
-	    PluginServices.getMDIManager().addWindow(dialog);
+	    if ((dialog != null) && (dialog.init())) {
+		PluginServices.getMDIManager().addWindow(dialog);
+	    }
 	}
     }
 
@@ -43,9 +45,12 @@ public class FormsExtension extends Extension {
     }
 
     private boolean isActiveLayerValid() {
-	layer = new TOCLayerManager().getActiveLayer();
-	return (layer != null) ? factory.hasMainForm(layer.getName()) : false;
-
+	layers = new TOCLayerManager().getActiveLayers();
+	boolean layerWithForm = false;
+	for (FLyrVect layer : layers) {
+	    layerWithForm |= factory.hasMainForm(layer.getName());
+	}
+	return layerWithForm;
     }
 
     @Override
