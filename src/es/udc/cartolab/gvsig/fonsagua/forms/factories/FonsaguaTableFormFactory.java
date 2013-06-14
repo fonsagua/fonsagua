@@ -154,8 +154,8 @@ public class FonsaguaTableFormFactory implements TableFormFactory {
 			.getLayers()
 			.addLayer(
 				DBSession.getCurrentSession().getLayer(
-					layerName,
-					FonsaguaConstants.dataSchema,
+					layerName, layerName,
+					FonsaguaConstants.dataSchema, null,
 					view.getProjection()));
 	    } catch (Exception e) {
 		e.printStackTrace();
