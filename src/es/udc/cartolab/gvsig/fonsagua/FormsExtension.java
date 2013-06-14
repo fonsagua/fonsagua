@@ -3,11 +3,14 @@ package es.udc.cartolab.gvsig.fonsagua;
 import com.iver.andami.PluginServices;
 import com.iver.andami.plugins.Extension;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
+import com.iver.utiles.extensionPoints.ExtensionPoints;
+import com.iver.utiles.extensionPoints.ExtensionPointsSingleton;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaTocMenuEntry;
 
 public class FormsExtension extends Extension {
 
@@ -37,6 +40,12 @@ public class FormsExtension extends Extension {
     @Override
     public void initialize() {
 	registerIcons();
+
+	// Entry at TOC contextual menu
+	ExtensionPoints extensionPoints = ExtensionPointsSingleton
+		.getInstance();
+	extensionPoints.add("View_TocActions", "Fonsagua",
+		new FonsaguaTocMenuEntry());
     }
 
     @Override
