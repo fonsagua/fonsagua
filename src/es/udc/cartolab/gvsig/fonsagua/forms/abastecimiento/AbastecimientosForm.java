@@ -36,7 +36,6 @@ public class AbastecimientosForm extends BasicAbstractForm {
     private TableHandler gestionComercialHandler;
     private TableHandler gestionFinancieraHandler;
     private TableHandler evaluacionHandler;
-    private TableHandler datosConsumoHandler;
     private VectorialTableHandler captacionesHandler;
     private VectorialTableHandler depIntermediosHandler;
     private VectorialTableHandler depDistribucionHandler;
@@ -44,6 +43,7 @@ public class AbastecimientosForm extends BasicAbstractForm {
     private VectorialTableHandler bombeosHandler;
     private AlphanumericRelNNTableHandler adescosHandler;
     private AlphanumericRelNNTableHandler implicacionComunidadHandler;
+    private AlphanumericRelNNTableHandler datosConsumoHandler;
     private AlphanumericRelNNTableHandler valoracionSistemaHandler;
     private TableRelationship comunidadesRelationship;
     private TableRelationship fuentesRelationship;
@@ -68,10 +68,6 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	evaluacionHandler = new TableHandler(FonsaguaConstants.dataSchema,
 		EvaluacionForm.NAME, getWidgetComponents(), PKFIELD,
 		EvaluacionForm.colNames, EvaluacionForm.colAlias);
-	datosConsumoHandler = new TableHandler(FonsaguaConstants.dataSchema,
-		DatosConsumoForm.NAME, getWidgetComponents(),
-		"cod_abastecimiento", DatosConsumoForm.colNames,
-		DatosConsumoForm.colAlias);
 	captacionesHandler = new VectorialTableHandler(CaptacionesForm.NAME,
 		getWidgetComponents(), PKFIELD, CaptacionesForm.colNames,
 		CaptacionesForm.colAlias);
@@ -107,6 +103,11 @@ public class AbastecimientosForm extends BasicAbstractForm {
 		"cod_abastecimiento", "r_abastecimientos_comunidades",
 		"cod_comunidad", ImplicacionComunidadForm.colNames,
 		ImplicacionComunidadForm.colAlias);
+	datosConsumoHandler = new AlphanumericRelNNTableHandler(loadTable(
+		DatosConsumoForm.NAME).getModel(), getWidgetComponents(),
+		FonsaguaConstants.dataSchema, "cod_abastecimiento",
+		"r_abastecimientos_comunidades", "cod_comunidad",
+		DatosConsumoForm.colNames, DatosConsumoForm.colAlias);
 	valoracionSistemaHandler = new AlphanumericRelNNTableHandler(loadTable(
 		ValoracionSistemaForm.NAME).getModel(), getWidgetComponents(),
 		FonsaguaConstants.dataSchema, "cod_abastecimiento",
@@ -138,7 +139,6 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	gestionComercialHandler.fillValues(codAbastecimiento);
 	gestionFinancieraHandler.fillValues(codAbastecimiento);
 	evaluacionHandler.fillValues(codAbastecimiento);
-	datosConsumoHandler.fillValues(codAbastecimiento);
 	captacionesHandler.fillValues(codAbastecimiento);
 	depIntermediosHandler.fillValues(codAbastecimiento);
 	depDistribucionHandler.fillValues(codAbastecimiento);
@@ -150,6 +150,7 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	fuentesRelationship.fillValues(pkValue);
 	adescosHandler.fillValues(codAbastecimiento);
 	implicacionComunidadHandler.fillValues(codAbastecimiento);
+	datosConsumoHandler.fillValues(codAbastecimiento);
 	valoracionSistemaHandler.fillValues(codAbastecimiento);
     }
 
@@ -161,7 +162,6 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	gestionComercialHandler.reload(new GestComercialForm());
 	gestionFinancieraHandler.reload(new GestFinancieraForm());
 	evaluacionHandler.reload(new EvaluacionForm());
-	datosConsumoHandler.reload(new DatosConsumoForm());
 	captacionesHandler.reload(CaptacionesForm.NAME,
 		FonsaguaTableFormFactory.getInstance());
 	depIntermediosHandler.reload(DepIntermediosForm.NAME,
@@ -191,7 +191,6 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	gestionComercialHandler.removeListeners();
 	gestionFinancieraHandler.removeListeners();
 	evaluacionHandler.removeListeners();
-	datosConsumoHandler.removeListeners();
 	captacionesHandler.removeListeners();
 	depIntermediosHandler.removeListeners();
 	depDistribucionHandler.removeListeners();
@@ -201,6 +200,7 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	fuentesRelationship.removeListeners();
 	adescosHandler.removeListeners();
 	implicacionComunidadHandler.removeListeners();
+	datosConsumoHandler.removeListeners();
 	valoracionSistemaHandler.removeListeners();
     }
 

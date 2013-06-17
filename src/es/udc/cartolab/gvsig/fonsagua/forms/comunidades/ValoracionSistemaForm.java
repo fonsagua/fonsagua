@@ -11,12 +11,10 @@ import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.listeners.Dependent
 public class ValoracionSistemaForm extends AbstractSubForm {
 
     public static final String NAME = "valoracion_sistema";
-    public static String[] colNames = {
-"cod_comunidad", "cod_abastecimiento", "sist_cobros", "nivel_serv"
-    };
-    public static String[] colAlias = {
-"ID Comunidad", "Código Abastecimiento", "Cobros", "Servicio"
-    };
+    public static String[] colNames = { "cod_comunidad", "cod_abastecimiento",
+	    "sist_cobros", "nivel_serv" };
+    public static String[] colAlias = { "ID Comunidad", "Cód. Abastecimiento",
+	    "Cobros", "Servicio" };
 
     private JComponent codComunidad;
     private DependentComboboxesHandler abastecimientosDomainHandler;
