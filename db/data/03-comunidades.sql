@@ -741,11 +741,8 @@ ALTER TABLE fonsagua.abastecimientos OWNER TO fonsagua;
 
 CREATE TABLE fonsagua.valoracion_sistema (
        gid SERIAL PRIMARY KEY,
-       cod_comunidad VARCHAR
-	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
-       cod_abastecimiento VARCHAR
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+       cod_comunidad VARCHAR NOT NULL,
+       cod_abastecimiento VARCHAR NOT NULL,
        sist_cobros VARCHAR
 	       REFERENCES dominios.sist_cobros(item),
        nivel_serv VARCHAR
@@ -763,11 +760,8 @@ ALTER TABLE fonsagua.valoracion_sistema OWNER TO fonsagua;
 
 CREATE TABLE fonsagua.datos_consumo (
        gid SERIAL PRIMARY KEY,
-       cod_comunidad VARCHAR
-	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
-       cod_abastecimiento VARCHAR
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+       cod_comunidad VARCHAR NOT NULL,
+       cod_abastecimiento VARCHAR NOT NULL,
        tipo_abastecimiento VARCHAR
 	       REFERENCES dominios.tipo_abastecimiento(item),
        mujeres BOOLEAN,
