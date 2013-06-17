@@ -56,7 +56,6 @@ public class ComunidadesForm extends BasicAbstractForm {
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
-	TOCLayerManager toc = new TOCLayerManager();
 	adescosHandler = new TableHandler(FonsaguaConstants.dataSchema,
 		AdescosForm.NAME, getWidgetComponents(), PKFIELD,
 		AdescosForm.colNames, AdescosForm.colAlias);

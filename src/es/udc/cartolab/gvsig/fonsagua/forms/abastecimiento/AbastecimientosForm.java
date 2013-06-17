@@ -3,15 +3,12 @@ package es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento;
 import javax.swing.JTextField;
 
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
-import com.iver.cit.gvsig.project.documents.table.gui.Table;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericRelNNTableHandler;
-import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericTableLoader;
 import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.VectorialTableHandler;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
-import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
@@ -92,43 +89,30 @@ public class AbastecimientosForm extends BasicAbstractForm {
 		NAME, PKFIELD, FuentesForm.NAME, FuentesForm.PKFIELD,
 		"r_abastecimientos_fuentes", FonsaguaConstants.dataSchema,
 		FuentesForm.colNames, FuentesForm.colAlias);
-	adescosHandler = new AlphanumericRelNNTableHandler(loadTable(
-		AdescosForm.NAME).getModel(), getWidgetComponents(),
-		FonsaguaConstants.dataSchema, "cod_abastecimiento",
-		"r_abastecimientos_comunidades", "cod_comunidad",
-		AdescosForm.colNames, AdescosForm.colAlias);
-	implicacionComunidadHandler = new AlphanumericRelNNTableHandler(
-		loadTable(ImplicacionComunidadForm.NAME).getModel(),
+	loadTable(AdescosForm.NAME);
+	adescosHandler = new AlphanumericRelNNTableHandler(AdescosForm.NAME,
 		getWidgetComponents(), FonsaguaConstants.dataSchema,
 		"cod_abastecimiento", "r_abastecimientos_comunidades",
-		"cod_comunidad", ImplicacionComunidadForm.colNames,
+		"cod_comunidad", AdescosForm.colNames, AdescosForm.colAlias);
+	loadTable(ImplicacionComunidadForm.NAME);
+	implicacionComunidadHandler = new AlphanumericRelNNTableHandler(
+		ImplicacionComunidadForm.NAME, getWidgetComponents(),
+		FonsaguaConstants.dataSchema, "cod_abastecimiento",
+		"r_abastecimientos_comunidades", "cod_comunidad",
+		ImplicacionComunidadForm.colNames,
 		ImplicacionComunidadForm.colAlias);
-	datosConsumoHandler = new AlphanumericRelNNTableHandler(loadTable(
-		DatosConsumoForm.NAME).getModel(), getWidgetComponents(),
+	loadTable(DatosConsumoForm.NAME);
+	datosConsumoHandler = new AlphanumericRelNNTableHandler(
+		DatosConsumoForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, "cod_abastecimiento",
 		"r_abastecimientos_comunidades", "cod_comunidad",
 		DatosConsumoForm.colNames, DatosConsumoForm.colAlias);
-	valoracionSistemaHandler = new AlphanumericRelNNTableHandler(loadTable(
-		ValoracionSistemaForm.NAME).getModel(), getWidgetComponents(),
+	loadTable(ValoracionSistemaForm.NAME);
+	valoracionSistemaHandler = new AlphanumericRelNNTableHandler(
+		ValoracionSistemaForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, "cod_abastecimiento",
 		"r_abastecimientos_comunidades", "cod_comunidad",
 		ValoracionSistemaForm.colNames, ValoracionSistemaForm.colAlias);
-    }
-
-    private Table loadTable(String name) {
-	TOCTableManager tocTable = new TOCTableManager();
-	Table table = tocTable.getTableByName(name);
-	try {
-	    if (table == null) {
-		AlphanumericTableLoader.loadTable(FonsaguaConstants.dataSchema,
-			name);
-		tocTable = new TOCTableManager();
-		table = tocTable.getTableByName(name);
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
-	return table;
     }
 
     @Override
