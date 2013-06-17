@@ -4,8 +4,10 @@ import java.awt.event.MouseListener;
 import java.util.HashMap;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableRowSorter;
 
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
@@ -58,6 +60,9 @@ public class VectorialTableHandler {
 	    TableModelVectorial model = new TableModelVectorial(layer,
 		    colNames, colAliases);
 	    jtable.setModel(model);
+	    ((DefaultTableCellRenderer) jtable.getTableHeader()
+		    .getDefaultRenderer())
+		    .setHorizontalAlignment(JLabel.CENTER);
 	    TableRowSorter sorter = new TableRowSorter<TableModelVectorial>(model);
 	    int foreignKeyColumn = -1;
 	    for (int a = 0, columns = jtable.getModel().getColumnCount(); a < columns; a++) {

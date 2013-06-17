@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 
@@ -60,6 +62,9 @@ public class TableHandler {
 	    model = TableModelFactory.createFromTable(tablename, foreignKeyId,
 		    foreingKeyValue, colNames, colAliases);
 	    jtable.setModel(model);
+	    ((DefaultTableCellRenderer) jtable.getTableHeader()
+		    .getDefaultRenderer())
+		    .setHorizontalAlignment(JLabel.CENTER);
 	    form.setModel(model);
 	} catch (ReadDriverException e) {
 	    e.printStackTrace();

@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
@@ -26,7 +28,7 @@ public class TableRelationship {
     private String[] colNames;
     private String[] colAlias;
 
-    private JTable relationJTable;
+    private JTable jtable;
     private String primaryPKValue;
     private JTableRelationshipContextualMenu listener;
 
@@ -45,7 +47,7 @@ public class TableRelationship {
 	this.dbSchema = dbSchema;
 	this.colNames = colNames;
 	this.colAlias = colAlias;
-	relationJTable = (JTable) widgets.get(relationTableName);
+	jtable = (JTable) widgets.get(relationTableName);
     }
 
     public void fillValues(String primaryPKValue) {
@@ -54,7 +56,9 @@ public class TableRelationship {
 	for (String col : colAlias) {
 	    tableModel.addColumn(col);
 	}
-	relationJTable.setModel(tableModel);
+	jtable.setModel(tableModel);
+	((DefaultTableCellRenderer) jtable.getTableHeader()
+		.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 	fillRows();
     }
 
@@ -90,7 +94,7 @@ public class TableRelationship {
 		String[][] rows = session.getTable(secondaryTableName,
 			dbSchema, colNames, where, colNames, false);
 		for (String[] row : rows) {
-		    ((DefaultTableModel) relationJTable.getModel()).addRow(row);
+		    ((DefaultTableModel) jtable.getModel()).addRow(row);
 		}
 	    }
 	} catch (SQLException e) {
@@ -100,12 +104,12 @@ public class TableRelationship {
 
     public void reload(BasicAbstractForm dialog) {
 	listener = new JTableRelationshipContextualMenu(this, dialog);
-	relationJTable.addMouseListener(listener);
-	relationJTable.setFillsViewportHeight(true);
+	jtable.addMouseListener(listener);
+	jtable.setFillsViewportHeight(true);
     }
 
     public void removeListeners() {
-	relationJTable.removeMouseListener(listener);
+	jtable.removeMouseListener(listener);
     }
 
     public List<String> getSecondaryValues() {
@@ -200,11 +204,11 @@ public class TableRelationship {
     }
 
     public JTable getRelationJTable() {
-	return relationJTable;
+	return jtable;
     }
 
     public void setRelationJTable(JTable relationJTable) {
-	this.relationJTable = relationJTable;
+	this.jtable = relationJTable;
     }
 
     public JTableRelationshipContextualMenu getListener() {

@@ -4,7 +4,9 @@ import java.awt.event.MouseListener;
 import java.util.HashMap;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
@@ -59,6 +61,9 @@ public class AlphanumericRelNNTableHandler {
 			.createFromTableWithOrFilter(source, destinyKey,
 				secPkValues, colNames, colAliases);
 		jtable.setModel(model);
+		((DefaultTableCellRenderer) jtable.getTableHeader()
+			.getDefaultRenderer())
+			.setHorizontalAlignment(JLabel.CENTER);
 		if (form != null) {
 		    form.setModel(model);
 		}
