@@ -47,15 +47,19 @@
        	    <FIELD>
 		<FIELDNAME>programa</FIELDNAME>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>prog_esc_salud</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>frec_prog</FIELDNAME>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>prog_esc_salud</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>

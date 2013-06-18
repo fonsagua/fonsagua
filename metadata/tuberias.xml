@@ -65,8 +65,10 @@
        	    <FIELD>
 		<FIELDNAME>loc_fugas</FIELDNAME>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>fugas</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        </RECORDSET>

@@ -45,8 +45,10 @@
 			<DRDBFOREIGNKEY>cod_abastecimiento</DRDBFOREIGNKEY>
 		</DOMAINREADER>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>sistema</COMPONENT>
 			<VALUE>Bombeo</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>

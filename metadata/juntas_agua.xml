@@ -25,23 +25,29 @@
        	    <FIELD>
 		<FIELDNAME>nit</FIELDNAME>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>per_juridica</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>anho_per_juridica</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>per_juridica</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>nom_red_juntas</FIELDNAME>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>red_juntas</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        </RECORDSET>

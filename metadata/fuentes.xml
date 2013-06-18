@@ -49,55 +49,69 @@
 		<FIELDNAME>dom_numero</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>uso</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>dom_cantaradas</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>uso</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>agr_numero</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>uso</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>agr_cantaradas</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>uso</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>gan_numero</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>uso</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>gan_cantaradas</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>uso</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>cob_vegetal</FIELDNAME>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>tipo_fuente</COMPONENT>
 			<VALUE>manantial</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
@@ -110,16 +124,20 @@
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>tipo_fuente</COMPONENT>
 			<VALUE>manantial</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>especies</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>tipo_fuente</COMPONENT>
 			<VALUE>manantial</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
@@ -132,8 +150,10 @@
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>tipo_fuente</COMPONENT>
 			<VALUE>manantial</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
@@ -147,6 +167,71 @@
 		</DOMAINREADER>
 	    </FIELD>
        	    <FIELD>
+		<FIELDNAME>naci_terremoto</FIELDNAME>
+		<ENABLEIF>
+			<CONDITION>
+			<COMPONENT>tipo_fuente</COMPONENT>
+			<VALUE>pozo</VALUE>
+			</CONDITION>
+			<CONDITION>
+			<COMPONENT>tipo_fuente</COMPONENT>
+			<VALUE>manantial</VALUE>
+			</CONDITION>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>cambios_terremoto</FIELDNAME>
+		<ENABLEIF>
+			<CONDITION>
+			<COMPONENT>tipo_fuente</COMPONENT>
+			<VALUE>pozo</VALUE>
+			</CONDITION>
+			<CONDITION>
+			<COMPONENT>tipo_fuente</COMPONENT>
+			<VALUE>manantial</VALUE>
+			</CONDITION>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>propietario</FIELDNAME>
+		<ENABLEIF>
+			<CONDITION>
+			<COMPONENT>tipo_fuente</COMPONENT>
+			<VALUE>pozo</VALUE>
+			</CONDITION>
+			<CONDITION>
+			<COMPONENT>tipo_fuente</COMPONENT>
+			<VALUE>manantial</VALUE>
+			</CONDITION>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>nom_propietario</FIELDNAME>
+		<ENABLEIF>
+			<CONDITION>
+			<COMPONENT>tipo_fuente</COMPONENT>
+			<VALUE>pozo</VALUE>
+			</CONDITION>
+			<CONDITION>
+			<COMPONENT>tipo_fuente</COMPONENT>
+			<VALUE>manantial</VALUE>
+			</CONDITION>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>escritura</FIELDNAME>
+		<ENABLEIF>
+			<CONDITION>
+			<COMPONENT>tipo_fuente</COMPONENT>
+			<VALUE>pozo</VALUE>
+			</CONDITION>
+			<CONDITION>
+			<COMPONENT>tipo_fuente</COMPONENT>
+			<VALUE>manantial</VALUE>
+			</CONDITION>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
 		<FIELDNAME>tipo_pozo</FIELDNAME>
 		<DOMAINREADER>
 			<DRTYPE>db</DRTYPE>
@@ -156,77 +241,97 @@
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>tipo_fuente</COMPONENT>
 			<VALUE>pozo</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>prof_pozo</FIELDNAME>
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>tipo_fuente</COMPONENT>
 			<VALUE>pozo</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>diametro_interior</FIELDNAME>
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>tipo_fuente</COMPONENT>
 			<VALUE>pozo</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>altura_brocal</FIELDNAME>
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>tipo_fuente</COMPONENT>
 			<VALUE>pozo</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>prof_bomba</FIELDNAME>
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>tipo_fuente</COMPONENT>
 			<VALUE>pozo</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>reperforado</FIELDNAME>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>tipo_fuente</COMPONENT>
 			<VALUE>pozo</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>rep_distancia</FIELDNAME>
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>reperforado</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>limpiezas</FIELDNAME>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>tipo_fuente</COMPONENT>
 			<VALUE>pozo</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>rep_metodo</FIELDNAME>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>reperforado</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>n_limpiezas</FIELDNAME>
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
+			<CONDITION>
 			<COMPONENT>limpiezas</COMPONENT>
 			<VALUE>true</VALUE>
+			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
        </RECORDSET>
