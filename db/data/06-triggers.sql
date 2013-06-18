@@ -1,5 +1,12 @@
 ﻿CREATE OR REPLACE FUNCTION fonsagua.abastecimientos_compute_fields_trigger() RETURNS TRIGGER AS $abastecimientos_compute_fields_trigger$
+    DECLARE
+        miembros INTEGER;
+        consumo_t NUMERIC(5,2);
     BEGIN
+	SELECT COALESCE(SUM(consumo), 0), COALESCE(SUM(n_miembros), 0) INTO consumo_t, miembros FROM fonsagua.datos_consumo WHERE cod_abastecimiento = NEW.cod_abastecimiento;
+	IF (miembros > 0) THEN NEW.cons_domestico = consumo_t / miembros; ELSE NEW.cons_domestico = NULL; END IF;
+	NEW.tot_consumo = consumo_t;
+
 	NEW.tot_acometidas = 0;
 	IF (NEW.n_a_domiciliar IS NOT NULL) THEN NEW.tot_acometidas = NEW.tot_acometidas + NEW.n_a_domiciliar; END IF;
 	IF (NEW.n_a_cantarera IS NOT NULL) THEN NEW.tot_acometidas = NEW.tot_acometidas + NEW.n_a_cantarera; END IF;
@@ -125,7 +132,21 @@ BEFORE INSERT OR UPDATE ON fonsagua.cobertura
 
 
 CREATE OR REPLACE FUNCTION fonsagua.comunidades_compute_fields_trigger() RETURNS TRIGGER AS $comunidades_compute_fields_trigger$
+    DECLARE
+	aux1 NUMERIC(5,2);
+	aux2 NUMERIC(5,2);
     BEGIN
+	IF (NEW.h_adescos) THEN SELECT COUNT(*) INTO NEW.n_adescos FROM fonsagua.adescos WHERE cod_comunidad = NEW.cod_comunidad; ELSE NEW.n_adescos = NULL; END IF;
+
+	SELECT SUM(produccion)/COUNT(*), SUM(consumo)/COUNT(*) INTO NEW.produccion, NEW.consumo FROM fonsagua.produccion_consumo WHERE cod_comunidad = NEW.cod_comunidad;
+
+	SELECT SUM(consumo), SUM(n_miembros) INTO aux1, aux2 FROM fonsagua.datos_consumo WHERE cod_comunidad = NEW.cod_comunidad;
+	NEW.tot_consumo = aux1;
+	IF(aux2 > 0) THEN NEW.cons_dom = aux1/aux2; ELSE NEW.cons_dom = NULL; END IF;
+
+	SELECT SUM(consumo), SUM(n_miembros) INTO aux1, aux2 FROM fonsagua.habitos_consumo WHERE cod_comunidad = NEW.cod_comunidad;
+	IF(aux2 > 0) THEN NEW.cons_hab = aux1/aux2; ELSE NEW.cons_hab = NULL; END IF;
+
 	NEW.caserio = NEW.comunidad;
 
 	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
@@ -359,3 +380,71 @@ DROP TRIGGER IF EXISTS puntos_viviendas_compute_fields_trigger ON fonsagua.punto
 CREATE TRIGGER puntos_viviendas_compute_fields_trigger
 BEFORE INSERT OR UPDATE ON fonsagua.puntos_viviendas
     FOR EACH ROW EXECUTE PROCEDURE fonsagua.puntos_viviendas_compute_fields_trigger();
+
+
+
+-- SECONDARY TABLES TRIGGERS
+
+
+CREATE OR REPLACE FUNCTION fonsagua.datos_consumo_compute_consumo_trigger() RETURNS TRIGGER AS $datos_consumo_compute_consumo_trigger$
+    BEGIN
+	IF (TG_OP = 'UPDATE' OR TG_OP = 'DELETE') THEN UPDATE fonsagua.abastecimientos SET cons_domestico = 0 WHERE cod_abastecimiento = OLD.cod_abastecimiento;
+						       UPDATE fonsagua.comunidades SET cons_dom = 0 WHERE cod_comunidad = OLD.cod_comunidad; END IF;
+	IF (TG_OP = 'INSERT' OR TG_OP = 'UPDATE') THEN UPDATE fonsagua.abastecimientos SET cons_domestico = 0 WHERE cod_abastecimiento = NEW.cod_abastecimiento;
+						       UPDATE fonsagua.comunidades SET cons_dom = 0 WHERE cod_comunidad = NEW.cod_comunidad; END IF;
+	RETURN NULL;
+    END;
+$datos_consumo_compute_consumo_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS datos_consumo_compute_consumo_trigger ON fonsagua.datos_consumo;
+CREATE TRIGGER datos_consumo_compute_consumo_trigger
+AFTER INSERT OR UPDATE OR DELETE ON fonsagua.datos_consumo
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.datos_consumo_compute_consumo_trigger();
+
+    
+
+
+CREATE OR REPLACE FUNCTION fonsagua.adescos_compute_numero_trigger() RETURNS TRIGGER AS $adescos_compute_numero_trigger$
+    BEGIN
+	IF (TG_OP = 'UPDATE' OR TG_OP = 'DELETE') THEN UPDATE fonsagua.comunidades SET n_adescos = 0 WHERE cod_comunidad = OLD.cod_comunidad; END IF;
+	IF (TG_OP = 'INSERT' OR TG_OP = 'UPDATE') THEN UPDATE fonsagua.comunidades SET n_adescos = 0 WHERE cod_comunidad = NEW.cod_comunidad; END IF;
+	RETURN NULL;
+    END;
+$adescos_compute_numero_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS adescos_compute_numero_trigger ON fonsagua.adescos;
+CREATE TRIGGER adescos_compute_numero_trigger
+AFTER INSERT OR UPDATE OR DELETE ON fonsagua.adescos
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.adescos_compute_numero_trigger();
+
+    
+
+
+CREATE OR REPLACE FUNCTION fonsagua.produccion_consumo_compute_produccion_consumo_trigger() RETURNS TRIGGER AS $produccion_consumo_compute_produccion_consumo_trigger$
+    BEGIN
+	IF (TG_OP = 'UPDATE' OR TG_OP = 'DELETE') THEN UPDATE fonsagua.comunidades SET n_adescos = 0 WHERE cod_comunidad = OLD.cod_comunidad; END IF;
+	IF (TG_OP = 'INSERT' OR TG_OP = 'UPDATE') THEN UPDATE fonsagua.comunidades SET n_adescos = 0 WHERE cod_comunidad = NEW.cod_comunidad; END IF;
+	RETURN NULL;
+    END;
+$produccion_consumo_compute_produccion_consumo_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS produccion_consumo_compute_produccion_consumo_trigger ON fonsagua.produccion_consumo;
+CREATE TRIGGER produccion_consumo_compute_produccion_consumo_trigger
+AFTER INSERT OR UPDATE OR DELETE ON fonsagua.produccion_consumo
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.produccion_consumo_compute_produccion_consumo_trigger();
+    
+
+
+
+CREATE OR REPLACE FUNCTION fonsagua.habitos_consumo_compute_consumo_trigger() RETURNS TRIGGER AS $habitos_consumo_compute_consumo_trigger$
+    BEGIN
+	IF (TG_OP = 'UPDATE' OR TG_OP = 'DELETE') THEN UPDATE fonsagua.comunidades SET cons_hab = 0 WHERE cod_comunidad = OLD.cod_comunidad; END IF;
+	IF (TG_OP = 'INSERT' OR TG_OP = 'UPDATE') THEN UPDATE fonsagua.comunidades SET cons_hab = 0 WHERE cod_comunidad = NEW.cod_comunidad; END IF;
+	RETURN NULL;
+    END;
+$habitos_consumo_compute_consumo_trigger$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS habitos_consumo_compute_consumo_trigger ON fonsagua.habitos_consumo;
+CREATE TRIGGER habitos_consumo_compute_consumo_trigger
+AFTER INSERT OR UPDATE OR DELETE ON fonsagua.habitos_consumo
+    FOR EACH ROW EXECUTE PROCEDURE fonsagua.habitos_consumo_compute_consumo_trigger();
