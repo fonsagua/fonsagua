@@ -52,7 +52,7 @@ public class DepIntermediosForm extends BasicAbstractForm {
     public void removeListeners() {
 	super.removeListeners();
 	((JTextField) codAbastecimiento)
-		.addActionListener(bombeosDomainHandler);
+		.removeFocusListener(bombeosDomainHandler);
     }
 
 }

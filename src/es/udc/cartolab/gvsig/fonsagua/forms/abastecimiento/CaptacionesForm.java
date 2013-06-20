@@ -52,7 +52,7 @@ public class CaptacionesForm extends BasicAbstractForm {
     public void removeListeners() {
 	super.removeListeners();
 	((JTextField) codAbastecimiento)
-		.addActionListener(bombeosDomainHandler);
+		.removeFocusListener(bombeosDomainHandler);
     }
 
 }
