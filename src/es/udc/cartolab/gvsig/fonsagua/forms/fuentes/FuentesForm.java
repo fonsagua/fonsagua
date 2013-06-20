@@ -1,7 +1,5 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.fuentes;
 
-import javax.swing.JTextField;
-
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
@@ -42,12 +40,10 @@ public class FuentesForm extends BasicAbstractForm {
 
     @Override
     protected void fillSpecificValues() {
-	aforosHandler.fillValues(getFormController().getValue(PKFIELD));
-	analiticasHandler.fillValues(getFormController().getValue(PKFIELD));
-
-	abastecimientosRelationship
-		.fillValues(((JTextField) getWidgetComponents().get(PKFIELD))
-			.getText());
+	final String codFuente = getFormController().getValue(PKFIELD);
+	aforosHandler.fillValues(codFuente);
+	analiticasHandler.fillValues(codFuente);
+	abastecimientosRelationship.fillValues(codFuente);
     }
 
     @Override

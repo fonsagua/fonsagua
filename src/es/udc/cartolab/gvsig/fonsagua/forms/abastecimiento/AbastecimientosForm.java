@@ -1,7 +1,5 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento;
 
-import javax.swing.JTextField;
-
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
@@ -117,7 +115,7 @@ public class AbastecimientosForm extends BasicAbstractForm {
 
     @Override
     protected void fillSpecificValues() {
-	String codAbastecimiento = getFormController().getValue(PKFIELD);
+	final String codAbastecimiento = getFormController().getValue(PKFIELD);
 	juntasAguaHandler.fillValues(codAbastecimiento);
 	coberturaHandler.fillValues(codAbastecimiento);
 	gestionComercialHandler.fillValues(codAbastecimiento);
@@ -128,10 +126,8 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	depDistribucionHandler.fillValues(codAbastecimiento);
 	tuberiasHandler.fillValues(codAbastecimiento);
 	bombeosHandler.fillValues(codAbastecimiento);
-	final String pkValue = ((JTextField) getWidgetComponents().get(PKFIELD))
-		.getText();
-	comunidadesRelationship.fillValues(pkValue);
-	fuentesRelationship.fillValues(pkValue);
+	comunidadesRelationship.fillValues(codAbastecimiento);
+	fuentesRelationship.fillValues(codAbastecimiento);
 	adescosHandler.fillValues(codAbastecimiento);
 	implicacionComunidadHandler.fillValues(codAbastecimiento);
 	datosConsumoHandler.fillValues(codAbastecimiento);

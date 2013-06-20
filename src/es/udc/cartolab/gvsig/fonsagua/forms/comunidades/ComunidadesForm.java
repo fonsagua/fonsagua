@@ -1,7 +1,6 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.comunidades;
 
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
@@ -145,8 +144,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     }
 
     private void addCroquisButtons() {
-	String comunidadId = ((JTextField) getFormBody().getComponentByName(
-		PKFIELD)).getText();
+	final String comunidadId = getFormController().getValue(PKFIELD);
 	JPanel actionsToolBar = this.getActionsToolBar();
 	if (croquisButtons == null) {
 	    croquisButtons = new CroquisButtons(comunidadId);
@@ -164,7 +162,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     protected void fillSpecificValues() {
 	addCroquisButtons();
 
-	String codComunidad = getFormController().getValue(PKFIELD);
+	final String codComunidad = getFormController().getValue(PKFIELD);
 	adescosHandler.fillValues(codComunidad);
 	entrevistadoresHandler.fillValues(codComunidad);
 	entrevistadosHandler.fillValues(codComunidad);
@@ -188,10 +186,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	areasPotencialesRiegoHandler.fillValues(codComunidad);
 	otrosServiciosHandler.fillValues(codComunidad);
 	amenazasHandler.fillValues(codComunidad);
-
-	final String pkvalue = ((JTextField) getWidgetComponents().get(PKFIELD))
-		.getText();
-	abastecimientosRelationship.fillValues(pkvalue);
+	abastecimientosRelationship.fillValues(codComunidad);
     }
 
     @Override
