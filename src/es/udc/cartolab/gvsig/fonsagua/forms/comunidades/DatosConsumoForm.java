@@ -5,7 +5,7 @@ import javax.swing.JComponent;
 import javax.swing.JTextField;
 
 import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
-import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.listeners.DependentComboboxesHandler;
+import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.listeners.DependentComboboxHandler;
 
 @SuppressWarnings("serial")
 public class DatosConsumoForm extends AbstractSubForm {
@@ -17,7 +17,7 @@ public class DatosConsumoForm extends AbstractSubForm {
 	    "Consumo (l/día)", "Nº miembros familia" };
 
     private JComponent codComunidad;
-    private DependentComboboxesHandler abastecimientosDomainHandler;
+    private DependentComboboxHandler abastecimientosDomainHandler;
 
     @Override
     protected String getBasicName() {
@@ -35,16 +35,16 @@ public class DatosConsumoForm extends AbstractSubForm {
 	codComunidad = getWidgets().get("cod_comunidad");
 	JComboBox codAbastecimiento = (JComboBox) getWidgets().get(
 		"cod_abastecimiento");
-	abastecimientosDomainHandler = new DependentComboboxesHandler(this,
+	abastecimientosDomainHandler = new DependentComboboxHandler(this,
 		codComunidad, codAbastecimiento);
 	((JTextField) codComunidad)
-		.addActionListener(abastecimientosDomainHandler);
+		.addFocusListener(abastecimientosDomainHandler);
     }
 
     @Override
     public void removeListeners() {
 	super.removeListeners();
 	((JTextField) codComunidad)
-		.addActionListener(abastecimientosDomainHandler);
+		.removeFocusListener(abastecimientosDomainHandler);
     }
 }
