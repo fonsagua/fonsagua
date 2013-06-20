@@ -1,10 +1,19 @@
 #!/bin/bash
 
-CARTOGRAFIA_BASE=
+error() {
+    echo $1
+    exit -1
+}
+
+CARTOGRAFIA_BASE=/home/fpuga/Escritorio/cartolab/Fonsagua/BDD_Fonsagua/
 output=/tmp/`date +%Y%m%d`-fonsagua-bbdd.sql
 
-[ -d "$CARTOGRAFIA_BASE" ] || exit -1
+[ -d "$CARTOGRAFIA_BASE" ] || error "Falta el directorio de la cartografía base"
 
+echo "ALTER SCHEMA public OWNER TO fonsagua" > $output
+echo "ALTER TABLE public.geometry_columns OWNER TO fonsagua" >> $output
+echo "ALTER TABLE public.spatial_ref_sys OWNER TO fonsagua" >> $output
+echo "ALTER TABLE public.geography_columns OWNER TO fonsagua" >> $output
 cat ./data/01-create-data-schemas.sql  > $output
 cat ./data/02-domains.sql >> $output
 cat ./data/03-comunidades.sql >> $output

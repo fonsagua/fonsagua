@@ -1,0 +1,48 @@
+#!/bin/bash
+
+capas=(aguas_continentales batimetria bosques_pais cantones cuencas curvas_nivel_100m_poligono departamentos el_salvador municipios resto_paises_mesoamerica)
+for f1 in ${capas[@]}
+do
+	echo "BEGIN;
+ALTER TABLE c_base.${f1} RENAME COLUMN the_geom TO geom;
+ALTER TABLE c_base.${f1} ADD constraint enforce_dims_geom CHECK (ndims(geom) = 2);
+ALTER TABLE c_base.${f1} ADD CONSTRAINT enforce_geotype_geom CHECK (geometrytype(geom) = 'MULTIPOLYGON'::text OR geom IS NULL);
+ALTER TABLE c_base.${f1} ADD CONSTRAINT enforce_srid_geom CHECK (srid(geom) = 32616);
+ALTER TABLE c_base.${f1} DROP CONSTRAINT enforce_dims_the_geom;
+ALTER TABLE c_base.${f1} DROP CONSTRAINT enforce_geotype_the_geom;
+ALTER TABLE c_base.${f1} DROP CONSTRAINT enforce_srid_the_geom;
+END;"
+done
+
+capas=(areas_protegidas cabecera_municipal casas_cultura centros_educativos centros_salud ciudades fuentes pozos )
+for f1 in ${capas[@]}
+do
+	echo "BEGIN;
+ALTER TABLE c_base.${f1} RENAME COLUMN the_geom TO geom;
+ALTER TABLE c_base.${f1} ADD constraint enforce_dims_geom CHECK (ndims(geom) = 2);
+ALTER TABLE c_base.${f1} ADD CONSTRAINT enforce_geotype_geom CHECK (geometrytype(geom) = 'POINT'::text OR geom IS NULL);
+ALTER TABLE c_base.${f1} ADD CONSTRAINT enforce_srid_geom CHECK (srid(geom) = 32616);
+ALTER TABLE c_base.${f1} DROP CONSTRAINT enforce_dims_the_geom;
+ALTER TABLE c_base.${f1} DROP CONSTRAINT enforce_geotype_the_geom;
+ALTER TABLE c_base.${f1} DROP CONSTRAINT enforce_srid_the_geom;
+END;"
+done
+
+capas=(carreteras curvas_nivel_10m rios)
+for f1 in ${capas[@]}
+do
+	echo "BEGIN;
+ALTER TABLE c_base.${f1} RENAME COLUMN the_geom TO geom;
+ALTER TABLE c_base.${f1} ADD constraint enforce_dims_geom CHECK (ndims(geom) = 2);
+ALTER TABLE c_base.${f1} ADD CONSTRAINT enforce_geotype_geom CHECK (geometrytype(geom) = 'MULTILINESTRING'::text OR geom IS NULL);
+ALTER TABLE c_base.${f1} ADD CONSTRAINT enforce_srid_geom CHECK (srid(geom) = 32616);
+ALTER TABLE c_base.${f1} DROP CONSTRAINT enforce_dims_the_geom;
+ALTER TABLE c_base.${f1} DROP CONSTRAINT enforce_geotype_the_geom;
+ALTER TABLE c_base.${f1} DROP CONSTRAINT enforce_srid_the_geom;
+END;"
+done
+
+echo "BEGIN;
+SELECT probe_geometry_columns();
+END;"
+
