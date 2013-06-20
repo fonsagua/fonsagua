@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
+import javax.swing.table.TableModel;
 
 public class JTableOnlyUpdateContextualMenu implements MouseListener {
 
@@ -44,7 +45,15 @@ public class JTableOnlyUpdateContextualMenu implements MouseListener {
 	//
 	table = (JTable) e.getComponent();
 	if ((e.getClickCount() == 2) && (table.getSelectedRow() > -1)) {
-	    form.actionUpdateRecord(table.getSelectedRow());
+	    int rowIndex;
+	    TableModel model = table.getModel();
+	    if (model instanceof TableModelAlphanumeric) {
+		rowIndex = ((TableModelAlphanumeric) model)
+			.convertRowIndexToModel(table.getSelectedRow());
+	    } else {
+		rowIndex = table.convertRowIndexToModel(table.getSelectedRow());
+	    }
+	    form.actionUpdateRecord(rowIndex);
 	} else if (e.getButton() == BUTTON_RIGHT) {
 	    if (!JTableUtils.hasRows(table)
 		    || (table.getSelectedRow() == NO_ROW_SELECTED)) {
@@ -62,7 +71,9 @@ public class JTableOnlyUpdateContextualMenu implements MouseListener {
 	updateMenuItem = new JMenuItem("Actualizar registro");
 	updateMenuItem.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent arg0) {
-		form.actionUpdateRecord(table.getSelectedRow());
+		form.actionUpdateRecord(((TableModelAlphanumeric) table
+			.getModel()).convertRowIndexToModel(table
+			.getSelectedRow()));
 	    }
 	});
 	popupMenu.add(updateMenuItem);
