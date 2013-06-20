@@ -1,4 +1,2 @@
 cod_fuente=name
-utm_x:getX
-utm_y:getY
 utm_z=elev

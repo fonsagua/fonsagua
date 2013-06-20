@@ -3,6 +3,4 @@ cod_departamento:substring(name,0,2)
 cod_municipio:substring(name,2,4)
 cod_canton:substring(name,4,6)
 cod_caserio:substring(name,6,8)
-utm_x:getX
-utm_y:getY
-utm_z=elev+
+utm_z=elev
