@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
-import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.listeners.DependentComboboxesHandler;
+import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.listeners.DependentComboboxHandler;
 
 @SuppressWarnings("serial")
 public class DepIntermediosForm extends BasicAbstractForm {
@@ -21,7 +21,7 @@ public class DepIntermediosForm extends BasicAbstractForm {
     };
 
     private JComponent codAbastecimiento;
-    private DependentComboboxesHandler bombeosDomainHandler;
+    private DependentComboboxHandler bombeosDomainHandler;
 
     public DepIntermediosForm(FLyrVect layer) {
 	super(layer);
@@ -43,10 +43,9 @@ public class DepIntermediosForm extends BasicAbstractForm {
 	codAbastecimiento = getWidgetComponents().get("cod_abastecimiento");
 	JComboBox codBombeo = (JComboBox) getWidgetComponents().get(
 		"cod_bombeo");
-	bombeosDomainHandler = new DependentComboboxesHandler(this,
+	bombeosDomainHandler = new DependentComboboxHandler(this,
 		codAbastecimiento, codBombeo);
-	((JTextField) codAbastecimiento)
-		.addActionListener(bombeosDomainHandler);
+	((JTextField) codAbastecimiento).addFocusListener(bombeosDomainHandler);
     }
 
     @Override
