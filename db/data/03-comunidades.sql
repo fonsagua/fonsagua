@@ -913,9 +913,9 @@ CREATE TABLE fonsagua.bombeos (
        anho_construccion INTEGER,
        estado VARCHAR
 	       REFERENCES dominios.estado(item),
-       utm_x NUMERIC(5,3),
-       utm_y NUMERIC(5,3),
-       utm_z NUMERIC(5,3),
+       utm_x FLOAT,
+       utm_y FLOAT,
+       utm_z FLOAT,
        coment_bom VARCHAR
 
 );
@@ -955,19 +955,16 @@ CREATE TABLE fonsagua.captaciones (
 	       REFERENCES dominios.tipo_fuente(item),
        sistema VARCHAR
 	       REFERENCES dominios.sistema(item),
-       cod_bombeo VARCHAR
-	       REFERENCES fonsagua.bombeos(cod_bombeo)
-	       ON DELETE CASCADE
-	       ON UPDATE CASCADE,
+       cod_bombeo VARCHAR,
        tipo_construccion VARCHAR
 	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
        volumen NUMERIC(5,2),
        estado VARCHAR
 	       REFERENCES dominios.estado(item),
-       utm_x NUMERIC(5,3),
-       utm_y NUMERIC(5,3),
-       utm_z NUMERIC(5,3),
+       utm_x FLOAT,
+       utm_y FLOAT,
+       utm_z FLOAT,
        coment_cap VARCHAR
 
 );
@@ -993,10 +990,7 @@ CREATE TABLE fonsagua.dep_intermedios (
        altura NUMERIC(5,2),
        sistema VARCHAR
 	       REFERENCES dominios.sistema(item),
-       cod_bombeo VARCHAR
-	       REFERENCES fonsagua.bombeos(cod_bombeo)
-	       ON DELETE CASCADE
-	       ON UPDATE CASCADE,
+       cod_bombeo VARCHAR,
        tipo_construccion VARCHAR
 	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
@@ -1036,9 +1030,9 @@ CREATE TABLE fonsagua.dep_distribucion (
        t_llenado NUMERIC(5,2),
        estado VARCHAR
 	       REFERENCES dominios.estado(item),
-       utm_x NUMERIC(5,3),
-       utm_y NUMERIC(5,3),
-       utm_z NUMERIC(5,3),
+       utm_x FLOAT,
+       utm_y FLOAT,
+       utm_z FLOAT,
        descripcion VARCHAR
 
 );

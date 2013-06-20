@@ -9,7 +9,7 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET escape_string_warning = off;
 
-SET search_path = fonsagua, pg_catalog;
+SET search_path = fonsagua, public, pg_catalog;
 
 --
 -- Data for Name: abastecimientos; Type: TABLE DATA; Schema: fonsagua; Owner: fonsagua
@@ -40,10 +40,10 @@ INSERT INTO comunidades (gid, comunidad, cod_comunidad, fecha, coment_gen, depar
 -- Data for Name: adescos; Type: TABLE DATA; Schema: fonsagua; Owner: fonsagua
 --
 
-INSERT INTO adescos (gid, cod_comunidad, nombre, anho_const, legalizada, n_socios, antiguedad, presidente, n_hombres, n_mujeres, tot_miembros) VALUES (1, '01010101', 'fdsajfkl', 2012, true, 12, 5, 'juan', 2, 5, 7);
-INSERT INTO adescos (gid, cod_comunidad, nombre, anho_const, legalizada, n_socios, antiguedad, presidente, n_hombres, n_mujeres, tot_miembros) VALUES (2, '01010101', 'dsafads', 2021, true, NULL, NULL, '', NULL, NULL, 0);
-INSERT INTO adescos (gid, cod_comunidad, nombre, anho_const, legalizada, n_socios, antiguedad, presidente, n_hombres, n_mujeres, tot_miembros) VALUES (3, '01010102', 'dsfads', NULL, false, NULL, NULL, '', NULL, NULL, 0);
-INSERT INTO adescos (gid, cod_comunidad, nombre, anho_const, legalizada, n_socios, antiguedad, presidente, n_hombres, n_mujeres, tot_miembros) VALUES (4, '01010103', 'asdfsa', NULL, false, NULL, NULL, '', NULL, NULL, 0);
+INSERT INTO adescos (gid, cod_comunidad, nombre, anho_const, legalizada, n_socios, antiguedad, presidencia, n_hombres, n_mujeres, tot_miembros) VALUES (1, '01010101', 'fdsajfkl', 2012, true, 12, 5, 'juan', 2, 5, 7);
+INSERT INTO adescos (gid, cod_comunidad, nombre, anho_const, legalizada, n_socios, antiguedad, presidencia, n_hombres, n_mujeres, tot_miembros) VALUES (2, '01010101', 'dsafads', 2021, true, NULL, NULL, '', NULL, NULL, 0);
+INSERT INTO adescos (gid, cod_comunidad, nombre, anho_const, legalizada, n_socios, antiguedad, presidencia, n_hombres, n_mujeres, tot_miembros) VALUES (3, '01010102', 'dsfads', NULL, false, NULL, NULL, '', NULL, NULL, 0);
+INSERT INTO adescos (gid, cod_comunidad, nombre, anho_const, legalizada, n_socios, antiguedad, presidencia, n_hombres, n_mujeres, tot_miembros) VALUES (4, '01010103', 'asdfsa', NULL, false, NULL, NULL, '', NULL, NULL, 0);
 
 
 --
@@ -244,6 +244,15 @@ INSERT INTO cooperativas (gid, cod_comunidad, tipo, n_asociados, recursos, rubro
 --
 
 SELECT pg_catalog.setval('cooperativas_gid_seq', 1, true);
+
+
+--
+-- Data for Name: r_abastecimientos_comunidades; Type: TABLE DATA; Schema: fonsagua; Owner: fonsagua
+--
+
+INSERT INTO r_abastecimientos_comunidades (cod_abastecimiento, cod_comunidad) VALUES ('010101A02', '01010101');
+INSERT INTO r_abastecimientos_comunidades (cod_abastecimiento, cod_comunidad) VALUES ('010101A01', '01010101');
+INSERT INTO r_abastecimientos_comunidades (cod_abastecimiento, cod_comunidad) VALUES ('010101A01', '01010102');
 
 
 --
@@ -507,14 +516,6 @@ INSERT INTO puntos_viviendas (gid, cod_comunidad, cod_vivienda, tipo, utm_x, utm
 
 SELECT pg_catalog.setval('puntos_viviendas_gid_seq', 2, true);
 
-
---
--- Data for Name: r_abastecimientos_comunidades; Type: TABLE DATA; Schema: fonsagua; Owner: fonsagua
---
-
-INSERT INTO r_abastecimientos_comunidades (cod_abastecimiento, cod_comunidad) VALUES ('010101A02', '01010101');
-INSERT INTO r_abastecimientos_comunidades (cod_abastecimiento, cod_comunidad) VALUES ('010101A01', '01010101');
-INSERT INTO r_abastecimientos_comunidades (cod_abastecimiento, cod_comunidad) VALUES ('010101A01', '01010102');
 
 
 --
