@@ -57,25 +57,49 @@ public class VectorialTableHandler {
 
     public void fillValues(String value) {
 	try {
+	    String[] auxColNames = colNames, auxColAliases = colAliases;
+	    int foreignKeyColumn = -1;
+	    boolean eraseForeignKey = false;
+	    if (colNames != null) {
+		for (int a = 0, columns = colNames.length; a < columns; a++) {
+		    if (colNames[a].equals(foreignKeyId)) {
+			foreignKeyColumn = a;
+		    }
+		}
+
+		// If the table model doesn't include the foreign key, we add
+		// it, use it to filter and remove it afterwards.
+		if (foreignKeyColumn == -1) {
+		    auxColNames = new String[colNames.length + 1];
+		    for (int a = 0, columns = colNames.length; a < columns; a++) {
+			auxColNames[a] = colNames[a];
+		    }
+		    auxColNames[auxColNames.length - 1] = foreignKeyId;
+		    auxColAliases = new String[colAliases.length + 1];
+		    for (int a = 0, columns = colAliases.length; a < columns; a++) {
+			auxColAliases[a] = colAliases[a];
+		    }
+		    auxColAliases[auxColAliases.length - 1] = foreignKeyId;
+		    eraseForeignKey = true;
+		    foreignKeyColumn = auxColNames.length - 1;
+		}
+	    }
 	    TableModelVectorial model = new TableModelVectorial(layer,
-		    colNames, colAliases);
+		    auxColNames, auxColAliases);
 	    jtable.setModel(model);
 	    ((DefaultTableCellRenderer) jtable.getTableHeader()
 		    .getDefaultRenderer())
 		    .setHorizontalAlignment(JLabel.CENTER);
 	    TableRowSorter sorter = new TableRowSorter<TableModelVectorial>(model);
-	    int foreignKeyColumn = -1;
-	    for (int a = 0, columns = jtable.getModel().getColumnCount(); a < columns; a++) {
-		if (model.getLayerColumnName(a).equals(foreignKeyId)) {
-		    foreignKeyColumn = a;
-		}
-	    }
 	    if (foreignKeyColumn > -1) {
 		sorter.setRowFilter(RowFilter.regexFilter("^" + value + "$",
 			foreignKeyColumn));
 		jtable.setRowSorter(sorter);
-		jtable.removeColumn(jtable.getColumn(jtable
-			.getColumnName(foreignKeyColumn)));
+		// We remove the temporal column used for filtering
+		if (eraseForeignKey) {
+		    jtable.removeColumn(jtable.getColumn(jtable
+			    .getColumnName(foreignKeyColumn)));
+		}
 	    }
 	} catch (ReadDriverException e) {
 	    e.printStackTrace();
