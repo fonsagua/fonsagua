@@ -332,7 +332,9 @@ CREATE TABLE fonsagua.puntos_viviendas (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_vivienda VARCHAR
 	       UNIQUE
 	       NOT NULL,
@@ -354,7 +356,9 @@ CREATE TABLE fonsagua.entrevistadores (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        nombre VARCHAR,
        cargo VARCHAR,
        instit VARCHAR,
@@ -369,7 +373,9 @@ CREATE TABLE fonsagua.entrevistados (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        nombre VARCHAR,
        cargo VARCHAR,
        telefono VARCHAR,
@@ -384,7 +390,9 @@ CREATE TABLE fonsagua.subcuencas (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        subcuenca VARCHAR
 
 );
@@ -396,7 +404,9 @@ CREATE TABLE fonsagua.adescos (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        nombre VARCHAR,
        anho_const INTEGER,
        legalizada BOOLEAN,
@@ -416,7 +426,9 @@ CREATE TABLE fonsagua.cargos_publicos (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        nombre VARCHAR,
        cargo VARCHAR
 
@@ -429,7 +441,9 @@ CREATE TABLE fonsagua.ongs (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        ong VARCHAR,
        fechas VARCHAR,
        tipo_proy VARCHAR,
@@ -447,7 +461,9 @@ CREATE TABLE fonsagua.otras_organizaciones (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        tipo_organizacion VARCHAR
 	       REFERENCES dominios.tipo_organizacion(item),
        nombre VARCHAR,
@@ -463,7 +479,9 @@ CREATE TABLE fonsagua.tipos_cultivos (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        tipo VARCHAR,
        n_familias INTEGER,
        f_propietarias INTEGER,
@@ -481,7 +499,9 @@ CREATE TABLE fonsagua.produccion_consumo (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        n_miembros INTEGER,
        produccion FLOAT,
        consumo FLOAT
@@ -495,7 +515,9 @@ CREATE TABLE fonsagua.areas_potenciales_riego (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        descripcion VARCHAR
 
 );
@@ -509,7 +531,9 @@ CREATE TABLE fonsagua.ganaderia (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        tipo VARCHAR,
        n_familias INTEGER,
        f_propietarias INTEGER,
@@ -527,7 +551,9 @@ CREATE TABLE fonsagua.cooperativas (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        tipo VARCHAR,
        n_asociados INTEGER,
        recursos VARCHAR,
@@ -542,7 +568,9 @@ CREATE TABLE fonsagua.centros_educativos (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_c_educativo VARCHAR
 	       UNIQUE
 	       NOT NULL,
@@ -573,7 +601,9 @@ CREATE TABLE fonsagua.centros_salud (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_c_salud VARCHAR
 	       UNIQUE
 	       NOT NULL,
@@ -593,7 +623,9 @@ CREATE TABLE fonsagua.otros_servicios (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_servicio VARCHAR
 	       UNIQUE
 	       NOT NULL,
@@ -615,7 +647,9 @@ CREATE TABLE fonsagua.capacitaciones_riesgos (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        institucion VARCHAR,
        fecha Date,
        temas VARCHAR
@@ -629,7 +663,9 @@ CREATE TABLE fonsagua.amenazas (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_amenaza VARCHAR
 	       UNIQUE
 	       NOT NULL,
@@ -651,7 +687,9 @@ CREATE TABLE fonsagua.implicacion_comunidad (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        dinero_inv VARCHAR
 	       REFERENCES dominios.dinero_inv(item),
        tiempo_inv VARCHAR
@@ -763,7 +801,9 @@ CREATE TABLE fonsagua.datos_consumo (
        cod_comunidad VARCHAR NOT NULL,
        cod_abastecimiento VARCHAR NOT NULL,
        tipo_abastecimiento VARCHAR
-	       REFERENCES dominios.tipo_abastecimiento(item),
+	       REFERENCES dominios.tipo_abastecimiento(item)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        mujeres BOOLEAN,
        hombres BOOLEAN,
        ninhas BOOLEAN,
@@ -782,7 +822,9 @@ CREATE TABLE fonsagua.habitos_consumo (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        mujeres BOOLEAN,
        hombres BOOLEAN,
        ninhas BOOLEAN,
@@ -800,7 +842,9 @@ CREATE TABLE fonsagua.fuentes_contaminacion (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.comunidades(cod_comunidad),
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        tipo_contaminacion VARCHAR
 	       REFERENCES dominios.tipo_contaminacion(item),
        n_fam_vierten INTEGER,
@@ -822,7 +866,9 @@ CREATE TABLE fonsagua.juntas_agua (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        nombre VARCHAR,
        ubicacion VARCHAR,
        contacto VARCHAR,
@@ -847,7 +893,9 @@ CREATE TABLE fonsagua.bombeos (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_bombeo VARCHAR
 	       UNIQUE
 	       NOT NULL,
@@ -881,7 +929,9 @@ CREATE TABLE fonsagua.cobertura (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        fecha Date,
        acometidas INTEGER,
        viviendas INTEGER,
@@ -894,7 +944,9 @@ CREATE TABLE fonsagua.captaciones (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_captacion VARCHAR
 	       UNIQUE
 	       NOT NULL,
@@ -904,7 +956,9 @@ CREATE TABLE fonsagua.captaciones (
        sistema VARCHAR
 	       REFERENCES dominios.sistema(item),
        cod_bombeo VARCHAR
-	       REFERENCES fonsagua.bombeos(cod_bombeo),
+	       REFERENCES fonsagua.bombeos(cod_bombeo)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        tipo_construccion VARCHAR
 	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
@@ -927,7 +981,9 @@ CREATE TABLE fonsagua.dep_intermedios (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_dep_intermedio VARCHAR
 	       UNIQUE
 	       NOT NULL,
@@ -938,7 +994,9 @@ CREATE TABLE fonsagua.dep_intermedios (
        sistema VARCHAR
 	       REFERENCES dominios.sistema(item),
        cod_bombeo VARCHAR
-	       REFERENCES fonsagua.bombeos(cod_bombeo),
+	       REFERENCES fonsagua.bombeos(cod_bombeo)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        tipo_construccion VARCHAR
 	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
@@ -961,7 +1019,9 @@ CREATE TABLE fonsagua.dep_distribucion (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_dep_distribucion VARCHAR
 	       UNIQUE
 	       NOT NULL,
@@ -992,7 +1052,9 @@ CREATE TABLE fonsagua.tuberias (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_tuberia VARCHAR
 	       UNIQUE
 	       NOT NULL,
@@ -1026,7 +1088,9 @@ CREATE TABLE fonsagua.gest_comercial (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        fecha Date,
        produccion NUMERIC(5,2),
        facturacion NUMERIC(5,2),
@@ -1045,7 +1109,9 @@ CREATE TABLE fonsagua.gest_financiera (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        fecha Date,
        cost_energetico NUMERIC(5,2),
        cost_quimico NUMERIC(5,2),
@@ -1072,7 +1138,9 @@ CREATE TABLE fonsagua.evaluacion (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento),
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        fecha Date,
        cobertura NUMERIC(5,2),
        agua_no_contabilizada NUMERIC(5,2),
@@ -1148,7 +1216,9 @@ CREATE TABLE fonsagua.aforos (
        gid SERIAL PRIMARY KEY,
        cod_fuente VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.fuentes(cod_fuente),
+	       REFERENCES fonsagua.fuentes(cod_fuente)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        aforo FLOAT,
        fecha Date,
        hora VARCHAR
@@ -1162,7 +1232,9 @@ CREATE TABLE fonsagua.analiticas (
        gid SERIAL PRIMARY KEY,
        cod_fuente VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.fuentes(cod_fuente),
+	       REFERENCES fonsagua.fuentes(cod_fuente)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        fuente VARCHAR,
        fecha_muestra Date,
        hora_muestra VARCHAR,
