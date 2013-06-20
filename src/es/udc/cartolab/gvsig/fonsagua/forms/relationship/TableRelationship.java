@@ -27,6 +27,7 @@ public class TableRelationship {
     private String[] secPkValues;
     private String[] colNames;
     private String[] colAlias;
+    private int keyColumn = 0;
 
     private JTable jtable;
     private String primaryPKValue;
@@ -47,6 +48,14 @@ public class TableRelationship {
 	this.dbSchema = dbSchema;
 	this.colNames = colNames;
 	this.colAlias = colAlias;
+	if (colNames != null) {
+	    for (int i = 0, columns = colNames.length; i < columns; i++) {
+		if (colNames[i].equals(secondaryPKName)) {
+		    keyColumn = i;
+		    break;
+		}
+	    }
+	}
 	jtable = (JTable) widgets.get(relationTableName);
     }
 
@@ -103,7 +112,7 @@ public class TableRelationship {
     }
 
     public void reload(BasicAbstractForm dialog) {
-	listener = new JTableRelationshipContextualMenu(this, dialog);
+	listener = new JTableRelationshipContextualMenu(this, dialog, keyColumn);
 	jtable.addMouseListener(listener);
 	jtable.setFillsViewportHeight(true);
     }

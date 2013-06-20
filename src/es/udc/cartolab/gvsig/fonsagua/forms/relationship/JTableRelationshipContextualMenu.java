@@ -25,6 +25,7 @@ public class JTableRelationshipContextualMenu implements MouseListener {
     private JMenuItem openMenuItem;
     private JMenuItem deleteMenuItem;
     private JPopupMenu popupMenu;
+    private int keyColumn = 0;
 
     private TableRelationship tableRelationship;
     private BasicAbstractForm dialog;
@@ -33,6 +34,15 @@ public class JTableRelationshipContextualMenu implements MouseListener {
     public JTableRelationshipContextualMenu(
 	    TableRelationship tableRelationship, BasicAbstractForm dialog) {
 	this.dialog = dialog;
+	this.tableRelationship = tableRelationship;
+	initContextualMenu();
+    }
+
+    public JTableRelationshipContextualMenu(
+	    TableRelationship tableRelationship, BasicAbstractForm dialog,
+	    int keyColumn) {
+	this.dialog = dialog;
+	this.keyColumn = keyColumn;
 	this.tableRelationship = tableRelationship;
 	initContextualMenu();
     }
@@ -118,7 +128,10 @@ public class JTableRelationshipContextualMenu implements MouseListener {
     private void readSelectedPosition() {
 	IController controller = dialog.getFormController();
 	String keySelected = table.getModel()
-		.getValueAt(table.getSelectedRow(), 0).toString();
+		.getValueAt(
+			table.convertRowIndexToModel(table.getSelectedRow()),
+			keyColumn)
+		.toString();
 	try {
 	    for (long i = controller.getRowCount() - 1; i >= 0; i--) {
 		controller.read(i);
