@@ -161,6 +161,9 @@ public class AbastecimientosForm extends BasicAbstractForm {
 			.createSingletonForm(
 			new TOCLayerManager().getLayerByName(FuentesForm.NAME)));
 	adescosHandler.reload(new AdescosForm());
+	implicacionComunidadHandler.reloadGUI();
+	datosConsumoHandler.reloadGUI();
+	valoracionSistemaHandler.reloadGUI();
     }
 
     @Override

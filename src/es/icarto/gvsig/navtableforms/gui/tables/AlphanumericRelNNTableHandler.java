@@ -42,6 +42,10 @@ public class AlphanumericRelNNTableHandler {
 	this.form = form;
 	listener = new JTableOnlyUpdateContextualMenu(form);
 	jtable.addMouseListener(listener);
+	reloadGUI();
+    }
+
+    public void reloadGUI() {
 	// for the popUp to work on empty tables
 	jtable.setFillsViewportHeight(true);
     }
