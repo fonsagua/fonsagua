@@ -1,9 +1,8 @@
-
 Este documento describe como desplegar un *dump* de una base de datos que funcione con la aplicación gvSIG Fonsagua para su uso en entornos de producción.
 
 El dump de la base de datos contendrá:
 
-* La lógica de la base de datos que necesita la aplicación para funcionar (como valores de comboboxes)
+* La lógica de la base de datos que necesita la aplicación para funcionar (como valores de comboboxes, campos automáticos, ...)
 * Las creación de las tablas y los datos de las capas que se emplearán como cartografía base
 * La creación de las tablas para las capas de proyecto
 * La simbología creada para para las capas empleadas en la aplicación
@@ -21,7 +20,7 @@ La base de datos está compuesta por los siguientes esquemas:
 Requisitos previos
 ==================
 
-Se requiere un servidor de base de datos PostgreSQL versión 9.0 o superior, con la extensión PostGIS versión 1.5.
+Se requiere un servidor de base de datos PostgreSQL versión 9.0 o superior (la versión recomendada es la 9.1), con la extensión PostGIS versión 1.5.
 
 Se requiere la creación de un usuario **fonsagua**, como propietario de la base de datos, tablas y demás elementos de la base de datos. Para ello se podría emplear el comando
 
@@ -37,6 +36,7 @@ Se debe asignar la propiedad del esquema *public*, y de las tablas de ese esquem
 ALTER SCHEMA public OWNER TO fonsagua;
 ALTER TABLE public.geometry_columns OWNER TO fonsagua;
 ALTER TABLE public.spatial_ref_sys OWNER TO fonsagua;
+ ALTER TABLE public.geography_columns OWNER TO fonsagua;
 
 
 Restauración del dump
