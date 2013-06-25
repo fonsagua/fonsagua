@@ -158,7 +158,7 @@ Podemos hacer esto desde la herramienta pgAdmin (*Inicio -> Todas las aplicacion
 
 A continuación pinchamos con el botón derecho sobre *Login Roles*, y escogemos *New Login Role*
 
-.. image:: instalar_postgres_images/crear_usuario_02.jpg
+.. image:: instalar_postgres_images/crear_usuario_02.png
 
 Escogeremos como nombre del rol **fonsagua**, en la pestaña de definición introduciremos la clave, en la pestaña de privilegios:
 * Marcaremos *heredar los roles*
@@ -178,10 +178,12 @@ Asignar privilegios al usuario fonsagua
 ----------------------------------------
 Antes de restaurar el dump debemos modificar el propietario de algunos de los objetos de la base de datos que acabamos de crear. Para ello, estando conectado con el usuario **postgres**, conectaremos a la base de datos **fonsagua** y ejecutaremos las siguientes sentencias. Podemos abrir la herramienta se SQL, pinchando en *Tools -> Query Tool*
 
-ALTER SCHEMA public OWNER TO fonsagua;
-ALTER TABLE public.geometry_columns OWNER TO fonsagua;
-ALTER TABLE public.spatial_ref_sys OWNER TO fonsagua;
-ALTER TABLE public.geography_columns OWNER TO fonsagua;
+::
+
+  ALTER SCHEMA public OWNER TO fonsagua;
+  ALTER TABLE public.geometry_columns OWNER TO fonsagua;
+  ALTER TABLE public.spatial_ref_sys OWNER TO fonsagua;
+  ALTER TABLE public.geography_columns OWNER TO fonsagua;
 
 Resturar el dump de la base de datos
 ------------------------------------
