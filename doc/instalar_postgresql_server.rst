@@ -25,63 +25,63 @@ Proceso de instalación con stackbuilder
 
 * Tras descargar el fichero de instalación lo ejecutaremos como administrador, abriéndose una ventana que nos dará la bienvenida al proceso. En esta ventana pulsaremos siguiente
 
-.. image:: instalar_postgres_images/instalar_postgresql_01.jpg
+.. image:: instalar_postgresql_images/instalar_postgresql_01.jpg
 
 * A continuación escogemos donde se instalará el programa. En el ejemplo se instala en *C:\PostgreSQL91*
 
-.. image:: instalar_postgres_images/instalar_postgresql_02.jpg
+.. image:: instalar_postgresql_images/instalar_postgresql_02.jpg
 
 * En la siguiente ventana escogeremos donde se almacenarán la información de las bases de datos que gestionará el servidor. En el ejemplo almacenamos los datos en *C:/PostgreSQL/datos*
 
-.. image:: instalar_postgres_images/instalar_postgresql_03.jpg
+.. image:: instalar_postgresql_images/instalar_postgresql_03.jpg
 
 * El instalador gráfico creará una nueva cuenta de usuario y un nuevo servicio para windows. En esta ventana introducimos el nombre de la cuenta, lo habitual es emplear *postgres* y escogemos la clave. Esta clave será tanto la del usuario de windows, como la del superusuario de conexión a la base de datos.
 
-.. image:: instalar_postgres_images/instalar_postgresql_04.jpg
+.. image:: instalar_postgresql_images/instalar_postgresql_04.jpg
 
 * A continuación escogeremos el puerto en el que el servidor ofrecerá el servicio. El puerto por defecto es el 5432.
 
-.. image:: instalar_postgres_images/instalar_postgresql_05.jpg
+.. image:: instalar_postgresql_images/instalar_postgresql_05.jpg
 
 * En la siguiente pantalla escogemos la configuración regional, esto afectará al encoding de la base de datos, idioma de los mensajes, configuración de moneda y fechas, etc... Si nuestra configuración por defecto emplea UTF8 como encoding lo recomendable es dejar esta, si no debemos forzar el emplear una que emplee UTF8.
 
-.. image:: instalar_postgres_images/instalar_postgresql_06.jpg
+.. image:: instalar_postgresql_images/instalar_postgresql_06.jpg
 
 * Antes de comenzar a instalar el programa en el disco duro, nos aparece una nueva pantalla de confirmación en la que pulsaremos siguiente:
 
-.. image:: instalar_postgres_images/instalar_postgresql_07.jpg
+.. image:: instalar_postgresql_images/instalar_postgresql_07.jpg
 
 * Cuando acabe de instalar los ficheros en el disco, nos dará la ejecución de ejecutar stackbuilder, la herramienta de actualización e instalación de complementos. Marcaremos ejectuar el stackbuilder y le damos a terminar.
 
-.. image:: instalar_postgres_images/instalar_postgresql_08.jpg
+.. image:: instalar_postgresql_images/instalar_postgresql_08.jpg
 
 * La siguiente pantalla ya corresponde al stackbuilder. En el desplegable, seleccionaremos el servidor, si estamos siguiendo esta guía y no hemos instalado nada previamente, debería poner *PostgreSQL 9.1 en puerto 5432* y pulsamos en siguiente
 
-.. image:: instalar_postgres_images/instalar_postgis_01.png
+.. image:: instalar_postgresql_images/instalar_postgis_01.png
 
 * En el árbol de opciones de la siguiente pantalla buscaremos *Spatial Extensiones* o *Extensiones espaciales* y seleccionamos *PostGIS 1.5 for PostgreSQL 9.1*. Pulsamos siguiente y en caso de ser necesario escogemos el directorio de descarga y el servidor desde el que lo descargaremos.
 
-.. image:: instalar_postgres_images/instalar_postgis_02.png
+.. image:: instalar_postgresql_images/instalar_postgis_02.png
 
 * Esperamos a que descargue, y la pantalla de la siguiente imagen nos aseguramos de que el la opción de *Skip installation* está desmarcada. Luego pulsamos en siguiente.
 
-.. image:: instalar_postgres_images/instalar_postgis_03.png
+.. image:: instalar_postgresql_images/instalar_postgis_03.png
 
 * Pulsamos siguiente, en la ventana que nos anuncia que vamos a instalar Postgis
 
-.. image:: instalar_postgres_images/instalar_postgis_04.png
+.. image:: instalar_postgresql_images/instalar_postgis_04.png
 
 * Y siguiente en la ventana que nos pregunta si queremos usar el modo de actualización, lo cual no es necesario en nuestro caso.
 
-.. image:: instalar_postgres_images/instalar_postgis_05.png
+.. image:: instalar_postgresql_images/instalar_postgis_05.png
 
 * Introducimos la clave del usuario postgres, y pulsamos siguiente en esta pantalla y también en la que salta a continuación.
 
-.. image:: instalar_postgres_images/instalar_postgis_06.png
+.. image:: instalar_postgresql_images/instalar_postgis_06.png
 
 * Al finalizar la instalación aparecerá una pantalla en la que nos avisa de que la finalización ha terminado de forma exitosa. Pulsaremos en terminar.
 
-.. image:: instalar_postgres_images/instalar_postgis_07.png
+.. image:: instalar_postgresql_images/instalar_postgis_07.png
 
 Configuración del servidor de bases de datos
 ============================================
@@ -104,7 +104,7 @@ Si quisieramos admitir sólo las conexiones para la base de datos fonsagua, al u
 
 Además, para permitir las conexiones a la base de datos de usuarios que no estén en localhost debemos editar el fichero postgresql.conf (está en el mismo directorio que pg_hba.conf), buscar la opción `listen_adresses <http://www.postgresql.org/docs/9.1/static/runtime-config-connection.html>`_, descomentarla, y asignarle el valor *, quedando del modo que se muestra en la siguiente imagen:
 
-.. image:: instalar_postgres_images/configurar_postgresql_01.png
+.. image:: instalar_postgresql_images/configurar_postgresql_01.png
 
 Tras estos cambios debemos reiniciar el servicio o el ordenador. Para reiniciar el servicio en *Inicio -> Todas las aplicaciones -> Postgresql -> Restart server*
 
@@ -154,11 +154,11 @@ Para configurar una base de datos para fonsagua, debemos primero crear un usuari
 
 Podemos hacer esto desde la herramienta pgAdmin (*Inicio -> Todas las aplicaciones -> Postgres -> pgAdmin*). Nos conectararemos como usuario postgres a la base de datos *postgres* a través de pgAdmin
 
-.. image:: instalar_postgres_images/crear_usuario_01.jpg
+.. image:: instalar_postgresql_images/crear_usuario_01.jpg
 
 A continuación pinchamos con el botón derecho sobre *Login Roles*, y escogemos *New Login Role*
 
-.. image:: instalar_postgres_images/crear_usuario_02.png
+.. image:: instalar_postgresql_images/crear_usuario_02.png
 
 Escogeremos como nombre del rol **fonsagua**, en la pestaña de definición introduciremos la clave, en la pestaña de privilegios:
 * Marcaremos *heredar los roles*
