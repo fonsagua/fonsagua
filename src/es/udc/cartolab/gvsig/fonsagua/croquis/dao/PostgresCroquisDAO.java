@@ -12,9 +12,9 @@ import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
 
 public class PostgresCroquisDAO implements ICroquisDAO {
 
-    private final String CROQUIS_TABLENAME = "comunidades_croquis";
-    private final String CROQUIS_FIELDNAME = "croquis";
-    private final String CROQUIS_COMUNIDAD_FK_FIELDNAME = "cod_comunidad";
+    private static final String CROQUIS_TABLENAME = "comunidades_croquis";
+    private static final String CROQUIS_FIELDNAME = "croquis";
+    private static final String CROQUIS_COMUNIDAD_FK_FIELDNAME = "cod_comunidad";
 
     @Override
     public void insertCroquisIntoDb(Connection connection, String comunidadId,

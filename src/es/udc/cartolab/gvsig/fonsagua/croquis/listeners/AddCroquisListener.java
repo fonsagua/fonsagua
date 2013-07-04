@@ -12,15 +12,18 @@ import javax.swing.JOptionPane;
 import com.iver.andami.PluginServices;
 
 import es.udc.cartolab.gvsig.fonsagua.croquis.dao.DBFacade;
+import es.udc.cartolab.gvsig.fonsagua.croquis.dao.ICroquisDAO;
 import es.udc.cartolab.gvsig.fonsagua.croquis.dao.PostgresCroquisDAO;
 
 public class AddCroquisListener implements ActionListener {
 
     private final String comunidadId;
     private Connection connection;
+    private ICroquisDAO dao;
 
     public AddCroquisListener(String comunidadId) {
 	this.comunidadId = comunidadId;
+	dao = new PostgresCroquisDAO();
     }
 
     @Override
@@ -57,7 +60,7 @@ public class AddCroquisListener implements ActionListener {
 	int returnVal = fileChooser.showOpenDialog(null);
 	if (returnVal == JFileChooser.APPROVE_OPTION) {
 	    File croquis = fileChooser.getSelectedFile();
-	    new PostgresCroquisDAO().insertCroquisIntoDb(connection,
+	    dao.insertCroquisIntoDb(connection,
 		    comunidadId, croquis, update);
 	    JOptionPane.showMessageDialog(null,
 		    PluginServices.getText(this, "croquis_msg_added_croquis"));
@@ -66,7 +69,7 @@ public class AddCroquisListener implements ActionListener {
 
     private boolean hasAlreadyCroquis() {
 	try {
-	    byte[] croquis = new PostgresCroquisDAO().readCroquisFromDb(
+	    byte[] croquis = dao.readCroquisFromDb(
 		    connection, comunidadId);
 	    if (croquis != null) {
 		return true;

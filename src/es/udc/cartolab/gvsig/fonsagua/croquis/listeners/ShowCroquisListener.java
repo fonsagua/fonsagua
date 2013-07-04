@@ -17,6 +17,7 @@ import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.andami.ui.mdiManager.WindowInfo;
 
 import es.udc.cartolab.gvsig.fonsagua.croquis.dao.DBFacade;
+import es.udc.cartolab.gvsig.fonsagua.croquis.dao.ICroquisDAO;
 import es.udc.cartolab.gvsig.fonsagua.croquis.dao.PostgresCroquisDAO;
 import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
 
@@ -24,9 +25,11 @@ public class ShowCroquisListener implements ActionListener {
 
     private final String comunidadId;
     private Connection connection;
+    private ICroquisDAO dao;
 
     public ShowCroquisListener(String comunidadId) {
 	this.comunidadId = comunidadId;
+	dao = new PostgresCroquisDAO();
     }
 
     @Override
@@ -59,8 +62,7 @@ public class ShowCroquisListener implements ActionListener {
 
 	    }
 
-	    byte[] imageBytes = new PostgresCroquisDAO().readCroquisFromDb(
-		    connection, comunidadId);
+	    byte[] imageBytes = dao.readCroquisFromDb(connection, comunidadId);
 	    if (imageBytes == null) {
 		JOptionPane.showMessageDialog(null, PluginServices.getText(
 			this, "croquis_msg_not_exits_croquis"));
