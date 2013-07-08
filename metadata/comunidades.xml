@@ -89,12 +89,12 @@
 		</DOMAINREADER>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tip_origen</COMPONENT>
-			<VALUE>Desplazada</VALUE>
+				<COMPONENT>tip_origen</COMPONENT>
+				<VALUE>desplazada</VALUE>
 			</CONDITION>
 			<CONDITION>
-			<COMPONENT>tip_origen</COMPONENT>
-			<VALUE>Mixta</VALUE>
+				<COMPONENT>tip_origen</COMPONENT>
+				<VALUE>mixta</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -102,12 +102,12 @@
 		<FIELDNAME>lug_origen</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tip_origen</COMPONENT>
-			<VALUE>Desplazada</VALUE>
+				<COMPONENT>tip_origen</COMPONENT>
+				<VALUE>desplazada</VALUE>
 			</CONDITION>
 			<CONDITION>
-			<COMPONENT>tip_origen</COMPONENT>
-			<VALUE>Mixta</VALUE>
+				<COMPONENT>tip_origen</COMPONENT>
+				<VALUE>mixta</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -160,8 +160,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>h_adescos</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>h_adescos</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -169,8 +169,8 @@
 		<FIELDNAME>adescos</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>h_adescos</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>h_adescos</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -178,8 +178,8 @@
 		<FIELDNAME>cargos_publicos</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>h_cargos_publicos</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>h_cargos_publicos</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -187,8 +187,8 @@
 		<FIELDNAME>ongs</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>exp_ongs</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>exp_ongs</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -259,8 +259,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>ind_tall_maq</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>ind_tall_maq</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -269,8 +269,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>ind_tall_maq</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>ind_tall_maq</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -279,8 +279,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>ind_tall_maq</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>ind_tall_maq</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -289,8 +289,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>ind_tall_maq</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>ind_tall_maq</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -299,8 +299,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>ind_tall_maq</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>ind_tall_maq</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -309,8 +309,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>ind_tall_maq</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>ind_tall_maq</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -319,8 +319,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>ind_tall_maq</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>ind_tall_maq</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -329,8 +329,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>ind_tall_maq</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>ind_tall_maq</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -339,8 +339,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>comer_serv</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>comer_serv</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -349,8 +349,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>comer_serv</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>comer_serv</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -359,8 +359,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>comer_serv</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>comer_serv</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -369,8 +369,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>comer_serv</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>comer_serv</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -488,8 +488,8 @@
 		<FIELDNAME>areas_potenciales_riego</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>areas_pot_riego</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>areas_pot_riego</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -497,8 +497,8 @@
 		<FIELDNAME>tip_agroquimicos</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>agroquimicos</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>agroquimicos</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -506,8 +506,8 @@
 		<FIELDNAME>tip_tec_conservacion</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tec_conservacion</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>tec_conservacion</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -515,8 +515,8 @@
 		<FIELDNAME>f_form_agricola</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>form_agricola</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>form_agricola</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -524,8 +524,8 @@
 		<FIELDNAME>f_form_ambiental</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>form_ambiental</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>form_ambiental</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -553,8 +553,8 @@
 		<FIELDNAME>cooperativas</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>h_cooperativas</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>h_cooperativas</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -603,8 +603,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>electricidad</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>electricidad</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -613,8 +613,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>electricidad</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>electricidad</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -623,8 +623,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>cent_educativos</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>cent_educativos</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -632,8 +632,8 @@
 		<FIELDNAME>centros_educativos</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>cent_educativos</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>cent_educativos</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -641,8 +641,8 @@
 		<FIELDNAME>prog_salud</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>h_prog_salud</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>h_prog_salud</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -650,8 +650,8 @@
 		<FIELDNAME>frec_prog_salud</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>h_prog_salud</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>h_prog_salud</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -659,8 +659,8 @@
 		<FIELDNAME>as_otros_detalle</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>as_otros</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>as_otros</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -741,8 +741,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>trans_publico</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>trans_publico</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -751,8 +751,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>trans_publico</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>trans_publico</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -761,8 +761,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>trans_publico</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>trans_publico</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -783,8 +783,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>veg_residencial</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>veg_residencial</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -793,8 +793,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>veg_industrial</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>veg_industrial</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -809,8 +809,8 @@
 		</DOMAINREADER>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>veg_agricola</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>veg_agricola</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -819,8 +819,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>veg_agricola</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>veg_agricola</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -835,8 +835,8 @@
 		</DOMAINREADER>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>veg_forestal</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>veg_forestal</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -845,8 +845,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>veg_forestal</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>veg_forestal</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -884,8 +884,8 @@
 		<FIELDNAME>autor_hidrogeo</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>est_hidrogeologicos</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>est_hidrogeologicos</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -893,8 +893,8 @@
 		<FIELDNAME>pozos_nivel</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>pozos_extraccion</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>pozos_extraccion</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -902,8 +902,8 @@
 		<FIELDNAME>desc_conserv_ma</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>conserv_ma</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>conserv_ma</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -911,8 +911,8 @@
 		<FIELDNAME>fr_otros_detalle</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>fr_otros</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>fr_otros</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -920,8 +920,8 @@
 		<FIELDNAME>comite_activo</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>comite_riesgos</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>comite_riesgos</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -929,8 +929,8 @@
 		<FIELDNAME>comite</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>comite_riesgos</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>comite_riesgos</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -938,8 +938,8 @@
 		<FIELDNAME>capacitaciones_riesgos</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>capac_riesgos</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>capac_riesgos</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -958,8 +958,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>sist_abastecimiento</COMPONENT>
-			<VALUE>Parcial</VALUE>
+				<COMPONENT>sist_abastecimiento</COMPONENT>
+				<VALUE>Parcial</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1090,8 +1090,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>f_compra</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>f_compra</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1111,8 +1111,8 @@
 		<FIELDNAME>alc_completo</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>sist_alcantarillado</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>sist_alcantarillado</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1120,8 +1120,8 @@
 		<FIELDNAME>evac_calle</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>alc_completo</COMPONENT>
-			<VALUE>false</VALUE>
+				<COMPONENT>alc_completo</COMPONENT>
+				<VALUE>false</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1129,8 +1129,8 @@
 		<FIELDNAME>evac_familiar</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>alc_completo</COMPONENT>
-			<VALUE>false</VALUE>
+				<COMPONENT>alc_completo</COMPONENT>
+				<VALUE>false</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1138,8 +1138,8 @@
 		<FIELDNAME>evac_comunal</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>alc_completo</COMPONENT>
-			<VALUE>false</VALUE>
+				<COMPONENT>alc_completo</COMPONENT>
+				<VALUE>false</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1147,8 +1147,8 @@
 		<FIELDNAME>evac_otros</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>alc_completo</COMPONENT>
-			<VALUE>false</VALUE>
+				<COMPONENT>alc_completo</COMPONENT>
+				<VALUE>false</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1166,8 +1166,8 @@
 		<FIELDNAME>trat_ag_residuales</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>alc_completo</COMPONENT>
-			<VALUE>false</VALUE>
+				<COMPONENT>alc_completo</COMPONENT>
+				<VALUE>false</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1176,8 +1176,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>trat_ag_residuales</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>trat_ag_residuales</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1186,8 +1186,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>trat_ag_residuales</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>trat_ag_residuales</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1196,8 +1196,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>trat_ag_residuales</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>trat_ag_residuales</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1206,8 +1206,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>trat_ag_residuales</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>trat_ag_residuales</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1215,8 +1215,8 @@
 		<FIELDNAME>trat_comunal</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>trat_ag_residuales</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>trat_ag_residuales</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1249,8 +1249,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>h_let_abonera</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>h_let_abonera</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1258,8 +1258,8 @@
 		<FIELDNAME>pq_no_aboneras</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>h_let_abonera</COMPONENT>
-			<VALUE>false</VALUE>
+				<COMPONENT>h_let_abonera</COMPONENT>
+				<VALUE>false</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1274,8 +1274,8 @@
 		</DOMAINREADER>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>h_let_abonera</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>h_let_abonera</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -1283,8 +1283,8 @@
 		<FIELDNAME>disp_abono</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>h_let_abonera</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>h_let_abonera</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>

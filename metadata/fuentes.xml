@@ -50,8 +50,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>uso</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>uso</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -60,8 +60,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>uso</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>uso</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -70,8 +70,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>uso</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>uso</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -80,8 +80,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>uso</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>uso</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -90,8 +90,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>uso</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>uso</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -100,8 +100,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>uso</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>uso</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -109,8 +109,8 @@
 		<FIELDNAME>cob_vegetal</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>manantial</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>manantial</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -125,8 +125,8 @@
 		</DOMAINREADER>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>manantial</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>manantial</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -135,8 +135,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>manantial</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>manantial</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -151,8 +151,8 @@
 		</DOMAINREADER>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>manantial</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>manantial</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -170,12 +170,12 @@
 		<FIELDNAME>naci_terremoto</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>pozo</VALUE>
 			</CONDITION>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>manantial</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>manantial</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -183,12 +183,12 @@
 		<FIELDNAME>cambios_terremoto</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>pozo</VALUE>
 			</CONDITION>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>manantial</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>manantial</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -196,12 +196,12 @@
 		<FIELDNAME>propietario</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>pozo</VALUE>
 			</CONDITION>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>manantial</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>manantial</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -209,12 +209,12 @@
 		<FIELDNAME>nom_propietario</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>pozo</VALUE>
 			</CONDITION>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>manantial</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>manantial</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -222,12 +222,12 @@
 		<FIELDNAME>escritura</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>pozo</VALUE>
 			</CONDITION>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>manantial</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>manantial</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -242,8 +242,8 @@
 		</DOMAINREADER>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>pozo</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -252,8 +252,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>pozo</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -262,8 +262,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>pozo</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -272,8 +272,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>pozo</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -282,8 +282,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>pozo</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -291,8 +291,8 @@
 		<FIELDNAME>reperforado</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>pozo</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -301,8 +301,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>reperforado</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>reperforado</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -310,8 +310,8 @@
 		<FIELDNAME>limpiezas</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo_fuente</COMPONENT>
-			<VALUE>pozo</VALUE>
+				<COMPONENT>tipo_fuente</COMPONENT>
+				<VALUE>pozo</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -319,8 +319,8 @@
 		<FIELDNAME>rep_metodo</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>reperforado</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>reperforado</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -329,8 +329,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>limpiezas</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>limpiezas</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>

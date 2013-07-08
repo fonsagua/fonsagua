@@ -66,8 +66,8 @@
 		<FIELDNAME>loc_fugas</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>fugas</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>fugas</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>

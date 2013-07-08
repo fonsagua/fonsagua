@@ -26,8 +26,8 @@
 		<FIELDNAME>nit</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>per_juridica</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>per_juridica</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -36,8 +36,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>per_juridica</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>per_juridica</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -45,8 +45,8 @@
 		<FIELDNAME>nom_red_juntas</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>red_juntas</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>red_juntas</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>

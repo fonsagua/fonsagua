@@ -46,8 +46,8 @@
 		</DOMAINREADER>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>sistema</COMPONENT>
-			<VALUE>Bombeo</VALUE>
+				<COMPONENT>sistema</COMPONENT>
+				<VALUE>Bombeo</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>

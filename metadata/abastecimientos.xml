@@ -37,8 +37,8 @@
 		<FIELDNAME>h_juntas_agua</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>gestor</COMPONENT>
-			<VALUE>Comunidad</VALUE>
+				<COMPONENT>gestor</COMPONENT>
+				<VALUE>Comunidad</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -46,12 +46,12 @@
 		<FIELDNAME>h_adescos</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>gestion</COMPONENT>
-			<VALUE>Comunidad</VALUE>
+				<COMPONENT>gestor</COMPONENT>
+				<VALUE>Comunidad</VALUE>
 			</CONDITION>
 			<CONDITION>
-			<COMPONENT>h_juntas_agua</COMPONENT>
-			<VALUE>false</VALUE>
+				<COMPONENT>h_juntas_agua</COMPONENT>
+				<VALUE>false</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -60,8 +60,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tarifa_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>tarifa_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -70,8 +70,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tarifa_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>tarifa_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -80,8 +80,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tarifa_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>tarifa_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -90,8 +90,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tarifa_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>tarifa_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -99,8 +99,8 @@
 		<FIELDNAME>frec_pago</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tarifa_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>tarifa_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -108,8 +108,8 @@
 		<FIELDNAME>gastos_cubiertos</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tarifa_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>tarifa_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -118,8 +118,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tarifa_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>tarifa_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -127,8 +127,8 @@
 		<FIELDNAME>coment_tarifa</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tarifa_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>tarifa_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -167,8 +167,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>a_domiciliar</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>a_domiciliar</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -177,8 +177,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>a_cantarera</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>a_cantarera</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -187,8 +187,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>a_comercial</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>a_comercial</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -197,8 +197,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>a_otras</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>a_otras</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -218,8 +218,8 @@
 		<FIELDNAME>des_cloracion</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>des_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>des_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -227,8 +227,8 @@
 		<FIELDNAME>des_quimicos</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>des_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>des_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -236,8 +236,8 @@
 		<FIELDNAME>des_otros</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>des_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>des_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -245,8 +245,12 @@
 		<FIELDNAME>des_otros_detalle</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>des_otros</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>des_agua</COMPONENT>
+				<VALUE>true</VALUE>
+			</CONDITION>
+			<CONDITION>
+				<COMPONENT>desin_otros</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -254,8 +258,8 @@
 		<FIELDNAME>des_tanque</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>des_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>des_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -263,8 +267,8 @@
 		<FIELDNAME>des_impelencia</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>des_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>des_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -272,8 +276,8 @@
 		<FIELDNAME>des_otra</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>des_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>des_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -281,8 +285,12 @@
 		<FIELDNAME>des_otra_detalle</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>des_otra</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>des_agua</COMPONENT>
+				<VALUE>true</VALUE>
+			</CONDITION>
+			<CONDITION>
+				<COMPONENT>des_otra</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -290,8 +298,8 @@
 		<FIELDNAME>metodo</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>des_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>des_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -299,8 +307,8 @@
 		<FIELDNAME>frec_desinfeccion</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>des_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>des_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -309,8 +317,8 @@
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>des_agua</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>des_agua</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -333,8 +341,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>con_calidad</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>con_calidad</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -343,8 +351,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>con_funcionamiento</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>con_funcionamiento</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -359,8 +367,8 @@
 		</DOMAINREADER>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>mant_tecnicos</COMPONENT>
-			<VALUE>true</VALUE>
+				<COMPONENT>mant_tecnicos</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -368,8 +376,12 @@
 		<FIELDNAME>proced_tec_detalle</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>proced_tecnicos</COMPONENT>
-			<VALUE>Otros</VALUE>
+				<COMPONENT>mant_tecnicos</COMPONENT>
+				<VALUE>true</VALUE>
+			</CONDITION>
+			<CONDITION>
+				<COMPONENT>proced_tecnicos</COMPONENT>
+				<VALUE>otros</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>

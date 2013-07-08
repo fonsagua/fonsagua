@@ -35,8 +35,8 @@
 		<FIELDNAME>mujeres</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo</COMPONENT>
-			<VALUE>Cantareras</VALUE>
+				<COMPONENT>tipo</COMPONENT>
+				<VALUE>Cantareras</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -44,8 +44,8 @@
 		<FIELDNAME>hombres</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo</COMPONENT>
-			<VALUE>Cantareras</VALUE>
+				<COMPONENT>tipo</COMPONENT>
+				<VALUE>Cantareras</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -53,8 +53,8 @@
 		<FIELDNAME>ninhas</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo</COMPONENT>
-			<VALUE>Cantareras</VALUE>
+				<COMPONENT>tipo</COMPONENT>
+				<VALUE>Cantareras</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -62,8 +62,8 @@
 		<FIELDNAME>ninhos</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo</COMPONENT>
-			<VALUE>Cantareras</VALUE>
+				<COMPONENT>tipo</COMPONENT>
+				<VALUE>Cantareras</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
@@ -72,8 +72,8 @@
 		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
 		<ENABLEIF>
 			<CONDITION>
-			<COMPONENT>tipo</COMPONENT>
-			<VALUE>Cantareras</VALUE>
+				<COMPONENT>tipo</COMPONENT>
+				<VALUE>Cantareras</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
