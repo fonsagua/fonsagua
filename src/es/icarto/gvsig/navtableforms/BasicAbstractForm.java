@@ -18,6 +18,7 @@ public abstract class BasicAbstractForm extends AbstractForm {
 
     public BasicAbstractForm(FLyrVect layer) {
 	super(layer);
+	deleteMessageKey = "confirm_delete_register_cascade";
     }
 
     @Override
