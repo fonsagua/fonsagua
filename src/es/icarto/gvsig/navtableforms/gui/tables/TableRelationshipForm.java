@@ -1,4 +1,4 @@
-package es.udc.cartolab.gvsig.fonsagua.forms.relationship;
+package es.icarto.gvsig.navtableforms.gui.tables;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

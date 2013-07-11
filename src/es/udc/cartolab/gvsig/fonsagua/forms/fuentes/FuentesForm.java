@@ -4,11 +4,11 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
+import es.icarto.gvsig.navtableforms.gui.tables.TableRelationship;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
-import es.udc.cartolab.gvsig.fonsagua.forms.relationship.TableRelationship;
 import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 
 @SuppressWarnings("serial")
