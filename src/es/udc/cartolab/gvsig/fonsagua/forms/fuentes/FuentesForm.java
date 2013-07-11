@@ -3,7 +3,7 @@ package es.udc.cartolab.gvsig.fonsagua.forms.fuentes;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
-import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
+import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.TableRelationship;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
@@ -19,16 +19,16 @@ public class FuentesForm extends BasicAbstractForm {
     public static String[] colNames = { "fuente", "cod_fuente" };
     public static String[] colAlias = { "Fuente", "Código" };
 
-    private TableHandler aforosHandler;
-    private TableHandler analiticasHandler;
+    private AlphanumericTableHandler aforosHandler;
+    private AlphanumericTableHandler analiticasHandler;
     private TableRelationship abastecimientosRelationship;
 
     public FuentesForm(FLyrVect layer) {
 	super(layer);
-	aforosHandler = new TableHandler(FonsaguaConstants.dataSchema,
+	aforosHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
 		AforosForm.NAME, getWidgetComponents(), PKFIELD,
 		AforosForm.colNames, AforosForm.colAlias);
-	analiticasHandler = new TableHandler(FonsaguaConstants.dataSchema,
+	analiticasHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
 		AnaliticasForm.NAME, getWidgetComponents(), PKFIELD,
 		AnaliticasForm.colNames, AnaliticasForm.colAlias);
 	abastecimientosRelationship = new TableRelationship(

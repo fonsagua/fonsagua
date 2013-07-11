@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
-import es.icarto.gvsig.navtableforms.gui.tables.NotEditableTableModel;
+import es.icarto.gvsig.navtableforms.gui.tables.model.NotEditableTableModel;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 

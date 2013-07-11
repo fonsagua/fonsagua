@@ -4,7 +4,7 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericRelNNTableHandler;
-import es.icarto.gvsig.navtableforms.gui.tables.TableHandler;
+import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.TableRelationship;
 import es.icarto.gvsig.navtableforms.gui.tables.VectorialTableHandler;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
@@ -26,11 +26,11 @@ public class AbastecimientosForm extends BasicAbstractForm {
     public static String[] colNames = { "abastecimiento", "cod_abastecimiento" };
     public static String[] colAlias = { "Abastecimiento", "Código" };
 
-    private TableHandler juntasAguaHandler;
-    private TableHandler coberturaHandler;
-    private TableHandler gestionComercialHandler;
-    private TableHandler gestionFinancieraHandler;
-    private TableHandler evaluacionHandler;
+    private AlphanumericTableHandler juntasAguaHandler;
+    private AlphanumericTableHandler coberturaHandler;
+    private AlphanumericTableHandler gestionComercialHandler;
+    private AlphanumericTableHandler gestionFinancieraHandler;
+    private AlphanumericTableHandler evaluacionHandler;
     private VectorialTableHandler captacionesHandler;
     private VectorialTableHandler depIntermediosHandler;
     private VectorialTableHandler depDistribucionHandler;
@@ -46,21 +46,21 @@ public class AbastecimientosForm extends BasicAbstractForm {
     public AbastecimientosForm(FLyrVect layer) {
 	super(layer);
 
-	juntasAguaHandler = new TableHandler(FonsaguaConstants.dataSchema,
+	juntasAguaHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
 		JuntasAguaForm.NAME, getWidgetComponents(), PKFIELD,
 		JuntasAguaForm.colNames, JuntasAguaForm.colAlias);
-	coberturaHandler = new TableHandler(FonsaguaConstants.dataSchema,
+	coberturaHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
 		CoberturaForm.NAME, getWidgetComponents(), PKFIELD,
 		CoberturaForm.colNames, CoberturaForm.colAlias);
-	gestionComercialHandler = new TableHandler(
+	gestionComercialHandler = new AlphanumericTableHandler(
 		FonsaguaConstants.dataSchema, GestComercialForm.NAME,
 		getWidgetComponents(), PKFIELD, GestComercialForm.colNames,
 		GestComercialForm.colAlias);
-	gestionFinancieraHandler = new TableHandler(
+	gestionFinancieraHandler = new AlphanumericTableHandler(
 		FonsaguaConstants.dataSchema, GestFinancieraForm.NAME,
 		getWidgetComponents(), PKFIELD, GestFinancieraForm.colNames,
 		GestFinancieraForm.colAlias);
-	evaluacionHandler = new TableHandler(FonsaguaConstants.dataSchema,
+	evaluacionHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
 		EvaluacionForm.NAME, getWidgetComponents(), PKFIELD,
 		EvaluacionForm.colNames, EvaluacionForm.colAlias);
 	captacionesHandler = new VectorialTableHandler(CaptacionesForm.NAME,

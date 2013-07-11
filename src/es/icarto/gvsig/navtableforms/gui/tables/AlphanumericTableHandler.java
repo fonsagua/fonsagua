@@ -10,9 +10,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 
+import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelAlphanumeric;
+import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
 
-public class TableHandler {
+public class AlphanumericTableHandler {
 
     private AbstractSubForm form;
     private JTable jtable;
@@ -22,7 +24,7 @@ public class TableHandler {
     private String[] colAliases;
     private String tablename;
 
-    public TableHandler(String schema, String tablename,
+    public AlphanumericTableHandler(String schema, String tablename,
 	    HashMap<String, JComponent> widgets, String foreignKeyId,
 	    String[] colNames, String[] colAliases) {
 	this.tablename = tablename;
@@ -59,8 +61,8 @@ public class TableHandler {
 	foreingKey.put(foreignKeyId, foreingKeyValue);
 	form.setForeingKey(foreingKey);
 	try {
-	    model = TableModelFactory.createFromTable(tablename, foreignKeyId,
-		    foreingKeyValue, colNames, colAliases);
+	    model = TableModelFactory.createFromTableWithFilter(tablename,
+		    foreignKeyId, foreingKeyValue, colNames, colAliases);
 	    jtable.setModel(model);
 	    ((DefaultTableCellRenderer) jtable.getTableHeader()
 		    .getDefaultRenderer())
