@@ -1,6 +1,5 @@
 package es.icarto.gvsig.navtableforms.gui.tables;
 
-import java.awt.event.MouseListener;
 import java.util.HashMap;
 
 import javax.swing.JComponent;
@@ -8,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelAlphanumeric;
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
@@ -23,7 +23,7 @@ public class AlphanumericRelNNTableHandler {
     private String destinyKey;
     private String[] colNames;
     private String[] colAliases;
-    private MouseListener listener;
+    private JTableContextualMenu listener;
 
     public AlphanumericRelNNTableHandler(String sourceTableName,
 	    HashMap<String, JComponent> widgets, String dbSchema,

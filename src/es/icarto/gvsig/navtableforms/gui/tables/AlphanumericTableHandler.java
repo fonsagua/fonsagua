@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 
+import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableCompleteContextualMenu;
+import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelAlphanumeric;
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
@@ -44,7 +46,7 @@ public class AlphanumericTableHandler {
 
     public void reload(AbstractSubForm form) {
 	this.form = form;
-	listener = new JTableContextualMenu(form);
+	listener = new JTableCompleteContextualMenu(form);
 	jtable.addMouseListener(listener);
 	// for the popUp to work on empty tables
 	jtable.setFillsViewportHeight(true);

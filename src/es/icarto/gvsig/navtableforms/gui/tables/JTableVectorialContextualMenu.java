@@ -1,7 +1,6 @@
 package es.icarto.gvsig.navtableforms.gui.tables;
 
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
 
@@ -9,17 +8,18 @@ import com.iver.andami.PluginServices;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 
-public class JTableVectorialContextualMenu implements MouseListener {
+public class JTableVectorialContextualMenu extends JTableContextualMenu {
 
-    private String layerName;
+    private FLyrVect layer;
     private JTable table;
     private TableFormFactory factory;
 
     public JTableVectorialContextualMenu(String layerName,
 	    TableFormFactory factory) {
-	this.layerName = layerName;
+	this.layer = new TOCLayerManager().getLayerByName(layerName);
 	this.factory = factory;
     }
 
@@ -27,8 +27,6 @@ public class JTableVectorialContextualMenu implements MouseListener {
     public void mouseClicked(MouseEvent e) {
 	table = (JTable) e.getComponent();
 	if (doubleOrRightClickOnARow(e)) {
-	    TOCLayerManager toc = new TOCLayerManager();
-	    FLyrVect layer = toc.getLayerByName(layerName);
 	    BasicAbstractForm form = factory.createForm(layer);
 	    form.init();
 	    form.setPosition(table.convertRowIndexToModel(table
@@ -38,9 +36,8 @@ public class JTableVectorialContextualMenu implements MouseListener {
     }
 
     private boolean doubleOrRightClickOnARow(MouseEvent e) {
-	return (table.getSelectedRow() > -1)
-		&& ((e.getClickCount() == 2) || (e.getButton() == MouseEvent.BUTTON3));
-
+	return (table.getSelectedRow() != NO_ROW_SELECTED)
+		&& ((e.getClickCount() == 2) || (e.getButton() == BUTTON_RIGHT));
     }
 
     @Override
@@ -57,6 +54,11 @@ public class JTableVectorialContextualMenu implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    protected void initContextualMenu() {
+	// We have no real Contextual Menu in this case
     }
 
 }
