@@ -15,7 +15,7 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.iver.cit.gvsig.listeners.CADListenerManager;
 import com.iver.cit.gvsig.listeners.EndGeometryListener;
 
-import es.icarto.gvsig.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 
@@ -125,7 +125,7 @@ public class AutoFormsExtension extends Extension {
 	@Override
 	public void endGeometry(FLayer layer, String cadToolKey) {
 	    if (layer instanceof FLyrVect) {
-		BasicAbstractForm form = factory.createForm((FLyrVect) layer);
+		AbstractForm form = factory.createForm((FLyrVect) layer);
 		if (form.init()) {
 		    form.last();
 		    PluginServices.getMDIManager().addWindow(form);

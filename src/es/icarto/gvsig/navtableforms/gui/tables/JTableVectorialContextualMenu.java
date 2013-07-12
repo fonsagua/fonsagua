@@ -9,7 +9,7 @@ import javax.swing.JTable;
 import com.iver.andami.PluginServices;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
-import es.icarto.gvsig.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 
@@ -70,7 +70,7 @@ public class JTableVectorialContextualMenu extends JTableContextualMenu {
     }
 
     protected void openDialog() {
-	BasicAbstractForm form = factory.createForm(layer);
+	AbstractForm form = factory.createForm(layer);
 	form.init();
 	form.setPosition(table.convertRowIndexToModel(table.getSelectedRow()));
 	PluginServices.getMDIManager().addWindow(form);

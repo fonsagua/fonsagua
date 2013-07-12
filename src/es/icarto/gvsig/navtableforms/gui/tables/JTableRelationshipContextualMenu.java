@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 import com.iver.andami.PluginServices;
 
+import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
 import es.udc.cartolab.gvsig.navtable.dataacces.IController;
@@ -17,11 +18,11 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
 
     protected int keyColumn = 0;
     protected TableRelationship tableRelationship;
-    protected BasicAbstractForm dialog;
+    protected AbstractForm dialog;
     protected boolean dialogInitialized = false;
 
     public JTableRelationshipContextualMenu(
-	    TableRelationship tableRelationship, BasicAbstractForm dialog) {
+	    TableRelationship tableRelationship, AbstractForm dialog) {
 	newMenuItem
 		.setText(PluginServices.getText(this, "create_new_relation"));
 	updateMenuItem.setText(PluginServices.getText(this,

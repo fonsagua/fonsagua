@@ -7,7 +7,7 @@ import com.iver.cit.gvsig.gui.cad.tools.SelectionCADTool;
 import com.iver.utiles.extensionPoints.ExtensionPoints;
 import com.iver.utiles.extensionPoints.ExtensionPointsSingleton;
 
-import es.icarto.gvsig.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
@@ -22,7 +22,7 @@ public class FormsExtension extends Extension {
     @Override
     public void execute(String actionCommand) {
 	for (FLyrVect layer : layers) {
-	    BasicAbstractForm dialog = factory.createForm(layer);
+	    AbstractForm dialog = factory.createForm(layer);
 
 	    if ((dialog != null) && (dialog.init())) {
 		PluginServices.getMDIManager().addWindow(dialog);

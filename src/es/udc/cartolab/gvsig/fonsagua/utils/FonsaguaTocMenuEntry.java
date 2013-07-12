@@ -30,7 +30,7 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.iver.cit.gvsig.project.documents.view.toc.AbstractTocContextMenuAction;
 import com.iver.cit.gvsig.project.documents.view.toc.ITocItem;
 
-import es.icarto.gvsig.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 
@@ -43,7 +43,7 @@ public class FonsaguaTocMenuEntry extends AbstractTocContextMenuAction {
     public void execute(ITocItem item, FLayer[] selectedItems) {
 	for (FLayer layer : selectedItems) {
 	    if (layer instanceof FLyrVect) {
-		BasicAbstractForm dialog = factory.createForm((FLyrVect) layer);
+		AbstractForm dialog = factory.createForm((FLyrVect) layer);
 
 		if ((dialog != null) && (dialog.init())) {
 		    PluginServices.getMDIManager().addWindow(dialog);
