@@ -1,5 +1,7 @@
 package es.icarto.gvsig.navtableforms.gui.tables;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JTable;
@@ -21,23 +23,23 @@ public class JTableVectorialContextualMenu extends JTableContextualMenu {
 	    TableFormFactory factory) {
 	this.layer = new TOCLayerManager().getLayerByName(layerName);
 	this.factory = factory;
+	initContextualMenu();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
 	table = (JTable) e.getComponent();
-	if (doubleOrRightClickOnARow(e)) {
-	    BasicAbstractForm form = factory.createForm(layer);
-	    form.init();
-	    form.setPosition(table.convertRowIndexToModel(table
-		    .getSelectedRow()));
-	    PluginServices.getMDIManager().addWindow(form);
+	if ((e.getClickCount() == 2) && (table.getSelectedRow() > -1)) {
+	    openDialog();
+	} else if (e.getButton() == BUTTON_RIGHT) {
+	    if (!JTableUtils.hasRows(table)
+		    || (table.getSelectedRow() == NO_ROW_SELECTED)) {
+		updateMenuItem.setEnabled(false);
+	    } else {
+		updateMenuItem.setEnabled(true);
+	    }
+	    popupMenu.show(e.getComponent(), e.getX(), e.getY());
 	}
-    }
-
-    private boolean doubleOrRightClickOnARow(MouseEvent e) {
-	return (table.getSelectedRow() != NO_ROW_SELECTED)
-		&& ((e.getClickCount() == 2) || (e.getButton() == BUTTON_RIGHT));
     }
 
     @Override
@@ -58,7 +60,20 @@ public class JTableVectorialContextualMenu extends JTableContextualMenu {
 
     @Override
     protected void initContextualMenu() {
-	// We have no real Contextual Menu in this case
+	updateMenuItem.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent arg0) {
+		openDialog();
+	    }
+	});
+	popupMenu.add(updateMenuItem);
+    }
+
+    protected void openDialog() {
+	BasicAbstractForm form = factory.createForm(layer);
+	form.init();
+	form.setPosition(table.convertRowIndexToModel(table.getSelectedRow()));
+	PluginServices.getMDIManager().addWindow(form);
     }
 
 }

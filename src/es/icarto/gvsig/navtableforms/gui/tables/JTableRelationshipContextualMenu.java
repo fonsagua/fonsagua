@@ -22,6 +22,12 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
 
     public JTableRelationshipContextualMenu(
 	    TableRelationship tableRelationship, BasicAbstractForm dialog) {
+	newMenuItem
+		.setText(PluginServices.getText(this, "create_new_relation"));
+	updateMenuItem.setText(PluginServices.getText(this,
+		"update_item_relation"));
+	deleteMenuItem.setText(PluginServices.getText(this,
+		"delete_item_relation"));
 	this.dialog = dialog;
 	this.tableRelationship = tableRelationship;
 	initContextualMenu();
@@ -30,6 +36,12 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
     public JTableRelationshipContextualMenu(
 	    TableRelationship tableRelationship, BasicAbstractForm dialog,
 	    int keyColumn) {
+	newMenuItem
+		.setText(PluginServices.getText(this, "create_new_relation"));
+	updateMenuItem.setText(PluginServices.getText(this,
+		"update_item_relation"));
+	deleteMenuItem.setText(PluginServices.getText(this,
+		"delete_item_relation"));
 	this.dialog = dialog;
 	this.keyColumn = keyColumn;
 	this.tableRelationship = tableRelationship;
