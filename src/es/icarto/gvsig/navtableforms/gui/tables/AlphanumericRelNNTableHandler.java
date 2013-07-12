@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
+import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableUpdateContextualMenu;
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelAlphanumeric;
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
@@ -42,7 +43,7 @@ public class AlphanumericRelNNTableHandler {
 
     public void reload(AbstractSubForm form) {
 	this.form = form;
-	listener = new JTableOnlyUpdateContextualMenu(form);
+	listener = new JTableUpdateContextualMenu(form);
 	jtable.addMouseListener(listener);
 	reloadGUI();
     }

@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
@@ -39,9 +37,6 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
     }
 
     protected void initContextualMenu() {
-	popupMenu = new JPopupMenu();
-
-	newMenuItem = new JMenuItem("Crear nuevo");
 	newMenuItem.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
@@ -50,7 +45,6 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
 	});
 	popupMenu.add(newMenuItem);
 
-	updateMenuItem = new JMenuItem("Abrir formulario");
 	updateMenuItem.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
@@ -59,7 +53,6 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
 	});
 	popupMenu.add(updateMenuItem);
 
-	deleteMenuItem = new JMenuItem("Borrar registro");
 	deleteMenuItem.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
