@@ -88,28 +88,29 @@ public class AbastecimientosForm extends BasicAbstractForm {
 		"r_abastecimientos_fuentes", FuentesForm.PKFIELD,
 		FuentesForm.colNames, FuentesForm.colAlias);
 	loadTable(AdescosForm.NAME);
-	adescosHandler = new AlphanumericNotEditableNNRelTableHandler(AdescosForm.NAME,
-		getWidgetComponents(), FonsaguaConstants.dataSchema,
-		"cod_abastecimiento", "r_abastecimientos_comunidades",
-		"cod_comunidad", AdescosForm.colNames, AdescosForm.colAlias);
+	adescosHandler = new AlphanumericNotEditableNNRelTableHandler(
+		AdescosForm.NAME, getWidgetComponents(),
+		FonsaguaConstants.dataSchema, PKFIELD,
+		"r_abastecimientos_comunidades", ComunidadesForm.PKFIELD,
+		AdescosForm.colNames, AdescosForm.colAlias);
 	loadTable(ImplicacionComunidadForm.NAME);
 	implicacionComunidadHandler = new AlphanumericNotEditableNNRelTableHandler(
 		ImplicacionComunidadForm.NAME, getWidgetComponents(),
-		FonsaguaConstants.dataSchema, "cod_abastecimiento",
-		"r_abastecimientos_comunidades", "cod_comunidad",
+		FonsaguaConstants.dataSchema, PKFIELD,
+		"r_abastecimientos_comunidades", ComunidadesForm.PKFIELD,
 		ImplicacionComunidadForm.colNames,
 		ImplicacionComunidadForm.colAlias);
 	loadTable(DatosConsumoForm.NAME);
 	datosConsumoHandler = new AlphanumericNotEditableNNRelTableHandler(
 		DatosConsumoForm.NAME, getWidgetComponents(),
-		FonsaguaConstants.dataSchema, "cod_abastecimiento",
-		"r_abastecimientos_comunidades", "cod_comunidad",
+		FonsaguaConstants.dataSchema, PKFIELD,
+		"r_abastecimientos_comunidades", ComunidadesForm.PKFIELD,
 		DatosConsumoForm.colNames, DatosConsumoForm.colAlias);
 	loadTable(ValoracionSistemaForm.NAME);
 	valoracionSistemaHandler = new AlphanumericNotEditableNNRelTableHandler(
 		ValoracionSistemaForm.NAME, getWidgetComponents(),
-		FonsaguaConstants.dataSchema, "cod_abastecimiento",
-		"r_abastecimientos_comunidades", "cod_comunidad",
+		FonsaguaConstants.dataSchema, PKFIELD,
+		"r_abastecimientos_comunidades", ComunidadesForm.PKFIELD,
 		ValoracionSistemaForm.colNames, ValoracionSistemaForm.colAlias);
     }
 
