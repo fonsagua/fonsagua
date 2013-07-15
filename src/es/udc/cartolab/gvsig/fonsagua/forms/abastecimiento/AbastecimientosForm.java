@@ -79,13 +79,13 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	bombeosHandler = new VectorialTableHandler(BombeosForm.NAME,
 		getWidgetComponents(), PKFIELD, BombeosForm.colNames,
 		BombeosForm.colAlias);
-	comunidadesRelationship = new TableRelationship(getWidgetComponents(),
-		NAME, PKFIELD, ComunidadesForm.NAME, ComunidadesForm.PKFIELD,
-		"r_abastecimientos_comunidades", FonsaguaConstants.dataSchema,
+	comunidadesRelationship = new TableRelationship(ComunidadesForm.NAME,
+		getWidgetComponents(), FonsaguaConstants.dataSchema, PKFIELD,
+		"r_abastecimientos_comunidades", ComunidadesForm.PKFIELD,
 		ComunidadesForm.colNames, ComunidadesForm.colAlias);
-	fuentesRelationship = new TableRelationship(getWidgetComponents(),
-		NAME, PKFIELD, FuentesForm.NAME, FuentesForm.PKFIELD,
-		"r_abastecimientos_fuentes", FonsaguaConstants.dataSchema,
+	fuentesRelationship = new TableRelationship(FuentesForm.NAME,
+		getWidgetComponents(), FonsaguaConstants.dataSchema, PKFIELD,
+		"r_abastecimientos_fuentes", FuentesForm.PKFIELD,
 		FuentesForm.colNames, FuentesForm.colAlias);
 	loadTable(AdescosForm.NAME);
 	adescosHandler = new AlphanumericRelNNTableHandler(AdescosForm.NAME,

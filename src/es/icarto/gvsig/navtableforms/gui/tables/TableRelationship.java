@@ -9,109 +9,77 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
-import es.icarto.gvsig.navtableforms.BasicAbstractForm;
-import es.icarto.gvsig.navtableforms.gui.tables.model.NotEditableTableModel;
+import es.icarto.gvsig.navtableforms.AbstractForm;
+import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
+import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class TableRelationship {
 
-    private String primaryTableName;
-    private String primaryPKName;
-    private String secondaryTableName;
-    private String secondaryPKName;
-    private String relationTableName;
-    private String dbSchema;
-    private String[] secPkValues;
-    private String[] colNames;
-    private String[] colAlias;
-    private int keyColumn = 0;
-
+    private String sourceTableName;
     private JTable jtable;
-    private String primaryPKValue;
-    private JTableRelationshipContextualMenu listener;
+    private String originKey;
+    private String destinationKey;
+    private String relTable;
+    private String dbSchema;
+    private String[] colNames;
+    private String[] colAliases;
+    private String[] destinationKeyValues;
+    private int keyColumn = 0;
+    private String originKeyValue;
+    private JTableContextualMenu listener;
 
-    public TableRelationship(HashMap<String, JComponent> widgets,
-	    String primaryTableName, String primaryPKName,
-	    String secondaryTableName, String secondaryPKName,
-	    String relationTableName, String dbSchema, String[] colNames,
-	    String[] colAlias) {
-	FonsaguaTableFormFactory.getInstance().checkLayerLoaded(
-		secondaryTableName);
-	this.primaryTableName = primaryTableName;
-	this.primaryPKName = primaryPKName;
-	this.secondaryTableName = secondaryTableName;
-	this.secondaryPKName = secondaryPKName;
-	this.relationTableName = relationTableName;
+    public TableRelationship(String sourceTableName,
+	    HashMap<String, JComponent> widgets, String dbSchema,
+	    String originKey, String relTable, String destinationKey,
+	    String[] colNames, String[] colAliases) {
+	FonsaguaTableFormFactory.getInstance()
+		.checkLayerLoaded(sourceTableName);
+	this.originKey = originKey;
+	this.relTable = relTable;
+	this.destinationKey = destinationKey;
+	this.sourceTableName = sourceTableName;
 	this.dbSchema = dbSchema;
 	this.colNames = colNames;
-	this.colAlias = colAlias;
+	this.colAliases = colAliases;
 	if (colNames != null) {
 	    for (int i = 0, columns = colNames.length; i < columns; i++) {
-		if (colNames[i].equals(secondaryPKName)) {
+		if (colNames[i].equals(destinationKey)) {
 		    keyColumn = i;
 		    break;
 		}
 	    }
 	}
-	jtable = (JTable) widgets.get(relationTableName);
+	jtable = (JTable) widgets.get(relTable);
     }
 
-    public void fillValues(String primaryPKValue) {
-	this.primaryPKValue = primaryPKValue;
-	DefaultTableModel tableModel = new NotEditableTableModel();
-	for (String col : colAlias) {
-	    tableModel.addColumn(col);
-	}
-	jtable.setModel(tableModel);
-	((DefaultTableCellRenderer) jtable.getTableHeader()
-		.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-	fillRows();
-    }
-
-    // private void fillRows() {
-    // try {
-    // secPkValues = DBSession.getCurrentSession().getDistinctValues(
-    // relationTableName, dbSchema, secondaryPKName, false, false,
-    // "WHERE " + primaryPKName + "='" + primaryPKValue + "'");
-    // String[] auxValue = new String[1];
-    // for (String val : secPkValues) {
-    // auxValue[0] = val;
-    // ((DefaultTableModel) relationJTable.getModel())
-    // .addRow(auxValue);
-    // }
-    // } catch (SQLException e) {
-    // e.printStackTrace();
-    // }
-    // }
-
-    private void fillRows() {
+    public void fillValues(String value) {
 	try {
+	    originKeyValue = value;
 	    DBSession session = DBSession.getCurrentSession();
-	    secPkValues = session.getDistinctValues(
-		    relationTableName, dbSchema, secondaryPKName, false, false,
-		    "WHERE " + primaryPKName + "='" + primaryPKValue + "'");
-	    String where = "";
-	    if (secPkValues.length > 0) {
-		where = "WHERE " + secondaryPKName + " IN (";
-		for (String val : secPkValues) {
-		    where += "'" + val + "', ";
-		}
-		where = where.substring(0, where.length() - 2) + ")";
-		String[][] rows = session.getTable(secondaryTableName,
-			dbSchema, colNames, where, colNames, false);
-		for (String[] row : rows) {
-		    ((DefaultTableModel) jtable.getModel()).addRow(row);
-		}
+	    if (session != null) {
+		destinationKeyValues = session.getDistinctValues(relTable,
+			dbSchema, destinationKey, false, false, "WHERE "
+				+ originKey + "='" + originKeyValue + "'");
+		TableModel model = TableModelFactory
+			.createFromLayerWithOrFilter(sourceTableName,
+				destinationKey, destinationKeyValues, colNames,
+				colAliases);
+		jtable.setModel(model);
+		((DefaultTableCellRenderer) jtable.getTableHeader()
+			.getDefaultRenderer())
+			.setHorizontalAlignment(JLabel.CENTER);
 	    }
-	} catch (SQLException e) {
+	} catch (Exception e) {
 	    e.printStackTrace();
 	}
+
     }
 
-    public void reload(BasicAbstractForm dialog) {
+    public void reload(AbstractForm dialog) {
 	listener = new JTableRelationshipContextualMenu(this, dialog, keyColumn);
 	jtable.addMouseListener(listener);
 	jtable.setFillsViewportHeight(true);
@@ -121,18 +89,18 @@ public class TableRelationship {
 	jtable.removeMouseListener(listener);
     }
 
-    public List<String> getSecondaryValues() {
+    public List<String> getUnlinkedSecondaryValues() {
 	try {
 	    String where = "";
-	    if (secPkValues.length > 0) {
-		where = " WHERE " + secondaryPKName + " NOT IN (";
-		for (String val : secPkValues) {
+	    if (destinationKeyValues.length > 0) {
+		where = " WHERE " + destinationKey + " NOT IN (";
+		for (String val : destinationKeyValues) {
 		    where += "'" + val + "', ";
 		}
 		where = where.substring(0, where.length() - 2) + ")";
 	    }
 	    String[] values = DBSession.getCurrentSession().getDistinctValues(
-		    secondaryTableName, dbSchema, secondaryPKName, false, false,
+		    relTable, dbSchema, destinationKey, false, false,
 		    where);
 	    return Arrays.asList(values);
 	} catch (SQLException e) {
@@ -143,10 +111,11 @@ public class TableRelationship {
 
     public void insertRow(String secondaryPKValue) {
 	try {
-	    String[] columns = { primaryPKName, secondaryPKName };
-	    String[] values = { primaryPKValue, secondaryPKValue };
-	    DBSession.getCurrentSession().insertRow(dbSchema,
-		    relationTableName, columns, values);
+	    String[] columns = { originKey, destinationKey };
+	    String[] values = { originKeyValue, secondaryPKValue };
+	    DBSession.getCurrentSession().insertRow(dbSchema, relTable,
+		    columns, values);
+	    fillValues(originKeyValue);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
@@ -154,62 +123,54 @@ public class TableRelationship {
 
     public void deleteRow(String secondaryPKValue) {
 	try {
-	    String where = "WHERE " + primaryPKName + " = '" + primaryPKValue
-		    + "' AND " + secondaryPKName + " = '" + secondaryPKValue
+	    String where = "WHERE " + originKey + " = '" + originKeyValue
+		    + "' AND " + destinationKey + " = '" + secondaryPKValue
 		    + "'";
-	    DBSession.getCurrentSession().deleteRows(dbSchema,
-		    relationTableName, where);
+	    DBSession.getCurrentSession().deleteRows(dbSchema, relTable, where);
+	    fillValues(originKeyValue);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
     }
 
-    public String getPrimaryTableName() {
-	return primaryTableName;
+    public String getOriginKey() {
+	return originKey;
     }
 
-    public void setPrimaryTableName(String primaryTableName) {
-	this.primaryTableName = primaryTableName;
+    public void setOriginKey(String originKey) {
+	this.originKey = originKey;
     }
 
-    public String getPrimaryPKName() {
-	return primaryPKName;
+    public String getSourceTableName() {
+	return sourceTableName;
     }
 
-    public void setPrimaryPKName(String primaryPKName) {
-	this.primaryPKName = primaryPKName;
+    public void setSourceTableName(String sourceTableName) {
+	this.sourceTableName = sourceTableName;
     }
 
-    public String getSecondaryTableName() {
-	return secondaryTableName;
+    public String getDestinationKey() {
+	return destinationKey;
     }
 
-    public void setSecondaryTableName(String secondaryTableName) {
-	this.secondaryTableName = secondaryTableName;
-    }
-
-    public String getSecondaryPKName() {
-	return secondaryPKName;
-    }
-
-    public void setSecondaryPKName(String secondaryPKName) {
-	this.secondaryPKName = secondaryPKName;
+    public void setDestinationKey(String destinationKey) {
+	this.destinationKey = destinationKey;
     }
 
     public String getRelationTableName() {
-	return relationTableName;
+	return relTable;
     }
 
-    public void setRelationTableName(String relationTableName) {
-	this.relationTableName = relationTableName;
+    public void setRelationTableName(String relTable) {
+	this.relTable = relTable;
     }
 
-    public String getRelationTableSchema() {
+    public String getDbSchema() {
 	return dbSchema;
     }
 
-    public void setRelationTableSchema(String relationTableSchema) {
-	this.dbSchema = relationTableSchema;
+    public void setDbSchema(String dbSchema) {
+	this.dbSchema = dbSchema;
     }
 
     public JTable getRelationJTable() {
@@ -220,11 +181,11 @@ public class TableRelationship {
 	this.jtable = relationJTable;
     }
 
-    public JTableRelationshipContextualMenu getListener() {
+    public JTableContextualMenu getListener() {
 	return listener;
     }
 
-    public void setListener(JTableRelationshipContextualMenu listener) {
+    public void setListener(JTableContextualMenu listener) {
 	this.listener = listener;
     }
 

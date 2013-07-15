@@ -10,7 +10,6 @@ import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 import com.iver.andami.PluginServices;
 
 import es.icarto.gvsig.navtableforms.AbstractForm;
-import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
 import es.udc.cartolab.gvsig.navtable.dataacces.IController;
 
@@ -35,7 +34,7 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
     }
 
     public JTableRelationshipContextualMenu(
-	    TableRelationship tableRelationship, BasicAbstractForm dialog,
+	    TableRelationship tableRelationship, AbstractForm dialog,
 	    int keyColumn) {
 	newMenuItem
 		.setText(PluginServices.getText(this, "create_new_relation"));
@@ -53,7 +52,8 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
 	newMenuItem.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		new TableRelationshipForm(tableRelationship).addAction();
+		new TableRelationshipForm(tableRelationship, keyColumn)
+			.addAction();
 	    }
 	});
 	popupMenu.add(newMenuItem);
@@ -69,7 +69,8 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
 	deleteMenuItem.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		new TableRelationshipForm(tableRelationship).deleteAction();
+		new TableRelationshipForm(tableRelationship, keyColumn)
+			.deleteAction();
 	    }
 	});
 	popupMenu.add(deleteMenuItem);
@@ -116,7 +117,7 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
 	try {
 	    for (long i = controller.getRowCount() - 1; i >= 0; i--) {
 		controller.read(i);
-		if (controller.getValue(tableRelationship.getSecondaryPKName())
+		if (controller.getValue(tableRelationship.getDestinationKey())
 			.equals(keySelected)) {
 		    dialog.setPosition(i);
 		    break;

@@ -3,12 +3,11 @@ package es.icarto.gvsig.navtableforms.gui.tables;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.InputStream;
-import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiManager.IWindow;
@@ -27,6 +26,15 @@ public class TableRelationshipForm extends JPanel implements IWindow,
     private FormPanel formPanel;
     private JComboBox secondaryPKValueCB;
     private JButton addButton;
+    private int keyColumn = 0;
+
+    public TableRelationshipForm(TableRelationship tableRelationship,
+	    int keyColumn) {
+	this.tableRelationship = tableRelationship;
+	this.keyColumn = keyColumn;
+	viewInfo = this.getWindowInfo();
+	createForm();
+    }
 
     public TableRelationshipForm(TableRelationship tableRelationship) {
 	this.tableRelationship = tableRelationship;
@@ -46,7 +54,7 @@ public class TableRelationshipForm extends JPanel implements IWindow,
 	secondaryPKValueCB = (JComboBox) formPanel
 		.getComponentByName("secondaryPKValueCB");
 	addButton = (JButton) formPanel.getComponentByName("addButton");
-	for (String value : tableRelationship.getSecondaryValues()) {
+	for (String value : tableRelationship.getUnlinkedSecondaryValues()) {
 	    secondaryPKValueCB.addItem(value);
 	}
 	addButton.addActionListener(this);
@@ -62,10 +70,10 @@ public class TableRelationshipForm extends JPanel implements IWindow,
 
     public void deleteAction() {
 	int row = tableRelationship.getRelationJTable().getSelectedRow();
-	DefaultTableModel tableModel = (DefaultTableModel) tableRelationship
+	TableModel tableModel = (TableModel) tableRelationship
 		.getRelationJTable().getModel();
-	String secondaryPKValue = (String) tableModel.getValueAt(row, 0);
-	tableModel.removeRow(row);
+	String secondaryPKValue = tableModel.getValueAt(row, keyColumn)
+		.toString();
 	tableRelationship.deleteRow(secondaryPKValue);
     }
 
@@ -91,11 +99,6 @@ public class TableRelationshipForm extends JPanel implements IWindow,
 	    if (secondaryPKValueCB.getSelectedItem() != null) {
 		tableRelationship.insertRow(secondaryPKValueCB
 			.getSelectedItem().toString());
-		DefaultTableModel tableModel = (DefaultTableModel) tableRelationship
-			.getRelationJTable().getModel();
-		Vector<String> newRow = new Vector<String>();
-		newRow.add(secondaryPKValueCB.getSelectedItem().toString());
-		tableModel.addRow(newRow);
 		PluginServices.getMDIManager().closeWindow(this);
 	    }
 	}
