@@ -6,7 +6,7 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericTableHandler;
-import es.icarto.gvsig.navtableforms.gui.tables.TableRelationship;
+import es.icarto.gvsig.navtableforms.gui.tables.VectorialEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.VectorialTableHandler;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
@@ -49,7 +49,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     private VectorialTableHandler otrosServiciosHandler;
     private VectorialTableHandler amenazasHandler;
 
-    private TableRelationship abastecimientosRelationship;
+    private VectorialEditableNNRelTableHandler abastecimientosRelationship;
 
     private CroquisButtons croquisButtons;
 
@@ -135,7 +135,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	amenazasHandler = new VectorialTableHandler(AmenazasForm.NAME,
 		getWidgetComponents(), PKFIELD, AmenazasForm.colNames,
 		AmenazasForm.colAlias);
-	abastecimientosRelationship = new TableRelationship(
+	abastecimientosRelationship = new VectorialEditableNNRelTableHandler(
 		AbastecimientosForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, PKFIELD,
 		"r_abastecimientos_comunidades", AbastecimientosForm.PKFIELD,

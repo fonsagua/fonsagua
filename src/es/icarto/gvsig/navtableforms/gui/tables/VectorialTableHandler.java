@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableRowSorter;
 
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
-import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelVectorial;
+import es.icarto.gvsig.navtableforms.gui.tables.model.VectorialTableModel;
 import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 
 public class VectorialTableHandler {
@@ -73,12 +73,12 @@ public class VectorialTableHandler {
 		foreignKeyColumn = auxColNames.length - 1;
 	    }
 	}
-	TableModelVectorial model = TableModelFactory.createFromLayer(
+	VectorialTableModel model = TableModelFactory.createFromLayer(
 		layerName, auxColNames, auxColAliases);
 	jtable.setModel(model);
 	((DefaultTableCellRenderer) jtable.getTableHeader()
 		.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-	TableRowSorter sorter = new TableRowSorter<TableModelVectorial>(model);
+	TableRowSorter sorter = new TableRowSorter<VectorialTableModel>(model);
 	if (foreignKeyColumn > -1) {
 	    sorter.setRowFilter(RowFilter.regexFilter("^" + value + "$",
 		    foreignKeyColumn));

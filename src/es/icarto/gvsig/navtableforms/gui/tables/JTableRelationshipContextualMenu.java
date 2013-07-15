@@ -15,13 +15,12 @@ import es.udc.cartolab.gvsig.navtable.dataacces.IController;
 
 public class JTableRelationshipContextualMenu extends JTableContextualMenu {
 
-    protected int keyColumn = 0;
-    protected TableRelationship tableRelationship;
+    protected VectorialEditableNNRelTableHandler tableRelationship;
     protected AbstractForm dialog;
     protected boolean dialogInitialized = false;
 
     public JTableRelationshipContextualMenu(
-	    TableRelationship tableRelationship, AbstractForm dialog) {
+	    VectorialEditableNNRelTableHandler tableRelationship, AbstractForm dialog) {
 	newMenuItem
 		.setText(PluginServices.getText(this, "create_new_relation"));
 	updateMenuItem.setText(PluginServices.getText(this,
@@ -29,21 +28,6 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
 	deleteMenuItem.setText(PluginServices.getText(this,
 		"delete_item_relation"));
 	this.dialog = dialog;
-	this.tableRelationship = tableRelationship;
-	initContextualMenu();
-    }
-
-    public JTableRelationshipContextualMenu(
-	    TableRelationship tableRelationship, AbstractForm dialog,
-	    int keyColumn) {
-	newMenuItem
-		.setText(PluginServices.getText(this, "create_new_relation"));
-	updateMenuItem.setText(PluginServices.getText(this,
-		"update_item_relation"));
-	deleteMenuItem.setText(PluginServices.getText(this,
-		"delete_item_relation"));
-	this.dialog = dialog;
-	this.keyColumn = keyColumn;
 	this.tableRelationship = tableRelationship;
 	initContextualMenu();
     }
@@ -52,8 +36,8 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
 	newMenuItem.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		new TableRelationshipForm(tableRelationship, keyColumn)
-			.addAction();
+		new EditableNNRelTableForm(tableRelationship, tableRelationship
+			.getKeyColumn()).addAction();
 	    }
 	});
 	popupMenu.add(newMenuItem);
@@ -69,8 +53,8 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
 	deleteMenuItem.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		new TableRelationshipForm(tableRelationship, keyColumn)
-			.deleteAction();
+		new EditableNNRelTableForm(tableRelationship, tableRelationship
+			.getKeyColumn()).deleteAction();
 	    }
 	});
 	popupMenu.add(deleteMenuItem);
@@ -112,7 +96,7 @@ public class JTableRelationshipContextualMenu extends JTableContextualMenu {
 	String keySelected = table.getModel()
 		.getValueAt(
 			table.convertRowIndexToModel(table.getSelectedRow()),
-			keyColumn)
+			tableRelationship.getKeyColumn())
 		.toString();
 	try {
 	    for (long i = controller.getRowCount() - 1; i >= 0; i--) {

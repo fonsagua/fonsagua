@@ -16,19 +16,19 @@ import com.jeta.forms.components.panel.FormPanel;
 import com.jeta.forms.gui.common.FormException;
 
 @SuppressWarnings("serial")
-public class TableRelationshipForm extends JPanel implements IWindow,
+public class EditableNNRelTableForm extends JPanel implements IWindow,
 	ActionListener {
 
     private WindowInfo viewInfo;
 
-    private TableRelationship tableRelationship;
+    private VectorialEditableNNRelTableHandler tableRelationship;
 
     private FormPanel formPanel;
     private JComboBox secondaryPKValueCB;
     private JButton addButton;
     private int keyColumn = 0;
 
-    public TableRelationshipForm(TableRelationship tableRelationship,
+    public EditableNNRelTableForm(VectorialEditableNNRelTableHandler tableRelationship,
 	    int keyColumn) {
 	this.tableRelationship = tableRelationship;
 	this.keyColumn = keyColumn;
@@ -36,7 +36,7 @@ public class TableRelationshipForm extends JPanel implements IWindow,
 	createForm();
     }
 
-    public TableRelationshipForm(TableRelationship tableRelationship) {
+    public EditableNNRelTableForm(VectorialEditableNNRelTableHandler tableRelationship) {
 	this.tableRelationship = tableRelationship;
 	viewInfo = this.getWindowInfo();
 	createForm();
@@ -69,9 +69,9 @@ public class TableRelationshipForm extends JPanel implements IWindow,
     }
 
     public void deleteAction() {
-	int row = tableRelationship.getRelationJTable().getSelectedRow();
+	int row = tableRelationship.getJTable().getSelectedRow();
 	TableModel tableModel = (TableModel) tableRelationship
-		.getRelationJTable().getModel();
+		.getJTable().getModel();
 	String secondaryPKValue = tableModel.getValueAt(row, keyColumn)
 		.toString();
 	tableRelationship.deleteRow(secondaryPKValue);

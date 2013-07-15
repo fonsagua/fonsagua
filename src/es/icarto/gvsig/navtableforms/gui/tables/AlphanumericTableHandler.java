@@ -12,7 +12,7 @@ import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 
 import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableCompleteContextualMenu;
 import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
-import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelAlphanumeric;
+import es.icarto.gvsig.navtableforms.gui.tables.model.AlphanumericTableModel;
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
 
@@ -58,7 +58,7 @@ public class AlphanumericTableHandler {
 
     public void fillValues(String foreingKeyValue) {
 
-	TableModelAlphanumeric model;
+	AlphanumericTableModel model;
 	Map<String, String> foreingKey = new HashMap<String, String>(1);
 	foreingKey.put(foreignKeyId, foreingKeyValue);
 	form.setForeingKey(foreingKey);

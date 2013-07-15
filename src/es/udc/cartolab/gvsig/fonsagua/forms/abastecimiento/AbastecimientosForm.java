@@ -3,9 +3,9 @@ package es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
-import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericRelNNTableHandler;
+import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericNotEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericTableHandler;
-import es.icarto.gvsig.navtableforms.gui.tables.TableRelationship;
+import es.icarto.gvsig.navtableforms.gui.tables.VectorialEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.VectorialTableHandler;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
@@ -36,12 +36,12 @@ public class AbastecimientosForm extends BasicAbstractForm {
     private VectorialTableHandler depDistribucionHandler;
     private VectorialTableHandler tuberiasHandler;
     private VectorialTableHandler bombeosHandler;
-    private AlphanumericRelNNTableHandler adescosHandler;
-    private AlphanumericRelNNTableHandler implicacionComunidadHandler;
-    private AlphanumericRelNNTableHandler datosConsumoHandler;
-    private AlphanumericRelNNTableHandler valoracionSistemaHandler;
-    private TableRelationship comunidadesRelationship;
-    private TableRelationship fuentesRelationship;
+    private AlphanumericNotEditableNNRelTableHandler adescosHandler;
+    private AlphanumericNotEditableNNRelTableHandler implicacionComunidadHandler;
+    private AlphanumericNotEditableNNRelTableHandler datosConsumoHandler;
+    private AlphanumericNotEditableNNRelTableHandler valoracionSistemaHandler;
+    private VectorialEditableNNRelTableHandler comunidadesRelationship;
+    private VectorialEditableNNRelTableHandler fuentesRelationship;
 
     public AbastecimientosForm(FLyrVect layer) {
 	super(layer);
@@ -79,34 +79,34 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	bombeosHandler = new VectorialTableHandler(BombeosForm.NAME,
 		getWidgetComponents(), PKFIELD, BombeosForm.colNames,
 		BombeosForm.colAlias);
-	comunidadesRelationship = new TableRelationship(ComunidadesForm.NAME,
+	comunidadesRelationship = new VectorialEditableNNRelTableHandler(ComunidadesForm.NAME,
 		getWidgetComponents(), FonsaguaConstants.dataSchema, PKFIELD,
 		"r_abastecimientos_comunidades", ComunidadesForm.PKFIELD,
 		ComunidadesForm.colNames, ComunidadesForm.colAlias);
-	fuentesRelationship = new TableRelationship(FuentesForm.NAME,
+	fuentesRelationship = new VectorialEditableNNRelTableHandler(FuentesForm.NAME,
 		getWidgetComponents(), FonsaguaConstants.dataSchema, PKFIELD,
 		"r_abastecimientos_fuentes", FuentesForm.PKFIELD,
 		FuentesForm.colNames, FuentesForm.colAlias);
 	loadTable(AdescosForm.NAME);
-	adescosHandler = new AlphanumericRelNNTableHandler(AdescosForm.NAME,
+	adescosHandler = new AlphanumericNotEditableNNRelTableHandler(AdescosForm.NAME,
 		getWidgetComponents(), FonsaguaConstants.dataSchema,
 		"cod_abastecimiento", "r_abastecimientos_comunidades",
 		"cod_comunidad", AdescosForm.colNames, AdescosForm.colAlias);
 	loadTable(ImplicacionComunidadForm.NAME);
-	implicacionComunidadHandler = new AlphanumericRelNNTableHandler(
+	implicacionComunidadHandler = new AlphanumericNotEditableNNRelTableHandler(
 		ImplicacionComunidadForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, "cod_abastecimiento",
 		"r_abastecimientos_comunidades", "cod_comunidad",
 		ImplicacionComunidadForm.colNames,
 		ImplicacionComunidadForm.colAlias);
 	loadTable(DatosConsumoForm.NAME);
-	datosConsumoHandler = new AlphanumericRelNNTableHandler(
+	datosConsumoHandler = new AlphanumericNotEditableNNRelTableHandler(
 		DatosConsumoForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, "cod_abastecimiento",
 		"r_abastecimientos_comunidades", "cod_comunidad",
 		DatosConsumoForm.colNames, DatosConsumoForm.colAlias);
 	loadTable(ValoracionSistemaForm.NAME);
-	valoracionSistemaHandler = new AlphanumericRelNNTableHandler(
+	valoracionSistemaHandler = new AlphanumericNotEditableNNRelTableHandler(
 		ValoracionSistemaForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, "cod_abastecimiento",
 		"r_abastecimientos_comunidades", "cod_comunidad",

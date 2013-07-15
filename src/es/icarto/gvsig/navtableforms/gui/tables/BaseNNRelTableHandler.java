@@ -7,29 +7,29 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
+
 import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
-import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableUpdateContextualMenu;
-import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelAlphanumeric;
-import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
+import es.icarto.gvsig.navtableforms.gui.tables.model.BaseTableModel;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
-public class AlphanumericRelNNTableHandler {
+public abstract class BaseNNRelTableHandler {
 
-    private String sourceTableName;
-    private JTable jtable;
-    private String originKey;
-    private String destinationKey;
-    private String relTable;
-    private String dbSchema;
-    private String[] colNames;
-    private String[] colAliases;
-    private String[] destinationKeyValues;
-    private int keyColumn = 0;
-    private String originKeyValue;
-    private JTableContextualMenu listener;
-    private AbstractSubForm form;
+    protected String sourceTableName;
+    protected JTable jtable;
+    protected BaseTableModel model;
+    protected String originKey;
+    protected String destinationKey;
+    protected String relTable;
+    protected String dbSchema;
+    protected String[] colNames;
+    protected String[] colAliases;
+    protected String[] destinationKeyValues;
+    protected int keyColumn = 0;
+    protected String originKeyValue;
+    protected JTableContextualMenu listener;
 
-    public AlphanumericRelNNTableHandler(String sourceTableName,
+    public BaseNNRelTableHandler(String sourceTableName,
 	    HashMap<String, JComponent> widgets, String dbSchema,
 	    String originKey, String relTable, String destinationKey,
 	    String[] colNames, String[] colAliases) {
@@ -48,6 +48,10 @@ public class AlphanumericRelNNTableHandler {
 		}
 	    }
 	}
+	getJTable(widgets);
+    }
+
+    protected void getJTable(HashMap<String, JComponent> widgets) {
 	jtable = (JTable) widgets.get(sourceTableName);
     }
 
@@ -59,17 +63,10 @@ public class AlphanumericRelNNTableHandler {
 		destinationKeyValues = session.getDistinctValues(relTable,
 			dbSchema, destinationKey, false, false, "WHERE "
 				+ originKey + "='" + originKeyValue + "'");
-		TableModelAlphanumeric model = TableModelFactory
-			.createFromTableWithOrFilter(sourceTableName,
-				destinationKey, destinationKeyValues, colNames,
-				colAliases);
-		jtable.setModel(model);
+		createTableModel();
 		((DefaultTableCellRenderer) jtable.getTableHeader()
 			.getDefaultRenderer())
 			.setHorizontalAlignment(JLabel.CENTER);
-		if (form != null) {
-		    form.setModel(model);
-		}
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -77,10 +74,15 @@ public class AlphanumericRelNNTableHandler {
 
     }
 
-    public void reload(AbstractSubForm form) {
-	this.form = form;
-	listener = new JTableUpdateContextualMenu(form);
-	jtable.addMouseListener(listener);
+    protected abstract void createTableModel() throws ReadDriverException;
+
+    protected abstract void createTableListener();
+
+    protected void reload() {
+	createTableListener();
+	if (listener != null) {
+	    jtable.addMouseListener(listener);
+	}
 	reloadGUI();
     }
 
@@ -90,63 +92,69 @@ public class AlphanumericRelNNTableHandler {
     }
 
     public void removeListeners() {
-	jtable.removeMouseListener(listener);
+	if (listener != null) {
+	    jtable.removeMouseListener(listener);
+	}
     }
 
     public String getOriginKey() {
 	return originKey;
     }
 
-    public void setOriginKey(String originKey) {
-	this.originKey = originKey;
-    }
-
     public String getSourceTableName() {
 	return sourceTableName;
-    }
-
-    public void setSourceTableName(String sourceTableName) {
-	this.sourceTableName = sourceTableName;
     }
 
     public String getDestinationKey() {
 	return destinationKey;
     }
 
-    public void setDestinationKey(String destinationKey) {
-	this.destinationKey = destinationKey;
-    }
-
     public String getRelationTableName() {
 	return relTable;
-    }
-
-    public void setRelationTableName(String relTable) {
-	this.relTable = relTable;
     }
 
     public String getDbSchema() {
 	return dbSchema;
     }
 
-    public void setDbSchema(String dbSchema) {
-	this.dbSchema = dbSchema;
-    }
-
-    public JTable getRelationJTable() {
-	return jtable;
-    }
-
-    public void setRelationJTable(JTable relationJTable) {
-	this.jtable = relationJTable;
-    }
-
     public JTableContextualMenu getListener() {
 	return listener;
     }
 
-    public void setListener(JTableContextualMenu listener) {
-	this.listener = listener;
+    public JTable getJTable() {
+	return jtable;
+    }
+
+    public JTable getJtable() {
+	return jtable;
+    }
+
+    public BaseTableModel getModel() {
+	return model;
+    }
+
+    public String getRelTable() {
+	return relTable;
+    }
+
+    public String[] getColNames() {
+	return colNames;
+    }
+
+    public String[] getColAliases() {
+	return colAliases;
+    }
+
+    public String[] getDestinationKeyValues() {
+	return destinationKeyValues;
+    }
+
+    public int getKeyColumn() {
+	return keyColumn;
+    }
+
+    public String getOriginKeyValue() {
+	return originKeyValue;
     }
 
 }

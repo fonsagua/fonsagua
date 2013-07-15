@@ -4,7 +4,7 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericTableHandler;
-import es.icarto.gvsig.navtableforms.gui.tables.TableRelationship;
+import es.icarto.gvsig.navtableforms.gui.tables.VectorialEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
@@ -21,7 +21,7 @@ public class FuentesForm extends BasicAbstractForm {
 
     private AlphanumericTableHandler aforosHandler;
     private AlphanumericTableHandler analiticasHandler;
-    private TableRelationship abastecimientosRelationship;
+    private VectorialEditableNNRelTableHandler abastecimientosRelationship;
 
     public FuentesForm(FLyrVect layer) {
 	super(layer);
@@ -31,7 +31,7 @@ public class FuentesForm extends BasicAbstractForm {
 	analiticasHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
 		AnaliticasForm.NAME, getWidgetComponents(), PKFIELD,
 		AnaliticasForm.colNames, AnaliticasForm.colAlias);
-	abastecimientosRelationship = new TableRelationship(
+	abastecimientosRelationship = new VectorialEditableNNRelTableHandler(
 		AbastecimientosForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, PKFIELD,
 		"r_abastecimientos_fuentes", AbastecimientosForm.PKFIELD,

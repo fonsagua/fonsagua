@@ -21,7 +21,7 @@ import com.iver.cit.gvsig.fmap.layers.LayerFactory;
 
 import es.icarto.gvsig.navtableforms.DataBaseProperties;
 import es.icarto.gvsig.navtableforms.TestProperties;
-import es.icarto.gvsig.navtableforms.gui.tables.TableRelationship;
+import es.icarto.gvsig.navtableforms.gui.tables.VectorialEditableNNRelTableHandler;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
@@ -29,7 +29,7 @@ import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class TestTableRelationship {
 
-    private TableRelationship testingRelationship;
+    private VectorialEditableNNRelTableHandler testingRelationship;
 
     static DBSession connection;
 
@@ -92,10 +92,10 @@ public class TestTableRelationship {
 	HashMap<String, JComponent> widgetsMock = new HashMap<String, JComponent>();
 	final String relationTableName = "r_abastecimientos_comunidades";
 	widgetsMock.put(relationTableName, new JTable());
-	testingRelationship = new TableRelationship(widgetsMock,
-		ComunidadesForm.NAME, ComunidadesForm.PKFIELD,
-		AbastecimientosForm.NAME, AbastecimientosForm.PKFIELD,
-		relationTableName, FonsaguaConstants.dataSchema,
+	testingRelationship = new VectorialEditableNNRelTableHandler(
+		AbastecimientosForm.NAME, widgetsMock,
+		FonsaguaConstants.dataSchema, ComunidadesForm.PKFIELD,
+		relationTableName, AbastecimientosForm.PKFIELD,
 		AbastecimientosForm.colNames, AbastecimientosForm.colAlias);
 	testingRelationship.fillValues("999");
     }

@@ -3561,7 +3561,7 @@
                                </object>
                               </at>
                               <at name="width">553</at>
-                              <at name="name">r_abastecimientos_comunidades</at>
+                              <at name="name">comunidades</at>
                               <at name="scollBars">
                                <object classname="com.jeta.forms.store.properties.ScrollBarsProperty">
                                 <at name="name">scollBars</at>
@@ -5956,7 +5956,7 @@
                                </object>
                               </at>
                               <at name="width">553</at>
-                              <at name="name">r_abastecimientos_fuentes</at>
+                              <at name="name">fuentes</at>
                               <at name="scollBars">
                                <object classname="com.jeta.forms.store.properties.ScrollBarsProperty">
                                 <at name="name">scollBars</at>
