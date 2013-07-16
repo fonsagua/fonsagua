@@ -3,61 +3,38 @@ package es.icarto.gvsig.navtableforms.gui.tables;
 import java.util.HashMap;
 
 import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 
-import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
 import es.icarto.gvsig.navtableforms.gui.tables.model.VectorialTableModel;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 
-public class VectorialTableHandler {
-
-    private String layerName;
-    private JTable jtable;
-    private String foreignKeyId;
-    private String[] colNames;
-    private String[] colAliases;
-    private JTableContextualMenu listener;
+public class VectorialTableHandler extends BaseTableHandler {
 
     public VectorialTableHandler(String layerName,
 	    HashMap<String, JComponent> widgets, String foreignKeyId,
 	    String[] colNames, String[] colAliases) {
+	super(layerName, widgets, foreignKeyId, colNames, colAliases);
 	FormFactory.checkLayerLoadedRegistered(layerName);
-	this.layerName = layerName;
-	jtable = (JTable) widgets.get(layerName);
-	this.foreignKeyId = foreignKeyId;
-	this.colNames = colNames;
-	this.colAliases = colAliases;
     }
 
     public void reload(String layerName) {
-	listener = new JTableVectorialContextualMenu(layerName);
-	jtable.addMouseListener(listener);
-	// for the popUp to work on empty tables
-	jtable.setFillsViewportHeight(true);
+	this.tableName = layerName;
+	reload();
     }
 
-    public void removeListeners() {
-	jtable.removeMouseListener(listener);
+    @Override
+    protected void createTableModel() throws ReadDriverException {
+	VectorialTableModel model = TableModelFactory
+		.createFromLayerWithFilter(tableName, foreignKeyId,
+			foreignKeyValue, colNames, colAliases);
+	jtable.setModel(model);
     }
 
-    public void fillValues(String foreignKeyValue) {
-	try {
-	    VectorialTableModel model = TableModelFactory
-		    .createFromLayerWithFilter(layerName, foreignKeyId,
-			    foreignKeyValue, colNames, colAliases);
-	    jtable.setModel(model);
-	    ((DefaultTableCellRenderer) jtable.getTableHeader()
-		    .getDefaultRenderer())
-		    .setHorizontalAlignment(JLabel.CENTER);
-	} catch (ReadDriverException e) {
-	    e.printStackTrace();
-	}
-
+    @Override
+    protected void createTableListener() {
+	listener = new JTableVectorialContextualMenu(tableName);
     }
 
 }
