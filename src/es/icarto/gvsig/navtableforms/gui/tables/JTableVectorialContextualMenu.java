@@ -11,6 +11,7 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
+import es.icarto.gvsig.navtableforms.gui.tables.model.BaseTableModel;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 
@@ -20,8 +21,7 @@ public class JTableVectorialContextualMenu extends JTableContextualMenu {
     private JTable table;
     private FormFactory factory;
 
-    public JTableVectorialContextualMenu(String layerName,
- FormFactory factory) {
+    public JTableVectorialContextualMenu(String layerName, FormFactory factory) {
 	this.layer = new TOCLayerManager().getLayerByName(layerName);
 	this.factory = factory;
 	initContextualMenu();
@@ -73,7 +73,8 @@ public class JTableVectorialContextualMenu extends JTableContextualMenu {
     protected void openDialog() {
 	AbstractForm form = factory.createForm(layer);
 	form.init();
-	form.setPosition(table.convertRowIndexToModel(table.getSelectedRow()));
+	form.setPosition(((BaseTableModel) table.getModel())
+		.convertRowIndexToModel(table.getSelectedRow()));
 	PluginServices.getMDIManager().addWindow(form);
     }
 
