@@ -16,15 +16,15 @@ import com.iver.cit.gvsig.listeners.CADListenerManager;
 import com.iver.cit.gvsig.listeners.EndGeometryListener;
 
 import es.icarto.gvsig.navtableforms.AbstractForm;
-import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
-import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
+import es.icarto.gvsig.navtableforms.utils.FormFactory;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 
 public class AutoFormsExtension extends Extension {
 
     private static String KEY_NAME;
     private boolean formsEnabled = false;
     private File fileFlag;
-    private final TableFormFactory factory = FonsaguaTableFormFactory
+    private final FormFactory factory = FonsaguaFormFactory
 	    .getInstance();
 
     @Override

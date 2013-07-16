@@ -14,7 +14,7 @@ import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.AddCroquisListener;
 import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.ShowCroquisListener;
 import es.udc.cartolab.gvsig.fonsagua.croquis.ui.CroquisButtons;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 
 @SuppressWarnings("serial")
@@ -208,21 +208,21 @@ public class ComunidadesForm extends BasicAbstractForm {
 	datosConsumoHandler.reload(new DatosConsumoForm());
 	habitosConsumoHandler.reload(new HabitosConsumoForm());
 	fuentesContaminacionHandler.reload(FuentesContaminacionForm.NAME,
-		FonsaguaTableFormFactory.getInstance());
+		FonsaguaFormFactory.getInstance());
 	puntosViviendasHandler.reload(PuntosViviendasForm.NAME,
-		FonsaguaTableFormFactory.getInstance());
+		FonsaguaFormFactory.getInstance());
 	centrosEducativosHandler.reload(CentrosEducativosForm.NAME,
-		FonsaguaTableFormFactory.getInstance());
+		FonsaguaFormFactory.getInstance());
 	centrosSaludHandler.reload(CentrosSaludForm.NAME,
-		FonsaguaTableFormFactory.getInstance());
+		FonsaguaFormFactory.getInstance());
 	areasPotencialesRiegoHandler.reload(AreasPotencialesRiegoForm.NAME,
-		FonsaguaTableFormFactory.getInstance());
+		FonsaguaFormFactory.getInstance());
 	otrosServiciosHandler.reload(OtrosServiciosForm.NAME,
-		FonsaguaTableFormFactory.getInstance());
+		FonsaguaFormFactory.getInstance());
 	amenazasHandler.reload(AmenazasForm.NAME,
-		FonsaguaTableFormFactory.getInstance());
+		FonsaguaFormFactory.getInstance());
 
-	abastecimientosRelationship.reload(FonsaguaTableFormFactory
+	abastecimientosRelationship.reload(FonsaguaFormFactory
 		.getInstance().createSingletonForm(
 			new TOCLayerManager()
 				.getLayerByName(AbastecimientosForm.NAME)));

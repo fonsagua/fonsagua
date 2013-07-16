@@ -8,7 +8,7 @@ import es.icarto.gvsig.navtableforms.gui.tables.VectorialEditableNNRelTableHandl
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 
 @SuppressWarnings("serial")
@@ -52,7 +52,7 @@ public class FuentesForm extends BasicAbstractForm {
 	aforosHandler.reload(new AforosForm());
 	analiticasHandler.reload(new AnaliticasForm());
 
-	abastecimientosRelationship.reload(FonsaguaTableFormFactory
+	abastecimientosRelationship.reload(FonsaguaFormFactory
 		.getInstance().createSingletonForm(
 			new TOCLayerManager()
 				.getLayerByName(AbastecimientosForm.NAME)));

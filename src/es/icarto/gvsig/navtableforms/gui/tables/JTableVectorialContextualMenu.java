@@ -11,16 +11,17 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
+import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 
 public class JTableVectorialContextualMenu extends JTableContextualMenu {
 
     private FLyrVect layer;
     private JTable table;
-    private TableFormFactory factory;
+    private FormFactory factory;
 
     public JTableVectorialContextualMenu(String layerName,
-	    TableFormFactory factory) {
+ FormFactory factory) {
 	this.layer = new TOCLayerManager().getLayerByName(layerName);
 	this.factory = factory;
 	initContextualMenu();

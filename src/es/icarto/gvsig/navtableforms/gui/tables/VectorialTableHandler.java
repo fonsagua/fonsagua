@@ -12,7 +12,8 @@ import javax.swing.table.TableRowSorter;
 
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
 import es.icarto.gvsig.navtableforms.gui.tables.model.VectorialTableModel;
-import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
+import es.icarto.gvsig.navtableforms.utils.FormFactory;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 
 public class VectorialTableHandler {
 
@@ -26,7 +27,7 @@ public class VectorialTableHandler {
     public VectorialTableHandler(String layerName,
 	    HashMap<String, JComponent> widgets, String foreignKeyId,
 	    String[] colNames, String[] colAliases) {
-	FonsaguaTableFormFactory.getInstance().checkLayerLoaded(layerName);
+	FonsaguaFormFactory.getInstance().checkLayerLoaded(layerName);
 	this.layerName = layerName;
 	jtable = (JTable) widgets.get(layerName);
 	jtable.setAutoCreateRowSorter(true);
@@ -35,7 +36,7 @@ public class VectorialTableHandler {
 	this.colAliases = colAliases;
     }
 
-    public void reload(String layerName, TableFormFactory factory) {
+    public void reload(String layerName, FormFactory factory) {
 	listener = new JTableVectorialContextualMenu(layerName, factory);
 	jtable.addMouseListener(listener);
 	jtable.setFillsViewportHeight(true);

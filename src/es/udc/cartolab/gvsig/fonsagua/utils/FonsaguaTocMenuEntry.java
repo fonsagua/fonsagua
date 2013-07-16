@@ -31,12 +31,11 @@ import com.iver.cit.gvsig.project.documents.view.toc.AbstractTocContextMenuActio
 import com.iver.cit.gvsig.project.documents.view.toc.ITocItem;
 
 import es.icarto.gvsig.navtableforms.AbstractForm;
-import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
-import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
+import es.icarto.gvsig.navtableforms.utils.FormFactory;
 
 public class FonsaguaTocMenuEntry extends AbstractTocContextMenuAction {
 
-    private final TableFormFactory factory = FonsaguaTableFormFactory
+    private final FormFactory factory = FonsaguaFormFactory
 	    .getInstance();
 
     @Override

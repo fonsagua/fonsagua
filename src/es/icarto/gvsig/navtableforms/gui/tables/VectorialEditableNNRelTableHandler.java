@@ -12,7 +12,7 @@ import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
-import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class VectorialEditableNNRelTableHandler extends BaseNNRelTableHandler {
@@ -25,7 +25,7 @@ public class VectorialEditableNNRelTableHandler extends BaseNNRelTableHandler {
 	    String[] colNames, String[] colAliases) {
 	super(sourceTableName, widgets, dbSchema, originKey, relTable,
 		destinationKey, colNames, colAliases);
-	FonsaguaTableFormFactory.getInstance()
+	FonsaguaFormFactory.getInstance()
 		.checkLayerLoaded(sourceTableName);
     }
 

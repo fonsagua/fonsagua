@@ -14,8 +14,8 @@ import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.DatosConsumoForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ImplicacionComunidadForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ValoracionSistemaForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.factories.FonsaguaTableFormFactory;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 
 @SuppressWarnings("serial")
@@ -144,21 +144,21 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	gestionFinancieraHandler.reload(new GestFinancieraForm());
 	evaluacionHandler.reload(new EvaluacionForm());
 	captacionesHandler.reload(CaptacionesForm.NAME,
-		FonsaguaTableFormFactory.getInstance());
+		FonsaguaFormFactory.getInstance());
 	depIntermediosHandler.reload(DepIntermediosForm.NAME,
-		FonsaguaTableFormFactory.getInstance());
+		FonsaguaFormFactory.getInstance());
 	depDistribucionHandler.reload(DepDistribucionForm.NAME,
-		FonsaguaTableFormFactory.getInstance());
+		FonsaguaFormFactory.getInstance());
 	tuberiasHandler.reload(TuberiasForm.NAME,
-		FonsaguaTableFormFactory.getInstance());
+		FonsaguaFormFactory.getInstance());
 	bombeosHandler.reload(BombeosForm.NAME,
-		FonsaguaTableFormFactory.getInstance());
-	comunidadesRelationship.reload(FonsaguaTableFormFactory.getInstance()
+		FonsaguaFormFactory.getInstance());
+	comunidadesRelationship.reload(FonsaguaFormFactory.getInstance()
 		.createSingletonForm(
 			new TOCLayerManager()
 				.getLayerByName(ComunidadesForm.NAME)));
 	fuentesRelationship
-		.reload(FonsaguaTableFormFactory.getInstance()
+		.reload(FonsaguaFormFactory.getInstance()
 			.createSingletonForm(
 			new TOCLayerManager().getLayerByName(FuentesForm.NAME)));
 	adescosHandler.reload(new AdescosForm());

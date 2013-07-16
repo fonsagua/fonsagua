@@ -1,4 +1,4 @@
-package es.udc.cartolab.gvsig.fonsagua.forms.factories;
+package es.udc.cartolab.gvsig.fonsagua.utils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.iver.cit.gvsig.project.documents.view.gui.BaseView;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
-import es.icarto.gvsig.navtableforms.gui.tables.TableFormFactory;
+import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
@@ -32,9 +32,9 @@ import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.SingletonFuentesForm;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
-public class FonsaguaTableFormFactory implements TableFormFactory {
+public class FonsaguaFormFactory implements FormFactory {
 
-    private static FonsaguaTableFormFactory instance = null;
+    private static FonsaguaFormFactory instance = null;
 
     private static final Set<String> mainFormNames = new HashSet<String>();
 
@@ -56,14 +56,14 @@ public class FonsaguaTableFormFactory implements TableFormFactory {
 	mainFormNames.add(FuentesContaminacionForm.NAME);
     }
 
-    public static FonsaguaTableFormFactory getInstance() {
+    public static FonsaguaFormFactory getInstance() {
 	if (instance == null) {
-	    instance = new FonsaguaTableFormFactory();
+	    instance = new FonsaguaFormFactory();
 	}
 	return instance;
     }
 
-    private FonsaguaTableFormFactory() {
+    private FonsaguaFormFactory() {
     }
 
     @Override
