@@ -3,10 +3,10 @@ package es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
-import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericNotEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericTableHandler;
-import es.icarto.gvsig.navtableforms.gui.tables.VectorialEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.VectorialTableHandler;
+import es.icarto.gvsig.navtableforms.gui.tables.handler.AlphanumericNotEditableNNRelTableHandler;
+import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
