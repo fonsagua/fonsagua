@@ -8,8 +8,6 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.AlphanumericTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialTableHandler;
-import es.icarto.gvsig.navtableforms.utils.FormFactory;
-import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.AddCroquisListener;
 import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.ShowCroquisListener;
@@ -209,11 +207,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	areasPotencialesRiegoHandler.reload(AreasPotencialesRiegoForm.NAME);
 	otrosServiciosHandler.reload(OtrosServiciosForm.NAME);
 	amenazasHandler.reload(AmenazasForm.NAME);
-
-	abastecimientosRelationship.reload(FormFactory
-		.createSingletonFormRegistered(
-			new TOCLayerManager()
-				.getLayerByName(AbastecimientosForm.NAME)));
+	abastecimientosRelationship.reload();
 	super.setListeners();
     }
 

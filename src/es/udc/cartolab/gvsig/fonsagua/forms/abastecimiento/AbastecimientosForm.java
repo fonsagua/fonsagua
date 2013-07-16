@@ -7,8 +7,6 @@ import es.icarto.gvsig.navtableforms.gui.tables.handler.AlphanumericNotEditableN
 import es.icarto.gvsig.navtableforms.gui.tables.handler.AlphanumericTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialTableHandler;
-import es.icarto.gvsig.navtableforms.utils.FormFactory;
-import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
@@ -142,13 +140,8 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	depDistribucionHandler.reload(DepDistribucionForm.NAME);
 	tuberiasHandler.reload(TuberiasForm.NAME);
 	bombeosHandler.reload(BombeosForm.NAME);
-	comunidadesRelationship.reload(FormFactory
-		.createSingletonFormRegistered(
-			new TOCLayerManager()
-				.getLayerByName(ComunidadesForm.NAME)));
-	fuentesRelationship.reload(FormFactory
-		.createSingletonFormRegistered(new TOCLayerManager()
-			.getLayerByName(FuentesForm.NAME)));
+	comunidadesRelationship.reload();
+	fuentesRelationship.reload();
 	adescosHandler.reload(new AdescosForm());
 	implicacionComunidadHandler.reloadGUI();
 	datosConsumoHandler.reloadGUI();
