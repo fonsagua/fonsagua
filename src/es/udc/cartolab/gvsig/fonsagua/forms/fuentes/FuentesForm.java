@@ -31,7 +31,6 @@ public class FuentesForm extends BasicAbstractForm {
 	analiticasHandler = new AlphanumericTableHandler(AnaliticasForm.NAME,
 		getWidgetComponents(), PKFIELD, AnaliticasForm.colNames,
 		AnaliticasForm.colAlias);
-	FormFactory.checkLayerLoadedRegistered(AbastecimientosForm.NAME);
 	abastecimientosRelationship = new VectorialEditableNNRelTableHandler(
 		AbastecimientosForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, PKFIELD,
