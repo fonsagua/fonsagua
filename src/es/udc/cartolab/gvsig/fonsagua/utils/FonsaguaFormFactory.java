@@ -34,7 +34,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.SingletonFuentesForm;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
-public class FonsaguaFormFactory implements FormFactory {
+public class FonsaguaFormFactory extends FormFactory {
 
     private static FonsaguaFormFactory instance = null;
 
@@ -56,12 +56,11 @@ public class FonsaguaFormFactory implements FormFactory {
 	mainFormNames.add(TuberiasForm.NAME);
 	mainFormNames.add(FuentesForm.NAME);
 	mainFormNames.add(FuentesContaminacionForm.NAME);
+	instance = new FonsaguaFormFactory();
+	FormFactory.registerFormFactory(instance);
     }
 
     public static FonsaguaFormFactory getInstance() {
-	if (instance == null) {
-	    instance = new FonsaguaFormFactory();
-	}
 	return instance;
     }
 
