@@ -5,13 +5,8 @@ import java.io.InputStream;
 import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiManager.WindowInfo;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
-import com.iver.cit.gvsig.project.documents.table.gui.Table;
 import com.jeta.forms.components.panel.FormPanel;
 import com.jeta.forms.gui.common.FormException;
-
-import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericTableLoader;
-import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
-import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 
 @SuppressWarnings("serial")
 public abstract class BasicAbstractForm extends AbstractForm {
@@ -51,21 +46,5 @@ public abstract class BasicAbstractForm extends AbstractForm {
     }
     
     protected abstract String getBasicName();
-
-    protected Table loadTable(String name) {
-	TOCTableManager tocTable = new TOCTableManager();
-	Table table = tocTable.getTableByName(name);
-	try {
-	    if (table == null) {
-		AlphanumericTableLoader.loadTable(FonsaguaConstants.dataSchema,
-			name);
-		tocTable = new TOCTableManager();
-		table = tocTable.getTableByName(name);
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
-	return table;
-    }
 
 }
