@@ -35,7 +35,7 @@ public class VectorialEditableNNRelTableHandler extends
     }
 
     protected void createTableListener() {
-	listener = new JTableRelationshipContextualMenu(this, form);
+	listener = new JTableEditableNNRelContextualMenu(this, form);
     }
 
     public void reload(AbstractForm form) {

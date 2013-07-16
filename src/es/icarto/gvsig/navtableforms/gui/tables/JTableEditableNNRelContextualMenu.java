@@ -13,13 +13,13 @@ import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
 import es.udc.cartolab.gvsig.navtable.dataacces.IController;
 
-public class JTableRelationshipContextualMenu extends JTableContextualMenu {
+public class JTableEditableNNRelContextualMenu extends JTableContextualMenu {
 
     protected VectorialEditableNNRelTableHandler tableRelationship;
     protected AbstractForm dialog;
     protected boolean dialogInitialized = false;
 
-    public JTableRelationshipContextualMenu(
+    public JTableEditableNNRelContextualMenu(
 	    VectorialEditableNNRelTableHandler tableRelationship, AbstractForm dialog) {
 	newMenuItem
 		.setText(PluginServices.getText(this, "create_new_relation"));
