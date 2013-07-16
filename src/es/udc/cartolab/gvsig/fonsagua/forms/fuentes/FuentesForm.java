@@ -31,6 +31,8 @@ public class FuentesForm extends BasicAbstractForm {
 	analiticasHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
 		AnaliticasForm.NAME, getWidgetComponents(), PKFIELD,
 		AnaliticasForm.colNames, AnaliticasForm.colAlias);
+	FonsaguaFormFactory.getInstance().checkLayerLoaded(
+		AbastecimientosForm.NAME);
 	abastecimientosRelationship = new VectorialEditableNNRelTableHandler(
 		AbastecimientosForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, PKFIELD,

@@ -12,7 +12,6 @@ import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
-import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class VectorialEditableNNRelTableHandler extends
@@ -26,8 +25,6 @@ public class VectorialEditableNNRelTableHandler extends
 	    String[] colNames, String[] colAliases) {
 	super(sourceTableName, widgets, dbSchema, originKey, relTable,
 		destinationKey, colNames, colAliases);
-	FonsaguaFormFactory.getInstance()
-		.checkLayerLoaded(sourceTableName);
     }
 
     protected void createTableModel() throws ReadDriverException {

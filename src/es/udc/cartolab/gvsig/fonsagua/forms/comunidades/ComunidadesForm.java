@@ -135,6 +135,8 @@ public class ComunidadesForm extends BasicAbstractForm {
 	amenazasHandler = new VectorialTableHandler(AmenazasForm.NAME,
 		getWidgetComponents(), PKFIELD, AmenazasForm.colNames,
 		AmenazasForm.colAlias);
+	FonsaguaFormFactory.getInstance().checkLayerLoaded(
+		AbastecimientosForm.NAME);
 	abastecimientosRelationship = new VectorialEditableNNRelTableHandler(
 		AbastecimientosForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, PKFIELD,

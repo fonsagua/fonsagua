@@ -25,6 +25,7 @@ import es.icarto.gvsig.navtableforms.gui.tables.VectorialEditableNNRelTableHandl
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class TestTableRelationship {
@@ -92,6 +93,8 @@ public class TestTableRelationship {
 	HashMap<String, JComponent> widgetsMock = new HashMap<String, JComponent>();
 	final String relationTableName = "r_abastecimientos_comunidades";
 	widgetsMock.put(relationTableName, new JTable());
+	FonsaguaFormFactory.getInstance().checkLayerLoaded(
+		AbastecimientosForm.NAME);
 	testingRelationship = new VectorialEditableNNRelTableHandler(
 		AbastecimientosForm.NAME, widgetsMock,
 		FonsaguaConstants.dataSchema, ComunidadesForm.PKFIELD,

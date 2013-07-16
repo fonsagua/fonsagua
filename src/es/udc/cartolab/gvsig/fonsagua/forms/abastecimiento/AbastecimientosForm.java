@@ -79,10 +79,13 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	bombeosHandler = new VectorialTableHandler(BombeosForm.NAME,
 		getWidgetComponents(), PKFIELD, BombeosForm.colNames,
 		BombeosForm.colAlias);
+	FonsaguaFormFactory.getInstance()
+		.checkLayerLoaded(ComunidadesForm.NAME);
 	comunidadesRelationship = new VectorialEditableNNRelTableHandler(ComunidadesForm.NAME,
 		getWidgetComponents(), FonsaguaConstants.dataSchema, PKFIELD,
 		"r_abastecimientos_comunidades", ComunidadesForm.PKFIELD,
 		ComunidadesForm.colNames, ComunidadesForm.colAlias);
+	FonsaguaFormFactory.getInstance().checkLayerLoaded(FuentesForm.NAME);
 	fuentesRelationship = new VectorialEditableNNRelTableHandler(FuentesForm.NAME,
 		getWidgetComponents(), FonsaguaConstants.dataSchema, PKFIELD,
 		"r_abastecimientos_fuentes", FuentesForm.PKFIELD,
