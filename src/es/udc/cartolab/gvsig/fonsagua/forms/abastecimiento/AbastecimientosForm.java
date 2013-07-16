@@ -135,17 +135,17 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	gestionComercialHandler.reload(new GestComercialForm());
 	gestionFinancieraHandler.reload(new GestFinancieraForm());
 	evaluacionHandler.reload(new EvaluacionForm());
-	captacionesHandler.reload(CaptacionesForm.NAME);
-	depIntermediosHandler.reload(DepIntermediosForm.NAME);
-	depDistribucionHandler.reload(DepDistribucionForm.NAME);
-	tuberiasHandler.reload(TuberiasForm.NAME);
-	bombeosHandler.reload(BombeosForm.NAME);
+	captacionesHandler.reload();
+	depIntermediosHandler.reload();
+	depDistribucionHandler.reload();
+	tuberiasHandler.reload();
+	bombeosHandler.reload();
 	comunidadesRelationship.reload();
 	fuentesRelationship.reload();
 	adescosHandler.reload(new AdescosForm());
-	implicacionComunidadHandler.reloadGUI();
-	datosConsumoHandler.reloadGUI();
-	valoracionSistemaHandler.reloadGUI();
+	implicacionComunidadHandler.reload(new ImplicacionComunidadForm());
+	datosConsumoHandler.reload(new DatosConsumoForm());
+	valoracionSistemaHandler.reload(new ValoracionSistemaForm());
     }
 
     @Override

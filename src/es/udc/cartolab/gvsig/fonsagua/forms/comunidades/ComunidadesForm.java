@@ -200,13 +200,13 @@ public class ComunidadesForm extends BasicAbstractForm {
 	valoracionSistemaHandler.reload(new ValoracionSistemaForm());
 	datosConsumoHandler.reload(new DatosConsumoForm());
 	habitosConsumoHandler.reload(new HabitosConsumoForm());
-	fuentesContaminacionHandler.reload(FuentesContaminacionForm.NAME);
-	puntosViviendasHandler.reload(PuntosViviendasForm.NAME);
-	centrosEducativosHandler.reload(CentrosEducativosForm.NAME);
-	centrosSaludHandler.reload(CentrosSaludForm.NAME);
-	areasPotencialesRiegoHandler.reload(AreasPotencialesRiegoForm.NAME);
-	otrosServiciosHandler.reload(OtrosServiciosForm.NAME);
-	amenazasHandler.reload(AmenazasForm.NAME);
+	fuentesContaminacionHandler.reload();
+	puntosViviendasHandler.reload();
+	centrosEducativosHandler.reload();
+	centrosSaludHandler.reload();
+	areasPotencialesRiegoHandler.reload();
+	otrosServiciosHandler.reload();
+	amenazasHandler.reload();
 	abastecimientosRelationship.reload();
 	super.setListeners();
     }
