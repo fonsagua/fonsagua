@@ -23,7 +23,7 @@ import com.iver.cit.gvsig.project.documents.table.ProjectTable;
 import com.iver.cit.gvsig.project.documents.table.gui.Table;
 import com.iver.cit.gvsig.project.documents.view.gui.BaseView;
 
-import es.icarto.gvsig.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
@@ -85,7 +85,7 @@ public class FonsaguaFormFactory extends FormFactory {
     }
 
     @Override
-    public BasicAbstractForm createForm(FLyrVect layer) {
+    public AbstractForm createForm(FLyrVect layer) {
 	if (layer != null) {
 	    if (layer.getName().equals(ComunidadesForm.NAME)) {
 		return new ComunidadesForm(layer);
@@ -123,7 +123,7 @@ public class FonsaguaFormFactory extends FormFactory {
     }
 
     @Override
-    public BasicAbstractForm createSingletonForm(FLyrVect layer) {
+    public AbstractForm createSingletonForm(FLyrVect layer) {
 	if (layer != null) {
 	    if (layer.getName().equals(ComunidadesForm.NAME)) {
 		return new SingletonComunidadesForm(layer);
@@ -134,6 +134,18 @@ public class FonsaguaFormFactory extends FormFactory {
 	    }
 	}
 	return null;
+    }
+
+    @Override
+    public AbstractForm createForm(String layerName) {
+	FLyrVect layer = new TOCLayerManager().getLayerByName(layerName);
+	return createForm(layer);
+    }
+
+    @Override
+    public AbstractForm createSingletonForm(String layerName) {
+	FLyrVect layer = new TOCLayerManager().getLayerByName(layerName);
+	return createSingletonForm(layer);
     }
 
     @Override
