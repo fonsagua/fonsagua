@@ -9,8 +9,10 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.iver.cit.gvsig.project.documents.view.gui.BaseView;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericTableLoader;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.BombeosForm;
@@ -160,6 +162,19 @@ public class FonsaguaFormFactory implements FormFactory {
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }
+	}
+    }
+
+    @Override
+    public void checkTableLoaded(String tableName) {
+	try {
+	    TOCTableManager toc = new TOCTableManager();
+	    if (toc.getTableByName(tableName) == null) {
+		AlphanumericTableLoader.loadTable(FonsaguaConstants.dataSchema,
+			tableName);
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
     }
 
