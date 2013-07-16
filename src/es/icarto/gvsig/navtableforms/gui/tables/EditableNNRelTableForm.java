@@ -21,14 +21,14 @@ public class EditableNNRelTableForm extends JPanel implements IWindow,
 
     private WindowInfo viewInfo;
 
-    private VectorialEditableNNRelTableHandler tableRelationship;
+    private EditableNNRelTableHandler tableRelationship;
 
     private FormPanel formPanel;
     private JComboBox secondaryPKValueCB;
     private JButton addButton;
     private int keyColumn = 0;
 
-    public EditableNNRelTableForm(VectorialEditableNNRelTableHandler tableRelationship,
+    public EditableNNRelTableForm(EditableNNRelTableHandler tableRelationship,
 	    int keyColumn) {
 	this.tableRelationship = tableRelationship;
 	this.keyColumn = keyColumn;
@@ -36,7 +36,7 @@ public class EditableNNRelTableForm extends JPanel implements IWindow,
 	createForm();
     }
 
-    public EditableNNRelTableForm(VectorialEditableNNRelTableHandler tableRelationship) {
+    public EditableNNRelTableForm(EditableNNRelTableHandler tableRelationship) {
 	this.tableRelationship = tableRelationship;
 	viewInfo = this.getWindowInfo();
 	createForm();

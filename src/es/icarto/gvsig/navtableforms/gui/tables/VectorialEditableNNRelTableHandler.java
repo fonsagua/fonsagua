@@ -15,7 +15,8 @@ import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
-public class VectorialEditableNNRelTableHandler extends BaseNNRelTableHandler {
+public class VectorialEditableNNRelTableHandler extends
+	EditableNNRelTableHandler {
 
     private AbstractForm form;
 
