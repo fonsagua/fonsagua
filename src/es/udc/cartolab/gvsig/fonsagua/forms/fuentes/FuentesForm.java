@@ -5,10 +5,10 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialEditableNNRelTableHandler;
+import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
-import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 
 @SuppressWarnings("serial")
@@ -31,8 +31,7 @@ public class FuentesForm extends BasicAbstractForm {
 	analiticasHandler = new AlphanumericTableHandler(AnaliticasForm.NAME,
 		getWidgetComponents(), PKFIELD, AnaliticasForm.colNames,
 		AnaliticasForm.colAlias);
-	FonsaguaFormFactory.getInstance().checkLayerLoaded(
-		AbastecimientosForm.NAME);
+	FormFactory.checkLayerLoadedRegistered(AbastecimientosForm.NAME);
 	abastecimientosRelationship = new VectorialEditableNNRelTableHandler(
 		AbastecimientosForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, PKFIELD,
@@ -54,8 +53,8 @@ public class FuentesForm extends BasicAbstractForm {
 	aforosHandler.reload(new AforosForm());
 	analiticasHandler.reload(new AnaliticasForm());
 
-	abastecimientosRelationship.reload(FonsaguaFormFactory
-		.getInstance().createSingletonForm(
+	abastecimientosRelationship.reload(FormFactory
+		.createSingletonFormRegistered(
 			new TOCLayerManager()
 				.getLayerByName(AbastecimientosForm.NAME)));
     }

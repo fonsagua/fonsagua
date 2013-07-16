@@ -16,13 +16,11 @@ import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaTocMenuEntry;
 public class FormsExtension extends Extension {
 
     private FLyrVect[] layers;
-    private final FormFactory factory = FonsaguaFormFactory
-	    .getInstance();
 
     @Override
     public void execute(String actionCommand) {
 	for (FLyrVect layer : layers) {
-	    AbstractForm dialog = factory.createForm(layer);
+	    AbstractForm dialog = FormFactory.createFormRegistered(layer);
 
 	    if ((dialog != null) && (dialog.init())) {
 		PluginServices.getMDIManager().addWindow(dialog);
@@ -40,8 +38,11 @@ public class FormsExtension extends Extension {
 
     @Override
     public void initialize() {
-	registerIcons();
+	// We need this block in order to register the factory as the default
+	// one
+	FonsaguaFormFactory.registerFormFactory();
 
+	registerIcons();
 	// Entry at TOC contextual menu
 	ExtensionPoints extensionPoints = ExtensionPointsSingleton
 		.getInstance();
@@ -64,7 +65,7 @@ public class FormsExtension extends Extension {
 	layers = new TOCLayerManager().getActiveLayers();
 	boolean layerWithForm = false;
 	for (FLyrVect layer : layers) {
-	    layerWithForm |= factory.hasMainForm(layer.getName());
+	    layerWithForm |= FormFactory.hasMainFormRegistered(layer.getName());
 	}
 	return layerWithForm;
     }

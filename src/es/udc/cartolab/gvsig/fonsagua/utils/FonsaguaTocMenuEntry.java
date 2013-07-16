@@ -35,14 +35,12 @@ import es.icarto.gvsig.navtableforms.utils.FormFactory;
 
 public class FonsaguaTocMenuEntry extends AbstractTocContextMenuAction {
 
-    private final FormFactory factory = FonsaguaFormFactory
-	    .getInstance();
-
     @Override
     public void execute(ITocItem item, FLayer[] selectedItems) {
 	for (FLayer layer : selectedItems) {
 	    if (layer instanceof FLyrVect) {
-		AbstractForm dialog = factory.createForm((FLyrVect) layer);
+		AbstractForm dialog = FormFactory
+			.createFormRegistered((FLyrVect) layer);
 
 		if ((dialog != null) && (dialog.init())) {
 		    PluginServices.getMDIManager().addWindow(dialog);
@@ -75,7 +73,7 @@ public class FonsaguaTocMenuEntry extends AbstractTocContextMenuAction {
 	boolean availableLayerWithForm = false;
 	for (FLayer layer : selectedItems) {
 	    availableLayerWithForm |= ((layer instanceof FLyrVect)
-		    && (factory.hasMainForm(layer.getName())) && (layer
+		    && (FormFactory.hasMainFormRegistered(layer.getName())) && (layer
 		    .isAvailable()));
 	}
 	return availableLayerWithForm;
@@ -87,8 +85,8 @@ public class FonsaguaTocMenuEntry extends AbstractTocContextMenuAction {
 		&& !(selectedItems == null || selectedItems.length <= 0)) {
 	    boolean layerWithForm = false;
 	    for (FLayer layer : selectedItems) {
-		layerWithForm |= ((layer instanceof FLyrVect) && (factory
-			.hasMainForm(layer.getName())));
+		layerWithForm |= ((layer instanceof FLyrVect) && (FormFactory
+			.hasMainFormRegistered(layer.getName())));
 	    }
 	    return layerWithForm;
 	}

@@ -17,15 +17,12 @@ import com.iver.cit.gvsig.listeners.EndGeometryListener;
 
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
-import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 
 public class AutoFormsExtension extends Extension {
 
     private static String KEY_NAME;
     private boolean formsEnabled = false;
     private File fileFlag;
-    private final FormFactory factory = FonsaguaFormFactory
-	    .getInstance();
 
     @Override
     public void initialize() {
@@ -125,7 +122,8 @@ public class AutoFormsExtension extends Extension {
 	@Override
 	public void endGeometry(FLayer layer, String cadToolKey) {
 	    if (layer instanceof FLyrVect) {
-		AbstractForm form = factory.createForm((FLyrVect) layer);
+		AbstractForm form = FormFactory
+			.createFormRegistered((FLyrVect) layer);
 		if (form.init()) {
 		    form.last();
 		    PluginServices.getMDIManager().addWindow(form);

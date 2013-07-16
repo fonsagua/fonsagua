@@ -13,7 +13,6 @@ import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
 import es.icarto.gvsig.navtableforms.gui.tables.model.VectorialTableModel;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
-import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 
 public class VectorialTableHandler {
 
@@ -27,7 +26,7 @@ public class VectorialTableHandler {
     public VectorialTableHandler(String layerName,
 	    HashMap<String, JComponent> widgets, String foreignKeyId,
 	    String[] colNames, String[] colAliases) {
-	FonsaguaFormFactory.getInstance().checkLayerLoaded(layerName);
+	FormFactory.checkLayerLoadedRegistered(layerName);
 	this.layerName = layerName;
 	jtable = (JTable) widgets.get(layerName);
 	this.foreignKeyId = foreignKeyId;
@@ -35,8 +34,8 @@ public class VectorialTableHandler {
 	this.colAliases = colAliases;
     }
 
-    public void reload(String layerName, FormFactory factory) {
-	listener = new JTableVectorialContextualMenu(layerName, factory);
+    public void reload(String layerName) {
+	listener = new JTableVectorialContextualMenu(layerName);
 	jtable.addMouseListener(listener);
 	// for the popUp to work on empty tables
 	jtable.setFillsViewportHeight(true);

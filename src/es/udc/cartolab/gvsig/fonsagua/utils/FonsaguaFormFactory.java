@@ -57,6 +57,9 @@ public class FonsaguaFormFactory extends FormFactory {
 	mainFormNames.add(FuentesForm.NAME);
 	mainFormNames.add(FuentesContaminacionForm.NAME);
 	instance = new FonsaguaFormFactory();
+    }
+
+    public static void registerFormFactory() {
 	FormFactory.registerFormFactory(instance);
     }
 

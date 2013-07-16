@@ -19,11 +19,9 @@ public class JTableVectorialContextualMenu extends JTableContextualMenu {
 
     private FLyrVect layer;
     private JTable table;
-    private FormFactory factory;
 
-    public JTableVectorialContextualMenu(String layerName, FormFactory factory) {
+    public JTableVectorialContextualMenu(String layerName) {
 	this.layer = new TOCLayerManager().getLayerByName(layerName);
-	this.factory = factory;
 	initContextualMenu();
     }
 
@@ -71,7 +69,7 @@ public class JTableVectorialContextualMenu extends JTableContextualMenu {
     }
 
     protected void openDialog() {
-	AbstractForm form = factory.createForm(layer);
+	AbstractForm form = FormFactory.createFormRegistered(layer);
 	form.init();
 	form.setPosition(((BaseTableModel) table.getModel())
 		.convertRowIndexToModel(table.getSelectedRow()));

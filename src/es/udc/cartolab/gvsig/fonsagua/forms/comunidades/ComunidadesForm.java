@@ -8,13 +8,13 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.AlphanumericTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.VectorialTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialEditableNNRelTableHandler;
+import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.AddCroquisListener;
 import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.ShowCroquisListener;
 import es.udc.cartolab.gvsig.fonsagua.croquis.ui.CroquisButtons;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
-import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 
 @SuppressWarnings("serial")
@@ -130,8 +130,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 	amenazasHandler = new VectorialTableHandler(AmenazasForm.NAME,
 		getWidgetComponents(), PKFIELD, AmenazasForm.colNames,
 		AmenazasForm.colAlias);
-	FonsaguaFormFactory.getInstance().checkLayerLoaded(
-		AbastecimientosForm.NAME);
+	FormFactory.checkLayerLoadedRegistered(AbastecimientosForm.NAME);
 	abastecimientosRelationship = new VectorialEditableNNRelTableHandler(
 		AbastecimientosForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, PKFIELD,
@@ -204,23 +203,16 @@ public class ComunidadesForm extends BasicAbstractForm {
 	valoracionSistemaHandler.reload(new ValoracionSistemaForm());
 	datosConsumoHandler.reload(new DatosConsumoForm());
 	habitosConsumoHandler.reload(new HabitosConsumoForm());
-	fuentesContaminacionHandler.reload(FuentesContaminacionForm.NAME,
-		FonsaguaFormFactory.getInstance());
-	puntosViviendasHandler.reload(PuntosViviendasForm.NAME,
-		FonsaguaFormFactory.getInstance());
-	centrosEducativosHandler.reload(CentrosEducativosForm.NAME,
-		FonsaguaFormFactory.getInstance());
-	centrosSaludHandler.reload(CentrosSaludForm.NAME,
-		FonsaguaFormFactory.getInstance());
-	areasPotencialesRiegoHandler.reload(AreasPotencialesRiegoForm.NAME,
-		FonsaguaFormFactory.getInstance());
-	otrosServiciosHandler.reload(OtrosServiciosForm.NAME,
-		FonsaguaFormFactory.getInstance());
-	amenazasHandler.reload(AmenazasForm.NAME,
-		FonsaguaFormFactory.getInstance());
+	fuentesContaminacionHandler.reload(FuentesContaminacionForm.NAME);
+	puntosViviendasHandler.reload(PuntosViviendasForm.NAME);
+	centrosEducativosHandler.reload(CentrosEducativosForm.NAME);
+	centrosSaludHandler.reload(CentrosSaludForm.NAME);
+	areasPotencialesRiegoHandler.reload(AreasPotencialesRiegoForm.NAME);
+	otrosServiciosHandler.reload(OtrosServiciosForm.NAME);
+	amenazasHandler.reload(AmenazasForm.NAME);
 
-	abastecimientosRelationship.reload(FonsaguaFormFactory
-		.getInstance().createSingletonForm(
+	abastecimientosRelationship.reload(FormFactory
+		.createSingletonFormRegistered(
 			new TOCLayerManager()
 				.getLayerByName(AbastecimientosForm.NAME)));
 	super.setListeners();

@@ -14,7 +14,7 @@ import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableCompleteContextualMen
 import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
 import es.icarto.gvsig.navtableforms.gui.tables.model.AlphanumericTableModel;
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
-import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
+import es.icarto.gvsig.navtableforms.utils.FormFactory;
 
 public class AlphanumericTableHandler {
 
@@ -34,7 +34,7 @@ public class AlphanumericTableHandler {
 	this.foreignKeyId = foreignKeyId;
 	this.colNames = colNames;
 	this.colAliases = colAliases;
-	FonsaguaFormFactory.getInstance().checkTableLoaded(tableName);
+	FormFactory.checkTableLoadedRegistered(tableName);
     }
 
     public void reload(AbstractSubForm form) {

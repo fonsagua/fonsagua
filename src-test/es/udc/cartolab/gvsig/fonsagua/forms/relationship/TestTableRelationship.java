@@ -22,10 +22,10 @@ import com.iver.cit.gvsig.fmap.layers.LayerFactory;
 import es.icarto.gvsig.navtableforms.DataBaseProperties;
 import es.icarto.gvsig.navtableforms.TestProperties;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialEditableNNRelTableHandler;
+import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
-import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class TestTableRelationship {
@@ -93,8 +93,7 @@ public class TestTableRelationship {
 	HashMap<String, JComponent> widgetsMock = new HashMap<String, JComponent>();
 	final String relationTableName = "r_abastecimientos_comunidades";
 	widgetsMock.put(relationTableName, new JTable());
-	FonsaguaFormFactory.getInstance().checkLayerLoaded(
-		AbastecimientosForm.NAME);
+	FormFactory.checkLayerLoadedRegistered(AbastecimientosForm.NAME);
 	testingRelationship = new VectorialEditableNNRelTableHandler(
 		AbastecimientosForm.NAME, widgetsMock,
 		FonsaguaConstants.dataSchema, ComunidadesForm.PKFIELD,

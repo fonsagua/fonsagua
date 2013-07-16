@@ -7,21 +7,17 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
-import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 
 public class FormsMenuExtension extends Extension {
-
-    private final FormFactory factory = FonsaguaFormFactory
-	    .getInstance();
 
     @Override
     public void execute(String actionCommand) {
 	AbstractForm dialog = null;
-	if (factory.hasMainForm(actionCommand)) {
+	if (FormFactory.hasMainFormRegistered(actionCommand)) {
 	    FLyrVect layer = new TOCLayerManager()
 		    .getLayerByName(actionCommand);
 	    if (layer != null) {
-		dialog = factory.createForm(layer);
+		dialog = FormFactory.createFormRegistered(layer);
 	    }
 	}
 
@@ -32,7 +28,7 @@ public class FormsMenuExtension extends Extension {
 
     @Override
     public boolean isEnabled() {
-	return factory.allLayersLoaded();
+	return FormFactory.allLayersLoadedRegistered();
     }
 
     @Override
