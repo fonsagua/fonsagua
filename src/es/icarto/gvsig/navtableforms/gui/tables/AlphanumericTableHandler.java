@@ -14,34 +14,27 @@ import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableCompleteContextualMen
 import es.icarto.gvsig.navtableforms.gui.tables.menu.JTableContextualMenu;
 import es.icarto.gvsig.navtableforms.gui.tables.model.AlphanumericTableModel;
 import es.icarto.gvsig.navtableforms.gui.tables.model.TableModelFactory;
-import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 
 public class AlphanumericTableHandler {
 
-    private AbstractSubForm form;
+    private String tablename;
     private JTable jtable;
-    private JTableContextualMenu listener;
     private String foreignKeyId;
     private String[] colNames;
     private String[] colAliases;
-    private String tablename;
+    private JTableContextualMenu listener;
+    private AbstractSubForm form;
 
-    public AlphanumericTableHandler(String schema, String tablename,
+    public AlphanumericTableHandler(String tableName,
 	    HashMap<String, JComponent> widgets, String foreignKeyId,
 	    String[] colNames, String[] colAliases) {
-	this.tablename = tablename;
-	jtable = (JTable) widgets.get(tablename);
+	this.tablename = tableName;
+	jtable = (JTable) widgets.get(tableName);
 	this.foreignKeyId = foreignKeyId;
 	this.colNames = colNames;
 	this.colAliases = colAliases;
-	try {
-	    TOCTableManager toc = new TOCTableManager();
-	    if (toc.getTableByName(tablename) == null) {
-		AlphanumericTableLoader.loadTable(schema, tablename);
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
+	FonsaguaFormFactory.getInstance().checkTableLoaded(tableName);
     }
 
     public void reload(AbstractSubForm form) {
@@ -56,15 +49,14 @@ public class AlphanumericTableHandler {
 	jtable.removeMouseListener(listener);
     }
 
-    public void fillValues(String foreingKeyValue) {
-
-	AlphanumericTableModel model;
-	Map<String, String> foreingKey = new HashMap<String, String>(1);
-	foreingKey.put(foreignKeyId, foreingKeyValue);
-	form.setForeingKey(foreingKey);
+    public void fillValues(String foreignKeyValue) {
+	Map<String, String> foreignKey = new HashMap<String, String>(1);
+	foreignKey.put(foreignKeyId, foreignKeyValue);
+	form.setForeingKey(foreignKey);
 	try {
-	    model = TableModelFactory.createFromTableWithFilter(tablename,
-		    foreignKeyId, foreingKeyValue, colNames, colAliases);
+	    AlphanumericTableModel model = TableModelFactory
+		    .createFromTableWithFilter(tablename, foreignKeyId,
+			    foreignKeyValue, colNames, colAliases);
 	    jtable.setModel(model);
 	    ((DefaultTableCellRenderer) jtable.getTableHeader()
 		    .getDefaultRenderer())

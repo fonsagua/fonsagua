@@ -55,60 +55,55 @@ public class ComunidadesForm extends BasicAbstractForm {
 
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
-	adescosHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
-		AdescosForm.NAME, getWidgetComponents(), PKFIELD,
-		AdescosForm.colNames, AdescosForm.colAlias);
-	entrevistadoresHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
+	adescosHandler = new AlphanumericTableHandler(AdescosForm.NAME,
+		getWidgetComponents(), PKFIELD, AdescosForm.colNames,
+		AdescosForm.colAlias);
+	entrevistadoresHandler = new AlphanumericTableHandler(
 		EntrevistadoresForm.NAME, getWidgetComponents(), PKFIELD,
 		EntrevistadoresForm.colNames, EntrevistadoresForm.colAlias);
-	entrevistadosHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
+	entrevistadosHandler = new AlphanumericTableHandler(
 		EntrevistadosForm.NAME, getWidgetComponents(), PKFIELD,
 		EntrevistadosForm.colNames, EntrevistadosForm.colAlias);
-	subcuencasHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
-		SubcuencasForm.NAME, getWidgetComponents(), PKFIELD,
-		SubcuencasForm.colNames, SubcuencasForm.colAlias);
-	cargosPublicosHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
+	subcuencasHandler = new AlphanumericTableHandler(SubcuencasForm.NAME,
+		getWidgetComponents(), PKFIELD, SubcuencasForm.colNames,
+		SubcuencasForm.colAlias);
+	cargosPublicosHandler = new AlphanumericTableHandler(
 		CargosPublicosForm.NAME, getWidgetComponents(), PKFIELD,
 		CargosPublicosForm.colNames, CargosPublicosForm.colAlias);
-	ongsHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
-		OngsForm.NAME, getWidgetComponents(), PKFIELD,
-		OngsForm.colNames, OngsForm.colAlias);
+	ongsHandler = new AlphanumericTableHandler(OngsForm.NAME,
+		getWidgetComponents(), PKFIELD, OngsForm.colNames,
+		OngsForm.colAlias);
 	otrasOrganizacionesHandler = new AlphanumericTableHandler(
-		FonsaguaConstants.dataSchema, OtrasOrganizacionesForm.NAME,
-		getWidgetComponents(), PKFIELD,
+		OtrasOrganizacionesForm.NAME, getWidgetComponents(), PKFIELD,
 		OtrasOrganizacionesForm.colNames,
 		OtrasOrganizacionesForm.colAlias);
-	tiposCultivosHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
+	tiposCultivosHandler = new AlphanumericTableHandler(
 		TiposCultivosForm.NAME, getWidgetComponents(), PKFIELD,
 		TiposCultivosForm.colNames, TiposCultivosForm.colAlias);
 	produccionConsumoHandler = new AlphanumericTableHandler(
-		FonsaguaConstants.dataSchema, ProduccionConsumoForm.NAME,
-		getWidgetComponents(), PKFIELD, ProduccionConsumoForm.colNames,
-		ProduccionConsumoForm.colAlias);
-	ganaderiaHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
-		GanaderiaForm.NAME, getWidgetComponents(), PKFIELD,
-		GanaderiaForm.colNames, GanaderiaForm.colAlias);
-	cooperativasHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
+		ProduccionConsumoForm.NAME, getWidgetComponents(), PKFIELD,
+		ProduccionConsumoForm.colNames, ProduccionConsumoForm.colAlias);
+	ganaderiaHandler = new AlphanumericTableHandler(GanaderiaForm.NAME,
+		getWidgetComponents(), PKFIELD, GanaderiaForm.colNames,
+		GanaderiaForm.colAlias);
+	cooperativasHandler = new AlphanumericTableHandler(
 		CooperativasForm.NAME, getWidgetComponents(), PKFIELD,
 		CooperativasForm.colNames, CooperativasForm.colAlias);
 	capacitacionesRiesgosHandler = new AlphanumericTableHandler(
-		FonsaguaConstants.dataSchema, CapacitacionesRiesgosForm.NAME,
-		getWidgetComponents(), PKFIELD,
+		CapacitacionesRiesgosForm.NAME, getWidgetComponents(), PKFIELD,
 		CapacitacionesRiesgosForm.colNames,
 		CapacitacionesRiesgosForm.colAlias);
 	implicacionComunidadHandler = new AlphanumericTableHandler(
-		FonsaguaConstants.dataSchema, ImplicacionComunidadForm.NAME,
-		getWidgetComponents(), PKFIELD,
+		ImplicacionComunidadForm.NAME, getWidgetComponents(), PKFIELD,
 		ImplicacionComunidadForm.colNames,
 		ImplicacionComunidadForm.colAlias);
 	valoracionSistemaHandler = new AlphanumericTableHandler(
-		FonsaguaConstants.dataSchema, ValoracionSistemaForm.NAME,
-		getWidgetComponents(), PKFIELD, ValoracionSistemaForm.colNames,
-		ValoracionSistemaForm.colAlias);
-	datosConsumoHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
+		ValoracionSistemaForm.NAME, getWidgetComponents(), PKFIELD,
+		ValoracionSistemaForm.colNames, ValoracionSistemaForm.colAlias);
+	datosConsumoHandler = new AlphanumericTableHandler(
 		DatosConsumoForm.NAME, getWidgetComponents(), PKFIELD,
 		DatosConsumoForm.colNames, DatosConsumoForm.colAlias);
-	habitosConsumoHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
+	habitosConsumoHandler = new AlphanumericTableHandler(
 		HabitosConsumoForm.NAME, getWidgetComponents(), PKFIELD,
 		HabitosConsumoForm.colNames, HabitosConsumoForm.colAlias);
 	fuentesContaminacionHandler = new VectorialTableHandler(

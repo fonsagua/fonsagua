@@ -46,23 +46,21 @@ public class AbastecimientosForm extends BasicAbstractForm {
     public AbastecimientosForm(FLyrVect layer) {
 	super(layer);
 
-	juntasAguaHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
-		JuntasAguaForm.NAME, getWidgetComponents(), PKFIELD,
-		JuntasAguaForm.colNames, JuntasAguaForm.colAlias);
-	coberturaHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
-		CoberturaForm.NAME, getWidgetComponents(), PKFIELD,
+	juntasAguaHandler = new AlphanumericTableHandler(JuntasAguaForm.NAME,
+		getWidgetComponents(), PKFIELD, JuntasAguaForm.colNames,
+		JuntasAguaForm.colAlias);
+	coberturaHandler = new AlphanumericTableHandler(CoberturaForm.NAME,
+		getWidgetComponents(), PKFIELD,
 		CoberturaForm.colNames, CoberturaForm.colAlias);
 	gestionComercialHandler = new AlphanumericTableHandler(
-		FonsaguaConstants.dataSchema, GestComercialForm.NAME,
-		getWidgetComponents(), PKFIELD, GestComercialForm.colNames,
-		GestComercialForm.colAlias);
+		GestComercialForm.NAME, getWidgetComponents(), PKFIELD,
+		GestComercialForm.colNames, GestComercialForm.colAlias);
 	gestionFinancieraHandler = new AlphanumericTableHandler(
-		FonsaguaConstants.dataSchema, GestFinancieraForm.NAME,
-		getWidgetComponents(), PKFIELD, GestFinancieraForm.colNames,
-		GestFinancieraForm.colAlias);
-	evaluacionHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
-		EvaluacionForm.NAME, getWidgetComponents(), PKFIELD,
-		EvaluacionForm.colNames, EvaluacionForm.colAlias);
+		GestFinancieraForm.NAME, getWidgetComponents(), PKFIELD,
+		GestFinancieraForm.colNames, GestFinancieraForm.colAlias);
+	evaluacionHandler = new AlphanumericTableHandler(EvaluacionForm.NAME,
+		getWidgetComponents(), PKFIELD, EvaluacionForm.colNames,
+		EvaluacionForm.colAlias);
 	captacionesHandler = new VectorialTableHandler(CaptacionesForm.NAME,
 		getWidgetComponents(), PKFIELD, CaptacionesForm.colNames,
 		CaptacionesForm.colAlias);

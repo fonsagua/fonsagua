@@ -25,12 +25,12 @@ public class FuentesForm extends BasicAbstractForm {
 
     public FuentesForm(FLyrVect layer) {
 	super(layer);
-	aforosHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
-		AforosForm.NAME, getWidgetComponents(), PKFIELD,
-		AforosForm.colNames, AforosForm.colAlias);
-	analiticasHandler = new AlphanumericTableHandler(FonsaguaConstants.dataSchema,
-		AnaliticasForm.NAME, getWidgetComponents(), PKFIELD,
-		AnaliticasForm.colNames, AnaliticasForm.colAlias);
+	aforosHandler = new AlphanumericTableHandler(AforosForm.NAME,
+		getWidgetComponents(), PKFIELD, AforosForm.colNames,
+		AforosForm.colAlias);
+	analiticasHandler = new AlphanumericTableHandler(AnaliticasForm.NAME,
+		getWidgetComponents(), PKFIELD, AnaliticasForm.colNames,
+		AnaliticasForm.colAlias);
 	FonsaguaFormFactory.getInstance().checkLayerLoaded(
 		AbastecimientosForm.NAME);
 	abastecimientosRelationship = new VectorialEditableNNRelTableHandler(
