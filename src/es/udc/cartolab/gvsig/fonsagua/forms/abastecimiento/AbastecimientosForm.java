@@ -14,7 +14,6 @@ import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.DatosConsumoForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ImplicacionComunidadForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ValoracionSistemaForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
-import es.udc.cartolab.gvsig.navtable.listeners.PositionEvent;
 
 @SuppressWarnings("serial")
 public class AbastecimientosForm extends BasicAbstractForm {
@@ -24,155 +23,75 @@ public class AbastecimientosForm extends BasicAbstractForm {
     public static String[] colNames = { "abastecimiento", "cod_abastecimiento" };
     public static String[] colAlias = { "Abastecimiento", "Código" };
 
-    private AlphanumericTableHandler juntasAguaHandler;
-    private AlphanumericTableHandler coberturaHandler;
-    private AlphanumericTableHandler gestionComercialHandler;
-    private AlphanumericTableHandler gestionFinancieraHandler;
-    private AlphanumericTableHandler evaluacionHandler;
-    private VectorialTableHandler captacionesHandler;
-    private VectorialTableHandler depIntermediosHandler;
-    private VectorialTableHandler depDistribucionHandler;
-    private VectorialTableHandler tuberiasHandler;
-    private VectorialTableHandler bombeosHandler;
-    private AlphanumericNotEditableNNRelTableHandler adescosHandler;
-    private AlphanumericNotEditableNNRelTableHandler implicacionComunidadHandler;
-    private AlphanumericNotEditableNNRelTableHandler datosConsumoHandler;
-    private AlphanumericNotEditableNNRelTableHandler valoracionSistemaHandler;
-    private VectorialEditableNNRelTableHandler comunidadesRelationship;
-    private VectorialEditableNNRelTableHandler fuentesRelationship;
-
     public AbastecimientosForm(FLyrVect layer) {
 	super(layer);
 
-	juntasAguaHandler = new AlphanumericTableHandler(JuntasAguaForm.NAME,
+	addTableHandler(new AlphanumericTableHandler(JuntasAguaForm.NAME,
 		getWidgetComponents(), PKFIELD, JuntasAguaForm.colNames,
-		JuntasAguaForm.colAlias);
-	coberturaHandler = new AlphanumericTableHandler(CoberturaForm.NAME,
-		getWidgetComponents(), PKFIELD,
-		CoberturaForm.colNames, CoberturaForm.colAlias);
-	gestionComercialHandler = new AlphanumericTableHandler(
-		GestComercialForm.NAME, getWidgetComponents(), PKFIELD,
-		GestComercialForm.colNames, GestComercialForm.colAlias);
-	gestionFinancieraHandler = new AlphanumericTableHandler(
-		GestFinancieraForm.NAME, getWidgetComponents(), PKFIELD,
-		GestFinancieraForm.colNames, GestFinancieraForm.colAlias);
-	evaluacionHandler = new AlphanumericTableHandler(EvaluacionForm.NAME,
+		JuntasAguaForm.colAlias));
+	addTableHandler(new AlphanumericTableHandler(CoberturaForm.NAME,
+		getWidgetComponents(), PKFIELD, CoberturaForm.colNames,
+		CoberturaForm.colAlias));
+	addTableHandler(new AlphanumericTableHandler(GestComercialForm.NAME,
+		getWidgetComponents(), PKFIELD, GestComercialForm.colNames,
+		GestComercialForm.colAlias));
+	addTableHandler(new AlphanumericTableHandler(GestFinancieraForm.NAME,
+		getWidgetComponents(), PKFIELD, GestFinancieraForm.colNames,
+		GestFinancieraForm.colAlias));
+	addTableHandler(new AlphanumericTableHandler(EvaluacionForm.NAME,
 		getWidgetComponents(), PKFIELD, EvaluacionForm.colNames,
-		EvaluacionForm.colAlias);
-	captacionesHandler = new VectorialTableHandler(CaptacionesForm.NAME,
+		EvaluacionForm.colAlias));
+	addTableHandler(new VectorialTableHandler(CaptacionesForm.NAME,
 		getWidgetComponents(), PKFIELD, CaptacionesForm.colNames,
-		CaptacionesForm.colAlias);
-	depIntermediosHandler = new VectorialTableHandler(
-		DepIntermediosForm.NAME, getWidgetComponents(), PKFIELD,
-		DepIntermediosForm.colNames, DepIntermediosForm.colAlias);
-	depDistribucionHandler = new VectorialTableHandler(
-		DepDistribucionForm.NAME, getWidgetComponents(), PKFIELD,
-		DepDistribucionForm.colNames,
-		DepDistribucionForm.colAlias);
-	tuberiasHandler = new VectorialTableHandler(TuberiasForm.NAME,
+		CaptacionesForm.colAlias));
+	addTableHandler(new VectorialTableHandler(DepIntermediosForm.NAME,
+		getWidgetComponents(), PKFIELD, DepIntermediosForm.colNames,
+		DepIntermediosForm.colAlias));
+	addTableHandler(new VectorialTableHandler(DepDistribucionForm.NAME,
+		getWidgetComponents(), PKFIELD, DepDistribucionForm.colNames,
+		DepDistribucionForm.colAlias));
+	addTableHandler(new VectorialTableHandler(TuberiasForm.NAME,
 		getWidgetComponents(), PKFIELD, TuberiasForm.colNames,
-		TuberiasForm.colAlias);
-	bombeosHandler = new VectorialTableHandler(BombeosForm.NAME,
+		TuberiasForm.colAlias));
+	addTableHandler(new VectorialTableHandler(BombeosForm.NAME,
 		getWidgetComponents(), PKFIELD, BombeosForm.colNames,
-		BombeosForm.colAlias);
-	comunidadesRelationship = new VectorialEditableNNRelTableHandler(ComunidadesForm.NAME,
-		getWidgetComponents(), FonsaguaConstants.dataSchema, PKFIELD,
+		BombeosForm.colAlias));
+	addTableHandler(new VectorialEditableNNRelTableHandler(
+		ComunidadesForm.NAME, getWidgetComponents(),
+		FonsaguaConstants.dataSchema, PKFIELD,
 		"r_abastecimientos_comunidades", ComunidadesForm.PKFIELD,
-		ComunidadesForm.colNames, ComunidadesForm.colAlias);
-	fuentesRelationship = new VectorialEditableNNRelTableHandler(FuentesForm.NAME,
-		getWidgetComponents(), FonsaguaConstants.dataSchema, PKFIELD,
+		ComunidadesForm.colNames, ComunidadesForm.colAlias));
+	addTableHandler(new VectorialEditableNNRelTableHandler(
+		FuentesForm.NAME, getWidgetComponents(),
+		FonsaguaConstants.dataSchema, PKFIELD,
 		"r_abastecimientos_fuentes", FuentesForm.PKFIELD,
-		FuentesForm.colNames, FuentesForm.colAlias);
-	adescosHandler = new AlphanumericNotEditableNNRelTableHandler(
+		FuentesForm.colNames, FuentesForm.colAlias));
+	addTableHandler(new AlphanumericNotEditableNNRelTableHandler(
 		AdescosForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, PKFIELD,
 		"r_abastecimientos_comunidades", ComunidadesForm.PKFIELD,
-		AdescosForm.colNames, AdescosForm.colAlias);
-	implicacionComunidadHandler = new AlphanumericNotEditableNNRelTableHandler(
+		AdescosForm.colNames, AdescosForm.colAlias));
+	addTableHandler(new AlphanumericNotEditableNNRelTableHandler(
 		ImplicacionComunidadForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, PKFIELD,
 		"r_abastecimientos_comunidades", ComunidadesForm.PKFIELD,
 		ImplicacionComunidadForm.colNames,
-		ImplicacionComunidadForm.colAlias);
-	datosConsumoHandler = new AlphanumericNotEditableNNRelTableHandler(
+		ImplicacionComunidadForm.colAlias));
+	addTableHandler(new AlphanumericNotEditableNNRelTableHandler(
 		DatosConsumoForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, PKFIELD,
 		"r_abastecimientos_comunidades", ComunidadesForm.PKFIELD,
-		DatosConsumoForm.colNames, DatosConsumoForm.colAlias);
-	valoracionSistemaHandler = new AlphanumericNotEditableNNRelTableHandler(
+		DatosConsumoForm.colNames, DatosConsumoForm.colAlias));
+	addTableHandler(new AlphanumericNotEditableNNRelTableHandler(
 		ValoracionSistemaForm.NAME, getWidgetComponents(),
 		FonsaguaConstants.dataSchema, PKFIELD,
 		"r_abastecimientos_comunidades", ComunidadesForm.PKFIELD,
-		ValoracionSistemaForm.colNames, ValoracionSistemaForm.colAlias);
+		ValoracionSistemaForm.colNames, ValoracionSistemaForm.colAlias));
     }
 
     @Override
-    protected void fillSpecificValues() {
-	final String codAbastecimiento = getFormController().getValue(PKFIELD);
-	juntasAguaHandler.fillValues(codAbastecimiento);
-	coberturaHandler.fillValues(codAbastecimiento);
-	gestionComercialHandler.fillValues(codAbastecimiento);
-	gestionFinancieraHandler.fillValues(codAbastecimiento);
-	evaluacionHandler.fillValues(codAbastecimiento);
-	captacionesHandler.fillValues(codAbastecimiento);
-	depIntermediosHandler.fillValues(codAbastecimiento);
-	depDistribucionHandler.fillValues(codAbastecimiento);
-	tuberiasHandler.fillValues(codAbastecimiento);
-	bombeosHandler.fillValues(codAbastecimiento);
-	comunidadesRelationship.fillValues(codAbastecimiento);
-	fuentesRelationship.fillValues(codAbastecimiento);
-	adescosHandler.fillValues(codAbastecimiento);
-	implicacionComunidadHandler.fillValues(codAbastecimiento);
-	datosConsumoHandler.fillValues(codAbastecimiento);
-	valoracionSistemaHandler.fillValues(codAbastecimiento);
-    }
-
-    @Override
-    protected void setListeners() {
-	super.setListeners();
-	juntasAguaHandler.reload(new JuntasAguaForm());
-	coberturaHandler.reload(new CoberturaForm());
-	gestionComercialHandler.reload(new GestComercialForm());
-	gestionFinancieraHandler.reload(new GestFinancieraForm());
-	evaluacionHandler.reload(new EvaluacionForm());
-	captacionesHandler.reload();
-	depIntermediosHandler.reload();
-	depDistribucionHandler.reload();
-	tuberiasHandler.reload();
-	bombeosHandler.reload();
-	comunidadesRelationship.reload();
-	fuentesRelationship.reload();
-	adescosHandler.reload(new AdescosForm());
-	implicacionComunidadHandler.reload(new ImplicacionComunidadForm());
-	datosConsumoHandler.reload(new DatosConsumoForm());
-	valoracionSistemaHandler.reload(new ValoracionSistemaForm());
-    }
-
-    @Override
-    protected void removeListeners() {
-	super.removeListeners();
-	juntasAguaHandler.removeListeners();
-	coberturaHandler.removeListeners();
-	gestionComercialHandler.removeListeners();
-	gestionFinancieraHandler.removeListeners();
-	evaluacionHandler.removeListeners();
-	captacionesHandler.removeListeners();
-	depIntermediosHandler.removeListeners();
-	depDistribucionHandler.removeListeners();
-	tuberiasHandler.removeListeners();
-	bombeosHandler.removeListeners();
-	comunidadesRelationship.removeListeners();
-	fuentesRelationship.removeListeners();
-	adescosHandler.removeListeners();
-	implicacionComunidadHandler.removeListeners();
-	datosConsumoHandler.removeListeners();
-	valoracionSistemaHandler.removeListeners();
-    }
-
-    @Override
-    public void onPositionChange(PositionEvent e) {
-	super.onPositionChange(e);
-	fillSpecificValues();
+    protected String getPrimaryKeyValue() {
+	return getFormController().getValue(PKFIELD);
     }
 
     @Override
