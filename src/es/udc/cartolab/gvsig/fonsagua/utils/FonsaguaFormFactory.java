@@ -1,33 +1,15 @@
 package es.udc.cartolab.gvsig.fonsagua.utils;
 
-import java.beans.PropertyVetoException;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.swing.JInternalFrame;
-
-import com.hardcode.driverManager.DriverLoadException;
-import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
-import com.hardcode.gdbms.engine.data.DataSource;
-import com.hardcode.gdbms.engine.data.DataSourceFactory;
-import com.hardcode.gdbms.engine.data.NoSuchTableException;
-import com.iver.andami.PluginServices;
-import com.iver.andami.ui.mdiManager.IWindow;
-import com.iver.cit.gvsig.ProjectExtension;
-import com.iver.cit.gvsig.fmap.edition.EditableAdapter;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
-import com.iver.cit.gvsig.fmap.layers.LayerFactory;
-import com.iver.cit.gvsig.fmap.layers.SelectableDataSource;
-import com.iver.cit.gvsig.project.ProjectFactory;
-import com.iver.cit.gvsig.project.documents.table.ProjectTable;
-import com.iver.cit.gvsig.project.documents.table.gui.Table;
-import com.iver.cit.gvsig.project.documents.view.gui.BaseView;
 
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
+import es.icarto.gvsig.navtableforms.utils.DBConnectionBaseFormFactory;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
-import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
 import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.BombeosForm;
@@ -70,9 +52,8 @@ import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.AforosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.AnaliticasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.SingletonFuentesForm;
-import es.udc.cartolab.gvsig.users.utils.DBSession;
 
-public class FonsaguaFormFactory extends FormFactory {
+public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 
     private static FonsaguaFormFactory instance = null;
 
@@ -240,93 +221,15 @@ public class FonsaguaFormFactory extends FormFactory {
     }
 
     @Override
-    public void checkLayerLoaded(String layerName) {
-	// We check whether the secondary layer is loaded
-	if (new TOCLayerManager().getLayerByName(layerName) == null) {
-	    // If it isn't, we retrieve the current view,
-	    // load the layer and add it
-	    IWindow[] windows = PluginServices.getMDIManager()
-		    .getOrderedWindows();
-	    BaseView view = null;
-	    for (IWindow w : windows) {
-		if (w instanceof BaseView) {
-		    view = (BaseView) w;
-		    break;
-		}
-	    }
-	    try {
-		view.getMapControl()
-			.getMapContext()
-			.getLayers()
-			.addLayer(
-				DBSession.getCurrentSession().getLayer(
-					layerName, layerName,
-					FonsaguaConstants.dataSchema, null,
-					view.getProjection()));
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
-	}
+    public void loadLayer(String layerName) {
+	loadLayer(layerName, FonsaguaConstants.dataSchema);
+
     }
 
     @Override
-    public void checkTableLoaded(String tableName) {
-	try {
-	    TOCTableManager toc = new TOCTableManager();
-	    if (toc.getTableByName(tableName) == null) {
-		loadTable(FonsaguaConstants.dataSchema,
-			tableName);
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
-    }
+    public void loadTable(String tableName) {
+	loadTable(tableName, FonsaguaConstants.dataSchema);
 
-    public static void loadTable(String schema, String tableName)
-	    throws DriverLoadException, NoSuchTableException,
-	    ReadDriverException, PropertyVetoException {
-
-	IWindow[] ws = PluginServices.getMDIManager().getAllWindows();
-	IWindow baseView = null;
-	for (IWindow w : ws) {
-	    if (w instanceof BaseView) {
-		baseView = w;
-	    }
-	}
-	DBSession session = DBSession.getCurrentSession();
-
-	String completeTableName = schema + "." + tableName;
-
-	LayerFactory.getDataSourceFactory().addDBDataSourceByTable(tableName,
-		session.getServer(), session.getPort(), session.getUserName(),
-		session.getPassword(), session.getDatabase(),
-		completeTableName, "PostgreSQL Alphanumeric");
-
-	DataSource dataSource;
-	dataSource = LayerFactory.getDataSourceFactory()
-		.createRandomDataSource(tableName,
-			DataSourceFactory.AUTOMATIC_OPENING);
-	SelectableDataSource sds = new SelectableDataSource(dataSource);
-	EditableAdapter auxea = new EditableAdapter();
-
-	auxea.setOriginalDataSource(sds);
-
-	ProjectTable projectTable = ProjectFactory
-		.createTable(tableName, auxea);
-	Table t = new Table();
-	t.setModel(projectTable);
-
-	PluginServices.getMDIManager().addWindow(t);
-	JInternalFrame frame = (JInternalFrame) t.getRootPane().getParent();
-
-	ProjectExtension ext = (ProjectExtension) PluginServices
-		.getExtension(ProjectExtension.class);
-	ext.getProject().addDocument(projectTable);
-	frame.toBack();
-	frame.setSelected(false);
-	JInternalFrame frameBaseView = (JInternalFrame) ((BaseView) baseView)
-		.getRootPane().getParent();
-	frameBaseView.setSelected(true);
     }
 
 }
