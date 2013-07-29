@@ -43,6 +43,15 @@
 		</ENABLEIF>
 	    </FIELD>
        	    <FIELD>
+		<FIELDNAME>juntas_agua</FIELDNAME>
+		<ENABLEIF>
+			<CONDITION>
+				<COMPONENT>h_juntas_agua</COMPONENT>
+				<VALUE>true</VALUE>
+			</CONDITION>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
 		<FIELDNAME>h_adescos</FIELDNAME>
 		<ENABLEIF>
 			<CONDITION>
@@ -52,6 +61,15 @@
 			<CONDITION>
 				<COMPONENT>h_juntas_agua</COMPONENT>
 				<VALUE>false</VALUE>
+			</CONDITION>
+		</ENABLEIF>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>adescos</FIELDNAME>
+		<ENABLEIF>
+			<CONDITION>
+				<COMPONENT>h_adescos</COMPONENT>
+				<VALUE>true</VALUE>
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
