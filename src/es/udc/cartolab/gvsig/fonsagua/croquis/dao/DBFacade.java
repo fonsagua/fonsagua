@@ -11,20 +11,12 @@ public class DBFacade {
     private Connection connection;
 
     public DBFacade() {
-	String server = DBSession.getCurrentSession().getServer();
-	int port = DBSession.getCurrentSession().getPort();
-	String database = DBSession.getCurrentSession().getDatabase();
-
-	String url = "jdbc:postgresql://" + server + ":" + port + "/"
-		+ database;
+	String url = DBSession.getCurrentSession().getConnectionString();
 	String user = DBSession.getCurrentSession().getUserName();
 	String passwd = DBSession.getCurrentSession().getPassword();
 
 	try {
-	    Class.forName("org.postgresql.Driver");
 	    connection = DriverManager.getConnection(url, user, passwd);
-	} catch (ClassNotFoundException e) {
-	    e.printStackTrace();
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}

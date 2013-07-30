@@ -11,9 +11,10 @@ import javax.swing.JOptionPane;
 
 import com.iver.andami.PluginServices;
 
-import es.udc.cartolab.gvsig.fonsagua.croquis.dao.DBFacade;
 import es.udc.cartolab.gvsig.fonsagua.croquis.dao.ICroquisDAO;
 import es.udc.cartolab.gvsig.fonsagua.croquis.dao.PostgresCroquisDAO;
+import es.udc.cartolab.gvsig.fonsagua.croquis.dao.SQLiteCroquisDAO;
+import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class AddCroquisListener implements ActionListener {
 
@@ -23,13 +24,25 @@ public class AddCroquisListener implements ActionListener {
 
     public AddCroquisListener(String comunidadId) {
 	this.comunidadId = comunidadId;
-	dao = new PostgresCroquisDAO();
+	connection = DBSession.getCurrentSession().getJavaConnection();
+	String driver = DBSession.getCurrentSession().getDriverName();
+	if (driver.equals("SpatiaLite JDBC Driver")
+		|| driver.equals("SQLite Alphanumeric")) {
+	    try {
+		connection.commit();
+	    } catch (SQLException e) {
+		// Probably there was no commit created
+	    }
+	    dao = new SQLiteCroquisDAO();
+	} else {
+	    dao = new PostgresCroquisDAO();
+	}
     }
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-	DBFacade dbFacade = new DBFacade();
-	connection = dbFacade.getConnection();
+	Connection connection = DBSession.getCurrentSession()
+		.getJavaConnection();
 
 	if (hasAlreadyCroquis()) {
 	    Object[] overwriteCroquisOptions = {
@@ -47,11 +60,6 @@ public class AddCroquisListener implements ActionListener {
 	    }
 	} else {
 	    addCroquis(false);
-	}
-	try {
-	    connection.close();
-	} catch (SQLException e) {
-	    e.printStackTrace();
 	}
     }
 

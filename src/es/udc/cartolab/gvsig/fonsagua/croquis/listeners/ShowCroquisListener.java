@@ -16,10 +16,11 @@ import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.andami.ui.mdiManager.WindowInfo;
 
-import es.udc.cartolab.gvsig.fonsagua.croquis.dao.DBFacade;
 import es.udc.cartolab.gvsig.fonsagua.croquis.dao.ICroquisDAO;
 import es.udc.cartolab.gvsig.fonsagua.croquis.dao.PostgresCroquisDAO;
+import es.udc.cartolab.gvsig.fonsagua.croquis.dao.SQLiteCroquisDAO;
 import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
+import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class ShowCroquisListener implements ActionListener {
 
@@ -29,15 +30,19 @@ public class ShowCroquisListener implements ActionListener {
 
     public ShowCroquisListener(String comunidadId) {
 	this.comunidadId = comunidadId;
-	dao = new PostgresCroquisDAO();
+	connection = DBSession.getCurrentSession().getJavaConnection();
+	String driver = DBSession.getCurrentSession().getDriverName();
+	if (driver.equals("SpatiaLite JDBC Driver")
+		|| driver.equals("SQLite Alphanumeric")) {
+	    dao = new SQLiteCroquisDAO();
+	} else {
+	    dao = new PostgresCroquisDAO();
+	}
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 	try {
-	    DBFacade dbFacade = new DBFacade();
-	    connection = dbFacade.getConnection();
-
 	    @SuppressWarnings("serial")
 	    class CroquisWindow extends JPanel implements IWindow {
 
@@ -75,12 +80,6 @@ public class ShowCroquisListener implements ActionListener {
 	    }
 	} catch (SQLException e1) {
 	    e1.printStackTrace();
-	} finally {
-	    try {
-		connection.close();
-	    } catch (SQLException e1) {
-		e1.printStackTrace();
-	    }
 	}
 
     }
