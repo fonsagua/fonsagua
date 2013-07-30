@@ -26,6 +26,7 @@ import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
+import es.udc.cartolab.gvsig.users.utils.DBSessionPostGIS;
 
 public class TestTableRelationship {
 
@@ -37,7 +38,7 @@ public class TestTableRelationship {
     public static void doSetupBeforeClass() {
 	initgvSIGDrivers();
 	try {
-	    connection = DBSession.createConnection(
+	    connection = DBSessionPostGIS.createConnection(
 		    DataBaseProperties.server,
 		    DataBaseProperties.port, DataBaseProperties.dbname, null,
 		    DataBaseProperties.superuser, "postgres");
@@ -80,7 +81,7 @@ public class TestTableRelationship {
 	} catch (SQLException e) {
 	    try {
 		connection.close();
-		connection = DBSession.createConnection(
+		connection = DBSessionPostGIS.createConnection(
 			DataBaseProperties.server, DataBaseProperties.port,
 			DataBaseProperties.dbname, null,
 			DataBaseProperties.superuser, "postgres");

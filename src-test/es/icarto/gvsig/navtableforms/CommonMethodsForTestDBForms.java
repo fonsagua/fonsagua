@@ -36,6 +36,7 @@ import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.rules.ValidationRul
 import es.icarto.gvsig.navtableforms.ormlite.domainvalues.DomainValues;
 import es.icarto.gvsig.navtableforms.utils.AbeilleParser;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
+import es.udc.cartolab.gvsig.users.utils.DBSessionPostGIS;
 
 public abstract class CommonMethodsForTestDBForms {
 
@@ -48,7 +49,7 @@ public abstract class CommonMethodsForTestDBForms {
     public static void doSetupBeforeClass() {
 	initgvSIGDrivers();
 	try {
-	    DBSession.createConnection(DataBaseProperties.server,
+	    DBSessionPostGIS.createConnection(DataBaseProperties.server,
 		    DataBaseProperties.port, DataBaseProperties.dbname, null,
 		    DataBaseProperties.superuser, "postgres");
 	} catch (DBException e) {
