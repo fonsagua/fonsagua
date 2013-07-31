@@ -201,6 +201,12 @@ CREATE OR REPLACE FUNCTION fonsagua.comunidades_compute_fields_trigger() RETURNS
 		NEW.f_terciario = NEW.f_terciario * 100 / NEW.n_familias;
 	ELSE NEW.f_terciario = NULL; END IF;
 
+
+	NEW.area_cultivada = 0;
+	IF (NEW.f_propietarias IS NOT NULL AND NEW.prop_area_cultivada IS NOT NULL) THEN NEW.area_cultivada = NEW.f_propietarias*NEW.prop_area_cultivada; END IF;
+	IF (NEW.f_arrendatarias IS NOT NULL AND NEW.arre_area_cultivada IS NOT NULL) THEN NEW.area_cultivada = NEW.area_cultivada + NEW.f_arrendatarias*NEW.arre_area_cultivada; END IF;
+	IF (NEW.f_medias IS NOT NULL AND NEW.med_area_cultivada IS NOT NULL) THEN NEW.area_cultivada = NEW.area_cultivada + NEW.f_medias*NEW.med_area_cultivada; END IF;
+
 	NEW.tot_s_abast = 0;
 	IF (NEW.aba_s_cantareras IS NOT NULL) THEN NEW.tot_s_abast = NEW.tot_s_abast + NEW.aba_s_cantareras; END IF;
 	IF (NEW.aba_s_domiciliar IS NOT NULL) THEN NEW.tot_s_abast = NEW.tot_s_abast + NEW.aba_s_domiciliar; END IF;
@@ -232,7 +238,7 @@ CREATE OR REPLACE FUNCTION fonsagua.comunidades_compute_fields_trigger() RETURNS
 	IF ((NEW.f_indus_for IS NOT NULL) AND (NEW.f_indus_inf IS NOT NULL)) THEN NEW.f_industria = NEW.f_indus_for + NEW.f_indus_inf; END IF;
 	IF ((NEW.f_const_for IS NOT NULL) AND (NEW.f_const_inf IS NOT NULL)) THEN NEW.f_construccion = NEW.f_const_for + NEW.f_const_inf; END IF;
 	IF ((NEW.f_comer_for IS NOT NULL) AND (NEW.f_comer_inf IS NOT NULL)) THEN NEW.f_comercio = NEW.f_comer_for + NEW.f_comer_inf; END IF;
-	
+
         RETURN NEW;
     END;
 $comunidades_compute_fields_trigger$ LANGUAGE plpgsql;
@@ -401,7 +407,7 @@ CREATE TRIGGER datos_consumo_compute_consumo_trigger
 AFTER INSERT OR UPDATE OR DELETE ON fonsagua.datos_consumo
     FOR EACH ROW EXECUTE PROCEDURE fonsagua.datos_consumo_compute_consumo_trigger();
 
-    
+
 
 
 CREATE OR REPLACE FUNCTION fonsagua.adescos_compute_numero_trigger() RETURNS TRIGGER AS $adescos_compute_numero_trigger$
@@ -417,7 +423,7 @@ CREATE TRIGGER adescos_compute_numero_trigger
 AFTER INSERT OR UPDATE OR DELETE ON fonsagua.adescos
     FOR EACH ROW EXECUTE PROCEDURE fonsagua.adescos_compute_numero_trigger();
 
-    
+
 
 
 CREATE OR REPLACE FUNCTION fonsagua.produccion_consumo_compute_produccion_consumo_trigger() RETURNS TRIGGER AS $produccion_consumo_compute_produccion_consumo_trigger$
@@ -432,7 +438,7 @@ DROP TRIGGER IF EXISTS produccion_consumo_compute_produccion_consumo_trigger ON 
 CREATE TRIGGER produccion_consumo_compute_produccion_consumo_trigger
 AFTER INSERT OR UPDATE OR DELETE ON fonsagua.produccion_consumo
     FOR EACH ROW EXECUTE PROCEDURE fonsagua.produccion_consumo_compute_produccion_consumo_trigger();
-    
+
 
 
 
