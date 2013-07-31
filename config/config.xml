@@ -16,51 +16,56 @@
 		</extension>
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsMenuExtension" active="true">
-			<menu text="fonsagua_menu/abastecimientos"
+		
+			<menu text="fonsagua_menu/inventario/abastecimientos/abastecimientos"
 				action-command="abastecimientos"
 				position="1"/>
-			<menu text="fonsagua_menu/amenazas"
-				action-command="amenazas"
-				position="2"/>
-			<menu text="fonsagua_menu/areas_potenciales_riego"
-				action-command="areas_potenciales_riego"
-				position="3"/>
-			<menu text="fonsagua_menu/bombeos"
-				action-command="bombeos"
-				position="4"/>
-			<menu text="fonsagua_menu/captaciones"
+				<menu text="fonsagua_menu/inventario/abastecimientos/captaciones"
 				action-command="captaciones"
-				position="5"/>
-			<menu text="fonsagua_menu/centros_educativos"
-				action-command="centros_educativos"
-				position="6"/>
-			<menu text="fonsagua_menu/centros_salud"
-				action-command="centros_salud"
-				position="7"/>
-			<menu text="fonsagua_menu/comunidades"
-				action-command="comunidades"
-				position="8"/>
-			<menu text="fonsagua_menu/dep_distribucion"
+				position="2"/>
+			<menu text="fonsagua_menu/inventario/abastecimientos/dep_distribucion"
 				action-command="dep_distribucion"
-				position="9"/>
-			<menu text="fonsagua_menu/dep_intermedios"
+				position="3"/>		
+			<menu text="fonsagua_menu/inventario/abastecimientos/dep_intermedios"
 				action-command="dep_intermedios"
-				position="10"/>
-			<menu text="fonsagua_menu/fuentes"
-				action-command="fuentes"
-				position="11"/>
-			<menu text="fonsagua_menu/fuentes_contaminacion"
-				action-command="fuentes_contaminacion"
-				position="12"/>
-			<menu text="fonsagua_menu/otros_servicios"
-				action-command="otros_servicios"
-				position="13"/>
-			<menu text="fonsagua_menu/puntos_viviendas"
-				action-command="puntos_viviendas"
-				position="14"/>
-			<menu text="fonsagua_menu/tuberias"
+				position="4"/>
+			<menu text="fonsagua_menu/inventario/abastecimientos/tuberias"
 				action-command="tuberias"
-				position="15"/>
+				position="5"/>
+			<menu text="fonsagua_menu/inventario/abastecimientos/bombeos"
+				action-command="bombeos"
+				position="6"/>
+					
+			<menu text="fonsagua_menu/inventario/comunidades/comunidades"
+				action-command="comunidades"
+				position="1"/>
+			<menu text="fonsagua_menu/inventario/comunidades/puntos_viviendas"
+				action-command="puntos_viviendas"
+				position="2"/>
+			<menu text="fonsagua_menu/inventario/comunidades/centros_educativos"
+				action-command="centros_educativos"
+				position="3"/>	
+			<menu text="fonsagua_menu/inventario/comunidades/centros_salud"
+				action-command="centros_salud"
+				position="4"/>
+			<menu text="fonsagua_menu/inventario/comunidades/otros_servicios"
+				action-command="otros_servicios"
+				position="5"/>			
+			<menu text="fonsagua_menu/inventario/comunidades/amenazas"
+				action-command="amenazas"
+				position="6"/>
+			<menu text="fonsagua_menu/inventario/comunidades/areas_potenciales_riego"
+				action-command="areas_potenciales_riego"
+				position="7"/>
+			<menu text="fonsagua_menu/inventario/comunidades/fuentes_contaminacion"
+				action-command="fuentes_contaminacion"
+				position="8"/>
+			
+			<menu text="fonsagua_menu/inventario/fuentes"
+				action-command="fuentes"
+				position="1"/>
+				
+			
 		</extension>
 
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.AutoFormsExtension" active="true">
