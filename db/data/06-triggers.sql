@@ -43,7 +43,7 @@ BEFORE INSERT OR UPDATE ON fonsagua.adescos
 
 CREATE OR REPLACE FUNCTION fonsagua.amenazas_compute_fields_trigger() RETURNS TRIGGER AS $amenazas_compute_fields_trigger$
     BEGIN
-	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); END IF;
         RETURN NEW;
     END;
 $amenazas_compute_fields_trigger$ LANGUAGE plpgsql;
@@ -58,7 +58,7 @@ BEFORE INSERT OR UPDATE ON fonsagua.amenazas
 
 CREATE OR REPLACE FUNCTION fonsagua.bombeos_compute_fields_trigger() RETURNS TRIGGER AS $bombeos_compute_fields_trigger$
     BEGIN
-	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); END IF;
         RETURN NEW;
     END;
 $bombeos_compute_fields_trigger$ LANGUAGE plpgsql;
@@ -73,7 +73,7 @@ BEFORE INSERT OR UPDATE ON fonsagua.bombeos
 
 CREATE OR REPLACE FUNCTION fonsagua.captaciones_compute_fields_trigger() RETURNS TRIGGER AS $captaciones_compute_fields_trigger$
     BEGIN
-	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); END IF;
         RETURN NEW;
     END;
 $captaciones_compute_fields_trigger$ LANGUAGE plpgsql;
@@ -88,7 +88,7 @@ BEFORE INSERT OR UPDATE ON fonsagua.captaciones
 
 CREATE OR REPLACE FUNCTION fonsagua.centros_educativos_compute_fields_trigger() RETURNS TRIGGER AS $centros_educativos_compute_fields_trigger$
     BEGIN
-	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); END IF;
         RETURN NEW;
     END;
 $centros_educativos_compute_fields_trigger$ LANGUAGE plpgsql;
@@ -103,7 +103,7 @@ BEFORE INSERT OR UPDATE ON fonsagua.centros_educativos
 
 CREATE OR REPLACE FUNCTION fonsagua.centros_salud_compute_fields_trigger() RETURNS TRIGGER AS $centros_salud_compute_fields_trigger$
     BEGIN
-	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); END IF;
         RETURN NEW;
     END;
 $centros_salud_compute_fields_trigger$ LANGUAGE plpgsql;
@@ -149,7 +149,7 @@ CREATE OR REPLACE FUNCTION fonsagua.comunidades_compute_fields_trigger() RETURNS
 
 	NEW.caserio = NEW.comunidad;
 
-	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); END IF;
 
 	NEW.tot_ninhos = 0;
 	IF (NEW.n_ninhos IS NOT NULL) THEN NEW.tot_ninhos = NEW.tot_ninhos + NEW.n_ninhos; END IF;
@@ -253,7 +253,7 @@ BEFORE INSERT OR UPDATE ON fonsagua.comunidades
 
 CREATE OR REPLACE FUNCTION fonsagua.dep_distribucion_compute_fields_trigger() RETURNS TRIGGER AS $dep_distribucion_compute_fields_trigger$
     BEGIN
-	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); END IF;
         RETURN NEW;
     END;
 $dep_distribucion_compute_fields_trigger$ LANGUAGE plpgsql;
@@ -268,7 +268,7 @@ BEFORE INSERT OR UPDATE ON fonsagua.dep_distribucion
 
 CREATE OR REPLACE FUNCTION fonsagua.dep_intermedios_compute_fields_trigger() RETURNS TRIGGER AS $dep_intermedios_compute_fields_trigger$
     BEGIN
-	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); END IF;
         RETURN NEW;
     END;
 $dep_intermedios_compute_fields_trigger$ LANGUAGE plpgsql;
@@ -283,7 +283,7 @@ BEFORE INSERT OR UPDATE ON fonsagua.dep_intermedios
 
 CREATE OR REPLACE FUNCTION fonsagua.fuentes_compute_fields_trigger() RETURNS TRIGGER AS $fuentes_compute_fields_trigger$
     BEGIN
-	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); END IF;
         RETURN NEW;
     END;
 $fuentes_compute_fields_trigger$ LANGUAGE plpgsql;
@@ -298,7 +298,7 @@ BEFORE INSERT OR UPDATE ON fonsagua.fuentes
 
 CREATE OR REPLACE FUNCTION fonsagua.fuentes_contaminacion_compute_fields_trigger() RETURNS TRIGGER AS $fuentes_contaminacion_compute_fields_trigger$
     BEGIN
-	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); END IF;
         RETURN NEW;
     END;
 $fuentes_contaminacion_compute_fields_trigger$ LANGUAGE plpgsql;
@@ -362,7 +362,7 @@ BEFORE INSERT OR UPDATE ON fonsagua.gest_financiera
 
 CREATE OR REPLACE FUNCTION fonsagua.otros_servicios_compute_fields_trigger() RETURNS TRIGGER AS $otros_servicios_compute_fields_trigger$
     BEGIN
-	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); END IF;
         RETURN NEW;
     END;
 $otros_servicios_compute_fields_trigger$ LANGUAGE plpgsql;
@@ -377,7 +377,7 @@ BEFORE INSERT OR UPDATE ON fonsagua.otros_servicios
 
 CREATE OR REPLACE FUNCTION fonsagua.puntos_viviendas_compute_fields_trigger() RETURNS TRIGGER AS $puntos_viviendas_compute_fields_trigger$
     BEGIN
-	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); NEW.utm_z = st_z(NEW.geom); END IF;
+	IF (NEW.geom IS NOT NULL) THEN NEW.utm_x = st_x(NEW.geom); NEW.utm_y = st_y(NEW.geom); END IF;
         RETURN NEW;
     END;
 $puntos_viviendas_compute_fields_trigger$ LANGUAGE plpgsql;
