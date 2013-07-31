@@ -1,5 +1,6 @@
 package es.udc.cartolab.gvsig.fonsagua;
 
+import com.iver.andami.Launcher;
 import com.iver.andami.PluginServices;
 import com.iver.andami.plugins.Extension;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
@@ -12,6 +13,7 @@ import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaTocMenuEntry;
+import es.udc.cartolab.gvsig.tools.CopyFeaturesExtension;
 
 public class FormsExtension extends Extension {
 
@@ -54,6 +56,13 @@ public class FormsExtension extends Extension {
     public void postInitialize() {
 	// Workaround to increase the snap tolerance
 	SelectionCADTool.tolerance = 12;
+
+	// Workaround to open CopyFeatures dialog in a predefined foldder
+	CopyFeaturesExtension cfe = (CopyFeaturesExtension) PluginServices
+		.getExtension(CopyFeaturesExtension.class);
+	cfe.setDefaultPath(Launcher.getAppHomeDir()
+		+ FonsaguaConstants.GPS_MATCHING_FILES);
+
     }
 
     @Override
