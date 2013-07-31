@@ -3,6 +3,7 @@ package es.udc.cartolab.gvsig.fonsagua;
 import com.iver.andami.Launcher;
 import com.iver.andami.PluginServices;
 import com.iver.andami.plugins.Extension;
+import com.iver.andami.plugins.ExtensionDecorator;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.iver.cit.gvsig.gui.cad.tools.SelectionCADTool;
 import com.iver.utiles.extensionPoints.ExtensionPoints;
@@ -14,6 +15,7 @@ import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaTocMenuEntry;
 import es.udc.cartolab.gvsig.tools.CopyFeaturesExtension;
+import es.udc.cartolab.gvsig.users.SpatiaLiteDBConnectionExtension;
 
 public class FormsExtension extends Extension {
 
@@ -71,6 +73,10 @@ public class FormsExtension extends Extension {
 	cfe.setDefaultPath(Launcher.getAppHomeDir()
 		+ FonsaguaConstants.GPS_MATCHING_FILES);
 
+	// Workarount to hide the connection dialog for spatialite db
+	ExtensionDecorator spliteExtension = PluginServices
+		.getDecoratedExtension(SpatiaLiteDBConnectionExtension.class);
+	spliteExtension.setVisibility(ExtensionDecorator.ALWAYS_INVISIBLE);
     }
 
     @Override
