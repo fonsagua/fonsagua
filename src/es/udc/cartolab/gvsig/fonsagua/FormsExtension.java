@@ -50,6 +50,14 @@ public class FormsExtension extends Extension {
 		.getInstance();
 	extensionPoints.add("View_TocActions", "Fonsagua",
 		new FonsaguaTocMenuEntry());
+
+	// Workaround to use another icon for CopyFeatures extension instead of
+	// the default
+	PluginServices.getIconTheme()
+		.registerDefault(
+			CopyFeaturesExtension.COPY_FEATURES_ICON,
+			this.getClass().getClassLoader()
+				.getResource("images/copy.png"));
     }
 
     @Override
