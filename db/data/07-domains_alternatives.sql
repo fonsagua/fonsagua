@@ -14,24 +14,6 @@ INSERT INTO dominios.tuberia_comercial (item) VALUES
 ALTER TABLE dominios.tuberia_comercial OWNER TO fonsagua;
 
 
-CREATE TABLE dominios.tipo_valvula (
-       item VARCHAR
-	       PRIMARY KEY
-
-);
-
-INSERT INTO dominios.tipo_valvula (item) VALUES
-       (' '),
-       ('Reductora'),
-       ('Sostenedora'),
-       ('Rotura de carga'),
-       ('Limitadora de caudal'),
-       ('Regulación'),
-       ('Propósito general');
-
-ALTER TABLE dominios.tipo_valvula OWNER TO fonsagua;
-
-
 CREATE TABLE dominios.existencia_elemento (
        item VARCHAR
 	       PRIMARY KEY

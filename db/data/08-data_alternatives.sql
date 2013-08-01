@@ -61,9 +61,8 @@ CREATE TABLE fonsagua.alt_valvulas (
        denominacion VARCHAR,
        existencia_elemento VARCHAR
 	       REFERENCES dominios.existencia_elemento(item),
+       cota NUMERIC(5,2),
        diametro INTEGER,
-       tipo_valvula VARCHAR
-	       REFERENCES dominios.tipo_valvula(item),
        consigna NUMERIC(5,2),
        caudal NUMERIC(5,2),
        velocidad NUMERIC(5,2),
