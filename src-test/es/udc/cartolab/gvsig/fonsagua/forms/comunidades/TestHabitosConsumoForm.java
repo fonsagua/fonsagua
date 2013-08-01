@@ -1,8 +1,8 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.comunidades;
 
 import es.icarto.gvsig.navtableforms.CommonMethodsForTestDBForms;
-import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.HabitosConsumoForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 
 public class TestHabitosConsumoForm extends CommonMethodsForTestDBForms {
 

@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
 
 public class PostgresCroquisDAO implements ICroquisDAO {

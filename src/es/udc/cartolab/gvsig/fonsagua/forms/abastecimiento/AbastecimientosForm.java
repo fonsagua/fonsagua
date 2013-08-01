@@ -7,13 +7,13 @@ import es.icarto.gvsig.navtableforms.gui.tables.handler.AlphanumericNotEditableN
 import es.icarto.gvsig.navtableforms.gui.tables.handler.AlphanumericTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialTableHandler;
-import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.DatosConsumoForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ImplicacionComunidadForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ValoracionSistemaForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 
 @SuppressWarnings("serial")
 public class AbastecimientosForm extends BasicAbstractForm {

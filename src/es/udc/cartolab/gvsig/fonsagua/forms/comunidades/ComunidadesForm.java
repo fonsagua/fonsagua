@@ -8,11 +8,11 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.AlphanumericTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialTableHandler;
-import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.AddCroquisListener;
 import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.ShowCroquisListener;
 import es.udc.cartolab.gvsig.fonsagua.croquis.ui.CroquisButtons;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 
 @SuppressWarnings("serial")
 public class ComunidadesForm extends BasicAbstractForm {

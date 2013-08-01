@@ -1,4 +1,4 @@
-package es.udc.cartolab.gvsig.fonsagua;
+package es.udc.cartolab.gvsig.fonsagua.utils;
 
 public interface FonsaguaConstants {
 
