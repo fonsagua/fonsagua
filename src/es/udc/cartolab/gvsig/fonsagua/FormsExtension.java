@@ -12,6 +12,7 @@ import com.iver.utiles.extensionPoints.ExtensionPointsSingleton;
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaTocMenuEntry;
 import es.udc.cartolab.gvsig.tools.CopyFeaturesExtension;

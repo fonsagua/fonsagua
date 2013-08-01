@@ -1,8 +1,7 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.alternativas;
 
 import es.icarto.gvsig.navtableforms.CommonMethodsForTestDBForms;
-import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
-import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltBombeosForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 
 public class TestAltBombeosForm extends CommonMethodsForTestDBForms {
 

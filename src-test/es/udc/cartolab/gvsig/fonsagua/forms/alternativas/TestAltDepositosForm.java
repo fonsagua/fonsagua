@@ -1,8 +1,7 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.alternativas;
 
 import es.icarto.gvsig.navtableforms.CommonMethodsForTestDBForms;
-import es.udc.cartolab.gvsig.fonsagua.FonsaguaConstants;
-import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltDepositosForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 
 public class TestAltDepositosForm extends CommonMethodsForTestDBForms {
 
