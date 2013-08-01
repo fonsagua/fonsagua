@@ -26,7 +26,6 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import com.iver.cit.gvsig.fmap.drivers.DBException;
-import com.iver.cit.gvsig.fmap.layers.LayerFactory;
 import com.jeta.forms.components.panel.FormPanel;
 
 import es.icarto.gvsig.navtableforms.ormlite.ORMLite;
@@ -47,32 +46,15 @@ public abstract class CommonMethodsForTestDBForms {
 
     @BeforeClass
     public static void doSetupBeforeClass() {
-	initgvSIGDrivers();
+	Drivers.initgvSIGDrivers(TestProperties.driversPath);
 	try {
 	    DBSessionPostGIS.createConnection(DataBaseProperties.server,
 		    DataBaseProperties.port, DataBaseProperties.dbname, null,
-		    DataBaseProperties.superuser, "postgres");
+		    DataBaseProperties.user, DataBaseProperties.userpwd);
 	} catch (DBException e) {
 	    e.printStackTrace();
 	}
 
-    }
-
-    private static void initgvSIGDrivers() {
-
-	final String fwAndamiDriverPath = TestProperties.driversPath;
-
-	final File baseDriversPath = new File(fwAndamiDriverPath);
-	if (!baseDriversPath.exists()) {
-	    throw new RuntimeException("Can't find drivers path: "
-		    + fwAndamiDriverPath);
-	}
-
-	LayerFactory.setDriversPath(baseDriversPath.getAbsolutePath());
-	if (LayerFactory.getDM().getDriverNames().length < 1) {
-	    throw new RuntimeException("Can't find drivers in path: "
-		    + fwAndamiDriverPath);
-	}
     }
 
     @Before
