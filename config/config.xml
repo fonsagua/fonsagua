@@ -65,7 +65,24 @@
 				action-command="fuentes"
 				position="1"/>
 				
-			
+			<menu text="fonsagua_menu/alternativas/elementos/alt_conexiones"
+				action-command="alt_bombeos"
+				position="1"/>
+			<menu text="fonsagua_menu/alternativas/elementos/alt_tuberias"
+				action-command="alt_bombeos"
+				position="2"/>
+			<menu text="fonsagua_menu/alternativas/elementos/alt_fuentes"
+				action-command="alt_bombeos"
+				position="3"/>
+			<menu text="fonsagua_menu/alternativas/elementos/alt_depositos"
+				action-command="alt_bombeos"
+				position="4"/>
+			<menu text="fonsagua_menu/alternativas/elementos/alt_bombeos"
+				action-command="alt_bombeos"
+				position="5"/>
+			<menu text="fonsagua_menu/alternativas/elementos/alt_valvulas"
+				action-command="alt_bombeos"
+				position="6"/>
 		</extension>
 
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.AutoFormsExtension" active="true">

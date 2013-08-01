@@ -22,6 +22,12 @@ import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.GestFinancieraForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.JuntasAguaForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.SingletonAbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.TuberiasForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltBombeosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltConexionesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltDepositosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltFuentesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltTuberiasForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltValvulasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AmenazasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AreasPotencialesRiegoForm;
@@ -74,6 +80,14 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 	mainFormNames.add(TuberiasForm.NAME);
 	mainFormNames.add(FuentesForm.NAME);
 	mainFormNames.add(FuentesContaminacionForm.NAME);
+	// System elements in design mode
+	mainFormNames.add(AltBombeosForm.NAME);
+	mainFormNames.add(AltConexionesForm.NAME);
+	mainFormNames.add(AltDepositosForm.NAME);
+	mainFormNames.add(AltFuentesForm.NAME);
+	mainFormNames.add(AltTuberiasForm.NAME);
+	mainFormNames.add(AltValvulasForm.NAME);
+
 	instance = new FonsaguaFormFactory();
     }
 
@@ -121,7 +135,20 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 		return new FuentesForm(layer);
 	    } else if (layer.getName().equals(FuentesContaminacionForm.NAME)) {
 		return new FuentesContaminacionForm(layer);
+	    } else if (layer.getName().equals(AltBombeosForm.NAME)) {
+		return new AltBombeosForm(layer);
+	    } else if (layer.getName().equals(AltConexionesForm.NAME)) {
+		return new AltConexionesForm(layer);
+	    } else if (layer.getName().equals(AltDepositosForm.NAME)) {
+		return new AltDepositosForm(layer);
+	    } else if (layer.getName().equals(AltFuentesForm.NAME)) {
+		return new AltFuentesForm(layer);
+	    } else if (layer.getName().equals(AltTuberiasForm.NAME)) {
+		return new AltTuberiasForm(layer);
+	    } else if (layer.getName().equals(AltValvulasForm.NAME)) {
+		return new AltValvulasForm(layer);
 	    }
+
 	}
 	return null;
     }
