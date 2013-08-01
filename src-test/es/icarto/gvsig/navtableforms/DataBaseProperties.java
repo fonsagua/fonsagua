@@ -21,13 +21,13 @@ public class DataBaseProperties {
 	    in = new FileInputStream("db/db_config_devel");
 	    p.load(in);
 	    in.close();
-	    server = p.getProperty("server");
-	    port = Integer.parseInt(p.getProperty("port"));
-	    superuser = p.getProperty("superuser");
-	    user = p.getProperty("user");
-	    userpwd = p.getProperty("userpwd");
-	    template = p.getProperty("template");
-	    dbname = p.getProperty("dbname");
+	    server = p.getProperty("server").replace("\"", "");
+	    port = Integer.parseInt(p.getProperty("port").replace("\"", ""));
+	    superuser = p.getProperty("superuser").replace("\"", "");
+	    user = p.getProperty("user").replace("\"", "");
+	    userpwd = p.getProperty("userpwd").replace("\"", "");
+	    template = p.getProperty("template").replace("\"", "");
+	    dbname = p.getProperty("dbname").replace("\"", "");
 
 	} catch (IOException e) {
 	    e.printStackTrace();
