@@ -155,52 +155,54 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 
     @Override
     public AbstractSubForm createSubForm(String tableName) {
-	if (tableName.equals(CoberturaForm.NAME)) {
-	    return new CoberturaForm();
-	} else if (tableName.equals(EvaluacionForm.NAME)) {
-	    return new EvaluacionForm();
-	} else if (tableName.equals(GestComercialForm.NAME)) {
-	    return new GestComercialForm();
-	} else if (tableName.equals(GestFinancieraForm.NAME)) {
-	    return new GestFinancieraForm();
-	} else if (tableName.equals(JuntasAguaForm.NAME)) {
-	    return new JuntasAguaForm();
-	} else if (tableName.equals(AdescosForm.NAME)) {
-	    return new AdescosForm();
-	} else if (tableName.equals(CapacitacionesRiesgosForm.NAME)) {
-	    return new CapacitacionesRiesgosForm();
-	} else if (tableName.equals(CargosPublicosForm.NAME)) {
-	    return new CargosPublicosForm();
-	} else if (tableName.equals(CooperativasForm.NAME)) {
-	    return new CooperativasForm();
-	} else if (tableName.equals(DatosConsumoForm.NAME)) {
-	    return new DatosConsumoForm();
-	} else if (tableName.equals(EntrevistadoresForm.NAME)) {
-	    return new EntrevistadoresForm();
-	} else if (tableName.equals(EntrevistadosForm.NAME)) {
-	    return new EntrevistadosForm();
-	} else if (tableName.equals(GanaderiaForm.NAME)) {
-	    return new GanaderiaForm();
-	} else if (tableName.equals(HabitosConsumoForm.NAME)) {
-	    return new HabitosConsumoForm();
-	} else if (tableName.equals(ImplicacionComunidadForm.NAME)) {
-	    return new ImplicacionComunidadForm();
-	} else if (tableName.equals(OngsForm.NAME)) {
-	    return new OngsForm();
-	} else if (tableName.equals(OtrasOrganizacionesForm.NAME)) {
-	    return new OtrasOrganizacionesForm();
-	} else if (tableName.equals(ProduccionConsumoForm.NAME)) {
-	    return new ProduccionConsumoForm();
-	} else if (tableName.equals(SubcuencasForm.NAME)) {
-	    return new SubcuencasForm();
-	} else if (tableName.equals(TiposCultivosForm.NAME)) {
-	    return new TiposCultivosForm();
-	} else if (tableName.equals(ValoracionSistemaForm.NAME)) {
-	    return new ValoracionSistemaForm();
-	} else if (tableName.equals(AforosForm.NAME)) {
-	    return new AforosForm();
-	} else if (tableName.equals(AnaliticasForm.NAME)) {
-	    return new AnaliticasForm();
+	if (tableName != null) {
+	    if (tableName.equals(CoberturaForm.NAME)) {
+		return new CoberturaForm();
+	    } else if (tableName.equals(EvaluacionForm.NAME)) {
+		return new EvaluacionForm();
+	    } else if (tableName.equals(GestComercialForm.NAME)) {
+		return new GestComercialForm();
+	    } else if (tableName.equals(GestFinancieraForm.NAME)) {
+		return new GestFinancieraForm();
+	    } else if (tableName.equals(JuntasAguaForm.NAME)) {
+		return new JuntasAguaForm();
+	    } else if (tableName.equals(AdescosForm.NAME)) {
+		return new AdescosForm();
+	    } else if (tableName.equals(CapacitacionesRiesgosForm.NAME)) {
+		return new CapacitacionesRiesgosForm();
+	    } else if (tableName.equals(CargosPublicosForm.NAME)) {
+		return new CargosPublicosForm();
+	    } else if (tableName.equals(CooperativasForm.NAME)) {
+		return new CooperativasForm();
+	    } else if (tableName.equals(DatosConsumoForm.NAME)) {
+		return new DatosConsumoForm();
+	    } else if (tableName.equals(EntrevistadoresForm.NAME)) {
+		return new EntrevistadoresForm();
+	    } else if (tableName.equals(EntrevistadosForm.NAME)) {
+		return new EntrevistadosForm();
+	    } else if (tableName.equals(GanaderiaForm.NAME)) {
+		return new GanaderiaForm();
+	    } else if (tableName.equals(HabitosConsumoForm.NAME)) {
+		return new HabitosConsumoForm();
+	    } else if (tableName.equals(ImplicacionComunidadForm.NAME)) {
+		return new ImplicacionComunidadForm();
+	    } else if (tableName.equals(OngsForm.NAME)) {
+		return new OngsForm();
+	    } else if (tableName.equals(OtrasOrganizacionesForm.NAME)) {
+		return new OtrasOrganizacionesForm();
+	    } else if (tableName.equals(ProduccionConsumoForm.NAME)) {
+		return new ProduccionConsumoForm();
+	    } else if (tableName.equals(SubcuencasForm.NAME)) {
+		return new SubcuencasForm();
+	    } else if (tableName.equals(TiposCultivosForm.NAME)) {
+		return new TiposCultivosForm();
+	    } else if (tableName.equals(ValoracionSistemaForm.NAME)) {
+		return new ValoracionSistemaForm();
+	    } else if (tableName.equals(AforosForm.NAME)) {
+		return new AforosForm();
+	    } else if (tableName.equals(AnaliticasForm.NAME)) {
+		return new AnaliticasForm();
+	    }
 	}
 	return null;
     }
