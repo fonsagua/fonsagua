@@ -7,8 +7,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/_fwAndami"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/extNavTable"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/appgvSIG"/>
-	<classpathentry kind="lib" path="lib/es.icarto.gvsig.navtableforms.jar" sourcepath="/extNavTableForms"/>
-	<classpathentry kind="lib" path="lib/formsrt.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/extDBConnection"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="/libFMap/lib/driver-manager-1.1.jar" sourcepath="/libDriverManager"/>
@@ -20,5 +18,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="/extCopyFeatures"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/gvsig-epanet"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/extNavTableForms"/>
+	<classpathentry kind="lib" path="/extNavTableForms/lib/formsrt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

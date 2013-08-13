@@ -5,6 +5,7 @@
 	<depends plugin-name="es.udc.cartolab.gvsig.users"/>
 	<depends plugin-name="es.udc.cartolab.gvsig.tools"/>
 	<depends plugin-name="es.udc.cartolab.gvsig.epanet"/>
+	<depends plugin-name="es.icarto.gvsig.navtableforms"/>
 	<libraries library-dir="lib"/>
 	<resourceBundle name="text"/>
 	<extensions>
@@ -90,12 +91,6 @@
 			<tool-bar name="fonsagua">
 				<selectable-tool icon="auto-forms" tooltip="enable_auto_forms"
 					action-command="auto-forms" position="60" group="fonsagua" name="auto-forms" />
-			</tool-bar>
-		</extension>
-		<extension class-name="es.udc.cartolab.gvsig.fonsagua.EmptyExtension" active="true">
-			<tool-bar name="fonsagua">
-				<selectable-tool icon="auto-forms" tooltip="disable_auto_forms"
-					action-command="empty" position="60" group="fonsagua" name="auto-forms" />
 			</tool-bar>
 		</extension>
 		
