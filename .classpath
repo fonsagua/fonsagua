@@ -19,6 +19,6 @@
 	<classpathentry kind="src" path="/extCopyFeatures"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/gvsig-epanet"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/extNavTableForms"/>
-	<classpathentry kind="lib" path="/extNavTableForms/lib/formsrt.jar"/>
+	<classpathentry kind="lib" path="/extDBConnection/lib/formsrt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
