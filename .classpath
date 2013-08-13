@@ -19,5 +19,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/libIverUtiles"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="/extCopyFeatures"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gvsig-epanet"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

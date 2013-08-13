@@ -4,6 +4,7 @@
 	<depends plugin-name="es.udc.cartolab.gvsig.navtable"/>
 	<depends plugin-name="es.udc.cartolab.gvsig.users"/>
 	<depends plugin-name="es.udc.cartolab.gvsig.tools"/>
+	<depends plugin-name="es.udc.cartolab.gvsig.epanet"/>
 	<libraries library-dir="lib"/>
 	<resourceBundle name="text"/>
 	<extensions>

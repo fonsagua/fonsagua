@@ -12,6 +12,7 @@ import com.iver.utiles.extensionPoints.ExtensionPointsSingleton;
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.gvsig.fonsagua.config.EpanetConfiguration;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaTocMenuEntry;
@@ -61,6 +62,8 @@ public class FormsExtension extends Extension {
 			CopyFeaturesExtension.COPY_FEATURES_ICON,
 			this.getClass().getClassLoader()
 				.getResource("images/copy.png"));
+	EpanetConfiguration epanetConfig = new EpanetConfiguration();
+	epanetConfig.setConfig();
     }
 
     @Override
@@ -78,6 +81,7 @@ public class FormsExtension extends Extension {
 	ExtensionDecorator spliteExtension = PluginServices
 		.getDecoratedExtension(SpatiaLiteDBConnectionExtension.class);
 	spliteExtension.setVisibility(ExtensionDecorator.ALWAYS_INVISIBLE);
+
     }
 
     @Override
