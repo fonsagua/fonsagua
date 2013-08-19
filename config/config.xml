@@ -101,5 +101,15 @@
 			</tool-bar>
 		</extension>
 		
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension" active="true">
+			<tool-bar name="fonsagua">
+				<action-tool icon="open_alternative" tooltip="open_alternative"
+					action-command="open_alternative" position="70" group="fonsagua" name="open_alternative" />
+			</tool-bar>
+			<menu text="fonsagua_menu/alternativas/open_alternative"
+				action-command="open_alternative"
+				position="2"/>
+		</extension>
+		
 	</extensions>
 </plugin-config>
