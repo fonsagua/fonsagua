@@ -67,23 +67,30 @@
 				action-command="fuentes"
 				position="1"/>
 				
+			<menu text="fonsagua_menu/alternativas/alternativas"
+				action-command="alternativas"
+				position="1"/>
+				
 			<menu text="fonsagua_menu/alternativas/elementos/alt_conexiones"
-				action-command="alt_bombeos"
+				action-command="alt_conexiones"
 				position="1"/>
 			<menu text="fonsagua_menu/alternativas/elementos/alt_tuberias"
-				action-command="alt_bombeos"
+				action-command="alt_tuberias"
 				position="2"/>
 			<menu text="fonsagua_menu/alternativas/elementos/alt_fuentes"
-				action-command="alt_bombeos"
+				action-command="alt_fuentes"
 				position="3"/>
 			<menu text="fonsagua_menu/alternativas/elementos/alt_depositos"
-				action-command="alt_bombeos"
+				action-command="alt_depositos"
 				position="4"/>
 			<menu text="fonsagua_menu/alternativas/elementos/alt_bombeos"
 				action-command="alt_bombeos"
 				position="5"/>
 			<menu text="fonsagua_menu/alternativas/elementos/alt_valvulas"
-				action-command="alt_bombeos"
+				action-command="alt_valvulas"
+				position="6"/>
+			<menu text="fonsagua_menu/alternativas/elementos/alt_embalses"
+				action-command="alt_embalses"
 				position="6"/>
 		</extension>
 
