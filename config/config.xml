@@ -7,20 +7,20 @@
 	<depends plugin-name="es.udc.cartolab.gvsig.epanet"/>
 	<depends plugin-name="es.icarto.gvsig.navtableforms"/>
 	<depends plugin-name="es.udc.cartolab.gvsig.elle"/>
-	
+
 	<libraries library-dir="lib"/>
 	<resourceBundle name="text"/>
 	<extensions>
-		
+
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsExtension" active="true">
 			<tool-bar name="fonsagua">
 				<action-tool icon="forms-icon" tooltip="open_form"
 					action-command="" position="50"/>
 			</tool-bar>
 		</extension>
-		
+
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsMenuExtension" active="true">
-		
+
 			<menu text="fonsagua_menu/inventario/abastecimientos/abastecimientos"
 				action-command="abastecimientos"
 				position="1"/>
@@ -29,7 +29,7 @@
 				position="2"/>
 			<menu text="fonsagua_menu/inventario/abastecimientos/dep_distribucion"
 				action-command="dep_distribucion"
-				position="3"/>		
+				position="3"/>
 			<menu text="fonsagua_menu/inventario/abastecimientos/dep_intermedios"
 				action-command="dep_intermedios"
 				position="4"/>
@@ -39,7 +39,7 @@
 			<menu text="fonsagua_menu/inventario/abastecimientos/bombeos"
 				action-command="bombeos"
 				position="6"/>
-					
+
 			<menu text="fonsagua_menu/inventario/comunidades/comunidades"
 				action-command="comunidades"
 				position="1"/>
@@ -48,13 +48,13 @@
 				position="2"/>
 			<menu text="fonsagua_menu/inventario/comunidades/centros_educativos"
 				action-command="centros_educativos"
-				position="3"/>	
+				position="3"/>
 			<menu text="fonsagua_menu/inventario/comunidades/centros_salud"
 				action-command="centros_salud"
 				position="4"/>
 			<menu text="fonsagua_menu/inventario/comunidades/otros_servicios"
 				action-command="otros_servicios"
-				position="5"/>			
+				position="5"/>
 			<menu text="fonsagua_menu/inventario/comunidades/amenazas"
 				action-command="amenazas"
 				position="6"/>
@@ -64,15 +64,15 @@
 			<menu text="fonsagua_menu/inventario/comunidades/fuentes_contaminacion"
 				action-command="fuentes_contaminacion"
 				position="8"/>
-			
+
 			<menu text="fonsagua_menu/inventario/fuentes"
 				action-command="fuentes"
 				position="1"/>
-				
+
 			<menu text="fonsagua_menu/alternativas/alternativas"
 				action-command="alternativas"
 				position="1"/>
-				
+
 			<menu text="fonsagua_menu/alternativas/elementos/alt_conexiones"
 				action-command="alt_conexiones"
 				position="1"/>
@@ -102,7 +102,15 @@
 					action-command="auto-forms" position="60" group="fonsagua" name="auto-forms" />
 			</tool-bar>
 		</extension>
-		
+
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.EmptyExtension" active="true">
+		<!-- Workaround to allow activate and deactivate the autoforms extensions button -->
+                       <tool-bar name="fonsagua">
+                               <selectable-tool icon="auto-forms" tooltip="disable_auto_forms"
+                                       action-command="empty" position="60" group="fonsagua" name="auto-forms" />
+                       </tool-bar>
+        </extension>
+
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension" active="true">
 			<tool-bar name="fonsagua">
 				<action-tool icon="open_alternative" tooltip="open_alternative"
@@ -112,6 +120,6 @@
 				action-command="open_alternative"
 				position="2"/>
 		</extension>
-		
+
 	</extensions>
 </plugin-config>
