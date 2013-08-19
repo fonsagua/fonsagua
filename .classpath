@@ -20,5 +20,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/gvsig-epanet"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/extNavTableForms"/>
 	<classpathentry kind="lib" path="/extDBConnection/lib/formsrt.jar"/>
+	<classpathentry kind="src" path="/elle"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
