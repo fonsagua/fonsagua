@@ -65,6 +65,7 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
     private static FonsaguaFormFactory instance = null;
 
     private static final Set<String> mainFormNames = new HashSet<String>();
+    private static final Set<String> alternativasFormNames = new HashSet<String>();
 
     static {
 	mainFormNames.add(ComunidadesForm.NAME);
@@ -83,14 +84,15 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 	mainFormNames.add(FuentesForm.NAME);
 	mainFormNames.add(FuentesContaminacionForm.NAME);
 	// System elements in design mode
-	mainFormNames.add(AlternativasForm.NAME);
-	mainFormNames.add(AltBombeosForm.NAME);
-	mainFormNames.add(AltConexionesForm.NAME);
-	mainFormNames.add(AltDepositosForm.NAME);
-	mainFormNames.add(AltFuentesForm.NAME);
-	mainFormNames.add(AltTuberiasForm.NAME);
-	mainFormNames.add(AltValvulasForm.NAME);
-	mainFormNames.add(AltEmbalsesForm.NAME);
+	alternativasFormNames.add(AlternativasForm.NAME);
+	alternativasFormNames.add(AltBombeosForm.NAME);
+	alternativasFormNames.add(AltConexionesForm.NAME);
+	alternativasFormNames.add(AltDepositosForm.NAME);
+	alternativasFormNames.add(AltFuentesForm.NAME);
+	alternativasFormNames.add(AltTuberiasForm.NAME);
+	alternativasFormNames.add(AltValvulasForm.NAME);
+	alternativasFormNames.add(AltEmbalsesForm.NAME);
+	mainFormNames.addAll(alternativasFormNames);
 
 	instance = new FonsaguaFormFactory();
     }
@@ -266,6 +268,19 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
     public void loadTable(String tableName) {
 	loadTable(tableName, FonsaguaConstants.dataSchema);
 
+    }
+
+    public boolean allAlternativasLayersLoaded() {
+	for (String layer : alternativasFormNames) {
+	    if (new TOCLayerManager().getLayerByName(layer) == null) {
+		return false;
+	    }
+	}
+	return true;
+    }
+
+    public Set<String> getAllAlternativasLayersNames() {
+	return alternativasFormNames;
     }
 
 }
