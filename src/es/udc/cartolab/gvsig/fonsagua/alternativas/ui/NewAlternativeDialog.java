@@ -197,9 +197,9 @@ public class NewAlternativeDialog extends JPanel implements IWindow, ActionListe
 
 		String[] values = new String[4];
 		values[0] = codAltField.getText();
-		values[1] = departCombo.getSelectedItem().toString();
-		values[2] = municCombo.getSelectedItem().toString();
-		values[3] = cantonCombo.getSelectedItem().toString();
+		values[1] = ((Item) departCombo.getSelectedItem()).id;
+		values[2] = ((Item) municCombo.getSelectedItem()).id;
+		values[3] = ((Item) cantonCombo.getSelectedItem()).id;
 
 		for (String value : values) {
 		    if ((value == null) || (value.length() < 1)) {
