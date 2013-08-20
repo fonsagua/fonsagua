@@ -47,7 +47,7 @@ public class NewAlternativeExtension extends Extension {
 
     protected void registerIcons() {
 	PluginServices.getIconTheme().registerDefault(
-		"new-alternative-launcher-icon",
+		"new_alternative",
 		this.getClass().getClassLoader()
 			.getResource("images/new_alternative.png"));
     }

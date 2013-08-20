@@ -118,21 +118,24 @@
                        </tool-bar>
         </extension>
 
-		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension" active="true">
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.NewAlternativeExtension" description="REPORTS_PANEL" active="true">
 			<tool-bar name="fonsagua">
-				<action-tool icon="open_alternative" tooltip="open_alternative"
-					action-command="open_alternative" position="80" group="fonsagua" name="open_alternative" />
+				<action-tool icon="new_alternative" tooltip="new_alternative"
+					action-command="new_alternative" position="80" />
 			</tool-bar>
-			<menu text="fonsagua_menu/alternativas/open_alternative"
-				action-command="open_alternative"
+			<menu text="fonsagua_menu/alternativas/new_alternative"
+				action-command="new_alternative"
 				position="2"/>
 		</extension>
 
-		<extension class-name="es.udc.cartolab.gvsig.fonsagua.NewAlternativeExtension" description="REPORTS_PANEL" active="true">
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension" active="true">
 			<tool-bar name="fonsagua">
-				<action-tool icon="new-alternative-launcher-icon" tooltip="new_alternative"
-					action-command="parcela" position="70" />
+				<action-tool icon="open_alternative" tooltip="open_alternative"
+					action-command="open_alternative" position="70" group="fonsagua" name="open_alternative" />
 			</tool-bar>
+			<menu text="fonsagua_menu/alternativas/open_alternative"
+				action-command="open_alternative"
+				position="1"/>
 		</extension>
 
 	</extensions>
