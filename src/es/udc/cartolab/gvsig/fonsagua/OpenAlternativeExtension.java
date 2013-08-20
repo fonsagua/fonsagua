@@ -103,6 +103,10 @@ public class OpenAlternativeExtension extends Extension {
 	return view;
     }
 
+    /**
+     * If the current View has the layers we are going to load again with the
+     * SQL restriction, we remove them
+     */
     private static void cleanViewIfNeeded(View view) {
 	if (FonsaguaFormFactory.getInstance().allAlternativasLayersLoaded()) {
 	    Set<String> layers = FonsaguaFormFactory.getInstance()
