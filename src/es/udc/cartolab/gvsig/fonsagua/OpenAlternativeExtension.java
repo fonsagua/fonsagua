@@ -1,6 +1,13 @@
 package es.udc.cartolab.gvsig.fonsagua;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
+import javax.swing.JOptionPane;
 
 import com.iver.andami.PluginServices;
 import com.iver.andami.plugins.Extension;
@@ -13,6 +20,7 @@ import com.iver.cit.gvsig.project.documents.ProjectDocumentFactory;
 import com.iver.cit.gvsig.project.documents.view.ProjectViewFactory;
 import com.iver.cit.gvsig.project.documents.view.gui.View;
 
+import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.elle.utils.ELLEMap;
 import es.udc.cartolab.gvsig.elle.utils.LoadLegend;
 import es.udc.cartolab.gvsig.elle.utils.MapDAO;
@@ -36,16 +44,95 @@ public class OpenAlternativeExtension extends Extension {
 
     @Override
     public void execute(String actionCommand) {
-	OpenAlternativeDialog dialog = new OpenAlternativeDialog();
-	OpenAlternativeExtension.code = dialog.getCode();
-	if (OpenAlternativeExtension.code == null) {
-	    // TODO: catch error
-	    return;
+	try {
+	    String[] fields = new String[2];
+	    String[] orderBy = new String[1];
+	    Map<String, Map<String, Map<String, List<String>>>> divsCodes = new HashMap<String, Map<String, Map<String, List<String>>>>();
+	    fields[0] = AlternativasForm.PKFIELD;
+	    fields[1] = AlternativasForm.CANTONFK;
+	    orderBy[0] = AlternativasForm.PKFIELD;
+	    String[][] alternativas = DBSession.getCurrentSession().getTable(
+		    AlternativasForm.NAME, FonsaguaConstants.dataSchema,
+		    fields, "", orderBy, false);
+	    if (alternativas.length < 1) {
+		JOptionPane.showMessageDialog(new TOCLayerManager().getView(),
+			PluginServices.getText(this,
+				"no_alternatives_to_open_msg"),
+			PluginServices.getText(this,
+				"no_alternatives_to_open_title"),
+			JOptionPane.INFORMATION_MESSAGE);
+		return;
+	    }
+
+	    Map<String, String> departNames = new HashMap<String, String>();
+	    fields[0] = FonsaguaConstants.departamentosPK;
+	    fields[1] = FonsaguaConstants.departamentosName;
+	    orderBy[0] = FonsaguaConstants.departamentosPK;
+	    String[][] departamentos = DBSession.getCurrentSession().getTable(
+		    FonsaguaConstants.departamentosTable,
+		    FonsaguaConstants.baseSchema, fields, "", orderBy, false);
+	    for (String[] depart : departamentos) {
+		departNames.put(depart[0], depart[1]);
+	    }
+
+	    Map<String, String> municNames = new HashMap<String, String>();
+	    fields[0] = FonsaguaConstants.municipiosPK;
+	    fields[1] = FonsaguaConstants.municipiosName;
+	    orderBy[0] = FonsaguaConstants.municipiosPK;
+	    String[][] municipios = DBSession.getCurrentSession().getTable(
+		    FonsaguaConstants.municipiosTable,
+		    FonsaguaConstants.baseSchema, fields, "", orderBy, false);
+	    String departCode;
+	    for (String[] munic : municipios) {
+		if ((munic[0] != null) && (munic[0].length() >= 2)) {
+		    municNames.put(munic[0], munic[1]);
+		}
+
+	    }
+
+	    Map<String, String> cantonNames = new HashMap<String, String>();
+	    fields[0] = FonsaguaConstants.cantonesPK;
+	    fields[1] = FonsaguaConstants.cantonesName;
+	    orderBy[0] = FonsaguaConstants.cantonesPK;
+	    String[][] cantones = DBSession.getCurrentSession().getTable(
+		    FonsaguaConstants.cantonesTable,
+		    FonsaguaConstants.baseSchema, fields, "", orderBy, false);
+	    String municCode;
+	    for (String[] canton : cantones) {
+		if ((canton[0] != null) && (canton[0].length() >= 4)) {
+		    cantonNames.put(canton[0], canton[1]);
+		}
+	    }
+
+	    for (String[] alternativa : alternativas) {
+		if ((alternativa[0] != null) && (alternativa[1] != null)
+			&& (alternativa[1].length() >= 4)) {
+		    departCode = alternativa[1].substring(0, 2);
+		    municCode = alternativa[1].substring(0, 4);
+		    if (!divsCodes.containsKey(departCode)) {
+			divsCodes
+				.put(departCode,
+					new HashMap<String, Map<String, List<String>>>());
+		    }
+		    if (!divsCodes.get(departCode).containsKey(municCode)) {
+			divsCodes.get(departCode).put(municCode,
+				new HashMap<String, List<String>>());
+		    }
+		    if (!divsCodes.get(departCode).get(municCode)
+			    .containsKey(alternativa[1])) {
+			divsCodes.get(departCode).get(municCode)
+				.put(alternativa[1], new ArrayList<String>());
+		    }
+		    divsCodes.get(departCode).get(municCode)
+				.get(alternativa[1]).add(alternativa[0]);
+		}
+	    }
+	    OpenAlternativeDialog dialog = new OpenAlternativeDialog(divsCodes,
+		    departNames, municNames, cantonNames);
+	    PluginServices.getMDIManager().addWindow(dialog);
+	} catch (SQLException e) {
+	    e.printStackTrace();
 	}
-	// TODO: What must be done if we already opened an alternative and the
-	// user press the button again.
-	// PluginServices.getMDIManager().closeAllWindows();
-	openAlternative(code);
     }
 
     public static void openAlternative(String code) {
