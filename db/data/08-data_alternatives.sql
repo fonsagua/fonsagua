@@ -149,7 +149,7 @@ CREATE TABLE fonsagua.alt_tuberias (
        sistema VARCHAR
 	       REFERENCES dominios.sistema(item),
        tuberia_comercial VARCHAR
-	       REFERENCES dominios.tuberia_comercial(item),
+	       REFERENCES fonsagua.tuberia_comercial(id_tub),
        material VARCHAR,
        rugosidad FLOAT,
        diametro INTEGER,

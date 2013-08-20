@@ -23,3 +23,14 @@ CREATE TABLE fonsagua.preferencias (
 
 );
 ALTER TABLE fonsagua.preferencias OWNER TO fonsagua;
+
+CREATE TABLE fonsagua.tuberias_comerciales (
+       gid SERIAL PRIMARY KEY,
+       id_tub VARCHAR
+       	      NOT NULL
+	      UNIQUE,
+	material VARCHAR,
+	rugosidad REAL,
+	diametro INTEGER
+);
+ALTER TABLE fonsagua.tuberias_comerciales OWNER TO fonsagua;
