@@ -1,4 +1,4 @@
-package es.udc.cartolab.gvsig.fonsagua.alternativas;
+package es.udc.cartolab.gvsig.fonsagua.alternativas.ui;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

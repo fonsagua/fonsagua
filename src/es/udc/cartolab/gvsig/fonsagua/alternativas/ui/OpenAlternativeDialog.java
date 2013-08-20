@@ -1,4 +1,4 @@
-package es.udc.cartolab.gvsig.fonsagua.utils;
+package es.udc.cartolab.gvsig.fonsagua.alternativas.ui;
 
 import java.sql.SQLException;
 
@@ -8,6 +8,7 @@ import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiFrame.MDIFrame;
 
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class OpenAlternativeDialog {

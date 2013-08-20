@@ -16,10 +16,10 @@ import com.iver.cit.gvsig.project.documents.view.gui.View;
 import es.udc.cartolab.gvsig.elle.utils.ELLEMap;
 import es.udc.cartolab.gvsig.elle.utils.LoadLegend;
 import es.udc.cartolab.gvsig.elle.utils.MapDAO;
+import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.OpenAlternativeDialog;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
-import es.udc.cartolab.gvsig.fonsagua.utils.OpenAlternativeDialog;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class OpenAlternativeExtension extends Extension {
