@@ -128,5 +128,12 @@
 				position="2"/>
 		</extension>
 
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.NewAlternativeExtension" description="REPORTS_PANEL" active="true">
+			<tool-bar name="fonsagua">
+				<action-tool icon="new-alternative-launcher-icon" tooltip="new_alternative"
+					action-command="parcela" position="70" />
+			</tool-bar>
+		</extension>
+
 	</extensions>
 </plugin-config>

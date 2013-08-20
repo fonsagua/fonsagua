@@ -21,5 +21,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/extNavTableForms"/>
 	<classpathentry kind="lib" path="/extDBConnection/lib/formsrt.jar"/>
 	<classpathentry kind="src" path="/elle"/>
+	<classpathentry kind="lib" path="/extNavTable/lib/miglayout-3.7.3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

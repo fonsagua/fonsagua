@@ -8,6 +8,11 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public class AlternativasForm extends BasicAbstractForm {
 
     public static final String NAME = "alternativas";
+    public static final String PKFIELD = "cod_alternativa";
+    public static final String DEPARTFK = "departamento";
+    public static final String MUNICFK = "municipio";
+    public static final String CANTONFK = "canton";
+
     public AlternativasForm(FLyrVect layer) {
 	super(layer);
     }
