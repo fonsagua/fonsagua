@@ -49,7 +49,7 @@ public class NewAlternativeExtension extends Extension {
 	PluginServices.getIconTheme().registerDefault(
 		"new-alternative-launcher-icon",
 		this.getClass().getClassLoader()
-			.getResource("images/nueva_alt.png"));
+			.getResource("images/new_alternative.png"));
     }
 
     @Override
