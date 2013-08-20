@@ -17,13 +17,6 @@ CREATE OR REPLACE FUNCTION fonsagua.alt_conexiones_compute_field_trigger() RETUR
 	IF (tipo_distribucion_t = 'Domiciliar') THEN dotacion = dot_sist_domiciliar_t; ELSE dotacion = dot_sist_cantareras_t; END IF;
 
 	IF (NEW.hab_conectados IS NULL OR NEW.hab_conectados < 0) THEN hab_conectados_t = 0; ELSE hab_conectados_t = NEW.hab_conectados; END IF;
-	RAISE LOG 'f_var_hor (%)', f_var_hor_t;	
-	RAISE LOG 'dotacion (%)', dotacion;
-	RAISE LOG 'hab_conectados_t (%)', hab_conectados_t;
-	RAISE LOG 'tasa cre (%)', tasa_crec_t;
-	RAISE LOG 'ano horizonte (%)', ano_horizonte;
-
---	NEW.demanda = f_var_hor_t * COALESCE(dotacion, 0) * (hab_conectados_t * (1 + tasa_crec_t * ano_horizonte / 100)) / 86400;
 
 	NEW.demanda = f_var_hor_t * f_var_est_t * COALESCE(dotacion, 0) * (hab_conectados_t *(1 + (tasa_crec_t * ano_horizonte / 100))) / 86400;
 
