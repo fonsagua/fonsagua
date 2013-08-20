@@ -116,7 +116,7 @@ public class NewAlternativeDialog extends JPanel implements IWindow, ActionListe
 	this.add(label);
 
 	Vector<Item> items = new Vector<Item>();
-	for (String departCod : departNames.keySet()) {
+	for (String departCod : divsCodes.keySet()) {
 	    items.add(new Item(departCod, departNames.get(departCod)));
 	}
 
