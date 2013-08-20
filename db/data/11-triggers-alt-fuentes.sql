@@ -18,6 +18,3 @@ DROP TRIGGER IF EXISTS alt_fuentes_compute_field_trigger ON fonsagua.alt_fuentes
 CREATE TRIGGER alt_fuentes_compute_field_trigger
 BEFORE INSERT OR UPDATE ON fonsagua.alt_fuentes
 FOR EACH ROW EXECUTE PROCEDURE fonsagua.alt_fuentes_compute_field_trigger();
-
-
-
