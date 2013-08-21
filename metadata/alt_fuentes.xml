@@ -48,7 +48,6 @@
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>q_calculo</FIELDNAME>
-		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 	    </FIELD>
        	    <FIELD>
 		<FIELDNAME>altura</FIELDNAME>

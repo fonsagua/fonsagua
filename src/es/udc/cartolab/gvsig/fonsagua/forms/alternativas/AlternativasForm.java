@@ -15,6 +15,9 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
+import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.SelectComunitiesForAlternativeDialog;
+import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.SelectElementForAlternativeDialog;
+import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.SelectFuentesForAlternativeDialog;
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 
 @SuppressWarnings("serial")
@@ -39,12 +42,14 @@ public class AlternativasForm extends BasicAbstractForm {
 	comImplicadasListener = new MyListener(
 		new SelectComunitiesForAlternativeDialog(2));
 	comImplicadas.addMouseListener(comImplicadasListener);
+	comImplicadas.getTableHeader().setReorderingAllowed(false);
 
 	fuentesImplicadas = (JTable) formBody
 		.getComponentByName("fuentes_implicadas");
 	fuentesImplicadasListener = new MyListener(
 		new SelectFuentesForAlternativeDialog(4));
 	fuentesImplicadas.addMouseListener(fuentesImplicadasListener);
+	fuentesImplicadas.getTableHeader().setReorderingAllowed(false);
 
 	validBT = (JButton) formBody.getComponentByName("valid_button");
     }

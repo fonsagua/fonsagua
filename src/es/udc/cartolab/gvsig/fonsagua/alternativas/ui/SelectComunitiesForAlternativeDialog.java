@@ -1,4 +1,4 @@
-package es.udc.cartolab.gvsig.fonsagua.forms.alternativas;
+package es.udc.cartolab.gvsig.fonsagua.alternativas.ui;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -9,17 +9,14 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import com.iver.cit.gvsig.fmap.drivers.DBException;
-
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 import es.udc.cartolab.gvsig.navtable.dataacces.IController;
-import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 @SuppressWarnings("serial")
-public class SelectFuentesForAlternativeDialog extends
+public class SelectComunitiesForAlternativeDialog extends
 	SelectElementForAlternativeDialog {
 
-    public SelectFuentesForAlternativeDialog(int editableColumnIdx) {
+    public SelectComunitiesForAlternativeDialog(int editableColumnIdx) {
 	super(editableColumnIdx);
     }
 
@@ -28,13 +25,9 @@ public class SelectFuentesForAlternativeDialog extends
 	this.code = code;
 	try {
 	    model = DatabaseDirectAccessQueries
-		    .getFuentesIntersectingAlternative(code);
+		    .getComunitiesIntersectingAlternative(code);
 	    table.setModel(model);
 	} catch (SQLException e) {
-	    try {
-		DBSession.reconnect();
-	    } catch (DBException e1) {
-	    }
 	    e.printStackTrace();
 	}
     }
@@ -53,39 +46,31 @@ public class SelectFuentesForAlternativeDialog extends
 	    double baseValue = getNumericValueAt(org, row,
 		    getEditableColumnIdx() - 1);
 
-	    if (editableColumnValue > 0) {
-		String tipo_fuente = (String) org.getValueAt(row, 1);
-		if (tipo_fuente.equals("Punto rio")
-			|| tipo_fuente.equals("Manantial")) {
-		    if (editableColumnValue <= baseValue) {
-			Object rowData = org.getDataVector().get(row);
-			copy.addRow((Vector) rowData);
-		    }
-		} else {
-		    Object rowData = org.getDataVector().get(row);
-		    copy.addRow((Vector) rowData);
-		}
+	    if (editableColumnValue > 0 && editableColumnValue <= baseValue) {
+		Object rowData = org.getDataVector().get(row);
+		copy.addRow((Vector) rowData);
 	    }
 	}
 
+	if (copy.getRowCount() == 0) {
+	    copy.addRow(new Vector<Object>());
+	}
 	return copy;
     }
 
     @Override
     public void removeAndInsertModel(TableModel filteredModel, String code)
 	    throws SQLException {
-	DatabaseDirectAccessQueries.removeAndInsertModelFuentes(filteredModel,
-		code);
-
+	DatabaseDirectAccessQueries.removeAndInsertModelComunidades(
+		filteredModel, code);
     }
 
     @Override
     public void setAutomaticValue(IController layerController,
 	    HashMap<String, JComponent> widgets) {
-	final String fieldName = "caudal_fuentes";
-	String caudalFuentes = Double.toString(getSumEditableColumnValue());
-	layerController.setValue(fieldName, caudalFuentes);
-	((JTextField) widgets.get(fieldName)).setText(caudalFuentes);
+	final String fieldName = "pobl_actual";
+	String poblActual = Integer.toString((int) getSumEditableColumnValue());
+	layerController.setValue(fieldName, poblActual);
+	((JTextField) widgets.get(fieldName)).setText(poblActual);
     }
-
 }

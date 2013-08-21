@@ -8,7 +8,7 @@ import com.iver.cit.gvsig.fmap.drivers.DBException;
 import es.icarto.gvsig.navtableforms.DataBaseProperties;
 import es.icarto.gvsig.navtableforms.Drivers;
 import es.icarto.gvsig.navtableforms.TestProperties;
-import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.SelectComunitiesForAlternativeDialog;
+import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.SelectComunitiesForAlternativeDialog;
 import es.udc.cartolab.gvsig.users.utils.DBSessionPostGIS;
 
 public class ComunidadesImplicadas {

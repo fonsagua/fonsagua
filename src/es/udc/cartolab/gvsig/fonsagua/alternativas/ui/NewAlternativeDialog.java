@@ -265,7 +265,7 @@ public class NewAlternativeDialog extends JPanel implements IWindow,
 
     @Override
     public Object getWindowProfile() {
-	return null;
+	return WindowInfo.DIALOG_PROFILE;
     }
 
     private class Item {

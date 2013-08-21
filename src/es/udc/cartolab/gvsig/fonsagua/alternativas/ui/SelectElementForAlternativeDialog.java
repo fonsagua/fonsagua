@@ -1,4 +1,4 @@
-package es.udc.cartolab.gvsig.fonsagua.forms.alternativas;
+package es.udc.cartolab.gvsig.fonsagua.alternativas.ui;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -15,7 +15,6 @@ import javax.swing.table.TableModel;
 
 import com.iver.andami.PluginServices;
 
-import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.AbstractIWindow;
 import es.udc.cartolab.gvsig.navtable.dataacces.IController;
 
 @SuppressWarnings("serial")
@@ -48,6 +47,7 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
 
     private void addTablePanel() {
 	table = new JTable();
+	table.getTableHeader().setReorderingAllowed(false);
 	JScrollPane scroll = new JScrollPane(table);
 	add(scroll, BorderLayout.NORTH);
     }
@@ -57,6 +57,7 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
 	filteredModel = null;
 	if (e.getSource() == okButton) {
 	    try {
+		table.getCellEditor().stopCellEditing();
 		filteredModel = removeRowsWithZero(model);
 		removeAndInsertModel(filteredModel, code);
 	    } catch (SQLException e1) {
