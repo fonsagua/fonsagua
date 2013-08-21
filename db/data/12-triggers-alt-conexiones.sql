@@ -14,7 +14,10 @@ CREATE OR REPLACE FUNCTION fonsagua.alt_conexiones_compute_field_trigger() RETUR
 
 	SELECT tipo_distribucion INTO tipo_distribucion_t FROM fonsagua.alternativas WHERE NEW.cod_alternativa = cod_alternativa;
 
-	IF (tipo_distribucion_t = 'Domiciliar') THEN dotacion = dot_sist_domiciliar_t; ELSE dotacion = dot_sist_cantareras_t; END IF;
+	IF (tipo_distribucion_t = 'Domiciliar') THEN dotacion = dot_sist_domiciliar_t;
+	ELSIF (tipo_distribucion_t = 'Cantareras') THEN dotacion = dot_sist_cantareras_t;
+	ELSE dotacion = 0;
+	END IF;
 
 	IF (NEW.hab_conectados IS NULL OR NEW.hab_conectados < 0) THEN hab_conectados_t = 0; ELSE hab_conectados_t = NEW.hab_conectados; END IF;
 
