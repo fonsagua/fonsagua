@@ -16,6 +16,7 @@ import com.iver.cit.gvsig.fmap.tools.Events.PointEvent;
 
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
+import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 
 public class FormPointListener extends PointSelectionListener {
 
@@ -46,19 +47,22 @@ public class FormPointListener extends PointSelectionListener {
     public void point(PointEvent event) throws BehaviorException {
 
 	super.point(event);
-	
+
 	try {
-	    PluginServices.getMDIManager().setWaitCursor();  
-	    FLyrVect l = (FLyrVect) mapCtrl.getMapContext().getLayers()
-		    .getActives()[0];
-	    if (l.getRecordset().getSelection().cardinality() > 0) {
-		AbstractForm dialog = FormFactory.createFormRegistered(l);
-		if ((dialog != null) && (dialog.init())) {
-		    PluginServices.getMDIManager().addWindow(dialog);
-		    dialog.setOnlySelected(true);
-		    dialog.first();
+	    PluginServices.getMDIManager().setWaitCursor();
+	    FLyrVect[] layers = new TOCLayerManager().getActiveLayers();
+	    for (FLyrVect layer : layers) {
+		if (layer.getRecordset().getSelection().cardinality() > 0) {
+		    AbstractForm dialog = FormFactory
+			    .createFormRegistered(layer);
+		    if ((dialog != null) && (dialog.init())) {
+			PluginServices.getMDIManager().addWindow(dialog);
+			dialog.setOnlySelected(true);
+			dialog.first();
+		    }
 		}
 	    }
+
 	} catch (ReadDriverException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
@@ -73,7 +77,6 @@ public class FormPointListener extends PointSelectionListener {
 
     @Override
     public void pointDoubleClick(PointEvent event) throws BehaviorException {
-
     }
 
 }

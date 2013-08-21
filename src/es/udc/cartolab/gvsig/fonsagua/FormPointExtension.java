@@ -16,7 +16,6 @@ import es.udc.cartolab.gvsig.fonsagua.utils.FormPointListener;
 public class FormPointExtension extends Extension {
     private final String iconPath = "images/form-point.png";
     private final String iconCode = "form-point";
-    private FLyrVect[] layers;
 
     @Override
     public void initialize() {
@@ -43,7 +42,7 @@ public class FormPointExtension extends Extension {
     }
 
     private boolean isActiveLayerValid() {
-	layers = new TOCLayerManager().getActiveLayers();
+	FLyrVect[] layers = new TOCLayerManager().getActiveLayers();
 	boolean layerWithForm = false;
 	for (FLyrVect layer : layers) {
 	    layerWithForm |= FormFactory.hasMainFormRegistered(layer.getName());
