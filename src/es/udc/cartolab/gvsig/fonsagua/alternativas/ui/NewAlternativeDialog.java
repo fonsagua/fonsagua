@@ -28,12 +28,14 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.navtable.ToggleEditing;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 @SuppressWarnings("serial")
-public class NewAlternativeDialog extends JPanel implements IWindow, ActionListener {
+public class NewAlternativeDialog extends JPanel implements IWindow,
+	ActionListener {
 
     private static Logger logger = Logger.getLogger("AlternativesExtension");
 
@@ -60,6 +62,7 @@ public class NewAlternativeDialog extends JPanel implements IWindow, ActionListe
     private JComboBox municCombo = null;
     private JComboBox cantonCombo = null;
 
+    @Override
     public WindowInfo getWindowInfo() {
 	if (windowInfo == null) {
 	    windowInfo = new WindowInfo(WindowInfo.MODALDIALOG
@@ -122,6 +125,7 @@ public class NewAlternativeDialog extends JPanel implements IWindow, ActionListe
 
 	departCombo = new JComboBox(items);
 	departCombo.addItemListener(new ItemListener() {
+	    @Override
 	    public void itemStateChanged(ItemEvent event) {
 		if (event.getStateChange() == ItemEvent.SELECTED) {
 		    updateMunicCombo();
@@ -136,6 +140,7 @@ public class NewAlternativeDialog extends JPanel implements IWindow, ActionListe
 
 	municCombo = new JComboBox();
 	municCombo.addItemListener(new ItemListener() {
+	    @Override
 	    public void itemStateChanged(ItemEvent event) {
 		if (event.getStateChange() == ItemEvent.SELECTED) {
 		    updateCantonCombo();
@@ -191,6 +196,7 @@ public class NewAlternativeDialog extends JPanel implements IWindow, ActionListe
 	cantonCombo.setSelectedIndex(0);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
 	try {
 	    if (e.getSource() == okButton) {
@@ -212,10 +218,9 @@ public class NewAlternativeDialog extends JPanel implements IWindow, ActionListe
 			return;
 		    }
 		}
-		String[] keys = DBSession
-			.getCurrentSession()
-			.getDistinctValues(
-			AlternativasForm.NAME, FonsaguaConstants.dataSchema,
+		String[] keys = DBSession.getCurrentSession()
+			.getDistinctValues(AlternativasForm.NAME,
+				FonsaguaConstants.dataSchema,
 				AlternativasForm.PKFIELD);
 		for (String key : keys) {
 		    if (key.equals(values[0])) {
@@ -243,6 +248,10 @@ public class NewAlternativeDialog extends JPanel implements IWindow, ActionListe
 			.getShapeCount() - 1, indexes, values);
 
 		edition.stopEditing(altLayer, false);
+
+		DatabaseDirectAccessQueries
+			.insertDefaultPreferences(codAltField.getText());
+
 		OpenAlternativeExtension.openAlternative(values[0]);
 	    } else if (e.getSource() == cancelButton) {
 		new ToggleEditing().stopEditing(altLayer, true);
@@ -254,6 +263,7 @@ public class NewAlternativeDialog extends JPanel implements IWindow, ActionListe
 
     }
 
+    @Override
     public Object getWindowProfile() {
 	return null;
     }
@@ -267,6 +277,7 @@ public class NewAlternativeDialog extends JPanel implements IWindow, ActionListe
 	    this.description = description;
 	}
 
+	@Override
 	public String toString() {
 	    return description;
 	}
