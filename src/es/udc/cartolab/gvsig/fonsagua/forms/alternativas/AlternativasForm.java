@@ -33,13 +33,13 @@ public class AlternativasForm extends BasicAbstractForm {
 	comImplicadas = (JTable) formBody
 		.getComponentByName("comunidades_implicadas");
 	comImplicadasListener = new MyListener(
-		new SelectComunitiesForAlternativeDialog());
+		new SelectComunitiesForAlternativeDialog(2));
 	comImplicadas.addMouseListener(comImplicadasListener);
 
 	fuentesImplicadas = (JTable) formBody
 		.getComponentByName("fuentes_implicadas");
 	fuentesImplicadasListener = new MyListener(
-		new SelectFuentesForAlternativeDialog());
+		new SelectFuentesForAlternativeDialog(4));
 	fuentesImplicadas.addMouseListener(fuentesImplicadasListener);
     }
 
@@ -102,6 +102,8 @@ public class AlternativasForm extends BasicAbstractForm {
 	    if (filteredTableModel != null) {
 		((JTable) e.getSource())
 			.setModel(addRowIfEmpty(filteredTableModel));
+		dialog.setAutomaticValue(layerController, getWidgetComponents());
+		setChangedValues();
 	    }
 	}
 

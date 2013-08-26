@@ -1,21 +1,27 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.alternativas;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Vector;
 
+import javax.swing.JComponent;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import com.iver.cit.gvsig.fmap.drivers.DBException;
 
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
+import es.udc.cartolab.gvsig.navtable.dataacces.IController;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 @SuppressWarnings("serial")
 public class SelectFuentesForAlternativeDialog extends
 	SelectElementForAlternativeDialog {
 
-    private static final int EDITABLE_COLUMN = 4;
+    public SelectFuentesForAlternativeDialog(int editableColumnIdx) {
+	super(editableColumnIdx);
+    }
 
     @Override
     public void update(String code) {
@@ -43,14 +49,15 @@ public class SelectFuentesForAlternativeDialog extends
 
 	for (int row = 0; row < org.getRowCount(); row++) {
 	    double editableColumnValue = getNumericValueAt(org, row,
-		    EDITABLE_COLUMN);
-	    double baseValue = getNumericValueAt(org, row, EDITABLE_COLUMN - 1);
+		    getEditableColumnIdx());
+	    double baseValue = getNumericValueAt(org, row,
+		    getEditableColumnIdx() - 1);
 
 	    if (editableColumnValue > 0) {
 		String tipo_fuente = (String) org.getValueAt(row, 1);
 		if (tipo_fuente.equals("Punto rio")
 			|| tipo_fuente.equals("Manantial")) {
-		    if (editableColumnValue < baseValue) {
+		    if (editableColumnValue <= baseValue) {
 			Object rowData = org.getDataVector().get(row);
 			copy.addRow((Vector) rowData);
 		    }
@@ -71,4 +78,14 @@ public class SelectFuentesForAlternativeDialog extends
 		code);
 
     }
+
+    @Override
+    public void setAutomaticValue(IController layerController,
+	    HashMap<String, JComponent> widgets) {
+	final String fieldName = "caudal_fuentes";
+	String caudalFuentes = Double.toString(getSumEditableColumnValue());
+	layerController.setValue(fieldName, caudalFuentes);
+	((JTextField) widgets.get(fieldName)).setText(caudalFuentes);
+    }
+
 }

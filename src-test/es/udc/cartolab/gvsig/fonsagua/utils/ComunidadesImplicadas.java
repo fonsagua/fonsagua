@@ -18,7 +18,8 @@ public class ComunidadesImplicadas {
 	setUp();
 
 	JFrame ventana = new JFrame("Contenido base de datos");
-	SelectComunitiesForAlternativeDialog selectComunitiesForAlternativeDialog = new SelectComunitiesForAlternativeDialog();
+	SelectComunitiesForAlternativeDialog selectComunitiesForAlternativeDialog = new SelectComunitiesForAlternativeDialog(
+		2);
 
 	ventana.getContentPane().add(selectComunitiesForAlternativeDialog);
 	ventana.pack();
