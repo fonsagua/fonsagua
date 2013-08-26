@@ -33,6 +33,7 @@ import es.udc.cartolab.gvsig.users.utils.DBSession;
 public class OpenAlternativeExtension extends Extension {
 
     private static String code;
+    private static boolean validAlternativa;
 
     @Override
     public void initialize() {
@@ -40,6 +41,7 @@ public class OpenAlternativeExtension extends Extension {
 		"open_alternative",
 		this.getClass().getClassLoader()
 			.getResource("images/open_alternative.png"));
+	OpenAlternativeExtension.validAlternativa = false;
     }
 
     @Override
@@ -124,7 +126,7 @@ public class OpenAlternativeExtension extends Extension {
 				.put(alternativa[1], new ArrayList<String>());
 		    }
 		    divsCodes.get(departCode).get(municCode)
-				.get(alternativa[1]).add(alternativa[0]);
+			    .get(alternativa[1]).add(alternativa[0]);
 		}
 	    }
 	    OpenAlternativeDialog dialog = new OpenAlternativeDialog(divsCodes,
@@ -218,6 +220,14 @@ public class OpenAlternativeExtension extends Extension {
 
     public static String getCode() {
 	return code;
+    }
+
+    public static void setValidAlternative(boolean validAlternative) {
+	OpenAlternativeExtension.validAlternativa = validAlternative;
+    }
+
+    public static boolean getValidAlternative() {
+	return OpenAlternativeExtension.validAlternativa;
     }
 
 }

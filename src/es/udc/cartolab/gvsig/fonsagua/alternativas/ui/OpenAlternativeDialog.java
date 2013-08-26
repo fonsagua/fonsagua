@@ -24,6 +24,7 @@ import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.andami.ui.mdiManager.WindowInfo;
 
 import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
+import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 
 public class OpenAlternativeDialog extends JPanel implements IWindow,
 	ActionListener {
@@ -53,6 +54,7 @@ public class OpenAlternativeDialog extends JPanel implements IWindow,
     private JComboBox cantonCombo = null;
     private JComboBox alternCombo = null;
 
+    @Override
     public WindowInfo getWindowInfo() {
 	if (windowInfo == null) {
 	    windowInfo = new WindowInfo(WindowInfo.MODALDIALOG
@@ -107,6 +109,7 @@ public class OpenAlternativeDialog extends JPanel implements IWindow,
 
 	departCombo = new JComboBox(items);
 	departCombo.addItemListener(new ItemListener() {
+	    @Override
 	    public void itemStateChanged(ItemEvent event) {
 		if (event.getStateChange() == ItemEvent.SELECTED) {
 		    updateMunicCombo();
@@ -122,6 +125,7 @@ public class OpenAlternativeDialog extends JPanel implements IWindow,
 
 	municCombo = new JComboBox();
 	municCombo.addItemListener(new ItemListener() {
+	    @Override
 	    public void itemStateChanged(ItemEvent event) {
 		if (event.getStateChange() == ItemEvent.SELECTED) {
 		    updateCantonCombo();
@@ -137,6 +141,7 @@ public class OpenAlternativeDialog extends JPanel implements IWindow,
 
 	cantonCombo = new JComboBox();
 	cantonCombo.addItemListener(new ItemListener() {
+	    @Override
 	    public void itemStateChanged(ItemEvent event) {
 		if (event.getStateChange() == ItemEvent.SELECTED) {
 		    updateAlternativaCombo();
@@ -213,11 +218,14 @@ public class OpenAlternativeDialog extends JPanel implements IWindow,
 	}
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
 	try {
 	    if (e.getSource() == okButton) {
 		String alternCod = alternCombo.getSelectedItem().toString();
 		OpenAlternativeExtension.openAlternative(alternCod);
+		OpenAlternativeExtension.setValidAlternative(DatabaseDirectAccessQueries
+			.isValidAlternative(alternCod));
 	    }
 	} catch (Exception e1) {
 	    e1.printStackTrace();
@@ -226,6 +234,7 @@ public class OpenAlternativeDialog extends JPanel implements IWindow,
 
     }
 
+    @Override
     public Object getWindowProfile() {
 	return null;
     }
@@ -239,6 +248,7 @@ public class OpenAlternativeDialog extends JPanel implements IWindow,
 	    this.description = description;
 	}
 
+	@Override
 	public String toString() {
 	    return description;
 	}

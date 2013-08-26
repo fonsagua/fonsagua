@@ -76,6 +76,22 @@ public class DatabaseDirectAccessQueries {
 	return model;
     }
 
+    public static boolean isValidAlternative(String codAlt) throws SQLException {
+
+	String query = "SELECT demanda, caudal_fuentes FROM fonsagua.alternativas WHERE cod_alternativa = '####'";
+	ResultSet rs = convertAndExecuteQuery(codAlt, query);
+
+	while (rs.next()) {
+	    final double demanda = rs.getDouble("demanda");
+	    final double caudalFuentes = rs.getDouble("caudal_fuentes");
+
+	    if (demanda > 0 && caudalFuentes > 0 && demanda < caudalFuentes) {
+		return true;
+	    }
+	}
+	return false;
+    }
+
     public static void removeAndInsertModelFuentes(TableModel model, String code)
 	    throws SQLException {
 	DBSession session = DBSession.getCurrentSession();
