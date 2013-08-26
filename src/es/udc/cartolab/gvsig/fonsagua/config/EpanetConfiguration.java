@@ -8,6 +8,7 @@ import es.udc.cartolab.gvsig.epanet.config.PumpFieldNames;
 import es.udc.cartolab.gvsig.epanet.config.ReservoirFieldNames;
 import es.udc.cartolab.gvsig.epanet.config.TankFieldNames;
 import es.udc.cartolab.gvsig.epanet.config.ValveFieldNames;
+import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 
 /*
  * fpuga: Epanet Configuration classes should be threaten in another way.
@@ -26,6 +27,7 @@ public class EpanetConfiguration {
 	setPumpFieldNames();
 	setValveFieldNames();
 	setLayerNames();
+	OpenAlternativeExtension.setValidAlternative(false);
     }
 
     private void setLayerNames() {
@@ -104,5 +106,4 @@ public class EpanetConfiguration {
 	names.setDemand(null);
 	Preferences.setJunctionFieldNames(names);
     }
-
 }

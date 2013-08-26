@@ -24,6 +24,15 @@ import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.elle.utils.ELLEMap;
 import es.udc.cartolab.gvsig.elle.utils.LoadLegend;
 import es.udc.cartolab.gvsig.elle.utils.MapDAO;
+import es.udc.cartolab.gvsig.epanet.AbstractExtension;
+import es.udc.cartolab.gvsig.epanet.JunctionExtension;
+import es.udc.cartolab.gvsig.epanet.PipeExtension;
+import es.udc.cartolab.gvsig.epanet.PumpExtension;
+import es.udc.cartolab.gvsig.epanet.ReservoirExtension;
+import es.udc.cartolab.gvsig.epanet.RunExtension;
+import es.udc.cartolab.gvsig.epanet.SourceExtension;
+import es.udc.cartolab.gvsig.epanet.TankExtension;
+import es.udc.cartolab.gvsig.epanet.ValveExtension;
 import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.OpenAlternativeDialog;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
@@ -33,7 +42,7 @@ import es.udc.cartolab.gvsig.users.utils.DBSession;
 public class OpenAlternativeExtension extends Extension {
 
     private static String code;
-    private static boolean validAlternativa;
+    private static boolean validAlternative;
 
     @Override
     public void initialize() {
@@ -41,7 +50,7 @@ public class OpenAlternativeExtension extends Extension {
 		"open_alternative",
 		this.getClass().getClassLoader()
 			.getResource("images/open_alternative.png"));
-	OpenAlternativeExtension.validAlternativa = false;
+	OpenAlternativeExtension.validAlternative = false;
     }
 
     @Override
@@ -223,11 +232,20 @@ public class OpenAlternativeExtension extends Extension {
     }
 
     public static void setValidAlternative(boolean validAlternative) {
-	OpenAlternativeExtension.validAlternativa = validAlternative;
+	OpenAlternativeExtension.validAlternative = validAlternative;
+	JunctionExtension.setExternalEnability(validAlternative);
+	PipeExtension.setExternalEnability(validAlternative);
+	PumpExtension.setExternalEnability(validAlternative);
+	ReservoirExtension.setExternalEnability(validAlternative);
+	RunExtension.setExternalEnability(validAlternative);
+	TankExtension.setExternalEnability(validAlternative);
+	ValveExtension.setExternalEnability(validAlternative);
+
+	SourceExtension.setExternalEnability(true);
     }
 
     public static boolean getValidAlternative() {
-	return OpenAlternativeExtension.validAlternativa;
+	return OpenAlternativeExtension.validAlternative;
     }
 
 }

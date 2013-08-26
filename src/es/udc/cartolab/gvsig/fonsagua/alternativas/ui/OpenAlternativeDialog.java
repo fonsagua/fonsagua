@@ -224,10 +224,12 @@ public class OpenAlternativeDialog extends JPanel implements IWindow,
 	    if (e.getSource() == okButton) {
 		String alternCod = alternCombo.getSelectedItem().toString();
 		OpenAlternativeExtension.openAlternative(alternCod);
-		OpenAlternativeExtension.setValidAlternative(DatabaseDirectAccessQueries
-			.isValidAlternative(alternCod));
+		OpenAlternativeExtension
+			.setValidAlternative(DatabaseDirectAccessQueries
+				.isValidAlternative(alternCod));
 	    }
 	} catch (Exception e1) {
+	    OpenAlternativeExtension.setValidAlternative(false);
 	    e1.printStackTrace();
 	}
 	PluginServices.getMDIManager().closeWindow(this);
