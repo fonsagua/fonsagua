@@ -1,10 +1,12 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.alternativas;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,6 +28,7 @@ public class AlternativasForm extends BasicAbstractForm {
     private MyListener comImplicadasListener;
     private JTable fuentesImplicadas;
     private MyListener fuentesImplicadasListener;
+    private JButton validBT;
 
     public AlternativasForm(FLyrVect layer) {
 	super(layer);
@@ -41,6 +44,8 @@ public class AlternativasForm extends BasicAbstractForm {
 	fuentesImplicadasListener = new MyListener(
 		new SelectFuentesForAlternativeDialog(4));
 	fuentesImplicadas.addMouseListener(fuentesImplicadasListener);
+
+	validBT = (JButton) formBody.getComponentByName("valid_button");
     }
 
     @Override
@@ -67,6 +72,24 @@ public class AlternativasForm extends BasicAbstractForm {
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
+	try {
+	    double caudalFuentes = Double.parseDouble(layerController.getValue(
+		    "caudal_fuentes").replace(",", "."));
+	    double demanda = Double.parseDouble(layerController.getValue(
+		    "demanda").replace(",", "."));
+	    if (caudalFuentes >= demanda) {
+		validBT.setText("Válida");
+		validBT.setBackground(new Color(0, 255, 0));
+	    } else {
+		validBT.setText("Inválida");
+		validBT.setBackground(new Color(255, 0, 0));
+	    }
+
+	} catch (NumberFormatException e) {
+	    validBT.setText("Inválida");
+	    validBT.setBackground(new Color(255, 0, 0));
+	}
+
     }
 
     private DefaultTableModel addRowIfEmpty(DefaultTableModel tableModel) {
