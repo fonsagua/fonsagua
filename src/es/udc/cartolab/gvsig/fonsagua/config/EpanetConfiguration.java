@@ -35,7 +35,8 @@ public class EpanetConfiguration {
 	layerNames.setJunctions("alt_conexiones");
 	layerNames.setPipes("alt_tuberias");
 	layerNames.setPumps("alt_bombeos");
-	layerNames.setReservoirs("alt_fuentes");
+	layerNames.setReservoirs("alt_embalses");
+	layerNames.setSources("alt_fuentes");
 	layerNames.setTanks("alt_depositos");
 	layerNames.setValves("alt_valvulas");
 	Preferences.setLayerNames(layerNames);
