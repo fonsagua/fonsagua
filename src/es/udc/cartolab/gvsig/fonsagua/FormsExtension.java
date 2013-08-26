@@ -71,17 +71,14 @@ public class FormsExtension extends Extension {
 	// Workaround to increase the snap tolerance
 	SelectionCADTool.tolerance = 12;
 
-	// Workaround to open CopyFeatures dialog in a predefined foldder
-	CopyFeaturesExtension cfe = (CopyFeaturesExtension) PluginServices
-		.getExtension(CopyFeaturesExtension.class);
-	cfe.setDefaultPath(Launcher.getAppHomeDir()
+	// Workaround to open CopyFeatures dialog in a predefined folder
+	CopyFeaturesExtension.setDefaultPath(Launcher.getAppHomeDir()
 		+ FonsaguaConstants.GPS_MATCHING_FILES);
 
 	// Workarount to hide the connection dialog for spatialite db
 	ExtensionDecorator spliteExtension = PluginServices
 		.getDecoratedExtension(SpatiaLiteDBConnectionExtension.class);
 	spliteExtension.setVisibility(ExtensionDecorator.ALWAYS_INVISIBLE);
-
     }
 
     @Override
