@@ -23,5 +23,6 @@ public interface FonsaguaConstants {
     public static final String COD_ALTERNATIVA = "cod_alternativa";
     public static final String AlternativesMap = "Vista alternativas";
     public static final String COMUNIDADES_IMPLICADAS = "comunidades_implicadas";
+    public static final String FUENTES_IMPLICADAS = "fuentes_implicadas";
 
 }
