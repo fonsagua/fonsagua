@@ -14,6 +14,7 @@ import com.iver.andami.PluginServices;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
+import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 
 @SuppressWarnings("serial")
@@ -77,12 +78,14 @@ public class AlternativasForm extends BasicAbstractForm {
 		    "caudal_fuentes").replace(",", "."));
 	    double demanda = Double.parseDouble(layerController.getValue(
 		    "demanda").replace(",", "."));
-	    if (caudalFuentes >= demanda) {
+	    if (caudalFuentes > 0 && demanda > 0 && caudalFuentes >= demanda) {
 		validBT.setText("Válida");
 		validBT.setBackground(new Color(0, 255, 0));
+		OpenAlternativeExtension.setValidAlternative(true);
 	    } else {
 		validBT.setText("Inválida");
 		validBT.setBackground(new Color(255, 0, 0));
+		OpenAlternativeExtension.setValidAlternative(false);
 	    }
 
 	} catch (NumberFormatException e) {
