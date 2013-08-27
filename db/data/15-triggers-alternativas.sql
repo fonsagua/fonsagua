@@ -11,6 +11,8 @@ CREATE OR REPLACE FUNCTION fonsagua.alternativas_compute_field_trigger() RETURNS
        BEGIN
 	SELECT COALESCE(f_var_est, 0), COALESCE(tasa_crec, 0), COALESCE(ano_horiz_sist, 0), COALESCE(dot_sist_domiciliar, 0), COALESCE(dot_sist_cantareras, 0) INTO f_var_est_t, tasa_crec_t, ano_horiz_sist_t, dot_sist_domiciliar_t, dot_sist_cantareras_t FROM fonsagua.preferencias WHERE NEW.cod_alternativa = cod_alternativa;
 
+
+	SELECT SUM(n_hab_alternativa) INTO NEW.pobl_actual FROM fonsagua.comunidades_implicadas WHERE cod_alternativa = NEW.cod_alternativa;
 	IF (NEW.pobl_actual IS NULL OR NEW.pobl_actual < 0) THEN NEW.pobl_actual = 0; END IF;
 
 	NEW.pobl_futura = ceil(NEW.pobl_actual * (1 + (tasa_crec_t * ano_horiz_sist_t / 100)));
