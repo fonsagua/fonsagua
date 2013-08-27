@@ -57,11 +57,10 @@ public class FormsExtension extends Extension {
 
 	// Workaround to use another icon for CopyFeatures extension instead of
 	// the default
-	PluginServices.getIconTheme()
-		.registerDefault(
-			CopyFeaturesExtension.COPY_FEATURES_ICON,
-			this.getClass().getClassLoader()
-				.getResource("images/copy.png"));
+	PluginServices.getIconTheme().registerDefault(
+		CopyFeaturesExtension.COPY_FEATURES_ICON,
+		this.getClass().getClassLoader()
+			.getResource("images/copy_features.png"));
 	EpanetConfiguration epanetConfig = new EpanetConfiguration();
 	epanetConfig.setConfig();
     }
