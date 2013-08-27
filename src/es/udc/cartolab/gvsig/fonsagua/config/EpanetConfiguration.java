@@ -26,6 +26,7 @@ public class EpanetConfiguration {
 	setPipeFieldNames();
 	setPumpFieldNames();
 	setValveFieldNames();
+	setSourceFieldNames();
 	setLayerNames();
 	OpenAlternativeExtension.setValidAlternative(false);
     }
@@ -106,5 +107,15 @@ public class EpanetConfiguration {
 	names.setHead("altura_total");
 	names.setDemand(null);
 	Preferences.setJunctionFieldNames(names);
+    }
+
+    private void setSourceFieldNames() {
+	JunctionFieldNames names = new JunctionFieldNames();
+	names.setElevation("altura");
+	names.setBaseDemand("q_calculo");//
+	names.setPressure("presion");
+	names.setHead("altura_total");
+	names.setDemand(null);
+	Preferences.setSourceFieldNames(names);
     }
 }
