@@ -1,20 +1,16 @@
 package es.udc.cartolab.gvsig.fonsagua;
 
-import java.util.Set;
-
 import com.iver.andami.PluginServices;
 import com.iver.andami.plugins.Extension;
 import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.cit.gvsig.ProjectExtension;
-import com.iver.cit.gvsig.fmap.layers.FLayer;
-import com.iver.cit.gvsig.fmap.layers.FLayers;
 import com.iver.cit.gvsig.project.Project;
 import com.iver.cit.gvsig.project.documents.ProjectDocument;
 import com.iver.cit.gvsig.project.documents.ProjectDocumentFactory;
 import com.iver.cit.gvsig.project.documents.view.ProjectViewFactory;
 import com.iver.cit.gvsig.project.documents.view.gui.View;
 
-import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
+import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public abstract class OpenAbstractExtension extends Extension {
@@ -50,7 +46,7 @@ public abstract class OpenAbstractExtension extends Extension {
 
 	if (iWindow instanceof View) {
 	    view = (View) iWindow;
-	    cleanView(view);
+	    new TOCLayerManager().removeAllLayers();
 	} else {
 	    Project project = ((ProjectExtension) PluginServices
 		    .getExtension(ProjectExtension.class)).getProject();
@@ -64,36 +60,6 @@ public abstract class OpenAbstractExtension extends Extension {
 	    PluginServices.getMDIManager().addWindow(view);
 	}
 	return view;
-    }
-
-    /**
-     * If the current View has the layers we are going to load again with the
-     * SQL restriction, we remove them
-     */
-    private static void cleanView(View view) {
-	FLayers layersGroup = view.getMapControl().getMapContext().getLayers();
-	layersGroup.setAllVisibles(false);
-	removeLayers(layersGroup);
-
-	if (FonsaguaFormFactory.getInstance().allAlternativasLayersLoaded()) {
-	    Set<String> layers = FonsaguaFormFactory.getInstance()
-		    .getAllAlternativasLayersNames();
-
-	    for (String layer : layers) {
-		layersGroup.removeLayer(layer);
-	    }
-	}
-    }
-
-    private static void removeLayers(FLayers layersGroup) {
-	for (int i = 0; i < layersGroup.getLayersCount(); i++) {
-	    FLayer layer = layersGroup.getLayer(i);
-	    if (layer instanceof FLayers) {
-		removeLayers((FLayers) layer);
-	    } else {
-		layersGroup.removeLayer(i);
-	    }
-	}
     }
 
     @Override
