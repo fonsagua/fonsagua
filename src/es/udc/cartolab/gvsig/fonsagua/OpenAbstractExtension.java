@@ -1,9 +1,14 @@
 package es.udc.cartolab.gvsig.fonsagua;
 
+import java.awt.geom.Rectangle2D;
+
+import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 import com.iver.andami.PluginServices;
 import com.iver.andami.plugins.Extension;
 import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.cit.gvsig.ProjectExtension;
+import com.iver.cit.gvsig.exceptions.expansionfile.ExpansionFileReadException;
+import com.iver.cit.gvsig.fmap.MapContext;
 import com.iver.cit.gvsig.project.Project;
 import com.iver.cit.gvsig.project.documents.ProjectDocument;
 import com.iver.cit.gvsig.project.documents.ProjectDocumentFactory;
@@ -77,4 +82,16 @@ public abstract class OpenAbstractExtension extends Extension {
 	return true;
     }
 
+    protected static void zoomToLayer(final View view, final String layername) {
+	try {
+	    MapContext mapContext = view.getMapControl().getMapContext();
+	    Rectangle2D fullExtent = mapContext.getLayers().getLayer(layername)
+		    .getFullExtent();
+	    mapContext.getViewPort().setExtent(fullExtent);
+	} catch (ExpansionFileReadException e) {
+	    e.printStackTrace();
+	} catch (ReadDriverException e) {
+	    e.printStackTrace();
+	}
+    }
 }

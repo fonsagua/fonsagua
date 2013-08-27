@@ -156,6 +156,7 @@ public class OpenAlternativeExtension extends OpenAbstractExtension {
 	    map.getLayer("alt_embalses").setWhere(sqlWhere);
 	    map.getLayer("alternativas").setWhere(sqlWhere);
 	    map.load(view.getProjection());
+	    zoomToLayer(view, AlternativasForm.NAME);
 	} catch (Exception e) {
 	    // TODO: catch error
 	    e.printStackTrace();
