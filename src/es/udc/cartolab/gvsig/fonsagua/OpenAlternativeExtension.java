@@ -23,6 +23,7 @@ import es.udc.cartolab.gvsig.epanet.RunExtension;
 import es.udc.cartolab.gvsig.epanet.SourceExtension;
 import es.udc.cartolab.gvsig.epanet.TankExtension;
 import es.udc.cartolab.gvsig.epanet.ValveExtension;
+import es.udc.cartolab.gvsig.epanet.config.FonsaguaAlternative;
 import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.OpenAlternativeDialog;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
@@ -134,6 +135,8 @@ public class OpenAlternativeExtension extends OpenAbstractExtension {
     }
 
     public static void openAlternative(String code) {
+	OpenAlternativeExtension.code = code;
+	FonsaguaAlternative.code = code;
 	MapDAO mapDAO = MapDAO.getInstance();
 	try {
 	    final View view = createViewIfNeeded("Alternativas");
