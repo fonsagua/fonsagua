@@ -1,9 +1,13 @@
 package es.udc.cartolab.gvsig.fonsagua;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.iver.andami.Launcher;
 import com.iver.andami.PluginServices;
 import com.iver.andami.plugins.Extension;
 import com.iver.andami.plugins.ExtensionDecorator;
+import com.iver.andami.plugins.IExtension;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.iver.cit.gvsig.gui.cad.tools.SelectionCADTool;
 import com.iver.utiles.extensionPoints.ExtensionPoints;
@@ -12,6 +16,12 @@ import com.iver.utiles.extensionPoints.ExtensionPointsSingleton;
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.gvsig.elle.DeleteAllLegendsExtension;
+import es.udc.cartolab.gvsig.elle.DeleteMapExtension;
+import es.udc.cartolab.gvsig.elle.LoadAllLegendsExtension;
+import es.udc.cartolab.gvsig.elle.LoadMapExtension;
+import es.udc.cartolab.gvsig.elle.SaveAllLegendsExtension;
+import es.udc.cartolab.gvsig.elle.SaveMapExtension;
 import es.udc.cartolab.gvsig.fonsagua.config.EpanetConfiguration;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
@@ -74,10 +84,22 @@ public class FormsExtension extends Extension {
 	CopyFeaturesExtension.setDefaultPath(Launcher.getAppHomeDir()
 		+ FonsaguaConstants.GPS_MATCHING_FILES);
 
-	// Workarount to hide the connection dialog for spatialite db
-	ExtensionDecorator spliteExtension = PluginServices
-		.getDecoratedExtension(SpatiaLiteDBConnectionExtension.class);
-	spliteExtension.setVisibility(ExtensionDecorator.ALWAYS_INVISIBLE);
+	// Hide extensions that we only use as libraries and not as extensions
+	// to be "clicked" by the users
+	List<Class<? extends IExtension>> l = new ArrayList<Class<? extends IExtension>>();
+	l.add(SpatiaLiteDBConnectionExtension.class);
+	l.add(DeleteAllLegendsExtension.class);
+	l.add(DeleteMapExtension.class);
+	l.add(LoadAllLegendsExtension.class);
+	l.add(LoadMapExtension.class);
+	l.add(SaveAllLegendsExtension.class);
+	l.add(SaveMapExtension.class);
+
+	for (Class<? extends IExtension> c : l) {
+	    PluginServices.getDecoratedExtension(c).setVisibility(
+		    ExtensionDecorator.ALWAYS_INVISIBLE);
+	}
+
     }
 
     @Override
