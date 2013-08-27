@@ -103,10 +103,50 @@
 				position="6"/>
 		</extension>
 
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenGeneralExtension" active="true">
+			<tool-bar name="fonsagua">
+				<action-tool icon="open_general" tooltip="open_general"
+					action-command="open_general" position="70" />
+			</tool-bar>
+			<menu text="fonsagua_menu/inventario/open_general"
+				action-command="open_general"
+				position="1"/>
+		</extension>
+		
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension" active="true">
+			<tool-bar name="fonsagua">
+				<action-tool icon="open_alternative" tooltip="open_alternative"
+					action-command="open_alternative" position="80" group="fonsagua" name="open_alternative" />
+			</tool-bar>
+			<menu text="fonsagua_menu/alternativas/open_alternative"
+				action-command="open_alternative"
+				position="2"/>
+		</extension>
+		
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenAllAlternativesExtension" active="true">
+			<tool-bar name="fonsagua">
+				<action-tool icon="open_all_alternatives" tooltip="open_all_alternatives"
+					action-command="open_all_alternatives" position="90" group="fonsagua" name="open_all_alternatives" />
+			</tool-bar>
+			<menu text="fonsagua_menu/alternativas/open_all_alternatives"
+				action-command="open_all_alternatives"
+				position="3"/>
+		</extension>
+		
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.NewAlternativeExtension" active="true">
+			<tool-bar name="fonsagua">
+				<action-tool icon="new_alternative" tooltip="new_alternative"
+					action-command="new_alternative" position="100" />
+			</tool-bar>
+			<menu text="fonsagua_menu/alternativas/new_alternative"
+				action-command="new_alternative"
+				position="4"/>
+		</extension>
+
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.AutoFormsExtension" active="true">
 			<tool-bar name="fonsagua">
 				<selectable-tool icon="auto-forms" tooltip="enable_auto_forms"
-					action-command="auto-forms" position="70" group="fonsagua" name="auto-forms" />
+					action-command="auto-forms" position="110" group="fonsagua" name="auto-forms" />
 			</tool-bar>
 		</extension>
 
@@ -114,29 +154,9 @@
 		<!-- Workaround to allow activate and deactivate the autoforms extensions button -->
                        <tool-bar name="fonsagua">
                                <selectable-tool icon="auto-forms" tooltip="disable_auto_forms"
-                                       action-command="empty" position="70" group="fonsagua" name="auto-forms" />
+                                       action-command="empty" position="110" group="fonsagua" name="auto-forms" />
                        </tool-bar>
         </extension>
-
-		<extension class-name="es.udc.cartolab.gvsig.fonsagua.NewAlternativeExtension" description="REPORTS_PANEL" active="true">
-			<tool-bar name="fonsagua">
-				<action-tool icon="new_alternative" tooltip="new_alternative"
-					action-command="new_alternative" position="80" />
-			</tool-bar>
-			<menu text="fonsagua_menu/alternativas/new_alternative"
-				action-command="new_alternative"
-				position="2"/>
-		</extension>
-
-		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension" active="true">
-			<tool-bar name="fonsagua">
-				<action-tool icon="open_alternative" tooltip="open_alternative"
-					action-command="open_alternative" position="70" group="fonsagua" name="open_alternative" />
-			</tool-bar>
-			<menu text="fonsagua_menu/alternativas/open_alternative"
-				action-command="open_alternative"
-				position="1"/>
-		</extension>
 
 	</extensions>
 </plugin-config>
