@@ -22,11 +22,11 @@
 		</DOMAINREADER>
 	    </FIELD>
        	    <FIELD>
-		<FIELDNAME>tipo_abastecimiento</FIELDNAME>
+		<FIELDNAME>tipo_distribucion</FIELDNAME>
 		<DOMAINREADER>
 			<DRTYPE>db</DRTYPE>
 			<DRDBSCHEMA>dominios</DRDBSCHEMA>
-			<DRDBTABLE>tipo_abastecimiento</DRDBTABLE>
+			<DRDBTABLE>tipo_distribucion</DRDBTABLE>
 			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
 			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
 		</DOMAINREADER>

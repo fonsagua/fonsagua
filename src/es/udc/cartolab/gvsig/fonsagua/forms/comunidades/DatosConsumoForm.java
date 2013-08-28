@@ -11,9 +11,9 @@ import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.listeners.Dependent
 public class DatosConsumoForm extends AbstractSubForm {
 
     public static final String NAME = "datos_consumo";
-    public static String[] colNames = { "cod_comunidad", "tipo_abastecimiento",
+    public static String[] colNames = { "cod_comunidad", "tipo_distribucion",
 	    "consumo", "n_miembros" };
-    public static String[] colAlias = { "ID Comunidad", "Tipo abastecimiento",
+    public static String[] colAlias = { "ID Comunidad", "Tipo distribución",
 	    "Consumo (l/día)", "Nº miembros familia" };
 
     private JComponent codComunidad;

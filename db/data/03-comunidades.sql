@@ -800,8 +800,8 @@ CREATE TABLE fonsagua.datos_consumo (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR NOT NULL,
        cod_abastecimiento VARCHAR NOT NULL,
-       tipo_abastecimiento VARCHAR
-	       REFERENCES dominios.tipo_abastecimiento(item)
+       tipo_distribucion VARCHAR
+	       REFERENCES dominios.tipo_distribucion(item)
 	       ON DELETE CASCADE
 	       ON UPDATE CASCADE,
        mujeres BOOLEAN,

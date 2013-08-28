@@ -479,18 +479,18 @@ INSERT INTO dominios.acceso_tomas (item) VALUES
 ALTER TABLE dominios.acceso_tomas OWNER TO fonsagua;
 
 
-CREATE TABLE dominios.tipo_abastecimiento (
+CREATE TABLE dominios.tipo_distribucion (
        item VARCHAR
 	       PRIMARY KEY
 
 );
 
-INSERT INTO dominios.tipo_abastecimiento (item) VALUES
+INSERT INTO dominios.tipo_distribucion (item) VALUES
        (' '),
        ('Cantareras'),
        ('Domiciliar');
 
-ALTER TABLE dominios.tipo_abastecimiento OWNER TO fonsagua;
+ALTER TABLE dominios.tipo_distribucion OWNER TO fonsagua;
 
 
 CREATE TABLE dominios.tipo_contaminacion (
