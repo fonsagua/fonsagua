@@ -1,0 +1,13 @@
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('0,5 HP', NULL, 0.5, 408);
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('0,75 HP', NULL, 0.76, 526);
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('1 HP', NULL, 1.01, 587);
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('1,5 HP', NULL, 1.52, 835);
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('2 HP', NULL, 2.03, 557);
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('3 HP', NULL, 3.04, 669);
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('5 HP', NULL, 5.07, 1106);
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('7,5 HP', NULL, 7.6, 1595);
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('10 HP', NULL, 10.14, 1937);
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('15 HP', NULL, 15.21, 2320);
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('20 HP', NULL, 20.28, 3905);
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('30 HP', NULL, 30.41, 4920);
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('40 HP', NULL, 40.55, 6235);
