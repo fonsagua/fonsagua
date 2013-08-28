@@ -4,7 +4,9 @@ SELECT PLAN(9);
 
 SELECT trigger_is('fonsagua', 'alt_fuentes', 'alt_fuentes_compute_field_trigger', 'fonsagua', 'alt_fuentes_compute_field_trigger');
 
-INSERT INTO fonsagua.preferencias (cod_alternativa, coef_q_eco) VALUES ('TEST-ALT-FUENTES', 0.5);
+INSERT INTO fonsagua.alternativas (cod_alternativa, departamento, municipio, canton) VALUES ('TEST-ALT-FUENTES','mun', 'dep', 'canton');
+
+INSERT INTO fonsagua.preferencias_disenho (cod_alternativa, coef_q_ecologico) VALUES ('TEST-ALT-FUENTES', 0.5);
 
 INSERT INTO fonsagua.alt_fuentes(cod_alternativa, aforo, q_usar) VALUES ('TEST-ALT-FUENTES', 2, 0);
 SELECT is(q_ecologico, 1::numeric)

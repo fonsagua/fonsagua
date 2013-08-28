@@ -10,7 +10,7 @@ CREATE OR REPLACE FUNCTION fonsagua.alt_conexiones_compute_field_trigger() RETUR
 	tipo_distribucion_t VARCHAR;
 	hab_conectados_t INTEGER;
        BEGIN
-	SELECT COALESCE(f_var_hor,0), COALESCE(f_var_est, 0), COALESCE(tasa_crec, 0), COALESCE(ano_horiz_sist, 0), COALESCE(dot_sist_domiciliar, 0), COALESCE(dot_sist_cantareras, 0) INTO f_var_hor_t, f_var_est_t, tasa_crec_t, ano_horizonte, dot_sist_domiciliar_t, dot_sist_cantareras_t FROM fonsagua.preferencias WHERE NEW.cod_alternativa = cod_alternativa;
+	SELECT COALESCE(f_var_horaria,0), COALESCE(f_var_estacional, 0), COALESCE(tasa_crecimiento, 0), COALESCE(ano_horiz_sistema, 0), COALESCE(dot_domiciliar, 0), COALESCE(dot_cantareras, 0) INTO f_var_hor_t, f_var_est_t, tasa_crec_t, ano_horizonte, dot_sist_domiciliar_t, dot_sist_cantareras_t FROM fonsagua.preferencias_disenho WHERE NEW.cod_alternativa = cod_alternativa;
 
 	SELECT tipo_distribucion INTO tipo_distribucion_t FROM fonsagua.alternativas WHERE NEW.cod_alternativa = cod_alternativa;
 

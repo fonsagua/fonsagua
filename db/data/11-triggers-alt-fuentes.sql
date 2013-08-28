@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION fonsagua.alt_fuentes_compute_field_trigger() RETURNS 
        DECLARE
 	coef_q_eco_t REAL;
        BEGIN
-	SELECT COALESCE(coef_q_eco,0) INTO coef_q_eco_t FROM fonsagua.preferencias WHERE cod_alternativa = NEW.cod_alternativa;
+	SELECT COALESCE(coef_q_ecologico,0) INTO coef_q_eco_t FROM fonsagua.preferencias_disenho WHERE cod_alternativa = NEW.cod_alternativa;
 
 	IF (coef_q_eco_t > 0 AND NEW.aforo > 0) THEN NEW.q_ecologico = coef_q_eco_t * NEW.AFORO; ELSE NEW.q_ecologico = NULL; END IF;
 

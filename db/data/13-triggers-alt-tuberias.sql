@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION fonsagua.alt_tuberias_compute_field_trigger() RETURNS TRIGGER AS $alt_tuberias_compute_field_trigger$
        BEGIN
-	SELECT COALESCE(material, ''), COALESCE(rugosidad, 0), COALESCE(diametro,0) INTO NEW.material, NEW.rugosidad, NEW.diametro FROM fonsagua.tuberias_comerciales;
+	SELECT COALESCE(material, ''), COALESCE(rugosidad, 0), COALESCE(diametro,0) INTO NEW.material, NEW.rugosidad, NEW.diametro FROM fonsagua.preferencias_tuberias WHERE id_tub = NEW.tuberia_comercial;
 	NEW.long_tuberia = st_length(NEW.geom);
 
 	RETURN NEW;
