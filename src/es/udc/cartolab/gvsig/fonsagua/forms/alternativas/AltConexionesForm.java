@@ -8,6 +8,12 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public class AltConexionesForm extends BasicAbstractForm {
 
     public static final String NAME = "alt_conexiones";
+    public static String[] colNames = {
+"denominacion", "hab_conectados", "demanda", "presion"
+    };
+    public static String[] colAlias = {
+"Denominación", "Habitantes conectados", "Demanda agua (l/s)", "Presión (m.c.a.)"
+    };
     public AltConexionesForm(FLyrVect layer) {
 	super(layer);
     }

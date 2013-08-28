@@ -8,6 +8,12 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public class AltEmbalsesForm extends BasicAbstractForm {
 
     public static final String NAME = "alt_embalses";
+    public static String[] colNames = {
+"embalse", "existencia_elemento", "q_usar"
+    };
+    public static String[] colAlias = {
+"Nombre", "Estado", "Caudal a usar (l/s)"
+    };
     public AltEmbalsesForm(FLyrVect layer) {
 	super(layer);
     }
