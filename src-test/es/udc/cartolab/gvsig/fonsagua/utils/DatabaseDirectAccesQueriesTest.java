@@ -12,6 +12,7 @@ import com.iver.cit.gvsig.fmap.drivers.DBException;
 import es.icarto.gvsig.navtableforms.DataBaseProperties;
 import es.icarto.gvsig.navtableforms.Drivers;
 import es.icarto.gvsig.navtableforms.TestProperties;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 import es.udc.cartolab.gvsig.users.utils.DBSessionPostGIS;
 
@@ -32,16 +33,32 @@ public class DatabaseDirectAccesQueriesTest {
 
     @Test
     public void insertDefaultPreferences() throws SQLException {
-	DatabaseDirectAccessQueries
-		.insertDefaultPreferences("TEST-INSERT-DEFAULT-PREFERENCES");
 
-	final String whereClause = "where cod_alternativa='TEST-INSERT-DEFAULT-PREFERENCES'";
+	final String codAltValue = "TEST-INSERT-DEFAULT-PREFERENCES";
+
+	DBSession.getCurrentSession().insertRow(
+		FonsaguaConstants.dataSchema,
+		AlternativasForm.NAME,
+		new String[] { "cod_alternativa", "departamento", "municipio",
+			"canton" },
+		new String[] { codAltValue, "dep", "mun", "canton" });
+	DatabaseDirectAccessQueries.insertDefaultPreferences(codAltValue);
+
+	final String whereClause = "where cod_alternativa='" + codAltValue
+		+ "'";
 	String[][] table = DBSession.getCurrentSession().getTable(
 		FonsaguaConstants.preferencesTable,
 		FonsaguaConstants.dataSchema,
-		new String[] { "ano_horiz_sist" }, whereClause, null, true);
-	assertEquals("20", table[0][0]);
+		new String[] { "tasa_crecimiento", "ano_horiz_sistema" },
+		whereClause, null, true);
+	final double tasaCrecimiento = 2;
+	final int anoHorizSistema = 20;
+	assertEquals(tasaCrecimiento, Double.parseDouble(table[0][0]), 0.01);
+	assertEquals(anoHorizSistema, Integer.parseInt(table[0][1]));
+
 	DBSession.getCurrentSession().deleteRows(FonsaguaConstants.dataSchema,
 		FonsaguaConstants.preferencesTable, whereClause);
+	DBSession.getCurrentSession().deleteRows(FonsaguaConstants.dataSchema,
+		AlternativasForm.NAME, whereClause);
     }
 }

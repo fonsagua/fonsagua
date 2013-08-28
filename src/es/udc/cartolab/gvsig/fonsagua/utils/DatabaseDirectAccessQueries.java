@@ -27,7 +27,7 @@ public class DatabaseDirectAccessQueries {
     public static DefaultTableModel getFuentesIntersectingAlternative(
 	    String codAlt) throws SQLException {
 
-	String query = "SELECT fuente.fuente AS \"Fuente\", fuente.tipo_fuente AS \"Tipo fuente\", COALESCE(aforo.aforo,0) AS \"Aforo\", CASE WHEN fuente.tipo_fuente IN ('Manantial', 'Punto rio') THEN COALESCE(aforo.aforo,0) * coef_q_eco ELSE NULL END AS \"Caudal Ecológico (l/s) \", imp.q_usar AS \"Caudal a usar (l/s)\" FROM fonsagua.fuentes AS fuente JOIN fonsagua.alternativas AS alt ON st_intersects(alt.geom, fuente.geom) FULL OUTER JOIN fonsagua.fuentes_implicadas AS imp ON imp.fuente = fuente.fuente AND imp.cod_alternativa = alt.cod_alternativa JOIN fonsagua.preferencias AS pref ON pref.cod_alternativa=alt.cod_alternativa FULL OUTER JOIN (select cod_fuente, min(aforo) as aforo from fonsagua.aforos group by cod_fuente) AS aforo ON fuente.cod_fuente = aforo.cod_fuente WHERE alt.cod_alternativa = '####' UNION SELECT fuente, tipo_fuente, aforo, q_ecologico, q_usar FROM fonsagua.alt_fuentes WHERE cod_alternativa = '####'";
+	String query = "SELECT fuente.fuente AS \"Fuente\", fuente.tipo_fuente AS \"Tipo fuente\", COALESCE(aforo.aforo,0) AS \"Aforo\", CASE WHEN fuente.tipo_fuente IN ('Manantial', 'Punto rio') THEN COALESCE(aforo.aforo,0) * coef_q_ecologico ELSE NULL END AS \"Caudal Ecológico (l/s) \", imp.q_usar AS \"Caudal a usar (l/s)\" FROM fonsagua.fuentes AS fuente JOIN fonsagua.alternativas AS alt ON st_intersects(alt.geom, fuente.geom) FULL OUTER JOIN fonsagua.fuentes_implicadas AS imp ON imp.fuente = fuente.fuente AND imp.cod_alternativa = alt.cod_alternativa JOIN ##dataSchema##.##preferencesTable## AS pref ON pref.cod_alternativa=alt.cod_alternativa FULL OUTER JOIN (select cod_fuente, min(aforo) as aforo from fonsagua.aforos group by cod_fuente) AS aforo ON fuente.cod_fuente = aforo.cod_fuente WHERE alt.cod_alternativa = '####' UNION SELECT fuente, tipo_fuente_alternativa, aforo, q_ecologico, q_usar FROM fonsagua.alt_fuentes WHERE cod_alternativa = '####'";
 	ResultSet rs = convertAndExecuteQuery(codAlt, query);
 
 	DefaultTableModel modelo = new OnlyOneColumnEditable(4);
@@ -159,6 +159,9 @@ public class DatabaseDirectAccessQueries {
     public static String getQueryWithCodeInsteadOfPlaceHolders(String code,
 	    String query) {
 	query = query.replace("####", code);
+	query = query.replace("##dataSchema##", FonsaguaConstants.dataSchema);
+	query = query.replace("##preferencesTable##",
+		FonsaguaConstants.preferencesTable);
 	return query;
     }
 
