@@ -8,6 +8,12 @@ import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 public class AltTuberiasForm extends BasicAbstractForm {
 
     public static final String NAME = "alt_tuberias";
+    public static String[] colNames = {
+"existencia_elemento", "tipologia_tuberia", "sistema", "tuberia_comercial", "long_tuberia", "velocidad"
+    };
+    public static String[] colAlias = {
+"Estado", "Tipología", "Sistema", "Tubería comercial", "Longitud tubería (m)", "Velocidad (m/s)"
+    };
     public AltTuberiasForm(FLyrVect layer) {
 	super(layer);
     }
