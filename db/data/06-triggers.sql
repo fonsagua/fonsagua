@@ -1,7 +1,7 @@
 ﻿CREATE OR REPLACE FUNCTION fonsagua.abastecimientos_compute_fields_trigger() RETURNS TRIGGER AS $abastecimientos_compute_fields_trigger$
     DECLARE
         miembros INTEGER;
-        consumo_t NUMERIC(5,2);
+        consumo_t NUMERIC(6,2);
     BEGIN
 	SELECT COALESCE(SUM(consumo), 0), COALESCE(SUM(n_miembros), 0) INTO consumo_t, miembros FROM fonsagua.datos_consumo WHERE cod_abastecimiento = NEW.cod_abastecimiento;
 	IF (miembros > 0) THEN NEW.cons_domestico = consumo_t / miembros; ELSE NEW.cons_domestico = NULL; END IF;
@@ -133,8 +133,8 @@ BEFORE INSERT OR UPDATE ON fonsagua.cobertura
 
 CREATE OR REPLACE FUNCTION fonsagua.comunidades_compute_fields_trigger() RETURNS TRIGGER AS $comunidades_compute_fields_trigger$
     DECLARE
-	aux1 NUMERIC(5,2);
-	aux2 NUMERIC(5,2);
+	aux1 NUMERIC(6,2);
+	aux2 NUMERIC(6,2);
     BEGIN
 	IF (NEW.h_adescos) THEN SELECT COUNT(*) INTO NEW.n_adescos FROM fonsagua.adescos WHERE cod_comunidad = NEW.cod_comunidad; ELSE NEW.n_adescos = NULL; END IF;
 

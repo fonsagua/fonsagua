@@ -26,11 +26,11 @@ CREATE TABLE fonsagua.alternativas (
        dot_sec_primario INTEGER,
        dot_sec_secundario INTEGER,
        dot_sec_terciario INTEGER,
-       dem_poblacion NUMERIC(5,2),
-       dem_centros NUMERIC(5,2),
-       dem_econ NUMERIC(5,2),
-       demanda NUMERIC(5,2),
-       caudal_fuentes NUMERIC(5,2),
+       dem_poblacion NUMERIC(6,2),
+       dem_centros NUMERIC(6,2),
+       dem_econ NUMERIC(6,2),
+       demanda NUMERIC(6,2),
+       caudal_fuentes NUMERIC(6,2),
        tipo_sistema VARCHAR
 	       REFERENCES dominios.tipo_sistema(item),
        n_acomedidas INTEGER,
@@ -59,20 +59,20 @@ CREATE TABLE fonsagua.preferencias_disenho (
        cod_alternativa VARCHAR
 	       NOT NULL
 	       REFERENCES fonsagua.alternativas(cod_alternativa),
-       tasa_crecimiento NUMERIC(5,2) DEFAULT 2,
+       tasa_crecimiento NUMERIC(6,2) DEFAULT 2,
        ano_horiz_sistema INTEGER DEFAULT 20,
        ano_horiz_bomba INTEGER DEFAULT 10,
        dot_domiciliar INTEGER DEFAULT 90,
        dot_cantareras INTEGER DEFAULT 40,
-       f_var_estacional NUMERIC(5,2) DEFAULT 1.2,
-       f_var_horaria NUMERIC(5,2) DEFAULT 2.25,
-       coef_q_ecologico NUMERIC(5,2) DEFAULT 0.4,
+       f_var_estacional NUMERIC(6,2) DEFAULT 1.2,
+       f_var_horaria NUMERIC(6,2) DEFAULT 2.25,
+       coef_q_ecologico NUMERIC(6,2) DEFAULT 0.4,
        n_integrantes_familia INTEGER DEFAULT 6,
-       rendimiento_bomba NUMERIC(5,2) DEFAULT 0.6,
-       pvp_kwh NUMERIC(5,2) DEFAULT 4,
-       perdidas_puntutal NUMERIC(5,2) DEFAULT 1,
-       v_min NUMERIC(5,2) DEFAULT 0.5,
-       v_max NUMERIC(5,2) DEFAULT 2,
+       rendimiento_bomba NUMERIC(6,2) DEFAULT 0.6,
+       pvp_kwh NUMERIC(6,2) DEFAULT 4,
+       perdidas_puntutal NUMERIC(6,2) DEFAULT 1,
+       v_min NUMERIC(6,2) DEFAULT 0.5,
+       v_max NUMERIC(6,2) DEFAULT 2,
        presion_min INTEGER DEFAULT 10,
        presion_max INTEGER DEFAULT 50
 
@@ -87,7 +87,7 @@ CREATE TABLE fonsagua.preferencias_bombas (
        		UNIQUE
 		NOT NULL,
        bomba VARCHAR,
-       potencia NUMERIC(5,2),
+       potencia NUMERIC(6,2),
        precio_lmp FLOAT
 
 );
@@ -102,10 +102,10 @@ CREATE TABLE fonsagua.preferencias_tuberias (
 	      NOT NULL,
        denominacion VARCHAR,
        material VARCHAR,
-       diametro NUMERIC(5,2),
-       presion NUMERIC(5,2),
+       diametro NUMERIC(6,2),
+       presion NUMERIC(6,2),
        rugosidad FLOAT,
-       precio_lmp NUMERIC(5,2)
+       precio_lmp NUMERIC(6,2)
 
 );
 
@@ -136,9 +136,9 @@ CREATE TABLE fonsagua.fuentes_implicadas (
        tipo_fuente VARCHAR
 	       NOT NULL
 	       REFERENCES dominios.tipo_fuente(item),
-       aforo NUMERIC(5,2),
-       q_ecol NUMERIC(5,2),
-       q_usar NUMERIC(5,2)
+       aforo NUMERIC(6,2),
+       q_ecol NUMERIC(6,2),
+       q_usar NUMERIC(6,2)
 
 );
 
@@ -154,11 +154,11 @@ CREATE TABLE fonsagua.alt_embalses (
        cod_embalse VARCHAR,
        existencia_elemento VARCHAR
 	       REFERENCES dominios.existencia_elemento(item),
-       aforo NUMERIC(5,2),
-       q_usar NUMERIC(5,2),
-       altura NUMERIC(5,2),
-       caudal NUMERIC(5,2),
-       altura_total NUMERIC(5,2)
+       aforo NUMERIC(6,2),
+       q_usar NUMERIC(6,2),
+       altura NUMERIC(6,2),
+       caudal NUMERIC(6,2),
+       altura_total NUMERIC(6,2)
 
 );
 
@@ -178,13 +178,13 @@ CREATE TABLE fonsagua.alt_fuentes (
 	       REFERENCES dominios.tipo_fuente_alternativa(item),
        existencia_elemento VARCHAR
 	       REFERENCES dominios.existencia_elemento(item),
-       aforo NUMERIC(5,2),
-       q_ecologico NUMERIC(5,2),
-       q_usar NUMERIC(5,2),
-       q_calculo NUMERIC(5,2),
-       altura NUMERIC(5,2),
-       presion NUMERIC(5,2),
-       altura_total NUMERIC(5,2)
+       aforo NUMERIC(6,2),
+       q_ecologico NUMERIC(6,2),
+       q_usar NUMERIC(6,2),
+       q_calculo NUMERIC(6,2),
+       altura NUMERIC(6,2),
+       presion NUMERIC(6,2),
+       altura_total NUMERIC(6,2)
 
 );
 
@@ -208,16 +208,16 @@ CREATE TABLE fonsagua.alt_depositos (
 	       REFERENCES dominios.ubicacion(item),
        tipo_construccion VARCHAR
 	       REFERENCES dominios.tipo_construccion(item),
-       vol_calculado NUMERIC(5,2),
-       volumen NUMERIC(5,2),
-       cota NUMERIC(5,2),
-       nivel_maximo NUMERIC(5,2),
-       nivel_minimo NUMERIC(5,2),
-       nivel_inicial NUMERIC(5,2),
-       diametro NUMERIC(5,2),
-       q_neto_entrante NUMERIC(5,2),
-       presion NUMERIC(5,2),
-       altura_total NUMERIC(5,2)
+       vol_calculado NUMERIC(6,2),
+       volumen NUMERIC(6,2),
+       cota NUMERIC(6,2),
+       nivel_maximo NUMERIC(6,2),
+       nivel_minimo NUMERIC(6,2),
+       nivel_inicial NUMERIC(6,2),
+       diametro NUMERIC(6,2),
+       q_neto_entrante NUMERIC(6,2),
+       presion NUMERIC(6,2),
+       altura_total NUMERIC(6,2)
 
 );
 
@@ -243,12 +243,12 @@ CREATE TABLE fonsagua.alt_tuberias (
 	       REFERENCES fonsagua.preferencias_tuberias(id_tub),
        material VARCHAR,
        rugosidad FLOAT,
-       diametro NUMERIC(5,2),
-       long_tuberia NUMERIC(5,2),
-       caudal NUMERIC(5,2),
-       velocidad NUMERIC(5,2),
-       perdida_carga NUMERIC(5,2),
-       factor_friccion NUMERIC(5,2)
+       diametro NUMERIC(6,2),
+       long_tuberia NUMERIC(6,2),
+       caudal NUMERIC(6,2),
+       velocidad NUMERIC(6,2),
+       perdida_carga NUMERIC(6,2),
+       factor_friccion NUMERIC(6,2)
 
 );
 
@@ -271,15 +271,15 @@ CREATE TABLE fonsagua.alt_bombeos (
        energia VARCHAR
 	       REFERENCES dominios.energia(item),
        altura_bombeo INTEGER,
-       tiempo_bombeo NUMERIC(5,2),
-       caudal_bombeo NUMERIC(5,2),
-       potencia_disenho NUMERIC(5,2),
+       tiempo_bombeo NUMERIC(6,2),
+       caudal_bombeo NUMERIC(6,2),
+       potencia_disenho NUMERIC(6,2),
        cota INTEGER,
        bomba_comercial VARCHAR
 	       REFERENCES fonsagua.preferencias_bombas(id_bomba),
-       potencia NUMERIC(5,2),
-       caudal NUMERIC(5,2),
-       altura NUMERIC(5,2)
+       potencia NUMERIC(6,2),
+       caudal NUMERIC(6,2),
+       altura NUMERIC(6,2)
 
 );
 
@@ -295,11 +295,11 @@ CREATE TABLE fonsagua.alt_conexiones (
 	       REFERENCES fonsagua.alternativas(cod_alternativa),
        cod_conexion VARCHAR,
        denominacion VARCHAR,
-       cota NUMERIC(5,2),
+       cota NUMERIC(6,2),
        hab_conectados INTEGER,
-       demanda NUMERIC(5,2),
-       presion NUMERIC(5,2),
-       altura_total NUMERIC(5,2)
+       demanda NUMERIC(6,2),
+       presion NUMERIC(6,2),
+       altura_total NUMERIC(6,2)
 
 );
 
@@ -316,12 +316,12 @@ CREATE TABLE fonsagua.alt_valvulas (
        denominacion VARCHAR,
        existencia_elemento VARCHAR
 	       REFERENCES dominios.existencia_elemento(item),
-       cota NUMERIC(5,2),
+       cota NUMERIC(6,2),
        diametro INTEGER,
-       consigna NUMERIC(5,2),
-       caudal NUMERIC(5,2),
-       velocidad NUMERIC(5,2),
-       perdidas NUMERIC(5,2)
+       consigna NUMERIC(6,2),
+       caudal NUMERIC(6,2),
+       velocidad NUMERIC(6,2),
+       perdidas NUMERIC(6,2)
 
 );
 
