@@ -1,3 +1,4 @@
+INSERT INTO fonsagua.preferencias_tuberias (id_tub, denominacion, material, diametro, presion, rugosidad, precio_lmp) VALUES ('', NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO fonsagua.preferencias_tuberias (id_tub, denominacion, material, diametro, presion, rugosidad, precio_lmp) VALUES ('HO 0,5"', NULL, 'Hormigón', 12.70, 200.00, 0.025, 2.46);
 INSERT INTO fonsagua.preferencias_tuberias (id_tub, denominacion, material, diametro, presion, rugosidad, precio_lmp) VALUES ('HO 0,75" ', NULL, 'Hormigón', 19.05, 200.00, 0.025, 3.20);
 INSERT INTO fonsagua.preferencias_tuberias (id_tub, denominacion, material, diametro, presion, rugosidad, precio_lmp) VALUES ('HO 1" ', NULL, 'Hormigón', 25.40, 200.00, 0.025, 4.81);
