@@ -57,7 +57,9 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
 	filteredModel = null;
 	if (e.getSource() == okButton) {
 	    try {
-		table.getCellEditor().stopCellEditing();
+		if (table.isEditing()) {
+		    table.getCellEditor().stopCellEditing();
+		}
 		filteredModel = removeRowsWithZero(model);
 		removeAndInsertModel(filteredModel, code);
 	    } catch (SQLException e1) {

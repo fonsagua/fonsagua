@@ -5,4 +5,6 @@ INSERT INTO elle._map VALUES ('Vista alternativas', 'alt_fuentes', 'alt_fuentes'
 INSERT INTO elle._map VALUES ('Vista alternativas', 'alt_tuberias', 'alt_tuberias', 5, true, NULL, NULL, '', 'fonsagua', NULL);
 INSERT INTO elle._map VALUES ('Vista alternativas', 'alt_valvulas', 'alt_valvulas', 6, true, NULL, NULL, '', 'fonsagua', NULL);
 INSERT INTO elle._map VALUES ('Vista alternativas', 'alt_embalses', 'alt_embalses', 7, true, NULL, NULL, '', 'fonsagua', NULL);
-INSERT INTO elle._map VALUES ('Vista alternativas', 'alternativas', 'alternativas', 8, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO elle._map VALUES ('Vista alternativas', 'comunidades', 'comunidades', 8, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO elle._map VALUES ('Vista alternativas', 'fuentes', 'fuentes', 9, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO elle._map VALUES ('Vista alternativas', 'alternativas', 'alternativas', 10, true, NULL, NULL, '', 'fonsagua', NULL);
