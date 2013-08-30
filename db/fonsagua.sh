@@ -90,6 +90,7 @@ if [ $schema == "all" ] ; then
 
     if [ $config_file == "./db_config_devel" ] ; then
 	$PSQL -h $server -U $user -p $port -d $dbname -f ../data-test/20130610-fonsagua-test-data.sql
+	$PSQL -h $server -U $superuser -p $port -d $dbname -f ../data-test/20130829-alternativas-test-data.sql
     fi
     # ./create-db.sh $config_file
 fi
