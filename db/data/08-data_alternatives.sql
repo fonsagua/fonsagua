@@ -104,7 +104,7 @@ CREATE TABLE fonsagua.preferencias_tuberias (
        material VARCHAR,
        diametro NUMERIC(6,2),
        presion NUMERIC(6,2),
-       rugosidad FLOAT,
+       rugosidad NUMERIC(7,4),
        precio_lmp NUMERIC(6,2)
 
 );
@@ -242,7 +242,7 @@ CREATE TABLE fonsagua.alt_tuberias (
        tuberia_comercial VARCHAR
 	       REFERENCES fonsagua.preferencias_tuberias(id_tub),
        material VARCHAR,
-       rugosidad FLOAT,
+       rugosidad NUMERIC(7,4),
        diametro NUMERIC(6,2),
        long_tuberia NUMERIC(6,2),
        caudal NUMERIC(6,2),
