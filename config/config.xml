@@ -24,7 +24,7 @@
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormPointExtension" active="true">
 			<tool-bar name="fonsagua">
-				<action-tool icon="form-point" tooltip="form-point"
+				<selectable-tool icon="form-point" tooltip="form-point"
 					action-command="" position="60"/>
 			</tool-bar>
 		</extension>
