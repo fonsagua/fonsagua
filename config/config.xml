@@ -11,6 +11,9 @@
 	<libraries library-dir="lib"/>
 	<resourceBundle name="text"/>
 	<extensions>
+	
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.InitializeExtension" active="true">
+		</extension>
 
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsExtension" active="true">
 			<tool-bar name="fonsagua">
