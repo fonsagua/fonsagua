@@ -1,4 +1,5 @@
-﻿CREATE OR REPLACE FUNCTION fonsagua.abastecimientos_compute_fields_trigger() RETURNS TRIGGER AS $abastecimientos_compute_fields_trigger$
+﻿
+CREATE OR REPLACE FUNCTION fonsagua.abastecimientos_compute_fields_trigger() RETURNS TRIGGER AS $abastecimientos_compute_fields_trigger$
     DECLARE
         miembros INTEGER;
         consumo_t NUMERIC(6,2);

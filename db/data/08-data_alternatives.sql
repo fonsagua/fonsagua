@@ -50,7 +50,7 @@ CREATE TABLE fonsagua.alternativas (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'alternativas', 'geom', 32616, 'MULTIPOLYGON', 2);
-CREATE INDEX ON fonsagua.alternativas USING GIST(geom);
+CREATE INDEX alternativas_geom_idx ON fonsagua.alternativas USING GIST(geom);
 
 ALTER TABLE fonsagua.alternativas OWNER TO fonsagua;
 
@@ -163,7 +163,7 @@ CREATE TABLE fonsagua.alt_embalses (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'alt_embalses', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.alt_embalses USING GIST(geom);
+CREATE INDEX alt_embalses_geom_idx ON fonsagua.alt_embalses USING GIST(geom);
 
 ALTER TABLE fonsagua.alt_embalses OWNER TO fonsagua;
 
@@ -189,7 +189,7 @@ CREATE TABLE fonsagua.alt_fuentes (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'alt_fuentes', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.alt_fuentes USING GIST(geom);
+CREATE INDEX alt_fuentes_geom_idx ON fonsagua.alt_fuentes USING GIST(geom);
 
 ALTER TABLE fonsagua.alt_fuentes OWNER TO fonsagua;
 
@@ -222,7 +222,7 @@ CREATE TABLE fonsagua.alt_depositos (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'alt_depositos', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.alt_depositos USING GIST(geom);
+CREATE INDEX alt_depositos_geom_idx ON fonsagua.alt_depositos USING GIST(geom);
 
 ALTER TABLE fonsagua.alt_depositos OWNER TO fonsagua;
 
@@ -253,7 +253,7 @@ CREATE TABLE fonsagua.alt_tuberias (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'alt_tuberias', 'geom', 32616, 'MULTILINESTRING', 2);
-CREATE INDEX ON fonsagua.alt_tuberias USING GIST(geom);
+CREATE INDEX alt_tuberias_geom_idx ON fonsagua.alt_tuberias USING GIST(geom);
 
 ALTER TABLE fonsagua.alt_tuberias OWNER TO fonsagua;
 
@@ -284,7 +284,7 @@ CREATE TABLE fonsagua.alt_bombeos (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'alt_bombeos', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.alt_bombeos USING GIST(geom);
+CREATE INDEX alt_bombeos_geom_idx ON fonsagua.alt_bombeos USING GIST(geom);
 
 ALTER TABLE fonsagua.alt_bombeos OWNER TO fonsagua;
 
@@ -304,7 +304,7 @@ CREATE TABLE fonsagua.alt_conexiones (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'alt_conexiones', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.alt_conexiones USING GIST(geom);
+CREATE INDEX alt_conexiones_geom_idx ON fonsagua.alt_conexiones USING GIST(geom);
 
 ALTER TABLE fonsagua.alt_conexiones OWNER TO fonsagua;
 
@@ -326,6 +326,6 @@ CREATE TABLE fonsagua.alt_valvulas (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'alt_valvulas', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.alt_valvulas USING GIST(geom);
+CREATE INDEX alt_valvulas_geom_idx ON fonsagua.alt_valvulas USING GIST(geom);
 
 ALTER TABLE fonsagua.alt_valvulas OWNER TO fonsagua;

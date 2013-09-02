@@ -324,7 +324,7 @@ CREATE TABLE fonsagua.comunidades (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'comunidades', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.comunidades USING GIST(geom);
+CREATE INDEX comunidades_geom_idx ON fonsagua.comunidades USING GIST(geom);
 
 ALTER TABLE fonsagua.comunidades OWNER TO fonsagua;
 
@@ -348,7 +348,7 @@ CREATE TABLE fonsagua.puntos_viviendas (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'puntos_viviendas', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.puntos_viviendas USING GIST(geom);
+CREATE INDEX puntos_viviendas_geom_idx ON fonsagua.puntos_viviendas USING GIST(geom);
 
 ALTER TABLE fonsagua.puntos_viviendas OWNER TO fonsagua;
 
@@ -523,7 +523,7 @@ CREATE TABLE fonsagua.areas_potenciales_riego (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'areas_potenciales_riego', 'geom', 32616, 'MULTIPOLYGON', 2);
-CREATE INDEX ON fonsagua.areas_potenciales_riego USING GIST(geom);
+CREATE INDEX areas_potenciales_riego_geom_idx ON fonsagua.areas_potenciales_riego USING GIST(geom);
 
 ALTER TABLE fonsagua.areas_potenciales_riego OWNER TO fonsagua;
 
@@ -593,7 +593,7 @@ CREATE TABLE fonsagua.centros_educativos (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'centros_educativos', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.centros_educativos USING GIST(geom);
+CREATE INDEX centros_educativos_geom_idx ON fonsagua.centros_educativos USING GIST(geom);
 
 ALTER TABLE fonsagua.centros_educativos OWNER TO fonsagua;
 
@@ -615,7 +615,7 @@ CREATE TABLE fonsagua.centros_salud (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'centros_salud', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.centros_salud USING GIST(geom);
+CREATE INDEX centros_saluds_geom_idx ON fonsagua.centros_salud USING GIST(geom);
 
 ALTER TABLE fonsagua.centros_salud OWNER TO fonsagua;
 
@@ -639,7 +639,7 @@ CREATE TABLE fonsagua.otros_servicios (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'otros_servicios', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.otros_servicios USING GIST(geom);
+CREATE INDEX otros_servicios_geom_idx ON fonsagua.otros_servicios USING GIST(geom);
 
 ALTER TABLE fonsagua.otros_servicios OWNER TO fonsagua;
 
@@ -679,7 +679,7 @@ CREATE TABLE fonsagua.amenazas (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'amenazas', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.amenazas USING GIST(geom);
+CREATE INDEX amenazas_geom_idx ON fonsagua.amenazas USING GIST(geom);
 
 ALTER TABLE fonsagua.amenazas OWNER TO fonsagua;
 
@@ -772,7 +772,7 @@ CREATE TABLE fonsagua.abastecimientos (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'abastecimientos', 'geom', 32616, 'MULTIPOLYGON', 2);
-CREATE INDEX ON fonsagua.abastecimientos USING GIST(geom);
+CREATE INDEX abastecimientos_geom_idx ON fonsagua.abastecimientos USING GIST(geom);
 
 ALTER TABLE fonsagua.abastecimientos OWNER TO fonsagua;
 
@@ -856,7 +856,7 @@ CREATE TABLE fonsagua.fuentes_contaminacion (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'fuentes_contaminacion', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.fuentes_contaminacion USING GIST(geom);
+CREATE INDEX fuentes_contaminacion_geom_idx ON fonsagua.fuentes_contaminacion USING GIST(geom);
 
 ALTER TABLE fonsagua.fuentes_contaminacion OWNER TO fonsagua;
 
@@ -921,7 +921,7 @@ CREATE TABLE fonsagua.bombeos (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'bombeos', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.bombeos USING GIST(geom);
+CREATE INDEX bombeos_geom_idx ON fonsagua.bombeos USING GIST(geom);
 
 ALTER TABLE fonsagua.bombeos OWNER TO fonsagua;
 
@@ -970,7 +970,7 @@ CREATE TABLE fonsagua.captaciones (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'captaciones', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.captaciones USING GIST(geom);
+CREATE INDEX captaciones_geom_idx ON fonsagua.captaciones USING GIST(geom);
 
 ALTER TABLE fonsagua.captaciones OWNER TO fonsagua;
 
@@ -1005,7 +1005,7 @@ CREATE TABLE fonsagua.dep_intermedios (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'dep_intermedios', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.dep_intermedios USING GIST(geom);
+CREATE INDEX dep_intermedios_geom_idx ON fonsagua.dep_intermedios USING GIST(geom);
 
 ALTER TABLE fonsagua.dep_intermedios OWNER TO fonsagua;
 
@@ -1038,7 +1038,7 @@ CREATE TABLE fonsagua.dep_distribucion (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'dep_distribucion', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.dep_distribucion USING GIST(geom);
+CREATE INDEX dep_distribucion_geom_idx ON fonsagua.dep_distribucion USING GIST(geom);
 
 ALTER TABLE fonsagua.dep_distribucion OWNER TO fonsagua;
 
@@ -1070,7 +1070,7 @@ CREATE TABLE fonsagua.tuberias (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'tuberias', 'geom', 32616, 'MULTILINESTRING', 2);
-CREATE INDEX ON fonsagua.tuberias USING GIST(geom);
+CREATE INDEX tuberias_geom_idx ON fonsagua.tuberias USING GIST(geom);
 
 ALTER TABLE fonsagua.tuberias OWNER TO fonsagua;
 
@@ -1202,7 +1202,7 @@ CREATE TABLE fonsagua.fuentes (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'fuentes', 'geom', 32616, 'POINT', 2);
-CREATE INDEX ON fonsagua.fuentes USING GIST(geom);
+CREATE INDEX fuentes_geom_idx ON fonsagua.fuentes USING GIST(geom);
 
 ALTER TABLE fonsagua.fuentes OWNER TO fonsagua;
 
