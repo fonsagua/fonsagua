@@ -1,28 +1,14 @@
 CREATE OR REPLACE FUNCTION fonsagua.alternativas_compute_field_trigger() RETURNS TRIGGER AS $alternativas_compute_field_trigger$
        DECLARE
-	tasa_crec_t REAL;
 	f_var_est_t REAL;
-	ano_horiz_sist_t REAL;
-	dot_sist_domiciliar_t REAL;
-	dot_sist_cantareras_t REAL;
-
-	dotacion REAL;
-
        BEGIN
-	SELECT COALESCE(f_var_estacional, 0), COALESCE(tasa_crecimiento, 0), COALESCE(ano_horiz_sistema, 0), COALESCE(dot_domiciliar, 0), COALESCE(dot_cantareras, 0) INTO f_var_est_t, tasa_crec_t, ano_horiz_sist_t, dot_sist_domiciliar_t, dot_sist_cantareras_t FROM fonsagua.preferencias_disenho WHERE NEW.cod_alternativa = cod_alternativa;
-
+	SELECT COALESCE(f_var_estacional, 0) INTO f_var_est_t FROM fonsagua.preferencias_disenho WHERE NEW.cod_alternativa = cod_alternativa;
 
 	SELECT SUM(n_hab_alternativa) INTO NEW.pobl_actual FROM fonsagua.comunidades_implicadas WHERE cod_alternativa = NEW.cod_alternativa;
 	IF (NEW.pobl_actual IS NULL OR NEW.pobl_actual < 0) THEN NEW.pobl_actual = 0; END IF;
 
-	NEW.pobl_futura = ceil(NEW.pobl_actual * (1 + (tasa_crec_t * ano_horiz_sist_t / 100)));
-
-	IF (NEW.tipo_distribucion = 'Domiciliar') THEN dotacion = dot_sist_domiciliar_t;
-	ELSIF (NEW.tipo_distribucion = 'Cantareras') THEN dotacion = dot_sist_cantareras_t;
-	ELSE dotacion = 0;
-	END IF;
-
-	NEW.dem_poblacion = f_var_est_t * dotacion * NEW.pobl_futura / 86400;
+	NEW.pobl_futura = fonsagua.pobl_futura_function(NEW.cod_alternativa, NEW.pobl_actual);
+	NEW.dem_poblacion = f_var_est_t * fonsagua.demanda_poblacion_function(NEW.cod_alternativa, NEW.tipo_distribucion, NEW.pobl_futura);
 
 	IF (NEW.n_cent_educativos IS NULL OR NEW.n_cent_educativos < 0) THEN NEW.n_cent_educativos = 0; END IF;
 	IF (NEW.n_cent_salud IS NULL OR NEW.n_cent_salud < 0) THEN NEW.n_cent_salud = 0; END IF;
