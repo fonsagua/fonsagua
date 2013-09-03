@@ -22,7 +22,7 @@ psql -h localhost -U fonsagua -d fonsagua_c_base -c "DELETE FROM elle._map WHERE
 psql -h localhost -U fonsagua -d fonsagua_c_base -c "DELETE FROM elle._map_overview WHERE mapa NOT IN ('Vista alternativas', 'Vista general');"
 psql -h localhost -U fonsagua -d fonsagua_c_base -c "DELETE FROM elle._map_style WHERE nombre_estilo NOT IN ('Vista alternativas', 'Vista general');"
 psql -h localhost -U fonsagua -d fonsagua_c_base -c "DELETE FROM elle._map_overview_style WHERE nombre_estilo NOT IN ('Vista alternativas', 'Vista general');"
-
+psql -h localhost -U fonsagua -d fonsagua_c_base -c "select populate_geometry_columns();"
 
 pg_dump -n c_base -U fonsagua --no-owner -x  -f /tmp/c_base.sql fonsagua_c_base
 pg_dump -n elle -U fonsagua --no-owner -x  -f /tmp/elle.sql fonsagua_c_base

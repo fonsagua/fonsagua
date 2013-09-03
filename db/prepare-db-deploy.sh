@@ -28,6 +28,7 @@ cat ./data/06-triggers.sql >> $output
 cat ./data/07-domains_alternatives.sql >> $output
 cat ./data/08-data_alternatives.sql >> $output
 # cat ./data/09-elle_alternatives.sql
+cat ./data/10-helper-functions.sql >> $output
 cat ./data/11-triggers-alt-fuentes.sql >> $output
 cat ./data/12-triggers-alt-conexiones.sql >> $output
 cat ./data/13-triggers-alt-tuberias.sql >> $output
