@@ -76,7 +76,8 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
 	try {
 	    Object value = tmodel.getValueAt(row, column);
 	    if (value instanceof String) {
-		doubleValue = Double.parseDouble((String) value);
+		doubleValue = Double.parseDouble(((String) value).replace(",",
+			"."));
 	    } else if (value instanceof Number) {
 		doubleValue = ((Number) value).doubleValue();
 	    }

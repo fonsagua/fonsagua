@@ -37,6 +37,14 @@ public class SelectFuentesForAlternativeDialog extends
 	    }
 	    e.printStackTrace();
 	}
+	table.getColumnModel().getColumn(2)
+		.setCellRenderer(new DecimalFormatRenderer());
+	table.getColumnModel().getColumn(3)
+		.setCellRenderer(new DecimalFormatRenderer());
+	table.getColumnModel().getColumn(4)
+		.setCellRenderer(new DecimalFormatRenderer());
+	table.getColumnModel().getColumn(4)
+		.setCellEditor(new DecimalCellEditor());
     }
 
     @Override
