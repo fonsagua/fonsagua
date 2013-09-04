@@ -58,6 +58,7 @@ CREATE TABLE fonsagua.preferencias_disenho (
        gid SERIAL PRIMARY KEY,
        cod_alternativa VARCHAR
 	       NOT NULL
+	       UNIQUE
 	       REFERENCES fonsagua.alternativas(cod_alternativa),
        tasa_crecimiento NUMERIC(6,2) DEFAULT 2,
        ano_horiz_sistema INTEGER DEFAULT 20,

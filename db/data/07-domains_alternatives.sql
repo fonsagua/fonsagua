@@ -39,7 +39,7 @@ CREATE TABLE dominios.tipo_fuente_alternativa (
 INSERT INTO dominios.tipo_fuente_alternativa (item) VALUES
        (' '),
        ('Pozo'),
-       ('Punto río'),
+       ('Punto rio'),
        ('Manantial');
 
 ALTER TABLE dominios.tipo_fuente_alternativa OWNER TO fonsagua;
