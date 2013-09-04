@@ -14,6 +14,7 @@ public class OpenAllAlternativesExtension extends OpenAbstractExtension {
     public void initialize() {
 	id = "open_general";
 	OpenAlternativeExtension.setValidAlternative(false);
+	OpenAlternativeExtension.setCode((String) null);
 	super.initialize();
     }
 

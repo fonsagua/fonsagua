@@ -29,7 +29,6 @@ import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltEmbalsesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltFuentesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltTuberiasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltValvulasForm;
-import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AmenazasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AreasPotencialesRiegoForm;
@@ -84,7 +83,6 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 	mainFormNames.add(FuentesForm.NAME);
 	mainFormNames.add(FuentesContaminacionForm.NAME);
 	// System elements in design mode
-	alternativasFormNames.add(AlternativasForm.NAME);
 	alternativasFormNames.add(AltBombeosForm.NAME);
 	alternativasFormNames.add(AltConexionesForm.NAME);
 	alternativasFormNames.add(AltDepositosForm.NAME);
@@ -141,8 +139,6 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 		return new FuentesForm(layer);
 	    } else if (layer.getName().equals(FuentesContaminacionForm.NAME)) {
 		return new FuentesContaminacionForm(layer);
-	    } else if (layer.getName().equals(AlternativasForm.NAME)) {
-		return new AlternativasForm(layer);
 	    } else if (layer.getName().equals(AltBombeosForm.NAME)) {
 		return new AltBombeosForm(layer);
 	    } else if (layer.getName().equals(AltConexionesForm.NAME)) {

@@ -79,10 +79,6 @@
 				action-command="fuentes"
 				position="1"/>
 
-			<menu text="fonsagua_menu/alternativas/alternativas"
-				action-command="alternativas"
-				position="1"/>
-
 			<menu text="fonsagua_menu/alternativas/elementos/alt_conexiones"
 				action-command="alt_conexiones"
 				position="1"/>
@@ -159,6 +155,13 @@
                                <selectable-tool icon="auto-forms" tooltip="disable_auto_forms"
                                        action-command="empty" position="110" group="fonsagua" name="auto-forms" />
                        </tool-bar>
+        </extension>
+        
+        <extension class-name="es.udc.cartolab.gvsig.fonsagua.AlternativasFormExtension" active="true">
+        	<tool-bar name="fonsagua">
+        		<action-tool icon="alternativas_form" tooltip="alternativas_form"
+        			action-command="alternativas_form" position="120" group="fonsagua" name="alternativas_form" />
+        		</tool-bar>
         </extension>
 
 	</extensions>

@@ -4,7 +4,6 @@ import java.awt.geom.Rectangle2D;
 
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 import com.iver.andami.PluginServices;
-import com.iver.andami.plugins.Extension;
 import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.cit.gvsig.ProjectExtension;
 import com.iver.cit.gvsig.exceptions.expansionfile.ExpansionFileReadException;
@@ -16,26 +15,8 @@ import com.iver.cit.gvsig.project.documents.view.ProjectViewFactory;
 import com.iver.cit.gvsig.project.documents.view.gui.View;
 
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
-import es.udc.cartolab.gvsig.users.utils.DBSession;
 
-public abstract class OpenAbstractExtension extends Extension {
-
-    /**
-     * icon identifier in config, filename on disk (withou extension)
-     */
-    protected String id;
-
-    /**
-     * Register the file images/[iconName].png with the name [iconName] in the
-     * icon theme
-     * 
-     */
-    protected void registerIcon(String iconName) {
-	PluginServices.getIconTheme().registerDefault(
-		iconName,
-		this.getClass().getClassLoader()
-			.getResource("images/" + iconName + ".png"));
-    }
+public abstract class OpenAbstractExtension extends AbstractExtension {
 
     /**
      * If the active window is a View returns it, if not creates a new one, adds
@@ -65,21 +46,6 @@ public abstract class OpenAbstractExtension extends Extension {
 	    PluginServices.getMDIManager().addWindow(view);
 	}
 	return view;
-    }
-
-    @Override
-    public void initialize() {
-	registerIcon(id);
-    }
-
-    @Override
-    public boolean isEnabled() {
-	return DBSession.isActive();
-    }
-
-    @Override
-    public boolean isVisible() {
-	return true;
     }
 
     protected static void zoomToLayer(final View view, final String layername) {
