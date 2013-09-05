@@ -17,8 +17,10 @@ import es.icarto.gvsig.fonsagua.reports.utils.RtfReportStyles;
 public abstract class RTFReport {
 
     protected Document document;
+    protected String pkValue;
 
-    public RTFReport(String fileName) {
+    public RTFReport(String fileName, String pkValue) {
+	this.pkValue = pkValue;
 	try {
 	    document = new Document(PageSize.A4);
 	    RtfWriter2.getInstance(document, new FileOutputStream(fileName));
