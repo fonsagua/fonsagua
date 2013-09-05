@@ -1,5 +1,7 @@
 package es.icarto.gvsig.fonsagua.reports.utils;
 
+import java.awt.Color;
+
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
@@ -17,6 +19,10 @@ public class RtfReportStyles {
     public static final RtfFont heading1Style = new RtfFont("Arial", 11,
 	    Font.BOLD);
     public static final RtfFont heading2Style = new RtfFont("Arial", 11,
+	    Font.BOLD);
+    public static final RtfFont heading3Style = new RtfFont("Arial", 12,
+	    Font.BOLD);
+    public static final RtfFont heading4Style = new RtfFont("Arial", 11,
 	    Font.BOLD);
     public static final RtfFont normalBoldStyle = new RtfFont("Arial", 11,
 	    Font.BOLD);
@@ -49,8 +55,12 @@ public class RtfReportStyles {
     public static void writeHeading1(Document document, String text) {
 	try {
 	    document.add(Chunk.NEXTPAGE);
-	    Paragraph heading1 = new Paragraph(text, heading1Style);
+	    document.add(Chunk.NEWLINE);
+	    Chunk textAsChunk = new Chunk(text, heading1Style);
+	    textAsChunk.setBackground(new Color(54, 95, 145));
+	    Paragraph heading1 = new Paragraph(textAsChunk);
 	    document.add(heading1);
+	    document.add(Chunk.NEWLINE);
 	} catch (DocumentException e) {
 	    e.printStackTrace();
 	}
@@ -59,11 +69,35 @@ public class RtfReportStyles {
     public static void writeHeading2(Document document, String text) {
 	try {
 	    document.add(Chunk.NEWLINE);
-	    Paragraph heading2 = new Paragraph(text, heading2Style);
+	    Chunk textAsChunk = new Chunk(text, heading2Style);
+	    textAsChunk.setBackground(new Color(89, 89, 89));
+	    Paragraph heading2 = new Paragraph(textAsChunk);
 	    document.add(heading2);
+	    document.add(Chunk.NEWLINE);
 	} catch (DocumentException e) {
 	    e.printStackTrace();
 	}
     }
 
+    public static void writeHeading3(Document document, String text) {
+	try {
+	    document.add(Chunk.NEWLINE);
+	    Paragraph heading2 = new Paragraph(text, heading3Style);
+	    document.add(heading2);
+	    document.add(Chunk.NEWLINE);
+	} catch (DocumentException e) {
+	    e.printStackTrace();
+	}
+    }
+
+    public static void writeHeading4(Document document, String text) {
+	try {
+	    document.add(Chunk.NEWLINE);
+	    Paragraph heading2 = new Paragraph(text, heading4Style);
+	    document.add(heading2);
+	    document.add(Chunk.NEWLINE);
+	} catch (DocumentException e) {
+	    e.printStackTrace();
+	}
+    }
 }
