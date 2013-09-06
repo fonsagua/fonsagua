@@ -82,6 +82,7 @@ public class RtfReportStyles {
     public static void writeHeading3(Document document, String text) {
 	try {
 	    document.add(Chunk.NEWLINE);
+	    heading3Style.setColor(54, 95, 145);
 	    Paragraph heading2 = new Paragraph(text, heading3Style);
 	    document.add(heading2);
 	    document.add(Chunk.NEWLINE);
