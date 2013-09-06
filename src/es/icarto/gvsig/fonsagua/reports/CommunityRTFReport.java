@@ -17,6 +17,7 @@ import es.icarto.gvsig.fonsagua.reports.utils.ReportDAO;
 import es.icarto.gvsig.fonsagua.reports.utils.ReportData;
 import es.icarto.gvsig.fonsagua.reports.utils.ReportUtils;
 import es.icarto.gvsig.fonsagua.reports.utils.RtfReportStyles;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
 
 public class CommunityRTFReport extends RTFReport {
 
@@ -93,6 +94,7 @@ public class CommunityRTFReport extends RTFReport {
 
 	    writeSection1_1(rs, data);
 	    writeSection1_2(rs, data);
+	    writeSection1_3(rs, data);
 
 	} catch (SQLException e) {
 	    e.printStackTrace();
@@ -170,7 +172,6 @@ public class CommunityRTFReport extends RTFReport {
 	    document.add(Chunk.NEWLINE);
 	    document.add(attribute);
 	    document.add(value);
-
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	} catch (DocumentException e) {
@@ -178,4 +179,23 @@ public class CommunityRTFReport extends RTFReport {
 	}
     }
 
+    private void writeSection1_3(ResultSet rs, ArrayList<ReportData> data) {
+	try {
+	    RtfReportStyles.writeHeading2(document,
+		    "1.3 ASPECTOS ORGANIZATIVOS");
+	    RtfReportStyles
+		    .writeHeading3(document, "1.3.1 Datos del patronato");
+	    data.clear();
+	    data.add(new ReportData("Existencia de ADESCOS: ", rs
+		    .getString("h_adescos"), RtfReportStyles.normalBoldStyle));
+	    data.add(new ReportData("Número de ADESCOS: ", rs
+		    .getString("n_adescos"), RtfReportStyles.normalBoldStyle));
+	    ReportUtils.writeDataList(document, data);
+
+	    ReportUtils.writeTable(document, AdescosForm.colAlias,
+		    AdescosForm.colNames, AdescosForm.NAME, pkValue);
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+    }
 }
