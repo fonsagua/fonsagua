@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
@@ -18,8 +19,8 @@ public class ReportDAO {
 
 	try {
 	    String query = "SELECT * FROM " + FonsaguaConstants.dataSchema
-		    + "." + FonsaguaConstants.comunidadesTable + " WHERE "
-		    + FonsaguaConstants.comunidadesPK + " = ?";
+		    + "." + ComunidadesForm.NAME + " WHERE "
+		    + ComunidadesForm.PKFIELD + " = ?";
 	    statement = connection.prepareStatement(query);
 	    statement.setString(1, communityCode);
 	    statement.execute();
