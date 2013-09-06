@@ -10,8 +10,7 @@ createdb -h localhost -T template_postgis -U postgres --owner fonsagua fonsagua_
 psql -h localhost -U postgres -d fonsagua_c_base -c \
     	"ALTER SCHEMA public OWNER TO fonsagua; \
          ALTER TABLE public.geometry_columns OWNER TO fonsagua; \
-         ALTER TABLE public.spatial_ref_sys OWNER TO fonsagua; \
-         ALTER TABLE public.geography_columns OWNER TO fonsagua;"
+         ALTER TABLE public.spatial_ref_sys OWNER TO fonsagua;"
 
 #pg_restore -U fonsagua -d fonsagua_c_base --no-owner /tmp/BDD_Fonsagua/fonsagua_elle.backup
 

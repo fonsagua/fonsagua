@@ -16,7 +16,6 @@ echo "" > $output
 # echo "ALTER SCHEMA public OWNER TO fonsagua" >> $output
 # echo "ALTER TABLE public.geometry_columns OWNER TO fonsagua" >> $output
 # echo "ALTER TABLE public.spatial_ref_sys OWNER TO fonsagua" >> $output
-# echo "ALTER TABLE public.geography_columns OWNER TO fonsagua" >> $output
 cat $CARTOGRAFIA_BASE/elle.sql >> $output
 cat $CARTOGRAFIA_BASE/c_base.sql >> $output
 cat ./data/01-create-data-schemas.sql >> $output
