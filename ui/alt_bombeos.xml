@@ -24,7 +24,7 @@
     </at>
     <at name="componentclass">com.jeta.forms.gui.form.FormComponent</at>
    </super>
-   <at name="id">C:\Users\iCarto\Desktop\Fonsagua\Formularios\alt_bombeos.xml</at>
+   <at name="id">C:\Users\iCarto\Desktop\Fonsagua\Formularios\ui\alt_bombeos.xml</at>
    <at name="rowspecs">CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE</at>
    <at name="colspecs">FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:6DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE</at>
    <at name="components">
@@ -1420,9 +1420,10 @@
           <at name="classname">com.jeta.forms.components.border.TitledBorderLabel</at>
           <at name="properties">
            <object classname="com.jeta.forms.store.support.PropertyMap">
+            <at name="text"></at>
             <at name="height">6</at>
-            <at name="name"/>
             <at name="width">498</at>
+            <at name="name"></at>
             <at name="border">
              <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
               <super classname="com.jeta.forms.store.properties.BorderProperty">
