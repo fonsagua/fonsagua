@@ -164,5 +164,12 @@
         		</tool-bar>
         </extension>
 
+        <extension class-name="es.udc.cartolab.gvsig.fonsagua.PredesignExtension" active="true">
+        	<tool-bar name="fonsagua">
+        		<action-tool icon="predesign" tooltip="predesign"
+        			action-command="predesign" position="130" group="fonsagua" name="predesign" />
+        		</tool-bar>
+        </extension>
+
 	</extensions>
 </plugin-config>
