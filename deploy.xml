@@ -1,0 +1,159 @@
+<project name="deploy-fonsagua" default="createPortableFromSource" basedir="../appgvSIG">
+	
+	<!-- USER OPTIONS -->
+	<property name="base-path" value="/var/tmp/portable/" /> <!-- remember to use the trailing slash -->
+	<property name="custom-portable-path" value="../fonsagua/portable/" /> <!-- remember to use the trailing slash -->
+	
+	<tstamp />
+	<property name="name-lin" value="gvSIG-Fonsagua-lin32-${DSTAMP}" />
+	<property name="name-win" value="gvSIG-Fonsagua-win32-${DSTAMP}" />
+	
+	<!-- Projects to be builded.
+	Check the file ../install/gvsig_default_installation_projects.xml,
+	copy&paste to your project
+	edit the variable gvSIG_dist to have only the projects that you want to use
+	Do not include gvsig-bindings (sextante) neither binaries in the list. They are handle separately.
+	-->
+	<import file="../fonsagua/portable/projects.xml" />
+	
+	<!-- DON'T TOUCH BELOW THIS LINE -->
+	
+	<import file="../install/deploy.xml"/>
+	
+	<property name="base-lin" value="base-lin" />
+	<property name="base-win" value="base-win" />
+	<property name="base-win-path" value="${base-path}${base-win}.zip" />
+	<property name="base-lin-path" value="${base-path}${base-lin}.tgz" />
+
+	
+	<target name="createPortableFromSource" depends="buildFromSource, makePortableLinux, makePortableWindows">
+	</target>
+
+	
+	<macrodef name="failIfAnyExists">
+		<attribute name="file1" />
+		<attribute name="file2" />
+		<sequential>
+			<fail message="Remove files in tmp before continue">
+				<condition> 
+					<or>
+				    	<available file="@{file1}" />
+				    	<available file="@{file2}" />
+				    </or>
+				</condition>
+			</fail>
+		</sequential>
+	</macrodef>
+	
+	
+	<target name="makePortableLinux">
+		
+		<failIfAnyExists file1="/tmp/${name-lin}" file2="/tmp/${base-lin}" />
+	
+		<!--  ant tar task does not preserve permissions, so we use native executable -->
+		<exec executable="tar" output="/dev/null" os="Linux" dir="/tmp">
+        	<arg value="-xz"/>
+        	<arg value="--preserve-permissions"/>
+        	<arg value="--preserve-order"/>
+        	<arg value="--file=${base-lin-path}"/>
+    	</exec>
+
+		<!-- Renames the folder to the final name of the portable -->
+		<move file="/tmp/${base-lin}" tofile="/tmp/${name-lin}" />
+
+		<copy todir="/tmp/${name-lin}/cfg">
+			<fileset dir="${base-path}base-common/cfg/" /> 
+		</copy>
+		
+		<copy todir="/tmp/${name-lin}/bin">
+			<fileset dir="${base-path}/base-common/bin/">
+				<include name="*" />
+			</fileset>
+		</copy>
+		
+		<copy todir="/tmp/${name-lin}/bin/theme">
+			<fileset dir="${andami}/theme/" /> 
+		</copy>
+				
+		<!-- Move to the portable version the extensions and the libs -->
+		<copy todir="/tmp/${name-lin}/bin/" file="${andami}/andami.jar" flatten="yes"/>
+		
+		<copy todir="/tmp/${name-lin}/bin/lib">
+			<fileset dir="${andami}/lib/"/>
+		</copy>
+		
+		<copy todir="/tmp/${name-lin}/bin/gvSIG">
+			<fileset dir="${andami}/gvSIG/"/>
+		</copy>
+		
+		<mkdir dir="/tmp/${name-lin}/bin/native"/>
+		<copy todir="/tmp/${name-lin}/bin/native">
+			<fileset dir="../binaries/linux">
+				<type type="file" />
+				<include name="*" />
+				<exclude name="build.xml" />
+			</fileset>
+		</copy>
+		
+		<!-- Copies the custom files -->
+		<copy todir="/tmp/${name-lin}/" overwrite="yes">
+			<fileset dir="${custom-portable-path}common" />
+			<fileset dir="${custom-portable-path}lin" />
+		</copy>
+
+	</target>
+	
+	
+	
+	<target name="makePortableWindows">
+		
+		<failIfAnyExists file1="/tmp/${name-win}" file2="/tmp/${base-win}" />
+		
+		<unzip src="${base-win-path}" dest="/tmp"> </unzip>
+
+		<!-- Renames the folder to the final name of the portable -->
+		<move file="/tmp/${base-win}" tofile="/tmp/${name-win}"/>
+
+		<copy todir="/tmp/${name-win}/cfg">
+					<fileset dir="${base-path}base-common/cfg/" /> 
+				</copy>
+				
+				<copy todir="/tmp/${name-win}/bin">
+					<fileset dir="${base-path}/base-common/bin/">
+						<include name="*" />
+					</fileset>
+				</copy>
+				
+				<copy todir="/tmp/${name-win}/bin/theme">
+					<fileset dir="${andami}/theme/" /> 
+				</copy>
+						
+				<!-- Move to the portable version the extensions and the libs -->
+				<copy todir="/tmp/${name-win}/bin/" file="${andami}/andami.jar" flatten="yes"/>
+				
+				<copy todir="/tmp/${name-win}/bin/lib">
+					<fileset dir="${andami}/lib/"/>
+				</copy>
+				
+				<copy todir="/tmp/${name-win}/bin/gvSIG">
+					<fileset dir="${andami}/gvSIG/"/>
+				</copy>
+				
+				<!-- NATIVAS -->
+		
+				<copy todir="/tmp/${name-win}/bin/">
+					<fileset dir="../binaries/w32">
+						<type type="file" />
+						<include name="*" />
+						<exclude name="build.xml" />
+					</fileset>
+				</copy>		
+		
+				<!-- Copies the custom files -->
+				<copy todir="/tmp/${name-win}/" overwrite="yes">
+					<fileset dir="${custom-portable-path}common" />
+					<fileset dir="${custom-portable-path}win" />
+				</copy>
+	</target>
+
+</project>
