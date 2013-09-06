@@ -6,8 +6,8 @@ SELECT trigger_is('fonsagua', 'alt_depositos', 'alt_depositos_compute_field_trig
 
 INSERT INTO fonsagua.alternativas (cod_alternativa, departamento, municipio, canton) VALUES ('TEST-ALT-DEPOSITOS','mun', 'dep', 'canton');
 
-INSERT INTO fonsagua.alt_depositos(cod_alternativa, diametro, nivel_maximo, nivel_minimo) VALUES ('TEST-ALT-DEPOSITOS', 100, 50, 10);
-SELECT is(volumen, 0.31::numeric)
+INSERT INTO fonsagua.alt_depositos(cod_alternativa, diametro, nivel_maximo, nivel_minimo) VALUES ('TEST-ALT-DEPOSITOS', 10, 5, 1);
+SELECT is(volumen, 314.16)
        FROM fonsagua.alt_depositos
        WHERE gid = currval('fonsagua.alt_depositos_gid_seq');
 

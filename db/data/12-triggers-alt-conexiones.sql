@@ -12,7 +12,7 @@ CREATE OR REPLACE FUNCTION fonsagua.alt_conexiones_compute_field_trigger() RETUR
 
 	IF (NEW.hab_conectados IS NULL OR NEW.hab_conectados < 0) THEN hab_conectados_t = 0; ELSE hab_conectados_t = NEW.hab_conectados; END IF;
 
-	NEW.demanda = f_var_estacional_t * f_var_horaria_t * fonsagua.demanda_poblacion_function(NEW.cod_alternativa, tipo_distribucion_t, fonsagua.pobl_futura_function(NEW.cod_alternativa, hab_conectados_t));
+	NEW.demanda = (f_var_estacional_t * f_var_horaria_t * fonsagua.demanda_poblacion_function(NEW.cod_alternativa, tipo_distribucion_t, fonsagua.pobl_futura_function(NEW.cod_alternativa, hab_conectados_t))) + COALESCE(NEW.q_extra, 0)/86400;
 
 	RETURN NEW;
        END;

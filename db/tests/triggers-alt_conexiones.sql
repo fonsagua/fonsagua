@@ -1,6 +1,6 @@
 BEGIN;
 
-SELECT PLAN(3);
+SELECT PLAN(4);
 
 SELECT trigger_is('fonsagua', 'alt_conexiones', 'alt_conexiones_compute_field_trigger', 'fonsagua', 'alt_conexiones_compute_field_trigger');
 
@@ -13,5 +13,11 @@ SELECT is(demanda, 0.15)
        WHERE gid = currval('fonsagua.alt_conexiones_gid_seq');
 
 SELECT is(hab_conectados, 100)
+       FROM fonsagua.alt_conexiones
+       WHERE gid = currval('fonsagua.alt_conexiones_gid_seq');
+
+UPDATE fonsagua.alt_conexiones SET q_extra=8640.5 WHERE gid = currval('fonsagua.alt_conexiones_gid_seq');
+
+SELECT is(demanda, 0.25)
        FROM fonsagua.alt_conexiones
        WHERE gid = currval('fonsagua.alt_conexiones_gid_seq');

@@ -298,6 +298,7 @@ CREATE TABLE fonsagua.alt_conexiones (
        denominacion VARCHAR,
        cota NUMERIC(6,2),
        hab_conectados INTEGER,
+       q_extra NUMERIC(6,2),
        demanda NUMERIC(6,2),
        presion NUMERIC(6,2),
        altura_total NUMERIC(6,2)
