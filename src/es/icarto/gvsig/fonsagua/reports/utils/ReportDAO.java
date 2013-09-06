@@ -57,4 +57,18 @@ public class ReportDAO {
 	}
 	return null;
     }
+
+    public static String[][] getDataForCommunityRelatedTable(String tableName,
+	    String[] fieldNames, String communityCode) {
+	String whereClause = ComunidadesForm.PKFIELD + " = '" + communityCode
+		+ "'";
+	try {
+	    return DBSession.getCurrentSession().getTable(tableName,
+		    FonsaguaConstants.dataSchema, fieldNames, whereClause,
+		    null, false);
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
 }
