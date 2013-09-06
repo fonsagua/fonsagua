@@ -8,6 +8,7 @@ import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.cit.gvsig.ProjectExtension;
 import com.iver.cit.gvsig.exceptions.expansionfile.ExpansionFileReadException;
 import com.iver.cit.gvsig.fmap.MapContext;
+import com.iver.cit.gvsig.fmap.layers.FLayer;
 import com.iver.cit.gvsig.project.Project;
 import com.iver.cit.gvsig.project.documents.ProjectDocument;
 import com.iver.cit.gvsig.project.documents.ProjectDocumentFactory;
@@ -32,7 +33,9 @@ public abstract class OpenAbstractExtension extends AbstractExtension {
 
 	if (iWindow instanceof View) {
 	    view = (View) iWindow;
-	    new TOCLayerManager().removeAllLayers();
+	    TOCLayerManager tocLayerManager = new TOCLayerManager();
+	    tocLayerManager.removeAllLayers();
+	    tocLayerManager.removeAllOverviewLayer();
 	} else {
 	    Project project = ((ProjectExtension) PluginServices
 		    .getExtension(ProjectExtension.class)).getProject();
