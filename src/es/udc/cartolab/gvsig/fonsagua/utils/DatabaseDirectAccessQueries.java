@@ -19,7 +19,7 @@ public class DatabaseDirectAccessQueries {
 	    throws SQLException {
 	DBSession session = DBSession.getCurrentSession();
 	session.insertRow(FonsaguaConstants.dataSchema,
-		FonsaguaConstants.preferencesTable,
+		AlternativesPreferences.ALTERNATIVAS_PREFERENCES_TABLE,
 		new String[] { AlternativasForm.PKFIELD },
 		new String[] { codAlt });
     }
@@ -161,7 +161,7 @@ public class DatabaseDirectAccessQueries {
 	query = query.replace("####", code);
 	query = query.replace("##dataSchema##", FonsaguaConstants.dataSchema);
 	query = query.replace("##preferencesTable##",
-		FonsaguaConstants.preferencesTable);
+		AlternativesPreferences.ALTERNATIVAS_PREFERENCES_TABLE);
 	return query;
     }
 
