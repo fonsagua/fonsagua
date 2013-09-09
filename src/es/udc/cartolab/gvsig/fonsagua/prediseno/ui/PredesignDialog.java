@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.InputStream;
@@ -18,6 +20,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -39,10 +42,12 @@ import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.rules.PercentageRul
 import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.rules.ValidationRule;
 import es.icarto.gvsig.navtableforms.utils.AbeilleParser;
 import es.udc.cartolab.gvsig.fonsagua.utils.AlternativesPreferences;
+import es.udc.cartolab.gvsig.fonsagua.utils.AlternativesPreferences.Bomba;
 import es.udc.cartolab.gvsig.fonsagua.utils.AlternativesPreferences.Tuberia;
 
+@SuppressWarnings("serial")
 public class PredesignDialog extends JPanel implements ActionListener,
-	SingletonWindow, KeyListener, FocusListener {
+	SingletonWindow, KeyListener, FocusListener, ItemListener {
 
     public static String NAME = "predisenho";
 
@@ -55,6 +60,8 @@ public class PredesignDialog extends JPanel implements ActionListener,
     private ValidatorForm validator;
     private Map<String, JComponent> widgets;
     private JButton closeButton;
+    private AlternativesPreferences pref;
+    private List<Bomba> bombas;
     private static boolean combosLoaded = false;
 
     /*
@@ -147,7 +154,14 @@ public class PredesignDialog extends JPanel implements ActionListener,
     private void setListeners() {
 	closeButton.addActionListener(this);
 	for (String key : widgets.keySet()) {
-	    widgets.get(key).addKeyListener(this);
+	    JComponent widget = widgets.get(key);
+	    if ((widget instanceof JTextField)
+		    || (widget instanceof JFormattedTextField)) {
+		widget.addKeyListener(this);
+	    }
+	    if (widget instanceof JComboBox) {
+		((JComboBox) widget).addItemListener(this);
+	    }
 	}
     }
 
@@ -179,25 +193,236 @@ public class PredesignDialog extends JPanel implements ActionListener,
     }
 
     private void compute() {
-	String caudal_s = ((JTextField) widgets.get("caudal")).getText();
-	String t_bombeo_1 = ((JTextField) widgets.get("tiempo_bombeo"))
+	pref = AlternativesPreferences.getInstance();
+
+	String pobl_disenho = ((JTextField) widgets.get("poblacion_disenho"))
 		.getText();
-	String t_bombeo_2 = ((JTextField) widgets.get("tiempo_bombeo_2"))
+
+	computeDemandaAbastece(pobl_disenho, "demanda_abastece");
+
+
+	String demanda_abastece = ((JTextField) widgets.get("demanda_abastece"))
 		.getText();
-	if ((caudal_s.length() > 0) && (t_bombeo_1.length() > 0)) {
-	    Double aux = Double.parseDouble(caudal_s) * 24
-		    / Double.parseDouble(t_bombeo_1);
-	    ((JTextField) widgets.get("caudal_bombeo")).setText(aux.toString());
-	} else {
-	    ((JTextField) widgets.get("caudal_bombeo")).setText("");
-	}
-	if ((caudal_s.length() > 0) && (t_bombeo_2.length() > 0)) {
-	    Double aux = Double.parseDouble(caudal_s) * 24
-		    / Double.parseDouble(t_bombeo_2);
-	    ((JTextField) widgets.get("caudal_bombeo_2")).setText(aux
+	String q_ent_gravedad = ((JTextField) widgets.get("q_entra_gravedad"))
+		.getText();
+	String q_ent_bombeo = ((JTextField) widgets.get("q_entra_bombeo"))
+		.getText();
+
+	computeVolDeposito(demanda_abastece, q_ent_gravedad, q_ent_bombeo,
+		"vol_deposito");
+
+
+	String caudal = ((JTextField) widgets.get("caudal")).getText();
+	String t_bombeo1 = ((JTextField) widgets.get("tiempo_bombeo"))
+		.getText();
+	String t_bombeo2 = ((JTextField) widgets.get("tiempo_bombeo_2"))
+		.getText();
+
+	computeCaudalBombeo(caudal, t_bombeo1, "caudal_bombeo");
+	computeCaudalBombeo(caudal, t_bombeo2, "caudal_bombeo_2");
+
+
+	String caudal_bombeo1 = ((JTextField) widgets.get("caudal_bombeo"))
+		.getText();
+	String caudal_bombeo2 = ((JTextField) widgets.get("caudal_bombeo_2"))
+		.getText();
+	Object tuberia1 = ((JComboBox) widgets.get("diametro_impulsion"))
+		.getSelectedItem();
+	Object tuberia2 = ((JComboBox) widgets.get("diametro_impulsion_2"))
+		.getSelectedItem();
+
+	computeVelocidad(caudal_bombeo1, tuberia1, "velocidad");
+	computeVelocidad(caudal_bombeo2, tuberia2, "velocidad_2");
+
+
+	String longitud = ((JTextField) widgets.get("longitud")).getText();
+	String velocidad1 = ((JTextField) widgets.get("velocidad")).getText();
+	String velocidad2 = ((JTextField) widgets.get("velocidad_2")).getText();
+
+	computePerdidas(longitud, velocidad1, tuberia1, "perdidas");
+	computePerdidas(longitud, velocidad2, tuberia2, "perdidas_2");
+
+
+	String altura_bombeo = ((JTextField) widgets.get("altura_bombeo"))
+		.getText();
+	String perdidas1 = ((JTextField) widgets.get("perdidas")).getText();
+	String perdidas2 = ((JTextField) widgets.get("perdidas_2")).getText();
+
+	computePotencia(altura_bombeo, perdidas1, caudal_bombeo1,
+		"potencia_calculo");
+	computePotencia(altura_bombeo, perdidas2, caudal_bombeo2,
+		"potencia_calculo_2");
+
+
+	String potencia_calculo1 = ((JTextField) widgets
+		.get("potencia_calculo")).getText();
+	String potencia_calculo2 = ((JTextField) widgets
+		.get("potencia_calculo_2")).getText();
+	bombas = AlternativesPreferences.getBombas();
+	Bomba bomba1 = chooseBomba(potencia_calculo1, "potencia"), bomba2 = chooseBomba(
+		potencia_calculo2, "potencia_2");
+
+
+	String potencia1 = ((JTextField) widgets.get("potencia")).getText();
+	String potencia2 = ((JTextField) widgets.get("potencia_2")).getText();
+
+	computeConsumo(potencia1, t_bombeo1, "consumo");
+	computeConsumo(potencia2, t_bombeo2, "consumo_2");
+
+
+	String poblacion_sistema = ((JTextField) widgets
+		.get("poblacion_sistema")).getText();
+	String consumo1 = ((JTextField) widgets.get("consumo")).getText();
+	String consumo2 = ((JTextField) widgets.get("consumo_2")).getText();
+	computeCuotaFutura(bomba1, consumo1, poblacion_sistema, "cuota_futura");
+	computeCuotaFutura(bomba2, consumo2, poblacion_sistema,
+		"cuota_futura_2");
+
+
+	computeVolDepBombeo(caudal, t_bombeo1, "vol_dep_bombeo");
+	computeVolDepBombeo(caudal, t_bombeo2, "vol_dep_bombeo_2");
+    }
+
+    private void computeDemandaAbastece(String pobl_disenho, String widgetName) {
+	if (pobl_disenho.length() > 0) {
+	    Double aux = pref.getfVarEstacional()
+		    * pref.getDotDomiciliar()
+		    * Double.parseDouble(pobl_disenho)
+		    * (1 + (pref.getTasaCrecimiento()
+			    * pref.getAnhoHorizSistema() / 100)) / 86400;
+	    ((JTextField) widgets.get(widgetName)).setText(aux
 		    .toString());
 	} else {
-	    ((JTextField) widgets.get("caudal_bombeo_2")).setText("");
+	    ((JTextField) widgets.get(widgetName)).setText("");
+	}
+    }
+
+    private void computeVolDeposito(String demanda_abastece,
+	    String q_ent_gravedad, String q_ent_bombeo, String widgetName) {
+	if ((demanda_abastece.length() > 0) && (q_ent_gravedad.length() > 0)
+		&& (q_ent_bombeo.length() > 0)) {
+	    Double aux = Double.parseDouble(demanda_abastece)
+		    * ((0.4 * Double.parseDouble(q_ent_gravedad)) + (0.8 * Double
+			    .parseDouble(q_ent_bombeo))) * 86400 / 1000;
+	    ((JTextField) widgets.get(widgetName)).setText(aux.toString());
+	} else {
+	    ((JTextField) widgets.get(widgetName)).setText("");
+	}
+    }
+
+    private void computeCaudalBombeo(String caudal, String t_bombeo,
+	    String widgetName) {
+	if ((caudal.length() > 0) && (t_bombeo.length() > 0)) {
+	    Double aux = Double.parseDouble(caudal) * 24
+		    / Double.parseDouble(t_bombeo);
+	    ((JTextField) widgets.get(widgetName)).setText(aux.toString());
+	} else {
+	    ((JTextField) widgets.get(widgetName)).setText("");
+	}
+    }
+
+    private void computeVelocidad(String caudal_bombeo, Object tuberia,
+	    String widgetName) {
+	if ((caudal_bombeo.length() > 0) && (tuberia instanceof Item)) {
+	    Double aux = Double.parseDouble(caudal_bombeo)
+		    / 1000
+		    / (Math.pow(
+			    (Math.PI * (((Item) tuberia)).getValue() / 2 / 1000),
+			    2));
+	    ((JTextField) widgets.get(widgetName)).setText(aux.toString());
+	} else {
+	    ((JTextField) widgets.get(widgetName)).setText("");
+	}
+    }
+
+    private void computePerdidas(String longitud, String velocidad,
+	    Object tuberia, String widgetName) {
+	if ((longitud.length() > 0) && (velocidad.length() > 0)
+		&& (tuberia instanceof Item)) {
+	    Double aux = 0.0025 * Double.parseDouble(longitud)
+		    * Math.pow(Double.parseDouble(velocidad), 2)
+		    / ((((Item) tuberia)).getValue() / 1000) / 2 / 9.80665;
+	    ((JTextField) widgets.get(widgetName)).setText(aux.toString());
+	} else {
+	    ((JTextField) widgets.get(widgetName)).setText("");
+	}
+    }
+
+    private void computePotencia(String altura_bombeo, String perdidas,
+	    String caudal_bombeo, String widgetName) {
+	if ((altura_bombeo.length() > 0) && (perdidas.length() > 0)
+		&& (caudal_bombeo.length() > 0)) {
+	    Double aux = 1000
+		    * (Double.parseDouble(caudal_bombeo) / 1000)
+		    * (Double.parseDouble(altura_bombeo) + Double
+			    .parseDouble(perdidas)) * 0.00136
+		    / pref.getRendimientoBomba();
+	    ((JTextField) widgets.get(widgetName)).setText(aux.toString());
+	} else {
+	    ((JTextField) widgets.get(widgetName)).setText("");
+	}
+    }
+
+    private Bomba chooseBomba(String potencia_calculo, String widgetName) {
+	Bomba bombaElegida = null;
+	if (potencia_calculo.length() > 0) {
+	    double aux = Double.parseDouble(potencia_calculo);
+	    for (Bomba bomba : bombas) {
+		double pot_bomba = bomba.getPotencia();
+		if ((pot_bomba > aux)
+			&& ((bombaElegida == null) || (pot_bomba < bombaElegida
+				.getPotencia()))) {
+		    bombaElegida = bomba;
+		}
+	    }
+	    if (bombaElegida != null) {
+		((JTextField) widgets.get(widgetName)).setText(new Double(
+			bombaElegida.getPotencia()).toString());
+	    } else {
+		((JTextField) widgets.get(widgetName)).setText("");
+	    }
+	} else {
+	    ((JTextField) widgets.get(widgetName)).setText("");
+	}
+	return bombaElegida;
+    }
+
+    private void computeConsumo(String potencia, String t_bombeo,
+	    String widgetName) {
+	if ((potencia.length() > 0) && (t_bombeo.length() > 0)) {
+	    Double aux = Double.parseDouble(potencia) * 0.736 * 30
+		    * Double.parseDouble(t_bombeo);
+	    ((JTextField) widgets.get(widgetName)).setText(aux.toString());
+	} else {
+	    ((JTextField) widgets.get(widgetName)).setText("");
+	}
+    }
+
+    private void computeCuotaFutura(Bomba bomba, String consumo,
+	    String poblacion_sistema, String widgetName) {
+	if ((bomba != null) && (consumo.length() > 0)
+		&& (poblacion_sistema.length() > 0)) {
+	    Double aux = (bomba.getPrecio() / pref.getAnhoHorizBomba() / 12 / Double
+		    .parseDouble(poblacion_sistema))
+		    + (pref.getPvpKwh() * Double.parseDouble(consumo) / Double
+			    .parseDouble(poblacion_sistema));
+	    ((JTextField) widgets.get(widgetName)).setText(aux.toString());
+	} else {
+	    ((JTextField) widgets.get(widgetName)).setText("");
+	}
+    }
+
+    private void computeVolDepBombeo(String caudal, String t_bombeo,
+	    String widgetName) {
+	if ((caudal.length() > 0) && (t_bombeo.length() > 0)) {
+	    double caudal_s_double = Double.parseDouble(caudal);
+	    Double aux = ((pref.getfVarEstacional() - 1) * caudal_s_double
+		    * 86400 / 1000)
+		    + (caudal_s_double * 86400 / 1000)
+		    - (Double.parseDouble(t_bombeo) * caudal_s_double * 3600 / 1000);
+	    ((JTextField) widgets.get(widgetName)).setText(aux.toString());
+	} else {
+	    ((JTextField) widgets.get(widgetName)).setText("");
 	}
     }
 
@@ -231,6 +456,13 @@ public class PredesignDialog extends JPanel implements ActionListener,
     @Override
     public void focusLost(FocusEvent e) {
 	validateAndCompute();
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+	if (e.getStateChange() == ItemEvent.SELECTED) {
+	    validateAndCompute();
+	}
     }
 
     private class Item {
