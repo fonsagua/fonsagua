@@ -9,8 +9,8 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -38,8 +38,8 @@ import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.rules.IntegerPositi
 import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.rules.PercentageRule;
 import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.rules.ValidationRule;
 import es.icarto.gvsig.navtableforms.utils.AbeilleParser;
-import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
-import es.udc.cartolab.gvsig.users.utils.DBSession;
+import es.udc.cartolab.gvsig.fonsagua.utils.AlternativesPreferences;
+import es.udc.cartolab.gvsig.fonsagua.utils.AlternativesPreferences.Tuberia;
 
 public class PredesignDialog extends JPanel implements ActionListener,
 	SingletonWindow, KeyListener, FocusListener {
@@ -100,26 +100,17 @@ public class PredesignDialog extends JPanel implements ActionListener,
     }
 
     private void loadCombos() {
-	try {
-	    String[] fields = {
-		    FonsaguaConstants.tuberiasComercialesId,
-		    FonsaguaConstants.tuberiasComercialesDiametro };
-	    String[][] values = DBSession.getCurrentSession().getTable(
-		    FonsaguaConstants.tuberiasComercialesTable,
-		    FonsaguaConstants.dataSchema, fields, "", fields, false);
-	    DefaultComboBoxModel model1 = new DefaultComboBoxModel();
-	    model1.addElement(" ");
-	    DefaultComboBoxModel model2 = new DefaultComboBoxModel();
-	    model2.addElement(" ");
-	    for (String[] row : values) {
-		model1.addElement(new Item(row[0], row[1]));
-		model2.addElement(new Item(row[0], row[1]));
-	    }
-	    ((JComboBox) widgets.get("diametro_impulsion")).setModel(model1);
-	    ((JComboBox) widgets.get("diametro_impulsion_2")).setModel(model2);
-	} catch (SQLException e) {
-	    e.printStackTrace();
+	List<Tuberia> tuberias = AlternativesPreferences.getTuberias();
+	DefaultComboBoxModel model1 = new DefaultComboBoxModel();
+	model1.addElement(" ");
+	DefaultComboBoxModel model2 = new DefaultComboBoxModel();
+	model2.addElement(" ");
+	for (Tuberia tuberia : tuberias) {
+	    model1.addElement(new Item(tuberia.getId(), tuberia.getDiametro()));
+	    model2.addElement(new Item(tuberia.getId(), tuberia.getDiametro()));
 	}
+	((JComboBox) widgets.get("diametro_impulsion")).setModel(model1);
+	((JComboBox) widgets.get("diametro_impulsion_2")).setModel(model2);
     }
 
     private void createValidator() {
@@ -243,15 +234,11 @@ public class PredesignDialog extends JPanel implements ActionListener,
     }
 
     private class Item {
-	private Double value;
+	private double value;
 	private String description;
 
-	public Item(String description, String value) {
-	    try {
-		this.value = Double.parseDouble(value);
-	    } catch (NumberFormatException e) {
-		this.value = null;
-	    }
+	public Item(String description, double value) {
+	    this.value = value;
 	    this.description = description;
 	}
 

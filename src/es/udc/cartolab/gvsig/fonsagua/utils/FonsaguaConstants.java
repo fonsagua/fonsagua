@@ -17,12 +17,6 @@ public interface FonsaguaConstants {
     public static final String cantonesPK = "cod_canton";
     public static final String cantonesName = "canton";
 
-    public static final String preferencesTable = "preferencias_disenho";
-
-    public static final String tuberiasComercialesTable = "preferencias_tuberias";
-    public static final String tuberiasComercialesId = "id_tub";
-    public static final String tuberiasComercialesDiametro = "diametro";
-
     public static final String GPS_MATCHING_FILES = "gps-matching-files";
 
     public static final String COMUNIDADES_IMPLICADAS = "comunidades_implicadas";

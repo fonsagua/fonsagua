@@ -26,6 +26,7 @@ import es.udc.cartolab.gvsig.epanet.ValveExtension;
 import es.udc.cartolab.gvsig.epanet.config.FonsaguaAlternative;
 import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.OpenAlternativeDialog;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.AlternativesPreferences;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
@@ -162,6 +163,7 @@ public class OpenAlternativeExtension extends OpenAbstractExtension {
 	    // TODO: catch error
 	    e.printStackTrace();
 	}
+	AlternativesPreferences.loadPreferences(code);
     }
 
     public static String getCode() {
