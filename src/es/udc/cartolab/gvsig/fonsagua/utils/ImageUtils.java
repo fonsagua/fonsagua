@@ -1,5 +1,6 @@
 package es.udc.cartolab.gvsig.fonsagua.utils;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -10,7 +11,9 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-public class ImageUtils {
+public abstract class ImageUtils {
+
+    public static final Color NOT_ENABLED_COLOR = new Color(240, 240, 240);
 
     public static byte[] convertImageToBytea(File image) throws IOException {
 	BufferedImage bufferedImage = ImageIO.read(image);
@@ -31,4 +34,5 @@ public class ImageUtils {
 	}
 	return null;
     }
+
 }

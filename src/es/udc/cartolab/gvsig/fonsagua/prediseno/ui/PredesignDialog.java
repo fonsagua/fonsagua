@@ -1,5 +1,6 @@
 package es.udc.cartolab.gvsig.fonsagua.prediseno.ui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +43,14 @@ import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.rules.IntegerPositi
 import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.rules.PercentageRule;
 import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.rules.ValidationRule;
 import es.icarto.gvsig.navtableforms.utils.AbeilleParser;
+import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.AlternativesPreferences;
 import es.udc.cartolab.gvsig.fonsagua.utils.AlternativesPreferences.Bomba;
 import es.udc.cartolab.gvsig.fonsagua.utils.AlternativesPreferences.Tuberia;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
+import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
+import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 @SuppressWarnings("serial")
 public class PredesignDialog extends JPanel implements ActionListener,
@@ -194,11 +201,32 @@ public class PredesignDialog extends JPanel implements ActionListener,
 
     private void compute() {
 	pref = AlternativesPreferences.getInstance();
+	String altCode = OpenAlternativeExtension.getCode();
 
 	String pobl_disenho = ((JTextField) widgets.get("poblacion_disenho"))
 		.getText();
 
-	computeDemandaAbastece(pobl_disenho, "demanda_abastece");
+	String[] fields = {AlternativasForm.TIPODISTRIBUCIONFIELD};
+	try {
+	    String[][] alts = DBSession.getCurrentSession().getTable(
+		    AlternativasForm.NAME,
+		    FonsaguaConstants.dataSchema,
+		    fields,
+		    "WHERE " + AlternativasForm.PKFIELD + " = '" + altCode
+			    + "'", new String[0], false);
+	    if ((alts.length > 0) && (alts[0].length > 0)) {
+		int dotacion;
+		if (alts[0][0].toLowerCase().contains("cantareras")) {
+		    dotacion = pref.getDotCantareras();
+		} else {
+		    dotacion = pref.getDotDomiciliar();
+		}
+		computeDemandaAbastece(pobl_disenho, dotacion,
+			"demanda_abastece");
+	    }
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
 
 
 	String demanda_abastece = ((JTextField) widgets.get("demanda_abastece"))
@@ -263,8 +291,18 @@ public class PredesignDialog extends JPanel implements ActionListener,
 		potencia_calculo2, "potencia_2");
 
 
-	String potencia1 = ((JTextField) widgets.get("potencia")).getText();
-	String potencia2 = ((JTextField) widgets.get("potencia_2")).getText();
+	Double potencia1 = null, potencia2 = null;
+	try {
+	    potencia1 = Double.parseDouble(((JTextField) widgets
+		    .get("potencia")).getText());
+	} catch (NumberFormatException e) {
+	}
+
+	try {
+	    potencia2 = Double.parseDouble(((JTextField) widgets
+		    .get("potencia_2")).getText());
+	} catch (NumberFormatException e) {
+	}
 
 	computeConsumo(potencia1, t_bombeo1, "consumo");
 	computeConsumo(potencia2, t_bombeo2, "consumo_2");
@@ -283,10 +321,11 @@ public class PredesignDialog extends JPanel implements ActionListener,
 	computeVolDepBombeo(caudal, t_bombeo2, "vol_dep_bombeo_2");
     }
 
-    private void computeDemandaAbastece(String pobl_disenho, String widgetName) {
+    private void computeDemandaAbastece(String pobl_disenho, int dotacion,
+	    String widgetName) {
 	if (pobl_disenho.length() > 0) {
 	    Double aux = pref.getfVarEstacional()
-		    * pref.getDotDomiciliar()
+		    * dotacion
 		    * Double.parseDouble(pobl_disenho)
 		    * (1 + (pref.getTasaCrecimiento()
 			    * pref.getAnhoHorizSistema() / 100)) / 86400;
@@ -378,19 +417,26 @@ public class PredesignDialog extends JPanel implements ActionListener,
 	    if (bombaElegida != null) {
 		((JTextField) widgets.get(widgetName)).setText(new Double(
 			bombaElegida.getPotencia()).toString());
+		((JTextField) widgets.get(widgetName))
+			.setBackground(ImageUtils.NOT_ENABLED_COLOR);
 	    } else {
-		((JTextField) widgets.get(widgetName)).setText("");
+		((JTextField) widgets.get(widgetName)).setText(PluginServices
+			.getText(this, "no_valid_bombs"));
+		((JTextField) widgets.get(widgetName))
+			.setBackground(Color.PINK);
 	    }
 	} else {
 	    ((JTextField) widgets.get(widgetName)).setText("");
+	    ((JTextField) widgets.get(widgetName))
+		    .setBackground(ImageUtils.NOT_ENABLED_COLOR);
 	}
 	return bombaElegida;
     }
 
-    private void computeConsumo(String potencia, String t_bombeo,
+    private void computeConsumo(Double potencia, String t_bombeo,
 	    String widgetName) {
-	if ((potencia.length() > 0) && (t_bombeo.length() > 0)) {
-	    Double aux = Double.parseDouble(potencia) * 0.736 * 30
+	if ((t_bombeo.length() > 0) && (potencia != null)) {
+	    Double aux = potencia * 0.736 * 30
 		    * Double.parseDouble(t_bombeo);
 	    ((JTextField) widgets.get(widgetName)).setText(aux.toString());
 	} else {
