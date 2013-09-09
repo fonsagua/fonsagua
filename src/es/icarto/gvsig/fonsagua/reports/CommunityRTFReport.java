@@ -77,6 +77,7 @@ public class CommunityRTFReport extends RTFReport {
 	    writeSection1_4(rs, data);
 	    writeSection1_5(rs, data);
 	    writeSection1_6(rs, data);
+	    writeSection1_7(rs, data);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	} catch (DocumentException e) {
@@ -528,6 +529,50 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(Chunk.NEWLINE);
 	document.add(attribute);
 	document.add(value);
+    }
+
+    private void writeSection1_7(ResultSet rs, ArrayList<ReportData> data)
+	    throws SQLException, DocumentException {
+	RtfReportStyles.writeHeading2(document, "1.7 FACTORES DE RIESGO");
+
+	data.clear();
+	data.add(new ReportData(
+		"Principales factores de riesgo de la comunidad: ", null,
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Deslizamientos: ",
+		rs.getString("fr_deslizam"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Desbordamiento de río: ", rs
+		.getString("fr_desbord"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Inundaciones: ", rs.getString("fr_inundac"),
+		RtfReportStyles.normalStyle));
+	data.add(new ReportData("Puntos de asalto: ", rs
+		.getString("fr_asaltos"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Otros: ", rs.getString("fr_otros"),
+		RtfReportStyles.normalStyle));
+	ReportUtils.writeDataList(document, data);
+
+	Paragraph otros_detalle = new Paragraph(
+		rs.getString("fr_otros_detalle"), RtfReportStyles.normalStyle);
+	document.add(Chunk.NEWLINE);
+	document.add(otros_detalle);
+
+	data.clear();
+	data.add(new ReportData("Existe comité de gestión de riesgos: ", rs
+		.getString("comite_riesgos"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Está activo el comité: ", rs
+		.getString("comite_activo"), RtfReportStyles.normalStyle));
+	ReportUtils.writeDataList(document, data);
+
+	Paragraph attribute = new Paragraph(
+		"Descripción y año del último fenómeno que causó daños: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value = new Paragraph(rs.getString("ult_fenomeno"),
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute);
+	document.add(value);
+
     }
 
 }
