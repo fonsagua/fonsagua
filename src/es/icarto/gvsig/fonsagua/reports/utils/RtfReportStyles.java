@@ -83,8 +83,8 @@ public class RtfReportStyles {
 	try {
 	    document.add(Chunk.NEWLINE);
 	    heading3Style.setColor(54, 95, 145);
-	    Paragraph heading2 = new Paragraph(text, heading3Style);
-	    document.add(heading2);
+	    Paragraph heading3 = new Paragraph(text, heading3Style);
+	    document.add(heading3);
 	    document.add(Chunk.NEWLINE);
 	} catch (DocumentException e) {
 	    e.printStackTrace();

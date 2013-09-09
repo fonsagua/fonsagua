@@ -9,6 +9,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.List;
 import com.lowagie.text.ListItem;
+import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.Table;
 import com.lowagie.text.rtf.table.RtfCell;
@@ -17,6 +18,7 @@ public class ReportUtils {
 
     public static void writeDataList(Document document,
 	    ArrayList<ReportData> data) {
+	Paragraph listParagrpah = new Paragraph();
 	List list = new List();
 	list.setIndentationLeft(20);
 	list.setSymbolIndent(15);
@@ -31,7 +33,8 @@ public class ReportUtils {
 	    list.add(new ListItem(phrase));
 	}
 	try {
-	    document.add(list);
+	    listParagrpah.add(list);
+	    document.add(listParagrpah);
 	} catch (DocumentException e) {
 	    e.printStackTrace();
 	}
