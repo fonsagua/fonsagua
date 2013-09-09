@@ -71,7 +71,7 @@ CREATE TABLE fonsagua.preferencias_disenho (
        n_integrantes_familia INTEGER DEFAULT 6,
        rendimiento_bomba NUMERIC(6,2) DEFAULT 0.6,
        pvp_kwh NUMERIC(6,2) DEFAULT 4,
-       perdidas_puntutal NUMERIC(6,2) DEFAULT 1,
+       perdidas_puntual NUMERIC(6,2) DEFAULT 1,
        v_min NUMERIC(6,2) DEFAULT 0.5,
        v_max NUMERIC(6,2) DEFAULT 2,
        presion_min INTEGER DEFAULT 10,
