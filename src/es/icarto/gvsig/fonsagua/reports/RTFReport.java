@@ -10,7 +10,12 @@ import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.Rectangle;
+import com.lowagie.text.Table;
 import com.lowagie.text.rtf.RtfWriter2;
+import com.lowagie.text.rtf.headerfooter.RtfHeaderFooter;
+import com.lowagie.text.rtf.table.RtfCell;
 
 import es.icarto.gvsig.fonsagua.reports.utils.RtfReportStyles;
 
@@ -23,6 +28,7 @@ public abstract class RTFReport {
 	this.pkValue = pkValue;
 	try {
 	    document = new Document(PageSize.A4);
+	    document.setMargins(85.05f, 85.05f, 42.525f, 42.525f); // 28.35f=1cm
 	    RtfWriter2.getInstance(document, new FileOutputStream(fileName));
 	    writeHeader();
 	    writeFooter();
@@ -46,11 +52,38 @@ public abstract class RTFReport {
 
     protected abstract String getHeaderText();
 
-    protected abstract void writeHeader();
-
     protected abstract void writeFooter();
 
     protected abstract void writeSpecificContent();
+
+    protected void writeHeader() {
+	try {
+	    Table tableHeader = new Table(3);
+	    tableHeader.setWidth(100f);
+	    float[] cellWidts = { 131f, 161f, 131f };// TotalSize=425f
+	    tableHeader.setWidths(cellWidts);
+	    tableHeader.setBorder(Rectangle.NO_BORDER);
+
+	    RtfCell leftImageCell = new RtfCell(getLeftHeaderImage());
+	    leftImageCell.setHorizontalAlignment(Chunk.ALIGN_LEFT);
+	    RtfCell centerCell = new RtfCell(new Paragraph(getHeaderText(),
+		    RtfReportStyles.headerFooterTextStyle));
+	    centerCell.setHorizontalAlignment(Chunk.ALIGN_CENTER);
+	    RtfCell rightImageCell = new RtfCell(getRightHeaderImage());
+	    rightImageCell.setHorizontalAlignment(Chunk.ALIGN_RIGHT);
+
+	    tableHeader.addCell(leftImageCell);
+	    tableHeader.addCell(centerCell);
+	    tableHeader.addCell(rightImageCell);
+
+	    RtfHeaderFooter header = new RtfHeaderFooter(tableHeader);
+
+	    document.setHeader(header);
+
+	} catch (BadElementException e) {
+	    e.printStackTrace();
+	}
+    }
 
     protected Image getRightHeaderImage() {
 	Image image = null;

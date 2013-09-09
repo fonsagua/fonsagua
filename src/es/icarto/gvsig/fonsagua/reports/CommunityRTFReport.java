@@ -4,14 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.lowagie.text.BadElementException;
 import com.lowagie.text.Chunk;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Paragraph;
-import com.lowagie.text.Rectangle;
-import com.lowagie.text.Table;
 import com.lowagie.text.rtf.headerfooter.RtfHeaderFooter;
-import com.lowagie.text.rtf.table.RtfCell;
 
 import es.icarto.gvsig.fonsagua.reports.utils.ReportDAO;
 import es.icarto.gvsig.fonsagua.reports.utils.ReportData;
@@ -33,7 +29,8 @@ public class CommunityRTFReport extends RTFReport {
     @Override
     protected String getSubtitle() {
 	return "(COMUNIDAD DE "
-		+ ReportDAO.getCommunityName(pkValue).toUpperCase() + ")";
+		+ ReportDAO.getCommunityValueByColumnName("comunidad", pkValue)
+			.toUpperCase() + ")";
     }
 
     @Override
@@ -43,38 +40,15 @@ public class CommunityRTFReport extends RTFReport {
     }
 
     @Override
-    protected void writeHeader() {
-	try {
-	    Table tableHeader = new Table(3);
-	    tableHeader.setBorder(Rectangle.NO_BORDER);
-
-	    RtfCell leftImageCell = new RtfCell(getLeftHeaderImage());
-	    RtfCell centerCell = new RtfCell(new Paragraph(getHeaderText(),
-		    RtfReportStyles.headerFooterTextStyle));
-	    centerCell.setHorizontalAlignment(Chunk.ALIGN_CENTER);
-	    RtfCell rightImageCell = new RtfCell(getRightHeaderImage());
-
-	    tableHeader.addCell(leftImageCell);
-	    tableHeader.addCell(centerCell);
-	    tableHeader.addCell(rightImageCell);
-
-	    RtfHeaderFooter header = new RtfHeaderFooter(tableHeader);
-
-	    document.setHeader(header);
-
-	} catch (BadElementException e) {
-	    e.printStackTrace();
-	}
-    }
-
-    @Override
     protected void writeFooter() {
 	Paragraph footerText = new Paragraph(
 		"Plan de Gestión Integral del Recurso Hídrico en el municipio "
-			+ ReportDAO.getCommunityMunicipality(pkValue) + "\n"
+			+ ReportDAO.getCommunityValueByColumnName("municipio",
+				pkValue)
+			+ "\n"
 			+ "Informe de diagnóstico de la comunidad "
-			+ ReportDAO.getCommunityName(pkValue),
-		RtfReportStyles.headerFooterTextStyle);
+			+ ReportDAO.getCommunityValueByColumnName("comunidad",
+				pkValue), RtfReportStyles.headerFooterTextStyle);
 
 	RtfHeaderFooter footer = new RtfHeaderFooter(footerText);
 

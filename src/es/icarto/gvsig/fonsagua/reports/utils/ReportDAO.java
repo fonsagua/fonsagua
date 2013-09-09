@@ -32,26 +32,14 @@ public class ReportDAO {
 	return null;
     }
 
-    public static String getCommunityName(String communityCode) {
+    public static String getCommunityValueByColumnName(String columnName,
+	    String communityCode) {
 	ResultSet rs = getCommunityValues(communityCode);
-	String communityName;
+	String value;
 	try {
 	    rs.next();
-	    communityName = rs.getString("comunidad");
-	    return communityName;
-	} catch (SQLException e) {
-	    e.printStackTrace();
-	}
-	return null;
-    }
-
-    public static String getCommunityMunicipality(String communityCode) {
-	ResultSet rs = getCommunityValues(communityCode);
-	String communityMunicipality;
-	try {
-	    rs.next();
-	    communityMunicipality = rs.getString("municipio");
-	    return communityMunicipality;
+	    value = rs.getString(columnName);
+	    return value;
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
