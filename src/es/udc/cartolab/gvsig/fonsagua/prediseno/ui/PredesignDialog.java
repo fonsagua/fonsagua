@@ -92,6 +92,7 @@ public class PredesignDialog extends JPanel implements ActionListener,
 		"ui/" + NAME + ".xml");
 	try {
 	    formBody = new FormPanel(stream);
+	    formBody.setFocusCycleRoot(true);
 	    widgets = AbeilleParser.getWidgetsFromContainer(formBody);
 	    JScrollPane scrollPane = new JScrollPane(formBody);
 	    MigLayout thisLayout = new MigLayout("inset 0, align center",
