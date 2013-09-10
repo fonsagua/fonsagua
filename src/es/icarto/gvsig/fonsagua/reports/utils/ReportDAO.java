@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
@@ -78,5 +79,45 @@ public class ReportDAO {
 	    e.printStackTrace();
 	}
 	return -1;
+    }
+
+    // TODO: Try to make a generic method
+    public static String[][] getDataFromAbastecimientosTable(String[] colNames,
+	    String communityCode) {
+	PreparedStatement statement = null;
+
+	try {
+	    String query = "SELECT abastecimiento, a.cod_abastecimiento FROM "
+		    + FonsaguaConstants.dataSchema + "."
+		    + "abastecimientos a, " + FonsaguaConstants.dataSchema
+		    + "." + "comunidades c, " + FonsaguaConstants.dataSchema
+		    + "." + "r_abastecimientos_comunidades r"
+		    + " WHERE a.cod_abastecimiento = r.cod_abastecimiento AND "
+		    + "c.cod_comunidad = r.cod_comunidad AND "
+		    + "c.cod_comunidad = ?";
+	    statement = connection.prepareStatement(query);
+	    statement.setString(1, communityCode);
+	    statement.execute();
+	    ResultSet rs = statement.getResultSet();
+
+	    ArrayList<String[]> rows = new ArrayList<String[]>();
+	    while (rs.next()) {
+		String[] row = new String[colNames.length];
+		for (int i = 0; i < colNames.length; i++) {
+		    String val = rs.getString(colNames[i]);
+		    if (val == null) {
+			val = "";
+		    }
+		    row[i] = val;
+		}
+		rows.add(row);
+	    }
+	    rs.close();
+
+	    return rows.toArray(new String[0][0]);
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	return null;
     }
 }
