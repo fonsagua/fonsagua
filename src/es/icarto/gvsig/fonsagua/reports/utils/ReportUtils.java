@@ -90,7 +90,7 @@ public class ReportUtils {
 	for (int i = 0; i < colAlias.length; i++) {
 	    newColAlias[i] = colAlias[i];
 	}
-	newColAlias[newColAlias.length] = newAlias;
+	newColAlias[newColAlias.length - 1] = newAlias;
 	return newColAlias;
     }
 }
