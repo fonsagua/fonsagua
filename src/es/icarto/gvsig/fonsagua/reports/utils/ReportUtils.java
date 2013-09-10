@@ -41,9 +41,7 @@ public class ReportUtils {
     }
 
     public static void writeTable(Document document, String[] headerFieldNames,
-	    String[] fieldNames, String tableName, String communityCode) {
-	String[][] data = ReportDAO.getDataForCommunityRelatedTable(tableName,
-		fieldNames, communityCode);
+	    String[][] data) {
 	try {
 	    Table table = new Table(headerFieldNames.length, data.length);
 
