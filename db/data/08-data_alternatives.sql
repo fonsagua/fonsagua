@@ -106,8 +106,8 @@ CREATE TABLE fonsagua.preferencias_tuberias (
        diametro NUMERIC(6,2),
        presion NUMERIC(6,2),
        rugosidad NUMERIC(7,4),
-       precio_lmp NUMERIC(6,2)
-
+       precio_tubo NUMERIC(6,2),
+       precio_m NUMERIC(6,2)
 );
 
 
