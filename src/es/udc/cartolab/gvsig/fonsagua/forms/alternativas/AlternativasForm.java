@@ -14,6 +14,7 @@ import com.iver.andami.PluginServices;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
+import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialTableHandler;
 import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.SelectComunitiesForAlternativeDialog;
 import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.SelectElementForAlternativeDialog;
@@ -53,6 +54,34 @@ public class AlternativasForm extends BasicAbstractForm {
 	fuentesImplicadas.getTableHeader().setReorderingAllowed(false);
 
 	validBT = (JButton) formBody.getComponentByName("valid_button");
+
+	addHandlersForTables();
+    }
+
+    private void addHandlersForTables() {
+	addTableHandler(new VectorialTableHandler(AltEmbalsesForm.NAME,
+		getWidgetComponents(), PKFIELD, AltEmbalsesForm.colNames,
+		AltEmbalsesForm.colAlias));
+
+	addTableHandler(new VectorialTableHandler(AltFuentesForm.NAME,
+		getWidgetComponents(), PKFIELD, AltFuentesForm.colNames,
+		AltFuentesForm.colAlias));
+
+	addTableHandler(new VectorialTableHandler(AltDepositosForm.NAME,
+		getWidgetComponents(), PKFIELD, AltDepositosForm.colNames,
+		AltDepositosForm.colAlias));
+
+	addTableHandler(new VectorialTableHandler(AltTuberiasForm.NAME,
+		getWidgetComponents(), PKFIELD, AltTuberiasForm.colNames,
+		AltTuberiasForm.colAlias));
+
+	addTableHandler(new VectorialTableHandler(AltBombeosForm.NAME,
+		getWidgetComponents(), PKFIELD, AltBombeosForm.colNames,
+		AltBombeosForm.colAlias));
+
+	addTableHandler(new VectorialTableHandler(AltConexionesForm.NAME,
+		getWidgetComponents(), PKFIELD, AltConexionesForm.colNames,
+		AltConexionesForm.colAlias));
     }
 
     @Override

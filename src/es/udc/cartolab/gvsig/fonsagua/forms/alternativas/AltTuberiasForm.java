@@ -12,7 +12,7 @@ public class AltTuberiasForm extends BasicAbstractForm {
 "existencia_elemento", "tipologia_tuberia", "sistema", "tuberia_comercial", "long_tuberia", "velocidad"
     };
     public static String[] colAlias = {
-"Estado", "Tipología", "Sistema", "Tubería comercial", "Longitud tubería (m)", "Velocidad (m/s)"
+"Estado", "Tipología", "Sistema", "Modelo", "Longitud (m)", "Vel. (m/s)"
     };
     public AltTuberiasForm(FLyrVect layer) {
 	super(layer);

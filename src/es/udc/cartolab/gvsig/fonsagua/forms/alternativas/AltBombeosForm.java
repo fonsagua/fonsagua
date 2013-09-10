@@ -12,7 +12,7 @@ public class AltBombeosForm extends BasicAbstractForm {
 "existencia_elemento", "altura_bombeo", "tiempo_bombeo", "bomba_comercial", "caudal"
     };
     public static String[] colAlias = {
-"Estado", "Altura de bombeo (m)", "Tiempo de bombeo (h)", "Bomba comercial", "Caudal (l/s)"
+"Estado", "Altura (m)", "Tiempo (h)", "Modelo", "Caudal (l/s)"
     };
     public AltBombeosForm(FLyrVect layer) {
 	super(layer);

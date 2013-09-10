@@ -12,7 +12,7 @@ public class AltConexionesForm extends BasicAbstractForm {
 "denominacion", "hab_conectados", "demanda", "presion"
     };
     public static String[] colAlias = {
-"Denominación", "Habitantes conectados", "Demanda agua (l/s)", "Presión (m.c.a.)"
+"Denominación", "Hab. conectados", "Demanda agua (l/s)", "Presión (m.c.a.)"
     };
     public AltConexionesForm(FLyrVect layer) {
 	super(layer);
