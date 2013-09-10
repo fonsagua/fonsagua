@@ -615,7 +615,7 @@ CREATE TABLE fonsagua.centros_salud (
 );
 
 SELECT addgeometrycolumn('fonsagua', 'centros_salud', 'geom', 32616, 'POINT', 2);
-CREATE INDEX centros_saluds_geom_idx ON fonsagua.centros_salud USING GIST(geom);
+CREATE INDEX centros_salud_geom_idx ON fonsagua.centros_salud USING GIST(geom);
 
 ALTER TABLE fonsagua.centros_salud OWNER TO fonsagua;
 
