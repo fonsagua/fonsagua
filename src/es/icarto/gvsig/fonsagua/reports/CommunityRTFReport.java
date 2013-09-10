@@ -18,6 +18,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.BombeosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.CaptacionesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepDistribucionForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepIntermediosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.JuntasAguaForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.TuberiasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosEducativosForm;
@@ -25,6 +26,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosSaludForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.OngsForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.OtrasOrganizacionesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.OtrosServiciosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ValoracionSistemaForm;
 
 public class CommunityRTFReport extends RTFReport {
 
@@ -90,6 +92,8 @@ public class CommunityRTFReport extends RTFReport {
 
 	    writeSection2_1(rs, data);
 	    writeSection2_2(rs, data);
+	    writeSection2_3(rs, data);
+	    writeSection2_4(rs, data);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	} catch (DocumentException e) {
@@ -741,5 +745,62 @@ public class CommunityRTFReport extends RTFReport {
 	ReportUtils.writeTable(document, bombeosColAlias, ReportDAO
 		.getDataOfElementOfAbastecimientoByCommunity(BombeosForm.NAME,
 			bombeosColNames, pkValue));
+    }
+
+    private void writeSection2_3(ResultSet rs, ArrayList<ReportData> data)
+	    throws SQLException, DocumentException {
+	RtfReportStyles.writeHeading3(document, "2.3.1 Valoración");
+	ValoracionSistemaForm.colNames[0] = "t.cod_comunidad";
+	ValoracionSistemaForm.colNames[1] = "t.cod_abastecimiento";
+
+	ReportUtils.writeTable(document, ValoracionSistemaForm.colAlias,
+		ReportDAO.getDataOfElementOfAbastecimientoByCommunity(
+			ValoracionSistemaForm.NAME,
+			ValoracionSistemaForm.colNames, pkValue));
+
+	Paragraph attribute = new Paragraph(
+		"Comentarios sobre la calidad del agua: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value = new Paragraph("(A CUBRIR POR EL USUARIO)",
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute);
+	document.add(value);
+    }
+
+    private void writeSection2_4(ResultSet rs, ArrayList<ReportData> data)
+	    throws SQLException, DocumentException {
+	RtfReportStyles.writeHeading3(document,
+		"2.4.1 Datos de la Junta de Agua");
+	String[] juntasColAlias = ReportUtils.addCodAbastecimientoAliasToArray(
+		JuntasAguaForm.colAlias, "Cod. Abastecimiento");
+	JuntasAguaForm.colNames[JuntasAguaForm.colNames.length - 1] = "t.n_mujeres";
+	String[] juntasColNames = ReportUtils.addCodAbastecimientoAliasToArray(
+		JuntasAguaForm.colNames, "t.cod_abastecimiento");
+	ReportUtils.writeTable(document, juntasColAlias, ReportDAO
+		.getDataOfElementOfAbastecimientoByCommunity(
+			JuntasAguaForm.NAME, juntasColNames, pkValue));
+
+	RtfReportStyles.writeHeading3(document, "2.4.2 Tarifa");
+	Paragraph attribute = new Paragraph(
+		"Comentarios sobre sistema tarifario: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value = new Paragraph("(A CUBRIR POR EL USUARIO)",
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute);
+	document.add(value);
+
+	Paragraph attribute2 = new Paragraph(
+		"Comentarios sobre gestión del sistema: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value2 = new Paragraph("(A CUBRIR POR EL USUARIO)",
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute2);
+	document.add(value2);
     }
 }
