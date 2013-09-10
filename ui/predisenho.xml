@@ -574,6 +574,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -1048,6 +1049,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -3371,6 +3373,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -3636,6 +3639,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -3700,6 +3704,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -3764,6 +3769,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -3828,6 +3834,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -3892,6 +3899,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -3956,6 +3964,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -4149,6 +4158,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -4213,6 +4223,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -4277,6 +4288,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -4341,6 +4353,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -4405,6 +4418,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -4469,6 +4483,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -4533,6 +4548,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -4897,6 +4913,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -4961,6 +4978,7 @@
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
                               <at name="horizontalAlignment">4</at>
+                              <at name="focusable">false</at>
                               <at name="height">14</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">

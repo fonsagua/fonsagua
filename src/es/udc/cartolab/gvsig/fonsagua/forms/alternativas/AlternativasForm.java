@@ -28,6 +28,7 @@ public class AlternativasForm extends BasicAbstractForm {
     public static final String DEPARTFK = "departamento";
     public static final String MUNICFK = "municipio";
     public static final String CANTONFK = "canton";
+    public static final String TIPODISTRIBUCIONFIELD = "tipo_distribucion";
     private JTable comImplicadas;
     private MyListener comImplicadasListener;
     private JTable fuentesImplicadas;

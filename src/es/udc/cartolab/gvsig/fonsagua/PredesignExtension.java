@@ -27,7 +27,8 @@ public class PredesignExtension extends Extension {
 
     @Override
     public boolean isEnabled() {
-	return (DBSession.getCurrentSession() != null);
+	return ((DBSession.getCurrentSession() != null) && (OpenAlternativeExtension
+		.getCode() != null));
     }
 
     @Override

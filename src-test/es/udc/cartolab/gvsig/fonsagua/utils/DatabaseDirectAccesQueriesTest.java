@@ -47,7 +47,7 @@ public class DatabaseDirectAccesQueriesTest {
 	final String whereClause = "where cod_alternativa='" + codAltValue
 		+ "'";
 	String[][] table = DBSession.getCurrentSession().getTable(
-		FonsaguaConstants.preferencesTable,
+		AlternativesPreferences.ALTERNATIVAS_PREFERENCES_TABLE,
 		FonsaguaConstants.dataSchema,
 		new String[] { "tasa_crecimiento", "ano_horiz_sistema" },
 		whereClause, null, true);
@@ -57,7 +57,8 @@ public class DatabaseDirectAccesQueriesTest {
 	assertEquals(anoHorizSistema, Integer.parseInt(table[0][1]));
 
 	DBSession.getCurrentSession().deleteRows(FonsaguaConstants.dataSchema,
-		FonsaguaConstants.preferencesTable, whereClause);
+		AlternativesPreferences.ALTERNATIVAS_PREFERENCES_TABLE,
+		whereClause);
 	DBSession.getCurrentSession().deleteRows(FonsaguaConstants.dataSchema,
 		AlternativasForm.NAME, whereClause);
     }

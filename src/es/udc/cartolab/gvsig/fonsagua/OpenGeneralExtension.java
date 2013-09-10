@@ -22,9 +22,10 @@ public class OpenGeneralExtension extends OpenAbstractExtension {
     public void execute(String actionCommand) {
 	MapDAO mapDAO = MapDAO.getInstance();
 	try {
-	    final View view = createViewIfNeeded("Todas las alternativas");
+	    final View view = createViewIfNeeded(FonsaguaConstants.GeneralMap);
 	    ELLEMap map = mapDAO.getMap(view, FonsaguaConstants.GeneralMap,
 		    LoadLegend.DB_LEGEND, FonsaguaConstants.GeneralMap);
+
 	    map.load(view.getProjection());
 	    zoomToLayer(view, ComunidadesForm.NAME);
 	} catch (Exception e) {
@@ -32,5 +33,4 @@ public class OpenGeneralExtension extends OpenAbstractExtension {
 	    e.printStackTrace();
 	}
     }
-
 }
