@@ -82,13 +82,17 @@ public class ReportDAO {
     }
 
     // TODO: Try to make a generic method
-    public static String[][] getDataFromAbastecimientosTable(String[] colNames,
+    public static String[][] getDataFromAbastecimientosTableByCommunity(
 	    String communityCode) {
 	PreparedStatement statement = null;
-
+	String[] colNames = { "abastecimiento", "a.cod_abastecimiento" };
 	try {
-	    String query = "SELECT abastecimiento, a.cod_abastecimiento FROM "
-		    + FonsaguaConstants.dataSchema + "."
+	    String query = "SELECT ";
+	    for (String name : colNames) {
+		query = query + name + ", ";
+	    }
+	    query = query.substring(0, query.length() - 2);
+	    query = query + " FROM " + FonsaguaConstants.dataSchema + "."
 		    + "abastecimientos a, " + FonsaguaConstants.dataSchema
 		    + "." + "comunidades c, " + FonsaguaConstants.dataSchema
 		    + "." + "r_abastecimientos_comunidades r"
@@ -104,7 +108,53 @@ public class ReportDAO {
 	    while (rs.next()) {
 		String[] row = new String[colNames.length];
 		for (int i = 0; i < colNames.length; i++) {
-		    String val = rs.getString(colNames[i]);
+		    String val = rs.getString(i + 1);
+		    if (val == null) {
+			val = "";
+		    }
+		    row[i] = val;
+		}
+		rows.add(row);
+	    }
+	    rs.close();
+
+	    return rows.toArray(new String[0][0]);
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
+
+    public static String[][] getDataOfElementOfAbastecimientoByCommunity(
+	    String elementTableName, String[] colNames, String communityCode) {
+	PreparedStatement statement = null;
+
+	try {
+	    String query = "SELECT ";
+	    for (String name : colNames) {
+		query = query + name + ", ";
+	    }
+	    query = query.substring(0, query.length() - 2);
+	    query = query + " FROM " + FonsaguaConstants.dataSchema + "."
+		    + elementTableName + " t, " + FonsaguaConstants.dataSchema
+		    + "." + "abastecimientos a, "
+		    + FonsaguaConstants.dataSchema + "." + "comunidades c, "
+		    + FonsaguaConstants.dataSchema + "."
+		    + "r_abastecimientos_comunidades r"
+		    + " WHERE t.cod_abastecimiento = a.cod_abastecimiento AND "
+		    + "a.cod_abastecimiento = r.cod_abastecimiento AND "
+		    + "c.cod_comunidad = r.cod_comunidad AND "
+		    + "c.cod_comunidad = ? order by t.cod_abastecimiento";
+	    statement = connection.prepareStatement(query);
+	    statement.setString(1, communityCode);
+	    statement.execute();
+	    ResultSet rs = statement.getResultSet();
+
+	    ArrayList<String[]> rows = new ArrayList<String[]>();
+	    while (rs.next()) {
+		String[] row = new String[colNames.length];
+		for (int i = 0; i < colNames.length; i++) {
+		    String val = rs.getString(i + 1);
 		    if (val == null) {
 			val = "";
 		    }
