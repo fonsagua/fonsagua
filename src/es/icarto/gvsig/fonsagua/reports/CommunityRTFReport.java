@@ -183,17 +183,20 @@ public class CommunityRTFReport extends RTFReport {
 		.getString("n_adescos"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
-	ReportUtils.writeTable(document, AdescosForm.colAlias,
-		AdescosForm.colNames, AdescosForm.NAME, pkValue);
+	ReportUtils.writeTable(document, AdescosForm.colAlias, ReportDAO
+		.getDataForCommunityRelatedTable(AdescosForm.NAME,
+			AdescosForm.colNames, pkValue));
 
 	RtfReportStyles.writeHeading3(document, "1.3.2 ONGs");
-	ReportUtils.writeTable(document, OngsForm.colAlias, OngsForm.colNames,
-		OngsForm.NAME, pkValue);
+	ReportUtils.writeTable(document, OngsForm.colAlias, ReportDAO
+		.getDataForCommunityRelatedTable(OngsForm.NAME,
+			OngsForm.colNames, pkValue));
 
 	RtfReportStyles.writeHeading3(document, "1.3.3 Otras organizaciones");
 	ReportUtils.writeTable(document, OtrasOrganizacionesForm.colAlias,
-		OtrasOrganizacionesForm.colNames, OtrasOrganizacionesForm.NAME,
-		pkValue);
+		ReportDAO.getDataForCommunityRelatedTable(
+			OtrasOrganizacionesForm.NAME,
+			OtrasOrganizacionesForm.colNames, pkValue));
 
 	Paragraph attribute = new Paragraph(
 		"Observaciones sobre aspectos organizativos: ",
@@ -457,8 +460,9 @@ public class CommunityRTFReport extends RTFReport {
 		RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 	ReportUtils.writeTable(document, CentrosEducativosForm.colAlias,
-		CentrosEducativosForm.colNames, CentrosEducativosForm.NAME,
-		pkValue);
+		ReportDAO.getDataForCommunityRelatedTable(
+			CentrosEducativosForm.NAME,
+			CentrosEducativosForm.colNames, pkValue));
 
 	RtfReportStyles.writeHeading3(document, "1.6.4 Asistencia Sanitaria");
 	data.clear();
@@ -498,8 +502,9 @@ public class CommunityRTFReport extends RTFReport {
 			.getString("enf_tip_adultos"),
 		RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
-	ReportUtils.writeTable(document, CentrosSaludForm.colAlias,
-		CentrosSaludForm.colNames, CentrosSaludForm.NAME, pkValue);
+	ReportUtils.writeTable(document, CentrosSaludForm.colAlias, ReportDAO
+		.getDataForCommunityRelatedTable(CentrosSaludForm.NAME,
+			CentrosSaludForm.colNames, pkValue));
 
 	RtfReportStyles.writeHeading3(document,
 		"1.6.5 Otros equipamientos y servicios");
@@ -507,8 +512,9 @@ public class CommunityRTFReport extends RTFReport {
 	data.add(new ReportData("Número de iglesias: ", rs
 		.getString("n_iglesias"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
-	ReportUtils.writeTable(document, OtrosServiciosForm.colAlias,
-		OtrosServiciosForm.colNames, OtrosServiciosForm.NAME, pkValue);
+	ReportUtils.writeTable(document, OtrosServiciosForm.colAlias, ReportDAO
+		.getDataForCommunityRelatedTable(OtrosServiciosForm.NAME,
+			OtrosServiciosForm.colNames, pkValue));
 
 	RtfReportStyles.writeHeading3(document,
 		"1.6.6 Infraestructura viaria y transporte");
@@ -675,10 +681,8 @@ public class CommunityRTFReport extends RTFReport {
 	data.add(new ReportData("Nº de viviendas a las que da servicio: ", rs
 		.getString("n_viv_abast"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
-	ReportUtils
-		.writeTable(document, AbastecimientosForm.colAlias,
-			AbastecimientosForm.colNames, AbastecimientosForm.NAME,
-			pkValue);
+	ReportUtils.writeTable(document, AbastecimientosForm.colAlias,
+		ReportDAO.getDataFromAbastecimientosTableByCommunity(pkValue));
 
 	RtfReportStyles.writeHeading3(document, "2.2.1 Captaciones");
 	String[] captacionesColAlias = ReportUtils
@@ -686,9 +690,10 @@ public class CommunityRTFReport extends RTFReport {
 			"Cod. Abastecimiento");
 	String[] captacionesColNames = ReportUtils
 		.addCodAbastecimientoAliasToArray(CaptacionesForm.colNames,
-			"cod_abastecimiento");
-	ReportUtils.writeTable(document, captacionesColAlias,
-		captacionesColNames, CaptacionesForm.NAME, pkValue);
+			"t.cod_abastecimiento");
+	ReportUtils.writeTable(document, captacionesColAlias, ReportDAO
+		.getDataOfElementOfAbastecimientoByCommunity(
+			CaptacionesForm.NAME, captacionesColNames, pkValue));
 
 	RtfReportStyles.writeHeading3(document, "2.2.2 Depósitos intermedios");
 	String[] depIntermediosColAlias = ReportUtils
@@ -696,9 +701,11 @@ public class CommunityRTFReport extends RTFReport {
 			"Cod. Abastecimiento");
 	String[] depIntermediosColNames = ReportUtils
 		.addCodAbastecimientoAliasToArray(DepIntermediosForm.colNames,
-			"cod_abastecimiento");
-	ReportUtils.writeTable(document, depIntermediosColAlias,
-		depIntermediosColNames, DepIntermediosForm.NAME, pkValue);
+			"t.cod_abastecimiento");
+	ReportUtils.writeTable(document, depIntermediosColAlias, ReportDAO
+		.getDataOfElementOfAbastecimientoByCommunity(
+			DepIntermediosForm.NAME, depIntermediosColNames,
+			pkValue));
 
 	RtfReportStyles.writeHeading3(document,
 		"2.2.3 Depósitos de distribución");
@@ -707,9 +714,11 @@ public class CommunityRTFReport extends RTFReport {
 			"Cod. Abastecimiento");
 	String[] depDistribucionColNames = ReportUtils
 		.addCodAbastecimientoAliasToArray(DepDistribucionForm.colNames,
-			"cod_abastecimiento");
-	ReportUtils.writeTable(document, depDistribucionColAlias,
-		depDistribucionColNames, DepDistribucionForm.NAME, pkValue);
+			"t.cod_abastecimiento");
+	ReportUtils.writeTable(document, depDistribucionColAlias, ReportDAO
+		.getDataOfElementOfAbastecimientoByCommunity(
+			DepDistribucionForm.NAME, depDistribucionColNames,
+			pkValue));
 
 	RtfReportStyles.writeHeading3(document, "2.2.4 Tuberías");
 	String[] tuberiasColAlias = ReportUtils
@@ -717,9 +726,10 @@ public class CommunityRTFReport extends RTFReport {
 			"Cod. Abastecimiento");
 	String[] tuberiasColNames = ReportUtils
 		.addCodAbastecimientoAliasToArray(TuberiasForm.colNames,
-			"cod_abastecimiento");
-	ReportUtils.writeTable(document, tuberiasColAlias, tuberiasColNames,
-		TuberiasForm.NAME, pkValue);
+			"t.cod_abastecimiento");
+	ReportUtils.writeTable(document, tuberiasColAlias, ReportDAO
+		.getDataOfElementOfAbastecimientoByCommunity(TuberiasForm.NAME,
+			tuberiasColNames, pkValue));
 
 	RtfReportStyles.writeHeading3(document, "2.2.4 Bombas");
 	String[] bombeosColAlias = ReportUtils
@@ -727,8 +737,9 @@ public class CommunityRTFReport extends RTFReport {
 			"Cod. Abastecimiento");
 	String[] bombeosColNames = ReportUtils
 		.addCodAbastecimientoAliasToArray(BombeosForm.colNames,
-			"cod_abastecimiento");
-	ReportUtils.writeTable(document, bombeosColAlias, bombeosColNames,
-		BombeosForm.NAME, pkValue);
+			"t.cod_abastecimiento");
+	ReportUtils.writeTable(document, bombeosColAlias, ReportDAO
+		.getDataOfElementOfAbastecimientoByCommunity(BombeosForm.NAME,
+			bombeosColNames, pkValue));
     }
 }
