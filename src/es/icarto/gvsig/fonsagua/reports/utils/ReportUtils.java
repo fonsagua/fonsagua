@@ -83,4 +83,14 @@ public class ReportUtils {
 	    return value;
 	}
     }
+
+    public static String[] addCodAbastecimientoAliasToArray(String[] colAlias,
+	    String newAlias) {
+	String[] newColAlias = new String[colAlias.length + 1];
+	for (int i = 0; i < colAlias.length; i++) {
+	    newColAlias[i] = colAlias[i];
+	}
+	newColAlias[newColAlias.length] = newAlias;
+	return newColAlias;
+    }
 }

@@ -13,6 +13,12 @@ import es.icarto.gvsig.fonsagua.reports.utils.ReportDAO;
 import es.icarto.gvsig.fonsagua.reports.utils.ReportData;
 import es.icarto.gvsig.fonsagua.reports.utils.ReportUtils;
 import es.icarto.gvsig.fonsagua.reports.utils.RtfReportStyles;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.BombeosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.CaptacionesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepDistribucionForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.DepIntermediosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.TuberiasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosEducativosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosSaludForm;
@@ -78,6 +84,12 @@ public class CommunityRTFReport extends RTFReport {
 	    writeSection1_5(rs, data);
 	    writeSection1_6(rs, data);
 	    writeSection1_7(rs, data);
+
+	    RtfReportStyles.writeHeading1(document,
+		    "2. INFRAESTRUCTURAS DE AGUA");
+
+	    writeSection2_1(rs, data);
+	    writeSection2_2(rs, data);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	} catch (DocumentException e) {
@@ -572,7 +584,151 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(Chunk.NEWLINE);
 	document.add(attribute);
 	document.add(value);
-
     }
 
+    private void writeSection2_1(ResultSet rs, ArrayList<ReportData> data)
+	    throws SQLException, DocumentException {
+	RtfReportStyles.writeHeading2(document,
+		"2.1 RESUMEN DEL TIPO DE ABASTECIMIENTO");
+
+	RtfReportStyles.writeHeading3(document,
+		"2.1.1 Sistemas de abastecimiento");
+	data.clear();
+	data.add(new ReportData("Existe sitema de abastecimiento de agua: ", rs
+		.getString("sist_abastecimiento"),
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Origen del agua: ", rs
+		.getString("origen_aguas"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Nº de viviendas a las que da servicio: ", rs
+		.getString("n_viv_abast"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData(
+		"Nº de familias con servicio de agua en época seca: ", rs
+			.getString("tot_s_abast"),
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData(
+		"Nº de familias con servicio de agua en época de lluvias: ", rs
+			.getString("tot_ll_abast"),
+		RtfReportStyles.normalBoldStyle));
+	ReportUtils.writeDataList(document, data);
+
+	Paragraph attribute = new Paragraph(
+		"Resumen para el informe técnico: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value = new Paragraph(rs.getString("resum_abast"),
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute);
+	document.add(value);
+
+	RtfReportStyles.writeHeading4(document,
+		"2.1.1.1 Población sin sistema de abastecimiento");
+	data.clear();
+	data.add(new ReportData(
+		"Nº de familias con servicio de agua en época seca: ", rs
+			.getString("tot_s_sin_abast"),
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData(
+		"Nº de familias sin sistema de agua en época de lluvias: ", rs
+			.getString("tot_ll_sin_abast"),
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Tipo de fuentes: ", null,
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Río: ", rs.getString("f_rio"),
+		RtfReportStyles.normalStyle));
+	data.add(new ReportData("Manantial: ", rs.getString("f_manantial"),
+		RtfReportStyles.normalStyle));
+	data.add(new ReportData("Pozo: ", rs.getString("f_pozo"),
+		RtfReportStyles.normalStyle));
+	data.add(new ReportData("Quebrada: ", rs.getString("f_quebrada"),
+		RtfReportStyles.normalStyle));
+	data.add(new ReportData("Compra: ", rs.getString("f_compra"),
+		RtfReportStyles.normalStyle));
+	ReportUtils.writeDataList(document, data);
+
+	Paragraph attribute2 = new Paragraph(
+		"Resumen de los hábitos del agua: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value2 = new Paragraph(rs.getString("res_hab_agua"),
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute2);
+	document.add(value2);
+    }
+
+    private void writeSection2_2(ResultSet rs, ArrayList<ReportData> data)
+	    throws SQLException, DocumentException {
+	RtfReportStyles.writeHeading2(document,
+		"2.2 ANÁLISIS DE LOS SISTEMAS EXISTENTES");
+
+	data.clear();
+	data.add(new ReportData(
+		"Número de sistemas de abastecimiento de la comunidad: ",
+		String.valueOf(ReportDAO
+			.getNumberOfElementsFromRelationshipTable(
+				"r_abastecimientos_comunidades",
+				"cod_comunidad", pkValue)),
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Consumo de la comunidad (l/hab día): ", rs
+		.getString("tot_consumo"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Nº de viviendas a las que da servicio: ", rs
+		.getString("n_viv_abast"), RtfReportStyles.normalBoldStyle));
+	ReportUtils.writeDataList(document, data);
+	ReportUtils
+		.writeTable(document, AbastecimientosForm.colAlias,
+			AbastecimientosForm.colNames, AbastecimientosForm.NAME,
+			pkValue);
+
+	RtfReportStyles.writeHeading3(document, "2.2.1 Captaciones");
+	String[] captacionesColAlias = ReportUtils
+		.addCodAbastecimientoAliasToArray(CaptacionesForm.colAlias,
+			"Cod. Abastecimiento");
+	String[] captacionesColNames = ReportUtils
+		.addCodAbastecimientoAliasToArray(CaptacionesForm.colNames,
+			"cod_abastecimiento");
+	ReportUtils.writeTable(document, captacionesColAlias,
+		captacionesColNames, CaptacionesForm.NAME, pkValue);
+
+	RtfReportStyles.writeHeading3(document, "2.2.2 Depósitos intermedios");
+	String[] depIntermediosColAlias = ReportUtils
+		.addCodAbastecimientoAliasToArray(DepIntermediosForm.colAlias,
+			"Cod. Abastecimiento");
+	String[] depIntermediosColNames = ReportUtils
+		.addCodAbastecimientoAliasToArray(DepIntermediosForm.colNames,
+			"cod_abastecimiento");
+	ReportUtils.writeTable(document, depIntermediosColAlias,
+		depIntermediosColNames, DepIntermediosForm.NAME, pkValue);
+
+	RtfReportStyles.writeHeading3(document,
+		"2.2.3 Depósitos de distribución");
+	String[] depDistribucionColAlias = ReportUtils
+		.addCodAbastecimientoAliasToArray(DepDistribucionForm.colAlias,
+			"Cod. Abastecimiento");
+	String[] depDistribucionColNames = ReportUtils
+		.addCodAbastecimientoAliasToArray(DepDistribucionForm.colNames,
+			"cod_abastecimiento");
+	ReportUtils.writeTable(document, depDistribucionColAlias,
+		depDistribucionColNames, DepDistribucionForm.NAME, pkValue);
+
+	RtfReportStyles.writeHeading3(document, "2.2.4 Tuberías");
+	String[] tuberiasColAlias = ReportUtils
+		.addCodAbastecimientoAliasToArray(TuberiasForm.colAlias,
+			"Cod. Abastecimiento");
+	String[] tuberiasColNames = ReportUtils
+		.addCodAbastecimientoAliasToArray(TuberiasForm.colNames,
+			"cod_abastecimiento");
+	ReportUtils.writeTable(document, tuberiasColAlias, tuberiasColNames,
+		TuberiasForm.NAME, pkValue);
+
+	RtfReportStyles.writeHeading3(document, "2.2.4 Bombas");
+	String[] bombeosColAlias = ReportUtils
+		.addCodAbastecimientoAliasToArray(BombeosForm.colAlias,
+			"Cod. Abastecimiento");
+	String[] bombeosColNames = ReportUtils
+		.addCodAbastecimientoAliasToArray(BombeosForm.colNames,
+			"cod_abastecimiento");
+	ReportUtils.writeTable(document, bombeosColAlias, bombeosColNames,
+		BombeosForm.NAME, pkValue);
+    }
 }

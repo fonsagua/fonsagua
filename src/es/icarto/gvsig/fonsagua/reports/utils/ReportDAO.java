@@ -59,4 +59,24 @@ public class ReportDAO {
 	}
 	return null;
     }
+
+    public static int getNumberOfElementsFromRelationshipTable(
+	    String relationshipTableName, String codeField, String codeValue) {
+	PreparedStatement statement = null;
+
+	try {
+	    String query = "SELECT count(*) FROM "
+		    + FonsaguaConstants.dataSchema + "."
+		    + relationshipTableName + " WHERE " + codeField + " = ?";
+	    statement = connection.prepareStatement(query);
+	    statement.setString(1, codeValue);
+	    statement.execute();
+	    ResultSet rs = statement.getResultSet();
+	    rs.next();
+	    return rs.getInt(1);
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	return -1;
+    }
 }
