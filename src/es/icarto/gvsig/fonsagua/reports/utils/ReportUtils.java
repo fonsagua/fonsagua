@@ -1,7 +1,12 @@
 package es.icarto.gvsig.fonsagua.reports.utils;
 
 import java.awt.Color;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import com.lowagie.text.BadElementException;
 import com.lowagie.text.Chunk;
@@ -15,6 +20,8 @@ import com.lowagie.text.Table;
 import com.lowagie.text.rtf.table.RtfCell;
 
 public class ReportUtils {
+
+    private final static Locale loc = new Locale("es");
 
     public static void writeDataList(Document document,
 	    ArrayList<ReportData> data) {
@@ -77,9 +84,24 @@ public class ReportUtils {
 	    return "Sí";
 	} else if (value.equalsIgnoreCase("f")) {
 	    return "No";
+	} else if (value.contains("-")) {
+	    return getDateFormatted(value);
 	} else {
 	    return value;
 	}
+    }
+
+    private static String getDateFormatted(String dateString) {
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	String dateFormatted = null;
+	try {
+	    Date date = formatter.parse(dateString);
+	    DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, loc);
+	    dateFormatted = df.format(date);
+	} catch (ParseException e) {
+	    e.printStackTrace();
+	}
+	return dateFormatted;
     }
 
     public static String[] addAliasToArray(String[] colAlias, String newAlias) {
