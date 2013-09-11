@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 import com.iver.andami.PluginServices;
+import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.andami.ui.mdiManager.SingletonDialogAlreadyShownException;
 import com.iver.cit.gvsig.fmap.MapControl;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
@@ -38,6 +39,8 @@ public class FormPointListener extends PointSelectionListener {
     private Cursor cur = Toolkit.getDefaultToolkit().createCustomCursor(img,
 	    new Point(16, 16), "");
 
+    private IWindow lastOpenDialog;
+
     @Override
     public Cursor getCursor() {
 	return cur;
@@ -52,13 +55,19 @@ public class FormPointListener extends PointSelectionListener {
 	    PluginServices.getMDIManager().setWaitCursor();
 	    FLyrVect[] layers = new TOCLayerManager().getActiveLayers();
 	    for (FLyrVect layer : layers) {
-		if (layer.getRecordset().getSelection().cardinality() > 0) {
+		int selectedPos = layer.getRecordset().getSelection()
+			.nextSetBit(0);
+		if (selectedPos != -1) {
 		    AbstractForm dialog = FormFactory
 			    .createFormRegistered(layer);
 		    if ((dialog != null) && (dialog.init())) {
+			if (lastOpenDialog != null) {
+			    PluginServices.getMDIManager().closeWindow(
+				    lastOpenDialog);
+			}
+			lastOpenDialog = dialog;
+			dialog.setPosition(selectedPos);
 			PluginServices.getMDIManager().addWindow(dialog);
-			dialog.setOnlySelected(true);
-			dialog.first();
 		    }
 		}
 	    }
