@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin-config>
+    <depends plugin-name="com.iver.cit.gvsig"/>
+    <resourceBundle name="text"/>
+    <libraries library-dir="."/>
+    <extensions>
+        <extension
+            class-name="org.gvsig.symbology.ExtendedSymbologyExtension"
+            priority="20" active="true" description="Enables the extended symbology (available since v2.0)."/>
+        <extension class-name="org.gvsig.symbology.SLDExtension"
+            priority="50" active="true" description="Extension that enables gvSIG to have full SLD support"/>
+    </extensions>
+</plugin-config>

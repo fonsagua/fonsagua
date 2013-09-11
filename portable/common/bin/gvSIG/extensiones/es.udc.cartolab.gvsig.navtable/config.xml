@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<plugin-config>
+	<depends plugin-name="com.iver.cit.gvsig"/>
+	<depends plugin-name="com.iver.cit.gvsig.cad"/>
+	<depends plugin-name="org.gvsig.mapsheets.print.series"/>
+	<libraries library-dir="lib"/>
+	<resourceBundle name="text"/>
+	<extensions>
+		<extension class-name="es.udc.cartolab.gvsig.navtable.NavTableExtension"
+			description="NavTable"
+			active="true">
+			<tool-bar name="NavTable" position="60">
+				<action-tool icon="images/table_refresh.png"
+					tooltip="navigation_table"
+					action-command="NavTable"
+					position="1"/>
+			</tool-bar>
+			<menu text="Tabla/navigation_table"
+				action-command="NavTable"
+				icon="images/table_refresh.png"
+				position="60100"/> 
+		</extension> 
+	</extensions>
+</plugin-config>

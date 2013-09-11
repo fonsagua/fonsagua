@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<plugin-config>
+	<libraries library-dir="."/>
+	<depends plugin-name="com.iver.cit.gvsig"/>
+		<resourceBundle name="text"/>
+	<extensions>
+		<extension class-name="com.iver.gvsig.addeventtheme.AddEventThemeExtension"
+			description="LoadGeometry 0.1RC1 Extensión que permite cargar un tema de eventos."
+			active="true">
+			<menu text="Capa/Anadir_capa_de_eventos" action-command="ADDEVENTTHEME"
+				icon="view-addevent-layer" position="50010"/>
+			<!--tool-bar name="com.iver.cit.gvsig.Herramientas"-->
+			<tool-bar name="View" position="40">
+				<action-tool icon="view-addevent-layer"
+				action-command="ADDEVENTTHEME" tooltip="Anadir_capa_de_eventos"  					position="2" enable-text="debería de estar activada" last="true"/>
+			</tool-bar>
+		</extension>
+	</extensions>
+</plugin-config>

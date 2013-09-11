@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin-config>
+    <depends plugin-name="com.iver.cit.gvsig"/>
+    <depends plugin-name="com.iver.cit.gvsig.cad"/>
+    <depends plugin-name="org.gvsig.scripting"/>
+    <resourceBundle name="text"/>
+    <libraries library-dir="."/>
+    <extensions>
+        <extension
+            class-name="com.iver.cit.gvsig.ExpressionFieldExtension"
+            active="true" description="Extension that evaluate the expression to a column.">
+            <menu action-command="separator" text="Tabla"
+                position="60949" is_separator="true"/>
+            <menu action-command="EXPRESSION" icon="ext-kcalc"
+                tooltip="expression_field" text="Tabla/expression_field" position="60950"/>
+            <tool-bar name="field_toolbar" position="130">
+                <action-tool action-command="EXPRESSION"
+                    icon="ext-kcalc" last="true"
+                    tooltip="expression_field" position="1"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.AboutExpressionFieldExtension"
+            priority="1" active="false" description="Extension to add about panel."/>
+    </extensions>
+</plugin-config>

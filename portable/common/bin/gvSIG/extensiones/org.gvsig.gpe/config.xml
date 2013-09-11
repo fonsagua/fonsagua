@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin-config>
+    <depends plugin-name="com.iver.cit.gvsig"/>
+    <depends plugin-name="com.iver.cit.gvsig.cad"/>
+    <resourceBundle name="text"/>
+    <libraries library-dir="./lib"/>
+    <extensions>
+        <extension class-name="org.gvsig.gpe.GPEReaderExtension"
+            priority="1" active="true" description="Support fo reading"/>
+        <extension class-name="org.gvsig.gpe.GPEWriterExtension"
+            active="true" description="Support for writing">
+            <menu action-command="GML" text="Capa/export_to/GML" position="50330"/>
+            <menu action-command="KML" text="Capa/export_to/KML" position="50340"/>
+        </extension>
+        <extension class-name="org.gvsig.gpe.AboutGPEExtension"
+            priority="1" active="true" description="Extension to add about panel."/>
+    </extensions>
+</plugin-config>

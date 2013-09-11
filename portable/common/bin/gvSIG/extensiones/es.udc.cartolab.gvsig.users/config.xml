@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<plugin-config>
+	<depends plugin-name="com.iver.cit.gvsig"/>
+	<libraries library-dir="lib"/>
+	<resourceBundle name="text"/>
+	<extensions>
+        <extension
+            class-name="es.udc.cartolab.gvsig.users.PostGISDBConnectionExtension"
+            active="true" description="Connect DB">
+            <menu action-command="DBConnect" icon="DBConnect"
+                text="data_base_menu/connectToDB" position="20000"/>
+            <tool-bar name="dbconnection" position="20">
+                <action-tool action-command="DBConnect" icon="DBConnect"
+                    tooltip="connectToDB" position="1"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="es.udc.cartolab.gvsig.users.ChangePassExtension"
+            active="true" description="Change password">
+            <menu action-command="CHPWD" icon="images/sessionchpwd.png" 
+            	text="data_base_menu/change_password" position="20899"/>
+        </extension>
+        <extension
+            class-name="es.udc.cartolab.gvsig.users.CloseSessionExtension"
+            active="true" description="Close session">
+            <menu action-command="CLOSE" icon="DBClose"
+                text="data_base_menu/close_session" position="20900"/>
+            <tool-bar name="dbconnection" position="20">
+                <action-tool action-command="CLOSE" icon="DBClose"
+                    tooltip="close_session" position="2"/>
+            </tool-bar>
+        </extension>
+    </extensions>
+</plugin-config>

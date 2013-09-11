@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<plugin-config>
+	<depends plugin-name="com.iver.cit.gvsig"/>
+	<depends plugin-name="com.iver.cit.gvsig.cad"/>
+	<depends plugin-name="com.iver.cit.gvsig.wms"/>
+	<depends plugin-name="es.udc.cartolab.gvsig.users"/>
+	<libraries library-dir="lib"/>
+	<resourceBundle name="text"/>
+	<label-set class-name="com.iver.cit.gvsig.project.documents.view.gui.View">
+	<label id="units" size="75"/>
+	<label id="x" size="120"/>
+	<label id="y" size="120"/>
+	<label id="4" size="110"/>
+	<label id="5" size="110"/>
+	<label id="distancearea" size="30"/>
+	<label id="projection" size="110"/>
+	<label id="constants" size="140"/>
+	</label-set>
+	<extensions>
+        <extension
+            class-name="es.udc.cartolab.gvsig.elle.LoadMapExtension"
+            active="true" description="Load map">
+            <menu action-command="LoadMap" icon="load-map"
+                text="data_base_menu/Load_map" position="20100"/>
+            <tool-bar name="ELLE" position="30">
+                <action-tool name="load-map" action-command="LoadMap"
+                    icon="load-map" tooltip="Load_map" position="1"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="es.udc.cartolab.gvsig.elle.SaveMapExtension"
+            active="true" description="save_map">
+            <menu action-command="SaveMap" icon="save-map"
+                text="data_base_menu/save_map" position="20200"/>
+            <tool-bar name="ELLE" position="30">
+                <action-tool name="save-map" action-command="SaveMap"
+                    icon="save-map" tooltip="save_map" position="2"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="es.udc.cartolab.gvsig.elle.DeleteMapExtension" 
+        	description="delete_map" active="true">
+			<menu text="data_base_menu/delete_map" icon="delete-map"
+				action-command="DeleteMap" position="20300" />
+		</extension>
+        <extension
+            class-name="es.udc.cartolab.gvsig.elle.LoadAllLegendsExtension"
+            active="true" description="Load_several_legends">
+            <menu action-command="LOADLEGENDS" icon="load-legends"
+                text="data_base_menu/load_legends" position="20400"/>
+            <tool-bar name="ELLE" position="30">
+                <action-tool name="load-legends"
+                    action-command="LOADLEGENDS" icon="load-legends"
+                    tooltip="load_legends" position="3"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="es.udc.cartolab.gvsig.elle.SaveAllLegendsExtension"
+            active="true" description="Save_several_legends">
+            <menu action-command="ALL" icon="save-all-legends"
+                text="data_base_menu/Save_legends" position="20500"/>
+            <tool-bar name="ELLE" position="30">
+                <action-tool name="save-all-legends"
+                    action-command="ALL" icon="save-all-legends"
+                    tooltip="Save_legends" position="4"/>
+            </tool-bar>
+        </extension>
+    </extensions>
+</plugin-config>

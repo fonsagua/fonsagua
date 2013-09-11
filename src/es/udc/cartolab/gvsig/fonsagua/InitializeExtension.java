@@ -40,6 +40,23 @@ public class InitializeExtension extends Extension {
 	CopyFeaturesExtension.setDefaultPath(Launcher.getAppHomeDir()
 		+ FonsaguaConstants.GPS_MATCHING_FILES);
 
+	hideExtensions(false);
+
+	// Remove project manager
+	PluginServices.getMDIManager().closeAllWindows();
+
+	// Opens the connection dialog. The start up preferences configuration
+	// is not valid, because the closeAllWindows close this dialog also
+	PostGISDBConnectionExtension connectionDialog = (PostGISDBConnectionExtension) PluginServices
+		.getExtension(PostGISDBConnectionExtension.class);
+	connectionDialog.execute(null);
+
+    }
+
+    private void hideExtensions(boolean hide) {
+	if (!hide) {
+	    return;
+	}
 	// Hide extensions that we only use as libraries and not as extensions
 	// to be "clicked" by the users
 	List<Class<? extends IExtension>> l = new ArrayList<Class<? extends IExtension>>();
@@ -55,16 +72,6 @@ public class InitializeExtension extends Extension {
 	    PluginServices.getDecoratedExtension(c).setVisibility(
 		    ExtensionDecorator.ALWAYS_INVISIBLE);
 	}
-
-	// Remove project manager
-	PluginServices.getMDIManager().closeAllWindows();
-
-	// Opens the connection dialog. The start up preferences configuration
-	// is not valid, because the closeAllWindows close this dialog also
-	PostGISDBConnectionExtension connectionDialog = (PostGISDBConnectionExtension) PluginServices
-		.getExtension(PostGISDBConnectionExtension.class);
-	connectionDialog.execute(null);
-
     }
 
     @Override

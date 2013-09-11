@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin-config>
+    <resourceBundle name="text"/>
+    <libraries library-dir="."/>
+    <extensions>
+        <extension class-name="com.iver.core.menus.ToolbarMenus"
+            priority="99999" active="true" description="Active toolbar menues"/>
+        <extension class-name="com.iver.core.Consola" priority="1"
+            active="true" description="Extensión encargada de abrir la ventana de la consola."/>
+        <extension class-name="com.iver.core.PreferencesExtension"
+            priority="3" active="true" description="Extensión encargada de abrir la ventana de preferencias de ANDAMI.">
+            <menu text="Archivo" position="10799" is_separator="true"/>
+            <menu action-command="preferences"
+                icon="application-preferences" tooltip="preferencias"
+                text="Archivo/Preferencias" position="10800"/>
+            <menu text="Archivo" position="10849" is_separator="true"/>
+        </extension>
+        <extension class-name="com.iver.core.StatusBar" active="true" description="Recoge los mensajes del NotificationManager y los muestra por la StatusBar"/>
+        <skin-extension class-name="com.iver.core.mdiManager.NewSkin"/>
+    </extensions>
+</plugin-config>

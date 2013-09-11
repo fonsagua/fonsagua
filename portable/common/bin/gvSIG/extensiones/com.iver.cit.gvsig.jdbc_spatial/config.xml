@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin-config>
+    <depends plugin-name="com.iver.cit.gvsig"/>
+    <resourceBundle name="text"/>
+    <libraries library-dir="."/>
+    <extensions>
+        <extension
+            class-name="com.iver.cit.gvsig.jdbc_spatial.ExtJDBC_Spatial"
+            priority="1" active="true" description="Support to access JDBC spatial databases PostgreSQL and mySQL"/>
+    </extensions>
+</plugin-config>

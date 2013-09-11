@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin-config>
+    <depends plugin-name="com.iver.cit.gvsig"/>
+    <resourceBundle name="text"/>
+    <libraries library-dir="."/>
+    <extensions>
+        <extension
+            class-name="org.gvsig.georeferencing.GeoreferencingModule"
+            priority="1" active="true" description="Extensión encargada activar las herramientas de georeferenciar raster."/>
+    </extensions>
+</plugin-config>

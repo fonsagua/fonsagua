@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin-config>
+    <depends plugin-name="com.iver.cit.gvsig"/>
+    <resourceBundle name="text"/>
+    <libraries library-dir="./lib"/>
+    <extensions>
+        <extension
+            class-name="com.iver.cit.gvsig.geoprocess.manager.GeoprocessManagerExtension"
+            active="true" description="Gestor de geoprocesos extensible mediante plugins">
+            <menu action-command="separator" text="Capa"
+                position="50399" is_separator="true"/>
+            <menu action-command="GEOPROCESSING_MANAGER"
+                icon="gp-manager" tooltip="Geoprocesos"
+                text="Capa/Geoprocesos" position="50400"/>
+        </extension>
+    </extensions>
+</plugin-config>

@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin-config>
+    <depends plugin-name="com.iver.cit.gvsig"/>
+    <depends plugin-name="com.iver.cit.gvsig.jdbc_spatial"/>
+    <depends plugin-name="org.gvsig.scripting"/>
+    <resourceBundle name="text"/>
+    <libraries library-dir="lib"/>
+    <extensions>
+        <extension class-name="com.iver.cit.gvsig.CreateNewLayer"
+            active="true" description="Crear una nueva capa.">
+            <menu action-command="separator" text="Capa"
+                position="50199" is_separator="true"/>
+            <menu action-command="SHP" text="Capa/new/new_shp" position="50200"/>
+            <menu action-command="DXF" text="Capa/new/new_dxf" position="50210"/>
+            <menu action-command="POSTGIS" text="Capa/new/new_postgis" position="50220"/>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.StartEditing"
+            active="true" description="Extensión encargada de comenzar la edición sobre la capa activa.">
+            <menu action-command="separator" text="Capa"
+                position="50099" is_separator="true"/>
+            <menu action-command="STARTEDITING"
+                text="Capa/start_edition" position="50100"/>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.StopEditing"
+            active="true" description="Extensión encargada de terminar la edición sobre la capa activa y guardarla sobre sí misma.">
+            <menu action-command="separator" text="Capa"
+                position="50099" is_separator="true"/>
+            <menu action-command="STOPEDITING" text="Capa/stop_edition" position="50190"/>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.ExportTo"
+            active="true" description="Exportar a diversos formatos">
+            <menu action-command="separator" text="Capa"
+                position="50299" is_separator="true"/>
+            <menu action-command="SHP" text="Capa/export_to/SHP" position="50300"/>
+            <menu action-command="DXF" text="Capa/export_to/DXF" position="50310"/>
+            <menu action-command="POSTGIS" text="Capa/export_to/PostGIS" position="50320"/>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.ExportSeveralTo"
+            active="true" description="Exportar a diversos formatos">
+            <menu action-command="separator" text="Capa"
+                position="50299" is_separator="true"/>
+            <menu action-command="SHP" text="Capa/export_to/SHP" position="50300"/>
+            <menu action-command="DXF" text="Capa/export_to/DXF" position="50310"/>
+            <menu action-command="POSTGIS" text="Capa/export_to/PostGIS" position="50320"/>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.UndoViewExtension"
+            active="true" description="Extensión encargada de dehacer la edición sobre la capa activa.">
+            <menu action-command="UNDO" icon="view-undo"
+                text="Capa/undo" position="50110"/>
+            <tool-bar name="modificar" position="139">
+                <action-tool name="deshacer" action-command="UNDO"
+                    icon="view-undo" tooltip="undo" position="1"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.RedoViewExtension"
+            active="true" description="Extensión encargada de rehacer la edición sobre la capa activa.">
+            <menu action-command="REDO" icon="view-redo"
+                text="Capa/redo" position="50120"/>
+            <tool-bar name="modificar" position="139">
+                <action-tool name="redo" action-command="REDO"
+                    icon="view-redo" tooltip="redo" position="2"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.ViewCommandStackExtension"
+            active="true" description="Extensión encargada de administrar la pila de comados de edición sobre una vista.">
+            <menu action-command="COMMANDSTACK" icon="commands-stack" text="geometry/commands_stack" position="70700"/>
+            <tool-bar name="gvsig" position="160">
+                <action-tool name="commands_stack"
+                    action-command="COMMANDSTACK" icon="commands-stack"
+                    tooltip="commands_stack" position="1"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.TableCommandStackExtension"
+            active="true" description="Extensión encargada de administrar la pila de comados de edición sobre una tabla.">
+            <menu action-command="COMMANDSTACK" icon="commands-stack" text="geometry/commands_stack" position="70700"/>
+            <tool-bar name="gvsig" position="160">
+                <action-tool name="commands_stack"
+                    action-command="COMMANDSTACK" icon="commands-stack"
+                    tooltip="commands_stack" position="1"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.CADExtension"
+            active="true" description="Extensión encargada de gestionar los eventos realizados sobre las geometrías.">
+            <menu action-command="separator" text="geometry"
+                position="70199" is_separator="true"/>
+            <menu action-command="_copy" icon="edition-geometry-copy"
+                text="geometry/modify/copy" position="70200"/>
+            <menu action-command="_rotate"
+                icon="edition-geometry-rotate"
+                text="geometry/modify/rotate" position="70210"/>
+            <menu action-command="_symmetry"
+                icon="edition-geometry-symmetry"
+                text="geometry/modify/symmetry" position="70215"/>
+            <menu action-command="_scale" icon="edition-geometry-scale"
+                text="geometry/modify/scale" position="70220"/>
+            <tool-bar name="modificar" position="150">
+                <selectable-tool action-command="_copy"
+                    icon="edition-geometry-copy" tooltip="copy"
+                    group="unico" position="1"/>
+                <selectable-tool action-command="_rotate"
+                    icon="edition-geometry-rotate" tooltip="rotate"
+                    group="unico" position="3"/>
+                <selectable-tool action-command="_symmetry"
+                    icon="edition-geometry-symmetry" tooltip="symmetry"
+                    group="unico" position="4"/>
+                <selectable-tool action-command="_scale"
+                    icon="edition-geometry-scale" tooltip="scale"
+                    group="unico" position="5"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.ExploitExtension"
+            active="true" description="Extensión encargada de simplificar geometrías complejas.">
+            <menu action-command="separator" text="geometry"
+                position="70294" is_separator="true"/>
+            <menu action-command="_exploit"
+                icon="edition-geometry-exploit"
+                text="geometry/modify/exploit" position="70295"/>
+            <tool-bar name="modificar" position="150">
+                <action-tool action-command="_exploit"
+                    icon="edition-geometry-exploit" tooltip="exploit" position="16"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.MoveGeometryExtension"
+            active="true" description="Extensión encargada de mover las geometrías.">
+            <menu action-command="_move" icon="edition-geometry-move"
+                text="geometry/modify/move" position="70205"/>
+            <tool-bar name="modificar" position="150">
+                <selectable-tool action-command="_move"
+                    icon="edition-geometry-move" tooltip="move"
+                    group="unico" position="2"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.InsertPointExtension"
+            active="true" description="Extensión encargada de insertar puntos en una capa en edición.">
+            <menu action-command="separator" text="geometry"
+                position="70099" is_separator="true"/>
+            <menu action-command="_point" icon="edition-insert-point"
+                text="geometry/insert/point" position="70100"/>
+            <tool-bar name="insert" position="145">
+                <selectable-tool action-command="_point"
+                    icon="edition-insert-point" tooltip="point"
+                    group="unico" position="1"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.InsertMultiPointExtension"
+            active="true" description="Extensión encargada de insertar multipuntos en una capa en edición.">
+            <menu action-command="_multipoint"
+                icon="edition-insert-multipoint"
+                text="geometry/insert/multipoint" position="70105"/>
+            <tool-bar name="insert" position="145">
+                <selectable-tool action-command="_multipoint"
+                    icon="edition-insert-multipoint"
+                    tooltip="multipoint" group="unico" position="2"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.InsertLineExtension"
+            active="true" description="Extensión encargada de insertar líneas en una capa en edición.">
+            <menu action-command="_arc" icon="edition-insert-arc"
+                text="geometry/insert/arc" position="70120"/>
+            <tool-bar name="insert" position="145">
+                <selectable-tool action-command="_arc"
+                    icon="edition-insert-arc" tooltip="arc"
+                    group="unico" position="5"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.InsertPolyLineExtension"
+            active="true" description="Extensión encargada de insertar polilíneas en una capa en edición.">
+            <menu action-command="_polyline"
+                icon="edition-insert-geometry-polyline"
+                text="geometry/insert/polyline" position="70110"/>
+            <tool-bar name="insert" position="145">
+                <selectable-tool action-command="_polyline"
+                    icon="edition-insert-polyline" tooltip="polyline"
+                    group="unico" position="3"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.InsertMultiPolylineExtension"
+            active="true" description="Extension to insert multipolylines.">
+            <menu action-command="_insert_multipolyline"
+                icon="edition-insert-multipolyline"
+                text="geometry/insert/multipolyline" position="70115"/>
+            <tool-bar name="insert" position="145">
+                <selectable-tool action-command="_insert_multipolyline"
+                    icon="edition-insert-multipolyline"
+                    tooltip="multipolyline" group="unico" position="4"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.InsertAreaExtension"
+            active="true" description="Extensión encargada de insertar áreas en una capa en edición.">
+            <menu action-command="_area" icon="insert-area"
+                text="geometry/insert/multiarea" position="70150"/>
+            <tool-bar name="insert" position="145">
+                <selectable-tool action-command="_area"
+                    icon="insert-area" tooltip="multiarea" group="unico" position="10"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.InsertPolygonExtension"
+            active="true" description="Extensión encargada de insertar poligonos regulares en una capa en edición.">
+            <menu action-command="_circle" icon="edition-insert-circle"
+                text="geometry/insert/circle" position="70125"/>
+            <menu action-command="_ellipse"
+                icon="edition-insert-ellipse"
+                text="geometry/insert/ellipse" position="70130"/>
+            <menu action-command="_rectangle"
+                icon="edition-insert-rectangle"
+                text="geometry/insert/rectangle" position="70140"/>
+            <menu action-command="_polygon"
+                icon="edition-insert-polygon"
+                text="geometry/insert/regular_polygon" position="70145"/>
+            <menu action-command="separator" text="geometry"
+                position="70249" is_separator="true"/>
+            <menu action-command="_editvertex"
+                icon="edition-geometry-edit-vertex"
+                text="geometry/modify/edit_vertex" position="70250"/>
+            <tool-bar name="insert" position="145">
+                <selectable-tool action-command="_circle"
+                    icon="edition-insert-circle" tooltip="circle"
+                    group="unico" position="6"/>
+                <selectable-tool action-command="_ellipse"
+                    icon="edition-insert-ellipse" tooltip="ellipse"
+                    group="unico" position="7"/>
+                <selectable-tool action-command="_polygon"
+                    icon="edition-insert-polygon"
+                    tooltip="regular_polygon" group="unico" position="8"/>
+                <selectable-tool action-command="_rectangle"
+                    icon="edition-insert-rectangle" tooltip="rectangle"
+                    group="unico" position="9"/>
+            </tool-bar>
+            <tool-bar name="modificar" position="150">
+                <selectable-tool action-command="_editvertex"
+                    icon="edition-geometry-edit-vertex"
+                    tooltip="edit_vertex" group="unico" position="8"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.InsertVertexExtension"
+            active="true" description="Extension to insert new vertex on the geometries">
+            <menu action-command="_insertVertex"
+                icon="edition-geometry-insert-vertex"
+                text="geometry/modify/add_vertex" position="70255"/>
+            <tool-bar name="modificar" position="150">
+                <selectable-tool action-command="_insertVertex"
+                    icon="edition-geometry-insert-vertex"
+                    tooltip="add_vertex" group="unico" position="9"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.DeleteVertexExtension"
+            active="true" description="Extension to delete vertex on the geometries">
+            <menu action-command="_deleteVertex"
+                icon="edition-geometry-delete-vertex"
+                text="geometry/modify/remove_vertex" position="70260"/>
+            <tool-bar name="modificar" position="150">
+                <selectable-tool action-command="_deleteVertex"
+                    icon="edition-geometry-delete-vertex"
+                    tooltip="remove_vertex" group="unico" position="10"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.JoinExtension"
+            active="true" description="Extensión encargada de unir varias geometría en edición.">
+            <menu action-command="_join" icon="edition-geometry-Join"
+                text="geometry/modify/join" position="70225"/>
+            <tool-bar name="modificar" position="150">
+                <selectable-tool action-command="_join"
+                    icon="edition-geometry-Join" tooltip="join"
+                    group="unico" position="6"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.RedigitalizeLineExtension"
+            active="true" description="Extension to redigitalize lines.">
+            <menu action-command="_redigitalize_line"
+                icon="edition-geometry-redigitalize-line"
+                text="geometry/modify/redigitalize_line" position="70270"/>
+            <tool-bar name="modificar" position="150">
+                <selectable-tool action-command="_redigitalize_line"
+                    icon="edition-geometry-redigitalize-line"
+                    tooltip="redigitalizar_linea" group="unico" position="11"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.CutLineExtension"
+            active="true" description="Extension to cut lines.">
+            <menu action-command="_cut_line" icon="edition-cut-line"
+                text="geometry/modify/cut_line" position="70275"/>
+            <tool-bar name="modificar" position="150">
+                <selectable-tool action-command="_cut_line"
+                    icon="edition-cut-line" tooltip="cut_line"
+                    group="unico" position="12"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.RedigitalizePolygonExtension"
+            active="true" description="Extension to redigitalize polygons.">
+            <menu action-command="_redigitalize_polygon"
+                icon="edition-geometry-redigitalize-polygon"
+                text="geometry/modify/redigitalize_polygon" position="70280"/>
+            <tool-bar name="modificar" position="150">
+                <selectable-tool action-command="_redigitalize_polygon"
+                    icon="edition-geometry-redigitalize-polygon"
+                    tooltip="redigitalize_polygon" group="unico" position="13"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.CutPolygonExtension"
+            active="true" description="Extension to cut polygons.">
+            <menu action-command="_cut_polygon"
+                icon="edition-geometry-cut-polygon"
+                text="geometry/modify/cut_polygon" position="70285"/>
+            <tool-bar name="modificar" position="150">
+                <selectable-tool action-command="_cut_polygon"
+                    icon="edition-geometry-cut-polygon"
+                    tooltip="cut_polygon" group="unico" position="14"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.InternalPolygonExtension"
+            active="true" description="Extensión encargada de insertar poligonos internos en una capa en edición.">
+            <menu action-command="_internalpolygon"
+                icon="edition-modify-geometry-internalpolygon"
+                text="geometry/modify/internal_polygon" position="70290"/>
+            <tool-bar name="modificar" position="150">
+                <selectable-tool action-command="_internalpolygon"
+                    icon="edition-modify-geometry-internalpolygon"
+                    tooltip="internal_polygon" group="unico" position="15"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.StretchExtension"
+            active="true" description="Extensión encargada de estirar geometrías en una capa en edición.">
+            <menu action-command="_stretch"
+                icon="edition-geometry-stretch"
+                text="geometry/modify/stretch" position="70230"/>
+            <tool-bar name="modificar" position="150">
+                <selectable-tool action-command="_stretch"
+                    icon="edition-geometry-stretch" tooltip="stretch"
+                    group="unico" position="7"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.AutoCompletePolygonExtension"
+            active="true" description="Extensión encargada de restablecer la selección anterior.">
+            <menu action-command="AUTOCOMPLETE_POLYGON"
+                icon="edition-geometry-autocompletepolygon"
+                text="geometry/insert/autopolygon" position="70160"/>
+            <tool-bar name="insert" position="145">
+                <selectable-tool action-command="AUTOCOMPLETE_POLYGON"
+                    icon="edition-geometry-autocompletepolygon"
+                    tooltip="autocomplete-polygon" group="unico" position="11"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.SplitGeometryCADToolExtension"
+            active="true" description="herramienta para dividir una geometria con una linea">
+            <tool-bar name="modificar" position="150">
+                <selectable-tool action-command="_split_geometry"
+                    last="false" icon="split-geometry"
+                    tooltip="split_geometry"
+                    enable-text="select_geometry_to_split" group="unico" position="13"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.ShortcutsExtension"
+            active="true" description="Extension to activate shortcuts"/>
+        <extension
+            class-name="com.iver.cit.gvsig.SelectionGeometryExtension"
+            active="true" description="Extensión encargada de seleccionar las geometrías.">
+            <menu action-command="_selection"
+                icon="edition-geometry-select"
+                text="geometry/selection/seleccionar" position="70000"/>
+            <tool-bar name="ed_options" position="140">
+                <selectable-tool action-command="_selection"
+                    icon="edition-geometry-select" tooltip="selection"
+                    group="unico" position="1"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.ComplexSelectionGeometryExtension"
+            active="true" description="Extensión encargada de la selección compleja de geometrías.">
+            <menu action-command="_complex_selection"
+                icon="edition-complex-selection"
+                text="geometry/selection/seleccion_compleja" position="70010"/>
+            <tool-bar name="ed_options" position="140">
+                <selectable-tool action-command="_complex_selection"
+                    icon="edition-complex-selection"
+                    tooltip="complex_selection" group="unico" position="2"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.PreviousSelectionExtension"
+            active="true" description="Extensión encargada de restablecer la selección anterior.">
+            <menu action-command="previous_selection"
+                icon="previous-selection"
+                text="geometry/selection/previous_selection" position="70020"/>
+            <tool-bar name="ed_options" position="140">
+                <action-tool action-command="previous_selection"
+                    icon="previous-selection"
+                    tooltip="previous_selection" position="3"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.MatrixExtension"
+            active="false" description="Extensión encargada de crear una matriz a partir de la geometría seleccionada.">
+            <menu action-command="_matrix"
+                icon="edition-geometry-matrix" text="geometry/matrix" position="70300"/>
+            <tool-bar name="ed_options" position="140">
+                <selectable-tool action-command="_matrix"
+                    icon="edition-geometry-matrix" tooltip="matrix"
+                    group="unico" position="4"/>
+            </tool-bar>
+        </extension>
+        <extension class-name="com.iver.cit.gvsig.SnappersExtension"
+            active="true" description="Extension to activate and deactivate the Snappers">
+            <menu action-command="separator" text="geometry"
+                position="70499" is_separator="true"/>
+            <menu action-command="_snappers" icon="Snapper"
+                text="geometry/snappers" position="70500"/>
+            <tool-bar name="ed_options" position="140">
+                <selectable-tool action-command="_snappers"
+                    icon="Snapper" tooltip="snappers" group="snappers" position="5"/>
+            </tool-bar>
+        </extension>
+        <extension
+            class-name="com.iver.cit.gvsig.FollowGeometryExtension"
+            active="true" description="Extension to follow the geometry that is being digitalized before picking another tool.">
+            <menu action-command="separator" text="geometry"
+                position="70599" is_separator="true"/>
+            <menu action-command="_follow" icon="follow-geometry"
+                text="geometry/follow_geom" position="70600"/>
+            <tool-bar name="ed_options" position="140">
+                <selectable-tool action-command="_follow"
+                    icon="follow-geometry" tooltip="follow_geom"
+                    group="follow" position="6"/>
+            </tool-bar>
+        </extension>
+    </extensions>
+</plugin-config>

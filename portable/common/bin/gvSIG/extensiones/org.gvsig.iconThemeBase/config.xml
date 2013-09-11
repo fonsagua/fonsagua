@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin-config>
+    <depends plugin-name="com.iver.cit.gvsig"/>
+    <resourceBundle name="text"/>
+    <libraries library-dir="./lib"/>
+    <extensions>
+        <extension
+            class-name="org.gvsig.iconThemeBase.ExtensionIcon16Theme"
+            priority="50" active="true" description="Extensión encargada de cargar iconos de 16x16."/>
+        <extension
+            class-name="org.gvsig.iconThemeBase.ExtensionIcon22Theme"
+            priority="50" active="false" description="Extensión encargada de cargar iconos de 22x22."/>
+    </extensions>
+</plugin-config>

@@ -5,7 +5,20 @@
 		libArcIMS,
 		extArcims,
 		gvsig-bindings,
+		extSDE,
+		appCatalogAndGazetteerClient,
+		extCatalogAndGazetteer,
+		extCenterViewToPoint,
+		org.gvsig.chartlegend,
+		extTableSummarize,
+		extSelectionTools,
+		extQuickInfo,
+		extHyperlink,
+		extQuickPrint,
+		extLayerLoadingOrder,
+		org.gvsig.installer.app.extension
 		binaries
+		org.gvsig.consecutivenumber,
 	-->
 
 	<property name="gvSIG_dist_projects_on_main_svn" value="
@@ -39,38 +52,26 @@
 		extJDBC,
 		extCAD,
 		extGPE-gvSIG,
-		appCatalogAndGazetteerClient,
-		extCatalogAndGazetteer,
 		extDataLocator,
 		extGeoProcessing,
 		extGeoprocessingExtensions,
 		extGeoreferencing,
-		extSDE,
 		extScripting,
 		extAnnotations,
 		extExpressionField,
 		extWCS,
 		extWFS2,
 		extWMS,
-		extCenterViewToPoint,
-		extHelp,
 		extIconThemeBase,
-		extTableSummarize,
-		extSelectionTools,
 		extProjectBackup,
-		extQuickInfo,
 		extDerivedGeometries,
-		extHyperlink,
 		extI18n,
-		extQuickPrint,
-		extLayerLoadingOrder,
+		extHelp,
 		extTableImport,
-		extTableExport,
-		org.gvsig.installer.app.extension
-		"/>
+		extTableExport
+	"/>
+	
 	<property name="gvSIG_dist_projects_on_other_svn" value="
-		org.gvsig.chartlegend,
-		org.gvsig.consecutivenumber,
 		org.gvsig.copypastegeom,
 		org.gvsig.selectduplicates,
 		org.gvsig.newgeoprocess,
@@ -88,11 +89,10 @@
 		fonsagua
 	"/>
 		
-
-		<property name="gvSIG_dist" value="
-			${gvSIG_dist_projects_on_main_svn},
-			${gvSIG_dist_projects_on_other_svn},
-			${custom-projects}
-		"/>
+	<property name="gvSIG_dist" value="
+		${gvSIG_dist_projects_on_main_svn},
+		${gvSIG_dist_projects_on_other_svn},
+		${custom-projects}
+	"/>
 
 </project>

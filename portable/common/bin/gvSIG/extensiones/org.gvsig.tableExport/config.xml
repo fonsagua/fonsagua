@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin-config>
+    <depends plugin-name="com.iver.cit.gvsig"/>
+    <resourceBundle name="text"/>
+    <libraries library-dir="."/>
+    <extensions>
+        <extension
+            class-name="org.gvsig.tableExport.xls.ExportTableToExcelExtension"
+            priority="30" active="true" description="Export a table to excel file.">
+            <menu action-command="separator" text="Tabla"
+                position="60799" is_separator="true"/>
+            <menu text="Tabla/export/Excel" position="60800"/>
+        </extension>
+        <extension
+            class-name="org.gvsig.tableExport.ExportTableToFileExtension"
+            priority="30" active="true" description="Export table to a file">
+            <menu action-command="gdbms dbf driver|dbf|dbf file"
+                text="Tabla/export/DBF" position="60810"/>
+        </extension>
+    </extensions>
+</plugin-config>

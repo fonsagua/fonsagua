@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin-config>
+    <depends plugin-name="com.iver.cit.gvsig"/>
+    <depends plugin-name="com.iver.cit.gvsig.geoprocess"/>
+    <resourceBundle name="text"/>
+    <libraries library-dir="."/>
+    <extensions>
+        <extension
+            class-name="com.iver.cit.gvsig.geoprocess.impl.RegisterGeoprocessExtension"
+            active="true" description="Extensiones de geoprocesamiento"/>
+    </extensions>
+</plugin-config>

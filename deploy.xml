@@ -154,6 +154,9 @@
 					<fileset dir="${custom-portable-path}common" />
 					<fileset dir="${custom-portable-path}win" />
 				</copy>
+		
+		<zip destfile="/tmp/${name-win}.zip" basedir="/tmp/${name-win}" />
+		
 	</target>
 
 </project>

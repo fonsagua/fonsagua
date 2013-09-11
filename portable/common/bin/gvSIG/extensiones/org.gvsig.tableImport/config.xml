@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin-config>
+    <depends plugin-name="com.iver.cit.gvsig"/>
+    <depends plugin-name="com.iver.cit.gvsig.cad"/>
+    <resourceBundle name="text"/>
+    <libraries library-dir="."/>
+    <extensions>
+        <extension
+            class-name="org.gvsig.tableImport.addgeominfo.AddGeometricInfoExtension"
+            active="false" description="Add information about the geometries of a layer, to its table.">
+            <menu action-command="ADD_GEOMETRIC_INFO_TO_TABLE"
+                icon="add-geom-info" tooltip="add_geometric_info" text="Capa/add_geometric_info"/>
+        </extension>
+        <extension
+            class-name="org.gvsig.tableImport.importfields.ImportFieldsExtension"
+            priority="30" active="false" description="Import fields to table from another one">
+            <menu action-command="gdbms dbf driver|dbf|dbf file"
+                text="Tabla/import_fields" position="11506"/>
+        </extension>
+    </extensions>
+</plugin-config>
