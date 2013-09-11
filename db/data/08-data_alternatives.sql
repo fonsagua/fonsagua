@@ -59,7 +59,9 @@ CREATE TABLE fonsagua.preferencias_disenho (
        cod_alternativa VARCHAR
 	       NOT NULL
 	       UNIQUE
-	       REFERENCES fonsagua.alternativas(cod_alternativa),
+	       REFERENCES fonsagua.alternativas(cod_alternativa)
+       	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        tasa_crecimiento NUMERIC(6,2) DEFAULT 2,
        ano_horiz_sistema INTEGER DEFAULT 20,
        ano_horiz_bomba INTEGER DEFAULT 10,
@@ -118,7 +120,9 @@ CREATE TABLE fonsagua.comunidades_implicadas (
        gid SERIAL PRIMARY KEY,
        cod_alternativa VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.alternativas(cod_alternativa),
+	       REFERENCES fonsagua.alternativas(cod_alternativa)
+       	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        comunidad VARCHAR,
        n_habitantes INTEGER,
        n_hab_alternativa INTEGER
@@ -132,7 +136,9 @@ CREATE TABLE fonsagua.fuentes_implicadas (
        gid SERIAL PRIMARY KEY,
        cod_alternativa VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.alternativas(cod_alternativa),
+	       REFERENCES fonsagua.alternativas(cod_alternativa)
+       	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        fuente VARCHAR,
        tipo_fuente VARCHAR
 	       NOT NULL
@@ -150,7 +156,9 @@ CREATE TABLE fonsagua.alt_embalses (
        gid SERIAL PRIMARY KEY,
        cod_alternativa VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.alternativas(cod_alternativa),
+	       REFERENCES fonsagua.alternativas(cod_alternativa)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        embalse VARCHAR,
        cod_embalse VARCHAR,
        existencia_elemento VARCHAR
@@ -172,7 +180,9 @@ CREATE TABLE fonsagua.alt_fuentes (
        gid SERIAL PRIMARY KEY,
        cod_alternativa VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.alternativas(cod_alternativa),
+	       REFERENCES fonsagua.alternativas(cod_alternativa)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        fuente VARCHAR,
        cod_fuente VARCHAR,
        tipo_fuente_alternativa VARCHAR
@@ -198,7 +208,9 @@ CREATE TABLE fonsagua.alt_depositos (
        gid SERIAL PRIMARY KEY,
        cod_alternativa VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.alternativas(cod_alternativa),
+	       REFERENCES fonsagua.alternativas(cod_alternativa)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_deposito VARCHAR,
        denominacion VARCHAR,
        existencia_elemento VARCHAR
@@ -231,7 +243,9 @@ CREATE TABLE fonsagua.alt_tuberias (
        gid SERIAL PRIMARY KEY,
        cod_alternativa VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.alternativas(cod_alternativa),
+	       REFERENCES fonsagua.alternativas(cod_alternativa)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_tuberia VARCHAR,
        denominacion VARCHAR,
        existencia_elemento VARCHAR
@@ -262,7 +276,9 @@ CREATE TABLE fonsagua.alt_bombeos (
        gid SERIAL PRIMARY KEY,
        cod_alternativa VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.alternativas(cod_alternativa),
+	       REFERENCES fonsagua.alternativas(cod_alternativa)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_bomba VARCHAR,
        denominacion VARCHAR,
        existencia_elemento VARCHAR
@@ -293,7 +309,9 @@ CREATE TABLE fonsagua.alt_conexiones (
        gid SERIAL PRIMARY KEY,
        cod_alternativa VARCHAR
 	       NOT NULL
-	       REFERENCES fonsagua.alternativas(cod_alternativa),
+	       REFERENCES fonsagua.alternativas(cod_alternativa)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_conexion VARCHAR,
        denominacion VARCHAR,
        cota NUMERIC(6,2),

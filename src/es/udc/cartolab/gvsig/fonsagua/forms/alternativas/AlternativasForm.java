@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -11,15 +12,19 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.iver.andami.PluginServices;
+import com.iver.cit.gvsig.exceptions.layers.ReloadLayerException;
+import com.iver.cit.gvsig.exceptions.visitors.StopWriterVisitorException;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialTableHandler;
+import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.SelectComunitiesForAlternativeDialog;
 import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.SelectElementForAlternativeDialog;
 import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.SelectFuentesForAlternativeDialog;
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 
 @SuppressWarnings("serial")
 public class AlternativasForm extends BasicAbstractForm {
@@ -143,6 +148,21 @@ public class AlternativasForm extends BasicAbstractForm {
 	super.removeListeners();
 	comImplicadas.removeMouseListener(comImplicadasListener);
 	fuentesImplicadas.removeMouseListener(fuentesImplicadasListener);
+    }
+
+    @Override
+    public void deleteRecord() throws StopWriterVisitorException {
+	super.deleteRecord();
+	Set<String> altLayersNames = FonsaguaFormFactory.getInstance()
+		.getAllAlternativasLayersNames();
+	TOCLayerManager tocManager = new TOCLayerManager();
+	for (String name : altLayersNames) {
+	    try {
+		tocManager.getLayerByName(name).reload();
+	    } catch (ReloadLayerException e) {
+		e.printStackTrace();
+	    }
+	}
     }
 
     private class MyListener implements MouseListener {
