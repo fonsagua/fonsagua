@@ -53,7 +53,9 @@ public class CommunityRTFReport extends RTFReport {
     @Override
     protected String getHeaderText() {
 	return "Informe de Diagnóstico Comunitario \n"
-		+ "Fecha de levantamiento:";
+		+ "Fecha de levantamiento: "
+		+ ReportUtils.getValueFormatted(ReportDAO
+			.getCommunityValueByColumnName("fecha", pkValue));
     }
 
     @Override
