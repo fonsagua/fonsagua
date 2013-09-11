@@ -82,8 +82,7 @@ public class ReportUtils {
 	}
     }
 
-    public static String[] addCodAbastecimientoAliasToArray(String[] colAlias,
-	    String newAlias) {
+    public static String[] addAliasToArray(String[] colAlias, String newAlias) {
 	String[] newColAlias = new String[colAlias.length + 1];
 	for (int i = 0; i < colAlias.length; i++) {
 	    newColAlias[i] = colAlias[i];
