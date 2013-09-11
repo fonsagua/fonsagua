@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
@@ -169,5 +170,91 @@ public class ReportDAO {
 	    e.printStackTrace();
 	}
 	return null;
+    }
+
+    public static String[][] getDataOfFuentesByCommunity(String communityCode) {
+	PreparedStatement statement = null;
+	String[] colNames = { "f.fuente", "f.cod_fuente" };
+	try {
+	    String query = "SELECT ";
+	    for (String name : colNames) {
+		query = query + name + ", ";
+	    }
+	    query = query.substring(0, query.length() - 2);
+	    query = query + " FROM " + FonsaguaConstants.dataSchema + "."
+		    + "fuentes f, " + FonsaguaConstants.dataSchema + "."
+		    + "r_abastecimientos_fuentes raf, "
+		    + FonsaguaConstants.dataSchema + "."
+		    + "r_abastecimientos_comunidades rac"
+		    + " WHERE f.cod_fuente = raf.cod_fuente AND "
+		    + "raf.cod_abastecimiento = rac.cod_abastecimiento AND "
+		    + "rac.cod_comunidad = ? group by f.fuente, f.cod_fuente";
+	    statement = connection.prepareStatement(query);
+	    statement.setString(1, communityCode);
+	    statement.execute();
+	    ResultSet rs = statement.getResultSet();
+
+	    ArrayList<String[]> rows = new ArrayList<String[]>();
+	    while (rs.next()) {
+		String[] row = new String[colNames.length];
+		for (int i = 0; i < colNames.length; i++) {
+		    String val = rs.getString(i + 1);
+		    if (val == null) {
+			val = "";
+		    }
+		    row[i] = val;
+		}
+		rows.add(row);
+	    }
+	    rs.close();
+
+	    return rows.toArray(new String[0][0]);
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
+
+    public static String[][] getDataOfElementOfFuentesByCommunity(
+	    String elementTableName, String[] colNames, String communityCode) {
+	PreparedStatement statement = null;
+	ArrayList<String> fuentesCodes = new ArrayList<String>();
+	for (String[] row : getDataOfFuentesByCommunity(communityCode)) {
+	    fuentesCodes.add(row[1]);
+	}
+	ArrayList<String[]> rows = new ArrayList<String[]>();
+	for (String code : fuentesCodes) {
+	    try {
+		String query = "SELECT ";
+		for (String name : colNames) {
+		    query = query + name + ", ";
+		}
+		query = query.substring(0, query.length() - 2);
+		query = query + " FROM " + FonsaguaConstants.dataSchema + "."
+			+ elementTableName + " WHERE " + FuentesForm.PKFIELD
+			+ " = ?";
+		statement = connection.prepareStatement(query);
+		statement.setString(1, code);
+		statement.execute();
+		ResultSet rs = statement.getResultSet();
+
+		while (rs.next()) {
+		    String[] row = new String[colNames.length];
+		    for (int i = 0; i < colNames.length; i++) {
+			String val = rs.getString(i + 1);
+			if (val == null) {
+			    val = "";
+			}
+			row[i] = val;
+		    }
+		    rows.add(row);
+		}
+		rs.close();
+
+	    } catch (SQLException e) {
+		e.printStackTrace();
+	    }
+	}
+	return rows.toArray(new String[0][0]);
     }
 }
