@@ -29,6 +29,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltEmbalsesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltFuentesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltTuberiasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltValvulasForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.PreferenciasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AmenazasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AreasPotencialesRiegoForm;
@@ -208,6 +209,8 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 		return new AforosForm();
 	    } else if (tableName.equals(AnaliticasForm.NAME)) {
 		return new AnaliticasForm();
+	    } else if (tableName.equals(PreferenciasForm.NAME)) {
+		return new PreferenciasForm();
 	    }
 	}
 	return null;

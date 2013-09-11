@@ -171,5 +171,11 @@
         		</tool-bar>
         </extension>
 
+        <extension class-name="es.udc.cartolab.gvsig.fonsagua.AlternativePreferencesExtension" active="true">
+			<menu text="fonsagua_menu/alternativas/preferencias"
+				action-command="alternative_preferences"
+				position="5"/>
+        </extension>
+
 	</extensions>
 </plugin-config>
