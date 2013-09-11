@@ -23,10 +23,14 @@ import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.TuberiasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosEducativosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.CentrosSaludForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.FuentesContaminacionForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.OngsForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.OtrasOrganizacionesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.OtrosServiciosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ValoracionSistemaForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.AforosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.AnaliticasForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 
 public class CommunityRTFReport extends RTFReport {
 
@@ -94,6 +98,20 @@ public class CommunityRTFReport extends RTFReport {
 	    writeSection2_2(rs, data);
 	    writeSection2_3(rs, data);
 	    writeSection2_4(rs, data);
+
+	    RtfReportStyles.writeHeading1(document, "3. SANEAMIENTO");
+
+	    writeSection3_1(rs, data);
+
+	    RtfReportStyles.writeHeading1(document,
+		    "4. NECESIDADES SENTIDAS POR LA COMUNIDAD");
+
+	    writeSection4(rs, data);
+
+	    RtfReportStyles.writeHeading1(document,
+		    "5. IDENTIFICACIÓN DE PUNTOS DE AGUA");
+
+	    writeSection5(rs, data);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	} catch (DocumentException e) {
@@ -689,23 +707,19 @@ public class CommunityRTFReport extends RTFReport {
 		ReportDAO.getDataFromAbastecimientosTableByCommunity(pkValue));
 
 	RtfReportStyles.writeHeading3(document, "2.2.1 Captaciones");
-	String[] captacionesColAlias = ReportUtils
-		.addCodAbastecimientoAliasToArray(CaptacionesForm.colAlias,
-			"Cod. Abastecimiento");
-	String[] captacionesColNames = ReportUtils
-		.addCodAbastecimientoAliasToArray(CaptacionesForm.colNames,
-			"t.cod_abastecimiento");
+	String[] captacionesColAlias = ReportUtils.addAliasToArray(
+		CaptacionesForm.colAlias, "Cod. Abastecimiento");
+	String[] captacionesColNames = ReportUtils.addAliasToArray(
+		CaptacionesForm.colNames, "t.cod_abastecimiento");
 	ReportUtils.writeTable(document, captacionesColAlias, ReportDAO
 		.getDataOfElementOfAbastecimientoByCommunity(
 			CaptacionesForm.NAME, captacionesColNames, pkValue));
 
 	RtfReportStyles.writeHeading3(document, "2.2.2 Depósitos intermedios");
-	String[] depIntermediosColAlias = ReportUtils
-		.addCodAbastecimientoAliasToArray(DepIntermediosForm.colAlias,
-			"Cod. Abastecimiento");
-	String[] depIntermediosColNames = ReportUtils
-		.addCodAbastecimientoAliasToArray(DepIntermediosForm.colNames,
-			"t.cod_abastecimiento");
+	String[] depIntermediosColAlias = ReportUtils.addAliasToArray(
+		DepIntermediosForm.colAlias, "Cod. Abastecimiento");
+	String[] depIntermediosColNames = ReportUtils.addAliasToArray(
+		DepIntermediosForm.colNames, "t.cod_abastecimiento");
 	ReportUtils.writeTable(document, depIntermediosColAlias, ReportDAO
 		.getDataOfElementOfAbastecimientoByCommunity(
 			DepIntermediosForm.NAME, depIntermediosColNames,
@@ -713,35 +727,29 @@ public class CommunityRTFReport extends RTFReport {
 
 	RtfReportStyles.writeHeading3(document,
 		"2.2.3 Depósitos de distribución");
-	String[] depDistribucionColAlias = ReportUtils
-		.addCodAbastecimientoAliasToArray(DepDistribucionForm.colAlias,
-			"Cod. Abastecimiento");
-	String[] depDistribucionColNames = ReportUtils
-		.addCodAbastecimientoAliasToArray(DepDistribucionForm.colNames,
-			"t.cod_abastecimiento");
+	String[] depDistribucionColAlias = ReportUtils.addAliasToArray(
+		DepDistribucionForm.colAlias, "Cod. Abastecimiento");
+	String[] depDistribucionColNames = ReportUtils.addAliasToArray(
+		DepDistribucionForm.colNames, "t.cod_abastecimiento");
 	ReportUtils.writeTable(document, depDistribucionColAlias, ReportDAO
 		.getDataOfElementOfAbastecimientoByCommunity(
 			DepDistribucionForm.NAME, depDistribucionColNames,
 			pkValue));
 
 	RtfReportStyles.writeHeading3(document, "2.2.4 Tuberías");
-	String[] tuberiasColAlias = ReportUtils
-		.addCodAbastecimientoAliasToArray(TuberiasForm.colAlias,
-			"Cod. Abastecimiento");
-	String[] tuberiasColNames = ReportUtils
-		.addCodAbastecimientoAliasToArray(TuberiasForm.colNames,
-			"t.cod_abastecimiento");
+	String[] tuberiasColAlias = ReportUtils.addAliasToArray(
+		TuberiasForm.colAlias, "Cod. Abastecimiento");
+	String[] tuberiasColNames = ReportUtils.addAliasToArray(
+		TuberiasForm.colNames, "t.cod_abastecimiento");
 	ReportUtils.writeTable(document, tuberiasColAlias, ReportDAO
 		.getDataOfElementOfAbastecimientoByCommunity(TuberiasForm.NAME,
 			tuberiasColNames, pkValue));
 
 	RtfReportStyles.writeHeading3(document, "2.2.4 Bombas");
-	String[] bombeosColAlias = ReportUtils
-		.addCodAbastecimientoAliasToArray(BombeosForm.colAlias,
-			"Cod. Abastecimiento");
-	String[] bombeosColNames = ReportUtils
-		.addCodAbastecimientoAliasToArray(BombeosForm.colNames,
-			"t.cod_abastecimiento");
+	String[] bombeosColAlias = ReportUtils.addAliasToArray(
+		BombeosForm.colAlias, "Cod. Abastecimiento");
+	String[] bombeosColNames = ReportUtils.addAliasToArray(
+		BombeosForm.colNames, "t.cod_abastecimiento");
 	ReportUtils.writeTable(document, bombeosColAlias, ReportDAO
 		.getDataOfElementOfAbastecimientoByCommunity(BombeosForm.NAME,
 			bombeosColNames, pkValue));
@@ -773,10 +781,10 @@ public class CommunityRTFReport extends RTFReport {
 	    throws SQLException, DocumentException {
 	RtfReportStyles.writeHeading3(document,
 		"2.4.1 Datos de la Junta de Agua");
-	String[] juntasColAlias = ReportUtils.addCodAbastecimientoAliasToArray(
+	String[] juntasColAlias = ReportUtils.addAliasToArray(
 		JuntasAguaForm.colAlias, "Cod. Abastecimiento");
 	JuntasAguaForm.colNames[JuntasAguaForm.colNames.length - 1] = "t.n_mujeres";
-	String[] juntasColNames = ReportUtils.addCodAbastecimientoAliasToArray(
+	String[] juntasColNames = ReportUtils.addAliasToArray(
 		JuntasAguaForm.colNames, "t.cod_abastecimiento");
 	ReportUtils.writeTable(document, juntasColAlias, ReportDAO
 		.getDataOfElementOfAbastecimientoByCommunity(
@@ -802,5 +810,178 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(Chunk.NEWLINE);
 	document.add(attribute2);
 	document.add(value2);
+    }
+
+    private void writeSection3_1(ResultSet rs, ArrayList<ReportData> data)
+	    throws SQLException, DocumentException {
+	RtfReportStyles.writeHeading2(document, "3.1 AGUAS RESIDUALES");
+
+	data.clear();
+	data.add(new ReportData("Existe sistema de alcantarillado: ", rs
+		.getString("sist_alcantarillado"),
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("El sistema da servicio a toda la comunidad: ",
+		rs.getString("alc_completo"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Evacuación de aguas residuales: ", null,
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("En la calle: ", rs.getString("evac_calle"),
+		RtfReportStyles.normalStyle));
+	data.add(new ReportData("Sistema familiar: ", rs
+		.getString("evac_familiar"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Sistema comunal: ", rs
+		.getString("evac_comunal"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Otros: ", rs.getString("evac_otros"),
+		RtfReportStyles.normalStyle));
+	ReportUtils.writeDataList(document, data);
+
+	RtfReportStyles.writeHeading3(document,
+		"3.1.1 Tratamiento de aguas residuales");
+	data.clear();
+	data.add(new ReportData("Nº de familias con biofiltro: ", rs
+		.getString("trat_biofiltro"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Nº de familias con trampa de grasas: ", rs
+		.getString("trat_trampa"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Nº familias con otros sistemas: ", rs
+		.getString("trat_otros"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Nº familias sin tratamiento: ", rs
+		.getString("sin_tratamiento"), RtfReportStyles.normalBoldStyle));
+	ReportUtils.writeDataList(document, data);
+
+	RtfReportStyles.writeHeading3(document, "3.1.2 Letrinas");
+	data.clear();
+	data.add(new ReportData("Nº de familias letrinas en vivienda: ", rs
+		.getString("let_vivienda"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Nº de familias con letrinas comunales: ", rs
+		.getString("let_comunal"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Nº familias sin saneamiento ni letrinas: ", rs
+		.getString("let_monte"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Nº de letrinas por tipo: ", null,
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("De hoyo: ", rs.getString("let_hoyo"),
+		RtfReportStyles.normalStyle));
+	data.add(new ReportData("Cierre hidráulico: ", rs
+		.getString("let_hidra"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Fosa séptica: ", rs.getString("let_septica"),
+		RtfReportStyles.normalStyle));
+	data.add(new ReportData("Abonera: ", rs.getString("let_abonera"),
+		RtfReportStyles.normalStyle));
+	data.add(new ReportData("Uso de las letrinas: ", rs
+		.getString("uso_letrinas"), RtfReportStyles.normalBoldStyle));
+	ReportUtils.writeDataList(document, data);
+
+	Paragraph attribute = new Paragraph(
+		"Comentarios sobre usos de letrinas: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value = new Paragraph("(A CUBRIR POR EL USUARIO)",
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute);
+	document.add(value);
+
+	RtfReportStyles.writeHeading3(document, "3.1.3 Lavaderos");
+	data.clear();
+	data.add(new ReportData("Existencia de lavadero comunal: ", rs
+		.getString("h_lavad_comun"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Tipo de almacenamiento de agua: ", rs
+		.getString("tip_almacenamiento"),
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Número de lavadero: ", rs
+		.getString("n_lavaderos"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Número de pilas: ", rs.getString("n_pilas"),
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Número de barriles: ", rs
+		.getString("n_barriles"), RtfReportStyles.normalBoldStyle));
+	ReportUtils.writeDataList(document, data);
+
+	RtfReportStyles.writeHeading3(document, "3.1.4 Derechos sólidos");
+	data.clear();
+	data.add(new ReportData("Disposición de los desechos sólidos: ", rs
+		.getString("disp_basuras"), RtfReportStyles.normalBoldStyle));
+	ReportUtils.writeDataList(document, data);
+
+	Paragraph attribute2 = new Paragraph(
+		"Comentarios sobre usos de letrinas: ",
+		RtfReportStyles.normalBoldStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute2);
+
+	ReportUtils.writeTable(document, FuentesContaminacionForm.colAlias,
+		ReportDAO.getDataForCommunityRelatedTable(
+			FuentesContaminacionForm.NAME,
+			FuentesContaminacionForm.colNames, pkValue));
+
+	Paragraph attribute3 = new Paragraph("Comentarios sobre saneamiento: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value3 = new Paragraph(rs.getString("coment_san"),
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute3);
+	document.add(value3);
+    }
+
+    private void writeSection4(ResultSet rs, ArrayList<ReportData> data)
+	    throws SQLException, DocumentException {
+	Paragraph attribute = new Paragraph("Primera necesidad: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value = new Paragraph(rs.getString("necesidad1"),
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute);
+	document.add(value);
+
+	Paragraph attribute2 = new Paragraph("Segunda necesidad: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value2 = new Paragraph(rs.getString("necesidad2"),
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute2);
+	document.add(value2);
+
+	Paragraph attribute3 = new Paragraph("Tercera necesidad: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value3 = new Paragraph(rs.getString("necesidad3"),
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute3);
+	document.add(value3);
+
+	Paragraph attribute4 = new Paragraph("Cuarta necesidad: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value4 = new Paragraph(rs.getString("necesidad4"),
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute4);
+	document.add(value4);
+    }
+
+    private void writeSection5(ResultSet rs, ArrayList<ReportData> data)
+	    throws SQLException, DocumentException {
+	ReportUtils.writeTable(document, FuentesForm.colAlias,
+		ReportDAO.getDataOfFuentesByCommunity(pkValue));
+
+	RtfReportStyles.writeHeading3(document, "5.1.1 Aforos");
+	String[] aforosAlias = ReportUtils.addAliasToArray(AforosForm.colAlias,
+		"Cod. Fuente");
+	String[] aforosNames = ReportUtils.addAliasToArray(AforosForm.colNames,
+		"cod_fuente");
+	ReportUtils.writeTable(document, aforosAlias, ReportDAO
+		.getDataOfElementOfFuentesByCommunity(AforosForm.NAME,
+			aforosNames, pkValue));
+
+	RtfReportStyles.writeHeading3(document, "5.1.2 Analíticas");
+	String[] analiticasAlias = ReportUtils.addAliasToArray(
+		AnaliticasForm.colAlias, "Cod. Fuente");
+	String[] analiticasNames = ReportUtils.addAliasToArray(
+		AnaliticasForm.colNames, "cod_fuente");
+	ReportUtils.writeTable(document, analiticasAlias, ReportDAO
+		.getDataOfElementOfFuentesByCommunity(AnaliticasForm.NAME,
+			analiticasNames, pkValue));
     }
 }
