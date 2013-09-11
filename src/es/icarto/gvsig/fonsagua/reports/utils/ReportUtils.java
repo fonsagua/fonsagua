@@ -51,6 +51,12 @@ public class ReportUtils {
 	    String[][] data) {
 	try {
 	    Table table = new Table(headerFieldNames.length, data.length);
+	    table.setWidth(100);
+	    float[] columnWidths = new float[headerFieldNames.length];
+	    for (float column : columnWidths) {
+		column = 425f / columnWidths.length;
+	    }
+	    table.setWidths(columnWidths);
 
 	    for (String headerFieldName : headerFieldNames) {
 		RtfCell headerCell = new RtfCell(new Phrase(headerFieldName,
