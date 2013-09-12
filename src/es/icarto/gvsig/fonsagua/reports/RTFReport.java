@@ -75,6 +75,8 @@ public abstract class RTFReport {
 	    tableHeader.addCell(leftImageCell);
 	    tableHeader.addCell(centerCell);
 	    tableHeader.addCell(rightImageCell);
+	    tableHeader.addCell(new RtfCell());
+	    tableHeader.setBorder(Rectangle.NO_BORDER);
 
 	    RtfHeaderFooter header = new RtfHeaderFooter(tableHeader);
 

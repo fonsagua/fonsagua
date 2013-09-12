@@ -61,7 +61,8 @@ public class CommunityRTFReport extends RTFReport {
     @Override
     protected void writeFooter() {
 	Paragraph footerText = new Paragraph(
-		"Plan de Gestión Integral del Recurso Hídrico en el municipio "
+		"\n"
+			+ "Plan de Gestión Integral del Recurso Hídrico en el municipio "
 			+ ReportDAO.getCommunityValueByColumnName("municipio",
 				pkValue)
 			+ "\n"
