@@ -10,6 +10,7 @@ import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
 import es.icarto.gvsig.navtableforms.utils.DBConnectionBaseFormFactory;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.BombeosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.CaptacionesForm;
@@ -91,7 +92,6 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 	alternativasFormNames.add(AltTuberiasForm.NAME);
 	alternativasFormNames.add(AltValvulasForm.NAME);
 	alternativasFormNames.add(AltEmbalsesForm.NAME);
-	mainFormNames.addAll(alternativasFormNames);
 
 	instance = new FonsaguaFormFactory();
     }
@@ -141,19 +141,26 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 	    } else if (layer.getName().equals(FuentesContaminacionForm.NAME)) {
 		return new FuentesContaminacionForm(layer);
 	    } else if (layer.getName().equals(AltBombeosForm.NAME)) {
-		return new AltBombeosForm(layer);
+		return (OpenAlternativeExtension.getCode() != null) ? new AltBombeosForm(
+			layer) : null;
 	    } else if (layer.getName().equals(AltConexionesForm.NAME)) {
-		return new AltConexionesForm(layer);
+		return (OpenAlternativeExtension.getCode() != null) ? new AltConexionesForm(
+			layer) : null;
 	    } else if (layer.getName().equals(AltDepositosForm.NAME)) {
-		return new AltDepositosForm(layer);
+		return (OpenAlternativeExtension.getCode() != null) ? new AltDepositosForm(
+			layer) : null;
 	    } else if (layer.getName().equals(AltFuentesForm.NAME)) {
-		return new AltFuentesForm(layer);
+		return (OpenAlternativeExtension.getCode() != null) ? new AltFuentesForm(
+			layer) : null;
 	    } else if (layer.getName().equals(AltTuberiasForm.NAME)) {
-		return new AltTuberiasForm(layer);
+		return (OpenAlternativeExtension.getCode() != null) ? new AltTuberiasForm(
+			layer) : null;
 	    } else if (layer.getName().equals(AltValvulasForm.NAME)) {
-		return new AltValvulasForm(layer);
+		return (OpenAlternativeExtension.getCode() != null) ? new AltValvulasForm(
+			layer) : null;
 	    } else if (layer.getName().equals(AltEmbalsesForm.NAME)) {
-		return new AltEmbalsesForm(layer);
+		return (OpenAlternativeExtension.getCode() != null) ? new AltEmbalsesForm(
+			layer) : null;
 	    }
 
 	}
@@ -244,7 +251,8 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 
     @Override
     public boolean hasMainForm(String layerName) {
-	return mainFormNames.contains(layerName);
+	return (mainFormNames.contains(layerName) || (alternativasFormNames
+		.contains(layerName) && OpenAlternativeExtension.getCode() != null));
     }
 
     @Override
