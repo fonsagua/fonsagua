@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
@@ -48,10 +49,56 @@ public class ReportDAO {
 	return null;
     }
 
+    public static ResultSet getAlternativeValues(String alternativeCode) {
+	PreparedStatement statement = null;
+
+	try {
+	    String query = "SELECT * FROM " + FonsaguaConstants.dataSchema
+		    + "." + AlternativasForm.NAME + " WHERE "
+		    + AlternativasForm.PKFIELD + " = ?";
+	    statement = connection.prepareStatement(query);
+	    statement.setString(1, alternativeCode);
+	    statement.execute();
+	    ResultSet rs = statement.getResultSet();
+	    return rs;
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
+
+    public static String getAlternativeValueByColumnName(String columnName,
+	    String alternativeCode) {
+	ResultSet rs = getAlternativeValues(alternativeCode);
+	String value;
+	try {
+	    rs.next();
+	    value = rs.getString(columnName);
+	    return value;
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
+
     public static String[][] getDataForCommunityRelatedTable(String tableName,
 	    String[] fieldNames, String communityCode) {
 	String whereClause = ComunidadesForm.PKFIELD + " = '" + communityCode
 		+ "'";
+	try {
+	    return DBSession.getCurrentSession().getTable(tableName,
+		    FonsaguaConstants.dataSchema, fieldNames, whereClause,
+		    null, false);
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
+
+    public static String[][] getDataForAlternativeRelatedTable(
+	    String tableName, String[] fieldNames, String alternativeCode) {
+	String whereClause = AlternativasForm.PKFIELD + " = '"
+		+ alternativeCode + "'";
 	try {
 	    return DBSession.getCurrentSession().getTable(tableName,
 		    FonsaguaConstants.dataSchema, fieldNames, whereClause,
