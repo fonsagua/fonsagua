@@ -26,9 +26,15 @@ public class TestReports {
     }
 
     @Test
-    public void testReport() {
-	String fileName = "/tmp/fooReport.rtf";
+    public void testCommunityReport() {
+	String fileName = "/tmp/fooCommunityReport.rtf";
 	new CommunityRTFReport(fileName, "01010101");
+    }
+
+    @Test
+    public void testAlternativeReport() {
+	String fileName = "/tmp/fooAlternativeReport.rtf";
+	new AlternativeRTFReport(fileName, "010206A01");
     }
 
 }
