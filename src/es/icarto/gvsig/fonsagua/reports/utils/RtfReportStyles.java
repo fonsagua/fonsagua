@@ -28,6 +28,11 @@ public class RtfReportStyles {
 	    Font.BOLD);
     public static final RtfFont normalStyle = new RtfFont("Arial", 11);
 
+    public static final RtfFont tableBoldStyle = new RtfFont("Arial", 10,
+	    Font.BOLD);
+
+    public static final RtfFont tableStyle = new RtfFont("Arial", 10);
+
     public static void writeTitle(Document document, String text) {
 	try {
 	    for (int i = 0; i < 4; i++) {

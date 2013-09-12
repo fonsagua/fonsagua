@@ -60,7 +60,7 @@ public class ReportUtils {
 
 	    for (String headerFieldName : headerFieldNames) {
 		RtfCell headerCell = new RtfCell(new Phrase(headerFieldName,
-			RtfReportStyles.normalBoldStyle));
+			RtfReportStyles.tableBoldStyle));
 		headerCell.setBackgroundColor(Color.GRAY);
 		headerCell.setHorizontalAlignment(Chunk.ALIGN_CENTER);
 		table.addCell(headerCell);
@@ -68,9 +68,9 @@ public class ReportUtils {
 
 	    for (String[] row : data) {
 		for (String cell : row) {
-		    RtfCell valueCell = new RtfCell(new Phrase(
-			    getValueFormatted(cell),
-			    RtfReportStyles.normalStyle));
+		    RtfCell valueCell = new RtfCell(
+			    new Phrase(getValueFormatted(cell),
+				    RtfReportStyles.tableStyle));
 		    valueCell.setHorizontalAlignment(Chunk.ALIGN_CENTER);
 		    table.addCell(valueCell);
 		}
