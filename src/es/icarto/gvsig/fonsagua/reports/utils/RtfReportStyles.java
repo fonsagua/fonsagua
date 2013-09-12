@@ -33,7 +33,7 @@ public class RtfReportStyles {
 
     public static void writeTitle(Document document, String text) {
 	try {
-	    for (int i = 0; i < 4; i++) {
+	    for (int i = 0; i < 17; i++) {
 		document.add(Chunk.NEWLINE);
 	    }
 	    Paragraph title = new Paragraph(text, reportTitleStyle);
