@@ -711,7 +711,7 @@ public class CommunityRTFReport extends RTFReport {
 
 	RtfReportStyles.writeHeading3(document, "2.2.1 Captaciones");
 	String[] captacionesColAlias = ReportUtils.addAliasToArray(
-		CaptacionesForm.colAlias, "Cod. Abastecimiento");
+		CaptacionesForm.colAlias, "Cod. Abast.");
 	String[] captacionesColNames = ReportUtils.addAliasToArray(
 		CaptacionesForm.colNames, "t.cod_abastecimiento");
 	ReportUtils.writeTable(document, captacionesColAlias, ReportDAO
@@ -720,7 +720,7 @@ public class CommunityRTFReport extends RTFReport {
 
 	RtfReportStyles.writeHeading3(document, "2.2.2 Depósitos intermedios");
 	String[] depIntermediosColAlias = ReportUtils.addAliasToArray(
-		DepIntermediosForm.colAlias, "Cod. Abastecimiento");
+		DepIntermediosForm.colAlias, "Cod. Abast.");
 	String[] depIntermediosColNames = ReportUtils.addAliasToArray(
 		DepIntermediosForm.colNames, "t.cod_abastecimiento");
 	ReportUtils.writeTable(document, depIntermediosColAlias, ReportDAO
@@ -731,7 +731,7 @@ public class CommunityRTFReport extends RTFReport {
 	RtfReportStyles.writeHeading3(document,
 		"2.2.3 Depósitos de distribución");
 	String[] depDistribucionColAlias = ReportUtils.addAliasToArray(
-		DepDistribucionForm.colAlias, "Cod. Abastecimiento");
+		DepDistribucionForm.colAlias, "Cod. Abast.");
 	String[] depDistribucionColNames = ReportUtils.addAliasToArray(
 		DepDistribucionForm.colNames, "t.cod_abastecimiento");
 	ReportUtils.writeTable(document, depDistribucionColAlias, ReportDAO
@@ -741,7 +741,7 @@ public class CommunityRTFReport extends RTFReport {
 
 	RtfReportStyles.writeHeading3(document, "2.2.4 Tuberías");
 	String[] tuberiasColAlias = ReportUtils.addAliasToArray(
-		TuberiasForm.colAlias, "Cod. Abastecimiento");
+		TuberiasForm.colAlias, "Cod. Abast.");
 	String[] tuberiasColNames = ReportUtils.addAliasToArray(
 		TuberiasForm.colNames, "t.cod_abastecimiento");
 	ReportUtils.writeTable(document, tuberiasColAlias, ReportDAO
@@ -750,7 +750,7 @@ public class CommunityRTFReport extends RTFReport {
 
 	RtfReportStyles.writeHeading3(document, "2.2.4 Bombas");
 	String[] bombeosColAlias = ReportUtils.addAliasToArray(
-		BombeosForm.colAlias, "Cod. Abastecimiento");
+		BombeosForm.colAlias, "Cod. Abast.");
 	String[] bombeosColNames = ReportUtils.addAliasToArray(
 		BombeosForm.colNames, "t.cod_abastecimiento");
 	ReportUtils.writeTable(document, bombeosColAlias, ReportDAO
@@ -785,7 +785,7 @@ public class CommunityRTFReport extends RTFReport {
 	RtfReportStyles.writeHeading3(document,
 		"2.4.1 Datos de la Junta de Agua");
 	String[] juntasColAlias = ReportUtils.addAliasToArray(
-		JuntasAguaForm.colAlias, "Cod. Abastecimiento");
+		JuntasAguaForm.colAlias, "Cod. Abast.");
 	JuntasAguaForm.colNames[JuntasAguaForm.colNames.length - 1] = "t.n_mujeres";
 	String[] juntasColNames = ReportUtils.addAliasToArray(
 		JuntasAguaForm.colNames, "t.cod_abastecimiento");
