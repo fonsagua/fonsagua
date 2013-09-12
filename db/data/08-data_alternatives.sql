@@ -349,3 +349,85 @@ SELECT addgeometrycolumn('fonsagua', 'alt_valvulas', 'geom', 32616, 'POINT', 2);
 CREATE INDEX alt_valvulas_geom_idx ON fonsagua.alt_valvulas USING GIST(geom);
 
 ALTER TABLE fonsagua.alt_valvulas OWNER TO fonsagua;
+
+CREATE TABLE fonsagua.presupuesto (
+       gid SERIAL PRIMARY KEY,
+       cod_alternativa VARCHAR
+	       UNIQUE
+	       NOT NULL
+       	       REFERENCES fonsagua.alternativas(cod_alternativa)
+       	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
+       presupuesto VARCHAR,
+       levantamiento_topo NUMERIC(7,2),
+       carpeta_tecnica NUMERIC(7,2),
+       analiticas NUMERIC(7,2),
+       estudio_hidro NUMERIC(7,2),
+       compra_terrenos NUMERIC(7,2),
+       legalizacion_terrenos NUMERIC(7,2),
+       personalidad_junta NUMERIC(7,2),
+       total_disenho NUMERIC(7,2),
+       captaciones NUMERIC(7,2),
+       tuberias_conduccion NUMERIC(7,2),
+       accesorios_conduccion NUMERIC(7,2),
+       depositos_bombeo NUMERIC(7,2),
+       estacion_bombeo NUMERIC(7,2),
+       bombas NUMERIC(7,2),
+       instalacion_electrica NUMERIC(7,2),
+       tuberias_bombeo NUMERIC(7,2),
+       accesorios_bombeo NUMERIC(7,2),
+       estructuras NUMERIC(7,2),
+       limpieza NUMERIC(7,2),
+       transporte NUMERIC(7,2),
+       total_conduccion NUMERIC(7,2),
+       depositos_distribucion NUMERIC(7,2),
+       sistema_potab NUMERIC(7,2),
+       tuberias_distribucion NUMERIC(7,2),
+       accesorios_distribucion NUMERIC(7,2),
+       tanques_rompecargas NUMERIC(7,2),
+       cantareras NUMERIC(7,2),
+       acomedidas NUMERIC(7,2),
+       herramientas NUMERIC(7,2),
+       bodega NUMERIC(7,2),
+       total_distribucion NUMERIC(7,2),
+       total_pilas NUMERIC(7,2),
+       proteccion_fuentes NUMERIC(7,2),
+       reforestacion NUMERIC(7,2),
+       total_proteccion NUMERIC(7,2),
+       personal_no_cualificado NUMERIC(7,2),
+       personal_especializado NUMERIC(7,2),
+       total_personal NUMERIC(7,2),
+       material_equipo NUMERIC(7,2),
+       varios_juntas NUMERIC(7,2),
+       cursos_comunidad NUMERIC(7,2),
+       total_implementacion NUMERIC(7,2),
+       total_abastecimiento NUMERIC(7,2),
+       trampas NUMERIC(7,2),
+       biofiltros NUMERIC(7,2),
+       resumidero NUMERIC(7,2),
+       let_fosa NUMERIC(7,2),
+       let_cierre NUMERIC(7,2),
+       let_aboneras NUMERIC(7,2),
+       total_saneamiento NUMERIC(7,2),
+       total_abast_san NUMERIC(7,2),
+       aporte_comunidad NUMERIC(7,2),
+       total NUMERIC(7,2),
+       total_persona NUMERIC(7,2),
+       amortizacion_bomba NUMERIC(7,2),
+       consumo_bomba NUMERIC(7,2),
+       mantenimiento_bomba NUMERIC(7,2),
+       amortizacion_tuberias NUMERIC(7,2),
+       analisis_agua NUMERIC(7,2),
+       cloro NUMERIC(7,2),
+       fungible NUMERIC(7,2),
+       fontanero NUMERIC(7,2),
+       reparaciones NUMERIC(7,2),
+       asistencia NUMERIC(7,2),
+       cuota NUMERIC(7,2),
+       cuota_persona NUMERIC(7,2)
+
+);
+
+
+ALTER TABLE fonsagua.presupuesto OWNER TO fonsagua;
+
