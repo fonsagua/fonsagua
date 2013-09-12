@@ -9,30 +9,49 @@ import com.iver.utiles.extensionPoints.ExtensionPointsSingleton;
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.gvsig.fonsagua.utils.AvailableForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaTocMenuEntry;
 
+/**
+ * This extension will be enabled when the form of any of the active layers
+ * could be opened: # "comunity layers" in all situations #
+ * "alternatives layers" only when a alternative was previously open
+ * 
+ * execute method will try to open a form for all the "valid" active layers
+ * 
+ */
 public class FormsExtension extends Extension {
 
     private FLyrVect[] layers;
 
     @Override
-    public void execute(String actionCommand) {
-	for (FLyrVect layer : layers) {
-	    AbstractForm dialog = FormFactory.createFormRegistered(layer);
-
-	    if ((dialog != null) && (dialog.init())) {
-		PluginServices.getMDIManager().addWindow(dialog);
-	    }
-	}
+    public boolean isVisible() {
+	return true;
     }
 
-    protected void registerIcons() {
-	PluginServices.getIconTheme()
-		.registerDefault(
-			"forms-icon",
-			this.getClass().getClassLoader()
-				.getResource("images/form.png"));
+    @Override
+    public boolean isEnabled() {
+	layers = new TOCLayerManager().getActiveLayers();
+	for (FLyrVect layer : layers) {
+	    if (AvailableForm.forLayer(layer)) {
+		return true;
+	    }
+	}
+	return false;
+    }
+
+    @Override
+    public void execute(String actionCommand) {
+	for (FLyrVect layer : layers) {
+	    if (AvailableForm.forLayer(layer)) {
+		AbstractForm dialog = FormFactory.createFormRegistered(layer);
+
+		if ((dialog != null) && (dialog.init())) {
+		    PluginServices.getMDIManager().addWindow(dialog);
+		}
+	    }
+	}
     }
 
     @Override
@@ -49,23 +68,12 @@ public class FormsExtension extends Extension {
 		new FonsaguaTocMenuEntry());
     }
 
-    @Override
-    public boolean isEnabled() {
-	return isActiveLayerValid();
-    }
-
-    private boolean isActiveLayerValid() {
-	layers = new TOCLayerManager().getActiveLayers();
-	boolean layerWithForm = false;
-	for (FLyrVect layer : layers) {
-	    layerWithForm |= FormFactory.hasMainFormRegistered(layer.getName());
-	}
-	return layerWithForm;
-    }
-
-    @Override
-    public boolean isVisible() {
-	return true;
+    protected void registerIcons() {
+	PluginServices.getIconTheme()
+		.registerDefault(
+			"forms-icon",
+			this.getClass().getClassLoader()
+				.getResource("images/form.png"));
     }
 
 }

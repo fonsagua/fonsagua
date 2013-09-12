@@ -7,8 +7,8 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.iver.cit.gvsig.fmap.tools.Behavior.PointBehavior;
 import com.iver.cit.gvsig.project.documents.view.gui.View;
 
-import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.gvsig.fonsagua.utils.AvailableForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FormPointListener;
 
 //TODO: Too much shared coded with FormsExtension
@@ -38,16 +38,13 @@ public class FormPointExtension extends Extension {
 
     @Override
     public boolean isEnabled() {
-	return isActiveLayerValid();
-    }
-
-    private boolean isActiveLayerValid() {
 	FLyrVect[] layers = new TOCLayerManager().getActiveLayers();
-	boolean layerWithForm = false;
 	for (FLyrVect layer : layers) {
-	    layerWithForm |= FormFactory.hasMainFormRegistered(layer.getName());
+	    if (AvailableForm.forLayer(layer)) {
+		return true;
+	    }
 	}
-	return layerWithForm;
+	return false;
     }
 
     @Override
