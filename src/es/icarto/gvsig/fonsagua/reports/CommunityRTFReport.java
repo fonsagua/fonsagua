@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import com.lowagie.text.Chunk;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Paragraph;
-import com.lowagie.text.rtf.headerfooter.RtfHeaderFooter;
 
 import es.icarto.gvsig.fonsagua.reports.utils.ReportDAO;
 import es.icarto.gvsig.fonsagua.reports.utils.ReportData;
@@ -59,20 +58,12 @@ public class CommunityRTFReport extends RTFReport {
     }
 
     @Override
-    protected void writeFooter() {
-	Paragraph footerText = new Paragraph(
-		"\n"
-			+ "Plan de Gestión Integral del Recurso Hídrico en el municipio "
-			+ ReportDAO.getCommunityValueByColumnName("municipio",
-				pkValue)
-			+ "\n"
-			+ "Informe de diagnóstico de la comunidad "
-			+ ReportDAO.getCommunityValueByColumnName("comunidad",
-				pkValue), RtfReportStyles.headerFooterTextStyle);
-
-	RtfHeaderFooter footer = new RtfHeaderFooter(footerText);
-
-	document.setFooter(footer);
+    protected String getFooterText() {
+	return "\n"
+		+ "Plan de Gestión Integral del Recurso Hídrico en el municipio "
+		+ ReportDAO.getCommunityValueByColumnName("municipio", pkValue)
+		+ "\n" + "Informe de diagnóstico de la comunidad "
+		+ ReportDAO.getCommunityValueByColumnName("comunidad", pkValue);
     }
 
     @Override

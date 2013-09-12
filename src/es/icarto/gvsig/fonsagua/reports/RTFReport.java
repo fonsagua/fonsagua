@@ -52,7 +52,7 @@ public abstract class RTFReport {
 
     protected abstract String getHeaderText();
 
-    protected abstract void writeFooter();
+    protected abstract String getFooterText();
 
     protected abstract void writeSpecificContent();
 
@@ -85,6 +85,13 @@ public abstract class RTFReport {
 	} catch (BadElementException e) {
 	    e.printStackTrace();
 	}
+    }
+
+    protected void writeFooter() {
+	Paragraph footerText = new Paragraph(getFooterText(),
+		RtfReportStyles.headerFooterTextStyle);
+	RtfHeaderFooter footer = new RtfHeaderFooter(footerText);
+	document.setFooter(footer);
     }
 
     protected Image getRightHeaderImage() {
