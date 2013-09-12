@@ -20,6 +20,10 @@ public interface FonsaguaConstants {
     public static final String GPS_MATCHING_FILES = "gps-matching-files";
 
     public static final String COMUNIDADES_IMPLICADAS = "comunidades_implicadas";
+    public static final String[] COMUNIDADES_IMPLICADAS_COL_ALIAS = { "Nombre",
+	    "Habitantes totales", "Habitantes alternativa" };
+    public static final String[] COMUNIDADES_IMPLICADAS_COL_NAMES = {
+	    "comunidad", "n_habitantes", "n_hab_alternativa" };
     public static final String FUENTES_IMPLICADAS = "fuentes_implicadas";
 
     public static final String AlternativesMap = "Vista alternativas";
