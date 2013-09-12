@@ -7,7 +7,7 @@ CREATE OR REPLACE FUNCTION fonsagua.fuentes_implicadas_compute_field_trigger() R
        DECLARE
 	coef_q_ecologico_t FLOAT;
        BEGIN
-       SELECT coef_q_ecologico INTO coef_q_ecologico_t FROM preferencias_disenho WHERE cod_alternativa = NEW.cod_alternativa;
+       SELECT coef_q_ecologico INTO coef_q_ecologico_t FROM fonsagua.preferencias_disenho WHERE cod_alternativa = NEW.cod_alternativa;
 
 	IF NEW.tipo_fuente IN ('Manantial', 'Punto rio') THEN
 	   NEW.q_ecol = coef_q_ecologico_t * NEW.aforo;
