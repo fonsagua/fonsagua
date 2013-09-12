@@ -2,6 +2,7 @@ package es.icarto.gvsig.fonsagua.reports.utils;
 
 import java.awt.Color;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -92,9 +93,28 @@ public class ReportUtils {
 	    return "No";
 	} else if (value.contains("-")) {
 	    return getDateFormatted(value);
+	} else if (value.contains(".")) {
+	    return getDoubleFormatted(value);
 	} else {
 	    return value;
 	}
+    }
+
+    private static String getDoubleFormatted(String doubleString) {
+	NumberFormat nf_in = NumberFormat.getNumberInstance(Locale.UK);
+	NumberFormat nf_out = NumberFormat.getNumberInstance(loc);
+	double doubleNumber;
+	String doubleFormatted = null;
+	try {
+	    doubleNumber = nf_in.parse(doubleString).doubleValue();
+	    nf_out.setMinimumFractionDigits(2);
+	    nf_out.setMaximumFractionDigits(2);
+	    doubleFormatted = nf_out.format(doubleNumber);
+	} catch (ParseException e) {
+	    return doubleString;
+	}
+	return doubleFormatted;
+
     }
 
     private static String getDateFormatted(String dateString) {
@@ -105,7 +125,7 @@ public class ReportUtils {
 	    DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, loc);
 	    dateFormatted = df.format(date);
 	} catch (ParseException e) {
-	    e.printStackTrace();
+	    return dateString;
 	}
 	return dateFormatted;
     }
