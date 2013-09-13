@@ -25,14 +25,14 @@ public class ReportUtils {
     private final static Locale loc = new Locale("es");
 
     public static void writeDataList(Document document,
-	    ArrayList<ReportData> data) {
+	    ArrayList<ReportListItem> data) {
 	Paragraph listParagrpah = new Paragraph();
 	List list = new List();
 	list.setIndentationLeft(20);
 	list.setSymbolIndent(15);
 	list.setListSymbol(new Chunk("\u2022", RtfReportStyles.normalBoldStyle));
 
-	for (ReportData reportData : data) {
+	for (ReportListItem reportData : data) {
 	    Phrase phrase = new Phrase();
 	    phrase.add(new Chunk(reportData.getAttribute(), reportData
 		    .getStyle()));

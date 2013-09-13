@@ -9,7 +9,7 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Paragraph;
 
 import es.icarto.gvsig.fonsagua.reports.utils.ReportDAO;
-import es.icarto.gvsig.fonsagua.reports.utils.ReportData;
+import es.icarto.gvsig.fonsagua.reports.utils.ReportListItem;
 import es.icarto.gvsig.fonsagua.reports.utils.ReportUtils;
 import es.icarto.gvsig.fonsagua.reports.utils.RtfReportStyles;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
@@ -72,7 +72,7 @@ public class CommunityRTFReport extends RTFReport {
 	    ResultSet rs = ReportDAO.getCommunityValues(pkValue);
 	    rs.next();
 
-	    ArrayList<ReportData> data = new ArrayList<ReportData>();
+	    ArrayList<ReportListItem> data = new ArrayList<ReportListItem>();
 
 	    RtfReportStyles.writeHeading1(document,
 		    "1. DATOS GENERALES DE LA COMUNIDAD");
@@ -114,11 +114,11 @@ public class CommunityRTFReport extends RTFReport {
 
     }
 
-    private void writeSection1_1(ResultSet rs, ArrayList<ReportData> data)
+    private void writeSection1_1(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException {
-	data.add(new ReportData("Nombre: ", rs.getString("comunidad"),
+	data.add(new ReportListItem("Nombre: ", rs.getString("comunidad"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Código de la comunidad: ", rs
+	data.add(new ReportListItem("Código de la comunidad: ", rs
 		.getString("cod_comunidad"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -127,52 +127,52 @@ public class CommunityRTFReport extends RTFReport {
 
 	RtfReportStyles.writeHeading3(document, "1.1.1 Ubicación");
 	data.clear();
-	data.add(new ReportData("Departamento: ", rs.getString("departamento"),
+	data.add(new ReportListItem("Departamento: ", rs.getString("departamento"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Municipio: ", rs.getString("municipio"),
+	data.add(new ReportListItem("Municipio: ", rs.getString("municipio"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Cantón: ", rs.getString("canton"),
+	data.add(new ReportListItem("Cantón: ", rs.getString("canton"),
 		RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
 	RtfReportStyles
 		.writeHeading3(document, "1.1.2 Características básicas");
 	data.clear();
-	data.add(new ReportData("Tipo de núcleo: ", rs.getString("tip_nucleo"),
+	data.add(new ReportListItem("Tipo de núcleo: ", rs.getString("tip_nucleo"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Año de establecimiento de comunidad: ", rs
+	data.add(new ReportListItem("Año de establecimiento de comunidad: ", rs
 		.getString("anho_establecimiento"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Tipo de población según origen: ", rs
+	data.add(new ReportListItem("Tipo de población según origen: ", rs
 		.getString("tip_origen"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
     }
 
-    private void writeSection1_2(ResultSet rs, ArrayList<ReportData> data)
+    private void writeSection1_2(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException, DocumentException {
 	RtfReportStyles.writeHeading2(document, "1.2 DATOS POBLACIONALES");
 	data.clear();
-	data.add(new ReportData("Número de familias: ", rs
+	data.add(new ReportListItem("Número de familias: ", rs
 		.getString("n_familias"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Número de viviendas: ", rs
+	data.add(new ReportListItem("Número de viviendas: ", rs
 		.getString("n_viviendas"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Número de habitantes: ", rs
+	data.add(new ReportListItem("Número de habitantes: ", rs
 		.getString("n_habitantes"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Niñas (<5 años): ", rs.getString("n_ninhas"),
+	data.add(new ReportListItem("Niñas (<5 años): ", rs.getString("n_ninhas"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Niños (<5 años): ", rs.getString("n_ninhos"),
+	data.add(new ReportListItem("Niños (<5 años): ", rs.getString("n_ninhos"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Niñas (entre 5 y 18 años): ", rs
+	data.add(new ReportListItem("Niñas (entre 5 y 18 años): ", rs
 		.getString("n_muj_jovenes"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Niños (entre 5 y 18 años): ", rs
+	data.add(new ReportListItem("Niños (entre 5 y 18 años): ", rs
 		.getString("n_hom_jovenes"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Mujeres (entre 18 y 60 años): ", rs
+	data.add(new ReportListItem("Mujeres (entre 18 y 60 años): ", rs
 		.getString("n_mujeres"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Hombres (entre 18 y 60 años): ", rs
+	data.add(new ReportListItem("Hombres (entre 18 y 60 años): ", rs
 		.getString("n_hombres"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Ancianas (> 60 años): ", rs
+	data.add(new ReportListItem("Ancianas (> 60 años): ", rs
 		.getString("n_ancianas"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Ancianos (> 60 años): ", rs
+	data.add(new ReportListItem("Ancianos (> 60 años): ", rs
 		.getString("n_ancianos"), RtfReportStyles.normalStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -187,15 +187,15 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(value);
     }
 
-    private void writeSection1_3(ResultSet rs, ArrayList<ReportData> data)
+    private void writeSection1_3(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException, DocumentException {
 	RtfReportStyles.writeHeading2(document, "1.3 ASPECTOS ORGANIZATIVOS");
 
 	RtfReportStyles.writeHeading3(document, "1.3.1 Datos del patronato");
 	data.clear();
-	data.add(new ReportData("Existencia de ADESCOS: ", rs
+	data.add(new ReportListItem("Existencia de ADESCOS: ", rs
 		.getString("h_adescos"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Número de ADESCOS: ", rs
+	data.add(new ReportListItem("Número de ADESCOS: ", rs
 		.getString("n_adescos"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -225,7 +225,7 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(value);
     }
 
-    private void writeSection1_4(ResultSet rs, ArrayList<ReportData> data)
+    private void writeSection1_4(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException, DocumentException {
 	RtfReportStyles.writeHeading2(document, "1.4 ACTIVIDADES ECONÓMICAS");
 
@@ -233,35 +233,35 @@ public class CommunityRTFReport extends RTFReport {
 		.writeHeading3(document,
 			"1.4.1 Principales fuente de ingresos de las familias en porcentaje");
 	data.clear();
-	data.add(new ReportData("Sector primario (%): ", rs
+	data.add(new ReportListItem("Sector primario (%): ", rs
 		.getString("f_primario"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Número de centros de actividad agropecuaria: ", rs
 			.getString("n_agropecuario"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Sector secundario (%): ", rs
+	data.add(new ReportListItem("Sector secundario (%): ", rs
 		.getString("f_secundario"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Número de industrias: ", rs
+	data.add(new ReportListItem("Número de industrias: ", rs
 		.getString("n_industria"), RtfReportStyles.normalStyle));
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Número de centros con actividad en la construcción: ", rs
 			.getString("n_construccion"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Número de centros de maquila: ", rs
+	data.add(new ReportListItem("Número de centros de maquila: ", rs
 		.getString("n_maquila"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Sector terciario o servicios (%): ", rs
+	data.add(new ReportListItem("Sector terciario o servicios (%): ", rs
 		.getString("f_terciario"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Número de comercios: ", rs
+	data.add(new ReportListItem("Número de comercios: ", rs
 		.getString("n_comercio"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Número de otros centros: ", rs
+	data.add(new ReportListItem("Número de otros centros: ", rs
 		.getString("n_otros"), RtfReportStyles.normalStyle));
 	ReportUtils.writeDataList(document, data);
 
 	RtfReportStyles.writeHeading3(document, "1.4.2 Sector primario");
 	data.clear();
-	data.add(new ReportData("Familias que cultivan por cuenta propia: ", rs
+	data.add(new ReportListItem("Familias que cultivan por cuenta propia: ", rs
 		.getString("f_c_propia"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Familias que cultivan por cuenta ajena: ", rs
+	data.add(new ReportListItem("Familias que cultivan por cuenta ajena: ", rs
 		.getString("f_c_ajena"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -269,15 +269,15 @@ public class CommunityRTFReport extends RTFReport {
 		.writeHeading4(document,
 			"1.4.2.1 Agricultura. Familias con titularidad del lote de cultivo");
 	data.clear();
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Familias propietarias de la tierra de cultivo: ", rs
 			.getString("f_propietarias"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Mujeres: ", rs.getString("prop_mujeres"),
+	data.add(new ReportListItem("Mujeres: ", rs.getString("prop_mujeres"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Hombres: ", rs.getString("prop_hombres"),
+	data.add(new ReportListItem("Hombres: ", rs.getString("prop_hombres"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Área Media cultivada por familia (manzanas): ", rs
 			.getString("prop_area_cultivada"),
 		RtfReportStyles.normalBoldStyle));
@@ -286,13 +286,13 @@ public class CommunityRTFReport extends RTFReport {
 	RtfReportStyles.writeHeading4(document,
 		"1.4.2.2 Agricultura. Familias arrendatarias");
 	data.clear();
-	data.add(new ReportData("Familias que arriendan la tierra: ", rs
+	data.add(new ReportListItem("Familias que arriendan la tierra: ", rs
 		.getString("f_arrendatarias"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Mujeres: ", rs.getString("arre_mujeres"),
+	data.add(new ReportListItem("Mujeres: ", rs.getString("arre_mujeres"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Hombres: ", rs.getString("arre_hombres"),
+	data.add(new ReportListItem("Hombres: ", rs.getString("arre_hombres"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Área Media cultivada por familia (manzanas): ", rs
 			.getString("arre_area_cultivada"),
 		RtfReportStyles.normalBoldStyle));
@@ -301,13 +301,13 @@ public class CommunityRTFReport extends RTFReport {
 	RtfReportStyles.writeHeading4(document,
 		"1.4.2.3 Agricultura. Familias que cultivan a medias");
 	data.clear();
-	data.add(new ReportData("Familias que arriendan la tierra a medias: ",
+	data.add(new ReportListItem("Familias que arriendan la tierra a medias: ",
 		rs.getString("f_medias"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Mujeres: ", rs.getString("med_mujeres"),
+	data.add(new ReportListItem("Mujeres: ", rs.getString("med_mujeres"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Hombres: ", rs.getString("med_hombres"),
+	data.add(new ReportListItem("Hombres: ", rs.getString("med_hombres"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Área Media cultivada por familia (manzanas): ", rs
 			.getString("med_area_cultivada"),
 		RtfReportStyles.normalBoldStyle));
@@ -315,21 +315,21 @@ public class CommunityRTFReport extends RTFReport {
 
 	RtfReportStyles.writeHeading3(document, "1.4.3 Sector secundario");
 	data.clear();
-	data.add(new ReportData("Familias que trabajan en la industria: ", rs
+	data.add(new ReportListItem("Familias que trabajan en la industria: ", rs
 		.getString("f_industria"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Familias que trabajan en la construcción: ",
+	data.add(new ReportListItem("Familias que trabajan en la construcción: ",
 		rs.getString("f_construccion"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Familias que trabajan en maquila: ", rs
+	data.add(new ReportListItem("Familias que trabajan en maquila: ", rs
 		.getString("f_maquila"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Familias que trabajan en otras actividades: ",
+	data.add(new ReportListItem("Familias que trabajan en otras actividades: ",
 		rs.getString("f_otros_sec"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
 	RtfReportStyles.writeHeading3(document, "1.4.4 Sector terciario");
 	data.clear();
-	data.add(new ReportData("Familias que trabajan en comercios: ", rs
+	data.add(new ReportListItem("Familias que trabajan en comercios: ", rs
 		.getString("f_comercio"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Familias que trabajan en otras actividades: ",
+	data.add(new ReportListItem("Familias que trabajan en otras actividades: ",
 		rs.getString("f_otros_ter"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -344,17 +344,17 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(value);
     }
 
-    private void writeSection1_5(ResultSet rs, ArrayList<ReportData> data) {
+    private void writeSection1_5(ResultSet rs, ArrayList<ReportListItem> data) {
 	try {
 	    RtfReportStyles.writeHeading2(document, "1.5 MEDIO FÍSICO");
 
 	    RtfReportStyles.writeHeading3(document, "1.5.1 Relieve (%)");
 	    data.clear();
-	    data.add(new ReportData("Llano: ", rs.getString("llano"),
+	    data.add(new ReportListItem("Llano: ", rs.getString("llano"),
 		    RtfReportStyles.normalBoldStyle));
-	    data.add(new ReportData("Pendiente media: ", rs
+	    data.add(new ReportListItem("Pendiente media: ", rs
 		    .getString("pend_media"), RtfReportStyles.normalBoldStyle));
-	    data.add(new ReportData("Pendiente elevada: ", rs
+	    data.add(new ReportListItem("Pendiente elevada: ", rs
 		    .getString("pend_elevada"), RtfReportStyles.normalBoldStyle));
 	    ReportUtils.writeDataList(document, data);
 
@@ -362,43 +362,43 @@ public class CommunityRTFReport extends RTFReport {
 
 	    RtfReportStyles.writeHeading4(document, "1.5.2.1 Usos de suelo");
 	    data.clear();
-	    data.add(new ReportData("Residencial: ", rs
+	    data.add(new ReportListItem("Residencial: ", rs
 		    .getString("veg_residencial"),
 		    RtfReportStyles.normalBoldStyle));
-	    data.add(new ReportData("Superficie (%): ", rs
+	    data.add(new ReportListItem("Superficie (%): ", rs
 		    .getString("veg_res_sup"), RtfReportStyles.normalStyle));
-	    data.add(new ReportData("Industrial: ", rs
+	    data.add(new ReportListItem("Industrial: ", rs
 		    .getString("veg_industrial"),
 		    RtfReportStyles.normalBoldStyle));
-	    data.add(new ReportData("Superficie (%): ", rs
+	    data.add(new ReportListItem("Superficie (%): ", rs
 		    .getString("veg_ind_sup"), RtfReportStyles.normalStyle));
-	    data.add(new ReportData("Agrícola: ", rs.getString("veg_agricola"),
+	    data.add(new ReportListItem("Agrícola: ", rs.getString("veg_agricola"),
 		    RtfReportStyles.normalBoldStyle));
-	    data.add(new ReportData("Tipo de vegetación: ", rs
+	    data.add(new ReportListItem("Tipo de vegetación: ", rs
 		    .getString("veg_agr_tip"), RtfReportStyles.normalStyle));
-	    data.add(new ReportData("Superficie (%): ", rs
+	    data.add(new ReportListItem("Superficie (%): ", rs
 		    .getString("veg_agr_sup"), RtfReportStyles.normalStyle));
-	    data.add(new ReportData("Forestal: ", rs.getString("veg_forestal"),
+	    data.add(new ReportListItem("Forestal: ", rs.getString("veg_forestal"),
 		    RtfReportStyles.normalBoldStyle));
-	    data.add(new ReportData("Tipo de vegetación: ", rs
+	    data.add(new ReportListItem("Tipo de vegetación: ", rs
 		    .getString("veg_for_tip"), RtfReportStyles.normalStyle));
-	    data.add(new ReportData("Superficie (%): ", rs
+	    data.add(new ReportListItem("Superficie (%): ", rs
 		    .getString("veg_for_sup"), RtfReportStyles.normalStyle));
 	    ReportUtils.writeDataList(document, data);
 
 	    RtfReportStyles.writeHeading4(document, "1.5.2.2 Características");
 	    data.clear();
-	    data.add(new ReportData("Estado de deforestación: ", rs
+	    data.add(new ReportListItem("Estado de deforestación: ", rs
 		    .getString("deforestacion"),
 		    RtfReportStyles.normalBoldStyle));
-	    data.add(new ReportData(
+	    data.add(new ReportListItem(
 		    "Tendencia de avance de la frontera agrícola: ", rs
 			    .getString("avance_fagricola"),
 		    RtfReportStyles.normalBoldStyle));
-	    data.add(new ReportData("Riesgo de erosión", rs
+	    data.add(new ReportListItem("Riesgo de erosión", rs
 		    .getString("riesgo_erosion"),
 		    RtfReportStyles.normalBoldStyle));
-	    data.add(new ReportData("Frecuencia de incendios forestales: ", rs
+	    data.add(new ReportListItem("Frecuencia de incendios forestales: ", rs
 		    .getString("frec_incendios"),
 		    RtfReportStyles.normalBoldStyle));
 	    ReportUtils.writeDataList(document, data);
@@ -408,21 +408,21 @@ public class CommunityRTFReport extends RTFReport {
 	}
     }
 
-    private void writeSection1_6(ResultSet rs, ArrayList<ReportData> data)
+    private void writeSection1_6(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException, DocumentException {
 	RtfReportStyles.writeHeading2(document, "1.6 SERVICIOS BÁSICOS");
 
 	RtfReportStyles.writeHeading3(document, "1.6.1 Tipo de vivienda");
 	data.clear();
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Número de familias propietarias de la vivienda: ", rs
 			.getString("f_viv_prop"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Mujeres: ", rs.getString("viv_prop_mujeres"),
+	data.add(new ReportListItem("Mujeres: ", rs.getString("viv_prop_mujeres"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Hombres: ", rs.getString("viv_prop_hombres"),
+	data.add(new ReportListItem("Hombres: ", rs.getString("viv_prop_hombres"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Número de familias No propietarias de la vivienda: ", rs
 			.getString("f_viv_noprop"),
 		RtfReportStyles.normalBoldStyle));
@@ -431,47 +431,47 @@ public class CommunityRTFReport extends RTFReport {
 	RtfReportStyles
 		.writeHeading4(document, "1.6.1.1 Vivienda por material");
 	data.clear();
-	data.add(new ReportData("Bahareque: ", rs.getString("viv_bahareque"),
+	data.add(new ReportListItem("Bahareque: ", rs.getString("viv_bahareque"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Adobe: ", rs.getString("viv_adobe"),
+	data.add(new ReportListItem("Adobe: ", rs.getString("viv_adobe"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Mixto: ", rs.getString("viv_mixto"),
+	data.add(new ReportListItem("Mixto: ", rs.getString("viv_mixto"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Otros tipos: ", rs.getString("viv_otros"),
+	data.add(new ReportListItem("Otros tipos: ", rs.getString("viv_otros"),
 		RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
 	RtfReportStyles.writeHeading4(document,
 		"1.6.1.2 Vivienda por tipo de cocina");
 	data.clear();
-	data.add(new ReportData("De leña: ", rs.getString("coc_lenha"),
+	data.add(new ReportListItem("De leña: ", rs.getString("coc_lenha"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("De leña mejorada: ", rs
+	data.add(new ReportListItem("De leña mejorada: ", rs
 		.getString("coc_lenha_mej"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
 	RtfReportStyles.writeHeading3(document,
 		"1.6.2 Electricidad y comunicaciones");
 	data.clear();
-	data.add(new ReportData("Existencia de electricidad: ", rs
+	data.add(new ReportListItem("Existencia de electricidad: ", rs
 		.getString("electricidad"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Número de viviendas con electricidad: ", rs
+	data.add(new ReportListItem("Número de viviendas con electricidad: ", rs
 		.getString("viv_electricidad"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Tarifa ($): ", rs
+	data.add(new ReportListItem("Tarifa ($): ", rs
 		.getString("tarifa_electricidad"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Alumbrado Público: ", rs
+	data.add(new ReportListItem("Alumbrado Público: ", rs
 		.getString("alumbrado"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Línea Telefónica fija: ", rs
+	data.add(new ReportListItem("Línea Telefónica fija: ", rs
 		.getString("telf_fijo"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Cobertura de teléfono móvil: ", rs
+	data.add(new ReportListItem("Cobertura de teléfono móvil: ", rs
 		.getString("telf_movil"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
 	RtfReportStyles.writeHeading3(document, "1.6.3 Educación");
 	data.clear();
-	data.add(new ReportData("Existencia de centros educativos: ", rs
+	data.add(new ReportListItem("Existencia de centros educativos: ", rs
 		.getString("cent_educativos"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Número de centros: ", rs
+	data.add(new ReportListItem("Número de centros: ", rs
 		.getString("n_cent_educativos"),
 		RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
@@ -482,38 +482,38 @@ public class CommunityRTFReport extends RTFReport {
 
 	RtfReportStyles.writeHeading3(document, "1.6.4 Asistencia Sanitaria");
 	data.clear();
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Existe programa educativo de salud e higiene: ", rs
 			.getString("h_prog_salud"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Tipo de asistencia sanitaria: ", null,
+	data.add(new ReportListItem("Tipo de asistencia sanitaria: ", null,
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Unidad de salud: ", rs
+	data.add(new ReportListItem("Unidad de salud: ", rs
 		.getString("as_unidad_salud"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Clínica comunal: ", rs
+	data.add(new ReportListItem("Clínica comunal: ", rs
 		.getString("as_clinica_comunal"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Promotor de salud: ", rs
+	data.add(new ReportListItem("Promotor de salud: ", rs
 		.getString("as_promotor"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Otros: ", rs.getString("as_otros"),
+	data.add(new ReportListItem("Otros: ", rs.getString("as_otros"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Número de centros de salud: ", rs
+	data.add(new ReportListItem("Número de centros de salud: ", rs
 		.getString("n_cent_salud"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Tiempo medio a Unidad de Salud (min): ", rs
+	data.add(new ReportListItem("Tiempo medio a Unidad de Salud (min): ", rs
 		.getString("t_unidad_salud"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Tiempo medio a clínica comunal (min): ", rs
+	data.add(new ReportListItem("Tiempo medio a clínica comunal (min): ", rs
 		.getString("t_clinica_comunal"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Frecuencia de visita de médico a clínica (meses): ", rs
 			.getString("frec_med_clinica"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Frecuencia de visitas del promotor de salud (meses): ", rs
 			.getString("frec_promotor"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Tipo de enfermedades más comunes en niños: ",
+	data.add(new ReportListItem("Tipo de enfermedades más comunes en niños: ",
 		rs.getString("enf_tip_ninhos"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Tipo de enfermedades más comunes en adultos: ", rs
 			.getString("enf_tip_adultos"),
 		RtfReportStyles.normalBoldStyle));
@@ -525,7 +525,7 @@ public class CommunityRTFReport extends RTFReport {
 	RtfReportStyles.writeHeading3(document,
 		"1.6.5 Otros equipamientos y servicios");
 	data.clear();
-	data.add(new ReportData("Número de iglesias: ", rs
+	data.add(new ReportListItem("Número de iglesias: ", rs
 		.getString("n_iglesias"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 	ReportUtils.writeTable(document, OtrosServiciosForm.colAlias, ReportDAO
@@ -535,21 +535,21 @@ public class CommunityRTFReport extends RTFReport {
 	RtfReportStyles.writeHeading3(document,
 		"1.6.6 Infraestructura viaria y transporte");
 	data.clear();
-	data.add(new ReportData("Tipo de acceso: ", rs.getString("tip_acceso"),
+	data.add(new ReportListItem("Tipo de acceso: ", rs.getString("tip_acceso"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Infraestructura de acceso: ", rs
+	data.add(new ReportListItem("Infraestructura de acceso: ", rs
 		.getString("tip_sup_acceso"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Estado de la carretera en Verano: ", rs
+	data.add(new ReportListItem("Estado de la carretera en Verano: ", rs
 		.getString("acceso_ver"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Estado de la carretera en Invierno: ", rs
+	data.add(new ReportListItem("Estado de la carretera en Invierno: ", rs
 		.getString("acceso_inv"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Se cuenta con transporte público: ", rs
+	data.add(new ReportListItem("Se cuenta con transporte público: ", rs
 		.getString("trans_publico"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Frecuencia (horas): ", rs
+	data.add(new ReportListItem("Frecuencia (horas): ", rs
 		.getString("frec_tpublico"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Tiempo a parada (min): ", rs
+	data.add(new ReportListItem("Tiempo a parada (min): ", rs
 		.getString("t_parada"), RtfReportStyles.normalStyle));
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Tiempo en bus hasta la cabecera municipal (min): ", rs
 			.getString("t_cabmunicipal"),
 		RtfReportStyles.normalStyle));
@@ -565,23 +565,23 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(value);
     }
 
-    private void writeSection1_7(ResultSet rs, ArrayList<ReportData> data)
+    private void writeSection1_7(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException, DocumentException {
 	RtfReportStyles.writeHeading2(document, "1.7 FACTORES DE RIESGO");
 
 	data.clear();
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Principales factores de riesgo de la comunidad: ", null,
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Deslizamientos: ",
+	data.add(new ReportListItem("Deslizamientos: ",
 		rs.getString("fr_deslizam"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Desbordamiento de río: ", rs
+	data.add(new ReportListItem("Desbordamiento de río: ", rs
 		.getString("fr_desbord"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Inundaciones: ", rs.getString("fr_inundac"),
+	data.add(new ReportListItem("Inundaciones: ", rs.getString("fr_inundac"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Puntos de asalto: ", rs
+	data.add(new ReportListItem("Puntos de asalto: ", rs
 		.getString("fr_asaltos"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Otros: ", rs.getString("fr_otros"),
+	data.add(new ReportListItem("Otros: ", rs.getString("fr_otros"),
 		RtfReportStyles.normalStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -591,9 +591,9 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(otros_detalle);
 
 	data.clear();
-	data.add(new ReportData("Existe comité de gestión de riesgos: ", rs
+	data.add(new ReportListItem("Existe comité de gestión de riesgos: ", rs
 		.getString("comite_riesgos"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Está activo el comité: ", rs
+	data.add(new ReportListItem("Está activo el comité: ", rs
 		.getString("comite_activo"), RtfReportStyles.normalStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -608,7 +608,7 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(value);
     }
 
-    private void writeSection2_1(ResultSet rs, ArrayList<ReportData> data)
+    private void writeSection2_1(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException, DocumentException {
 	RtfReportStyles.writeHeading2(document,
 		"2.1 RESUMEN DEL TIPO DE ABASTECIMIENTO");
@@ -616,18 +616,18 @@ public class CommunityRTFReport extends RTFReport {
 	RtfReportStyles.writeHeading3(document,
 		"2.1.1 Sistemas de abastecimiento");
 	data.clear();
-	data.add(new ReportData("Existe sitema de abastecimiento de agua: ", rs
+	data.add(new ReportListItem("Existe sitema de abastecimiento de agua: ", rs
 		.getString("sist_abastecimiento"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Origen del agua: ", rs
+	data.add(new ReportListItem("Origen del agua: ", rs
 		.getString("origen_aguas"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Nº de viviendas a las que da servicio: ", rs
+	data.add(new ReportListItem("Nº de viviendas a las que da servicio: ", rs
 		.getString("n_viv_abast"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Nº de familias con servicio de agua en época seca: ", rs
 			.getString("tot_s_abast"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Nº de familias con servicio de agua en época de lluvias: ", rs
 			.getString("tot_ll_abast"),
 		RtfReportStyles.normalBoldStyle));
@@ -646,25 +646,25 @@ public class CommunityRTFReport extends RTFReport {
 	RtfReportStyles.writeHeading4(document,
 		"2.1.1.1 Población sin sistema de abastecimiento");
 	data.clear();
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Nº de familias con servicio de agua en época seca: ", rs
 			.getString("tot_s_sin_abast"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Nº de familias sin sistema de agua en época de lluvias: ", rs
 			.getString("tot_ll_sin_abast"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Tipo de fuentes: ", null,
+	data.add(new ReportListItem("Tipo de fuentes: ", null,
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Río: ", rs.getString("f_rio"),
+	data.add(new ReportListItem("Río: ", rs.getString("f_rio"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Manantial: ", rs.getString("f_manantial"),
+	data.add(new ReportListItem("Manantial: ", rs.getString("f_manantial"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Pozo: ", rs.getString("f_pozo"),
+	data.add(new ReportListItem("Pozo: ", rs.getString("f_pozo"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Quebrada: ", rs.getString("f_quebrada"),
+	data.add(new ReportListItem("Quebrada: ", rs.getString("f_quebrada"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Compra: ", rs.getString("f_compra"),
+	data.add(new ReportListItem("Compra: ", rs.getString("f_compra"),
 		RtfReportStyles.normalStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -679,22 +679,22 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(value2);
     }
 
-    private void writeSection2_2(ResultSet rs, ArrayList<ReportData> data)
+    private void writeSection2_2(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException, DocumentException {
 	RtfReportStyles.writeHeading2(document,
 		"2.2 ANÁLISIS DE LOS SISTEMAS EXISTENTES");
 
 	data.clear();
-	data.add(new ReportData(
+	data.add(new ReportListItem(
 		"Número de sistemas de abastecimiento de la comunidad: ",
 		String.valueOf(ReportDAO
 			.getNumberOfElementsFromRelationshipTable(
 				"r_abastecimientos_comunidades",
 				"cod_comunidad", pkValue)),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Consumo de la comunidad (l/hab día): ", rs
+	data.add(new ReportListItem("Consumo de la comunidad (l/hab día): ", rs
 		.getString("tot_consumo"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Nº de viviendas a las que da servicio: ", rs
+	data.add(new ReportListItem("Nº de viviendas a las que da servicio: ", rs
 		.getString("n_viv_abast"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 	ReportUtils.writeTable(document, AbastecimientosForm.colAlias,
@@ -749,7 +749,7 @@ public class CommunityRTFReport extends RTFReport {
 			bombeosColNames, pkValue));
     }
 
-    private void writeSection2_3(ResultSet rs, ArrayList<ReportData> data)
+    private void writeSection2_3(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException, DocumentException {
 	RtfReportStyles.writeHeading3(document, "2.3.1 Valoración");
 	ValoracionSistemaForm.colNames[0] = "t.cod_comunidad";
@@ -771,7 +771,7 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(value);
     }
 
-    private void writeSection2_4(ResultSet rs, ArrayList<ReportData> data)
+    private void writeSection2_4(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException, DocumentException {
 	RtfReportStyles.writeHeading3(document,
 		"2.4.1 Datos de la Junta de Agua");
@@ -806,60 +806,60 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(value2);
     }
 
-    private void writeSection3_1(ResultSet rs, ArrayList<ReportData> data)
+    private void writeSection3_1(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException, DocumentException {
 	RtfReportStyles.writeHeading2(document, "3.1 AGUAS RESIDUALES");
 
 	data.clear();
-	data.add(new ReportData("Existe sistema de alcantarillado: ", rs
+	data.add(new ReportListItem("Existe sistema de alcantarillado: ", rs
 		.getString("sist_alcantarillado"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("El sistema da servicio a toda la comunidad: ",
+	data.add(new ReportListItem("El sistema da servicio a toda la comunidad: ",
 		rs.getString("alc_completo"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Evacuación de aguas residuales: ", null,
+	data.add(new ReportListItem("Evacuación de aguas residuales: ", null,
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("En la calle: ", rs.getString("evac_calle"),
+	data.add(new ReportListItem("En la calle: ", rs.getString("evac_calle"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Sistema familiar: ", rs
+	data.add(new ReportListItem("Sistema familiar: ", rs
 		.getString("evac_familiar"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Sistema comunal: ", rs
+	data.add(new ReportListItem("Sistema comunal: ", rs
 		.getString("evac_comunal"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Otros: ", rs.getString("evac_otros"),
+	data.add(new ReportListItem("Otros: ", rs.getString("evac_otros"),
 		RtfReportStyles.normalStyle));
 	ReportUtils.writeDataList(document, data);
 
 	RtfReportStyles.writeHeading3(document,
 		"3.1.1 Tratamiento de aguas residuales");
 	data.clear();
-	data.add(new ReportData("Nº de familias con biofiltro: ", rs
+	data.add(new ReportListItem("Nº de familias con biofiltro: ", rs
 		.getString("trat_biofiltro"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Nº de familias con trampa de grasas: ", rs
+	data.add(new ReportListItem("Nº de familias con trampa de grasas: ", rs
 		.getString("trat_trampa"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Nº familias con otros sistemas: ", rs
+	data.add(new ReportListItem("Nº familias con otros sistemas: ", rs
 		.getString("trat_otros"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Nº familias sin tratamiento: ", rs
+	data.add(new ReportListItem("Nº familias sin tratamiento: ", rs
 		.getString("sin_tratamiento"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
 	RtfReportStyles.writeHeading3(document, "3.1.2 Letrinas");
 	data.clear();
-	data.add(new ReportData("Nº de familias letrinas en vivienda: ", rs
+	data.add(new ReportListItem("Nº de familias letrinas en vivienda: ", rs
 		.getString("let_vivienda"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Nº de familias con letrinas comunales: ", rs
+	data.add(new ReportListItem("Nº de familias con letrinas comunales: ", rs
 		.getString("let_comunal"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Nº familias sin saneamiento ni letrinas: ", rs
+	data.add(new ReportListItem("Nº familias sin saneamiento ni letrinas: ", rs
 		.getString("let_monte"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Nº de letrinas por tipo: ", null,
+	data.add(new ReportListItem("Nº de letrinas por tipo: ", null,
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("De hoyo: ", rs.getString("let_hoyo"),
+	data.add(new ReportListItem("De hoyo: ", rs.getString("let_hoyo"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Cierre hidráulico: ", rs
+	data.add(new ReportListItem("Cierre hidráulico: ", rs
 		.getString("let_hidra"), RtfReportStyles.normalStyle));
-	data.add(new ReportData("Fosa séptica: ", rs.getString("let_septica"),
+	data.add(new ReportListItem("Fosa séptica: ", rs.getString("let_septica"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Abonera: ", rs.getString("let_abonera"),
+	data.add(new ReportListItem("Abonera: ", rs.getString("let_abonera"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportData("Uso de las letrinas: ", rs
+	data.add(new ReportListItem("Uso de las letrinas: ", rs
 		.getString("uso_letrinas"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -875,22 +875,22 @@ public class CommunityRTFReport extends RTFReport {
 
 	RtfReportStyles.writeHeading3(document, "3.1.3 Lavaderos");
 	data.clear();
-	data.add(new ReportData("Existencia de lavadero comunal: ", rs
+	data.add(new ReportListItem("Existencia de lavadero comunal: ", rs
 		.getString("h_lavad_comun"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Tipo de almacenamiento de agua: ", rs
+	data.add(new ReportListItem("Tipo de almacenamiento de agua: ", rs
 		.getString("tip_almacenamiento"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Número de lavadero: ", rs
+	data.add(new ReportListItem("Número de lavadero: ", rs
 		.getString("n_lavaderos"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Número de pilas: ", rs.getString("n_pilas"),
+	data.add(new ReportListItem("Número de pilas: ", rs.getString("n_pilas"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportData("Número de barriles: ", rs
+	data.add(new ReportListItem("Número de barriles: ", rs
 		.getString("n_barriles"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
 	RtfReportStyles.writeHeading3(document, "3.1.4 Derechos sólidos");
 	data.clear();
-	data.add(new ReportData("Disposición de los desechos sólidos: ", rs
+	data.add(new ReportListItem("Disposición de los desechos sólidos: ", rs
 		.getString("disp_basuras"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -916,7 +916,7 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(value3);
     }
 
-    private void writeSection4(ResultSet rs, ArrayList<ReportData> data)
+    private void writeSection4(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException, DocumentException {
 	Paragraph attribute = new Paragraph("Primera necesidad: ",
 		RtfReportStyles.normalBoldStyle);
@@ -955,7 +955,7 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(value4);
     }
 
-    private void writeSection5(ResultSet rs, ArrayList<ReportData> data)
+    private void writeSection5(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException, DocumentException {
 	ReportUtils.writeTable(document, FuentesForm.colAlias,
 		ReportDAO.getDataOfFuentesByCommunity(pkValue));
