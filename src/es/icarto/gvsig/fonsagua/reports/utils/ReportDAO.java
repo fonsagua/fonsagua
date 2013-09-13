@@ -20,85 +20,30 @@ public class ReportDAO {
 	    .getJavaConnection();
 
     public static ResultSet getCommunityValues(String communityCode) {
-	PreparedStatement statement = null;
-
-	try {
-	    String query = "SELECT * FROM " + FonsaguaConstants.dataSchema
-		    + "." + ComunidadesForm.NAME + " WHERE "
-		    + ComunidadesForm.PKFIELD + " = ?";
-	    statement = connection.prepareStatement(query);
-	    statement.setString(1, communityCode);
-	    statement.execute();
-	    ResultSet rs = statement.getResultSet();
-	    return rs;
-	} catch (SQLException e) {
-	    e.printStackTrace();
-	}
-	return null;
+	return getFonsaguaTableValues(ComunidadesForm.NAME,
+		ComunidadesForm.PKFIELD, communityCode);
     }
 
     public static String getCommunityValueByColumnName(String columnName,
 	    String communityCode) {
-	ResultSet rs = getCommunityValues(communityCode);
-	String value;
-	try {
-	    rs.next();
-	    value = rs.getString(columnName);
-	    return value;
-	} catch (SQLException e) {
-	    e.printStackTrace();
-	}
-	return null;
+	return getFonsaguaTableValueByColumnName(ComunidadesForm.NAME,
+		ComunidadesForm.PKFIELD, communityCode, columnName);
     }
 
     public static ResultSet getAlternativeValues(String alternativeCode) {
-	PreparedStatement statement = null;
-
-	try {
-	    String query = "SELECT * FROM " + FonsaguaConstants.dataSchema
-		    + "." + AlternativasForm.NAME + " WHERE "
-		    + AlternativasForm.PKFIELD + " = ?";
-	    statement = connection.prepareStatement(query);
-	    statement.setString(1, alternativeCode);
-	    statement.execute();
-	    ResultSet rs = statement.getResultSet();
-	    return rs;
-	} catch (SQLException e) {
-	    e.printStackTrace();
-	}
-	return null;
+	return getFonsaguaTableValues(AlternativasForm.NAME,
+		AlternativasForm.PKFIELD, alternativeCode);
     }
 
     public static String getAlternativeValueByColumnName(String columnName,
 	    String alternativeCode) {
-	ResultSet rs = getAlternativeValues(alternativeCode);
-	String value;
-	try {
-	    rs.next();
-	    value = rs.getString(columnName);
-	    return value;
-	} catch (SQLException e) {
-	    e.printStackTrace();
-	}
-	return null;
+	return getFonsaguaTableValueByColumnName(AlternativasForm.NAME,
+		AlternativasForm.PKFIELD, alternativeCode, columnName);
     }
 
     public static ResultSet getPresupuestoValues(String alternativeCode) {
-	PreparedStatement statement = null;
-
-	try {
-	    String query = "SELECT * FROM " + FonsaguaConstants.dataSchema
-		    + "." + PresupuestoForm.NAME + " WHERE "
-		    + AlternativasForm.PKFIELD + " = ?";
-	    statement = connection.prepareStatement(query);
-	    statement.setString(1, alternativeCode);
-	    statement.execute();
-	    ResultSet rs = statement.getResultSet();
-	    return rs;
-	} catch (SQLException e) {
-	    e.printStackTrace();
-	}
-	return null;
+	return getFonsaguaTableValues(PresupuestoForm.NAME,
+		AlternativasForm.PKFIELD, alternativeCode);
     }
 
     public static ResultSet getFonsaguaTableValues(String tableName,
@@ -225,6 +170,7 @@ public class ReportDAO {
 	return null;
     }
 
+    // TODO: Try to make a generic method
     public static String[][] getDataOfElementOfAbastecimientoByCommunity(
 	    String elementTableName, String[] colNames, String communityCode) {
 	PreparedStatement statement = null;
@@ -271,6 +217,7 @@ public class ReportDAO {
 	return null;
     }
 
+    // TODO: Try to make a generic method
     public static String[][] getDataOfFuentesByCommunity(String communityCode) {
 	PreparedStatement statement = null;
 	String[] colNames = { "f.fuente", "f.cod_fuente" };
@@ -314,6 +261,7 @@ public class ReportDAO {
 	return null;
     }
 
+    // TODO: Try to make a generic method
     public static String[][] getDataOfElementOfFuentesByCommunity(
 	    String elementTableName, String[] colNames, String communityCode) {
 	PreparedStatement statement = null;
