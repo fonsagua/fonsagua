@@ -177,5 +177,11 @@
 				position="5"/>
         </extension>
 
+        <extension class-name="es.udc.cartolab.gvsig.fonsagua.AlternativeBudgetExtension" active="true">
+			<menu text="fonsagua_menu/alternativas/presupuesto"
+				action-command="alternative_budget"
+				position="6"/>
+        </extension>
+
 	</extensions>
 </plugin-config>
