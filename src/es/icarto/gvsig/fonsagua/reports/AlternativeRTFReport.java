@@ -12,6 +12,12 @@ import es.icarto.gvsig.fonsagua.reports.utils.ReportDAO;
 import es.icarto.gvsig.fonsagua.reports.utils.ReportData;
 import es.icarto.gvsig.fonsagua.reports.utils.ReportUtils;
 import es.icarto.gvsig.fonsagua.reports.utils.RtfReportStyles;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltBombeosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltConexionesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltDepositosForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltEmbalsesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltFuentesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltTuberiasForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 
 public class AlternativeRTFReport extends RTFReport {
@@ -38,7 +44,8 @@ public class AlternativeRTFReport extends RTFReport {
 
     @Override
     protected String getFooterText() {
-	return "Plan de Gestión Integral del Recurso Hídrico en el municipio "
+	return "\n"
+		+ "Plan de Gestión Integral del Recurso Hídrico en el municipio "
 		+ ReportDAO.getAlternativeValueByColumnName("municipio",
 			pkValue)
 		+ "\n"
@@ -70,7 +77,7 @@ public class AlternativeRTFReport extends RTFReport {
 	    writeSection1_1(rs, data);
 	    writeSection1_2(rs, data);
 	    writeSection1_3(rs, data);
-	    writeSection1_4(rs, data);
+	    writeSection1_4(data);
 
 	} catch (SQLException e) {
 	    e.printStackTrace();
@@ -124,7 +131,7 @@ public class AlternativeRTFReport extends RTFReport {
 	data.add(new ReportData("Tipo de actuación: ", rs
 		.getString("tipo_alternativa"), RtfReportStyles.normalBoldStyle));
 	data.add(new ReportData("Tipo de distribución: ", rs
-		.getString("tipo_distribución"),
+		.getString("tipo_distribucion"),
 		RtfReportStyles.normalBoldStyle));
 	data.add(new ReportData("Cantón: ", rs.getString("tipo_sistema"),
 		RtfReportStyles.normalBoldStyle));
@@ -140,15 +147,200 @@ public class AlternativeRTFReport extends RTFReport {
 	document.add(attribute);
 	document.add(value);
 
+	RtfReportStyles.writeHeading3(document, "1.2.1 Cálculos técnicos");
+	data.clear();
+	data.add(new ReportData("Dotación prevista (l/p*día): ", ReportDAO
+		.getDotacion(pkValue), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Demanda de población (l/s): ", rs
+		.getString("dem_poblacion"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Demanda de centros (l/s): ", rs
+		.getString("dem_centros"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Demanda de actividades ecnómicas (l/s): ", rs
+		.getString("dem_econ"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Demanda total (l/s): ", rs
+		.getString("demanda"), RtfReportStyles.normalBoldStyle));
+	ReportUtils.writeDataList(document, data);
+
+	RtfReportStyles.writeHeading4(document, "1.2.1.1 Embalses");
+	ReportUtils.writeTable(document, AltEmbalsesForm.colAlias, ReportDAO
+		.getDataForAlternativeRelatedTable(AltEmbalsesForm.NAME,
+			AltEmbalsesForm.colNames, pkValue));
+
+	RtfReportStyles.writeHeading4(document, "1.2.1.2 Fuentes");
+	ReportUtils.writeTable(document, AltFuentesForm.colAlias, ReportDAO
+		.getDataForAlternativeRelatedTable(AltFuentesForm.NAME,
+			AltFuentesForm.colNames, pkValue));
+
+	RtfReportStyles.writeHeading4(document, "1.2.1.3 Depósitos");
+	ReportUtils.writeTable(document, AltDepositosForm.colAlias, ReportDAO
+		.getDataForAlternativeRelatedTable(AltDepositosForm.NAME,
+			AltDepositosForm.colNames, pkValue));
+
+	Paragraph attribute2 = new Paragraph(
+		"Posible ubicación para los depósitos: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value2 = new Paragraph("(A CUBRIR POR TÉCNICO)",
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute2);
+	document.add(value2);
+
+	RtfReportStyles.writeHeading4(document, "1.2.1.4 Tuberías");
+	ReportUtils.writeTable(document, AltTuberiasForm.colAlias, ReportDAO
+		.getDataForAlternativeRelatedTable(AltTuberiasForm.NAME,
+			AltTuberiasForm.colNames, pkValue));
+
+	RtfReportStyles.writeHeading4(document, "1.2.1.5 Bombeos");
+	ReportUtils.writeTable(document, AltBombeosForm.colAlias, ReportDAO
+		.getDataForAlternativeRelatedTable(AltBombeosForm.NAME,
+			AltBombeosForm.colNames, pkValue));
+
+	RtfReportStyles.writeHeading4(document, "1.2.1.6 Conexiones");
+	ReportUtils.writeTable(document, AltConexionesForm.colAlias, ReportDAO
+		.getDataForAlternativeRelatedTable(AltConexionesForm.NAME,
+			AltConexionesForm.colNames, pkValue));
+
+	RtfReportStyles.writeHeading3(document,
+		"1.2.2 Protección de la microcuenca y de las fuentes");
+	Paragraph value3 = new Paragraph("(A CUBRIR POR TÉCNICO)",
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(value3);
     }
 
-    private void writeSection1_3(ResultSet rs, ArrayList<ReportData> data) {
-	// TODO Auto-generated method stub
+    private void writeSection1_3(ResultSet rs, ArrayList<ReportData> data)
+	    throws SQLException, DocumentException {
+	RtfReportStyles.writeHeading3(document,
+		"1.3 PROPUESTA ACTUACIÓN DE SANEAMIENTO DE AGUAS RESIDUALES");
+	data.clear();
+	data.add(new ReportData("Tipo de saneamiento propuesto: ", rs
+		.getString("tipo_saneamiento"), RtfReportStyles.normalBoldStyle));
+	ReportUtils.writeDataList(document, data);
 
+	RtfReportStyles.writeHeading3(document,
+		"1.3.1 Sistema de alcantarillado");
+	data.clear();
+	data.add(new ReportData("Nº de trampas de agua: ", rs
+		.getString("trat_trampa"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Nº biofiltros: ", rs
+		.getString("trat_biofiltros"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Nº de otros tratamientos: ", rs
+		.getString("trat_otros"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Otros (Tipo): ", rs.getString("coment_otros"),
+		RtfReportStyles.normalStyle));
+	ReportUtils.writeDataList(document, data);
+
+	RtfReportStyles.writeHeading3(document, "1.3.2 Letrinas");
+	data.clear();
+	data.add(new ReportData("Nº de letrinas de hoyo: ", rs
+		.getString("let_hoyo"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Nº de fosas sépticas: ", rs
+		.getString("let_septica"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Nº letrinas de cierre hidráulico: ", rs
+		.getString("let_hidraulica"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Nº de letrinas aboneras: ", rs
+		.getString("let_abonera"), RtfReportStyles.normalBoldStyle));
+	ReportUtils.writeDataList(document, data);
+
+	Paragraph attribute = new Paragraph("Comentarios sobre saneamiento: ",
+		RtfReportStyles.normalBoldStyle);
+	Paragraph value = new Paragraph(rs.getString("coment_saneamiento"),
+		RtfReportStyles.normalStyle);
+
+	document.add(Chunk.NEWLINE);
+	document.add(attribute);
+	document.add(value);
     }
 
-    private void writeSection1_4(ResultSet rs, ArrayList<ReportData> data) {
-	// TODO Auto-generated method stub
+    private void writeSection1_4(ArrayList<ReportData> data)
+	    throws SQLException, DocumentException {
+	ResultSet rs = ReportDAO.getPresupuestoValues(pkValue);
+	rs.next();
+
+	RtfReportStyles.writeHeading2(document,
+		"1.4 PRESUPUESTOS ESTIMADOS Y CUOTAS");
+
+	RtfReportStyles.writeHeading3(document, "1.4.1 Abastecimiento");
+	data.clear();
+	data.add(new ReportData(
+		"Diseño de sistemas y previos a ejecución ($): ", rs
+			.getString("total_disenho"),
+		RtfReportStyles.normalStyle));
+	data.add(new ReportData("Elementos captación-distribución ($): ", rs
+		.getString("total_conduccion"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Distribución ($): ", rs
+		.getString("total_distribucion"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Pilas ($): ", rs.getString("total_pilas"),
+		RtfReportStyles.normalStyle));
+	data.add(new ReportData("Protección y conservación ($): ", rs
+		.getString("total_proteccion"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Personal ($): ", rs
+		.getString("total_personal"), RtfReportStyles.normalStyle));
+	data.add(new ReportData(
+		"Implementación del sistema y acompañamiento comunitario ($): ",
+		rs.getString("total_implementacion"),
+		RtfReportStyles.normalStyle));
+	data.add(new ReportData("Coste total del abastecimiento ($): ", rs
+		.getString("total_abastecimiento"),
+		RtfReportStyles.normalBoldStyle));
+	ReportUtils.writeDataList(document, data);
+
+	RtfReportStyles.writeHeading3(document, "1.4.2 Saneamiento");
+	data.clear();
+	data.add(new ReportData("Coste total del saneamiento ($): ", rs
+		.getString("total_saneamiento"),
+		RtfReportStyles.normalBoldStyle));
+	ReportUtils.writeDataList(document, data);
+
+	RtfReportStyles.writeHeading3(document, "1.4.3 Costes totales");
+	data.clear();
+	data.add(new ReportData("COSTE TOTAL ALTERNATIVA ($): ", rs
+		.getString("total"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("COSTE POR PERSONA ($): ", rs
+		.getString("total_persona"), RtfReportStyles.normalBoldStyle));
+	ReportUtils.writeDataList(document, data);
+
+	RtfReportStyles.writeHeading3(document, "1.4.4 Cuota");
+	Paragraph attribute = new Paragraph(
+		"Cálculo estimado de la cuota a pagar por la población actual ($/persona/mes): ",
+		RtfReportStyles.normalBoldStyle);
+
+	document.add(attribute);
+
+	data.clear();
+	data.add(new ReportData("Bomba: ", null,
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Amortización ($/mes): ", rs
+		.getString("amortizacion_bomba"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Consumo ($/mes): ", rs
+		.getString("consumo_bomba"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Mantenimiento preventivo ($/mes): ", rs
+		.getString("mantenimiento_bomba"), RtfReportStyles.normalStyle));
+	data.add(new ReportData("Amortización de tuberías ($/mes): ", rs
+		.getString("amortizacion_tuberias"),
+		RtfReportStyles.normalStyle));
+	data.add(new ReportData("Análisis de agua ($/mes): ", rs
+		.getString("analisis_agua"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Cloro ($/mes): ", rs.getString("cloro"),
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Fungible ($/mes): ", rs.getString("fungible"),
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Reparaciones y herramientas ($/mes): ", rs
+		.getString("reparaciones"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Fontanero ($/mes): ", rs
+		.getString("fontanero"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("Asistencia técnica ($/mes): ", rs
+		.getString("asistencia"), RtfReportStyles.normalBoldStyle));
+	ReportUtils.writeDataList(document, data);
+	document.add(Chunk.NEWLINE);
+	data.clear();
+	data.add(new ReportData("CUOTA ($/mes): ", rs.getString("cuota"),
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportData("CUOTA POR PERSONA ($/P*mes): ", rs
+		.getString("cuota_persona"), RtfReportStyles.normalStyle));
+	ReportUtils.writeDataList(document, data);
 
     }
 
