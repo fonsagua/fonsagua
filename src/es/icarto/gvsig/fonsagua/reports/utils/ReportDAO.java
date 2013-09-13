@@ -81,6 +81,56 @@ public class ReportDAO {
 	return null;
     }
 
+    public static ResultSet getPresupuestoValues(String alternativeCode) {
+	PreparedStatement statement = null;
+
+	try {
+	    String query = "SELECT * FROM " + FonsaguaConstants.dataSchema
+		    + "." + "presupuesto" + " WHERE "
+		    + AlternativasForm.PKFIELD + " = ?";
+	    statement = connection.prepareStatement(query);
+	    statement.setString(1, alternativeCode);
+	    statement.execute();
+	    ResultSet rs = statement.getResultSet();
+	    return rs;
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
+
+    public static ResultSet getFonsaguaTableValues(String tableName,
+	    String pkName, String pkValue) {
+	PreparedStatement statement = null;
+
+	try {
+	    String query = "SELECT * FROM " + FonsaguaConstants.dataSchema
+		    + "." + tableName + " WHERE " + pkName + " = ?";
+	    statement = connection.prepareStatement(query);
+	    statement.setString(1, pkValue);
+	    statement.execute();
+	    ResultSet rs = statement.getResultSet();
+	    return rs;
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
+
+    public static String getFonsaguaTableValueByColumnName(String tableName,
+	    String pkName, String pkValue, String columnName) {
+	ResultSet rs = getFonsaguaTableValues(tableName, pkName, pkValue);
+	String value;
+	try {
+	    rs.next();
+	    value = rs.getString(columnName);
+	    return value;
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
+
     public static String[][] getDataForCommunityRelatedTable(String tableName,
 	    String[] fieldNames, String communityCode) {
 	String whereClause = ComunidadesForm.PKFIELD + " = '" + communityCode
@@ -303,5 +353,20 @@ public class ReportDAO {
 	    }
 	}
 	return rows.toArray(new String[0][0]);
+    }
+
+    public static String getDotacion(String alternativeCode) {
+	String tipoDistribucion = getFonsaguaTableValueByColumnName(
+		AlternativasForm.NAME, AlternativasForm.PKFIELD,
+		alternativeCode, "tipo_distribucion");
+	if (tipoDistribucion.equalsIgnoreCase("Cantareras")) {
+	    return getFonsaguaTableValueByColumnName("preferencias_disenho",
+		    AlternativasForm.PKFIELD, alternativeCode, "dot_cantareras");
+	} else if (tipoDistribucion.equalsIgnoreCase("Domiciliar")) {
+	    return getFonsaguaTableValueByColumnName("preferencias_disenho",
+		    AlternativasForm.PKFIELD, alternativeCode, "dot_domiciliar");
+	} else {
+	    return null;
+	}
     }
 }
