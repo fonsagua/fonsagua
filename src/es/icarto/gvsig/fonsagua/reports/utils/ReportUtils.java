@@ -5,7 +5,7 @@ import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 
@@ -25,7 +25,7 @@ public class ReportUtils {
     private final static Locale loc = new Locale("es");
 
     public static void writeDataList(Document document,
-	    ArrayList<ReportListItem> data) {
+	    Collection<ReportListItem> data) {
 	Paragraph listParagrpah = new Paragraph();
 	List list = new List();
 	list.setIndentationLeft(20);

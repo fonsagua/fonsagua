@@ -93,8 +93,8 @@ public class AlternativeRTFReport extends RTFReport {
 		.writeHeading2(document, "1.1 COMUNIDADES BENEFICIARIAS");
 
 	data.clear();
-	data.add(new ReportListItem("Departamento: ", rs.getString("departamento"),
-		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportListItem("Departamento: ", rs
+		.getString("departamento"), RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Municipio: ", rs.getString("municipio"),
 		RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Cantón: ", rs.getString("canton"),
@@ -112,13 +112,16 @@ public class AlternativeRTFReport extends RTFReport {
 	data.clear();
 	data.add(new ReportListItem("Número total de población implicada: ", rs
 		.getString("pobl_actual"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Número de centros educativos considerados: ",
-		rs.getString("n_cent_educativos"),
+	data.add(new ReportListItem(
+		"Número de centros educativos considerados: ", rs
+			.getString("n_cent_educativos"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Número de centros de salud considerados: ", rs
-		.getString("n_cent_salud"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Número de otros centros considerados: ", rs
-		.getString("n_cent_otros"), RtfReportStyles.normalBoldStyle));
+	data.add(new ReportListItem(
+		"Número de centros de salud considerados: ", rs
+			.getString("n_cent_salud"),
+		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportListItem("Número de otros centros considerados: ",
+		rs.getString("n_cent_otros"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
     }
 
@@ -155,8 +158,8 @@ public class AlternativeRTFReport extends RTFReport {
 		.getString("dem_poblacion"), RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Demanda de centros (l/s): ", rs
 		.getString("dem_centros"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Demanda de actividades ecnómicas (l/s): ", rs
-		.getString("dem_econ"), RtfReportStyles.normalStyle));
+	data.add(new ReportListItem("Demanda de actividades ecnómicas (l/s): ",
+		rs.getString("dem_econ"), RtfReportStyles.normalStyle));
 	data.add(new ReportListItem("Demanda total (l/s): ", rs
 		.getString("demanda"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
@@ -228,8 +231,8 @@ public class AlternativeRTFReport extends RTFReport {
 		.getString("trat_biofiltros"), RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Nº de otros tratamientos: ", rs
 		.getString("trat_otros"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Otros (Tipo): ", rs.getString("coment_otros"),
-		RtfReportStyles.normalStyle));
+	data.add(new ReportListItem("Otros (Tipo): ", rs
+		.getString("coment_otros"), RtfReportStyles.normalStyle));
 	ReportUtils.writeDataList(document, data);
 
 	RtfReportStyles.writeHeading3(document, "1.3.2 Letrinas");
@@ -268,8 +271,8 @@ public class AlternativeRTFReport extends RTFReport {
 		"Diseño de sistemas y previos a ejecución ($): ", rs
 			.getString("total_disenho"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportListItem("Elementos captación-distribución ($): ", rs
-		.getString("total_conduccion"), RtfReportStyles.normalStyle));
+	data.add(new ReportListItem("Elementos captación-distribución ($): ",
+		rs.getString("total_conduccion"), RtfReportStyles.normalStyle));
 	data.add(new ReportListItem("Distribución ($): ", rs
 		.getString("total_distribucion"), RtfReportStyles.normalStyle));
 	data.add(new ReportListItem("Pilas ($): ", rs.getString("total_pilas"),
@@ -308,6 +311,7 @@ public class AlternativeRTFReport extends RTFReport {
 		RtfReportStyles.normalBoldStyle);
 
 	document.add(attribute);
+	document.add(Chunk.NEWLINE);
 
 	data.clear();
 	data.add(new ReportListItem("Bomba: ", null,
@@ -325,8 +329,8 @@ public class AlternativeRTFReport extends RTFReport {
 		.getString("analisis_agua"), RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Cloro ($/mes): ", rs.getString("cloro"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Fungible ($/mes): ", rs.getString("fungible"),
-		RtfReportStyles.normalBoldStyle));
+	data.add(new ReportListItem("Fungible ($/mes): ", rs
+		.getString("fungible"), RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Reparaciones y herramientas ($/mes): ", rs
 		.getString("reparaciones"), RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Fontanero ($/mes): ", rs
