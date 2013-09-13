@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.PreferenciasForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.PresupuestoForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
@@ -86,7 +88,7 @@ public class ReportDAO {
 
 	try {
 	    String query = "SELECT * FROM " + FonsaguaConstants.dataSchema
-		    + "." + "presupuesto" + " WHERE "
+		    + "." + PresupuestoForm.NAME + " WHERE "
 		    + AlternativasForm.PKFIELD + " = ?";
 	    statement = connection.prepareStatement(query);
 	    statement.setString(1, alternativeCode);
@@ -360,10 +362,10 @@ public class ReportDAO {
 		AlternativasForm.NAME, AlternativasForm.PKFIELD,
 		alternativeCode, "tipo_distribucion");
 	if (tipoDistribucion.equalsIgnoreCase("Cantareras")) {
-	    return getFonsaguaTableValueByColumnName("preferencias_disenho",
+	    return getFonsaguaTableValueByColumnName(PreferenciasForm.NAME,
 		    AlternativasForm.PKFIELD, alternativeCode, "dot_cantareras");
 	} else if (tipoDistribucion.equalsIgnoreCase("Domiciliar")) {
-	    return getFonsaguaTableValueByColumnName("preferencias_disenho",
+	    return getFonsaguaTableValueByColumnName(PreferenciasForm.NAME,
 		    AlternativasForm.PKFIELD, alternativeCode, "dot_domiciliar");
 	} else {
 	    return null;
