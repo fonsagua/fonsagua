@@ -77,6 +77,7 @@ public class ReportUtils {
 		}
 	    }
 	    document.add(table);
+	    document.add(Chunk.NEWLINE);
 	} catch (BadElementException e) {
 	    e.printStackTrace();
 	} catch (DocumentException e) {
