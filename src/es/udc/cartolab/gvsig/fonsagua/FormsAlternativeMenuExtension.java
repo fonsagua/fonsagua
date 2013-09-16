@@ -7,8 +7,9 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 
-public class FormsMenuExtension extends Extension {
+public class FormsAlternativeMenuExtension extends Extension {
 
     @Override
     public void execute(String actionCommand) {
@@ -28,7 +29,8 @@ public class FormsMenuExtension extends Extension {
 
     @Override
     public boolean isEnabled() {
-	return FormFactory.allLayersLoadedRegistered();
+	return FonsaguaFormFactory.getInstance().allAlternativasLayersLoaded()
+		&& OpenAlternativeExtension.getCode() != null;
     }
 
     @Override

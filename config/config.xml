@@ -29,7 +29,7 @@
 			</tool-bar>
 		</extension>
 
-		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsMenuExtension" active="true">
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsGeneralMenuExtension" active="true">
 
 			<menu text="fonsagua_menu/inventario/abastecimientos/abastecimientos"
 				action-command="abastecimientos"
@@ -78,7 +78,9 @@
 			<menu text="fonsagua_menu/inventario/fuentes"
 				action-command="fuentes"
 				position="1"/>
-
+		</extension>
+		
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsAlternativeMenuExtension" active="true">
 			<menu text="fonsagua_menu/alternativas/elementos/alt_conexiones"
 				action-command="alt_conexiones"
 				position="1"/>
