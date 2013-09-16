@@ -1,7 +1,6 @@
 package es.udc.cartolab.gvsig.fonsagua.utils;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -22,8 +21,6 @@ import org.apache.log4j.Logger;
 import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.andami.ui.mdiManager.WindowInfo;
-
-import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 
 @SuppressWarnings("serial")
 public abstract class FilteredDialog extends JPanel implements IWindow,
@@ -220,24 +217,6 @@ public abstract class FilteredDialog extends JPanel implements IWindow,
 	if (items.size() > 0) {
 	    elementCombo.setSelectedIndex(0);
 	}
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-	try {
-	    if (e.getSource() == okButton) {
-		String alternCod = elementCombo.getSelectedItem().toString();
-		OpenAlternativeExtension.openAlternative(alternCod);
-		OpenAlternativeExtension
-			.setValidAlternative(DatabaseDirectAccessQueries
-				.isValidAlternative(alternCod));
-	    }
-	} catch (Exception e1) {
-	    OpenAlternativeExtension.setValidAlternative(false);
-	    e1.printStackTrace();
-	}
-	PluginServices.getMDIManager().closeWindow(this);
-
     }
 
     @Override
