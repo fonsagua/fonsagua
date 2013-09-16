@@ -5,6 +5,8 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 import org.apache.log4j.Logger;
 
 import com.iver.andami.PluginServices;
@@ -24,12 +26,21 @@ public class GenerateCommunityReportDialog extends FilteredDialog {
     }
 
     @Override
-    public void actionPerformed(ActionEvent arg0) {
-	String communityCode = elementCombo.getSelectedItem().toString();
-	SaveFileDialog sfd = new SaveFileDialog(PluginServices.getText(this,
-		"rtfFiles"), "rtf");
-	File fileName = sfd.showDialog();
-	new CommunityRTFReport(fileName.getAbsolutePath(), communityCode);
+    public void actionPerformed(ActionEvent e) {
+	if (e.getSource() == okButton) {
+	    String communityCode = elementCombo.getSelectedItem().toString();
+	    SaveFileDialog sfd = new SaveFileDialog(PluginServices.getText(
+		    this, "rtfFiles"), "rtf");
+	    File fileName = sfd.showDialog();
+	    if (fileName != null) {
+		new CommunityRTFReport(fileName.getAbsolutePath(),
+			communityCode);
+		PluginServices.getMDIManager().closeWindow(this);
+		JOptionPane.showMessageDialog(null,
+			PluginServices.getText(this, "generated_report_msg"));
+	    }
+	}
+	PluginServices.getMDIManager().closeWindow(this);
     }
 
     @Override

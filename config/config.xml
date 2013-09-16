@@ -184,13 +184,13 @@
         </extension>
         
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.GenerateCommunityReportExtension" active="true">
-			<menu text="Informes/Comunidad"
+			<menu text="informes/Comunidad"
 				action-command="generate_community_report"
 				position="1"/>
 		</extension>
         
         <extension class-name="es.udc.cartolab.gvsig.fonsagua.GenerateAlternativeReportExtension" active="true">
-			<menu text="Informes/Alternativa"
+			<menu text="informes/Alternativa"
 				action-command="generate_alternative_report"
 				position="2"/>
 		</extension>

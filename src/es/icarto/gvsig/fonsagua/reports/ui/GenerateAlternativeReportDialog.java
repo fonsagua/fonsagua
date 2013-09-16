@@ -5,11 +5,13 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 import org.apache.log4j.Logger;
 
 import com.iver.andami.PluginServices;
 
-import es.icarto.gvsig.fonsagua.reports.CommunityRTFReport;
+import es.icarto.gvsig.fonsagua.reports.AlternativeRTFReport;
 import es.udc.cartolab.gvsig.fonsagua.utils.FilteredDialog;
 import es.udc.cartolab.gvsig.fonsagua.utils.SaveFileDialog;
 
@@ -25,11 +27,20 @@ public class GenerateAlternativeReportDialog extends FilteredDialog {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-	String alternativeCode = elementCombo.getSelectedItem().toString();
-	SaveFileDialog sfd = new SaveFileDialog(PluginServices.getText(this,
-		"rtfFiles"), "rtf");
-	File fileName = sfd.showDialog();
-	new CommunityRTFReport(fileName.getAbsolutePath(), alternativeCode);
+	if (e.getSource() == okButton) {
+	    String alternativeCode = elementCombo.getSelectedItem().toString();
+	    SaveFileDialog sfd = new SaveFileDialog(PluginServices.getText(
+		    this, "rtfFiles"), "rtf");
+	    File fileName = sfd.showDialog();
+	    if (fileName != null) {
+		new AlternativeRTFReport(fileName.getAbsolutePath(),
+			alternativeCode);
+		PluginServices.getMDIManager().closeWindow(this);
+		JOptionPane.showMessageDialog(null,
+			PluginServices.getText(this, "generated_report_msg"));
+	    }
+	}
+	PluginServices.getMDIManager().closeWindow(this);
     }
 
     @Override
