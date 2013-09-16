@@ -97,7 +97,8 @@ public abstract class RTFReport {
     protected Image getRightHeaderImage() {
 	Image image = null;
 	try {
-	    image = Image.getInstance("images/logo_esf.jpg");
+	    image = Image.getInstance(getClass().getClassLoader()
+		    .getResource("images/logo_esf.jpg").getPath());
 	    image.scalePercent((float) 35.00);
 	    image.setAlignment(Chunk.ALIGN_RIGHT);
 	} catch (BadElementException e) {
@@ -113,7 +114,8 @@ public abstract class RTFReport {
     protected Image getLeftHeaderImage() {
 	Image image = null;
 	try {
-	    image = Image.getInstance("images/logo_anda.jpg");
+	    image = Image.getInstance(getClass().getClassLoader()
+		    .getResource("images/logo_anda.jpg").getPath());
 	    image.scalePercent((float) 50.00);
 	    image.setAlignment(Chunk.ALIGN_LEFT);
 	} catch (BadElementException e) {
