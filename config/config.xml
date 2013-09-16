@@ -182,6 +182,18 @@
 				action-command="alternative_budget"
 				position="6"/>
         </extension>
-
+        
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.GenerateCommunityReportExtension" active="true">
+			<menu text="Informes/Comunidad"
+				action-command="generate_community_report"
+				position="1"/>
+		</extension>
+        
+        <extension class-name="es.udc.cartolab.gvsig.fonsagua.GenerateAlternativeReportExtension" active="true">
+			<menu text="Informes/Alternativa"
+				action-command="generate_alternative_report"
+				position="2"/>
+		</extension>
+		
 	</extensions>
 </plugin-config>

@@ -6,14 +6,14 @@ import java.util.Map;
 
 import com.iver.andami.PluginServices;
 
-import es.icarto.gvsig.fonsagua.reports.ui.GenerateAlternativeReportDialog;
+import es.icarto.gvsig.fonsagua.reports.ui.GenerateCommunityReportDialog;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFilterFields;
 
-public class GenerateAlternativeReportExtension extends AbstractExtension {
+public class GenerateCommunityReportExtension extends AbstractExtension {
 
     @Override
     public void initialize() {
-	id = "generate_alternative_report";
+	id = "generate_community_report";
 	super.initialize();
     }
 
@@ -26,14 +26,16 @@ public class GenerateAlternativeReportExtension extends AbstractExtension {
 		    .getMuniccipalities();
 	    Map<String, String> cantonNames = FonsaguaFilterFields
 		    .getCantones();
-	    String[][] alternativas = FonsaguaFilterFields.getAlternatives();
+	    String[][] communities = FonsaguaFilterFields.getComunidades();
 	    Map<String, Map<String, Map<String, List<String>>>> divsCodes = FonsaguaFilterFields
-		    .getDivCodes(alternativas);
-	    GenerateAlternativeReportDialog dialog = new GenerateAlternativeReportDialog(
+		    .getDivCodes(communities);
+	    GenerateCommunityReportDialog dialog = new GenerateCommunityReportDialog(
 		    divsCodes, departNames, municNames, cantonNames);
 	    PluginServices.getMDIManager().addWindow(dialog);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
+
     }
+
 }
