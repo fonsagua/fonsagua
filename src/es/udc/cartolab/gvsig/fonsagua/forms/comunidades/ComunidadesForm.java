@@ -19,6 +19,7 @@ public class ComunidadesForm extends BasicAbstractForm {
 
     public static final String NAME = "comunidades";
     public static final String PKFIELD = "cod_comunidad";
+    public static final String CANTONFK = "canton";
     public static String[] colNames = { "comunidad", "cod_comunidad" };
     public static String[] colAlias = { "Comunidad", "Código" };
 
