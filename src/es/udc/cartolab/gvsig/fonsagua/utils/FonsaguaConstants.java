@@ -32,7 +32,7 @@ public interface FonsaguaConstants {
     public static final String TUBERIAS_COMERCIALES_NAME = "preferencias_tuberias";
     public static final String[] TUBERIAS_COMERCIALES_TABLE_FIELDS = {
 	    "id_tub", "material", "diametro", "presion", "rugosidad",
-	    "precio_lmp" };
+	    "precio_m" };
     public static final String[] TUBERIAS_COMERCIALES_TABLE_ALIAS = { "ID",
 	    "Material", "Diámetro (mm)", "Presión (m.c.a)", "Rugosidad (D-W)",
 	    "Precio ($/m)" };
