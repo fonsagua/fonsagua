@@ -1,6 +1,7 @@
 package es.udc.cartolab.gvsig.fonsagua.alternativas.ui;
 
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -11,10 +12,14 @@ import javax.swing.table.TableModel;
 
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 import es.udc.cartolab.gvsig.navtable.dataacces.IController;
+import es.udc.cartolab.gvsig.navtable.format.IntegerFormatNT;
 
 @SuppressWarnings("serial")
 public class SelectComunitiesForAlternativeDialog extends
 	SelectElementForAlternativeDialog {
+
+    private static NumberFormat intFormat = IntegerFormatNT
+	    .getDisplayingFormat();
 
     public SelectComunitiesForAlternativeDialog(int editableColumnIdx) {
 	super(editableColumnIdx);
@@ -69,7 +74,7 @@ public class SelectComunitiesForAlternativeDialog extends
     public void setAutomaticValue(IController layerController,
 	    HashMap<String, JComponent> widgets) {
 	final String fieldName = "pobl_actual";
-	String poblActual = Integer.toString((int) getSumEditableColumnValue());
+	String poblActual = intFormat.format(getSumEditableColumnValue());
 	layerController.setValue(fieldName, poblActual);
 	((JTextField) widgets.get(fieldName)).setText(poblActual);
     }

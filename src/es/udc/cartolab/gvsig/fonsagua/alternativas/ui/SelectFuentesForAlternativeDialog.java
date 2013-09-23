@@ -1,6 +1,7 @@
 package es.udc.cartolab.gvsig.fonsagua.alternativas.ui;
 
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -13,14 +14,20 @@ import com.iver.cit.gvsig.fmap.drivers.DBException;
 
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 import es.udc.cartolab.gvsig.navtable.dataacces.IController;
+import es.udc.cartolab.gvsig.navtable.format.DoubleFormatNT;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 @SuppressWarnings("serial")
 public class SelectFuentesForAlternativeDialog extends
 	SelectElementForAlternativeDialog {
 
+    private final NumberFormat doubleFormat;
+
     public SelectFuentesForAlternativeDialog(int editableColumnIdx) {
 	super(editableColumnIdx);
+	doubleFormat = DoubleFormatNT.getDisplayingFormat();
+	doubleFormat.setMinimumFractionDigits(2);
+	doubleFormat.setMaximumFractionDigits(2);
     }
 
     @Override
@@ -91,7 +98,7 @@ public class SelectFuentesForAlternativeDialog extends
     public void setAutomaticValue(IController layerController,
 	    HashMap<String, JComponent> widgets) {
 	final String fieldName = "caudal_fuentes";
-	String caudalFuentes = Double.toString(getSumEditableColumnValue());
+	String caudalFuentes = doubleFormat.format(getSumEditableColumnValue());
 	layerController.setValue(fieldName, caudalFuentes);
 	((JTextField) widgets.get(fieldName)).setText(caudalFuentes);
     }
