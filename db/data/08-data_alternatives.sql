@@ -439,3 +439,35 @@ CREATE TABLE fonsagua.presupuesto (
 
 ALTER TABLE fonsagua.presupuesto OWNER TO fonsagua;
 
+CREATE TABLE fonsagua.priorizacion_alternativa_base (
+       gid SERIAL PRIMARY KEY,
+       cod_comunidad VARCHAR NOT NULL,
+       cod_alternativa VARCHAR
+	       NOT NULL,
+       dotacion NUMERIC(6,2),
+       fuentes VARCHAR,
+       calidad_agua VARCHAR
+	       REFERENCES dominios.calidad_agua(item),
+       implicacion_comunidad VARCHAR,
+       prioridad_alt INTEGER
+	       REFERENCES dominios.prioridad_alt(item)
+);
+
+
+ALTER TABLE fonsagua.priorizacion_alternativa_base OWNER TO fonsagua;
+
+
+CREATE VIEW fonsagua.priorizacion_alternativa AS 
+	SELECT a.gid AS oid, a.cod_comunidad AS cod_comunidad, a.cod_alternativa AS cod_alternativa, a.dotacion AS dotacion, a.fuentes AS fuentes, a.calidad_agua AS calidad_agua, a.implicacion_comunidad AS implicacion_comunidad, a.prioridad_alt AS prioridad_alt, b.tipo_alternativa AS tipo_alternativa, b.tipo_distribucion AS tipo_distribucion, b.pobl_actual AS pobl_actual, b.caudal_fuentes AS caudal_fuentes, b.demanda AS demanda, c.cuota_persona AS cuota_persona, c.total AS coste_total, c.total_persona AS coste_habitante
+	FROM fonsagua.priorizacion_alternativa_base a JOIN fonsagua.alternativas b ON a.cod_alternativa = b.cod_alternativa JOIN fonsagua.presupuesto c ON c.cod_alternativa = a.cod_alternativa;
+
+CREATE RULE priorizacion_alternativa_insert AS ON INSERT TO fonsagua.priorizacion_alternativa DO INSTEAD
+	INSERT INTO fonsagua.priorizacion_alternativa_base(cod_comunidad, cod_alternativa, dotacion, fuentes, calidad_agua, implicacion_comunidad, prioridad_alt) VALUES (new.cod_comunidad, new.cod_alternativa, new.dotacion, new.fuentes, new.calidad_agua, new.implicacion_comunidad, new.prioridad_alt);
+
+CREATE RULE priorizacion_alternativa_update AS ON UPDATE TO fonsagua.priorizacion_alternativa DO INSTEAD
+	UPDATE fonsagua.priorizacion_alternativa_base SET dotacion = new.dotacion, fuentes = new.fuentes, calidad_agua = new.calidad_agua, implicacion_comunidad = new.implicacion_comunidad, prioridad_alt = new.prioridad_alt WHERE gid = old.oid;
+
+CREATE RULE priorizacion_alternativa_delete AS ON DELETE TO fonsagua.priorizacion_alternativa DO INSTEAD
+	DELETE FROM fonsagua.priorizacion_alternativa_base WHERE gid = old.oid;
+
+ALTER VIEW fonsagua.priorizacion_alternativa OWNER TO fonsagua;

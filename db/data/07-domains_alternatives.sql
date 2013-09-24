@@ -71,3 +71,33 @@ INSERT INTO dominios.tipo_deposito (item) VALUES
        ('Bombeo');
 
 ALTER TABLE dominios.tipo_deposito OWNER TO fonsagua;
+
+
+CREATE TABLE dominios.prioridad_alt (
+       item INTEGER
+	       PRIMARY KEY
+
+);
+
+INSERT INTO dominios.prioridad_alt (item) VALUES
+       (1),
+       (2),
+       (3),
+       (4),
+       (5),
+       (6),
+       (7),
+       (8),
+       (9),
+       (10),
+       (11),
+       (12),
+       (13),
+       (14),
+       (15),
+       (16),
+       (17),
+       (18),
+       (19);
+
+ALTER TABLE dominios.prioridad_alt OWNER TO fonsagua;

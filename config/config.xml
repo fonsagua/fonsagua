@@ -184,6 +184,12 @@
 				action-command="alternative_budget"
 				position="6"/>
         </extension>
+
+        <extension class-name="es.udc.cartolab.gvsig.fonsagua.AlternativePriorExtension" active="true">
+			<menu text="fonsagua_menu/alternativas/priorizacion"
+				action-command="alternative_prior"
+				position="7"/>
+        </extension>
         
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.GenerateCommunityReportExtension" active="true">
 			<menu text="informes/Comunidad"
