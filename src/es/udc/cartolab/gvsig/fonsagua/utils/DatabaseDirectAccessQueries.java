@@ -39,7 +39,7 @@ public class DatabaseDirectAccessQueries {
     public static DefaultTableModel getComunitiesIntersectingAlternative(
 	    String codAlt) throws SQLException {
 
-	String query = "SELECT c.comunidad AS\" Comunidad\", c.n_habitantes AS \"Habitantes totales\", ci.n_hab_alternativa AS \"Habitantes alternativa\" FROM fonsagua.comunidades AS c JOIN fonsagua.alternativas AS a ON st_intersects(a.geom, c.geom) FULL OUTER JOIN fonsagua.comunidades_implicadas AS ci ON ci.comunidad = c.comunidad AND a.cod_alternativa = ci.cod_alternativa WHERE a.cod_alternativa = '####';";
+	String query = "SELECT c.comunidad AS \"Comunidad\", c.cod_comunidad AS \"Cod. Comunidad\", c.n_habitantes AS \"Habitantes totales\", ci.n_hab_alternativa AS \"Habitantes alternativa\" FROM fonsagua.comunidades AS c JOIN fonsagua.alternativas AS a ON st_intersects(a.geom, c.geom) FULL OUTER JOIN fonsagua.comunidades_implicadas AS ci ON ci.comunidad = c.comunidad AND a.cod_alternativa = ci.cod_alternativa WHERE a.cod_alternativa = '####';";
 	ResultSet rs = convertAndExecuteQuery(codAlt, query);
 
 	DefaultTableModel modelo = new OnlyOneColumnEditable(2);
@@ -64,7 +64,7 @@ public class DatabaseDirectAccessQueries {
     public static DefaultTableModel getComunidadesImplicadasTable(String codAlt)
 	    throws SQLException {
 
-	String query = "SELECT comunidad AS \"Comunidad\", n_habitantes AS \"Habitantes totales\", n_hab_alternativa AS \"Habitantes alternativa\" FROM fonsagua.comunidades_implicadas WHERE cod_alternativa = '####'";
+	String query = "SELECT comunidad AS \"Comunidad\", cod_comunidad AS \"Cod. Comunidad\", n_habitantes AS \"Habitantes totales\", n_hab_alternativa AS \"Habitantes alternativa\" FROM fonsagua.comunidades_implicadas WHERE cod_alternativa = '####'";
 	ResultSet rs = convertAndExecuteQuery(codAlt, query);
 
 	DefaultTableModel model = new NotEditableTableModel();
@@ -129,7 +129,7 @@ public class DatabaseDirectAccessQueries {
 		FonsaguaConstants.COMUNIDADES_IMPLICADAS, whereClause);
 
 	final String[] columnNames = { "cod_alternativa", "comunidad",
-		"n_habitantes", "n_hab_alternativa" };
+		"cod_comunidad", "n_habitantes", "n_hab_alternativa" };
 
 	Object[] values;
 	for (int row = 0; row < model.getRowCount(); row++) {
@@ -138,6 +138,7 @@ public class DatabaseDirectAccessQueries {
 	    values[1] = model.getValueAt(row, 0);
 	    values[2] = model.getValueAt(row, 1);
 	    values[3] = model.getValueAt(row, 2);
+	    values[4] = model.getValueAt(row, 3);
 	    session.insertRow(FonsaguaConstants.dataSchema,
 		    FonsaguaConstants.COMUNIDADES_IMPLICADAS, columnNames,
 		    values);

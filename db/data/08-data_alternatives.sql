@@ -124,6 +124,11 @@ CREATE TABLE fonsagua.comunidades_implicadas (
        	       ON DELETE CASCADE
 	       ON UPDATE CASCADE,
        comunidad VARCHAR,
+       cod_comunidad VARCHAR
+	       NOT NULL
+	       REFERENCES fonsagua.comunidades(cod_comunidad)
+       	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        n_habitantes INTEGER,
        n_hab_alternativa INTEGER
 
