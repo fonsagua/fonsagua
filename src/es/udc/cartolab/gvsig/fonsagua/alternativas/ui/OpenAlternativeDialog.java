@@ -52,7 +52,7 @@ public class OpenAlternativeDialog extends FilteredDialog {
 
     @Override
     protected String getDialogTitle() {
-	return "new_alternative_title";
+	return "open_alternative";
     }
 
 }
