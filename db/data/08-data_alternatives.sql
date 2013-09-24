@@ -331,7 +331,10 @@ ALTER TABLE fonsagua.alt_conexiones OWNER TO fonsagua;
 CREATE TABLE fonsagua.alt_valvulas (
        gid SERIAL PRIMARY KEY,
        cod_alternativa VARCHAR
-	       NOT NULL,
+	       NOT NULL
+       	       REFERENCES fonsagua.alternativas(cod_alternativa)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        cod_valvula VARCHAR,
        denominacion VARCHAR,
        existencia_elemento VARCHAR
