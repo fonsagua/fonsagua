@@ -441,9 +441,12 @@ ALTER TABLE fonsagua.presupuesto OWNER TO fonsagua;
 
 CREATE TABLE fonsagua.priorizacion_alternativa_base (
        gid SERIAL PRIMARY KEY,
-       cod_comunidad VARCHAR NOT NULL,
+       cod_comunidad VARCHAR
+                     NOT NULL
+                     REFERENCES fonsagua.comunidades(cod_comunidad),
        cod_alternativa VARCHAR
-	       NOT NULL,
+	               NOT NULL
+                       REFERENCES fonsagua.alternativas(cod_alternativa),
        dotacion NUMERIC(6,2),
        fuentes VARCHAR,
        calidad_agua VARCHAR
