@@ -75,7 +75,7 @@ public class OpenAlternativeExtension extends OpenAbstractExtension {
 
     public static void openAlternative(String code) {
 	OpenAlternativeExtension.code = code;
-	FonsaguaAlternative.code = code;
+
 	MapDAO mapDAO = MapDAO.getInstance();
 	try {
 	    final View view = createViewIfNeeded("Alternativas");
@@ -101,6 +101,9 @@ public class OpenAlternativeExtension extends OpenAbstractExtension {
 	    e.printStackTrace();
 	}
 	AlternativesPreferences.loadPreferences(code);
+	FonsaguaAlternative.code = code;
+	FonsaguaAlternative.f_var_hor = AlternativesPreferences.getInstance()
+		.getfVarHoraria();
     }
 
     public static String getCode() {
