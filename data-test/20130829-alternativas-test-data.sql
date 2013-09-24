@@ -50,7 +50,7 @@ ALTER TABLE alt_conexiones ENABLE TRIGGER ALL;
 
 ALTER TABLE alt_depositos DISABLE TRIGGER ALL;
 
-INSERT INTO alt_depositos (gid, cod_alternativa, cod_deposito, denominacion, existencia_elemento, tipo_deposito, ubicacion, tipo_construccion, vol_calculado, volumen, cota, nivel_maximo, nivel_minimo, nivel_inicial, diametro, q_neto_entrante, presion, altura_total, geom) VALUES (2, '010206A01', '1', 'de', 'Proyectada', 'Distribución', 'Soterrado', 'Fibrocemento', 30.00, 21.21, 20.00, 3.00, 0.00, 1.00, 3000.00, 59.41, 1.00, 21.00, '0101000020687F00007007B4D3D83011414934FB72DD073741');
+INSERT INTO alt_depositos (gid, cod_alternativa, cod_deposito, denominacion, existencia_elemento, tipo_deposito, ubicacion, tipo_construccion, vol_calculado, volumen, cota, nivel_maximo, nivel_minimo, nivel_inicial, diametro, q_neto_entrante, presion, altura_total, geom) VALUES (2, '010206A01', '1', 'de', 'Proyectada', 'Distribución', 'Soterrado', 'Fibrocemento', 30.00, 21.21, 20.00, 3.00, 0.00, 1.00, 3.00, 59.41, 1.00, 21.00, '0101000020687F00007007B4D3D83011414934FB72DD073741');
 
 
 ALTER TABLE alt_depositos ENABLE TRIGGER ALL;
