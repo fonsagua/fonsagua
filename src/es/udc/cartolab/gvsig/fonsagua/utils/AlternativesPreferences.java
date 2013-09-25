@@ -18,7 +18,7 @@ public class AlternativesPreferences {
 	    "v_max", "presion_min", "presion_max" };
     public static final String BOMBAS_TABLE = "preferencias_bombas";
     public static final String[] BOMBAS_FIELDS = { "id_bomba", "bomba",
-	    "potencia", "precio_lmp" };
+	    "potencia", "precio_m" };
     public static final String TUBERIAS_TABLE = "preferencias_tuberias";
     public static final String[] TUBERIAS_FIELDS = { "id_tub", "denominacion",
 	    "material", "diametro", "presion", "rugosidad", "precio_lmp" };
