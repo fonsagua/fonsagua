@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<plugin-config>
+	<libraries library-dir="./"/>
+	<depends plugin-name="com.iver.cit.gvsig.cad" />
+	<resourceBundle name="text"/>
+	<extensions>
+	  <extension class-name="org.gvsig.copypastegeom.CopyFeaturesExtension"
+			description="Extensión encargada de copiar las features seleccionadas de una capa en el portapapeles."
+			active="true">
+			<menu text="Capa/copy_features" action-command="_copy_features" icon="copy_features"/>
+		</extension>
+		<extension class-name="org.gvsig.copypastegeom.PasteFeaturesExtension"
+			description="Extensión encargada de pegar features del portapapeles a una capa en edición."
+			active="true">
+			<menu text="Capa/paste_features" action-command="_paste_features" icon="paste_features"/>
+		</extension>
+  </extensions>
+</plugin-config>

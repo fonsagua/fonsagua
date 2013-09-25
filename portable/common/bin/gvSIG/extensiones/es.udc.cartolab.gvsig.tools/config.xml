@@ -6,13 +6,13 @@
 	<libraries library-dir="lib"/>
 	<extensions>
 		<extension class-name="es.udc.cartolab.gvsig.tools.CopyFeaturesExtension" description="_copy_features-description" active="true">			
-			<menu text="fonsagua/_copy_features"
+			<menu text="fonsagua_tools_menu/inventario/_copy_features_fonsagua"
 				name="_copy_features_menu"
 				action-command="CopyFeatures"
 				icon="copy-features-icon" /> 
-			<tool-bar name="fonsagua"> <!-- "_copy_features_tool_bar_name" -->
-				<action-tool icon="copy-features-icon" tooltip="_copy_features-description"
-					action-command="CopyFeatures" /> 
+			<tool-bar name="fonsagua" position="30">
+				<action-tool icon="copy-features-icon" tooltip="_copy_features-description" action-command="CopyFeatures" 
+					position="6"/> 
 			</tool-bar>
 		</extension>		
 	</extensions>

@@ -36,8 +36,6 @@ public class OpenAlternativeExtension extends OpenAbstractExtension {
     @Override
     public void initialize() {
 	id = "open_alternative";
-	OpenAlternativeExtension.code = null;
-	OpenAlternativeExtension.validAlternative = false;
 	super.initialize();
     }
 

@@ -22,7 +22,7 @@
             active="true" description="Load map">
             <menu action-command="LoadMap" icon="load-map"
                 text="data_base_menu/Load_map" position="20100"/>
-            <tool-bar name="ELLE" position="30">
+            <tool-bar name="ELLE" position="25">
                 <action-tool name="load-map" action-command="LoadMap"
                     icon="load-map" tooltip="Load_map" position="1"/>
             </tool-bar>
@@ -32,7 +32,7 @@
             active="true" description="save_map">
             <menu action-command="SaveMap" icon="save-map"
                 text="data_base_menu/save_map" position="20200"/>
-            <tool-bar name="ELLE" position="30">
+            <tool-bar name="ELLE" position="25">
                 <action-tool name="save-map" action-command="SaveMap"
                     icon="save-map" tooltip="save_map" position="2"/>
             </tool-bar>
@@ -47,7 +47,7 @@
             active="true" description="Load_several_legends">
             <menu action-command="LOADLEGENDS" icon="load-legends"
                 text="data_base_menu/load_legends" position="20400"/>
-            <tool-bar name="ELLE" position="30">
+            <tool-bar name="ELLE" position="25">
                 <action-tool name="load-legends"
                     action-command="LOADLEGENDS" icon="load-legends"
                     tooltip="load_legends" position="3"/>
@@ -58,7 +58,7 @@
             active="true" description="Save_several_legends">
             <menu action-command="ALL" icon="save-all-legends"
                 text="data_base_menu/Save_legends" position="20500"/>
-            <tool-bar name="ELLE" position="30">
+            <tool-bar name="ELLE" position="25">
                 <action-tool name="save-all-legends"
                     action-command="ALL" icon="save-all-legends"
                     tooltip="Save_legends" position="4"/>

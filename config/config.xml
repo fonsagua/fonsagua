@@ -15,140 +15,148 @@
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.InitializeExtension" active="true">
 		</extension>
 
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsGeneralMenuExtension" active="true">
+
+			<menu text="fonsagua_forms_menu/inventario/abastecimientos/abastecimientos"
+				action-command="abastecimientos"
+				position="30001"/>
+				<menu text="fonsagua_forms_menu/inventario/abastecimientos/captaciones"
+				action-command="captaciones"
+				position="30002"/>
+			<menu text="fonsagua_forms_menu/inventario/abastecimientos/dep_distribucion"
+				action-command="dep_distribucion"
+				position="30003"/>
+			<menu text="fonsagua_forms_menu/inventario/abastecimientos/dep_intermedios"
+				action-command="dep_intermedios"
+				position="30004"/>
+			<menu text="fonsagua_forms_menu/inventario/abastecimientos/tuberias"
+				action-command="tuberias"
+				position="30005"/>
+			<menu text="fonsagua_forms_menu/inventario/abastecimientos/bombeos"
+				action-command="bombeos"
+				position="30006"/>
+
+			<menu text="fonsagua_forms_menu/inventario/comunidades/comunidades"
+				action-command="comunidades"
+				position="30001"/>
+			<menu text="fonsagua_forms_menu/inventario/comunidades/puntos_viviendas"
+				action-command="puntos_viviendas"
+				position="30002"/>
+			<menu text="fonsagua_forms_menu/inventario/comunidades/centros_educativos"
+				action-command="centros_educativos"
+				position="30003"/>
+			<menu text="fonsagua_forms_menu/inventario/comunidades/centros_salud"
+				action-command="centros_salud"
+				position="30004"/>
+			<menu text="fonsagua_forms_menu/inventario/comunidades/otros_servicios"
+				action-command="otros_servicios"
+				position="30005"/>
+			<menu text="fonsagua_forms_menu/inventario/comunidades/amenazas"
+				action-command="amenazas"
+				position="30006"/>
+			<menu text="fonsagua_forms_menu/inventario/comunidades/areas_potenciales_riego"
+				action-command="areas_potenciales_riego"
+				position="30007"/>
+			<menu text="fonsagua_forms_menu/inventario/comunidades/fuentes_contaminacion"
+				action-command="fuentes_contaminacion"
+				position="30008"/>
+
+			<menu text="fonsagua_forms_menu/inventario/fuentes"
+				action-command="fuentes"
+				position="30001"/>
+		</extension>
+		
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsAlternativeMenuExtension" active="true">
+			<menu text="fonsagua_forms_menu/alternativas/elementos/alt_conexiones"
+				action-command="alt_conexiones"
+				position="30001"/>
+			<menu text="fonsagua_forms_menu/alternativas/elementos/alt_tuberias"
+				action-command="alt_tuberias"
+				position="30002"/>
+			<menu text="fonsagua_forms_menu/alternativas/elementos/alt_fuentes"
+				action-command="alt_fuentes"
+				position="30003"/>
+			<menu text="fonsagua_forms_menu/alternativas/elementos/alt_depositos"
+				action-command="alt_depositos"
+				position="30004"/>
+			<menu text="fonsagua_forms_menu/alternativas/elementos/alt_bombeos"
+				action-command="alt_bombeos"
+				position="30005"/>
+			<menu text="fonsagua_forms_menu/alternativas/elementos/alt_valvulas"
+				action-command="alt_valvulas"
+				position="30006"/>
+			<menu text="fonsagua_forms_menu/alternativas/elementos/alt_embalses"
+				action-command="alt_embalses"
+				position="30006"/>
+			<menu text="fonsagua_forms_menu/alternativas/datos_alternativa"
+				action-command="alternativas"
+				position="30001"/>
+		</extension>
+
+
+
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenGeneralExtension" active="true">
+			<tool-bar name="fonsagua" position="30">
+				<action-tool icon="open_general" tooltip="open_general" action-command="open_general"
+					position="1" />
+			</tool-bar>
+			<menu text="fonsagua_tools_menu/maps/open_general"
+				action-command="open_general"
+				position="31001"/>
+		</extension>
+		
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenAllAlternativesExtension" active="true">
+			<tool-bar name="fonsagua" position="30"> 
+				<action-tool icon="open_all_alternatives" tooltip="open_all_alternatives" action-command="open_all_alternatives"
+					position="2" />
+			</tool-bar>
+			<menu text="fonsagua_tools_menu/maps/open_all_alternatives"
+				action-command="open_all_alternatives"
+				position="31002" />
+		</extension>
+		
+		
+		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsExtension" active="true">
-			<tool-bar name="fonsagua">
-				<action-tool icon="forms-icon" tooltip="open_form"
-					action-command="" position="50"/>
+			<tool-bar name="fonsagua" position="30"> 
+				<action-tool icon="forms-icon" tooltip="open_form" action-command=""
+					position="4" />
 			</tool-bar>
 		</extension>
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormPointExtension" active="true">
-			<tool-bar name="fonsagua">
-				<selectable-tool icon="form-point" tooltip="form-point"
-					action-command="" position="60"/>
+			<tool-bar name="fonsagua" position="30"> 
+				<selectable-tool icon="form-point" tooltip="form-point" action-command="" 
+					position="5" />
 			</tool-bar>
-		</extension>
-
-		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsGeneralMenuExtension" active="true">
-
-			<menu text="fonsagua_menu/inventario/abastecimientos/abastecimientos"
-				action-command="abastecimientos"
-				position="1"/>
-				<menu text="fonsagua_menu/inventario/abastecimientos/captaciones"
-				action-command="captaciones"
-				position="2"/>
-			<menu text="fonsagua_menu/inventario/abastecimientos/dep_distribucion"
-				action-command="dep_distribucion"
-				position="3"/>
-			<menu text="fonsagua_menu/inventario/abastecimientos/dep_intermedios"
-				action-command="dep_intermedios"
-				position="4"/>
-			<menu text="fonsagua_menu/inventario/abastecimientos/tuberias"
-				action-command="tuberias"
-				position="5"/>
-			<menu text="fonsagua_menu/inventario/abastecimientos/bombeos"
-				action-command="bombeos"
-				position="6"/>
-
-			<menu text="fonsagua_menu/inventario/comunidades/comunidades"
-				action-command="comunidades"
-				position="1"/>
-			<menu text="fonsagua_menu/inventario/comunidades/puntos_viviendas"
-				action-command="puntos_viviendas"
-				position="2"/>
-			<menu text="fonsagua_menu/inventario/comunidades/centros_educativos"
-				action-command="centros_educativos"
-				position="3"/>
-			<menu text="fonsagua_menu/inventario/comunidades/centros_salud"
-				action-command="centros_salud"
-				position="4"/>
-			<menu text="fonsagua_menu/inventario/comunidades/otros_servicios"
-				action-command="otros_servicios"
-				position="5"/>
-			<menu text="fonsagua_menu/inventario/comunidades/amenazas"
-				action-command="amenazas"
-				position="6"/>
-			<menu text="fonsagua_menu/inventario/comunidades/areas_potenciales_riego"
-				action-command="areas_potenciales_riego"
-				position="7"/>
-			<menu text="fonsagua_menu/inventario/comunidades/fuentes_contaminacion"
-				action-command="fuentes_contaminacion"
-				position="8"/>
-
-			<menu text="fonsagua_menu/inventario/fuentes"
-				action-command="fuentes"
-				position="1"/>
 		</extension>
 		
-		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsAlternativeMenuExtension" active="true">
-			<menu text="fonsagua_menu/alternativas/elementos/alt_conexiones"
-				action-command="alt_conexiones"
-				position="1"/>
-			<menu text="fonsagua_menu/alternativas/elementos/alt_tuberias"
-				action-command="alt_tuberias"
-				position="2"/>
-			<menu text="fonsagua_menu/alternativas/elementos/alt_fuentes"
-				action-command="alt_fuentes"
-				position="3"/>
-			<menu text="fonsagua_menu/alternativas/elementos/alt_depositos"
-				action-command="alt_depositos"
-				position="4"/>
-			<menu text="fonsagua_menu/alternativas/elementos/alt_bombeos"
-				action-command="alt_bombeos"
-				position="5"/>
-			<menu text="fonsagua_menu/alternativas/elementos/alt_valvulas"
-				action-command="alt_valvulas"
-				position="6"/>
-			<menu text="fonsagua_menu/alternativas/elementos/alt_embalses"
-				action-command="alt_embalses"
-				position="6"/>
-			<menu text="fonsagua_menu/alternativas/datos_alternativa"
-				action-command="alternativas"
-				position="1"/>
-		</extension>
-
-		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenGeneralExtension" active="true">
-			<tool-bar name="fonsagua">
-				<action-tool icon="open_general" tooltip="open_general"
-					action-command="open_general" position="70" />
+		
+			
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.NewAlternativeExtension" active="true">
+			<tool-bar name="fonsagua" position="30"> 
+				<action-tool icon="new_alternative" tooltip="new_alternative" action-command="new_alternative"
+					position="7" />
 			</tool-bar>
-			<menu text="fonsagua_menu/inventario/open_general"
-				action-command="open_general"
-				position="1"/>
+			<menu text="fonsagua_tools_menu/alternatives/new_alternative"
+				action-command="new_alternative"
+				position="31011"/>
 		</extension>
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension" active="true">
-			<tool-bar name="fonsagua">
-				<action-tool icon="open_alternative" tooltip="open_alternative"
-					action-command="open_alternative" position="80" group="fonsagua" name="open_alternative" />
+			<tool-bar name="fonsagua" position="30"> 
+				<action-tool icon="open_alternative" tooltip="open_alternative" action-command="open_alternative"
+					position="8" />
 			</tool-bar>
-			<menu text="fonsagua_menu/alternativas/open_alternative"
+			<menu text="fonsagua_tools_menu/alternatives/open_alternative"
 				action-command="open_alternative"
-				position="2"/>
+				position="31012"/>
 		</extension>
 		
-		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenAllAlternativesExtension" active="true">
-			<tool-bar name="fonsagua">
-				<action-tool icon="open_all_alternatives" tooltip="open_all_alternatives"
-					action-command="open_all_alternatives" position="90" group="fonsagua" name="open_all_alternatives" />
-			</tool-bar>
-			<menu text="fonsagua_menu/alternativas/open_all_alternatives"
-				action-command="open_all_alternatives"
-				position="3"/>
-		</extension>
 		
-		<extension class-name="es.udc.cartolab.gvsig.fonsagua.NewAlternativeExtension" active="true">
-			<tool-bar name="fonsagua">
-				<action-tool icon="new_alternative" tooltip="new_alternative"
-					action-command="new_alternative" position="100" />
-			</tool-bar>
-			<menu text="fonsagua_menu/alternativas/new_alternative"
-				action-command="new_alternative"
-				position="4"/>
-		</extension>
 
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.AutoFormsExtension" active="true">
-			<tool-bar name="fonsagua">
+			<tool-bar name="fonsagua" position="30"> 
 				<selectable-tool icon="auto-forms" tooltip="enable_auto_forms"
 					action-command="auto-forms" position="110" group="fonsagua" name="auto-forms" />
 			</tool-bar>
@@ -156,47 +164,48 @@
 
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.EmptyExtension" active="true">
 		<!-- Workaround to allow activate and deactivate the autoforms extensions button -->
-                       <tool-bar name="fonsagua">
+                       <tool-bar name="fonsagua" position="30"> 
                                <selectable-tool icon="auto-forms" tooltip="disable_auto_forms"
                                        action-command="empty" position="110" group="fonsagua" name="auto-forms" />
                        </tool-bar>
         </extension>
 
+
         <extension class-name="es.udc.cartolab.gvsig.fonsagua.PredesignExtension" active="true">
-        	<tool-bar name="fonsagua">
+        	<tool-bar name="fonsagua" position="30"> 
         		<action-tool icon="predesign" tooltip="predesign"
         			action-command="predesign" position="130" group="fonsagua" name="predesign" />
         		</tool-bar>
         </extension>
 
         <extension class-name="es.udc.cartolab.gvsig.fonsagua.AlternativePreferencesExtension" active="true">
-			<menu text="fonsagua_menu/alternativas/preferencias"
+			<menu text="fonsagua_forms_menu/alternativas/preferencias"
 				action-command="alternative_preferences"
-				position="5"/>
+				position="30005"/>
         </extension>
 
         <extension class-name="es.udc.cartolab.gvsig.fonsagua.AlternativeBudgetExtension" active="true">
-			<menu text="fonsagua_menu/alternativas/presupuesto"
+			<menu text="fonsagua_forms_menu/alternativas/presupuesto"
 				action-command="alternative_budget"
-				position="6"/>
+				position="30006"/>
         </extension>
 
         <extension class-name="es.udc.cartolab.gvsig.fonsagua.AlternativePriorExtension" active="true">
-			<menu text="fonsagua_menu/alternativas/priorizacion"
+			<menu text="fonsagua_forms_menu/alternativas/priorizacion"
 				action-command="alternative_prior"
-				position="7"/>
+				position="30007"/>
         </extension>
         
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.GenerateCommunityReportExtension" active="true">
 			<menu text="informes/Comunidad"
 				action-command="generate_community_report"
-				position="1"/>
+				position="32001"/>
 		</extension>
         
         <extension class-name="es.udc.cartolab.gvsig.fonsagua.GenerateAlternativeReportExtension" active="true">
 			<menu text="informes/Alternativa"
 				action-command="generate_alternative_report"
-				position="2"/>
+				position="32002"/>
 		</extension>
 		
 	</extensions>
