@@ -1,27 +1,3 @@
-/*
- * This file is part of NavTable
- * Copyright (C) 2009 - 2010  Cartolab (Universidade da Coruña)
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
- * 
- * Authors:
- *   Juan Ignacio Varela García <nachouve (at) gmail (dot) com>
- *   Pablo Sanxiao Roca <psanxiao (at) gmail (dot) com>
- *   Javier Estévez Valiñas <valdaris (at) gmail (dot) com>
- *   Jorge Lopez Fernandez <jlopez (at) cartolab (dot) es>
- */
 package es.udc.cartolab.gvsig.fonsagua.utils;
 
 import com.iver.andami.PluginServices;
@@ -38,10 +14,9 @@ public class FonsaguaTocMenuEntry extends AbstractTocContextMenuAction {
     @Override
     public void execute(ITocItem item, FLayer[] selectedItems) {
 	for (FLayer layer : selectedItems) {
-	    if (layer instanceof FLyrVect) {
+	    if (AvailableForm.forLayer(layer)) {
 		AbstractForm dialog = FormFactory
 			.createFormRegistered((FLyrVect) layer);
-
 		if ((dialog != null) && (dialog.init())) {
 		    PluginServices.getMDIManager().addWindow(dialog);
 		}
@@ -49,6 +24,7 @@ public class FonsaguaTocMenuEntry extends AbstractTocContextMenuAction {
 	}
     }
 
+    @Override
     public String getText() {
 	return PluginServices.getText(this, "open_form");
     }
@@ -70,27 +46,18 @@ public class FonsaguaTocMenuEntry extends AbstractTocContextMenuAction {
 
     @Override
     public boolean isEnabled(ITocItem item, FLayer[] selectedItems) {
-	boolean availableLayerWithForm = false;
-	for (FLayer layer : selectedItems) {
-	    availableLayerWithForm |= ((layer instanceof FLyrVect)
-		    && (FormFactory.hasMainFormRegistered(layer.getName())) && (layer
-		    .isAvailable()));
-	}
-	return availableLayerWithForm;
+	return true;
     }
 
     @Override
     public boolean isVisible(ITocItem item, FLayer[] selectedItems) {
-	if (isTocItemBranch(item)
-		&& !(selectedItems == null || selectedItems.length <= 0)) {
-	    boolean layerWithForm = false;
+	if (isTocItemBranch(item) && !(selectedItems == null)) {
 	    for (FLayer layer : selectedItems) {
-		layerWithForm |= ((layer instanceof FLyrVect) && (FormFactory
-			.hasMainFormRegistered(layer.getName())));
+		if (AvailableForm.forLayer(layer)) {
+		    return true;
+		}
 	    }
-	    return layerWithForm;
 	}
 	return false;
     }
-
 }

@@ -1,13 +1,13 @@
 package es.udc.cartolab.gvsig.fonsagua.utils;
 
-import com.iver.cit.gvsig.fmap.layers.FLyrVect;
+import com.iver.cit.gvsig.fmap.layers.FLayer;
 
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 
 public final class AvailableForm {
 
-    public final static boolean forLayer(FLyrVect layer) {
+    public final static boolean forLayer(FLayer layer) {
 	return FormFactory.hasMainFormRegistered(layer.getName())
 		&& ifAltLayerConcreteAltIsOpened(layer.getName());
     }
