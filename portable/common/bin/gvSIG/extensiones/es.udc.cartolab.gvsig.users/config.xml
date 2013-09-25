@@ -8,10 +8,10 @@
             class-name="es.udc.cartolab.gvsig.users.PostGISDBConnectionExtension"
             active="true" description="Connect DB">
             <menu action-command="DBConnect" icon="DBConnect"
-                text="data_base_menu/connectToDB" position="20000"/>
+                text="data_base_menu/connectToDBPostGIS" position="20000"/>
             <tool-bar name="dbconnection" position="20">
                 <action-tool action-command="DBConnect" icon="DBConnect"
-                    tooltip="connectToDB" position="1"/>
+                    tooltip="connectToDBPostGIS" position="1"/>
             </tool-bar>
         </extension>
         <extension
