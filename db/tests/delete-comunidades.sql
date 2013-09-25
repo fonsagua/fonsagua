@@ -1,6 +1,6 @@
 BEGIN;
 
-SELECT PLAN(53);
+SELECT PLAN(54);
 
 INSERT INTO fonsagua.comunidades (cod_comunidad, cod_departamento, cod_municipio, cod_canton, cod_caserio) VALUES ('DELETE-COM', 'dep', 'mun', 'can', 'cas');
 INSERT INTO fonsagua.puntos_viviendas (cod_comunidad, cod_vivienda) VALUES ('DELETE-COM', 'DELETE-VIV');
@@ -50,7 +50,7 @@ INSERT INTO fonsagua.analiticas (cod_fuente) VALUES ('DELETE-FUENTE');
 INSERT INTO fonsagua.alternativas (cod_alternativa, departamento, municipio, canton) VALUES ('DELETE-ALT', 'dep', 'mun', 'canton');
 INSERT INTO fonsagua.preferencias_disenho (cod_alternativa) VALUES ('DELETE-ALT');
 INSERT INTO fonsagua.fuentes_implicadas (cod_alternativa, tipo_fuente) VALUES ('DELETE-ALT', 'Manantial');
-INSERT INTO fonsagua.comunidades_implicadas (cod_alternativa) VALUES ('DELETE-ALT');
+INSERT INTO fonsagua.comunidades_implicadas (cod_alternativa, cod_comunidad) VALUES ('DELETE-ALT', 'DELETE-COM');
 INSERT INTO fonsagua.alt_embalses (cod_alternativa) VALUES ('DELETE-ALT');
 INSERT INTO fonsagua.alt_fuentes (cod_alternativa) VALUES ('DELETE-ALT');
 INSERT INTO fonsagua.alt_depositos (cod_alternativa) VALUES ('DELETE-ALT');
@@ -66,6 +66,8 @@ INSERT INTO fonsagua.r_abastecimientos_comunidades (cod_abastecimiento, cod_comu
 INSERT INTO fonsagua.valoracion_sistema (cod_comunidad, cod_abastecimiento) VALUES ('DELETE-COM', 'DELETE-ABAST');
 INSERT INTO fonsagua.datos_consumo (cod_comunidad, cod_abastecimiento) VALUES ('DELETE-COM', 'DELETE-ABAST');
 INSERT INTO fonsagua.r_abastecimientos_fuentes (cod_abastecimiento, cod_fuente) VALUES ('DELETE-ABAST', 'DELETE-FUENTE');
+INSERT INTO fonsagua.priorizacion_alternativa (cod_alternativa, cod_comunidad) VALUES ('DELETE-ALT', 'DELETE-COM');
+
 
 DELETE FROM fonsagua.comunidades WHERE cod_comunidad = 'DELETE-COM';
 DELETE FROM fonsagua.abastecimientos WHERE cod_abastecimiento = 'DELETE-ABAST';
@@ -135,6 +137,7 @@ SELECT is ( (SELECT count(*) FROM fonsagua.valoracion_sistema WHERE cod_comunida
 SELECT is ( (SELECT count(*) FROM fonsagua.datos_consumo WHERE cod_comunidad = 'DELETE-COM'), 0::bigint);
 SELECT is ( (SELECT count(*) FROM fonsagua.r_abastecimientos_comunidades WHERE cod_comunidad = 'DELETE-COM'), 0::bigint);
 SELECT is ( (SELECT count(*) FROM fonsagua.r_abastecimientos_fuentes WHERE cod_abastecimiento = 'DELETE-ABAST'), 0::bigint);
+SELECT is ( (SELECT count(*) FROM fonsagua.priorizacion_alternativa WHERE cod_alternativa = 'DELETE-ABAST'), 0::bigint);
 
 SELECT * from finish();
 

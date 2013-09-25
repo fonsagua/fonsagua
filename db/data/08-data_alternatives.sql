@@ -443,10 +443,14 @@ CREATE TABLE fonsagua.priorizacion_alternativa_base (
        gid SERIAL PRIMARY KEY,
        cod_comunidad VARCHAR
                      NOT NULL
-                     REFERENCES fonsagua.comunidades(cod_comunidad),
+                     REFERENCES fonsagua.comunidades(cod_comunidad)
+		     ON DELETE CASCADE
+		     ON UPDATE CASCADE,
        cod_alternativa VARCHAR
 	               NOT NULL
-                       REFERENCES fonsagua.alternativas(cod_alternativa),
+                       REFERENCES fonsagua.alternativas(cod_alternativa)
+		       ON DELETE CASCADE
+		       ON UPDATE CASCADE,
        dotacion NUMERIC(6,2),
        fuentes VARCHAR,
        calidad_agua VARCHAR
@@ -460,7 +464,7 @@ CREATE TABLE fonsagua.priorizacion_alternativa_base (
 ALTER TABLE fonsagua.priorizacion_alternativa_base OWNER TO fonsagua;
 
 
-CREATE VIEW fonsagua.priorizacion_alternativa AS 
+CREATE VIEW fonsagua.priorizacion_alternativa AS
 	SELECT a.gid AS oid, a.cod_comunidad AS cod_comunidad, a.cod_alternativa AS cod_alternativa, a.dotacion AS dotacion, a.fuentes AS fuentes, a.calidad_agua AS calidad_agua, a.implicacion_comunidad AS implicacion_comunidad, a.prioridad_alt AS prioridad_alt, b.tipo_alternativa AS tipo_alternativa, b.tipo_distribucion AS tipo_distribucion, b.pobl_actual AS pobl_actual, b.caudal_fuentes AS caudal_fuentes, b.demanda AS demanda, c.cuota_persona AS cuota_persona, c.total AS coste_total, c.total_persona AS coste_habitante
 	FROM fonsagua.priorizacion_alternativa_base a JOIN fonsagua.alternativas b ON a.cod_alternativa = b.cod_alternativa JOIN fonsagua.presupuesto c ON c.cod_alternativa = a.cod_alternativa;
 

@@ -87,7 +87,7 @@ ALTER TABLE alt_tuberias ENABLE TRIGGER ALL;
 
 ALTER TABLE comunidades_implicadas DISABLE TRIGGER ALL;
 
-INSERT INTO comunidades_implicadas (gid, cod_alternativa, comunidad, n_habitantes, n_hab_alternativa) VALUES (9, '010206A01', 'Prueba', 300, 2);
+INSERT INTO comunidades_implicadas (gid, cod_alternativa, comunidad, n_habitantes, n_hab_alternativa, cod_comunidad) VALUES (9, '010206A01', 'Prueba', 300, 2, '01010102');
 
 
 ALTER TABLE comunidades_implicadas ENABLE TRIGGER ALL;
