@@ -30,6 +30,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltFuentesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltPriorizacionForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltTuberiasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltValvulasForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.PreferenciasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.PresupuestoForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
@@ -95,6 +96,7 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 	alternativasFormNames.add(AltTuberiasForm.NAME);
 	alternativasFormNames.add(AltValvulasForm.NAME);
 	alternativasFormNames.add(AltEmbalsesForm.NAME);
+	alternativasFormNames.add(AlternativasForm.NAME);
 
 	mainFormNames.addAll(generalFormNames);
 	mainFormNames.addAll(alternativasFormNames);
@@ -116,50 +118,53 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
     @Override
     public AbstractForm createForm(FLyrVect layer) {
 	if (layer != null) {
-	    if (layer.getName().equals(ComunidadesForm.NAME)) {
+	    final String layerName = layer.getName();
+	    if (layerName.equals(ComunidadesForm.NAME)) {
 		return new ComunidadesForm(layer);
-	    } else if (layer.getName().equals(AmenazasForm.NAME)) {
+	    } else if (layerName.equals(AmenazasForm.NAME)) {
 		return new AmenazasForm(layer);
-	    } else if (layer.getName().equals(PuntosViviendasForm.NAME)) {
+	    } else if (layerName.equals(PuntosViviendasForm.NAME)) {
 		return new PuntosViviendasForm(layer);
-	    } else if (layer.getName().equals(AreasPotencialesRiegoForm.NAME)) {
+	    } else if (layerName.equals(AreasPotencialesRiegoForm.NAME)) {
 		return new AreasPotencialesRiegoForm(layer);
-	    } else if (layer.getName().equals(CentrosSaludForm.NAME)) {
+	    } else if (layerName.equals(CentrosSaludForm.NAME)) {
 		return new CentrosSaludForm(layer);
-	    } else if (layer.getName().equals(OtrosServiciosForm.NAME)) {
+	    } else if (layerName.equals(OtrosServiciosForm.NAME)) {
 		return new OtrosServiciosForm(layer);
-	    } else if (layer.getName().equals(CentrosEducativosForm.NAME)) {
+	    } else if (layerName.equals(CentrosEducativosForm.NAME)) {
 		return new CentrosEducativosForm(layer);
-	    } else if (layer.getName().equals(AbastecimientosForm.NAME)) {
+	    } else if (layerName.equals(AbastecimientosForm.NAME)) {
 		return new AbastecimientosForm(layer);
-	    } else if (layer.getName().equals(BombeosForm.NAME)) {
+	    } else if (layerName.equals(BombeosForm.NAME)) {
 		return new BombeosForm(layer);
-	    } else if (layer.getName().equals(CaptacionesForm.NAME)) {
+	    } else if (layerName.equals(CaptacionesForm.NAME)) {
 		return new CaptacionesForm(layer);
-	    } else if (layer.getName().equals(DepIntermediosForm.NAME)) {
+	    } else if (layerName.equals(DepIntermediosForm.NAME)) {
 		return new DepIntermediosForm(layer);
-	    } else if (layer.getName().equals(DepDistribucionForm.NAME)) {
+	    } else if (layerName.equals(DepDistribucionForm.NAME)) {
 		return new DepDistribucionForm(layer);
-	    } else if (layer.getName().equals(TuberiasForm.NAME)) {
+	    } else if (layerName.equals(TuberiasForm.NAME)) {
 		return new TuberiasForm(layer);
-	    } else if (layer.getName().equals(FuentesForm.NAME)) {
+	    } else if (layerName.equals(FuentesForm.NAME)) {
 		return new FuentesForm(layer);
-	    } else if (layer.getName().equals(FuentesContaminacionForm.NAME)) {
+	    } else if (layerName.equals(FuentesContaminacionForm.NAME)) {
 		return new FuentesContaminacionForm(layer);
-	    } else if (layer.getName().equals(AltBombeosForm.NAME)) {
+	    } else if (layerName.equals(AltBombeosForm.NAME)) {
 		return new AltBombeosForm(layer);
-	    } else if (layer.getName().equals(AltConexionesForm.NAME)) {
+	    } else if (layerName.equals(AltConexionesForm.NAME)) {
 		return new AltConexionesForm(layer);
-	    } else if (layer.getName().equals(AltDepositosForm.NAME)) {
+	    } else if (layerName.equals(AltDepositosForm.NAME)) {
 		return new AltDepositosForm(layer);
-	    } else if (layer.getName().equals(AltFuentesForm.NAME)) {
+	    } else if (layerName.equals(AltFuentesForm.NAME)) {
 		return new AltFuentesForm(layer);
-	    } else if (layer.getName().equals(AltTuberiasForm.NAME)) {
+	    } else if (layerName.equals(AltTuberiasForm.NAME)) {
 		return new AltTuberiasForm(layer);
-	    } else if (layer.getName().equals(AltValvulasForm.NAME)) {
+	    } else if (layerName.equals(AltValvulasForm.NAME)) {
 		return new AltValvulasForm(layer);
-	    } else if (layer.getName().equals(AltEmbalsesForm.NAME)) {
+	    } else if (layerName.equals(AltEmbalsesForm.NAME)) {
 		return new AltEmbalsesForm(layer);
+	    } else if (layerName.equals(AlternativasForm.NAME)) {
+		return new AlternativasForm(layer);
 	    }
 
 	}

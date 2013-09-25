@@ -102,6 +102,9 @@
 			<menu text="fonsagua_menu/alternativas/elementos/alt_embalses"
 				action-command="alt_embalses"
 				position="6"/>
+			<menu text="fonsagua_menu/alternativas/datos_alternativa"
+				action-command="alternativas"
+				position="1"/>
 		</extension>
 
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenGeneralExtension" active="true">
@@ -157,13 +160,6 @@
                                <selectable-tool icon="auto-forms" tooltip="disable_auto_forms"
                                        action-command="empty" position="110" group="fonsagua" name="auto-forms" />
                        </tool-bar>
-        </extension>
-        
-        <extension class-name="es.udc.cartolab.gvsig.fonsagua.AlternativasFormExtension" active="true">
-        	<tool-bar name="fonsagua">
-        		<action-tool icon="alternativas_form" tooltip="alternativas_form"
-        			action-command="alternativas_form" position="120" group="fonsagua" name="alternativas_form" />
-        		</tool-bar>
         </extension>
 
         <extension class-name="es.udc.cartolab.gvsig.fonsagua.PredesignExtension" active="true">
