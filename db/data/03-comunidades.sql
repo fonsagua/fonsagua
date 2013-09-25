@@ -714,23 +714,23 @@ CREATE TABLE fonsagua.abastecimientos (
        h_juntas_agua BOOLEAN,
        h_adescos BOOLEAN,
        tarifa_agua BOOLEAN,
-       cuota_domiciliar NUMERIC(6,2),
-       cuota_comercial NUMERIC(6,2),
-       cuota_cantarera NUMERIC(6,2),
-       cuota_otros NUMERIC(6,2),
+       cuota_domiciliar NUMERIC(12,2),
+       cuota_comercial NUMERIC(12,2),
+       cuota_cantarera NUMERIC(12,2),
+       cuota_otros NUMERIC(12,2),
        frec_pago VARCHAR,
        gastos_cubiertos VARCHAR,
-       mora_porcent NUMERIC(6,2),
+       mora_porcent NUMERIC(12,2),
        coment_tarifa VARCHAR,
        coment_gestion VARCHAR,
-       cons_domestico NUMERIC(6,2),
-       cons_ag_gan NUMERIC(6,2),
-       tot_consumo NUMERIC(6,2),
+       cons_domestico NUMERIC(12,2),
+       cons_ag_gan NUMERIC(12,2),
+       tot_consumo NUMERIC(12,2),
        tipo_sistema VARCHAR
 	       REFERENCES dominios.tipo_sistema(item),
        ent_constructora VARCHAR,
        anho_construccion INTEGER,
-       coste_energia NUMERIC(6,2),
+       coste_energia NUMERIC(12,2),
        a_domiciliar BOOLEAN,
        n_a_domiciliar INTEGER,
        a_cantarera BOOLEAN,
@@ -754,12 +754,12 @@ CREATE TABLE fonsagua.abastecimientos (
        des_otra_detalle VARCHAR,
        metodo VARCHAR,
        frec_desinfeccion VARCHAR,
-       coste_desinfeccion NUMERIC(6,2),
+       coste_desinfeccion NUMERIC(12,2),
        coment_desinfeccion VARCHAR,
        tipo_mantenimiento VARCHAR
 	       REFERENCES dominios.tipo_mantenimiento(item),
        zona_mantenimiento VARCHAR,
-       coste_mantenimiento NUMERIC(6,2),
+       coste_mantenimiento NUMERIC(12,2),
        con_calidad BOOLEAN,
        frec_con_calidad INTEGER,
        con_funcionamiento BOOLEAN,
@@ -904,10 +904,10 @@ CREATE TABLE fonsagua.bombeos (
 	       REFERENCES dominios.tipologia_bomba(item),
        energia VARCHAR
 	       REFERENCES dominios.energia(item),
-       potencia NUMERIC(6,2),
-       caudal NUMERIC(6,2),
-       prof_succion NUMERIC(6,2),
-       tiempo NUMERIC(6,2),
+       potencia NUMERIC(12,2),
+       caudal NUMERIC(12,2),
+       prof_succion NUMERIC(12,2),
+       tiempo NUMERIC(12,2),
        altura INTEGER,
        n_bombas INTEGER,
        anho_construccion INTEGER,
@@ -935,7 +935,7 @@ CREATE TABLE fonsagua.cobertura (
        fecha Date,
        acometidas INTEGER,
        viviendas INTEGER,
-       cobertura NUMERIC(6,2)
+       cobertura NUMERIC(12,2)
 
 );
 
@@ -959,7 +959,7 @@ CREATE TABLE fonsagua.captaciones (
        tipo_construccion VARCHAR
 	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
-       volumen NUMERIC(6,2),
+       volumen NUMERIC(12,2),
        estado VARCHAR
 	       REFERENCES dominios.estado(item),
        utm_x FLOAT,
@@ -987,14 +987,14 @@ CREATE TABLE fonsagua.dep_intermedios (
        denominacion VARCHAR,
        ubicacion VARCHAR
 	       REFERENCES dominios.ubicacion(item),
-       altura NUMERIC(6,2),
+       altura NUMERIC(12,2),
        sistema VARCHAR
 	       REFERENCES dominios.sistema(item),
        cod_bombeo VARCHAR,
        tipo_construccion VARCHAR
 	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
-       volumen NUMERIC(6,2),
+       volumen NUMERIC(12,2),
        estado VARCHAR
 	       REFERENCES dominios.estado(item),
        utm_x FLOAT,
@@ -1022,12 +1022,12 @@ CREATE TABLE fonsagua.dep_distribucion (
        denominacion VARCHAR,
        ubicacion VARCHAR
 	       REFERENCES dominios.ubicacion(item),
-       altura NUMERIC(6,2),
+       altura NUMERIC(12,2),
        tipo_construccion VARCHAR
 	       REFERENCES dominios.tipo_construccion(item),
        anho_construccion INTEGER,
-       volumen NUMERIC(6,2),
-       t_llenado NUMERIC(6,2),
+       volumen NUMERIC(12,2),
+       t_llenado NUMERIC(12,2),
        estado VARCHAR
 	       REFERENCES dominios.estado(item),
        utm_x FLOAT,
@@ -1059,7 +1059,7 @@ CREATE TABLE fonsagua.tuberias (
 	       REFERENCES dominios.sistema(item),
        material VARCHAR
 	       REFERENCES dominios.material(item),
-       diametro NUMERIC(6,2),
+       diametro NUMERIC(12,2),
        anho_construccion INTEGER,
        estado VARCHAR
 	       REFERENCES dominios.estado(item),
@@ -1086,13 +1086,13 @@ CREATE TABLE fonsagua.gest_comercial (
 	       ON DELETE CASCADE
 	       ON UPDATE CASCADE,
        fecha Date,
-       produccion NUMERIC(6,2),
-       facturacion NUMERIC(6,2),
-       a_no_contabilizada NUMERIC(6,2),
-       pct_a_no_contabilizada NUMERIC(6,2),
+       produccion NUMERIC(12,2),
+       facturacion NUMERIC(12,2),
+       a_no_contabilizada NUMERIC(12,2),
+       pct_a_no_contabilizada NUMERIC(12,2),
        acometidas INTEGER,
        con_medidor INTEGER,
-       micromedicion NUMERIC(6,2)
+       micromedicion NUMERIC(12,2)
 
 );
 
@@ -1107,21 +1107,21 @@ CREATE TABLE fonsagua.gest_financiera (
 	       ON DELETE CASCADE
 	       ON UPDATE CASCADE,
        fecha Date,
-       cost_energetico NUMERIC(6,2),
-       cost_quimico NUMERIC(6,2),
-       cost_personal NUMERIC(6,2),
-       cost_diversos NUMERIC(6,2),
-       cost_totales NUMERIC(6,2),
-       ingr_totales NUMERIC(6,2),
-       facturacion NUMERIC(6,2),
-       produccion NUMERIC(6,2),
-       cost_produccion NUMERIC(6,2),
-       ingr_produccion NUMERIC(6,2),
-       fact_produc NUMERIC(6,2),
-       margen_utilidad NUMERIC(6,2),
-       activos_corrientes NUMERIC(6,2),
-       pasivos_corrientes NUMERIC(6,2),
-       razon_liquidez NUMERIC(6,2)
+       cost_energetico NUMERIC(12,2),
+       cost_quimico NUMERIC(12,2),
+       cost_personal NUMERIC(12,2),
+       cost_diversos NUMERIC(12,2),
+       cost_totales NUMERIC(12,2),
+       ingr_totales NUMERIC(12,2),
+       facturacion NUMERIC(12,2),
+       produccion NUMERIC(12,2),
+       cost_produccion NUMERIC(12,2),
+       ingr_produccion NUMERIC(12,2),
+       fact_produc NUMERIC(12,2),
+       margen_utilidad NUMERIC(12,2),
+       activos_corrientes NUMERIC(12,2),
+       pasivos_corrientes NUMERIC(12,2),
+       razon_liquidez NUMERIC(12,2)
 
 );
 
@@ -1136,15 +1136,15 @@ CREATE TABLE fonsagua.evaluacion (
 	       ON DELETE CASCADE
 	       ON UPDATE CASCADE,
        fecha Date,
-       cobertura NUMERIC(6,2),
-       agua_no_contabilizada NUMERIC(6,2),
-       micromedicion NUMERIC(6,2),
+       cobertura NUMERIC(12,2),
+       agua_no_contabilizada NUMERIC(12,2),
+       micromedicion NUMERIC(12,2),
        calidad_agua VARCHAR
 	       REFERENCES dominios.calidad_agua(item),
-       cob_saneamiento NUMERIC(6,2),
-       margen_utilidad NUMERIC(6,2),
-       razon_liquidez NUMERIC(6,2),
-       evaluacion NUMERIC(6,2)
+       cob_saneamiento NUMERIC(12,2),
+       margen_utilidad NUMERIC(12,2),
+       razon_liquidez NUMERIC(12,2),
+       evaluacion NUMERIC(12,2)
 
 );
 

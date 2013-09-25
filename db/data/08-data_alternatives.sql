@@ -26,11 +26,11 @@ CREATE TABLE fonsagua.alternativas (
        dot_sec_primario INTEGER,
        dot_sec_secundario INTEGER,
        dot_sec_terciario INTEGER,
-       dem_poblacion NUMERIC(6,2),
-       dem_centros NUMERIC(6,2),
-       dem_econ NUMERIC(6,2),
-       demanda NUMERIC(6,2),
-       caudal_fuentes NUMERIC(6,2),
+       dem_poblacion NUMERIC(12,2),
+       dem_centros NUMERIC(12,2),
+       dem_econ NUMERIC(12,2),
+       demanda NUMERIC(12,2),
+       caudal_fuentes NUMERIC(12,2),
        tipo_sistema VARCHAR
 	       REFERENCES dominios.tipo_sistema(item),
        n_acomedidas INTEGER,
@@ -62,20 +62,20 @@ CREATE TABLE fonsagua.preferencias_disenho (
 	       REFERENCES fonsagua.alternativas(cod_alternativa)
        	       ON DELETE CASCADE
 	       ON UPDATE CASCADE,
-       tasa_crecimiento NUMERIC(6,2) DEFAULT 2,
+       tasa_crecimiento NUMERIC(12,2) DEFAULT 2,
        ano_horiz_sistema INTEGER DEFAULT 20,
        ano_horiz_bomba INTEGER DEFAULT 10,
        dot_domiciliar INTEGER DEFAULT 90,
        dot_cantareras INTEGER DEFAULT 40,
-       f_var_estacional NUMERIC(6,2) DEFAULT 1.2,
-       f_var_horaria NUMERIC(6,2) DEFAULT 2.25,
-       coef_q_ecologico NUMERIC(6,2) DEFAULT 0.4,
+       f_var_estacional NUMERIC(12,2) DEFAULT 1.2,
+       f_var_horaria NUMERIC(12,2) DEFAULT 2.25,
+       coef_q_ecologico NUMERIC(12,2) DEFAULT 0.4,
        n_integrantes_familia INTEGER DEFAULT 6,
-       rendimiento_bomba NUMERIC(6,2) DEFAULT 0.6,
-       pvp_kwh NUMERIC(6,2) DEFAULT 4,
-       perdidas_puntual NUMERIC(6,2) DEFAULT 1,
-       v_min NUMERIC(6,2) DEFAULT 0.5,
-       v_max NUMERIC(6,2) DEFAULT 2,
+       rendimiento_bomba NUMERIC(12,2) DEFAULT 0.6,
+       pvp_kwh NUMERIC(12,2) DEFAULT 4,
+       perdidas_puntual NUMERIC(12,2) DEFAULT 1,
+       v_min NUMERIC(12,2) DEFAULT 0.5,
+       v_max NUMERIC(12,2) DEFAULT 2,
        presion_min INTEGER DEFAULT 10,
        presion_max INTEGER DEFAULT 50
 
@@ -90,7 +90,7 @@ CREATE TABLE fonsagua.preferencias_bombas (
        		UNIQUE
 		NOT NULL,
        bomba VARCHAR,
-       potencia NUMERIC(6,2),
+       potencia NUMERIC(12,2),
        precio_lmp FLOAT
 
 );
@@ -105,11 +105,11 @@ CREATE TABLE fonsagua.preferencias_tuberias (
 	      NOT NULL,
        denominacion VARCHAR,
        material VARCHAR,
-       diametro NUMERIC(6,2),
-       presion NUMERIC(6,2),
-       rugosidad NUMERIC(7,4),
-       precio_tubo NUMERIC(6,2),
-       precio_m NUMERIC(6,2)
+       diametro NUMERIC(12,2),
+       presion NUMERIC(12,2),
+       rugosidad NUMERIC(12,4),
+       precio_tubo NUMERIC(12,2),
+       precio_m NUMERIC(12,2)
 );
 
 
@@ -148,9 +148,9 @@ CREATE TABLE fonsagua.fuentes_implicadas (
        tipo_fuente VARCHAR
 	       NOT NULL
 	       REFERENCES dominios.tipo_fuente(item),
-       aforo NUMERIC(6,2),
-       q_ecol NUMERIC(6,2),
-       q_usar NUMERIC(6,2)
+       aforo NUMERIC(12,2),
+       q_ecol NUMERIC(12,2),
+       q_usar NUMERIC(12,2)
 
 );
 
@@ -168,11 +168,11 @@ CREATE TABLE fonsagua.alt_embalses (
        cod_embalse VARCHAR,
        existencia_elemento VARCHAR
 	       REFERENCES dominios.existencia_elemento(item),
-       aforo NUMERIC(6,2),
-       q_usar NUMERIC(6,2),
-       altura NUMERIC(6,2),
-       caudal NUMERIC(6,2),
-       altura_total NUMERIC(6,2)
+       aforo NUMERIC(12,2),
+       q_usar NUMERIC(12,2),
+       altura NUMERIC(12,2),
+       caudal NUMERIC(12,2),
+       altura_total NUMERIC(12,2)
 
 );
 
@@ -194,13 +194,13 @@ CREATE TABLE fonsagua.alt_fuentes (
 	       REFERENCES dominios.tipo_fuente_alternativa(item),
        existencia_elemento VARCHAR
 	       REFERENCES dominios.existencia_elemento(item),
-       aforo NUMERIC(6,2),
-       q_ecologico NUMERIC(6,2),
-       q_usar NUMERIC(6,2),
-       q_calculo NUMERIC(6,2),
-       altura NUMERIC(6,2),
-       presion NUMERIC(6,2),
-       altura_total NUMERIC(6,2)
+       aforo NUMERIC(12,2),
+       q_ecologico NUMERIC(12,2),
+       q_usar NUMERIC(12,2),
+       q_calculo NUMERIC(12,2),
+       altura NUMERIC(12,2),
+       presion NUMERIC(12,2),
+       altura_total NUMERIC(12,2)
 
 );
 
@@ -226,16 +226,16 @@ CREATE TABLE fonsagua.alt_depositos (
 	       REFERENCES dominios.ubicacion(item),
        tipo_construccion VARCHAR
 	       REFERENCES dominios.tipo_construccion(item),
-       vol_calculado NUMERIC(6,2),
-       volumen NUMERIC(6,2),
-       cota NUMERIC(6,2),
-       nivel_maximo NUMERIC(6,2),
-       nivel_minimo NUMERIC(6,2),
-       nivel_inicial NUMERIC(6,2),
-       diametro NUMERIC(6,2),
-       q_neto_entrante NUMERIC(6,2),
-       presion NUMERIC(6,2),
-       altura_total NUMERIC(6,2)
+       vol_calculado NUMERIC(12,2),
+       volumen NUMERIC(12,2),
+       cota NUMERIC(12,2),
+       nivel_maximo NUMERIC(12,2),
+       nivel_minimo NUMERIC(12,2),
+       nivel_inicial NUMERIC(12,2),
+       diametro NUMERIC(12,2),
+       q_neto_entrante NUMERIC(12,2),
+       presion NUMERIC(12,2),
+       altura_total NUMERIC(12,2)
 
 );
 
@@ -262,13 +262,13 @@ CREATE TABLE fonsagua.alt_tuberias (
        tuberia_comercial VARCHAR
 	       REFERENCES fonsagua.preferencias_tuberias(id_tub),
        material VARCHAR,
-       rugosidad NUMERIC(7,4),
-       diametro NUMERIC(6,2),
-       long_tuberia NUMERIC(6,2),
-       caudal NUMERIC(6,2),
-       velocidad NUMERIC(6,2),
-       perdida_carga NUMERIC(6,2),
-       factor_friccion NUMERIC(6,2)
+       rugosidad NUMERIC(12,4),
+       diametro NUMERIC(12,2),
+       long_tuberia NUMERIC(12,2),
+       caudal NUMERIC(12,2),
+       velocidad NUMERIC(12,2),
+       perdida_carga NUMERIC(12,2),
+       factor_friccion NUMERIC(12,2)
 
 );
 
@@ -293,15 +293,15 @@ CREATE TABLE fonsagua.alt_bombeos (
        energia VARCHAR
 	       REFERENCES dominios.energia(item),
        altura_bombeo INTEGER,
-       tiempo_bombeo NUMERIC(6,2),
-       caudal_bombeo NUMERIC(6,2),
-       potencia_disenho NUMERIC(6,2),
+       tiempo_bombeo NUMERIC(12,2),
+       caudal_bombeo NUMERIC(12,2),
+       potencia_disenho NUMERIC(12,2),
        cota INTEGER,
        bomba_comercial VARCHAR
 	       REFERENCES fonsagua.preferencias_bombas(id_bomba),
-       potencia NUMERIC(6,2),
-       caudal NUMERIC(6,2),
-       altura NUMERIC(6,2)
+       potencia NUMERIC(12,2),
+       caudal NUMERIC(12,2),
+       altura NUMERIC(12,2)
 
 );
 
@@ -319,12 +319,12 @@ CREATE TABLE fonsagua.alt_conexiones (
 	       ON UPDATE CASCADE,
        cod_conexion VARCHAR,
        denominacion VARCHAR,
-       cota NUMERIC(6,2),
+       cota NUMERIC(12,2),
        hab_conectados INTEGER,
-       q_extra NUMERIC(6,2),
-       demanda NUMERIC(6,2),
-       presion NUMERIC(6,2),
-       altura_total NUMERIC(6,2)
+       q_extra NUMERIC(12,2),
+       demanda NUMERIC(12,2),
+       presion NUMERIC(12,2),
+       altura_total NUMERIC(12,2)
 
 );
 
@@ -344,12 +344,12 @@ CREATE TABLE fonsagua.alt_valvulas (
        denominacion VARCHAR,
        existencia_elemento VARCHAR
 	       REFERENCES dominios.existencia_elemento(item),
-       cota NUMERIC(6,2),
+       cota NUMERIC(12,2),
        diametro INTEGER,
-       consigna NUMERIC(6,2),
-       caudal NUMERIC(6,2),
-       velocidad NUMERIC(6,2),
-       perdidas NUMERIC(6,2)
+       consigna NUMERIC(12,2),
+       caudal NUMERIC(12,2),
+       velocidad NUMERIC(12,2),
+       perdidas NUMERIC(12,2)
 
 );
 
@@ -367,72 +367,72 @@ CREATE TABLE fonsagua.presupuesto (
        	       ON DELETE CASCADE
 	       ON UPDATE CASCADE,
        presupuesto VARCHAR,
-       levantamiento_topo NUMERIC(7,2),
-       carpeta_tecnica NUMERIC(7,2),
-       analiticas NUMERIC(7,2),
-       estudio_hidro NUMERIC(7,2),
-       compra_terrenos NUMERIC(7,2),
-       legalizacion_terrenos NUMERIC(7,2),
-       personalidad_junta NUMERIC(7,2),
-       total_disenho NUMERIC(7,2),
-       captaciones NUMERIC(7,2),
-       tuberias_conduccion NUMERIC(7,2),
-       accesorios_conduccion NUMERIC(7,2),
-       depositos_bombeo NUMERIC(7,2),
-       estacion_bombeo NUMERIC(7,2),
-       bombas NUMERIC(7,2),
-       instalacion_electrica NUMERIC(7,2),
-       tuberias_bombeo NUMERIC(7,2),
-       accesorios_bombeo NUMERIC(7,2),
-       estructuras NUMERIC(7,2),
-       limpieza NUMERIC(7,2),
-       transporte NUMERIC(7,2),
-       total_conduccion NUMERIC(7,2),
-       depositos_distribucion NUMERIC(7,2),
-       sistema_potab NUMERIC(7,2),
-       tuberias_distribucion NUMERIC(7,2),
-       accesorios_distribucion NUMERIC(7,2),
-       tanques_rompecargas NUMERIC(7,2),
-       cantareras NUMERIC(7,2),
-       acomedidas NUMERIC(7,2),
-       herramientas NUMERIC(7,2),
-       bodega NUMERIC(7,2),
-       total_distribucion NUMERIC(7,2),
-       total_pilas NUMERIC(7,2),
-       proteccion_fuentes NUMERIC(7,2),
-       reforestacion NUMERIC(7,2),
-       total_proteccion NUMERIC(7,2),
-       personal_no_cualificado NUMERIC(7,2),
-       personal_especializado NUMERIC(7,2),
-       total_personal NUMERIC(7,2),
-       material_equipo NUMERIC(7,2),
-       varios_juntas NUMERIC(7,2),
-       cursos_comunidad NUMERIC(7,2),
-       total_implementacion NUMERIC(7,2),
-       total_abastecimiento NUMERIC(7,2),
-       trampas NUMERIC(7,2),
-       biofiltros NUMERIC(7,2),
-       resumidero NUMERIC(7,2),
-       let_fosa NUMERIC(7,2),
-       let_cierre NUMERIC(7,2),
-       let_aboneras NUMERIC(7,2),
-       total_saneamiento NUMERIC(7,2),
-       total_abast_san NUMERIC(7,2),
-       aporte_comunidad NUMERIC(7,2),
-       total NUMERIC(7,2),
-       total_persona NUMERIC(7,2),
-       amortizacion_bomba NUMERIC(7,2),
-       consumo_bomba NUMERIC(7,2),
-       mantenimiento_bomba NUMERIC(7,2),
-       amortizacion_tuberias NUMERIC(7,2),
-       analisis_agua NUMERIC(7,2),
-       cloro NUMERIC(7,2),
-       fungible NUMERIC(7,2),
-       fontanero NUMERIC(7,2),
-       reparaciones NUMERIC(7,2),
-       asistencia NUMERIC(7,2),
-       cuota NUMERIC(7,2),
-       cuota_persona NUMERIC(7,2)
+       levantamiento_topo NUMERIC(12,2),
+       carpeta_tecnica NUMERIC(12,2),
+       analiticas NUMERIC(12,2),
+       estudio_hidro NUMERIC(12,2),
+       compra_terrenos NUMERIC(12,2),
+       legalizacion_terrenos NUMERIC(12,2),
+       personalidad_junta NUMERIC(12,2),
+       total_disenho NUMERIC(12,2),
+       captaciones NUMERIC(12,2),
+       tuberias_conduccion NUMERIC(12,2),
+       accesorios_conduccion NUMERIC(12,2),
+       depositos_bombeo NUMERIC(12,2),
+       estacion_bombeo NUMERIC(12,2),
+       bombas NUMERIC(12,2),
+       instalacion_electrica NUMERIC(12,2),
+       tuberias_bombeo NUMERIC(12,2),
+       accesorios_bombeo NUMERIC(12,2),
+       estructuras NUMERIC(12,2),
+       limpieza NUMERIC(12,2),
+       transporte NUMERIC(12,2),
+       total_conduccion NUMERIC(12,2),
+       depositos_distribucion NUMERIC(12,2),
+       sistema_potab NUMERIC(12,2),
+       tuberias_distribucion NUMERIC(12,2),
+       accesorios_distribucion NUMERIC(12,2),
+       tanques_rompecargas NUMERIC(12,2),
+       cantareras NUMERIC(12,2),
+       acomedidas NUMERIC(12,2),
+       herramientas NUMERIC(12,2),
+       bodega NUMERIC(12,2),
+       total_distribucion NUMERIC(12,2),
+       total_pilas NUMERIC(12,2),
+       proteccion_fuentes NUMERIC(12,2),
+       reforestacion NUMERIC(12,2),
+       total_proteccion NUMERIC(12,2),
+       personal_no_cualificado NUMERIC(12,2),
+       personal_especializado NUMERIC(12,2),
+       total_personal NUMERIC(12,2),
+       material_equipo NUMERIC(12,2),
+       varios_juntas NUMERIC(12,2),
+       cursos_comunidad NUMERIC(12,2),
+       total_implementacion NUMERIC(12,2),
+       total_abastecimiento NUMERIC(12,2),
+       trampas NUMERIC(12,2),
+       biofiltros NUMERIC(12,2),
+       resumidero NUMERIC(12,2),
+       let_fosa NUMERIC(12,2),
+       let_cierre NUMERIC(12,2),
+       let_aboneras NUMERIC(12,2),
+       total_saneamiento NUMERIC(12,2),
+       total_abast_san NUMERIC(12,2),
+       aporte_comunidad NUMERIC(12,2),
+       total NUMERIC(12,2),
+       total_persona NUMERIC(12,2),
+       amortizacion_bomba NUMERIC(12,2),
+       consumo_bomba NUMERIC(12,2),
+       mantenimiento_bomba NUMERIC(12,2),
+       amortizacion_tuberias NUMERIC(12,2),
+       analisis_agua NUMERIC(12,2),
+       cloro NUMERIC(12,2),
+       fungible NUMERIC(12,2),
+       fontanero NUMERIC(12,2),
+       reparaciones NUMERIC(12,2),
+       asistencia NUMERIC(12,2),
+       cuota NUMERIC(12,2),
+       cuota_persona NUMERIC(12,2)
 
 );
 
@@ -451,7 +451,7 @@ CREATE TABLE fonsagua.priorizacion_alternativa_base (
                        REFERENCES fonsagua.alternativas(cod_alternativa)
 		       ON DELETE CASCADE
 		       ON UPDATE CASCADE,
-       dotacion NUMERIC(6,2),
+       dotacion NUMERIC(12,2),
        fuentes VARCHAR,
        calidad_agua VARCHAR
 	       REFERENCES dominios.calidad_agua(item),
