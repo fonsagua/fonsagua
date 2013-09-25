@@ -1,4 +1,4 @@
-INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('', NULL, NULL, NULL);
+INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES (' ', NULL, NULL, NULL);
 INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('0,5 HP', NULL, 0.5, 1404);
 INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('0,75 HP', NULL, 0.76, 1728);
 INSERT INTO fonsagua.preferencias_bombas (id_bomba, bomba, potencia, precio_lmp) VALUES ('1 HP', NULL, 1.01, 2052);

@@ -110,9 +110,7 @@ public class PredesignDialog extends JPanel implements SingletonWindow,
     private void loadCombos() {
 	List<Tuberia> tuberias = AlternativesPreferences.getTuberias();
 	DefaultComboBoxModel model1 = new DefaultComboBoxModel();
-	model1.addElement(" ");
 	DefaultComboBoxModel model2 = new DefaultComboBoxModel();
-	model2.addElement(" ");
 	for (Tuberia tuberia : tuberias) {
 	    model1.addElement(new Item(tuberia.getId(), tuberia.getDiametro()));
 	    model2.addElement(new Item(tuberia.getId(), tuberia.getDiametro()));
@@ -369,7 +367,8 @@ public class PredesignDialog extends JPanel implements SingletonWindow,
 
     private void computeVelocidad(String caudal_bombeo, Object tuberia,
 	    String widgetName) throws ParseException {
-	if ((caudal_bombeo.length() > 0) && (tuberia instanceof Item)) {
+	if ((caudal_bombeo.length() > 0) && (tuberia instanceof Item)
+		&& (((Item) tuberia).getValue() > 0)) {
 	    Double aux = nf.parse(caudal_bombeo).doubleValue()
 		    / 1000
 		    / (Math.pow(
@@ -389,8 +388,7 @@ public class PredesignDialog extends JPanel implements SingletonWindow,
 	    Double aux = 0.0025 * nf.parse(longitud).doubleValue()
 		    * Math.pow(nf.parse(velocidad).doubleValue(), 2)
 		    / ((((Item) tuberia)).getValue() / 1000) / 2 / 9.80665;
-	    ((JTextField) widgets.get(widgetName)).setText(String
-.format(
+	    ((JTextField) widgets.get(widgetName)).setText(String.format(
 		    "%.2f", aux));
 	} else {
 	    ((JTextField) widgets.get(widgetName)).setText("");
