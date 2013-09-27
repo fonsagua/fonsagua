@@ -10,6 +10,8 @@ import javax.swing.table.TableModel;
 
 import es.icarto.gvsig.navtableforms.gui.tables.model.NotEditableTableModel;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.PreferenciasForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.PresupuestoForm;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 import es.udc.cartolab.gvsig.users.utils.DBSessionSpatiaLite;
 
@@ -18,8 +20,14 @@ public class DatabaseDirectAccessQueries {
     public static void insertDefaultPreferences(String codAlt)
 	    throws SQLException {
 	DBSession session = DBSession.getCurrentSession();
-	session.insertRow(FonsaguaConstants.dataSchema,
-		AlternativesPreferences.ALTERNATIVAS_PREFERENCES_TABLE,
+	session.insertRow(FonsaguaConstants.dataSchema, PreferenciasForm.NAME,
+		new String[] { AlternativasForm.PKFIELD },
+		new String[] { codAlt });
+    }
+
+    public static void insertDefaultBudget(String codAlt) throws SQLException {
+	DBSession session = DBSession.getCurrentSession();
+	session.insertRow(FonsaguaConstants.dataSchema, PresupuestoForm.NAME,
 		new String[] { AlternativasForm.PKFIELD },
 		new String[] { codAlt });
     }

@@ -249,6 +249,8 @@ public class NewAlternativeDialog extends JPanel implements IWindow,
 
 		DatabaseDirectAccessQueries
 			.insertDefaultPreferences(codAltField.getText());
+		DatabaseDirectAccessQueries.insertDefaultBudget(codAltField
+			.getText());
 
 		OpenAlternativeExtension.openAlternative(values[0]);
 	    } else if (e.getSource() == cancelButton) {

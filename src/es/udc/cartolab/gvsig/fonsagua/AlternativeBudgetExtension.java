@@ -34,7 +34,7 @@ public class AlternativeBudgetExtension extends Extension {
 		    new String[0], new String[0]);
 	    if (model.getRowCount() > 0) {
 		form.setModel(model);
-		form.actionUpdateRecord(0);
+		form.actionUpdateRecord(model.convertRowIndexToModel(0));
 	    }
 	} catch (ReadDriverException e) {
 	    e.printStackTrace();
