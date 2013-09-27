@@ -107,16 +107,16 @@ INSERT INTO _map VALUES ('Vista general', 'areas_potenciales_riego', 'areas_pote
 INSERT INTO _map VALUES ('Vista general', 'abastecimientos', 'abastecimientos', 1, true, NULL, NULL, '', 'fonsagua', NULL);
 
 
---
--- Data for Name: _map_overview; Type: TABLE DATA; Schema: elle; Owner: fonsagua
---
-
-
-
---
--- Data for Name: _map_overview_style; Type: TABLE DATA; Schema: elle; Owner: fonsagua
---
-
+INSERT INTO elle._map VALUES ('Vista alternativas', 'alt_bombeos', 'alt_bombeos', 1, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO elle._map VALUES ('Vista alternativas', 'alt_conexiones', 'alt_conexiones', 2, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO elle._map VALUES ('Vista alternativas', 'alt_depositos', 'alt_depositos', 3, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO elle._map VALUES ('Vista alternativas', 'alt_fuentes', 'alt_fuentes', 4, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO elle._map VALUES ('Vista alternativas', 'alt_tuberias', 'alt_tuberias', 5, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO elle._map VALUES ('Vista alternativas', 'alt_valvulas', 'alt_valvulas', 6, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO elle._map VALUES ('Vista alternativas', 'alt_embalses', 'alt_embalses', 7, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO elle._map VALUES ('Vista alternativas', 'comunidades', 'comunidades', 8, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO elle._map VALUES ('Vista alternativas', 'fuentes', 'fuentes', 9, true, NULL, NULL, '', 'fonsagua', NULL);
+INSERT INTO elle._map VALUES ('Vista alternativas', 'alternativas', 'alternativas', 10, true, NULL, NULL, '', 'fonsagua', NULL);
 
 
 --
