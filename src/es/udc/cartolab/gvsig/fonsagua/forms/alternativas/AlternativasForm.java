@@ -48,7 +48,7 @@ public class AlternativasForm extends BasicAbstractForm {
 	comImplicadas = (JTable) formBody
 		.getComponentByName("comunidades_implicadas");
 	comImplicadasListener = new MyListener(
-		new SelectComunitiesForAlternativeDialog(2));
+		new SelectComunitiesForAlternativeDialog(3));
 	comImplicadas.addMouseListener(comImplicadasListener);
 	comImplicadas.getTableHeader().setReorderingAllowed(false);
 

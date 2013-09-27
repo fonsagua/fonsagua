@@ -42,7 +42,7 @@ public class DatabaseDirectAccessQueries {
 	String query = "SELECT c.comunidad AS \"Comunidad\", c.cod_comunidad AS \"Cod. Comunidad\", c.n_habitantes AS \"Habitantes totales\", ci.n_hab_alternativa AS \"Habitantes alternativa\" FROM fonsagua.comunidades AS c JOIN fonsagua.alternativas AS a ON st_intersects(a.geom, c.geom) FULL OUTER JOIN fonsagua.comunidades_implicadas AS ci ON ci.comunidad = c.comunidad AND a.cod_alternativa = ci.cod_alternativa WHERE a.cod_alternativa = '####';";
 	ResultSet rs = convertAndExecuteQuery(codAlt, query);
 
-	DefaultTableModel modelo = new OnlyOneColumnEditable(2);
+	DefaultTableModel modelo = new OnlyOneColumnEditable(3);
 	ConversorResultSetADefaultTableModel.rellena(rs, modelo);
 	return modelo;
     }

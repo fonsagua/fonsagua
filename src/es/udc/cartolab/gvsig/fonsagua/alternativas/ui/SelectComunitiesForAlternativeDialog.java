@@ -46,6 +46,7 @@ public class SelectComunitiesForAlternativeDialog extends
 	}
 
 	for (int row = 0; row < org.getRowCount(); row++) {
+
 	    double editableColumnValue = getNumericValueAt(org, row,
 		    getEditableColumnIdx());
 	    double baseValue = getNumericValueAt(org, row,
@@ -57,9 +58,6 @@ public class SelectComunitiesForAlternativeDialog extends
 	    }
 	}
 
-	if (copy.getRowCount() == 0) {
-	    copy.addRow(new Vector<Object>());
-	}
 	return copy;
     }
 
