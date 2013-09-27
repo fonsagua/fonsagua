@@ -91,7 +91,7 @@ CREATE TABLE fonsagua.preferencias_bombas (
 		NOT NULL,
        bomba VARCHAR,
        potencia NUMERIC(12,2),
-       precio_lmp FLOAT
+       precio_m NUMERIC(12,2)
 
 );
 

@@ -38,7 +38,7 @@ public interface FonsaguaConstants {
 	    "Precio ($/m)" };
     public static final String BOMBAS_COMERCIALES_NAME = "preferencias_bombas";
     public static final String[] BOMBAS_COMERCIALES_TABLE_FIELDS = {
-	    "id_bomba", "potencia", "precio_lmp" };
+	    "id_bomba", "potencia", "precio_m" };
     public static final String[] BOMBAS_COMERCIALES_TABLE_ALIAS = { "ID",
 	    "Potencia (CV)", "Precio ($)" };
 

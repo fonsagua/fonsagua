@@ -16,12 +16,6 @@ public class AlternativesPreferences {
 	    "f_var_horaria", "coef_q_ecologico", "n_integrantes_familia",
 	    "rendimiento_bomba", "pvp_kwh", "perdidas_puntual", "v_min",
 	    "v_max", "presion_min", "presion_max" };
-    public static final String BOMBAS_TABLE = "preferencias_bombas";
-    public static final String[] BOMBAS_FIELDS = { "id_bomba", "bomba",
-	    "potencia", "precio_m" };
-    public static final String TUBERIAS_TABLE = "preferencias_tuberias";
-    public static final String[] TUBERIAS_FIELDS = { "id_tub", "denominacion",
-	    "material", "diametro", "presion", "rugosidad", "precio_lmp" };
 
     private static AlternativesPreferences instance = new AlternativesPreferences();
     private static List<Bomba> bombas;
@@ -140,8 +134,11 @@ public class AlternativesPreferences {
 	    if (bombas == null) {
 		bombas = new ArrayList<Bomba>();
 		String[][] rows = DBSession.getCurrentSession().getTable(
-			BOMBAS_TABLE, FonsaguaConstants.dataSchema,
-			BOMBAS_FIELDS, "", BOMBAS_FIELDS, false);
+			FonsaguaConstants.BOMBAS_COMERCIALES_NAME,
+			FonsaguaConstants.dataSchema,
+			FonsaguaConstants.BOMBAS_COMERCIALES_TABLE_FIELDS, "",
+			FonsaguaConstants.BOMBAS_COMERCIALES_TABLE_FIELDS,
+			false);
 		for (String[] row : rows) {
 		    bombas.add(new Bomba(row[0], row[1], row[2], row[3]));
 		}
@@ -157,8 +154,12 @@ public class AlternativesPreferences {
 	    if (tuberias == null) {
 		tuberias = new ArrayList<Tuberia>();
 		String[][] rows = DBSession.getCurrentSession().getTable(
-			TUBERIAS_TABLE, FonsaguaConstants.dataSchema,
-			TUBERIAS_FIELDS, "", TUBERIAS_FIELDS, false);
+			FonsaguaConstants.TUBERIAS_COMERCIALES_NAME,
+			FonsaguaConstants.dataSchema,
+			FonsaguaConstants.TUBERIAS_COMERCIALES_TABLE_FIELDS,
+			"",
+			FonsaguaConstants.TUBERIAS_COMERCIALES_TABLE_FIELDS,
+			false);
 		for (String[] row : rows) {
 		    tuberias.add(new Tuberia(row[0], row[1], row[2], row[3],
 			    row[4], row[5], row[6]));
