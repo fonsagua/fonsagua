@@ -3,5 +3,6 @@
     <xml-tag>
         <property key="com.iver.andami.pluginName" value="com.iver.cit.gvsig"/>
         <property key="DefaultProjection" value="EPSG:32616"/>
+        <property key="AleatoryFillColor" value="true"/>
     </xml-tag>
 </xml-tag>
