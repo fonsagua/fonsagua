@@ -21,7 +21,7 @@ public class FonsaguaFilterFields {
 	orderBy[0] = FonsaguaConstants.departamentosPK;
 	String[][] departamentos = DBSession.getCurrentSession().getTable(
 		FonsaguaConstants.departamentosTable,
-		FonsaguaConstants.baseSchema, fields, "", orderBy, false);
+		FonsaguaConstants.limitsSchema, fields, "", orderBy, false);
 	for (String[] depart : departamentos) {
 	    departNames.put(depart[0], depart[1]);
 	}
@@ -37,7 +37,7 @@ public class FonsaguaFilterFields {
 	orderBy[0] = FonsaguaConstants.municipiosPK;
 	String[][] municipios = DBSession.getCurrentSession().getTable(
 		FonsaguaConstants.municipiosTable,
-		FonsaguaConstants.baseSchema, fields, "", orderBy, false);
+		FonsaguaConstants.limitsSchema, fields, "", orderBy, false);
 	for (String[] munic : municipios) {
 	    if ((munic[0] != null) && (munic[0].length() >= 2)) {
 		municNames.put(munic[0], munic[1]);
@@ -55,8 +55,8 @@ public class FonsaguaFilterFields {
 	fields[1] = FonsaguaConstants.cantonesName;
 	orderBy[0] = FonsaguaConstants.cantonesPK;
 	String[][] cantones = DBSession.getCurrentSession().getTable(
-		FonsaguaConstants.cantonesTable, FonsaguaConstants.baseSchema,
-		fields, "", orderBy, false);
+		FonsaguaConstants.cantonesTable,
+		FonsaguaConstants.limitsSchema, fields, "", orderBy, false);
 	for (String[] canton : cantones) {
 	    if ((canton[0] != null) && (canton[0].length() >= 4)) {
 		cantonNames.put(canton[0], canton[1]);

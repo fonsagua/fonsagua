@@ -4,6 +4,7 @@ public interface FonsaguaConstants {
 
     public static final String dataSchema = "fonsagua";
     public static final String baseSchema = "c_base";
+    public static final String limitsSchema = "limites_administrativos";
 
     public static final String departamentosTable = "departamentos";
     public static final String departamentosPK = "cdpto";
