@@ -27,9 +27,12 @@ public interface FonsaguaConstants {
 	    "comunidad", "n_habitantes", "n_hab_alternativa" };
     public static final String FUENTES_IMPLICADAS = "fuentes_implicadas";
 
-    public static final String AlternativesMap = "Vista alternativas";
-    public static final String GeneralMap = "Vista general";
-
+    // These ELLE Map are disjunctive, you should load each.
+    public static final String BaseMap = "base";
+    public static final String AlternativesMap = "alternativas";
+    public static final String GeneralMap = "general";
+    // Group name of the alternative layers: 'alternativas', 'alt_bombeos', ...
+    public static final String AlternativeGroup = "Alternativa";
     public static final String TUBERIAS_COMERCIALES_NAME = "preferencias_tuberias";
     public static final String[] TUBERIAS_COMERCIALES_TABLE_FIELDS = {
 	    "id_tub", "material", "diametro", "presion", "rugosidad",

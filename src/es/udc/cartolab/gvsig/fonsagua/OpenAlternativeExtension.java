@@ -10,9 +10,6 @@ import com.iver.andami.PluginServices;
 import com.iver.cit.gvsig.project.documents.view.gui.View;
 
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
-import es.udc.cartolab.gvsig.elle.utils.ELLEMap;
-import es.udc.cartolab.gvsig.elle.utils.LoadLegend;
-import es.udc.cartolab.gvsig.elle.utils.MapDAO;
 import es.udc.cartolab.gvsig.epanet.JunctionExtension;
 import es.udc.cartolab.gvsig.epanet.PipeExtension;
 import es.udc.cartolab.gvsig.epanet.PumpExtension;
@@ -74,25 +71,15 @@ public class OpenAlternativeExtension extends OpenAbstractExtension {
     public static void openAlternative(String code) {
 	OpenAlternativeExtension.code = code;
 
-	MapDAO mapDAO = MapDAO.getInstance();
+	final String sqlWhere = "where " + AlternativasForm.PKFIELD + " = '"
+		+ code + "'";
 	try {
-	    final View view = createViewIfNeeded("Alternativas");
-	    ELLEMap map = mapDAO.getMap(view,
-		    FonsaguaConstants.AlternativesMap, LoadLegend.DB_LEGEND,
-		    FonsaguaConstants.AlternativesMap);
+	    final View view = createViewIfNeeded("Alternativa: " + code);
+	    loadMap(view, FonsaguaConstants.BaseMap);
+	    loadMap(view, FonsaguaConstants.GeneralMap);
+	    removeGroupAlternative(view);
+	    loadGroupAlternative(view, sqlWhere);
 
-	    // TODO: This strings should not be hard coded
-	    final String sqlWhere = "where " + AlternativasForm.PKFIELD
-		    + " = '" + code + "'";
-	    map.getLayer("alt_bombeos").setWhere(sqlWhere);
-	    map.getLayer("alt_conexiones").setWhere(sqlWhere);
-	    map.getLayer("alt_depositos").setWhere(sqlWhere);
-	    map.getLayer("alt_fuentes").setWhere(sqlWhere);
-	    map.getLayer("alt_tuberias").setWhere(sqlWhere);
-	    map.getLayer("alt_valvulas").setWhere(sqlWhere);
-	    map.getLayer("alt_embalses").setWhere(sqlWhere);
-	    map.getLayer("alternativas").setWhere(sqlWhere);
-	    map.load(view.getProjection());
 	    zoomToLayer(view, AlternativasForm.NAME);
 	} catch (Exception e) {
 	    // TODO: catch error
