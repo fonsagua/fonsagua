@@ -104,7 +104,7 @@ public class NewAlternativeDialog extends JPanel implements IWindow,
 	}
     }
 
-    private void initialize() throws Exception {
+    private void initialize() {
 
 	this.setLayout(new MigLayout());
 
@@ -179,7 +179,6 @@ public class NewAlternativeDialog extends JPanel implements IWindow,
 	    }
 	}
 	municCombo.setModel(new DefaultComboBoxModel(items));
-	municCombo.setSelectedIndex(0);
     }
 
     private void updateCantonCombo() {
@@ -193,7 +192,6 @@ public class NewAlternativeDialog extends JPanel implements IWindow,
 	    }
 	}
 	cantonCombo.setModel(new DefaultComboBoxModel(items));
-	cantonCombo.setSelectedIndex(0);
     }
 
     @Override
