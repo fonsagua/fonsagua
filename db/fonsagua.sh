@@ -85,7 +85,7 @@ if [ $schema == "all" ] ; then
     create-db || error
 
     for file in `ls ./data/*.sql` ; do
-	$PSQL -h $server -U $user -p $port -d $dbname -f $file
+	$PSQL -h $server -U $user -p $port -d $dbname -f $file || error "Procesando fichero $file"
     done
 
     if [ $config_file == "./db_config_devel" ] ; then
