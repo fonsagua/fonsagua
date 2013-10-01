@@ -89,7 +89,6 @@ CREATE TABLE fonsagua.preferencias_bombas (
        id_bomba VARCHAR
        		UNIQUE
 		NOT NULL,
-       bomba VARCHAR,
        potencia NUMERIC(12,2),
        precio_m NUMERIC(12,2)
 
@@ -103,7 +102,6 @@ CREATE TABLE fonsagua.preferencias_tuberias (
        id_tub VARCHAR
        	      UNIQUE
 	      NOT NULL,
-       denominacion VARCHAR,
        material VARCHAR,
        diametro NUMERIC(12,2),
        presion NUMERIC(12,2),
