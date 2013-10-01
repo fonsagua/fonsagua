@@ -3,7 +3,9 @@ package es.udc.cartolab.gvsig.fonsagua.alternativas.ui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.HashMap;
 
 import javax.swing.JButton;
@@ -16,6 +18,7 @@ import javax.swing.table.TableModel;
 import com.iver.andami.PluginServices;
 
 import es.udc.cartolab.gvsig.navtable.dataacces.IController;
+import es.udc.cartolab.gvsig.navtable.format.DoubleFormatNT;
 
 @SuppressWarnings("serial")
 public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
@@ -29,8 +32,13 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
     protected String code;
     private int editableColumnIdx;
 
+    protected final NumberFormat doubleFormat;
+
     public SelectElementForAlternativeDialog(int editableColumnIdx) {
 	super(new BorderLayout());
+	doubleFormat = DoubleFormatNT.getDisplayingFormat();
+	doubleFormat.setMinimumFractionDigits(2);
+	doubleFormat.setMaximumFractionDigits(2);
 	this.editableColumnIdx = editableColumnIdx;
 	addTablePanel();
 	addButtons();
@@ -70,18 +78,20 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
 	PluginServices.getMDIManager().closeWindow(this);
     }
 
-    protected double getNumericValueAt(TableModel tmodel, int row, int column) {
-	double doubleValue = 0;
+    protected BigDecimal getNumericValueAt(TableModel tmodel, int row,
+	    int column) {
+
+	BigDecimal doubleValue = BigDecimal.valueOf(0);
 	try {
 	    Object value = tmodel.getValueAt(row, column);
 	    if (value instanceof String) {
-		doubleValue = Double.parseDouble(((String) value).replace(",",
-			"."));
+		doubleValue = new BigDecimal(((String) value).replace(",", "."));
 	    } else if (value instanceof Number) {
-		doubleValue = ((Number) value).doubleValue();
+		doubleValue = new BigDecimal(doubleFormat.format(value)
+			.replace(",", "."));
 	    }
 	} catch (NumberFormatException e) {
-	    doubleValue = 0;
+	    doubleValue = BigDecimal.valueOf(0);
 	}
 	return doubleValue;
     }
@@ -97,7 +107,8 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
     public double getSumEditableColumnValue() {
 	double sum = 0;
 	for (int i = 0; i < filteredModel.getRowCount(); i++) {
-	    sum += getNumericValueAt(filteredModel, i, getEditableColumnIdx());
+	    sum += getNumericValueAt(filteredModel, i, getEditableColumnIdx())
+		    .doubleValue();
 	}
 	return sum;
     }

@@ -1,5 +1,6 @@
 package es.udc.cartolab.gvsig.fonsagua.alternativas.ui;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.HashMap;
@@ -56,12 +57,13 @@ public class SelectComunitiesForAlternativeDialog extends
 
 	for (int row = 0; row < org.getRowCount(); row++) {
 
-	    double editableColumnValue = getNumericValueAt(org, row,
+	    BigDecimal editableColumnValue = getNumericValueAt(org, row,
 		    getEditableColumnIdx());
-	    double baseValue = getNumericValueAt(org, row,
+	    BigDecimal baseValue = getNumericValueAt(org, row,
 		    getEditableColumnIdx() - 1);
 
-	    if (editableColumnValue > 0 && editableColumnValue <= baseValue) {
+	    if (editableColumnValue.doubleValue() > 0
+		    && baseValue.compareTo(editableColumnValue) >= 0) {
 		Object rowData = org.getDataVector().get(row);
 		copy.addRow((Vector) rowData);
 	    }

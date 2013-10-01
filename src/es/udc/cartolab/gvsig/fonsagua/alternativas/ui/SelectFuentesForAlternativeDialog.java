@@ -1,7 +1,7 @@
 package es.udc.cartolab.gvsig.fonsagua.alternativas.ui;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -15,20 +15,14 @@ import com.iver.cit.gvsig.fmap.drivers.DBException;
 
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 import es.udc.cartolab.gvsig.navtable.dataacces.IController;
-import es.udc.cartolab.gvsig.navtable.format.DoubleFormatNT;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 @SuppressWarnings("serial")
 public class SelectFuentesForAlternativeDialog extends
 	SelectElementForAlternativeDialog {
 
-    private final NumberFormat doubleFormat;
-
     public SelectFuentesForAlternativeDialog(int editableColumnIdx) {
 	super(editableColumnIdx);
-	doubleFormat = DoubleFormatNT.getDisplayingFormat();
-	doubleFormat.setMinimumFractionDigits(2);
-	doubleFormat.setMaximumFractionDigits(2);
 	setWindowTitle(PluginServices.getText(this, "select_flow_sources"));
     }
 
@@ -66,16 +60,16 @@ public class SelectFuentesForAlternativeDialog extends
 	}
 
 	for (int row = 0; row < org.getRowCount(); row++) {
-	    double editableColumnValue = getNumericValueAt(org, row,
+	    BigDecimal editableColumnValue = getNumericValueAt(org, row,
 		    getEditableColumnIdx());
-	    double baseValue = getNumericValueAt(org, row,
+	    BigDecimal baseValue = getNumericValueAt(org, row,
 		    getEditableColumnIdx() - 1);
 
-	    if (editableColumnValue > 0) {
+	    if (editableColumnValue.doubleValue() > 0) {
 		String tipo_fuente = (String) org.getValueAt(row, 1);
 		if (tipo_fuente.equals("Punto rio")
 			|| tipo_fuente.equals("Manantial")) {
-		    if (editableColumnValue <= baseValue) {
+		    if (baseValue.compareTo(editableColumnValue) >= 0) {
 			Object rowData = org.getDataVector().get(row);
 			copy.addRow((Vector) rowData);
 		    }
