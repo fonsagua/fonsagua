@@ -140,7 +140,7 @@ public class AlternativesPreferences {
 			FonsaguaConstants.BOMBAS_COMERCIALES_TABLE_FIELDS,
 			false);
 		for (String[] row : rows) {
-		    bombas.add(new Bomba(row[0], row[1], row[2], row[3]));
+		    bombas.add(new Bomba(row[0], row[0], row[1], row[2]));
 		}
 	    }
 	} catch (SQLException e) {
@@ -161,8 +161,8 @@ public class AlternativesPreferences {
 			FonsaguaConstants.TUBERIAS_COMERCIALES_TABLE_FIELDS,
 			false);
 		for (String[] row : rows) {
-		    tuberias.add(new Tuberia(row[0], row[1], row[2], row[3],
-			    row[4], row[5], row[6]));
+		    tuberias.add(new Tuberia(row[0], row[0], row[1], row[2],
+			    row[3], row[4], row[5]));
 		}
 	    }
 	} catch (SQLException e) {
