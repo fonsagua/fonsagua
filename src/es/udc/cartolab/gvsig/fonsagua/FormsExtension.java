@@ -9,7 +9,7 @@ import com.iver.utiles.extensionPoints.ExtensionPointsSingleton;
 import es.icarto.gvsig.navtableforms.AbstractForm;
 import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
-import es.udc.cartolab.gvsig.fonsagua.utils.AvailableForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.EnabilityConditions;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFormFactory;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaTocMenuEntry;
 
@@ -34,7 +34,7 @@ public class FormsExtension extends Extension {
     public boolean isEnabled() {
 	layers = new TOCLayerManager().getActiveLayers();
 	for (FLyrVect layer : layers) {
-	    if (AvailableForm.forLayer(layer)) {
+	    if (EnabilityConditions.isFormOpenable(layer)) {
 		return true;
 	    }
 	}
@@ -44,7 +44,7 @@ public class FormsExtension extends Extension {
     @Override
     public void execute(String actionCommand) {
 	for (FLyrVect layer : layers) {
-	    if (AvailableForm.forLayer(layer)) {
+	    if (EnabilityConditions.isFormOpenable(layer)) {
 		AbstractForm dialog = FormFactory.createFormRegistered(layer);
 
 		if ((dialog != null) && (dialog.init())) {

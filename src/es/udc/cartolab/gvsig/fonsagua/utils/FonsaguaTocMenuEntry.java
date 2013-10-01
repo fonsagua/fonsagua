@@ -14,7 +14,7 @@ public class FonsaguaTocMenuEntry extends AbstractTocContextMenuAction {
     @Override
     public void execute(ITocItem item, FLayer[] selectedItems) {
 	for (FLayer layer : selectedItems) {
-	    if (AvailableForm.forLayer(layer)) {
+	    if (EnabilityConditions.isFormOpenable(layer)) {
 		AbstractForm dialog = FormFactory
 			.createFormRegistered((FLyrVect) layer);
 		if ((dialog != null) && (dialog.init())) {
@@ -53,7 +53,7 @@ public class FonsaguaTocMenuEntry extends AbstractTocContextMenuAction {
     public boolean isVisible(ITocItem item, FLayer[] selectedItems) {
 	if (isTocItemBranch(item) && !(selectedItems == null)) {
 	    for (FLayer layer : selectedItems) {
-		if (AvailableForm.forLayer(layer)) {
+		if (EnabilityConditions.isFormOpenable(layer)) {
 		    return true;
 		}
 	    }

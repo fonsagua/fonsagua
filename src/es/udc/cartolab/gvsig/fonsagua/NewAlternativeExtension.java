@@ -17,10 +17,10 @@ import com.iver.cit.gvsig.listeners.CADListenerManager;
 import com.iver.cit.gvsig.listeners.EndGeometryListener;
 import com.iver.cit.gvsig.project.documents.view.gui.View;
 
-import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
 import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.NewAlternativeDialog;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.EnabilityConditions;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFilterFields;
 
 public class NewAlternativeExtension extends Extension {
@@ -59,8 +59,7 @@ public class NewAlternativeExtension extends Extension {
 
     @Override
     public boolean isEnabled() {
-	return FormFactory.checkLayerLoadedRegistered(AlternativasForm.NAME)
-		&& OpenAlternativeExtension.getCode() == null;
+	return EnabilityConditions.isAllAlternativesMode();
     }
 
     @Override

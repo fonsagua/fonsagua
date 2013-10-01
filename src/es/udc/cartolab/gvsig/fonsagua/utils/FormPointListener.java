@@ -54,7 +54,7 @@ public class FormPointListener extends PointSelectionListener {
 	    PluginServices.getMDIManager().setWaitCursor();
 	    FLyrVect[] actives = new TOCLayerManager().getActiveLayers();
 	    for (FLyrVect layer : actives) {
-		if (AvailableForm.forLayer(layer)) {
+		if (EnabilityConditions.isFormOpenable(layer)) {
 		    Point2D p = event.getPoint();
 		    if (openForm(layer, p)) {
 			break;

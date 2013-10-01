@@ -8,7 +8,7 @@ import com.iver.cit.gvsig.fmap.tools.Behavior.PointBehavior;
 import com.iver.cit.gvsig.project.documents.view.gui.View;
 
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
-import es.udc.cartolab.gvsig.fonsagua.utils.AvailableForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.EnabilityConditions;
 import es.udc.cartolab.gvsig.fonsagua.utils.FormPointListener;
 
 //TODO: Too much shared coded with FormsExtension
@@ -40,7 +40,7 @@ public class FormPointExtension extends Extension {
     public boolean isEnabled() {
 	FLyrVect[] layers = new TOCLayerManager().getActiveLayers();
 	for (FLyrVect layer : layers) {
-	    if (AvailableForm.forLayer(layer)) {
+	    if (EnabilityConditions.isFormOpenable(layer)) {
 		return true;
 	    }
 	}
