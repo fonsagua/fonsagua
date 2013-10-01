@@ -112,8 +112,8 @@ public class SelectCommunityForAltPriorDialog extends JPanel implements IWindow,
 				    new PriorizacionDialog(communityCode,
 					    communityName));
 	    }
-	    PluginServices.getMDIManager().closeWindow(this);
 	}
+	PluginServices.getMDIManager().closeWindow(this);
     }
 
     @Override
