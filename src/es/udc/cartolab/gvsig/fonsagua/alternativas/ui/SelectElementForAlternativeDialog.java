@@ -54,7 +54,6 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
 
     @Override
     public void actionPerformed(ActionEvent e) {
-	filteredModel = null;
 	if (e.getSource() == okButton) {
 	    try {
 		if (table.isEditing()) {
@@ -103,7 +102,9 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
 	return sum;
     }
 
-    public abstract void update(String code);
+    public void update(String code) {
+	filteredModel = null;
+    }
 
     public abstract void removeAndInsertModel(TableModel filteredModel,
 	    String code) throws SQLException;

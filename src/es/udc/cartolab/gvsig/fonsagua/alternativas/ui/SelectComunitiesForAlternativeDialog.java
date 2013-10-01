@@ -27,11 +27,16 @@ public class SelectComunitiesForAlternativeDialog extends
 
     @Override
     public void update(String code) {
+	super.update(code);
 	this.code = code;
 	try {
 	    model = DatabaseDirectAccessQueries
 		    .getComunitiesIntersectingAlternative(code);
 	    table.setModel(model);
+	    table.getColumnModel().removeColumn(
+		    table.getColumnModel().getColumn(1));
+	    table.getColumnModel().removeColumn(
+		    table.getColumnModel().getColumn(3));
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
@@ -64,7 +69,7 @@ public class SelectComunitiesForAlternativeDialog extends
     @Override
     public void removeAndInsertModel(TableModel filteredModel, String code)
 	    throws SQLException {
-	DatabaseDirectAccessQueries.removeAndInsertModelComunidades(
+	DatabaseDirectAccessQueries.updateModelComunidades(
 		filteredModel, code);
     }
 

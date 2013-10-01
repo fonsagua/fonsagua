@@ -47,7 +47,7 @@ public class DatabaseDirectAccessQueries {
     public static DefaultTableModel getComunitiesIntersectingAlternative(
 	    String codAlt) throws SQLException {
 
-	String query = "SELECT c.comunidad AS \"Comunidad\", c.cod_comunidad AS \"Cod. Comunidad\", c.n_habitantes AS \"Habitantes totales\", ci.n_hab_alternativa AS \"Habitantes alternativa\" FROM fonsagua.comunidades AS c JOIN fonsagua.alternativas AS a ON st_intersects(a.geom, c.geom) FULL OUTER JOIN fonsagua.comunidades_implicadas AS ci ON ci.comunidad = c.comunidad AND a.cod_alternativa = ci.cod_alternativa WHERE a.cod_alternativa = '####';";
+	String query = "SELECT c.comunidad AS \"Comunidad\", c.cod_comunidad AS \"Cod. Comunidad\", c.n_habitantes AS \"Habitantes totales\", ci.n_hab_alternativa AS \"Habitantes alternativa\", ci.gid FROM fonsagua.comunidades AS c JOIN fonsagua.alternativas AS a ON st_intersects(a.geom, c.geom) FULL OUTER JOIN fonsagua.comunidades_implicadas AS ci ON ci.comunidad = c.comunidad AND a.cod_alternativa = ci.cod_alternativa WHERE a.cod_alternativa = '####';";
 	ResultSet rs = convertAndExecuteQuery(codAlt, query);
 
 	DefaultTableModel modelo = new OnlyOneColumnEditable(3);
@@ -127,12 +127,20 @@ public class DatabaseDirectAccessQueries {
 
     }
 
-    public static void removeAndInsertModelComunidades(TableModel model,
+    public static void updateModelComunidades(TableModel model,
 	    String code) throws SQLException {
 	DBSession session = DBSession.getCurrentSession();
 
+	String comunidades = "";
+	for (int row = 0; row < model.getRowCount(); row++) {
+	    comunidades += "'" + model.getValueAt(row, 1) + "', ";
+	}
+	if (comunidades.endsWith(", ")) {
+	    comunidades = comunidades.substring(0, comunidades.length() - 2);
+	}
 	String whereClause = getQueryWithCodeInsteadOfPlaceHolders(code,
-		"WHERE cod_alternativa = '####'");
+		"WHERE cod_alternativa = '####' AND cod_comunidad NOT IN ("
+			+ comunidades + ")");
 	session.deleteRows(FonsaguaConstants.dataSchema,
 		FonsaguaConstants.COMUNIDADES_IMPLICADAS, whereClause);
 
@@ -141,15 +149,26 @@ public class DatabaseDirectAccessQueries {
 
 	Object[] values;
 	for (int row = 0; row < model.getRowCount(); row++) {
-	    values = new Object[model.getColumnCount() + 1];
+	    values = new Object[model.getColumnCount()];
 	    values[0] = code;
 	    values[1] = model.getValueAt(row, 0);
 	    values[2] = model.getValueAt(row, 1);
 	    values[3] = model.getValueAt(row, 2);
 	    values[4] = model.getValueAt(row, 3);
-	    session.insertRow(FonsaguaConstants.dataSchema,
-		    FonsaguaConstants.COMUNIDADES_IMPLICADAS, columnNames,
-		    values);
+	    if (model.getValueAt(row, 4) == null) {
+		session.insertRow(FonsaguaConstants.dataSchema,
+			FonsaguaConstants.COMUNIDADES_IMPLICADAS, columnNames,
+			values);
+	    } else {
+		session.updateRows(
+			FonsaguaConstants.dataSchema,
+			FonsaguaConstants.COMUNIDADES_IMPLICADAS,
+			columnNames,
+			values,
+			"WHERE "
+				+ FonsaguaConstants.COMUNIDADES_IMPLICADAS_PK_FIELD
+				+ " = '" + model.getValueAt(row, 4) + "'");
+	    }
 	}
 
     }

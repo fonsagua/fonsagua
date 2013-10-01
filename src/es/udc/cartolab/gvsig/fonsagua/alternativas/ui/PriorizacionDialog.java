@@ -24,6 +24,7 @@ import com.jeta.forms.gui.common.FormException;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.AlphanumericUpdateTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.BaseTableHandler;
 import es.icarto.gvsig.navtableforms.utils.AbeilleParser;
+import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltPriorizacionForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 
@@ -55,6 +56,8 @@ public class PriorizacionDialog extends JPanel implements ActionListener,
 	    widgets = AbeilleParser.getWidgetsFromContainer(formBody);
 	    ((JTextField) widgets.get(COD_WIDGET)).setText(communityCode);
 	    ((JTextField) widgets.get(NAME_WIDGET)).setText(communityName);
+	    // We make sure the table is closed, so it's reloaded
+	    new TOCTableManager().closeTableByName(AltPriorizacionForm.NAME);
 	    handler = new AlphanumericUpdateTableHandler(
 		    AltPriorizacionForm.NAME,
 		    widgets, ComunidadesForm.PKFIELD,

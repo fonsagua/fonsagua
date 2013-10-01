@@ -32,6 +32,7 @@ public class SelectFuentesForAlternativeDialog extends
 
     @Override
     public void update(String code) {
+	super.update(code);
 	this.code = code;
 	try {
 	    model = DatabaseDirectAccessQueries

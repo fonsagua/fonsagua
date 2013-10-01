@@ -107,6 +107,8 @@ public class AlternativasForm extends BasicAbstractForm {
 
 	    comImplicadas.setModel(addRowIfEmpty(DatabaseDirectAccessQueries
 		    .getComunidadesImplicadasTable(getPrimaryKeyValue())));
+	    comImplicadas.getColumnModel().removeColumn(
+		    comImplicadas.getColumnModel().getColumn(1));
 
 	    fuentesImplicadas
 		    .setModel(addRowIfEmpty(DatabaseDirectAccessQueries
@@ -182,9 +184,13 @@ public class AlternativasForm extends BasicAbstractForm {
 	    final DefaultTableModel filteredTableModel = dialog
 		    .getFilteredTableModel();
 	    if (filteredTableModel != null) {
-		((JTable) e.getSource())
-			.setModel(addRowIfEmpty(filteredTableModel));
+		JTable table = ((JTable) e.getSource());
+		table.setModel(addRowIfEmpty(filteredTableModel));
 		dialog.setAutomaticValue(layerController, getWidgetComponents());
+		table.getColumnModel().removeColumn(
+			table.getColumnModel().getColumn(1));
+		table.getColumnModel().removeColumn(
+			table.getColumnModel().getColumn(3));
 		setChangedValues();
 	    }
 	}
