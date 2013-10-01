@@ -113,16 +113,21 @@ public class DatabaseDirectAccessQueries {
 	    throws SQLException {
 	DBSession session = DBSession.getCurrentSession();
 
-	String comunidades = "";
-	for (int row = 0; row < model.getRowCount(); row++) {
-	    comunidades += "'" + model.getValueAt(row, 1) + "', ";
-	}
-	if (comunidades.endsWith(", ")) {
-	    comunidades = comunidades.substring(0, comunidades.length() - 2);
-	}
 	String whereClause = getQueryWithCodeInsteadOfPlaceHolders(code,
-		"WHERE cod_alternativa = '####' AND cod_comunidad NOT IN ("
-			+ comunidades + ")");
+		"WHERE cod_alternativa = '####' ");
+	if (model.getRowCount() > 0) {
+	    String comunidades = "";
+	    for (int row = 0; row < model.getRowCount(); row++) {
+		comunidades += "'" + model.getValueAt(row, 1) + "', ";
+	    }
+	    if (comunidades.endsWith(", ")) {
+		comunidades = comunidades
+			.substring(0, comunidades.length() - 2);
+	    }
+
+	    whereClause = whereClause + " AND cod_comunidad NOT IN ("
+		    + comunidades + ")";
+	}
 	session.deleteRows(FonsaguaConstants.dataSchema,
 		FonsaguaConstants.COMUNIDADES_IMPLICADAS, whereClause);
 
