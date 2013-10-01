@@ -1,3 +1,5 @@
+RESET search_path;
+
 CREATE SCHEMA limites_administrativos;
 ALTER SCHEMA limites_administrativos OWNER TO fonsagua;
 

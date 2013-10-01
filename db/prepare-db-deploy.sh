@@ -30,7 +30,6 @@ echo "" > $output
 
 cat $CARTOGRAFIA_BASE/elle.sql >> $output || error
 cat $CARTOGRAFIA_BASE/c_base.sql >> $output || error
-cat $CARTOGRAFIA_BASE/limites_administrativos_data.sql >> $output || error
 cat ./data/01-create-data-schemas.sql >> $output || error
 cat ./data/01-limites_administrativos.sql >> $output || error
 cat ./data/02-domains.sql >> $output || error
@@ -51,6 +50,7 @@ cat ./data/16-preferencias_bombas.sql >> $output || error
 cat ./data/17-preferencias_tuberias.sql >> $output || error
 cat ./data/18-triggers-fuentes-implicadas.sql >> $output || error
 cat ./data/19-triggers_preferencias.sql >> $output || error
+cat $CARTOGRAFIA_BASE/limites_administrativos_data.sql >> $output || error
 
 
 

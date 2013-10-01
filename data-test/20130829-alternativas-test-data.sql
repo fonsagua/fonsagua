@@ -30,6 +30,7 @@ INSERT INTO alternativas (gid, cod_alternativa, tipo_alternativa, tipo_distribuc
 ALTER TABLE alternativas ENABLE TRIGGER ALL;
 
 INSERT INTO preferencias_disenho(cod_alternativa) VALUES ('010206A01');
+INSERT INTO presupuesto(cod_alternativa) VALUES ('010206A01');
 
 --
 -- Data for Name: alt_conexiones; Type: TABLE DATA; Schema: fonsagua; Owner: fonsagua

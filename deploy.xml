@@ -1,4 +1,4 @@
-<project name="deploy-fonsagua" default="createPortableFromSource" basedir="../appgvSIG">
+<project name="deploy-fonsagua" default="makePortables" basedir="../appgvSIG">
 	
 	<!-- USER OPTIONS -->
 	<property name="base-path" value="/var/tmp/portable/" /> <!-- remember to use the trailing slash -->
@@ -26,9 +26,16 @@
 	<property name="base-lin-path" value="${base-path}${base-lin}.tgz" />
 
 	
-	<target name="createPortableFromSource" depends="buildFromSource, makePortableLinux, makePortableWindows">
+	<target name="makePortables" depends="buildFromSource, makePortableLinux, makePortableWindows">
 	</target>
 
+	<target name="makeTestEnviroment" depends="buildFromSource">
+		<!-- Copies the custom files -->
+		<copy todir="${andami}" overwrite="yes">
+			<fileset dir="${custom-portable-path}common/bin" />
+			<fileset dir="${custom-portable-path}lin/bin" />
+		</copy>
+	</target>
 	
 	<macrodef name="failIfAnyExists">
 		<attribute name="file1" />
@@ -46,7 +53,7 @@
 	</macrodef>
 	
 	
-	<target name="makePortableLinux">
+	<target name="makePortableLinux" depends="buildFromSource">
 		
 		<failIfAnyExists file1="/tmp/${name-lin}" file2="/tmp/${base-lin}" />
 	
@@ -100,12 +107,23 @@
 			<fileset dir="${custom-portable-path}common" />
 			<fileset dir="${custom-portable-path}lin" />
 		</copy>
+		
+	<!--[tar] Nothing to do: /tmp/gvSIG-Fonsagua-lin32-20130917.tgz is up to date. -->
+		<tar destfile="/tmp/${name-lin}.tgz" compression="gzip" >
+			<tarfileset dir="/tmp/${name-lin}">
+				<include name="/tmp/${name-lin}/**" />
+				<exclude name="**/java, **/*.sh" />
+			</tarfileset>
+			<tarfileset dir="/tmp/${name-lin}" filemode="755">
+				<include name="**/java, **/*.sh" />
+			</tarfileset>
+		</tar>
 
 	</target>
 	
 	
 	
-	<target name="makePortableWindows">
+	<target name="makePortableWindows" depends="buildFromSource">
 		
 		<failIfAnyExists file1="/tmp/${name-win}" file2="/tmp/${base-win}" />
 		
