@@ -59,7 +59,8 @@ public class NewAlternativeExtension extends Extension {
 
     @Override
     public boolean isEnabled() {
-	return FormFactory.checkLayerLoadedRegistered(AlternativasForm.NAME);
+	return FormFactory.checkLayerLoadedRegistered(AlternativasForm.NAME)
+		&& OpenAlternativeExtension.getCode() == null;
     }
 
     @Override
