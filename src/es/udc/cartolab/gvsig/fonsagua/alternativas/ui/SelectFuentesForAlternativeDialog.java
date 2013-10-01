@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import com.iver.andami.PluginServices;
 import com.iver.cit.gvsig.fmap.drivers.DBException;
 
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
@@ -28,6 +29,7 @@ public class SelectFuentesForAlternativeDialog extends
 	doubleFormat = DoubleFormatNT.getDisplayingFormat();
 	doubleFormat.setMinimumFractionDigits(2);
 	doubleFormat.setMaximumFractionDigits(2);
+	setWindowTitle(PluginServices.getText(this, "select_flow_sources"));
     }
 
     @Override

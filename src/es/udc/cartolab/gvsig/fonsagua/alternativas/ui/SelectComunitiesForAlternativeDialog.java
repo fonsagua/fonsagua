@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import com.iver.andami.PluginServices;
+
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 import es.udc.cartolab.gvsig.navtable.dataacces.IController;
 import es.udc.cartolab.gvsig.navtable.format.IntegerFormatNT;
@@ -23,6 +25,8 @@ public class SelectComunitiesForAlternativeDialog extends
 
     public SelectComunitiesForAlternativeDialog(int editableColumnIdx) {
 	super(editableColumnIdx);
+	setWindowTitle(PluginServices.getText(this,
+		"select_community_population"));
     }
 
     @Override
@@ -69,8 +73,7 @@ public class SelectComunitiesForAlternativeDialog extends
     @Override
     public void removeAndInsertModel(TableModel filteredModel, String code)
 	    throws SQLException {
-	DatabaseDirectAccessQueries.updateModelComunidades(
-		filteredModel, code);
+	DatabaseDirectAccessQueries.updateModelComunidades(filteredModel, code);
     }
 
     @Override

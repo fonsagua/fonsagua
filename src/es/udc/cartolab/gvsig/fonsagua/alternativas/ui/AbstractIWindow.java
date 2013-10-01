@@ -14,6 +14,7 @@ import com.iver.andami.ui.mdiManager.WindowInfo;
 public abstract class AbstractIWindow extends JPanel implements IWindow {
 
     private WindowInfo windowInfo;
+    private String title = "";
 
     public AbstractIWindow(LayoutManager layout) {
 	super(layout);
@@ -29,7 +30,7 @@ public abstract class AbstractIWindow extends JPanel implements IWindow {
 	if (windowInfo == null) {
 	    windowInfo = new WindowInfo(WindowInfo.MODALDIALOG);
 
-	    windowInfo.setTitle("");
+	    windowInfo.setTitle(title);
 	    Dimension dim = getPreferredSize();
 	    // To calculate the maximum size of a form we take the size of the
 	    // main frame minus a "magic number" for the menus, toolbar, state
@@ -64,4 +65,7 @@ public abstract class AbstractIWindow extends JPanel implements IWindow {
 	return windowInfo;
     }
 
+    protected void setWindowTitle(String title) {
+	this.title = title;
+    }
 }
