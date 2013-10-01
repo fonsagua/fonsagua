@@ -28,7 +28,6 @@ import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
 import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
-import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.navtable.ToggleEditing;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
@@ -246,11 +245,6 @@ public class NewAlternativeDialog extends JPanel implements IWindow,
 			.getShapeCount() - 1, indexes, values);
 
 		edition.stopEditing(altLayer, false);
-
-		DatabaseDirectAccessQueries
-			.insertDefaultPreferences(codAltField.getText());
-		DatabaseDirectAccessQueries.insertDefaultBudget(codAltField
-			.getText());
 
 		OpenAlternativeExtension.openAlternative(values[0]);
 	    } else if (e.getSource() == cancelButton) {

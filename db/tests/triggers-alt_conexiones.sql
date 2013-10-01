@@ -5,7 +5,8 @@ SELECT PLAN(4);
 SELECT trigger_is('fonsagua', 'alt_conexiones', 'alt_conexiones_compute_field_trigger', 'fonsagua', 'alt_conexiones_compute_field_trigger');
 
 INSERT INTO fonsagua.alternativas (cod_alternativa, departamento, municipio, canton, tipo_distribucion) VALUES ('TEST-ALT-CONEXIONES','mun', 'dep', 'canton', 'Domiciliar');
-INSERT INTO fonsagua.preferencias_disenho (cod_alternativa, f_var_horaria, f_var_estacional, tasa_crecimiento, ano_horiz_sistema, dot_domiciliar, dot_cantareras) VALUES ('TEST-ALT-CONEXIONES', 2, 3, 4, 10, 15, 20);
+
+UPDATE fonsagua.preferencias_disenho SET f_var_horaria = 2, f_var_estacional=3, tasa_crecimiento=4, ano_horiz_sistema=10, dot_domiciliar=15, dot_cantareras=20 WHERE cod_alternativa = 'TEST-ALT-CONEXIONES';
 
 INSERT INTO fonsagua.alt_conexiones(cod_alternativa, hab_conectados) VALUES ('TEST-ALT-CONEXIONES', 100);
 SELECT is(demanda, 0.15)

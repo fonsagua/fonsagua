@@ -32,7 +32,23 @@ CREATE OR REPLACE FUNCTION fonsagua.alternativas_compute_field_trigger() RETURNS
        END;
 $alternativas_compute_field_trigger$ LANGUAGE plpgsql;
 
+
 DROP TRIGGER IF EXISTS alternativas_compute_field_trigger ON fonsagua.alternativas;
 CREATE TRIGGER alternativas_compute_field_trigger
 BEFORE INSERT OR UPDATE ON fonsagua.alternativas
 FOR EACH ROW EXECUTE PROCEDURE fonsagua.alternativas_compute_field_trigger();
+
+
+
+CREATE OR REPLACE FUNCTION fonsagua.alternativas_new_trigger() RETURNS TRIGGER AS $BODY$
+       BEGIN
+	INSERT INTO fonsagua.preferencias_disenho (cod_alternativa) VALUES (NEW.cod_alternativa);
+	INSERT INTO fonsagua.presupuesto (cod_alternativa) VALUES (NEW.cod_alternativa);
+	RETURN NULL;
+       END;
+$BODY$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS alternativas_new_trigger ON fonsagua.alternativas;
+CREATE TRIGGER alternativas_new_trigger
+AFTER INSERT ON fonsagua.alternativas
+FOR EACH ROW EXECUTE PROCEDURE fonsagua.alternativas_new_trigger();

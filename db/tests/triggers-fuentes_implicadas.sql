@@ -5,8 +5,7 @@ SELECT PLAN(5);
 SELECT trigger_is('fonsagua', 'fuentes_implicadas', 'fuentes_implicadas_compute_field_trigger', 'fonsagua', 'fuentes_implicadas_compute_field_trigger');
 
 INSERT INTO fonsagua.alternativas (cod_alternativa, departamento, municipio, canton) VALUES ('TEST-FUENTES-IMPLICADAS','mun', 'dep', 'canton');
-
-INSERT INTO fonsagua.preferencias_disenho (cod_alternativa, coef_q_ecologico) VALUES ('TEST-FUENTES-IMPLICADAS', 0.2);
+UPDATE fonsagua.preferencias_disenho SET coef_q_ecologico=0.2 WHERE cod_alternativa = 'TEST-FUENTES-IMPLICADAS';
 
 INSERT INTO fonsagua.fuentes_implicadas VALUES (default, 'TEST-FUENTES-IMPLICADAS', 'fuente-manantial', 'Manantial', 10, 10, 10);
 

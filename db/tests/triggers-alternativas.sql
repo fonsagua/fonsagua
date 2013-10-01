@@ -9,8 +9,7 @@ INSERT INTO fonsagua.comunidades
        VALUES ('TEST-ALTERNATIVAS-COMUNIDAD', 'test0', 'test0', 'test0', 'test0', 'nombre_caserio', 'nombre_comunidad', 200);
 
 INSERT INTO fonsagua.alternativas (cod_alternativa, departamento, municipio, canton, tipo_distribucion) VALUES ('TEST-ALTERNATIVAS','mun', 'dep', 'canton', 'Domiciliar');
-
-INSERT INTO fonsagua.preferencias_disenho (cod_alternativa, f_var_estacional, f_var_horaria, tasa_crecimiento, ano_horiz_sistema, dot_domiciliar, dot_cantareras) VALUES ('TEST-ALTERNATIVAS', 3, 2, 4, 10, 15, 100);
+UPDATE fonsagua.preferencias_disenho SET f_var_estacional=3, f_var_horaria=2, tasa_crecimiento=4, ano_horiz_sistema=10, dot_domiciliar=15, dot_cantareras=100 WHERE cod_alternativa = 'TEST-ALTERNATIVAS';
 
 INSERT INTO fonsagua.comunidades_implicadas
        (cod_alternativa, cod_comunidad, comunidad, n_habitantes, n_hab_alternativa)

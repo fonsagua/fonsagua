@@ -42,7 +42,6 @@ public class DatabaseDirectAccesQueriesTest {
 		new String[] { "cod_alternativa", "departamento", "municipio",
 			"canton" },
 		new String[] { codAltValue, "dep", "mun", "canton" });
-	DatabaseDirectAccessQueries.insertDefaultPreferences(codAltValue);
 
 	final String whereClause = "where cod_alternativa='" + codAltValue
 		+ "'";

@@ -48,7 +48,6 @@ INSERT INTO fonsagua.analiticas (cod_fuente) VALUES ('DELETE-FUENTE');
 
 --ALTERNATIVAS;
 INSERT INTO fonsagua.alternativas (cod_alternativa, departamento, municipio, canton) VALUES ('DELETE-ALT', 'dep', 'mun', 'canton');
-INSERT INTO fonsagua.preferencias_disenho (cod_alternativa) VALUES ('DELETE-ALT');
 INSERT INTO fonsagua.fuentes_implicadas (cod_alternativa, tipo_fuente) VALUES ('DELETE-ALT', 'Manantial');
 INSERT INTO fonsagua.comunidades_implicadas (cod_alternativa, cod_comunidad) VALUES ('DELETE-ALT', 'DELETE-COM');
 INSERT INTO fonsagua.alt_embalses (cod_alternativa) VALUES ('DELETE-ALT');
@@ -57,7 +56,6 @@ INSERT INTO fonsagua.alt_depositos (cod_alternativa) VALUES ('DELETE-ALT');
 INSERT INTO fonsagua.alt_tuberias (cod_alternativa) VALUES ('DELETE-ALT');
 INSERT INTO fonsagua.alt_bombeos (cod_alternativa) VALUES ('DELETE-ALT');
 INSERT INTO fonsagua.alt_valvulas (cod_alternativa) VALUES ('DELETE-ALT');
-INSERT INTO fonsagua.presupuesto (cod_alternativa) VALUES ('DELETE-ALT');
 INSERT INTO fonsagua.alt_conexiones (cod_alternativa) VALUES ('DELETE-ALT');
 
 
