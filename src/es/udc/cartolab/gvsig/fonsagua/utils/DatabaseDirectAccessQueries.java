@@ -3,11 +3,14 @@ package es.udc.cartolab.gvsig.fonsagua.utils;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import es.icarto.gvsig.fonsagua.reports.utils.ReportUtils;
 import es.icarto.gvsig.navtableforms.gui.tables.model.NotEditableTableModel;
 import es.udc.cartolab.gvsig.epanet.exceptions.ExternalError;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
@@ -87,6 +90,23 @@ public class DatabaseDirectAccessQueries {
 	    }
 	}
 	return false;
+    }
+
+    public static List<String[]> getTuberiasForBudget(String codAlt)
+	    throws SQLException {
+	String query = "SELECT pt.id_tub, pt.material, pt.diametro, COALESCE(longitud_total,0) FROM ##dataSchema##.preferencias_tuberias pt LEFT JOIN (SELECT tuberia_comercial, sum(long_tuberia) AS longitud_total FROM ##dataSchema##.alt_tuberias WHERE cod_alternativa = '####' GROUP BY tuberia_comercial) t ON pt.id_tub = t.tuberia_comercial ORDER BY pt.id_tub ;";
+	ResultSet rs = convertAndExecuteQuery(codAlt, query);
+
+	List<String[]> list = new ArrayList<String[]>();
+
+	while (rs.next()) {
+	    list.add(new String[] {
+		    ReportUtils.getValueFormatted(rs.getString(1)),
+		    ReportUtils.getValueFormatted(rs.getString(2)),
+		    ReportUtils.getValueFormatted(rs.getString(3)),
+		    ReportUtils.getValueFormatted(rs.getString(4)) });
+	}
+	return list;
     }
 
     public static void removeAndInsertModelFuentes(TableModel model, String code)

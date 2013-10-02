@@ -212,6 +212,16 @@
 				action-command="alternative_report"
 				position="32002"/>
 		</extension>
+		
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.AlternativeBudgetReportExtension" active="true">
+        	<tool-bar name="fonsagua2" position="36"> 
+        		<action-tool icon="alternative_budget_report" tooltip="alternative_budget_report_tooltip" action-command="alternative_budget_report"
+        		position="6" />
+        	</tool-bar>	
+			<menu text="reports/alternative_budget_report"
+				action-command="alternative_budget_report"
+				position="32003"/>
+		</extension>
 	
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.AutoFormsExtension" active="true">
