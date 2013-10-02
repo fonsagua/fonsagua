@@ -1,9 +1,8 @@
 package es.udc.cartolab.gvsig.fonsagua.croquis.listeners;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
-import java.sql.Connection;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.swing.JFileChooser;
@@ -11,38 +10,18 @@ import javax.swing.JOptionPane;
 
 import com.iver.andami.PluginServices;
 
-import es.udc.cartolab.gvsig.fonsagua.croquis.dao.ICroquisDAO;
-import es.udc.cartolab.gvsig.fonsagua.croquis.dao.PostgresCroquisDAO;
-import es.udc.cartolab.gvsig.fonsagua.croquis.dao.SQLiteCroquisDAO;
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
+import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
-public class AddCroquisListener implements ActionListener {
-
-    private final String comunidadId;
-    private Connection connection;
-    private ICroquisDAO dao;
+public class AddCroquisListener extends BaseCroquisListener {
 
     public AddCroquisListener(String comunidadId) {
-	this.comunidadId = comunidadId;
-	connection = DBSession.getCurrentSession().getJavaConnection();
-	String driver = DBSession.getCurrentSession().getDriverName();
-	if (driver.equals("SpatiaLite JDBC Driver")
-		|| driver.equals("SQLite Alphanumeric")) {
-	    try {
-		connection.commit();
-	    } catch (SQLException e) {
-		// Probably there was no commit created
-	    }
-	    dao = new SQLiteCroquisDAO();
-	} else {
-	    dao = new PostgresCroquisDAO();
-	}
+	super(comunidadId);
     }
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-	Connection connection = DBSession.getCurrentSession()
-		.getJavaConnection();
 
 	if (hasAlreadyCroquis()) {
 	    Object[] overwriteCroquisOptions = {
@@ -68,8 +47,34 @@ public class AddCroquisListener implements ActionListener {
 	int returnVal = fileChooser.showOpenDialog(null);
 	if (returnVal == JFileChooser.APPROVE_OPTION) {
 	    File croquis = fileChooser.getSelectedFile();
-	    dao.insertCroquisIntoDb(connection,
-		    comunidadId, croquis, update);
+	    DBSession session = DBSession.getCurrentSession();
+	    try {
+		byte[] imageBytes = ImageUtils.convertImageToBytea(croquis);
+		if (update) {
+		    Object[] values = { imageBytes };
+		    String[] columns = { FonsaguaConstants.CROQUIS_FIELDNAME };
+		    session.updateRows(
+			    FonsaguaConstants.dataSchema,
+			    FonsaguaConstants.CROQUIS_TABLENAME,
+			    columns,
+			    values,
+			    "WHERE "
+				    + FonsaguaConstants.CROQUIS_COMUNIDAD_FK_FIELDNAME
+				    + " = '" + comunidadId + "'");
+		} else {
+		    Object[] values = { comunidadId, imageBytes };
+		    String[] columns = {
+			    FonsaguaConstants.CROQUIS_COMUNIDAD_FK_FIELDNAME,
+			    FonsaguaConstants.CROQUIS_FIELDNAME };
+		    session.insertRow(FonsaguaConstants.dataSchema,
+			    FonsaguaConstants.CROQUIS_TABLENAME, columns,
+			    values);
+		}
+	    } catch (SQLException e) {
+		e.printStackTrace();
+	    } catch (IOException e) {
+		e.printStackTrace();
+	    }
 	    JOptionPane.showMessageDialog(null,
 		    PluginServices.getText(this, "croquis_msg_added_croquis"));
 	}
@@ -77,13 +82,7 @@ public class AddCroquisListener implements ActionListener {
 
     private boolean hasAlreadyCroquis() {
 	try {
-	    byte[] croquis = dao.readCroquisFromDb(
-		    connection, comunidadId);
-	    if (croquis != null) {
-		return true;
-	    } else {
-		return false;
-	    }
+	    return (readCroquis() != null);
 	} catch (SQLException e1) {
 	    e1.printStackTrace();
 	}

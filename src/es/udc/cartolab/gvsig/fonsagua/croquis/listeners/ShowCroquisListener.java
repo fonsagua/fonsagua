@@ -3,8 +3,6 @@ package es.udc.cartolab.gvsig.fonsagua.croquis.listeners;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
@@ -16,28 +14,12 @@ import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.andami.ui.mdiManager.WindowInfo;
 
-import es.udc.cartolab.gvsig.fonsagua.croquis.dao.ICroquisDAO;
-import es.udc.cartolab.gvsig.fonsagua.croquis.dao.PostgresCroquisDAO;
-import es.udc.cartolab.gvsig.fonsagua.croquis.dao.SQLiteCroquisDAO;
 import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
-import es.udc.cartolab.gvsig.users.utils.DBSession;
 
-public class ShowCroquisListener implements ActionListener {
-
-    private final String comunidadId;
-    private Connection connection;
-    private ICroquisDAO dao;
+public class ShowCroquisListener extends BaseCroquisListener {
 
     public ShowCroquisListener(String comunidadId) {
-	this.comunidadId = comunidadId;
-	connection = DBSession.getCurrentSession().getJavaConnection();
-	String driver = DBSession.getCurrentSession().getDriverName();
-	if (driver.equals("SpatiaLite JDBC Driver")
-		|| driver.equals("SQLite Alphanumeric")) {
-	    dao = new SQLiteCroquisDAO();
-	} else {
-	    dao = new PostgresCroquisDAO();
-	}
+	super(comunidadId);
     }
 
     @Override
@@ -67,7 +49,7 @@ public class ShowCroquisListener implements ActionListener {
 
 	    }
 
-	    byte[] imageBytes = dao.readCroquisFromDb(connection, comunidadId);
+	    byte[] imageBytes = readCroquis();
 	    if (imageBytes == null) {
 		JOptionPane.showMessageDialog(null, PluginServices.getText(
 			this, "croquis_msg_not_exits_croquis"));

@@ -12,12 +12,17 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.udc.cartolab.gvsig.fonsagua.croquis.dao.PostgresCroquisDAO;
+import com.iver.cit.gvsig.fmap.drivers.DBException;
+
+import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
+import es.udc.cartolab.gvsig.users.utils.DBSession;
+import es.udc.cartolab.gvsig.users.utils.DBSessionPostGIS;
 
 public class TestComunidadesCroquis {
 
     Connection connection;
+    DBSession session;
 
     @Before
     public void doSetupCroquis() {
@@ -29,11 +34,11 @@ public class TestComunidadesCroquis {
 	// Configure that in your classpath tab if you use eclipse
 	try {
 	    Class.forName("org.postgresql.Driver");
-	    connection = DriverManager.getConnection(url, user, passwd);
-	    connection.setAutoCommit(false);
+	    session = DBSessionPostGIS.createConnectionFromConnString(url,
+		    user, passwd);
 	} catch (ClassNotFoundException e) {
 	    e.printStackTrace();
-	} catch (SQLException e) {
+	} catch (DBException e) {
 	    e.printStackTrace();
 	}
 
@@ -66,10 +71,21 @@ public class TestComunidadesCroquis {
 	    statement.execute();
 	    connection.commit();
 
-	    PostgresCroquisDAO postgresCroquis = new PostgresCroquisDAO();
-	    postgresCroquis.insertCroquisIntoDb(connection, "1", image, false);
-	    byte[] imageDbBytes = postgresCroquis.readCroquisFromDb(connection,
-		    "1");
+	    byte[] imageBytes = ImageUtils.convertImageToBytea(image);
+	    Object[] values = { "1", imageBytes };
+	    String[] columns = {
+		    FonsaguaConstants.CROQUIS_COMUNIDAD_FK_FIELDNAME,
+		    FonsaguaConstants.CROQUIS_FIELDNAME };
+	    session.insertRow(FonsaguaConstants.dataSchema,
+		    FonsaguaConstants.CROQUIS_TABLENAME, columns, values);
+
+	    String[] columns3 = { FonsaguaConstants.CROQUIS_FIELDNAME };
+	    Object[][] values3 = session.getTableAsObjects(
+		    FonsaguaConstants.CROQUIS_TABLENAME,
+		    FonsaguaConstants.dataSchema, columns3, "WHERE "
+			    + FonsaguaConstants.CROQUIS_COMUNIDAD_FK_FIELDNAME
+			    + " = '1'", new String[0], false);
+	    byte[] imageDbBytes = (byte[]) values3[0][0];
 
 	    byte[] imageMockBytes = ImageUtils.convertImageToBytea(image);
 
@@ -90,14 +106,29 @@ public class TestComunidadesCroquis {
 	    statement.execute();
 	    connection.commit();
 
-	    PostgresCroquisDAO postgresCroquis = new PostgresCroquisDAO();
-	    postgresCroquis.insertCroquisIntoDb(connection, "1", image, false);
+	    byte[] imageBytes = ImageUtils.convertImageToBytea(image);
+	    Object[] values = { "1", imageBytes };
+	    String[] columns = {
+		    FonsaguaConstants.CROQUIS_COMUNIDAD_FK_FIELDNAME,
+		    FonsaguaConstants.CROQUIS_FIELDNAME };
+	    session.insertRow(FonsaguaConstants.dataSchema,
+		    FonsaguaConstants.CROQUIS_TABLENAME, columns, values);
 	    File imageToUpdate = new File("data-test/test2.jpg");
-	    postgresCroquis.insertCroquisIntoDb(connection, "1", imageToUpdate,
-		    true);
+	    imageBytes = ImageUtils.convertImageToBytea(imageToUpdate);
+	    Object[] values2 = { imageBytes };
+	    String[] columns2 = { FonsaguaConstants.CROQUIS_FIELDNAME };
+	    session.updateRows(FonsaguaConstants.dataSchema,
+		    FonsaguaConstants.CROQUIS_TABLENAME, columns2, values2,
+		    "WHERE " + FonsaguaConstants.CROQUIS_COMUNIDAD_FK_FIELDNAME
+			    + " = '1'");
 
-	    byte[] imageDbBytes = postgresCroquis.readCroquisFromDb(connection,
-		    "1");
+	    String[] columns3 = { FonsaguaConstants.CROQUIS_FIELDNAME };
+	    Object[][] values3 = session.getTableAsObjects(
+		    FonsaguaConstants.CROQUIS_TABLENAME,
+		    FonsaguaConstants.dataSchema, columns3, "WHERE "
+			    + FonsaguaConstants.CROQUIS_COMUNIDAD_FK_FIELDNAME
+			    + " = '1'", new String[0], false);
+	    byte[] imageDbBytes = (byte[]) values3[0][0];
 
 	    byte[] imageMockBytes = ImageUtils
 		    .convertImageToBytea(imageToUpdate);

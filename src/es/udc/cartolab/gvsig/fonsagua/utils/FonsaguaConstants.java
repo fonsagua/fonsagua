@@ -18,6 +18,10 @@ public interface FonsaguaConstants {
     public static final String cantonesPK = "cod_canton";
     public static final String cantonesName = "canton";
 
+    public static final String CROQUIS_TABLENAME = "comunidades_croquis";
+    public static final String CROQUIS_FIELDNAME = "croquis";
+    public static final String CROQUIS_COMUNIDAD_FK_FIELDNAME = "cod_comunidad";
+
     public static final String GPS_MATCHING_FILES = "gps-matching-files";
 
     public static final String COMUNIDADES_IMPLICADAS = "comunidades_implicadas";
