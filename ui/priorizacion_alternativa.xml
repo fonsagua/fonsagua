@@ -349,8 +349,8 @@
               <at name="size">11</at>
              </object>
             </at>
-            <at name="name"/>
             <at name="width">267</at>
+            <at name="name"></at>
             <at name="titleColor" object="color">0,50,150</at>
             <at name="border">
              <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
@@ -699,7 +699,7 @@
            <at name="column">5</at>
            <at name="row">31</at>
            <at name="colspan">8</at>
-           <at name="rowspan">1</at>
+           <at name="rowspan">2</at>
            <at name="halign">default</at>
            <at name="valign">default</at>
            <at name="insets" object="insets">0,0,0,0</at>
@@ -714,8 +714,8 @@
           <at name="classname">com.jeta.forms.components.label.JETALabel</at>
           <at name="properties">
            <object classname="com.jeta.forms.store.support.PropertyMap">
-            <at name="text">Fuentes:</at>
-            <at name="height">13</at>
+            <at name="text">&lt;html&gt;Fuentes:&lt;/html&gt;</at>
+            <at name="height">30</at>
             <at name="font">
              <object classname="com.jeta.forms.store.properties.FontProperty">
               <at name="family">Arial</at>
@@ -1116,7 +1116,7 @@
           <at name="classname">com.jeta.forms.components.label.JETALabel</at>
           <at name="properties">
            <object classname="com.jeta.forms.store.support.PropertyMap">
-            <at name="text">&lt;html&gt;Implicación de la comunidad/es:&lt;html&gt;</at>
+            <at name="text">&lt;html&gt;Implicación de la comunidad/es:&lt;/html&gt;</at>
             <at name="height">26</at>
             <at name="font">
              <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -1749,7 +1749,7 @@
              </object>
             </at>
             <at name="width">129</at>
-            <at name="name">cuota</at>
+            <at name="name">cuota_persona</at>
             <at name="background" object="color">240,240,240</at>
             <at name="border">
              <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
@@ -2396,7 +2396,7 @@
              </object>
             </at>
             <at name="width">129</at>
-            <at name="name">poblacion</at>
+            <at name="name">pobl_actual</at>
             <at name="background" object="color">240,240,240</at>
             <at name="border">
              <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
