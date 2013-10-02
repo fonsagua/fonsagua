@@ -1,7 +1,10 @@
 package es.udc.cartolab.gvsig.fonsagua.alternativas.ui;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.awt.LayoutManager;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
@@ -9,6 +12,8 @@ import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiFrame.MDIFrame;
 import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.andami.ui.mdiManager.WindowInfo;
+
+import es.icarto.gvsig.fonsagua.reports.ui.AcceptCancelPanel;
 
 @SuppressWarnings("serial")
 public abstract class AbstractIWindow extends JPanel implements IWindow {
@@ -67,5 +72,19 @@ public abstract class AbstractIWindow extends JPanel implements IWindow {
 
     protected void setWindowTitle(String title) {
 	this.title = title;
+    }
+
+    protected void addAcceptCancelPanel(ActionListener accept,
+	    ActionListener cancel) {
+	AcceptCancelPanel acceptCancelPanel = new AcceptCancelPanel(accept,
+		cancel);
+	GridBagConstraints c = new GridBagConstraints();
+	// c.gridy = GridBagConstraints.RELATIVE;
+	c.gridy = 1;
+	c.insets = new Insets(10, 0, 0, 0);
+	c.fill = GridBagConstraints.HORIZONTAL;
+	c.gridwidth = GridBagConstraints.REMAINDER;
+	c.anchor = GridBagConstraints.PAGE_END;
+	add(acceptCancelPanel, c);
     }
 }

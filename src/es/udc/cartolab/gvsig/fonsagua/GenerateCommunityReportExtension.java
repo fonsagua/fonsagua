@@ -1,15 +1,17 @@
 package es.udc.cartolab.gvsig.fonsagua;
 
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
+import org.apache.log4j.Logger;
 
 import com.iver.andami.PluginServices;
+import com.iver.andami.messages.NotificationManager;
 
-import es.icarto.gvsig.fonsagua.reports.ui.GenerateCommunityReportDialog;
-import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaFilterFields;
+import es.icarto.gvsig.fonsagua.reports.ui.CommunityChooserDialog;
+import es.udc.cartolab.gvsig.epanet.exceptions.ExternalError;
 
 public class GenerateCommunityReportExtension extends AbstractExtension {
+
+    private static Logger logger = Logger
+	    .getLogger(GenerateCommunityReportExtension.class);
 
     @Override
     public void initialize() {
@@ -20,20 +22,12 @@ public class GenerateCommunityReportExtension extends AbstractExtension {
     @Override
     public void execute(String actionCommand) {
 	try {
-	    Map<String, String> departNames = FonsaguaFilterFields
-		    .getDepartments();
-	    Map<String, String> municNames = FonsaguaFilterFields
-		    .getMuniccipalities();
-	    Map<String, String> cantonNames = FonsaguaFilterFields
-		    .getCantones();
-	    String[][] communities = FonsaguaFilterFields.getComunidades();
-	    Map<String, Map<String, Map<String, List<String>>>> divsCodes = FonsaguaFilterFields
-		    .getDivCodes(communities);
-	    GenerateCommunityReportDialog dialog = new GenerateCommunityReportDialog(
-		    divsCodes, departNames, municNames, cantonNames);
+	    CommunityChooserDialog dialog = new CommunityChooserDialog();
 	    PluginServices.getMDIManager().addWindow(dialog);
-	} catch (SQLException e) {
-	    e.printStackTrace();
+	} catch (ExternalError e) {
+	    logger.error(e);
+	    NotificationManager.addWarning(PluginServices.getText(this,
+		    "error_opening_dialog"));
 	}
 
     }

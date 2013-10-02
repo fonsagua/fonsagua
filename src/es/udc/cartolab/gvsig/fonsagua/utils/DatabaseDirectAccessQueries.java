@@ -9,10 +9,17 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import es.icarto.gvsig.navtableforms.gui.tables.model.NotEditableTableModel;
+import es.udc.cartolab.gvsig.epanet.exceptions.ExternalError;
+import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 import es.udc.cartolab.gvsig.users.utils.DBSessionSpatiaLite;
 
 public class DatabaseDirectAccessQueries {
+
+    private DatabaseDirectAccessQueries() {
+	throw new AssertionError(
+		"Suppress default constructor for noninstantiability");
+    }
 
     public static DefaultTableModel getFuentesIntersectingAlternative(
 	    String codAlt) throws SQLException {
@@ -186,6 +193,27 @@ public class DatabaseDirectAccessQueries {
 	    return sql.replace(FonsaguaConstants.dataSchema, "");
 	}
 	return sql;
+    }
+
+    public static String[] getCommunitiesCodes() {
+	String[] communities = new String[0];
+	try {
+	    DBSession session = DBSession.getCurrentSession();
+
+	    String[][] table = session.getTable(ComunidadesForm.NAME,
+		    FonsaguaConstants.dataSchema,
+		    new String[] { ComunidadesForm.PKFIELD }, null,
+		    new String[] { ComunidadesForm.PKFIELD }, true);
+	    communities = new String[table.length];
+	    int i = 0;
+	    for (String[] row : table) {
+		communities[i++] = row[0];
+	    }
+	} catch (SQLException e) {
+	    throw new ExternalError(e);
+	}
+
+	return communities;
     }
 
 }
