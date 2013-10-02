@@ -1,6 +1,5 @@
 package es.udc.cartolab.gvsig.fonsagua.alternativas.ui;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -8,7 +7,6 @@ import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.HashMap;
 
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,6 +15,7 @@ import javax.swing.table.TableModel;
 
 import com.iver.andami.PluginServices;
 
+import es.icarto.gvsig.fonsagua.reports.ui.AcceptCancelPanel;
 import es.udc.cartolab.gvsig.navtable.dataacces.IController;
 import es.udc.cartolab.gvsig.navtable.format.DoubleFormatNT;
 
@@ -25,8 +24,6 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
 	implements ActionListener {
 
     protected JTable table;
-    private JButton okButton;
-    private JButton cancelButton;
     protected DefaultTableModel model;
     private DefaultTableModel filteredModel;
     protected String code;
@@ -35,34 +32,25 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
     protected final NumberFormat doubleFormat;
 
     public SelectElementForAlternativeDialog(int editableColumnIdx) {
-	super(new BorderLayout());
+	super();
 	doubleFormat = DoubleFormatNT.getDisplayingFormat();
 	doubleFormat.setMinimumFractionDigits(2);
 	doubleFormat.setMaximumFractionDigits(2);
 	this.editableColumnIdx = editableColumnIdx;
 	addTablePanel();
-	addButtons();
-    }
-
-    private void addButtons() {
-	okButton = new JButton("Aceptar");
-	cancelButton = new JButton("Cancelar");
-	okButton.addActionListener(this);
-	cancelButton.addActionListener(this);
-	add(okButton, BorderLayout.EAST);
-	add(cancelButton, BorderLayout.WEST);
+	addAcceptCancelPanel(this, this);
     }
 
     private void addTablePanel() {
 	table = new JTable();
 	table.getTableHeader().setReorderingAllowed(false);
 	JScrollPane scroll = new JScrollPane(table);
-	add(scroll, BorderLayout.NORTH);
+	add(scroll);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-	if (e.getSource() == okButton) {
+	if (e.getActionCommand().equals(AcceptCancelPanel.OK_ACTION_COMMAND)) {
 	    try {
 		if (table.isEditing()) {
 		    table.getCellEditor().stopCellEditing();

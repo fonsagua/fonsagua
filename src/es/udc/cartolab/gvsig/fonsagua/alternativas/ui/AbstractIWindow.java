@@ -1,12 +1,12 @@
 package es.udc.cartolab.gvsig.fonsagua.alternativas.ui;
 
+
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
+
+import net.miginfocom.swing.MigLayout;
 
 import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiFrame.MDIFrame;
@@ -20,9 +20,10 @@ public abstract class AbstractIWindow extends JPanel implements IWindow {
 
     private WindowInfo windowInfo;
     private String title = "";
+    private int windowInfoProperties = WindowInfo.MODALDIALOG;
 
-    public AbstractIWindow(LayoutManager layout) {
-	super(layout);
+    public AbstractIWindow() {
+	super(new MigLayout("insets 10"));
     }
 
     @Override
@@ -33,7 +34,7 @@ public abstract class AbstractIWindow extends JPanel implements IWindow {
     @Override
     public WindowInfo getWindowInfo() {
 	if (windowInfo == null) {
-	    windowInfo = new WindowInfo(WindowInfo.MODALDIALOG);
+	    windowInfo = new WindowInfo(windowInfoProperties);
 
 	    windowInfo.setTitle(title);
 	    Dimension dim = getPreferredSize();
@@ -73,18 +74,16 @@ public abstract class AbstractIWindow extends JPanel implements IWindow {
     protected void setWindowTitle(String title) {
 	this.title = title;
     }
+    
+
+    protected void setWindowInfoProperties(int properties) {
+	this.windowInfoProperties = properties;
+    }
 
     protected void addAcceptCancelPanel(ActionListener accept,
 	    ActionListener cancel) {
 	AcceptCancelPanel acceptCancelPanel = new AcceptCancelPanel(accept,
 		cancel);
-	GridBagConstraints c = new GridBagConstraints();
-	// c.gridy = GridBagConstraints.RELATIVE;
-	c.gridy = 1;
-	c.insets = new Insets(10, 0, 0, 0);
-	c.fill = GridBagConstraints.HORIZONTAL;
-	c.gridwidth = GridBagConstraints.REMAINDER;
-	c.anchor = GridBagConstraints.PAGE_END;
-	add(acceptCancelPanel, c);
+	add(acceptCancelPanel, "dock south");
     }
 }

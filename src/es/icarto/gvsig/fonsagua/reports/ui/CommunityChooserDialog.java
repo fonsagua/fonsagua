@@ -1,6 +1,5 @@
 package es.icarto.gvsig.fonsagua.reports.ui;
 
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -23,7 +22,7 @@ public class CommunityChooserDialog extends AbstractIWindow implements
     private JComboBox cb;
 
     public CommunityChooserDialog() {
-	super(new GridBagLayout());
+	super();
 	setWindowTitle(PluginServices.getText(this, "choose_community"));
 	addCommunityCB();
 	addAcceptCancelPanel(this, this);
@@ -40,7 +39,7 @@ public class CommunityChooserDialog extends AbstractIWindow implements
     @Override
     public void actionPerformed(ActionEvent e) {
 
-	if (e.getActionCommand().equals("OK")) {
+	if (e.getActionCommand().equals(AcceptCancelPanel.OK_ACTION_COMMAND)) {
 	    String communityCode = cb.getSelectedItem().toString();
 	    SaveFileDialog sfd = new SaveFileDialog(PluginServices.getText(
 		    this, "rtfFiles"), "rtf");

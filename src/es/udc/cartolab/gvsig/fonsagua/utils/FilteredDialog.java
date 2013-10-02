@@ -1,6 +1,5 @@
 package es.udc.cartolab.gvsig.fonsagua.utils;
 
-import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -9,32 +8,24 @@ import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import net.miginfocom.swing.MigLayout;
 
 import org.apache.log4j.Logger;
 
 import com.iver.andami.PluginServices;
-import com.iver.andami.ui.mdiManager.IWindow;
-import com.iver.andami.ui.mdiManager.WindowInfo;
+
+import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.AbstractIWindow;
 
 @SuppressWarnings("serial")
-public abstract class FilteredDialog extends JPanel implements IWindow,
-	ActionListener {
-    private Logger logger = getLogger();
+public abstract class FilteredDialog extends AbstractIWindow implements ActionListener {
+    private final static Logger logger = Logger.getLogger(FilteredDialog.class);
 
     /*
      * The next properties are the ones related to the interface itself, so they
      * don't need a real explanation
      */
-
-    private WindowInfo windowInfo = null;
-    private JButton cancelButton = null;
-    protected JButton okButton = null;
+   
     // Here we store the relationships departamento -> municipio -> cantón ->
     // element filtered by those fields
     private Map<String, Map<String, Map<String, List<String>>>> divsCodes;
@@ -50,35 +41,7 @@ public abstract class FilteredDialog extends JPanel implements IWindow,
     private JComboBox cantonCombo = null;
     protected JComboBox elementCombo = null;
 
-    protected abstract Logger getLogger();
-
     protected abstract String getElementLabel();
-
-    protected abstract String getDialogTitle();
-
-    @Override
-    public WindowInfo getWindowInfo() {
-	if (windowInfo == null) {
-	    windowInfo = new WindowInfo(WindowInfo.MODALDIALOG
-		    | WindowInfo.PALETTE | WindowInfo.NOTCLOSABLE);
-	    windowInfo.setTitle(PluginServices.getText(this, getDialogTitle()));
-	    Dimension dim = getPreferredSize();
-	    int width, height = 0;
-	    if (dim.getHeight() > 550) {
-		height = 550;
-	    } else {
-		height = 110;
-	    }
-	    if (dim.getWidth() > 550) {
-		width = 550;
-	    } else {
-		width = new Double(dim.getWidth()).intValue() + 5;
-	    }
-	    windowInfo.setWidth(width);
-	    windowInfo.setHeight(height);
-	}
-	return windowInfo;
-    }
 
     public FilteredDialog(
 	    Map<String, Map<String, Map<String, List<String>>>> divsCodes,
@@ -91,14 +54,13 @@ public abstract class FilteredDialog extends JPanel implements IWindow,
 	this.cantonNames = cantonNames;
 	try {
 	    initialize();
+	    addAcceptCancelPanel(this, this);
 	} catch (Exception e) {
 	    logger.error(e.getMessage(), e);
 	}
     }
 
     private void initialize() throws Exception {
-
-	this.setLayout(new MigLayout());
 
 	JLabel label = new JLabel(PluginServices.getText(this, "Cod_depart"));
 	this.add(label);
@@ -158,18 +120,6 @@ public abstract class FilteredDialog extends JPanel implements IWindow,
 	elementCombo = new JComboBox();
 	this.add(elementCombo, "w 220!, wrap");
 	updateAlternativaCombo();
-
-	okButton = new JButton();
-	okButton.setText(PluginServices.getText(this, "Ok"));
-	okButton.addActionListener(this);
-
-	cancelButton = new JButton();
-	cancelButton.setText(PluginServices.getText(this, "Cancel"));
-	cancelButton.addActionListener(this);
-
-	this.add(okButton, "right, bottom, cell 1 5");
-	this.add(cancelButton, "right, bottom, cell 1 5");
-
     }
 
     private void updateMunicCombo() {
@@ -217,11 +167,6 @@ public abstract class FilteredDialog extends JPanel implements IWindow,
 	if (items.size() > 0) {
 	    elementCombo.setSelectedIndex(0);
 	}
-    }
-
-    @Override
-    public Object getWindowProfile() {
-	return null;
     }
 
     private class Item {

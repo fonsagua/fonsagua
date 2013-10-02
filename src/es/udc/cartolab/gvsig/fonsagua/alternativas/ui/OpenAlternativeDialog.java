@@ -4,10 +4,10 @@ import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import com.iver.andami.PluginServices;
+import com.iver.andami.ui.mdiManager.WindowInfo;
 
+import es.icarto.gvsig.fonsagua.reports.ui.AcceptCancelPanel;
 import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 import es.udc.cartolab.gvsig.fonsagua.utils.FilteredDialog;
@@ -20,12 +20,14 @@ public class OpenAlternativeDialog extends FilteredDialog {
 	    Map<String, String> departNames, Map<String, String> municNames,
 	    Map<String, String> cantonNames) {
 	super(divsCodes, departNames, municNames, cantonNames);
+	setWindowTitle(PluginServices.getText(this, "open_alternative"));
+	setWindowInfoProperties(WindowInfo.MODALDIALOG | WindowInfo.PALETTE | WindowInfo.NOTCLOSABLE);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 	try {
-	    if (e.getSource() == okButton) {
+	    if (e.getActionCommand().equals(AcceptCancelPanel.OK_ACTION_COMMAND)) {
 		String alternCod = elementCombo.getSelectedItem().toString();
 		OpenAlternativeExtension.openAlternative(alternCod);
 		OpenAlternativeExtension
@@ -41,18 +43,8 @@ public class OpenAlternativeDialog extends FilteredDialog {
     }
 
     @Override
-    protected Logger getLogger() {
-	return Logger.getLogger("AlternativesExtension");
-    }
-
-    @Override
     protected String getElementLabel() {
 	return "Cod_alternativa";
-    }
-
-    @Override
-    protected String getDialogTitle() {
-	return "open_alternative";
     }
 
 }
