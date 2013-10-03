@@ -31,9 +31,13 @@ public class AlternativasForm extends BasicAbstractForm {
 
     public static final String NAME = "alternativas";
     public static final String PKFIELD = "cod_alternativa";
-    public static final String DEPARTFK = "departamento";
-    public static final String MUNICFK = "municipio";
-    public static final String CANTONFK = "canton";
+    public static final String DEPARTFK = "cod_departamento";
+    public static final String DEPART_NAME = "departamento";
+    public static final String MUNICFK = "cod_municipio";
+    public static final String MUNIC_NAME = "municipio";
+    public static final String CANTONFK = "cod_canton";
+    public static final String CANTON_NAME = "canton";
+
     public static final String TIPODISTRIBUCIONFIELD = "tipo_distribucion";
     public static final String POBLACIONACTUALFIELD = "pobl_actual";
     private JTable comImplicadas;

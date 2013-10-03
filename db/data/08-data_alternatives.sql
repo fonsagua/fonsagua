@@ -9,12 +9,15 @@ CREATE TABLE fonsagua.alternativas (
 	       REFERENCES dominios.tipo_alternativa(item),
        tipo_distribucion VARCHAR
 	       REFERENCES dominios.tipo_distribucion(item),
-       departamento VARCHAR
+       cod_departamento VARCHAR
+               NOT NULL,
+       departamento VARCHAR,
+       cod_municipio VARCHAR,
+       	       NOT NULL,
+       municipio VARCHAR,
+       cod_canton VARCHAR
 	       NOT NULL,
-       municipio VARCHAR
-	       NOT NULL,
-       canton VARCHAR
-	       NOT NULL,
+       canton VARCHAR,
        pobl_actual INTEGER,
        pobl_futura INTEGER,
        n_cent_educativos INTEGER,

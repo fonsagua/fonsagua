@@ -195,14 +195,18 @@ public class NewAlternativeDialog extends JPanel implements IWindow,
 
     @Override
     public void actionPerformed(ActionEvent e) {
+	final int lengthWriteables = 7;
 	try {
 	    if (e.getSource() == okButton) {
 
-		String[] values = new String[4];
+		String[] values = new String[lengthWriteables];
 		values[0] = codAltField.getText();
 		values[1] = ((Item) departCombo.getSelectedItem()).id;
-		values[2] = ((Item) municCombo.getSelectedItem()).id;
-		values[3] = ((Item) cantonCombo.getSelectedItem()).id;
+		values[2] = ((Item) departCombo.getSelectedItem()).description;
+		values[3] = ((Item) municCombo.getSelectedItem()).id;
+		values[4] = ((Item) municCombo.getSelectedItem()).description;
+		values[5] = ((Item) cantonCombo.getSelectedItem()).id;
+		values[6] = ((Item) municCombo.getSelectedItem()).description;
 
 		for (String value : values) {
 		    if ((value == null) || (value.length() < 1)) {
@@ -232,15 +236,21 @@ public class NewAlternativeDialog extends JPanel implements IWindow,
 		}
 		ToggleEditing edition = new ToggleEditing();
 
-		int[] indexes = new int[4];
+		int[] indexes = new int[lengthWriteables];
 		indexes[0] = altLayer.getRecordset().getFieldIndexByName(
 			AlternativasForm.PKFIELD);
 		indexes[1] = altLayer.getRecordset().getFieldIndexByName(
 			AlternativasForm.DEPARTFK);
 		indexes[2] = altLayer.getRecordset().getFieldIndexByName(
-			AlternativasForm.MUNICFK);
+			AlternativasForm.DEPART_NAME);
 		indexes[3] = altLayer.getRecordset().getFieldIndexByName(
+			AlternativasForm.MUNICFK);
+		indexes[4] = altLayer.getRecordset().getFieldIndexByName(
+			AlternativasForm.MUNIC_NAME);
+		indexes[5] = altLayer.getRecordset().getFieldIndexByName(
 			AlternativasForm.CANTONFK);
+		indexes[6] = altLayer.getRecordset().getFieldIndexByName(
+			AlternativasForm.CANTON_NAME);
 		edition.modifyValues(altLayer, altLayer.getSource()
 			.getShapeCount() - 1, indexes, values);
 
