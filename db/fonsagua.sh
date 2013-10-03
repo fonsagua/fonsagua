@@ -15,6 +15,12 @@ error() {
     exit
 }
 
+# CHECK BOM FILES
+# http://stackoverflow.com/questions/204765/elegant-way-to-search-for-utf-8-files-with-bom
+# PRINT BOM FILENAME: find . -type f -print0 | xargs -0r awk '/^\xEF\xBB\xBF/ {print FILENAME}
+# REMOVE BOM: sed -i '1s/^\xEF\xBB\xBF//' BOM_FILE_NAME
+find . -type f -print0 | xargs -0r awk '/^\xEF\xBB\xBF/ {print FILENAME}{nextfile}' | wc -l | egrep '^0$' || error 'BOM FILES'
+
 . create-db.sh
 . create-pgpass.sh
 # comment the following lines if you prefer
@@ -96,6 +102,8 @@ if [ $schema == "all" ] ; then
 fi
 
 $PSQL -h $server -U $superuser -p $port -d $dbname -c "VACUUM ANALYZE;"
+
+# Check BOM files
 
 if hash pg_prove 2>/dev/null ; then
     psql -U $superuser -d $dbname -c "CREATE EXTENSION pgtap;"

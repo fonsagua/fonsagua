@@ -1,4 +1,4 @@
-﻿CREATE OR REPLACE FUNCTION fonsagua.preferencias_disenho_compute_fields_trigger() RETURNS TRIGGER AS $preferencias_disenho_compute_fields_trigger$
+CREATE OR REPLACE FUNCTION fonsagua.preferencias_disenho_compute_fields_trigger() RETURNS TRIGGER AS $preferencias_disenho_compute_fields_trigger$
        BEGIN
        UPDATE fonsagua.fuentes_implicadas SET fuente = fuente WHERE cod_alternativa = NEW.cod_alternativa;
        UPDATE fonsagua.alternativas SET departamento = departamento WHERE cod_alternativa = NEW.cod_alternativa;
