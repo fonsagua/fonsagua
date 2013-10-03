@@ -51,8 +51,9 @@ public class AlternativasForm extends BasicAbstractForm {
 
 	comImplicadas = (JTable) formBody
 		.getComponentByName("comunidades_implicadas");
+	int[] delColumns = { 4, 1 };
 	comImplicadasListener = new MyListener(
-		new SelectComunitiesForAlternativeDialog(3));
+		new SelectComunitiesForAlternativeDialog(3), delColumns);
 	comImplicadas.addMouseListener(comImplicadasListener);
 	comImplicadas.getTableHeader().setReorderingAllowed(false);
 
@@ -175,9 +176,17 @@ public class AlternativasForm extends BasicAbstractForm {
     private class MyListener implements MouseListener {
 
 	private SelectElementForAlternativeDialog dialog;
+	private int[] delColumns;
+
+	public MyListener(SelectElementForAlternativeDialog dialog,
+		int[] delColumns) {
+	    this.dialog = dialog;
+	    this.delColumns = delColumns;
+	}
 
 	public MyListener(SelectElementForAlternativeDialog dialog) {
 	    this.dialog = dialog;
+	    this.delColumns = new int[0];
 	}
 
 	@Override
@@ -191,10 +200,10 @@ public class AlternativasForm extends BasicAbstractForm {
 		JTable table = ((JTable) e.getSource());
 		table.setModel(addRowIfEmpty(filteredTableModel));
 		dialog.setAutomaticValue(layerController, getWidgetComponents());
-		table.getColumnModel().removeColumn(
-			table.getColumnModel().getColumn(1));
-		table.getColumnModel().removeColumn(
-			table.getColumnModel().getColumn(3));
+		for (int i : delColumns) {
+		    table.getColumnModel().removeColumn(
+			    table.getColumnModel().getColumn(i));
+		}
 		setChangedValues();
 	    }
 	}
