@@ -1,6 +1,7 @@
 package es.udc.cartolab.gvsig.fonsagua.croquis.listeners;
 
 import java.awt.event.ActionListener;
+import java.io.InputStream;
 import java.sql.SQLException;
 
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
@@ -14,18 +15,13 @@ public abstract class BaseCroquisListener implements ActionListener {
 	this.comunidadId = comunidadId;
     }
 
-    protected byte[] readCroquis() throws SQLException {
+    protected InputStream readCroquis() throws SQLException {
 	DBSession session = DBSession.getCurrentSession();
-	String[] columns = { FonsaguaConstants.CROQUIS_FIELDNAME };
-	Object[][] values = session.getTableAsObjects(
-		FonsaguaConstants.CROQUIS_TABLENAME,
-		FonsaguaConstants.dataSchema, columns, "WHERE "
+	return session.getBinaryStream(FonsaguaConstants.CROQUIS_TABLENAME,
+		FonsaguaConstants.dataSchema,
+		FonsaguaConstants.CROQUIS_FIELDNAME, "WHERE "
 			+ FonsaguaConstants.CROQUIS_COMUNIDAD_FK_FIELDNAME
-			+ " = '" + comunidadId + "'", new String[0], false);
-	if ((values.length > 0) && (values[0].length > 0)) {
-	    return (byte[]) values[0][0];
-	}
-	return null;
+			+ " = '" + comunidadId + "'");
     }
 
 }
