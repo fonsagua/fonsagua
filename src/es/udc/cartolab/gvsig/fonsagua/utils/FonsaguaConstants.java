@@ -1,6 +1,10 @@
 package es.udc.cartolab.gvsig.fonsagua.utils;
 
+import java.awt.Color;
+
 public interface FonsaguaConstants {
+
+    public static final Color NOT_ENABLED_COLOR = new Color(240, 240, 240);
 
     public static final String dataSchema = "fonsagua";
     public static final String baseSchema = "c_base";

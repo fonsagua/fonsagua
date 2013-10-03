@@ -46,7 +46,6 @@ import es.udc.cartolab.gvsig.fonsagua.utils.AlternativesPreferences;
 import es.udc.cartolab.gvsig.fonsagua.utils.AlternativesPreferences.Bomba;
 import es.udc.cartolab.gvsig.fonsagua.utils.AlternativesPreferences.Tuberia;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
-import es.udc.cartolab.gvsig.fonsagua.utils.ImageUtils;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 @SuppressWarnings("serial")
@@ -428,7 +427,7 @@ public class PredesignDialog extends JPanel implements SingletonWindow,
 		((JTextField) widgets.get(widgetName)).setText(String.format(
 			"%.2f", bombaElegida.getPotencia()));
 		((JTextField) widgets.get(widgetName))
-			.setBackground(ImageUtils.NOT_ENABLED_COLOR);
+			.setBackground(FonsaguaConstants.NOT_ENABLED_COLOR);
 	    } else {
 		((JTextField) widgets.get(widgetName)).setText(PluginServices
 			.getText(this, "no_valid_bombs"));
@@ -438,7 +437,7 @@ public class PredesignDialog extends JPanel implements SingletonWindow,
 	} else {
 	    ((JTextField) widgets.get(widgetName)).setText("");
 	    ((JTextField) widgets.get(widgetName))
-		    .setBackground(ImageUtils.NOT_ENABLED_COLOR);
+		    .setBackground(FonsaguaConstants.NOT_ENABLED_COLOR);
 	}
 	return bombaElegida;
     }
