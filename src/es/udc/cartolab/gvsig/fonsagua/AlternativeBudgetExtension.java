@@ -1,7 +1,6 @@
 package es.udc.cartolab.gvsig.fonsagua;
 
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
-import com.iver.andami.plugins.Extension;
 
 import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
 import es.icarto.gvsig.navtableforms.gui.tables.model.AlphanumericTableModel;
@@ -10,12 +9,15 @@ import es.icarto.gvsig.navtableforms.utils.FormFactory;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.PresupuestoForm;
 
-public class AlternativeBudgetExtension extends Extension {
+public class AlternativeBudgetExtension extends AbstractExtension {
 
     protected AbstractSubForm form = null;
     private String altCode;
 
+    @Override
     public void initialize() {
+	id = "alternative_budget";
+	super.initialize();
     }
 
     @Override
@@ -30,8 +32,8 @@ public class AlternativeBudgetExtension extends Extension {
 	try {
 	    AlphanumericTableModel model = TableModelFactory
 		    .createFromTableWithFilter(PresupuestoForm.NAME,
-			    AlternativasForm.PKFIELD, altCode,
-		    new String[0], new String[0]);
+			    AlternativasForm.PKFIELD, altCode, new String[0],
+			    new String[0]);
 	    if (model.getRowCount() > 0) {
 		form.setModel(model);
 		form.actionUpdateRecord(model.convertRowIndexToModel(0));

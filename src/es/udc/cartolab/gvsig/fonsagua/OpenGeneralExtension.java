@@ -14,7 +14,7 @@ public class OpenGeneralExtension extends OpenAbstractExtension {
 
     @Override
     public void initialize() {
-	id = "open_all_alternatives";
+	id = "open_general";
 	super.initialize();
     }
 

@@ -3,7 +3,6 @@ package es.udc.cartolab.gvsig.fonsagua;
 import javax.swing.JTable;
 
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
-import com.iver.andami.plugins.Extension;
 
 import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
 import es.icarto.gvsig.navtableforms.gui.tables.model.AlphanumericTableModel;
@@ -13,12 +12,15 @@ import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.PreferenciasForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 
-public class AlternativePreferencesExtension extends Extension {
+public class AlternativePreferencesExtension extends AbstractExtension {
 
     protected AbstractSubForm form = null;
     private String altCode;
 
+    @Override
     public void initialize() {
+	id = "alternative_preferences";
+	super.initialize();
     }
 
     @Override
@@ -34,9 +36,9 @@ public class AlternativePreferencesExtension extends Extension {
 	}
 	try {
 	    AlphanumericTableModel model = TableModelFactory
-		    .createFromTableWithFilter(
-		    PreferenciasForm.NAME, AlternativasForm.PKFIELD, altCode,
-		    new String[0], new String[0]);
+		    .createFromTableWithFilter(PreferenciasForm.NAME,
+			    AlternativasForm.PKFIELD, altCode, new String[0],
+			    new String[0]);
 	    if (model.getRowCount() > 0) {
 		form.setModel(model);
 		model = TableModelFactory.createFromTableWithNotFilter(

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.iver.andami.PluginServices;
-import com.iver.andami.plugins.Extension;
 
 import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.SelectCommunityForAltPriorDialog;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
@@ -13,10 +12,12 @@ import es.udc.cartolab.gvsig.fonsagua.utils.EnabilityConditions;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
-public class AlternativePriorExtension extends Extension {
+public class AlternativePriorExtension extends AbstractExtension {
 
     @Override
     public void initialize() {
+	id = "alternative_prior";
+	super.initialize();
     }
 
     @Override
