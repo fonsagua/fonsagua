@@ -1,10 +1,13 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.fuentes;
 
+import com.iver.cit.gvsig.exceptions.visitors.StopWriterVisitorException;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
+import com.iver.cit.gvsig.project.documents.table.gui.Table;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.AlphanumericTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialEditableNNRelTableHandler;
+import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 
@@ -39,6 +42,20 @@ public class FuentesForm extends BasicAbstractForm {
     @Override
     protected String getBasicName() {
 	return NAME;
+    }
+
+    @Override
+    public void deleteRecord() throws StopWriterVisitorException {
+	super.deleteRecord();
+	TOCTableManager tocTableManager = new TOCTableManager();
+	String[] tablesToReload = new String[] { AforosForm.NAME,
+		AnaliticasForm.NAME, "r_abastecimientos_fuentes" };
+	for (String tableName : tablesToReload) {
+	    final Table table = tocTableManager.getTableByName(tableName);
+	    if (table != null) {
+		table.refresh();
+	    }
+	}
     }
 
 }

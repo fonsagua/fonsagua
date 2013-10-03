@@ -15,11 +15,14 @@ import com.iver.andami.PluginServices;
 import com.iver.cit.gvsig.exceptions.layers.ReloadLayerException;
 import com.iver.cit.gvsig.exceptions.visitors.StopWriterVisitorException;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
+import com.iver.cit.gvsig.project.documents.table.gui.Table;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialTableHandler;
 import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
 import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
+import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.PriorizacionDialog;
 import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.SelectComunitiesForAlternativeDialog;
 import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.SelectElementForAlternativeDialog;
 import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.SelectFuentesForAlternativeDialog;
@@ -161,14 +164,27 @@ public class AlternativasForm extends BasicAbstractForm {
     @Override
     public void deleteRecord() throws StopWriterVisitorException {
 	super.deleteRecord();
-	Set<String> altLayersNames = FonsaguaFormFactory.getInstance()
+	Set<String> layersToReload = FonsaguaFormFactory.getInstance()
 		.getAllAlternativasLayersNames();
 	TOCLayerManager tocManager = new TOCLayerManager();
-	for (String name : altLayersNames) {
+	for (String layerName : layersToReload) {
 	    try {
-		tocManager.getLayerByName(name).reload();
+		final FLyrVect l = tocManager.getLayerByName(layerName);
+		if (l != null) {
+		    l.reload();
+		}
 	    } catch (ReloadLayerException e) {
 		e.printStackTrace();
+	    }
+	}
+
+	TOCTableManager tocTableManager = new TOCTableManager();
+	String[] tablesToReload = new String[] { PreferenciasForm.NAME,
+		PresupuestoForm.NAME, PriorizacionDialog.NAME };
+	for (String tableName : tablesToReload) {
+	    final Table table = tocTableManager.getTableByName(tableName);
+	    if (table != null) {
+		table.refresh();
 	    }
 	}
     }

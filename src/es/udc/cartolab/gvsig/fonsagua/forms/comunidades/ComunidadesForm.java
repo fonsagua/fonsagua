@@ -2,12 +2,17 @@ package es.udc.cartolab.gvsig.fonsagua.forms.comunidades;
 
 import javax.swing.JPanel;
 
+import com.iver.cit.gvsig.exceptions.layers.ReloadLayerException;
+import com.iver.cit.gvsig.exceptions.visitors.StopWriterVisitorException;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
+import com.iver.cit.gvsig.project.documents.table.gui.Table;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.AlphanumericTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialTableHandler;
+import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
 import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.AddCroquisListener;
 import es.udc.cartolab.gvsig.fonsagua.croquis.listeners.ShowCroquisListener;
 import es.udc.cartolab.gvsig.fonsagua.croquis.ui.CroquisButtons;
@@ -141,4 +146,41 @@ public class ComunidadesForm extends BasicAbstractForm {
 	return NAME;
     }
 
+    @Override
+    public void deleteRecord() throws StopWriterVisitorException {
+	super.deleteRecord();
+	TOCTableManager tocTableManager = new TOCTableManager();
+	String[] tablesToReload = new String[] { EntrevistadoresForm.NAME,
+		EntrevistadosForm.NAME, SubcuencasForm.NAME, AdescosForm.NAME,
+		CargosPublicosForm.NAME, OngsForm.NAME,
+		OtrasOrganizacionesForm.NAME, ProduccionConsumoForm.NAME,
+		TiposCultivosForm.NAME, GanaderiaForm.NAME,
+		CooperativasForm.NAME, CapacitacionesRiesgosForm.NAME,
+		ImplicacionComunidadForm.NAME, HabitosConsumoForm.NAME,
+		ValoracionSistemaForm.NAME, DatosConsumoForm.NAME,
+		"r_abastecimientos_comunidades" };
+	for (String tableName : tablesToReload) {
+	    final Table table = tocTableManager.getTableByName(tableName);
+	    if (table != null) {
+		table.refresh();
+	    }
+	}
+
+	String[] layersToReload = new String[] { PuntosViviendasForm.NAME,
+		AreasPotencialesRiegoForm.NAME, CentrosEducativosForm.NAME,
+		CentrosSaludForm.NAME, AmenazasForm.NAME,
+		OtrosServiciosForm.NAME, FuentesContaminacionForm.NAME };
+	TOCLayerManager tocManager = new TOCLayerManager();
+	for (String layerName : layersToReload) {
+	    try {
+		final FLyrVect l = tocManager.getLayerByName(layerName);
+		if (l != null) {
+		    l.reload();
+		}
+	    } catch (ReloadLayerException e) {
+		e.printStackTrace();
+	    }
+	}
+
+    }
 }

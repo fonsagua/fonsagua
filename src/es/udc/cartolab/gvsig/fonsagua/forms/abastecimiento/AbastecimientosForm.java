@@ -1,12 +1,17 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento;
 
+import com.iver.cit.gvsig.exceptions.layers.ReloadLayerException;
+import com.iver.cit.gvsig.exceptions.visitors.StopWriterVisitorException;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
+import com.iver.cit.gvsig.project.documents.table.gui.Table;
 
 import es.icarto.gvsig.navtableforms.BasicAbstractForm;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.AlphanumericNotEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.AlphanumericTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialEditableNNRelTableHandler;
 import es.icarto.gvsig.navtableforms.gui.tables.handler.VectorialTableHandler;
+import es.icarto.gvsig.navtableforms.utils.TOCLayerManager;
+import es.icarto.gvsig.navtableforms.utils.TOCTableManager;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.AdescosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.DatosConsumoForm;
@@ -99,4 +104,36 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	return NAME;
     }
 
+    @Override
+    public void deleteRecord() throws StopWriterVisitorException {
+	super.deleteRecord();
+	TOCTableManager tocTableManager = new TOCTableManager();
+	String[] tablesToReload = new String[] { JuntasAguaForm.NAME,
+		CoberturaForm.NAME, GestComercialForm.NAME,
+		GestFinancieraForm.NAME, EvaluacionForm.NAME,
+		ValoracionSistemaForm.NAME, DatosConsumoForm.NAME,
+		"r_abastecimientos_comunidades", "r_abastecimientos_fuentes" };
+	for (String tableName : tablesToReload) {
+	    final Table table = tocTableManager.getTableByName(tableName);
+	    if (table != null) {
+		table.refresh();
+	    }
+	}
+
+	String[] layersToReload = new String[] { BombeosForm.NAME,
+		CaptacionesForm.NAME, DepIntermediosForm.NAME,
+		DepDistribucionForm.NAME, TuberiasForm.NAME };
+	TOCLayerManager tocManager = new TOCLayerManager();
+	for (String layerName : layersToReload) {
+	    try {
+		final FLyrVect l = tocManager.getLayerByName(layerName);
+		if (l != null) {
+		    l.reload();
+		}
+	    } catch (ReloadLayerException e) {
+		e.printStackTrace();
+	    }
+	}
+
+    }
 }
