@@ -60,8 +60,8 @@ public class EpanetConfiguration {
 	names.setElevation("cota");
 	names.setValue("potencia");
 	names.setFlow("caudal");
-	names.setVelocity("altura");
-	names.setUnitHeadLoss(null);
+	names.setVelocity(null);
+	names.setUnitHeadLoss("altura");
 	names.setFrictionFactor(null);
 	Preferences.setPumpFieldNames(names);
     }
