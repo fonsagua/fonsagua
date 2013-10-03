@@ -4,7 +4,7 @@ SELECT PLAN(5);
 
 SELECT trigger_is('fonsagua', 'alt_tuberias', 'alt_tuberias_compute_field_trigger', 'fonsagua', 'alt_tuberias_compute_field_trigger');
 
-INSERT INTO fonsagua.alternativas (cod_alternativa, departamento, municipio, canton) VALUES ('TEST-ALT-TUBERIAS','mun', 'dep', 'canton');
+INSERT INTO fonsagua.alternativas (cod_alternativa, cod_departamento, cod_municipio, cod_canton) VALUES ('TEST-ALT-TUBERIAS','mun', 'dep', 'canton');
 
 INSERT INTO fonsagua.preferencias_tuberias(id_tub, material, rugosidad, diametro) VALUES ('tub-test0', 'PVC', 0.025, 3);
 

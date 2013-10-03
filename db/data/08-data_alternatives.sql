@@ -12,7 +12,7 @@ CREATE TABLE fonsagua.alternativas (
        cod_departamento VARCHAR
                NOT NULL,
        departamento VARCHAR,
-       cod_municipio VARCHAR,
+       cod_municipio VARCHAR
        	       NOT NULL,
        municipio VARCHAR,
        cod_canton VARCHAR

@@ -4,7 +4,7 @@ SELECT PLAN(2);
 
 SELECT trigger_is('fonsagua', 'alt_bombeos', 'alt_bombeos_compute_field_trigger', 'fonsagua', 'alt_bombeos_compute_field_trigger');
 
-INSERT INTO fonsagua.alternativas (cod_alternativa, departamento, municipio, canton) VALUES ('TEST-ALT-BOMBEOS','mun', 'dep', 'canton');
+INSERT INTO fonsagua.alternativas (cod_alternativa, cod_departamento, cod_municipio, cod_canton) VALUES ('TEST-ALT-BOMBEOS','mun', 'dep', 'canton');
 
 INSERT INTO fonsagua.preferencias_bombas(id_bomba, potencia) VALUES ('TEST-ALT-BOMBEOS-bomba0', 3.45);
 
