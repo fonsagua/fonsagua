@@ -347,7 +347,7 @@ CREATE OR REPLACE FUNCTION fonsagua.gest_financiera_compute_fields_trigger() RET
 
 	IF ((NEW.ingr_totales IS NOT NULL) AND (NEW.fact_produc IS NOT NULL) AND (NEW.fact_produc > 0)) THEN NEW.margen_utilidad = (NEW.ingr_totales - NEW.cost_totales) / NEW.fact_produc; ELSE NEW.margen_utilidad = NULL; END IF;
 
-	IF ((NEW.activos_corrientes IS NOT NULL) AND (NEW.pasivos_corrientes IS NOT NULL)) THEN NEW.razon_liquidez = NEW.activos_corrientes / NEW.pasivos_corrientes; ELSE NEW.razon_liquidez = NULL; END IF;
+	IF ((NEW.activos_corrientes IS NOT NULL) AND (NEW.pasivos_corrientes IS NOT NULL) AND (NEW.pasivos_corrientes > 0)) THEN NEW.razon_liquidez = NEW.activos_corrientes / NEW.pasivos_corrientes; ELSE NEW.razon_liquidez = NULL; END IF;
         RETURN NEW;
     END;
 $gest_financiera_compute_fields_trigger$ LANGUAGE plpgsql;
@@ -428,8 +428,8 @@ AFTER INSERT OR UPDATE OR DELETE ON fonsagua.adescos
 
 CREATE OR REPLACE FUNCTION fonsagua.produccion_consumo_compute_produccion_consumo_trigger() RETURNS TRIGGER AS $produccion_consumo_compute_produccion_consumo_trigger$
     BEGIN
-	IF (TG_OP = 'UPDATE' OR TG_OP = 'DELETE') THEN UPDATE fonsagua.comunidades SET n_adescos = 0 WHERE cod_comunidad = OLD.cod_comunidad; END IF;
-	IF (TG_OP = 'INSERT' OR TG_OP = 'UPDATE') THEN UPDATE fonsagua.comunidades SET n_adescos = 0 WHERE cod_comunidad = NEW.cod_comunidad; END IF;
+	IF (TG_OP = 'UPDATE' OR TG_OP = 'DELETE') THEN UPDATE fonsagua.comunidades SET produccion = 0 WHERE cod_comunidad = OLD.cod_comunidad; END IF;
+	IF (TG_OP = 'INSERT' OR TG_OP = 'UPDATE') THEN UPDATE fonsagua.comunidades SET produccion = 0 WHERE cod_comunidad = NEW.cod_comunidad; END IF;
 	RETURN NULL;
     END;
 $produccion_consumo_compute_produccion_consumo_trigger$ LANGUAGE plpgsql;
