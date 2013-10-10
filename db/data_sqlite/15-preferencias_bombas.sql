@@ -1,0 +1,14 @@
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES (' ', NULL, NULL);
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES ('0,5 HP', 0.5, 1404);
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES ('0,75 HP', 0.76, 1728);
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES ('1 HP', 1.01, 2052);
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES ('1,5 HP', 1.52, 2160);
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES ('2 HP', 2.03, 2376);
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES ('3 HP', 3.04, 3672);
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES ('5 HP', 5.07, 6000);
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES ('7,5 HP', 7.6, 9873);
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES ('10 HP', 10.14, 10313);
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES ('15 HP', 15.21, 10753);
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES ('20 HP', 20.28, 13800);
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES ('30 HP', 30.41, 19400);
+INSERT INTO preferencias_bombas (id_bomba, potencia, precio_m) VALUES ('40 HP', 40.55, 25000);
