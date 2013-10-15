@@ -15,10 +15,10 @@ Para el proyecto gvSIG Fonsagua se requiere instalar la versión 9.1 de Postgres
 Descarga del software
 =====================
 
-El software para windows se puede descargar para versiones de 32 bits y de 64 bits. 
+Si se quiere emplear el instalador proporpocionado por enterprisedb_ debe tenerse en cuenta que la versión de 64 bits para Windows incluye la versión 2.0 de Postgis en lugar de la 1.5, por lo que debemos bajar e instalar la de 32 bits independientemente de nuestro sistema operativo.
 
 * `Postgresql 9.1.9 - Windows 32 bits <http://www.enterprisedb.com/postgresql-919-installers-win32?ls=Crossover&type=Crossover>`_
-* `Postgresql 9.1.9 - Windows 64 bits <http://www.enterprisedb.com/postgresql-919-installers-win64?ls=Crossover&type=Crossover>`_
+
 
 Proceso de instalación con stackbuilder
 =======================================
@@ -88,25 +88,38 @@ Configuración del servidor de bases de datos
 
 Acceso de usuarios a la base de datos
 -------------------------------------
-La configuración por defecto de PostgreSQL sólo permite conectar a la base de datos a usuarios que estén en el mismo host (localhost/127.0.0.1). 
+La configuración por defecto de PostgreSQL sólo permite conectar a la base de datos a usuarios que estén en el mismo host (localhost/127.0.0.1). Para permitir la conexión de usuarios desde el exterior debemos revisar la configuración especificada en los dos ficheros de configuración más importantes de PostgreSQL:
 
-La mayoría de opciones que afectan a los permisos de conexión a la base de datos se configuran a través del fichero pg_hba.conf. Este fichero se encontrará en el directorio que hayamos escogido durante el proceso de instalación para almacenar los datos.
+* `postgresql.conf <http://www.postgresql.org.es/node/696>`_ Gestiona la configuración general de PostgreSQL.
+* `pg_hba.conf <http://www.postgresql.org/docs/9.1/static/auth-pg-hba-conf.html>`_. Gestiona a que bases de datos pueden acceder que usuarios y desde que ip.
 
-También podemos editarlo yendo a *Inicio -> Todos los programas -> PostgreSQL -> Ficheros de Configuración -> Editar pg_hba.conf*
+Ambos ficheros se encuentran generalmente en la ruta:
 
-La documentación de postgres nos indica el `formato del fichero pg_hba <http://www.postgresql.org/docs/9.1/static/auth-pg-hba-conf.html>`_ para que lo adecuemos a nuestras necesidades. Por ejemplo para permitir a todos los usuarios conectar a cualquier base de datos desde cualquier ip, añadiremos al final del fichero la línea:
+``C:\Program Files\PostgreSQL\9.1\data``
 
-``host	all	all	0.0.0.0/0	md5``
+Tenemos varias opciones para editar esos ficheros:
+ * Directamente con un editor de textos cualquiera como WordPad
+ * *Inicio -> Todos los programas -> PostgreSQL -> Ficheros de Configuración -> Editar pg_hba.conf*
+ * *pgAdmin -> Tools -> Server Configuration*
 
-Si quisieramos admitir sólo las conexiones para la base de datos fonsagua, al usuario fonsagua, que provengan de ips del tipo 192.168.93.x, la línea a añadir sería del siguiente estilo:
 
-``host	fonsagua	fonsagua	192.168.93.0/24		md5``
-
-Además, para permitir las conexiones a la base de datos de usuarios que no estén en localhost debemos editar el fichero postgresql.conf (está en el mismo directorio que pg_hba.conf), buscar la opción `listen_adresses <http://www.postgresql.org/docs/9.1/static/runtime-config-connection.html>`_, descomentarla, y asignarle el valor *, quedando del modo que se muestra en la siguiente imagen:
+Para permitir las conexiones a la base de datos de usuarios que no estén en *localhost* nos aseguramos que en el fichero *postgresql.conf* la opción `listen_adresses <http://www.postgresql.org/docs/9.1/static/runtime-config-connection.html>`_, tiene el valor * quedando del modo que se muestra en la siguiente imagen (generalmente llega con descomentarla quitando el caracter # del principio de la línea):
 
 .. image:: instalar_postgresql_images/configurar_postgresql_01.png
 
-Tras estos cambios debemos reiniciar el servicio o el ordenador. Para reiniciar el servicio en *Inicio -> Todas las aplicaciones -> Postgresql -> Restart server*
+
+La mayoría de opciones que afectan a los permisos de conexión a la base de datos se configuran a través del fichero *pg_hba.conf*. En la documentación de Postgresql se da detalla información del `formato del fichero pg_hba <http://www.postgresql.org/docs/9.1/static/auth-pg-hba-conf.html>`_ para que lo adecuemos a nuestras necesidades. Por ejemplo para permitir a todos los usuarios conectar a cualquier base de datos desde cualquier ip, añadiremos al final del fichero la línea: 
+
+``host	all	all	0.0.0.0/0	md5``
+
+La *configuración recomendada* sería permitir el acceso a la base de datos fonsagua desde cualquier ip para los usuarios que estén en el grupo *fonsagua*. Para ello debemos incluir la siguiente línea en el fichero:
+``host     fonsagua        +fonsagua       0.0.0.0/0               md5``
+
+Si estamos editándolo desde el pgAdmin, haremos click en la primera fila libre e intoduciremos los datos quedando como en la siguiente imagen
+
+.. image:: instalar_postgresql_images/configurar_postgresql_02.png
+
+Tras estos cambios debemos reiniciar el servicio o en caso de duda todo el servidor. Para reiniciar el servicio en *Inicio -> Todas las aplicaciones -> Postgresql -> Restart server*
 
 Rendimiento de la base de datos
 -------------------------------
@@ -166,6 +179,12 @@ Escogeremos como nombre del rol **fonsagua**, en la pestaña de definición intr
 * Desmarcaremos *crear bases de datos*
 * Desmarcaremos *crear roles*
 
+Crear usuarios adicionales
+--------------------------
+Se recomienda crear usuarios adicionales para cada uno de los miembros del equipo que vaya a trabajar en el proyecto. Podemos hacerlo por un procedimiento similar al visto antes, o habriendo una consola SQL desde pgAdmin como usuario postgres y escribiendo la siguiente sentencia:
+
+``CREATE ROLE EL-NOMBRE-DE-USUARIO-QUE-QUERAMOS IN ROLE fonsagua LOGIN PASSWORD 'LA-CLAVE-QUE-QUERAMOS';``
+
 Crear una base de datos con soporte espacial
 --------------------------------------------
 Una vez tengamos el usuario creado, estando conectados como usuario postgres podemos crear una base de datos con soporte espacial, pinchando en **Bases de datos** con el botón derecho y escogiendo **Nueva base de datos**.
@@ -187,15 +206,44 @@ Antes de restaurar el dump debemos modificar el propietario de algunos de los ob
 
 Resturar el dump de la base de datos
 ------------------------------------
-Hecho esto, podemos hacer la restauración efectiva del dump. Cerraremos la sesión que tenemos con el usuario *postgres* e iniciamos una nueva sesión en la base **fonsagua** con el usuario **fonsagua**.
+Hecho esto, podemos hacer la restauración efectiva del dump. Vamos a proponer dos métodos distintos para ello, el primero y probablemente más sencillo es mediante el plugin SQL Console de pgAdmin. Si este sistema falla (a veces lo hace por culpa de permisos) lo intentaremos con el segundo método propuesto, mediante el cliente de línea de comandos psql.exe
+
+Recordemos que tenemos una configuración de logging que recoja mucha información probablemente sea mejor desactivarla temporalmente, antes de proceder a restaurar el dump.
+
+**Método 1. Plugin SQL Console de pgAdmin**
+
+Cerraremos la sesión que tenemos con el usuario *postgres* e iniciamos una nueva sesión en la base **fonsagua** con el usuario **fonsagua**.
 
 A continuación abriremos una consola de comandos, desde *Plugins -> SQL Console* y teclearemos 
 
+``\cd c:``
 ``\i 20130620-fonsagua-bbdd.sql``
 
-Siendo 20130620-fonsagua-bbdd.sql el dump de la base de datos de la aplicación. Esto sólo funcionará si el fichero .sql está en el directorio adecuado, esto depende del equipo, pero en general será el directorio de usuario. Si no tendremos que introducir la ruta entera al fichero.
+Siendo 20130620-fonsagua-bbdd.sql el dump de la base de datos de la aplicación que habremos copiado a la raíz del disco duro c:\. Si el fichero está en otra ubicación deberemos indicar la ruta entera.
 
-Recordemos que tenemos una configuración de logging que recoja mucha información probablemente sea mejor desactivarla temporalmente.
+
+**Método 2. Mediante psql.exe**
+
+#. Localizamos el directorio donde tenemos instalado postgres o pgadmin. Generalmente será algo como C:\Program Files\PostgreSQL
+#. Abrimos una consola de windows. *Inicio->Todos los programas -> Accesorios -> Simbolo del sistema*
+#. Nos movemos hasta el directorio donde está instalado Postgres (también valdría el de pgAdmin si lo tenemos instalado por separado). La consola es capa de autocompletar nombres de modo que cuando escribamos *cd Pro*  podemos darle al tabulador un par de veces hasta que nos rellene el nombre entero.
+
+::
+  cd c:
+  cd Program Files
+  etc ...
+
+#. Una vez en el directorio postgres entramos al subdirectorio 9.1 y luego al subdirectorio bin. En una instalación normal la ruta completa sería más o menos:
+
+``C:\Program Files\PostgreSQL\9.1\bin``
+
+#. Una vez en ese directorio ya podemos hacer uso del programa *psql.exe* y podemos ejecutarlo de la siguiente forma:
+
+``psql.exe -h localhost -U fonsagua -d fonsagua -f c:\20130903-fonsagua-bbdd.sql``
+
+La ruta al fichero de la base de datos puede ser distinta asegúrese de que está en c:\ si está en otra ubicación habrá que usar la ruta a esa ubicación.
+
+Si no estamos en el propio servidor debemos cambiar *localhost* por la ip que corresponda.
 
 
 
