@@ -1,5 +1,4 @@
 BEGIN;
-
 SELECT PLAN(11);
 
 SELECT trigger_is('fonsagua', 'alternativas', 'alternativas_compute_field_trigger', 'fonsagua', 'alternativas_compute_field_trigger');
@@ -73,3 +72,6 @@ SELECT is(dem_econ, 0.12)
 SELECT is(demanda, 1.65)
        FROM fonsagua.alternativas
        WHERE gid = currval('fonsagua.alternativas_gid_seq');
+
+SELECT * from finish();
+ROLLBACK;

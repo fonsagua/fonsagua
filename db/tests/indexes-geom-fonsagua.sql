@@ -1,5 +1,4 @@
 BEGIN;
-
 SELECT plan(23);
 
 SELECT has_index('fonsagua', 'puntos_viviendas', 'puntos_viviendas_geom_idx', 'geom');
@@ -27,5 +26,4 @@ SELECT has_index('fonsagua', 'alt_conexiones', 'alt_conexiones_geom_idx', 'geom'
 SELECT has_index('fonsagua', 'alternativas', 'alternativas_geom_idx', 'geom');
 
 SELECT * from finish();
-
 ROLLBACK;

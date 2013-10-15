@@ -1,5 +1,4 @@
 BEGIN;
-
 SELECT PLAN(2);
 
 SELECT trigger_is('fonsagua', 'alt_bombeos', 'alt_bombeos_compute_field_trigger', 'fonsagua', 'alt_bombeos_compute_field_trigger');
@@ -13,3 +12,6 @@ INSERT INTO fonsagua.alt_bombeos(cod_alternativa, bomba_comercial) VALUES ('TEST
 SELECT is(potencia, 3.45)
        FROM fonsagua.alt_bombeos
        WHERE gid = currval('fonsagua.alt_bombeos_gid_seq');
+
+SELECT * from finish();
+ROLLBACK;

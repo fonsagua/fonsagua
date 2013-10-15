@@ -1,5 +1,4 @@
 BEGIN;
-
 SELECT plan(9);
 
 
@@ -40,6 +39,6 @@ SELECT is(a_no_contabilizada, 19.0)
 SELECT is(pct_a_no_contabilizada, 95.0)
        FROM fonsagua.gest_comercial
        WHERE gid = currval('fonsagua.gest_comercial_gid_seq');
-SELECT * from finish();
 
+SELECT * from finish();
 ROLLBACK;

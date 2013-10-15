@@ -1,5 +1,4 @@
 BEGIN;
-
 SELECT plan(16);
 
 SELECT has_index('c_base', 'areas_protegidas', 'areas_protegidas_the_geom_gist', 'the_geom');
@@ -20,5 +19,4 @@ SELECT has_index('c_base', 'resto_paises_mesoamerica', 'resto_paises_mesoamerica
 SELECT has_index('c_base', 'rios', 'rios_the_geom_gist', 'the_geom');
 
 SELECT * from finish();
-
 ROLLBACK;

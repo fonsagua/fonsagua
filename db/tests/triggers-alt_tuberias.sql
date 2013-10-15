@@ -1,5 +1,4 @@
 BEGIN;
-
 SELECT PLAN(5);
 
 SELECT trigger_is('fonsagua', 'alt_tuberias', 'alt_tuberias_compute_field_trigger', 'fonsagua', 'alt_tuberias_compute_field_trigger');
@@ -26,3 +25,6 @@ SELECT is(diametro, 3.0)
 SELECT is(long_tuberia, 2.5::numeric)
        FROM fonsagua.alt_tuberias
        WHERE gid = currval('fonsagua.alt_tuberias_gid_seq');
+
+SELECT * from finish();
+ROLLBACK;

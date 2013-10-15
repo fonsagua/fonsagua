@@ -1,5 +1,4 @@
 BEGIN;
-
 SELECT plan(5);
 
 
@@ -34,5 +33,4 @@ SELECT is(area_cultivada, 68.0::double precision)
        WHERE gid = currval('fonsagua.comunidades_gid_seq');
 
 SELECT * from finish();
-
 ROLLBACK;

@@ -1,5 +1,4 @@
 BEGIN;
-
 SELECT PLAN(13);
 
 SELECT trigger_is('fonsagua', 'alt_fuentes', 'alt_fuentes_compute_field_trigger', 'fonsagua', 'alt_fuentes_compute_field_trigger');
@@ -59,3 +58,6 @@ SELECT is(q_usar, 10::numeric)
 SELECT is(q_calculo, -10::numeric)
        FROM fonsagua.alt_fuentes
        WHERE gid = currval('fonsagua.alt_fuentes_gid_seq');
+
+SELECT * from finish();
+ROLLBACK;

@@ -1,5 +1,4 @@
 BEGIN;
-
 SELECT plan(8);
 
 
@@ -38,5 +37,4 @@ SELECT is(tot_acometidas, 3111)
        WHERE gid = currval('fonsagua.abastecimientos_gid_seq');;
 
 SELECT * from finish();
-
 ROLLBACK;

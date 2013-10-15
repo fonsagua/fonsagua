@@ -1,5 +1,4 @@
 BEGIN;
-
 SELECT PLAN(54);
 
 INSERT INTO fonsagua.comunidades (cod_comunidad, cod_departamento, cod_municipio, cod_canton, cod_caserio) VALUES ('DELETE-COM', 'dep', 'mun', 'can', 'cas');
@@ -138,5 +137,4 @@ SELECT is ( (SELECT count(*) FROM fonsagua.r_abastecimientos_fuentes WHERE cod_a
 SELECT is ( (SELECT count(*) FROM fonsagua.priorizacion_alternativa WHERE cod_alternativa = 'DELETE-ABAST'), 0::bigint);
 
 SELECT * from finish();
-
 ROLLBACK;
