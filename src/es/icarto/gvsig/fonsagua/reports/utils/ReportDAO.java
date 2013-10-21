@@ -1,11 +1,9 @@
 package es.icarto.gvsig.fonsagua.reports.utils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.AbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.PreferenciasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.PresupuestoForm;
@@ -16,8 +14,7 @@ import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class ReportDAO {
 
-    private static Connection connection = DBSession.getCurrentSession()
-	    .getJavaConnection();
+    private static DBSession session = DBSession.getCurrentSession();
 
     public static ResultSet getCommunityValues(String communityCode) {
 	return getFonsaguaTableValues(ComunidadesForm.NAME,
@@ -48,16 +45,10 @@ public class ReportDAO {
 
     public static ResultSet getFonsaguaTableValues(String tableName,
 	    String pkName, String pkValue) {
-	PreparedStatement statement = null;
-
 	try {
-	    String query = "SELECT * FROM " + FonsaguaConstants.dataSchema
-		    + "." + tableName + " WHERE " + pkName + " = ?";
-	    statement = connection.prepareStatement(query);
-	    statement.setString(1, pkValue);
-	    statement.execute();
-	    ResultSet rs = statement.getResultSet();
-	    return rs;
+	    return DBSession.getCurrentSession().getTableAsResultSet(tableName,
+		    FonsaguaConstants.dataSchema,
+		    " WHERE " + pkName + " = '" + pkValue + "'");
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
@@ -108,18 +99,10 @@ public class ReportDAO {
 
     public static int getNumberOfElementsFromRelationshipTable(
 	    String relationshipTableName, String codeField, String codeValue) {
-	PreparedStatement statement = null;
-
 	try {
-	    String query = "SELECT count(*) FROM "
-		    + FonsaguaConstants.dataSchema + "."
-		    + relationshipTableName + " WHERE " + codeField + " = ?";
-	    statement = connection.prepareStatement(query);
-	    statement.setString(1, codeValue);
-	    statement.execute();
-	    ResultSet rs = statement.getResultSet();
-	    rs.next();
-	    return rs.getInt(1);
+	    return session.getTable(relationshipTableName,
+		    FonsaguaConstants.dataSchema, " WHERE " + codeField
+			    + " = '" + codeValue + "'").length;
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
@@ -129,41 +112,17 @@ public class ReportDAO {
     // TODO: Try to make a generic method
     public static String[][] getDataFromAbastecimientosTableByCommunity(
 	    String communityCode) {
-	PreparedStatement statement = null;
-	String[] colNames = { "abastecimiento", "a.cod_abastecimiento" };
+	String[] tableNames = { AbastecimientosForm.NAME,
+		"r_abastecimientos_comunidades", ComunidadesForm.NAME };
+	String[] joinFields = { "a." + AbastecimientosForm.PKFIELD,
+		"b." + AbastecimientosForm.PKFIELD,
+		"b." + ComunidadesForm.PKFIELD, "c." + ComunidadesForm.PKFIELD };
+	String[] fieldNames = { "abastecimiento", "a.cod_abastecimiento" };
 	try {
-	    String query = "SELECT ";
-	    for (String name : colNames) {
-		query = query + name + ", ";
-	    }
-	    query = query.substring(0, query.length() - 2);
-	    query = query + " FROM " + FonsaguaConstants.dataSchema + "."
-		    + "abastecimientos a, " + FonsaguaConstants.dataSchema
-		    + "." + "comunidades c, " + FonsaguaConstants.dataSchema
-		    + "." + "r_abastecimientos_comunidades r"
-		    + " WHERE a.cod_abastecimiento = r.cod_abastecimiento AND "
-		    + "c.cod_comunidad = r.cod_comunidad AND "
-		    + "c.cod_comunidad = ?";
-	    statement = connection.prepareStatement(query);
-	    statement.setString(1, communityCode);
-	    statement.execute();
-	    ResultSet rs = statement.getResultSet();
-
-	    ArrayList<String[]> rows = new ArrayList<String[]>();
-	    while (rs.next()) {
-		String[] row = new String[colNames.length];
-		for (int i = 0; i < colNames.length; i++) {
-		    String val = rs.getString(i + 1);
-		    if (val == null) {
-			val = "";
-		    }
-		    row[i] = val;
-		}
-		rows.add(row);
-	    }
-	    rs.close();
-
-	    return rows.toArray(new String[0][0]);
+	    return session.getTableWithJoin(tableNames, new String[3],
+		    joinFields, fieldNames, "WHERE c."
+			    + ComunidadesForm.PKFIELD + " = '" + communityCode
+			    + "'", new String[0], false);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
@@ -173,44 +132,19 @@ public class ReportDAO {
     // TODO: Try to make a generic method
     public static String[][] getDataOfElementOfAbastecimientoByCommunity(
 	    String elementTableName, String[] colNames, String communityCode) {
-	PreparedStatement statement = null;
-
+	String[] tableNames = { AbastecimientosForm.NAME,
+		"r_abastecimientos_comunidades", ComunidadesForm.NAME,
+		elementTableName };
+	String[] joinFields = { "a." + AbastecimientosForm.PKFIELD,
+		"b." + AbastecimientosForm.PKFIELD,
+		"b." + ComunidadesForm.PKFIELD, "c." + ComunidadesForm.PKFIELD,
+		"a." + AbastecimientosForm.PKFIELD,
+		"d." + AbastecimientosForm.PKFIELD };
 	try {
-	    String query = "SELECT ";
-	    for (String name : colNames) {
-		query = query + name + ", ";
-	    }
-	    query = query.substring(0, query.length() - 2);
-	    query = query + " FROM " + FonsaguaConstants.dataSchema + "."
-		    + elementTableName + " t, " + FonsaguaConstants.dataSchema
-		    + "." + "abastecimientos a, "
-		    + FonsaguaConstants.dataSchema + "." + "comunidades c, "
-		    + FonsaguaConstants.dataSchema + "."
-		    + "r_abastecimientos_comunidades r"
-		    + " WHERE t.cod_abastecimiento = a.cod_abastecimiento AND "
-		    + "a.cod_abastecimiento = r.cod_abastecimiento AND "
-		    + "c.cod_comunidad = r.cod_comunidad AND "
-		    + "c.cod_comunidad = ? order by t.cod_abastecimiento";
-	    statement = connection.prepareStatement(query);
-	    statement.setString(1, communityCode);
-	    statement.execute();
-	    ResultSet rs = statement.getResultSet();
-
-	    ArrayList<String[]> rows = new ArrayList<String[]>();
-	    while (rs.next()) {
-		String[] row = new String[colNames.length];
-		for (int i = 0; i < colNames.length; i++) {
-		    String val = rs.getString(i + 1);
-		    if (val == null) {
-			val = "";
-		    }
-		    row[i] = val;
-		}
-		rows.add(row);
-	    }
-	    rs.close();
-
-	    return rows.toArray(new String[0][0]);
+	    return session.getTableWithJoin(tableNames, new String[3],
+		    joinFields, colNames, "WHERE c." + ComunidadesForm.PKFIELD
+			    + " = '" + communityCode + "'", new String[0],
+		    false);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
@@ -219,42 +153,17 @@ public class ReportDAO {
 
     // TODO: Try to make a generic method
     public static String[][] getDataOfFuentesByCommunity(String communityCode) {
-	PreparedStatement statement = null;
-	String[] colNames = { "f.fuente", "f.cod_fuente" };
+	String[] tableNames = { FuentesForm.NAME, "r_abastecimientos_fuentes",
+		"r_abastecimientos_comunidades" };
+	String[] colNames = { "a.fuente", "a." + FuentesForm.PKFIELD };
+	String[] joinFields = { "a." + FuentesForm.PKFIELD,
+		"b." + FuentesForm.PKFIELD, "b." + AbastecimientosForm.PKFIELD,
+		"c." + AbastecimientosForm.PKFIELD };
 	try {
-	    String query = "SELECT ";
-	    for (String name : colNames) {
-		query = query + name + ", ";
-	    }
-	    query = query.substring(0, query.length() - 2);
-	    query = query + " FROM " + FonsaguaConstants.dataSchema + "."
-		    + "fuentes f, " + FonsaguaConstants.dataSchema + "."
-		    + "r_abastecimientos_fuentes raf, "
-		    + FonsaguaConstants.dataSchema + "."
-		    + "r_abastecimientos_comunidades rac"
-		    + " WHERE f.cod_fuente = raf.cod_fuente AND "
-		    + "raf.cod_abastecimiento = rac.cod_abastecimiento AND "
-		    + "rac.cod_comunidad = ? group by f.fuente, f.cod_fuente";
-	    statement = connection.prepareStatement(query);
-	    statement.setString(1, communityCode);
-	    statement.execute();
-	    ResultSet rs = statement.getResultSet();
-
-	    ArrayList<String[]> rows = new ArrayList<String[]>();
-	    while (rs.next()) {
-		String[] row = new String[colNames.length];
-		for (int i = 0; i < colNames.length; i++) {
-		    String val = rs.getString(i + 1);
-		    if (val == null) {
-			val = "";
-		    }
-		    row[i] = val;
-		}
-		rows.add(row);
-	    }
-	    rs.close();
-
-	    return rows.toArray(new String[0][0]);
+	    return session.getTableWithJoin(tableNames, new String[3],
+		    joinFields, colNames, "WHERE c." + ComunidadesForm.PKFIELD
+			    + " = '" + communityCode + "'", new String[0],
+		    false);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
@@ -264,45 +173,21 @@ public class ReportDAO {
     // TODO: Try to make a generic method
     public static String[][] getDataOfElementOfFuentesByCommunity(
 	    String elementTableName, String[] colNames, String communityCode) {
-	PreparedStatement statement = null;
-	ArrayList<String> fuentesCodes = new ArrayList<String>();
-	for (String[] row : getDataOfFuentesByCommunity(communityCode)) {
-	    fuentesCodes.add(row[1]);
+	String[] tableNames = { FuentesForm.NAME, "r_abastecimientos_fuentes",
+		"r_abastecimientos_comunidades", elementTableName };
+	String[] joinFields = { "a." + FuentesForm.PKFIELD,
+		"b." + FuentesForm.PKFIELD, "b." + AbastecimientosForm.PKFIELD,
+		"c." + AbastecimientosForm.PKFIELD, "a." + FuentesForm.PKFIELD,
+		"d." + FuentesForm.PKFIELD };
+	try {
+	    return session.getTableWithJoin(tableNames, new String[3],
+		    joinFields, colNames, "WHERE c." + ComunidadesForm.PKFIELD
+			    + " = '" + communityCode + "'", new String[0],
+		    false);
+	} catch (SQLException e) {
+	    e.printStackTrace();
 	}
-	ArrayList<String[]> rows = new ArrayList<String[]>();
-	for (String code : fuentesCodes) {
-	    try {
-		String query = "SELECT ";
-		for (String name : colNames) {
-		    query = query + name + ", ";
-		}
-		query = query.substring(0, query.length() - 2);
-		query = query + " FROM " + FonsaguaConstants.dataSchema + "."
-			+ elementTableName + " WHERE " + FuentesForm.PKFIELD
-			+ " = ?";
-		statement = connection.prepareStatement(query);
-		statement.setString(1, code);
-		statement.execute();
-		ResultSet rs = statement.getResultSet();
-
-		while (rs.next()) {
-		    String[] row = new String[colNames.length];
-		    for (int i = 0; i < colNames.length; i++) {
-			String val = rs.getString(i + 1);
-			if (val == null) {
-			    val = "";
-			}
-			row[i] = val;
-		    }
-		    rows.add(row);
-		}
-		rs.close();
-
-	    } catch (SQLException e) {
-		e.printStackTrace();
-	    }
-	}
-	return rows.toArray(new String[0][0]);
+	return null;
     }
 
     public static String getDotacion(String alternativeCode) {
