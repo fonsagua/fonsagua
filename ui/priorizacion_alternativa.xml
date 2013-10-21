@@ -159,10 +159,7 @@
         <at name="beanclass">com.jeta.forms.components.border.TitledBorderLabel</at>
         <at name="beanproperties">
          <object classname="com.jeta.forms.store.memento.PropertiesMemento">
-          <at name="classname">com.jeta.forms.components.border.TitledBorderLabel</at>
-          <at name="properties">
-           <object classname="com.jeta.forms.store.support.PropertyMap">
-            <at name="height">6</at>
+          <at name="classname">com.jeta.forms.components.border.TitledBorderLabel</at><at name="properties"><object classname="com.jeta.forms.store.support.PropertyMap"><at name="text"/><at name="height">6</at>
             <at name="name"/>
             <at name="width">267</at>
             <at name="border">
