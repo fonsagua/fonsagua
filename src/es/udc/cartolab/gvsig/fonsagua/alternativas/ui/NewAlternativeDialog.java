@@ -206,7 +206,7 @@ public class NewAlternativeDialog extends JPanel implements IWindow,
 		values[3] = ((Item) municCombo.getSelectedItem()).id;
 		values[4] = ((Item) municCombo.getSelectedItem()).description;
 		values[5] = ((Item) cantonCombo.getSelectedItem()).id;
-		values[6] = ((Item) municCombo.getSelectedItem()).description;
+		values[6] = ((Item) cantonCombo.getSelectedItem()).description;
 
 		for (String value : values) {
 		    if ((value == null) || (value.length() < 1)) {
