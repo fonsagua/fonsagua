@@ -39,6 +39,7 @@ public abstract class OpenAbstractExtension extends AbstractExtension {
 	if (iWindow instanceof View) {
 	    view = (View) iWindow;
 	    view.setName(viewName);
+	    view.getWindowInfo().setTitle(viewName);
 	} else {
 	    Project project = ((ProjectExtension) PluginServices
 		    .getExtension(ProjectExtension.class)).getProject();
@@ -50,6 +51,7 @@ public abstract class OpenAbstractExtension extends AbstractExtension {
 	    view = (View) projectDocument.createWindow();
 	    view.setName(viewName);
 	    view.getWindowInfo().setMaximized(true);
+	    view.getWindowInfo().setTitle(viewName);
 	    PluginServices.getMDIManager().addWindow(view);
 	}
 	return view;
