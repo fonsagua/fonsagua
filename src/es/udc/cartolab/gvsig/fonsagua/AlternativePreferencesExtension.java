@@ -41,6 +41,7 @@ public class AlternativePreferencesExtension extends AbstractExtension {
 			    new String[0]);
 	    if (model.getRowCount() > 0) {
 		form.setModel(model);
+		int posInRecordset = model.convertRowIndexToModel(0);
 		model = TableModelFactory.createFromTableWithNotFilter(
 			FonsaguaConstants.TUBERIAS_COMERCIALES_NAME,
 			FonsaguaConstants.TUBERIAS_COMERCIALES_TABLE_FIELDS[0],
@@ -58,7 +59,7 @@ public class AlternativePreferencesExtension extends AbstractExtension {
 		((JTable) form.getWidgets().get(
 			FonsaguaConstants.BOMBAS_COMERCIALES_NAME))
 			.setModel(model);
-		form.actionUpdateRecord(0);
+		form.actionUpdateRecord(posInRecordset);
 	    }
 	} catch (ReadDriverException e) {
 	    e.printStackTrace();
