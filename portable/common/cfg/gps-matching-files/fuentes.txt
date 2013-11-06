@@ -1,2 +1,3 @@
 cod_fuente=name
 utm_z=elev
+tipo_fuente:constant( )
