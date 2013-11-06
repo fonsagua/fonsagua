@@ -39,7 +39,7 @@ public class DatabaseDirectAccessQueries {
     public static DefaultTableModel getComunitiesIntersectingAlternative(
 	    String codAlt) throws SQLException {
 
-	String query = "SELECT c.comunidad AS \"Comunidad\", c.cod_comunidad AS \"Cod. Comunidad\", c.n_habitantes AS \"Habitantes totales\", ci.n_hab_alternativa AS \"Habitantes alternativa\", ci.gid FROM fonsagua.comunidades AS c JOIN fonsagua.alternativas AS a ON st_intersects(a.geom, c.geom) FULL OUTER JOIN fonsagua.comunidades_implicadas AS ci ON ci.comunidad = c.comunidad AND a.cod_alternativa = ci.cod_alternativa WHERE a.cod_alternativa = '####';";
+	String query = "SELECT c.comunidad AS \"Comunidad\", c.cod_comunidad AS \"Cod. Comunidad\", c.n_habitantes AS \"Habitantes totales\", ci.n_hab_alternativa AS \"Habitantes alternativa\", ci.gid FROM fonsagua.comunidades AS c JOIN fonsagua.alternativas AS a ON st_intersects(a.geom, c.geom) FULL OUTER JOIN fonsagua.comunidades_implicadas AS ci ON ci.cod_comunidad = c.cod_comunidad AND a.cod_alternativa = ci.cod_alternativa WHERE a.cod_alternativa = '####';";
 	ResultSet rs = convertAndExecuteQuery(codAlt, query);
 
 	DefaultTableModel modelo = new OnlyOneColumnEditable(3);
