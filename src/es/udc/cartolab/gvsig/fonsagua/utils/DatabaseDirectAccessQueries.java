@@ -85,7 +85,7 @@ public class DatabaseDirectAccessQueries {
 	    final double demanda = rs.getDouble("demanda");
 	    final double caudalFuentes = rs.getDouble("caudal_fuentes");
 
-	    if (demanda > 0 && caudalFuentes > 0 && demanda < caudalFuentes) {
+	    if (demanda > 0 && caudalFuentes > 0 && demanda <= caudalFuentes) {
 		return true;
 	    }
 	}
