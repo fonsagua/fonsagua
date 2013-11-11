@@ -87,8 +87,6 @@ public class OpenAlternativeExtension extends OpenAbstractExtension {
 	}
 	AlternativesPreferences.loadPreferences(code);
 	FonsaguaAlternative.code = code;
-	FonsaguaAlternative.f_var_hor = AlternativesPreferences.getInstance()
-		.getfVarHoraria();
     }
 
     public static String getCode() {

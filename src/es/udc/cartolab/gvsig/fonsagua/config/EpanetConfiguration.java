@@ -1,5 +1,7 @@
 package es.udc.cartolab.gvsig.fonsagua.config;
 
+import java.util.Map;
+
 import es.udc.cartolab.gvsig.epanet.config.JunctionFieldNames;
 import es.udc.cartolab.gvsig.epanet.config.LayerNames;
 import es.udc.cartolab.gvsig.epanet.config.PipeFieldNames;
@@ -8,6 +10,7 @@ import es.udc.cartolab.gvsig.epanet.config.PumpFieldNames;
 import es.udc.cartolab.gvsig.epanet.config.ReservoirFieldNames;
 import es.udc.cartolab.gvsig.epanet.config.TankFieldNames;
 import es.udc.cartolab.gvsig.epanet.config.ValveFieldNames;
+import es.udc.cartolab.gvsig.epanet.structures.validations.NodesChecker;
 import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 
 /*
@@ -28,7 +31,14 @@ public class EpanetConfiguration {
 	setValveFieldNames();
 	setSourceFieldNames();
 	setLayerNames();
+	setNodesCheckers();
 	OpenAlternativeExtension.setValidAlternative(false);
+    }
+
+    private void setNodesCheckers() {
+	Map<String, NodesChecker> nodesCheckers = Preferences
+		.getNodesCheckers();
+	nodesCheckers.put(DemandVsOffert.class.getName(), new DemandVsOffert());
     }
 
     private void setLayerNames() {
