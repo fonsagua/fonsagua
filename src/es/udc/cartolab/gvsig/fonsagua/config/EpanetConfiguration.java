@@ -2,6 +2,8 @@ package es.udc.cartolab.gvsig.fonsagua.config;
 
 import java.util.Map;
 
+import com.iver.cit.gvsig.listeners.EndGeometryListener;
+
 import es.udc.cartolab.gvsig.epanet.config.JunctionFieldNames;
 import es.udc.cartolab.gvsig.epanet.config.LayerNames;
 import es.udc.cartolab.gvsig.epanet.config.PipeFieldNames;
@@ -32,7 +34,14 @@ public class EpanetConfiguration {
 	setSourceFieldNames();
 	setLayerNames();
 	setNodesCheckers();
+	setFonsaguaEndGeometryListener();
 	OpenAlternativeExtension.setValidAlternative(false);
+    }
+
+    private void setFonsaguaEndGeometryListener() {
+	EndGeometryListener cadListener = Preferences.getCADListener();
+	cadListener = new FonsaguaEndGeometryListener();
+
     }
 
     private void setNodesCheckers() {
