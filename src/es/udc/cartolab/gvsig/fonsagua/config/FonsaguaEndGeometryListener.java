@@ -16,8 +16,9 @@ import com.iver.cit.gvsig.layers.VectorialLayerEdited;
 import com.iver.cit.gvsig.listeners.EndGeometryListener;
 import com.iver.cit.gvsig.project.documents.view.gui.View;
 
-import es.udc.cartolab.gvsig.epanet.config.FonsaguaAlternative;
 import es.udc.cartolab.gvsig.epanet.exceptions.ExternalError;
+import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.navtable.ToggleEditing;
 
 public class FonsaguaEndGeometryListener implements EndGeometryListener {
@@ -36,16 +37,13 @@ public class FonsaguaEndGeometryListener implements EndGeometryListener {
 		    .getActiveLayerEdited();
 
 	    try {
-
-		// TODO: All this block of code should be changed to allow use
-		// gvsig-epanet without fonsagua project
 		ArrayList<IRowEdited> selectedRow = lyrEd.getSelectedRow();
 		IRowEdited iRowEdited = selectedRow.get(0);
 		Value[] attributes = iRowEdited.getAttributes();
 		int idx = lv.getRecordset().getFieldIndexByName(
-			FonsaguaAlternative.alternativePK);
+			AlternativasForm.PKFIELD);
 		attributes[idx] = ValueFactory
-			.createValue(FonsaguaAlternative.code);
+			.createValue(OpenAlternativeExtension.getCode());
 		iRowEdited.setAttributes(attributes);
 
 		lv.getRecordset().removeSelectionListener(lyrEd);
