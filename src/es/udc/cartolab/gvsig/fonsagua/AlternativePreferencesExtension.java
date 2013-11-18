@@ -1,8 +1,13 @@
 package es.udc.cartolab.gvsig.fonsagua;
 
+import java.util.ArrayList;
+
 import javax.swing.JTable;
 
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
+import com.iver.andami.PluginServices;
+import com.iver.cit.gvsig.ProjectExtension;
+import com.iver.cit.gvsig.project.documents.ProjectDocument;
 
 import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
 import es.icarto.gvsig.navtableforms.gui.tables.model.AlphanumericTableModel;
@@ -25,6 +30,8 @@ public class AlternativePreferencesExtension extends AbstractExtension {
 
     @Override
     public void execute(String actionCommand) {
+
+	removePreferencesTable();
 
 	FormFactory.checkAndLoadTableRegistered(PreferenciasForm.NAME);
 	FormFactory
@@ -63,6 +70,23 @@ public class AlternativePreferencesExtension extends AbstractExtension {
 	    }
 	} catch (ReadDriverException e) {
 	    e.printStackTrace();
+	}
+    }
+
+    /*
+     * Cerrar y abrir la tabla de preferencias. Llega con esto, para poder
+     * recargar la tabla tras meter los datos en el trigger de alternativas.
+     */
+    private void removePreferencesTable() {
+	ProjectExtension pExt = (ProjectExtension) PluginServices
+		.getExtension(ProjectExtension.class);
+	ArrayList<ProjectDocument> tables = pExt.getProject()
+		.getDocumentsByType("ProjectTable");
+	for (ProjectDocument doc : tables) {
+	    if (doc.getName().equals(PreferenciasForm.NAME)) {
+		PluginServices.getMDIManager().closeSingletonWindow(doc);
+		pExt.getProject().delDocument(doc);
+	    }
 	}
     }
 
