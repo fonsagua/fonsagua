@@ -22,9 +22,7 @@ public class DemandVsOffert implements NodesChecker {
 
     private int habConecIdx = -1;
     private int qExtraIdx = -1;
-    private int demandaIdx = -1;;
-    private int demEconIdx = -1;;
-    private int demCentrosIdx = -1;;
+    private int demandaIdx = -1;
     private int poblActualIdx = -1;
     private double demanda;
     private double demEcon;
@@ -95,15 +93,39 @@ public class DemandVsOffert implements NodesChecker {
 	    final SelectableDataSource altRecordset = alternativas
 		    .getRecordset();
 	    demandaIdx = altRecordset.getFieldIndexByName("demanda");
-	    demEconIdx = altRecordset.getFieldIndexByName("dem_econ");
-	    demCentrosIdx = altRecordset.getFieldIndexByName("dem_centros");
 	    poblActualIdx = altRecordset.getFieldIndexByName("pobl_actual");
 
 	    Value[] row = altRecordset.getRow(0);
 	    demanda = value2double(row, demandaIdx);
-	    demEcon = value2double(row, demEconIdx);
-	    demCentros = value2double(row, demCentrosIdx);
 	    poblActual = value2double(row, poblActualIdx);
+
+	    double n_cent_educativos = value2double(row,
+		    altRecordset.getFieldIndexByName("n_cent_educativos"));
+	    double n_cent_salud = value2double(row,
+		    altRecordset.getFieldIndexByName("n_cent_salud"));
+	    double n_cent_otros = value2double(row,
+		    altRecordset.getFieldIndexByName("n_cent_otros"));
+
+	    double dot_cent_educativos = value2double(row,
+		    altRecordset.getFieldIndexByName("dot_cent_educativos"));
+	    double dot_cent_salud = value2double(row,
+		    altRecordset.getFieldIndexByName("dot_cent_salud"));
+	    double dot_cent_otros = value2double(row,
+		    altRecordset.getFieldIndexByName("dot_cent_otros"));
+
+	    demCentros = (n_cent_educativos * dot_cent_educativos
+		    + n_cent_salud * dot_cent_salud + n_cent_otros
+		    * dot_cent_otros);
+
+	    double dot_sec_primario = value2double(row,
+		    altRecordset.getFieldIndexByName("dot_sec_primario"));
+	    double dot_sec_secundario = value2double(row,
+		    altRecordset.getFieldIndexByName("dot_sec_secundario"));
+	    double dot_sec_terciario = value2double(row,
+		    altRecordset.getFieldIndexByName("dot_sec_terciario"));
+
+	    demEcon = (dot_sec_primario + dot_sec_secundario + dot_sec_terciario);
+
 	} catch (ReadDriverException e) {
 	    throw new ExternalError(e);
 	}

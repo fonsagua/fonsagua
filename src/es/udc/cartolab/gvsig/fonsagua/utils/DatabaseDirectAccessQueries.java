@@ -13,6 +13,7 @@ import javax.swing.table.TableModel;
 import es.icarto.gvsig.fonsagua.reports.utils.ReportUtils;
 import es.icarto.gvsig.navtableforms.gui.tables.model.NotEditableTableModel;
 import es.udc.cartolab.gvsig.epanet.exceptions.ExternalError;
+import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.PreferenciasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 import es.udc.cartolab.gvsig.users.utils.DBSessionSpatiaLite;
@@ -234,6 +235,21 @@ public class DatabaseDirectAccessQueries {
 	}
 
 	return communities;
+    }
+
+    public static double getFactorVEst(String code) throws SQLException {
+
+	String whereClause = "where cod_alternativa = '###'".replace("###",
+		code);
+
+	DBSession session = DBSession.getCurrentSession();
+	String[][] table = session.getTable(PreferenciasForm.NAME,
+		FonsaguaConstants.dataSchema,
+		new String[] { "f_var_estacional" }, whereClause,
+		new String[] { "f_var_estacional" }, true);
+
+	double fVarEstacional = Double.parseDouble(table[0][0]);
+	return fVarEstacional;
     }
 
 }
