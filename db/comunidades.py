@@ -1,0 +1,449 @@
+# -*- coding: utf-8 -*-
+import processing
+
+from PyQt4.QtCore import QPyNullVariant
+
+
+# Para escribir menos
+#ilayer = processing.getobject("comunidades")
+#ifields = ilayer.dataProvider().fields().toList()
+#for f in ifields:
+#print "of.setAttribute('', iatts[ilayer.fieldNameIndex('%s')])"%(f.name())
+
+
+##
+## RECUERDA PONER EL ENCODING DE LA CAPA ORIGINAL EN WINDOWS-1250 EN LA CAPA ORIGINAL
+##
+class CopyAttributes():
+    def __init__(self, ifeat, ofields, ilayer):
+        self.ilayer = ilayer
+        self.iatts = ifeat.attributes()
+        self.of = QgsFeature()
+        self.of.setFields(ofields)
+        if ilayer.hasGeometryType():
+            self.of.setGeometry(ifeat.geometry())
+
+        self.codigoscomunidad = processing.getobject("comunidades").dataProvider().uniqueValues(1)
+        
+    def copy(self, o, i, processfunction=None):
+        '''
+        copy of inputFeature.i attr to ouputFeature.o attr
+        if processfunction is provided applies it first to to the value of i
+        '''
+        ivalue = self.iatts[self.ilayer.fieldNameIndex(i)]
+        
+
+        if processfunction:
+            self.of.setAttribute(o, processfunction(ivalue))
+        else:
+            self.of.setAttribute(o, ivalue)
+         
+    def siNo2Chb(self, strvalue):
+        '''
+        str should be 'Si/No/Null) and returns 'true/false'
+        uses startswith to avoid encoding problems
+        '''
+        if strvalue and strvalue.startswith('S'):
+            return 'true'
+        return 'false'
+        
+    def v2int(self, v):
+        '''
+        must be improved, the idea is convert float to int or liberal strings to int
+        '''
+        if v:
+            return int(v)
+        return 0
+    
+    def isTrue(self, v):
+        if v:
+            return 'true'
+        return 'false'
+        
+    def toCodigoC(self, v):
+       '''
+       takes 8 characters from v and use it as codigoc if that value is valid codigoc
+       if not COMUNIDAD_FALSA is used as codigoc
+       '''
+       codigoc = v[0:8]
+       if codigoc in self.codigoscomunidad:
+           return codigoc
+       return 'COMUNIDAD_FALSA'
+
+     
+    def getNewFeature(self):
+        return self.of
+
+    def comunidadesSpecific(self):
+        self.of.setAttribute('n_iglesias', self.iatts[self.ilayer.fieldNameIndex('nIglCat')] + self.iatts[self.ilayer.fieldNameIndex('nIglEva')])
+
+
+def myfunction():
+    ilayer = processing.getobject("honduras_comunidades")
+    olayer = processing.getobject("comunidades")
+    olayer.dataProvider().clearErrors()
+    caps = olayer.dataProvider().capabilities()
+
+    ofields = olayer.dataProvider().fields()
+
+    if not (caps & QgsVectorDataProvider.AddFeatures):
+        print " ************** La capa no es editable, o algo parecido"
+    newFeatures = []
+    otrasorg = []
+    for ifeat in ilayer.getFeatures():
+        ca = CopyAttributes(ifeat, ofields, ilayer)
+        ca.copy('comunidad', 'NombreC')
+        ca.copy('cod_comunidad', 'CodigoC')
+        ca.copy('cod_caserio', 'CodigoC')
+        ca.copy('caserio', 'NombreC')
+        ca.copy('fecha', 'Fecha')
+        ca.copy('punto_descripcion', 'Descrpt')
+        ca.copy('departamento', 'Nomdep')
+        ca.copy('cod_departamento', 'Nomdep')
+        ca.copy('municipio', 'Nommunic')
+        ca.copy('cod_municipio', 'Codmunic')
+        ca.copy('canton', 'nomaldea')
+        ca.copy('cod_canton', 'CodAldea')
+        ca.copy('cuenca', 'Cuenca')
+        # TODO: LimiteN
+        # TODO: LimiteS
+        # TODO: LimiteE
+        # TODO: LimiteO
+        ca.copy('n_familias', 'NumFam')
+        ca.copy('n_habitantes', 'NumHab')
+        ca.copy('n_viviendas', 'NumViv')
+        ca.copy('anho_establecimiento', 'NaciCom', ca.v2int)
+        ca.copy('tip_nucleo', 'TipoNuc')
+        # TODO: Aclarar que en 2 tambien existe n_hom_jovenes y n_muj_jovenes (5-18 anhos)
+        # pero asignamos todos al sector 18-60
+        ca.copy('n_hombres', 'NumHombres')
+        ca.copy('n_mujeres', 'NumMujeres')
+        ca.copy('n_ninhos', 'NumNinhos')
+        ca.copy('n_ninhas', 'NumNinhas')
+        ca.copy('n_ancianos', 'NumAnciano')
+        ca.copy('n_ancianas', 'NumAnciana')
+        ca.copy('tip_origen', 'TipoPOrige')
+        ca.copy('antiguedad', 'AntigDesp')
+        
+        # TODO
+        # ORGANIZACIONES Y COOPERATIVAS
+        # ca.copy('', 'HayPatront')
+        # ca.copy('', 'NCompPt')
+        # ca.copy('', 'NumMujPt')
+        # ca.copy('', 'NumHomPt')
+        # ca.copy('', 'NombPresPt')
+        # ca.copy('', 'AntigPt')
+        # ca.copy('', 'AnPersJur')
+        # ca.copy('', 'HayComApoy')
+        # ca.copy('', 'HayJAgua')
+        # ca.copy('', 'JAguaPrsJ')
+        # ca.copy('', 'EstJAPJ')
+        # ca.copy('', 'AntJAgua')
+        # ca.copy('', 'PertTedJA')
+        # ca.copy('', 'QueRedJA')
+        # ca.copy('', 'JAComApoy')
+        
+        if ifeat.attributes()[ilayer.fieldNameIndex('HaySPFam')].startswith('S'):
+            otrasorg.append({'cod_comunidad':ifeat.attributes()[ilayer.fieldNameIndex('CodigoC')], 'tipo_organizacion':u'Asociaci\xf3n de padres y madres de familia'})
+        
+        if ifeat.attributes()[ilayer.fieldNameIndex('NomCoopP')]:
+            
+            otrasorg.append({'cod_comunidad':ifeat.attributes()[ilayer.fieldNameIndex('CodigoC')], 'nombre':ifeat.attributes()[ilayer.fieldNameIndex('NomCoopP')], 'tipo_organizacion':'Cooperativa de producci\xf3n', 'actividad':ifeat.attributes()[ilayer.fieldNameIndex('ActivPrinc')]})
+            
+        # ca.copy('', 'BankComuna')
+        # ca.copy('', 'ExistCODEL')
+        ca.copy('exp_ongs', 'ExpONGs', ca.siNo2Chb)
+        # ca.copy('', 'PatrPj')
+        ca.copy('h_cargos_publicos', 'PersCPub', ca.siNo2Chb)
+        
+         # TODO. Trigger. Comprobar que da bien.
+        # ca.copy('f_primario', 'FamAgropec')
+        # ca.copy('f_secundario', 'FamIndust')
+        # ca.copy('f_terciario', 'FamServ')
+        # ca.copy('f_c_propia', 'FamCuenPro')
+        
+        ca.copy('cp_granos', 'GranosBasi', ca.v2int)
+        ca.copy('sub_granos', 'GranBasSub', ca.siNo2Chb)
+        ca.copy('cp_ganaderia', 'Ganad')
+        ca.copy('sub_ganaderia', 'GanadSubs', ca.siNo2Chb)
+        ca.copy('cp_otros', 'CPOtros')
+        ca.copy('sub_otros', 'CPOtrSubs', ca.siNo2Chb)
+        
+         # TODO. Trigger. Comprobar que da bien.
+        # ca.copy('f_c_ajena', 'NFamCuenAj')
+        
+        ca.copy('ca_cafe', 'CortaCafe')
+        ca.copy('ca_canha', 'CortaCanha')
+        ca.copy('ca_otros', 'CAjOtros')
+        
+        # TODO: Tiene datos
+        # ca.copy('', 'CAjOtroSub')
+        
+        ca.copy('tip_cultivos', 'CmTipoCult')
+        ca.copy('f_propietarias', 'NFamPropie')
+        ca.copy('prop_hombres', 'NPropHomb')
+        ca.copy('prop_mujeres', 'NPropMuj')
+        ca.copy('prop_area_cultivada', 'ACultivFam')
+        ca.copy('f_arrendatarias', 'NFamArrend')
+        ca.copy('arre_hombres', 'NArrCabH')
+        ca.copy('arre_mujeres', 'NArrCabM')
+        ca.copy('arre_area_cultivada', 'ACulFArren')
+        ca.copy('f_medias', 'FamAMedias')
+        ca.copy('med_hombres', 'FamAMedH')
+        ca.copy('med_area_cultivada', 'ACulFColon')
+        ca.copy('sup_total_riego', 'SupRegTot')
+        ca.copy('tip_regadio', 'TipoRegad')
+        
+        # TODO. Trigger. Comprobar que da bien.
+        # ca.copy('produccion', 'SacosFam')
+        # ca.copy('consumo', 'SacFConsPr')
+        ca.copy('h_cooperativas', 'ExistCoopP', ca.siNo2Chb)
+        ca.copy('f_comercio', 'NumFamCome')
+        ca.copy('comer_serv', 'HayComerc', ca.siNo2Chb)
+        ca.copy('f_industria', 'NumFamIndu')
+        ca.copy('f_construccion', 'NumFConstr')
+        ca.copy('f_maquila', 'NumFamMaq')
+        ca.copy('f_otros_sec', 'NumFamOtro')
+        ca.copy('ind_tall_maq', 'HayIndustr', ca.siNo2Chb)
+        ca.copy('electricidad', 'HayElectr', ca.siNo2Chb)
+        ca.copy('viv_electricidad', 'NumVivElec')
+        # TODO: Son lempiras/mes, cambiar etiqueta
+        ca.copy('tarifa_electricidad', 'Cuota')
+        ca.copy('telf_fijo', 'HayTelfijo', ca.siNo2Chb)
+        # TODO: Avisar del cambio bueno/malo/regular
+        ca.copy('acceso_ver', 'CarrtVeran', lambda v: 'Transitable' if v in ['Bueno', 'Regular'] else 'Intrasitable')
+        ca.copy('acceso_inv', 'CarrtInv')
+        ca.copy('trans_publico', 'TransPub', ca.siNo2Chb)
+        
+        # TODO: igual hay que hacerlos a mano
+        # ca.copy('', 'FrqTrPub')
+        # ca.copy('', 'DistAParad')
+        # ca.copy('', 'TCabMunPie')
+        # ca.copy('', 'TCabMunVh')
+        ca.copy('f_viv_prop', 'FPropViv')
+        ca.copy('f_viv_noprop', 'FNoPrpTViv')
+        ca.copy('viv_prop_mujeres', 'MujProp')
+        ca.copy('viv_prop_hombres', 'HomProp')
+        
+        # TODO. Falta. Sera ¿viv_mixto?
+        # ca.copy('', 'FamVivLadr')
+        
+        ca.copy('viv_bahareque', 'FamVivBarq')
+        ca.copy('viv_adobe', 'FamVivAdob')
+        ca.copy('viv_otros', 'FamVivOtro')
+        ca.copy('f_dat_abast', 'FuentDatos')
+        ca.copy('resum_abast', 'ResAbAgua')
+        ca.copy('coment_ser', 'ObsServ')
+        ca.copy('coment_eco', 'ComAEco')
+        ca.copy('resum_econ', 'ResAEco')
+        ca.copy('coment_org', 'ObsAspOrg')
+        ca.copy('coment_agua', 'ComInfraAg')
+        ca.copy('coment_pob', 'ComDatPob')
+        ca.copy('resum_censo', 'ResDatPob')
+        ca.copy('utm_z', 'AlturaC')
+        ca.copy('coment_gen', 'ComMunic')
+
+        # TODO. Trigger. Comprobar que da bien.
+        # ca.copy('tot_adultos', 'TotalAdult')
+        # ca.copy('tot_ninhos', 'TotalNin')
+        # ca.copy('tot_ancianos', 'TotalAncia')
+        
+        ca.copy('prop_registrada', 'LegalReg')
+        ca.copy('prop_noregistrada', 'LegalNoReg')
+        ca.copy('prop_tramites', 'LegalTram')
+        
+        
+        
+        ca.copy('f_otros_ter', 'NumFamCOtr')
+        
+        # TODO a mano en centros actividad economica
+        # ca.copy('', 'TipoComerc')
+        # ca.copy('', 'TipoIndust')
+        
+        ca.copy('necesidad1', 'Necesidad1')
+        ca.copy('necesidad2', 'Necesidad2')
+        ca.copy('necesidad3', 'Necesidad3')
+        ca.copy('necesidad4', 'Necesidad4')
+        ca.copy('enf_tip_adultos', 'EnfComunes')
+        ca.copy('enf_tip_ninhos', 'EnfComunes')
+
+        # TODO: Relacionados con Sanidad
+        # ca.copy('', 'tCenSalud')
+        # ca.copy('', 'TCESAMO')
+        # ca.copy('', 'frqCESAMO')
+        # ca.copy('', 'VisPromSal')
+        # ca.copy('', 'frqVisProm')
+        # ca.copy('', 'FnteInfoSa')
+        # ca.copy('f_dat_sanidad', 'FntelnfEtd')
+        # ca.copy('', 'TipAsisSan')
+        
+        ca.copy('sist_abastecimiento', 'HayAbast')
+        # TODO. si somos buenos a este campo hay que darle una vuelta, los datos estan mal
+        ca.copy('n_viv_abast', 'ParcViv')
+        
+        # TODO. Igual hay que cambiar cosas
+        # ca.copy('', 'OrigAguaS')
+        ca.copy('n_vacas', 'Vacas')
+        ca.copy('n_cerdos', 'Cerdos')
+        ca.copy('n_gallinas', 'Gallinas')
+        ca.copy('n_caballos', 'Caballos')
+        ca.copy('n_burros', 'Burros')
+        ca.copy('agroquimicos', 'AgroQuim', ca.siNo2Chb)
+        ca.copy('tip_agroquimicos', 'TipoAgroQ')
+        ca.copy('tec_conservacion', 'ConsrvSuel', ca.siNo2Chb)
+        ca.copy('tip_tec_conservacion', 'TipoCsrvS')
+        ca.copy('form_agricola', 'FormacAgro', ca.siNo2Chb)
+        ca.copy('f_form_agricola', 'NFamForAgr')
+        ca.copy('form_ambiental', 'FormAmb', ca.siNo2Chb)
+        ca.copy('f_form_ambiental', 'NFamFormAm')
+        ca.copy('deforestacion', 'Deforest')
+        ca.copy('avance_fagricola', 'AvanFrAgr', lambda v: v.replace('o', 'a'))
+        # TODO. los cuatros siguientes habria que revisarlos
+        ca.copy('veg_residencial', 'UsoSuelo', lambda v: 'true' if v.startswith('Residencial') else 'false')
+        ca.copy('veg_industrial', 'UsoSuelo', lambda v: 'true' if v == 'Industrial' else 'false')
+        ca.copy('veg_agricola', 'UsoSuelo', lambda v: 'true' if v.startswith('Agr') else 'false')
+        ca.copy('veg_forestal', 'UsoSuelo', lambda v: 'true' if v == 'Forestal' else 'false')
+        
+        # TODO: No hay equivalente
+        # ca.copy('', 'ProfSuelo')
+        ca.copy('riesgo_erosion', 'RiesgEros')
+        # TODO: No hay equivalente
+        # ca.copy('', 'TextSuelo')
+        ca.copy('frec_incendios', 'FreqIncend')
+        ca.copy('est_hidrogeologicos', 'HayHidrog', ca.siNo2Chb)
+        ca.copy('autor_hidrogeo', 'HidrgAut')
+        ca.copy('pozos_extraccion', 'NivPozos', ca.isTrue)
+        ca.copy('pozos_nivel', 'NivPozos')
+        
+        # TODO
+        # ca.copy('', 'CobVegMnt')
+        # ca.copy('', 'TipoVgMic')
+        ca.copy('conserv_ma', 'HayConsvMA', ca.siNo2Chb)
+        ca.copy('desc_conserv_ma', 'DescConsMA')
+        
+        # TODO
+        # ca.copy('', 'Especies')
+        # ca.copy('', 'DesfAIMcr')
+        ca.copy('llano', 'SiLlano')
+        ca.copy('pend_media', 'SiMedia')
+        ca.copy('pend_elevada', 'Sielevada')
+        
+        # TODO
+        # ca.copy('', 'Coniferas')
+        # ca.copy('', 'Latifol')
+        # ca.copy('', 'Mixto')
+        # ca.copy('', 'Cultivos')
+        # ca.copy('', 'Mangle')
+        # ca.copy('', 'Matorral')
+        # ca.copy('', 'Pasto')
+        # ca.copy('', 'Otros')
+        ca.copy('coc_lenha', 'Fogon')
+        ca.copy('coc_lenha_mej', 'Estufa')
+        
+        # TODO. Trigger. Comprobar que da bien.
+        # ca.copy('', 'x')
+        # ca.copy('', 'y')
+
+        ca.copy('med_hombres', 'FamAMedM')
+        ca.copy('fr_inundac', 'Principal', lambda v: 'true' if v and v.startswith('Inund') else 'false')
+        ca.copy('fr_desbord', 'Principal', lambda v: 'true' if v and v.startswith('Desbor') else 'false')
+        ca.copy('fr_otros', 'Principal', lambda v: 'true' if v and v.startswith('Otros') else 'false')
+        ca.copy('f_dat_frg', 'FuenteDat')
+        ca.copy('ult_fenomeno', 'UltimoF')
+        ca.copy('comite_riesgos', 'ComiteR', ca.siNo2Chb)
+        ca.copy('capac_riesgos', 'Capacit', ca.siNo2Chb)
+        ca.copy('fr_otros_detalle', 'OtrosFR')
+        ca.copy('coment_frg', 'ComentFR')
+        
+        # TODO
+        # ca.copy('', 'HayEvacAGr')
+        # ca.copy('', 'TipoEvacAg')
+        # ca.copy('', 'TratAgGris')
+        # ca.copy('', 'DisposicEx')
+        # ca.copy('', 'ExistLetr')
+        ca.copy('let_hoyo', 'NumFosSimp')
+        ca.copy('h_let_abonera', 'NumAboner', lambda v: 'true' if int(v) > 0 else 'false')
+        ca.copy('let_abonera', 'NumAboner')
+        ca.copy('let_hidra', 'NumCierrHi')
+        ca.copy('let_septica', 'NumFosSept')
+        ca.copy('coment_san', 'ComentSan')
+        ca.copy('h_lavad_comun', 'HayLavC', ca.siNo2Chb)
+        ca.copy('tip_almacenamiento', 'TipoAlmA')
+        ca.copy('n_lavaderos', 'NLavad')
+        ca.copy('n_pilas', 'npilas')
+        # TODO
+        # ca.copy('', 'haytratagr')
+        # TODO: revisar nbarr pq tiene datos no numericos
+        ca.copy('n_barriles', 'nbarr')
+        # TODO. Trigger. Comprobar que da bien.
+        ca.copy('cons_hab', 'ConsumHab')
+        ca.copy('t_medio_fuente', 'TMedioFu')
+        ca.copy('seca_suficiencia', 'Suficiente', ca.siNo2Chb)
+        ca.copy('seca_t_espera', 'TEspCola')
+        ca.copy('lluvia_suficiencia', 'LlSufic')
+        ca.copy('lluvia_t_espera', 'LlTespCola')
+        ca.copy('f_compra', 'CosAguaExt', ca.siNo2Chb)
+        ca.copy('coste_agua', 'CosAguaExt')
+        ca.copy('coment_hab', 'ComHabita')
+        ca.copy('res_hab_agua', 'resHabitos')
+        # TODO. Trigger. Comprobar que da bien.
+        # ca.copy('tot_s_abast', 'totcom') tot_ll_abast
+        # ca.copy('tot_s_sin_abast', 'totnocom') tot_ll_sin_abast
+        ca.copy('disp_basuras', 'DispBasur')
+        ca.copy('cent_educativos', 'hayEsc', ca.siNo2Chb)
+        ca.copy('trat_aboneras', 'tratAboner')
+        ca.copy('disp_abono', 'dispFinAb')
+        ca.copy('uso_letrinas', 'usoLet', ca.siNo2Chb)
+        ca.copy('pq_no_aboneras', 'pQNoUso')
+        
+        
+        # TODO Aclarar que se distingue entre seca y lluvia y se pone en los dos lo mismo
+        ca.copy('aba_s_domiciliar', 'abastdom')
+        ca.copy('aba_ll_domiciliar', 'abastdom')
+        ca.copy('aba_s_cantareras', 'llavepub')
+        ca.copy('aba_ll_cantareras', 'llavepub')
+        ca.copy('aba_s_broquel_com', 'pozcomun')
+        ca.copy('aba_ll_broquel_com', 'pozcomun')
+        ca.copy('aba_s_broquel', 'pozpart')
+        ca.copy('aba_ll_broquel', 'pozpart')
+        ca.copy('aba_s_nacimiento', 'vanmanant')
+        ca.copy('aba_ll_nacimiento', 'vanmanant')
+        ca.copy('aba_s_rio', 'vanrio')
+        ca.copy('aba_ll_rio', 'vanrio')
+        ca.copy('aba_s_quebrada', 'vanquebr')
+        ca.copy('aba_ll_quebrada', 'vanquebr')
+        ca.copy('aba_s_compra', 'compragua')
+        ca.copy('aba_ll_compra', 'compragua')
+        ca.copy('lug_agua_cercano', 'lugarprox')
+        
+        ca.comunidadesSpecific()
+        
+        newFeatures.append(ca.getNewFeature())
+
+    (res, foo) = olayer.dataProvider().addFeatures(newFeatures)
+    res = True
+    if not res:
+        print "************** Error guardando la capa ********* "
+        print olayer.dataProvider().errors()
+        return
+
+
+    otrasorglayer = processing.getobject("otras_organizaciones")
+    otrasorglayer.dataProvider().clearErrors()
+    otrasorgfields = otrasorglayer.dataProvider().fields()
+    otrasorgfeats = []
+    for org in otrasorg:
+        otrasorgfeat = QgsFeature()
+        otrasorgfeat.setFields(otrasorgfields)
+        for k,v in org.items():
+            otrasorgfeat.setAttribute(k, v)
+        otrasorgfeats.append(otrasorgfeat)
+        
+    (res, foo) = otrasorglayer.dataProvider().addFeatures(otrasorgfeats)
+
+    if not res:
+        print "Error otras organizaciones"
+        print otrasorglayer.dataProvider().errors()
+        return
+
+myfunction()
