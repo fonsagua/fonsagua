@@ -597,7 +597,8 @@ CREATE TABLE otros_servicios (
 	       NOT NULL,
        nombre VARCHAR,
        tipo_servicio VARCHAR
-	       REFERENCES tipo_servicio(item),
+	       REFERENCES tipo_servicio(item)
+	       ON UPDATE CASCADE,
        utm_x FLOAT,
        utm_y FLOAT,
        utm_z FLOAT

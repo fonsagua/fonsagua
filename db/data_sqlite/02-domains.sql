@@ -274,6 +274,7 @@ INSERT INTO tipo (item) SELECT
        ('Casa extremo oriente') UNION SELECT
        ('Casa extremo poniente') UNION SELECT
        ('Casa mas alta') UNION SELECT
+       ('Casa mas baja') UNION SELECT
        ('Primera casa con electricidad') UNION SELECT
        ('Última casa con electricidad') UNION SELECT
        ('Otras casas');
@@ -330,7 +331,7 @@ CREATE TABLE tipo_servicio (
 INSERT INTO tipo_servicio (item) SELECT
        (' ') UNION SELECT
        ('Iglesia') UNION SELECT
-       ('Intalación deportiva') UNION SELECT
+       ('Instalación deportiva') UNION SELECT
        ('Centro comunitario') UNION SELECT
        ('Puesto policial') UNION SELECT
        ('Otros');
