@@ -316,6 +316,7 @@ INSERT INTO dominios.tipo (item) VALUES
        ('Casa extremo oriente'),
        ('Casa extremo poniente'),
        ('Casa mas alta'),
+       ('Casa mas baja'),
        ('Primera casa con electricidad'),
        ('Última casa con electricidad'),
        ('Otras casas');
@@ -380,7 +381,7 @@ CREATE TABLE dominios.tipo_servicio (
 INSERT INTO dominios.tipo_servicio (item) VALUES
        (' '),
        ('Iglesia'),
-       ('Intalación deportiva'),
+       ('Instalación deportiva'),
        ('Centro comunitario'),
        ('Puesto policial'),
        ('Otros');
