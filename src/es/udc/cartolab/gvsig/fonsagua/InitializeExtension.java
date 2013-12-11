@@ -3,12 +3,13 @@ package es.udc.cartolab.gvsig.fonsagua;
 import com.iver.andami.Launcher;
 import com.iver.andami.PluginServices;
 import com.iver.andami.plugins.Extension;
+import com.iver.cit.gvsig.fmap.drivers.DBException;
 import com.iver.cit.gvsig.gui.cad.tools.SelectionCADTool;
 
 import es.udc.cartolab.gvsig.fonsagua.config.EpanetConfiguration;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.tools.CopyFeaturesExtension;
-import es.udc.cartolab.gvsig.users.PostGISDBConnectionExtension;
+import es.udc.cartolab.gvsig.users.utils.DBSessionSpatiaLite;
 
 public class InitializeExtension extends Extension {
 
@@ -32,11 +33,12 @@ public class InitializeExtension extends Extension {
 	// Remove project manager
 	PluginServices.getMDIManager().closeAllWindows();
 
-	// Opens the connection dialog. The start up preferences configuration
-	// is not valid, because the closeAllWindows close this dialog also
-	PostGISDBConnectionExtension connectionDialog = (PostGISDBConnectionExtension) PluginServices
-		.getExtension(PostGISDBConnectionExtension.class);
-	connectionDialog.execute(null);
+	try {
+	    DBSessionSpatiaLite.createConnection(Launcher.getAppHomeDir()
+		    + "fonsagua.sqlite");
+	} catch (DBException e) {
+	    e.printStackTrace();
+	}
 
     }
 

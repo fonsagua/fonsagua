@@ -5,8 +5,8 @@
 	<property name="custom-portable-path" value="../fonsagua/portable/" /> <!-- remember to use the trailing slash -->
 	
 	<tstamp />
-	<property name="name-lin" value="gvSIG-Fonsagua-lin32-${DSTAMP}" />
-	<property name="name-win" value="gvSIG-Fonsagua-win32-${DSTAMP}" />
+	<property name="name-lin" value="gvSIG-Fonsagua-Marcovia-lin32-${DSTAMP}" />
+	<property name="name-win" value="gvSIG-Fonsagua-Marcovia-win32-${DSTAMP}" />
 	
 	<!-- Projects to be builded.
 	Check the file ../install/gvsig_default_installation_projects.xml,
