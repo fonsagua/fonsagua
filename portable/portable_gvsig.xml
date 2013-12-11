@@ -4,7 +4,7 @@
   <jar>./_fwAndami/andami.jar</jar>
   <outfile>./_fwAndami/gvsig-desktop.exe</outfile>
   <errTitle>gvSIG launch error</errTitle>
-  <cmdLine>gvSIG gvSIG/extensiones</cmdLine>
+  <cmdLine>gvSIG gvSIG/extensiones -language pt</cmdLine>
   <chdir>.</chdir>
   <priority>normal</priority>
   <downloadUrl>http://java.com/download</downloadUrl>

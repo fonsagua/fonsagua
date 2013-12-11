@@ -6,20 +6,14 @@
 	<resourceBundle name="text"/>
 	<extensions>
         <extension
-            class-name="es.udc.cartolab.gvsig.users.PostGISDBConnectionExtension"
+            class-name="es.udc.cartolab.gvsig.users.SpatiaLiteDBConnectionExtension"
             active="true" description="Connect DB">
             <menu action-command="DBConnect" icon="DBConnect"
-                text="data_base_menu/connectToDBPostGIS" position="20000"/>
+                text="data_base_menu/connectToDBSpatiaLite" position="20000"/>
             <tool-bar name="dbconnection" position="20">
                 <action-tool action-command="DBConnect" icon="DBConnect"
-                    tooltip="connectToDBPostGIS" position="1"/>
+                    tooltip="connectToDBSpatiaLite" position="1"/>
             </tool-bar>
-        </extension>
-        <extension
-            class-name="es.udc.cartolab.gvsig.users.ChangePassExtension"
-            active="true" description="Change password">
-            <menu action-command="CHPWD" 
-            	text="data_base_menu/change_password" position="20899"/>
         </extension>
         <extension
             class-name="es.udc.cartolab.gvsig.users.CloseSessionExtension"

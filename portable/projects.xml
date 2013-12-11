@@ -21,6 +21,7 @@
 		org.gvsig.consecutivenumber,
 	-->
 
+	<!-- libSpatialite must be compiled after libFMap -->
 	<property name="gvSIG_dist_projects_on_main_svn" value="
 		libExceptions,
 		libInternationalization,
@@ -36,6 +37,7 @@
 		libRemoteServices,
 		libGDBMS,
 		libFMap,
+		libSpatialite,
 		libGPE,
 		libGPE-XML,
 		libGPE-GML,
