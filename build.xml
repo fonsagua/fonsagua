@@ -20,11 +20,10 @@
 	<target name="init">
     	<tstamp/>
     	<mkdir dir="${dist}/lib" />
+		<mkdir dir="${build}" />
   	</target>
 
 	<target name="compile">
-		<mkdir dir="${build}" />
-		<echo>${compile-classpath}</echo>
 		<loadEclipseClasspath project="${basedir}" />
 		<gvSIG-javac classpath="${eclipseClasspath}" />
 	</target>
