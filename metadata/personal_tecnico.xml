@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LAYER alias="personal_tecnico">
+       <TABLENAME>personal_tecnico</TABLENAME>
+       <PRIMARYKEY>
+	<PKELEMENT>gid</PKELEMENT>
+       </PRIMARYKEY>
+
+       <RECORDSET>
+       	    <FIELD>
+		<FIELDNAME>cod_abastecimiento</FIELDNAME>
+		<VALIDATIONRULE>MANDATORY</VALIDATIONRULE>
+	    </FIELD>
+       </RECORDSET>
+
+</LAYER>

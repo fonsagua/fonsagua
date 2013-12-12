@@ -34,6 +34,9 @@ public class AbastecimientosForm extends BasicAbstractForm {
 	addTableHandler(new AlphanumericTableHandler(JuntasAguaForm.NAME,
 		getWidgetComponents(), PKFIELD, JuntasAguaForm.colNames,
 		JuntasAguaForm.colAlias));
+	addTableHandler(new AlphanumericTableHandler(PersonalTecnicoForm.NAME,
+		getWidgetComponents(), PKFIELD, PersonalTecnicoForm.colNames,
+		PersonalTecnicoForm.colAlias));
 	addTableHandler(new AlphanumericTableHandler(CoberturaForm.NAME,
 		getWidgetComponents(), PKFIELD, CoberturaForm.colNames,
 		CoberturaForm.colAlias));

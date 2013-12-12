@@ -890,6 +890,25 @@ CREATE TABLE fonsagua.juntas_agua (
 ALTER TABLE fonsagua.juntas_agua OWNER TO fonsagua;
 
 
+
+CREATE TABLE fonsagua.personal_tecnico (
+       gid SERIAL PRIMARY KEY,
+       cod_abastecimiento VARCHAR
+	       NOT NULL
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
+       nombre VARCHAR,
+       genero VARCHAR,
+       origen VARCHAR,
+       cargo VARCHAR
+
+);
+
+
+ALTER TABLE fonsagua.personal_tecnico OWNER TO fonsagua;
+
+
 CREATE TABLE fonsagua.bombeos (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR

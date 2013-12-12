@@ -20,6 +20,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.EvaluacionForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.GestComercialForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.GestFinancieraForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.JuntasAguaForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.PersonalTecnicoForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.SingletonAbastecimientosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento.TuberiasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltBombeosForm;
@@ -226,6 +227,8 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 		return new PresupuestoForm();
 	    } else if (tableName.equals(AltPriorizacionForm.NAME)) {
 		return new AltPriorizacionForm();
+	    } else if (tableName.equals(PersonalTecnicoForm.NAME)) {
+		return new PersonalTecnicoForm();
 	    }
 	}
 	return null;

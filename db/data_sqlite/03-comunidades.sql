@@ -848,6 +848,20 @@ CREATE TABLE juntas_agua (
 );
 
 
+CREATE TABLE personal_tecnico (
+       gid INTEGER PRIMARY KEY,
+       cod_abastecimiento VARCHAR
+	       NOT NULL
+	       REFERENCES abastecimientos(cod_abastecimiento)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
+       nombre VARCHAR,
+       genero VARCHAR,
+       origen VARCHAR,
+       cargo VARCHAR
+);
+
+
 CREATE TABLE bombeos (
        gid INTEGER PRIMARY KEY,
        cod_abastecimiento VARCHAR
