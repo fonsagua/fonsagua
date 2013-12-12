@@ -66,7 +66,6 @@ if caps & QgsVectorDataProvider.AddFeatures:
     for ifeat in ilayer.getFeatures():
         ca = CopyAttributes(ifeat, ofields, ilayer)
         if (ca.validRow()):
-            # Los códigos 06070301T01, 06070701T01 y 06070901T01 están repetidos
             ca.copy('cod_fuente', 'idfuente')
             ca.copy('aforo', 'aforo')
             ca.copy('fecha', 'fecha')
