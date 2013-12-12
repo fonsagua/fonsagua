@@ -3,13 +3,6 @@
 from PyQt4.QtCore import QPyNullVariant
 
 
-# Para escribir menos
-#ilayer = processing.getobject("comunidades")
-#ifields = ilayer.dataProvider().fields().toList()
-#for f in ifields:
-#print "of.setAttribute('', iatts[ilayer.fieldNameIndex('%s')])"%(f.name())
-
-
 ##
 ## RECUERDA PONER EL ENCODING DE LA CAPA ORIGINAL EN WINDOWS-1250 EN LA CAPA ORIGINAL
 ##
@@ -78,9 +71,8 @@ class CopyAttributes():
 
 
 def myfunction():
-    ilayer = [x for x in iface.legendInterface().layers() if x.name() == 'honduras_comunidades_riegoorganizacion'][0]
-    # olayer = processing.getobject("foo")
-    olayer  = [x for x in iface.legendInterface().layers() if x.name() == 'cooperativas'][0]
+    ilayer = [x for x in iface.legendInterface().layers() if x.name() == 'honduras_comunidades_consumocomparado'][0]
+    olayer  = [x for x in iface.legendInterface().layers() if x.name() == 'produccion_consumo'][0]
     olayer.dataProvider().clearErrors()
     caps = olayer.dataProvider().capabilities()
 
@@ -94,17 +86,17 @@ def myfunction():
     auxCodes = {}
     for ifeat in ilayer.getFeatures():
         ca = CopyAttributes(ifeat, ofields, ilayer)
-        ca.copy('cod_comunidad', 'CodigoC')
-        ca.copy('tipo', 'TipoOrg')
-        ca.copy('n_asociados', 'NAsoc', ca.v2int)
-        ca.copy('rubros', 'Rubros')
-        ca.copy('recursos', 'Recursos')
+        ca.copy('cod_comunidad', 'codigoc')
+        ca.copy('n_miembros', 'nmiembr')
+        ca.copy('produccion', 'qtprod')
+        ca.copy('consumo', 'qtconsum')
         
         codcom = ifeat.attributes()[0]
         auxCodes[codcom] = True
         if codcom not in codigoscomunidad:
             print 'El codigo no es valido %s' % (codcom)
             return
+        # print ca.getNewFeature().attributes()
         newFeatures.append(ca.getNewFeature())
 
     (res, foo) = olayer.dataProvider().addFeatures(newFeatures)
@@ -113,7 +105,7 @@ def myfunction():
         print olayer.dataProvider().errors()
         return
 
-    updateComunidades(auxCodes)
+    # updateComunidades(auxCodes)
     
 def updateComunidades(auxCodes):
     comunidades = [x for x in iface.legendInterface().layers() if x.name() == 'comunidades'][0]
