@@ -899,7 +899,8 @@ CREATE TABLE fonsagua.personal_tecnico (
 	       ON DELETE CASCADE
 	       ON UPDATE CASCADE,
        nombre VARCHAR,
-       genero VARCHAR,
+       genero VARCHAR
+	       REFERENCES dominios.genero(item),
        origen VARCHAR,
        cargo VARCHAR
 

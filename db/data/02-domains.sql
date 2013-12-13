@@ -43,6 +43,20 @@ INSERT INTO dominios.antiguedad (item) VALUES
 ALTER TABLE dominios.antiguedad OWNER TO fonsagua;
 
 
+CREATE TABLE dominios.genero (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO dominios.genero (item) VALUES
+       (' '),
+       ('Femenino'),
+       ('Masculino');
+
+ALTER TABLE dominios.genero OWNER TO fonsagua;
+
+
 CREATE TABLE dominios.emigracion (
        item VARCHAR
 	       PRIMARY KEY

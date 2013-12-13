@@ -23,6 +23,18 @@ INSERT INTO tip_origen (item) SELECT
        ('Mixta');
 
 
+CREATE TABLE genero (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO genero (item) SELECT
+       (' ') UNION SELECT
+       ('Femenino') UNION SELECT
+       ('Masculino');
+
+
 CREATE TABLE antiguedad (
        item VARCHAR
 	       PRIMARY KEY

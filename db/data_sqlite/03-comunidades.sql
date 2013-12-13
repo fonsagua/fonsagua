@@ -856,7 +856,8 @@ CREATE TABLE personal_tecnico (
 	       ON DELETE CASCADE
 	       ON UPDATE CASCADE,
        nombre VARCHAR,
-       genero VARCHAR,
+       genero VARCHAR
+	       REFERENCES genero(item),
        origen VARCHAR,
        cargo VARCHAR
 );
