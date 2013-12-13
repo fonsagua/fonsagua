@@ -1183,6 +1183,20 @@ CREATE TABLE aforos (
 );
 
 
+CREATE TABLE niveles_freaticos (
+       gid INTEGER PRIMARY KEY,
+       cod_fuente VARCHAR
+	       NOT NULL
+	       REFERENCES fuentes(cod_fuente)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
+       nivel FLOAT,
+       fecha VARCHAR,
+       hora VARCHAR
+
+);
+
+
 CREATE TABLE analiticas (
        gid INTEGER PRIMARY KEY,
        cod_fuente VARCHAR

@@ -1243,6 +1243,22 @@ CREATE TABLE fonsagua.aforos (
 
 ALTER TABLE fonsagua.aforos OWNER TO fonsagua;
 
+CREATE TABLE fonsagua.niveles_freaticos (
+       gid SERIAL PRIMARY KEY,
+       cod_fuente VARCHAR
+	       NOT NULL
+	       REFERENCES fonsagua.fuentes(cod_fuente)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
+       nivel FLOAT,
+       fecha Date,
+       hora VARCHAR
+
+);
+
+
+ALTER TABLE fonsagua.niveles_freaticos OWNER TO fonsagua;
+
 CREATE TABLE fonsagua.analiticas (
        gid SERIAL PRIMARY KEY,
        cod_fuente VARCHAR

@@ -24,6 +24,9 @@ public class FuentesForm extends BasicAbstractForm {
 	addTableHandler(new AlphanumericTableHandler(AforosForm.NAME,
 		getWidgetComponents(), PKFIELD, AforosForm.colNames,
 		AforosForm.colAlias));
+	addTableHandler(new AlphanumericTableHandler(NivelesFreaticosForm.NAME,
+		getWidgetComponents(), PKFIELD, NivelesFreaticosForm.colNames,
+		NivelesFreaticosForm.colAlias));
 	addTableHandler(new AlphanumericTableHandler(AnaliticasForm.NAME,
 		getWidgetComponents(), PKFIELD, AnaliticasForm.colNames,
 		AnaliticasForm.colAlias));

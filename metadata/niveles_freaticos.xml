@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LAYER alias="niveles_freaticos">
+       <TABLENAME>niveles_freaticos</TABLENAME>
+       <PRIMARYKEY>
+	<PKELEMENT>gid</PKELEMENT>
+       </PRIMARYKEY>
+
+       <RECORDSET>
+       	    <FIELD>
+		<FIELDNAME>cod_fuente</FIELDNAME>
+		<VALIDATIONRULE>MANDATORY</VALIDATIONRULE>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>nivel</FIELDNAME>
+		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
+	    </FIELD>
+       	    <FIELD>
+		<FIELDNAME>fecha</FIELDNAME>
+		<VALIDATIONRULE>DATE</VALIDATIONRULE>
+	    </FIELD>
+       </RECORDSET>
+
+</LAYER>

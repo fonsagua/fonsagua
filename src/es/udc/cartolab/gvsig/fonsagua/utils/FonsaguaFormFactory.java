@@ -62,6 +62,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ValoracionSistemaForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.AforosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.AnaliticasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
+import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.NivelesFreaticosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.SingletonFuentesForm;
 
 public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
@@ -229,6 +230,8 @@ public class FonsaguaFormFactory extends DBConnectionBaseFormFactory {
 		return new AltPriorizacionForm();
 	    } else if (tableName.equals(PersonalTecnicoForm.NAME)) {
 		return new PersonalTecnicoForm();
+	    } else if (tableName.equals(NivelesFreaticosForm.NAME)) {
+		return new NivelesFreaticosForm();
 	    }
 	}
 	return null;
