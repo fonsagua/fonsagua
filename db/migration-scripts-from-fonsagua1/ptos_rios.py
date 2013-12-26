@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import processing
+
 
 from PyQt4.QtCore import QPyNullVariant
 
@@ -10,7 +10,10 @@ class CopyAttributes():
         self.of = QgsFeature()
         self.of.setFields(ofields)
         self.of.setGeometry(ifeat.geometry())
-
+        
+        self.codigoscomunidad = [x for x in iface.legendInterface().layers() if x.name() == 'comunidades'][0].dataProvider().uniqueValues(1)
+        self.codigosabastecimiento = [x for x in iface.legendInterface().layers() if x.name() == 'abastecimientos'][0].dataProvider().uniqueValues(0)
+        
     def copy(self, o, i, processfunction=None):
         '''
         copy of inputFeature.i attr to ouputFeature.o attr
@@ -56,7 +59,32 @@ class CopyAttributes():
         if v:
             return 'true'
         return 'false'
-        
+
+    def toCodigoC(self, v):
+        '''
+        takes 8 characters from v and use it as codigoc if that value is valid codigoc
+        if not COMUNIDAD_FALSA is used as codigoc
+        '''
+        codigoc = v[0:8]
+        if codigoc in self.codigoscomunidad:
+            return codigoc
+        return 'COMUNIDAD_FALSA'
+    
+    def toCodigoAB(self, v):
+        '''
+        takes 8 characters from v and use it as codigoc if that value is valid codigoab
+        if not DUMB is used as codigoab
+        '''
+        codigoab = v[0:8]
+        if codigoab in self.codigosabastecimiento:
+            return codigoab
+        return 'DUMB'
+    
+    def gal2metroc(self, v):
+        if v:
+            return v/264.17
+        return 0
+
     def getNewFeature(self):
         return self.of
 
@@ -68,8 +96,8 @@ class CopyAttributes():
         
         return None
 
-ilayer = processing.getobject("ptos_rios")
-olayer = processing.getobject("fuentes")
+ilayer = [x for x in iface.legendInterface().layers() if x.name() == 'honduras_ptos_rios'][0]
+olayer = [x for x in iface.legendInterface().layers() if x.name() == 'fuentes'][0]
 olayer.dataProvider().clearErrors()
 caps = olayer.dataProvider().capabilities()
 
@@ -83,24 +111,22 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('cod_fuente', 'IdFuente')
             ca.copy('comunidad', 'codigoc')
             ca.copy('fuente', 'Nombre')
+            ca.copy('utm_z', 'Altura')
+            #ca.copy('', 'AlturaC') Eliminado a conciencia
+            #ca.copy('', 'FuncVerano') TODO
+            #ca.copy('', 'AlterCViab') TODO
             ca.copy('uso', 'SeUtiliza', ca.siNo2Chb)
+            #ca.copy('', 'UsoOficio') TODO
+            #ca.copy('', 'UsoLavarRo') TODO
+            #ca.copy('', 'AseoPerson') TODO
+            #ca.copy('', 'OtrosUsos') TODO
+            #ca.copy('', 'UsoBebida') TODO
             ca.copy('comentarios', 'Coment')
             ca.copy('dist_linea_electrica', 'dist_elec', ca.str2meters)
             ca.copy('utm_x', 'x')
             ca.copy('utm_y', 'y')
-            ca.copy('utm_z', 'Altura')
             
-            # TODO
-            #ca.copy('', 'AlturaC')
-            #ca.copy('', 'FuncVerano')
-            #ca.copy('', 'AlterCViab')
-            #ca.copy('', 'UsoOficio')
-            #ca.copy('', 'UsoLavarRo')
-            #ca.copy('', 'AseoPerson')
-            #ca.copy('', 'OtrosUsos')
-            #ca.copy('', 'UsoBebida')
-            
-            # Éstos no parecen tener datos
+            # Éstos no tienen datos. Se elminan a conciencia
             #ca.copy('', 'AgrInv')
             #ca.copy('', 'AgrVeran')
             #ca.copy('', 'GanadInv')
@@ -115,7 +141,8 @@ if caps & QgsVectorDataProvider.AddFeatures:
     (res, outFeats) = olayer.dataProvider().addFeatures( newFeatures )
 
     if not res:
-        print "Error guardando la capa"
+        print "************** Error guardando la capa ********* "
+        print olayer.dataProvider().errors()
     else:
         print "Tiene pinta de estar bien"
 

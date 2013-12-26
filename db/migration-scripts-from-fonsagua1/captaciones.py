@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import processing
 
 from PyQt4.QtCore import QPyNullVariant
 
@@ -11,6 +10,8 @@ class CopyAttributes():
         self.of.setFields(ofields)
         self.of.setGeometry(ifeat.geometry())
 
+        self.codigoscomunidad = [x for x in iface.legendInterface().layers() if x.name() == 'comunidades'][0].dataProvider().uniqueValues(1)
+        self.codigosabastecimiento = [x for x in iface.legendInterface().layers() if x.name() == 'abastecimientos'][0].dataProvider().uniqueValues(0)
     def copy(self, o, i, processfunction=None):
         '''
         copy of inputFeature.i attr to ouputFeature.o attr
@@ -45,6 +46,31 @@ class CopyAttributes():
         if v:
             return 'true'
         return 'false'
+    
+    def toCodigoC(self, v):
+        '''
+        takes 8 characters from v and use it as codigoc if that value is valid codigoc
+        if not COMUNIDAD_FALSA is used as codigoc
+        '''
+        codigoc = v[0:8]
+        if codigoc in self.codigoscomunidad:
+            return codigoc
+        return 'COMUNIDAD_FALSA'
+    
+    def toCodigoAB(self, v):
+        '''
+        takes 8 characters from v and use it as codigoc if that value is valid codigoab
+        if not DUMB is used as codigoab
+        '''
+        codigoab = v[0:8]
+        if codigoab in self.codigosabastecimiento:
+            return codigoab
+        return 'DUMB'
+            
+    def gal2metroc(self, v):
+        if v:
+            return v/264.17
+        return 0
         
     def getNewFeature(self):
         return self.of
@@ -54,9 +80,11 @@ class CopyAttributes():
     
     def specificData(self):
         return None
+    
+    
 
-ilayer = processing.getobject("captacion")
-olayer = processing.getobject("captaciones")
+ilayer = [x for x in iface.legendInterface().layers() if x.name() == 'honduras_captacion'][0]
+olayer = [x for x in iface.legendInterface().layers() if x.name() == 'captaciones'][0]
 olayer.dataProvider().clearErrors()
 caps = olayer.dataProvider().capabilities()
 
@@ -66,18 +94,17 @@ if caps & QgsVectorDataProvider.AddFeatures:
     newFeatures = []
     for ifeat in ilayer.getFeatures():
         ca = CopyAttributes(ifeat, ofields, ilayer)
-        if (not ca.validRow()):
-            # Las captaciones 06070902T01, 06070706P01, 06070706P02 y 06070706P01
-            # no tienen el cod de abast a pesar de que si existen
-            ca.of.setAttribute('cod_abastecimiento', 'DUMB')
-        else:
-            ca.copy('cod_abastecimiento', 'CodigoAb')
+       
+        # Las captaciones 06070902T01, 06070706P01, 06070706P02 y 06070706P01
+        # no tienen el cod de abast a pesar de que si existen
+        # 06072301P02 se elimina, por tener null y no codab valido
+        ca.copy('cod_abastecimiento', 'CodigoCap', ca.toCodigoAB)
 
-        # Codigo 06071901P01 estaba repetido
+        # Codigo 06071901P01 estaba repetido, se ha cambiado uno a P02
         ca.copy('cod_captacion', 'CodigoCap')
         ca.copy('sistema', 'Sistema')
         ca.copy('estado', 'Estado')
-        ca.copy('volumen', 'Volumen')
+        ca.copy('volumen', 'Volumen', ca.gal2metroc)
         ca.copy('utm_x', 'x')
         ca.copy('utm_y', 'y')
         ca.copy('utm_z', 'z')

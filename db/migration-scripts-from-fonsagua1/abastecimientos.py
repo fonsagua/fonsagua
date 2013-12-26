@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import processing
 
 from PyQt4.QtCore import QPyNullVariant
 
@@ -9,8 +8,11 @@ class CopyAttributes():
         self.iatts = ifeat.attributes()
         self.of = QgsFeature()
         self.of.setFields(ofields)
+        a = ifeat.geometry().convertToMultiType()
+        if not a:
+            print "error multitype"
         self.of.setGeometry(ifeat.geometry())
-
+        
     def copy(self, o, i, processfunction=None):
         '''
         copy of inputFeature.i attr to ouputFeature.o attr
@@ -68,8 +70,8 @@ class CopyAttributes():
             else:
                 self.of.setAttribute('des_otra', True)
 
-ilayer = processing.getobject("abastecimiento")
-olayer = processing.getobject("abastecimientos")
+ilayer = [x for x in iface.legendInterface().layers() if x.name() == 'honduras_abastecimiento'][0]
+olayer = [x for x in iface.legendInterface().layers() if x.name() == 'abastecimientos'][0]
 olayer.dataProvider().clearErrors()
 caps = olayer.dataProvider().capabilities()
 
@@ -96,7 +98,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
         ca.copy('coment_desinfeccion', 'COMCLORO')
         ca.copy('coment_sis', 'COMABAST')
         ca.copy('gestion', 'GESTOR')
-        ca.copy('h_juntas_agua', 'HAYJAGUA', ca.siNo2Chb)
+       
         ca.copy('mant_tecnicos', 'HAYTECMAN', ca.siNo2Chb)
         ca.copy('coment_tarifa', 'FUNCSISCOB')
         ca.copy('gastos_cubiertos', 'COMGASTT')
@@ -116,28 +118,24 @@ if caps & QgsVectorDataProvider.AddFeatures:
         
         ca.specificData()
         
-        """ TODO
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('NLLAVESPUB')])
-        of.setAttribute('implicacion_comunidad', iatts[ilayer.fieldNameIndex('GRADIMPCOM')])
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('VALOR')])
-        of.setAttribute('valoracion_sistema', iatts[ilayer.fieldNameIndex('VALCONSUM')])
+        valoracion_sistema
+        of.setAttribute('sist_cobros', iatts[ilayer.fieldNameIndex('VALOR')])
+        of.setAttribute('nivel_serv', iatts[ilayer.fieldNameIndex('VALCONSUM')])
+        of.setAttribute('agua_suf', self.siNo2Chb(iatts[ilayer.fieldNameIndex('CANTSUF')]))
+        of.setAttribute('serv_continuo', self.siNo2Chb(iatts[ilayer.fieldNameIndex('AGUACONT')]))
         
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('CANTSUF')])
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('AGUACONT')])
+        """ TODO
         # Ahora tenemos distintos tipos de cuotas
         of.setAttribute('', iatts[ilayer.fieldNameIndex('CUOTAAGUA')])
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('CUOTAOPMAN')])
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('HAYREGLAM')])
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('HAYCUOTAF')])
+        'HAYCUOTAF'
         of.setAttribute('', iatts[ilayer.fieldNameIndex('CUOTAF')])
         of.setAttribute('', iatts[ilayer.fieldNameIndex('HAYCUOTAV')])
         of.setAttribute('', iatts[ilayer.fieldNameIndex('CUOTAV')])
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('DISTLLPUB')])
+        """
         
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('COMODAGUA')])
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('NUMMUJ')])
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('HAYDIBOM')])"""
-        
+        # Se obtiene de comunidades: HAYJAGUA, HAYREGLAM, 
+        # NLLAVESPUB, DISTLLPUB, NUMMUJ, HAYDIBOM  Sin datos
+        #  pone en todas lo mismo asi que se obvia GRADIMPCOM(iria en implicacion_comunidad), CUOTAOPMAN, COMODAGUA
         newFeatures.append(ca.getNewFeature())
 
     dumb = QgsFeature()
@@ -148,7 +146,8 @@ if caps & QgsVectorDataProvider.AddFeatures:
     (res, outFeats) = olayer.dataProvider().addFeatures( newFeatures )
 
     if not res:
-        print "Error guardando la capa"
+        print "************** Error guardando la capa ********* "
+        print olayer.dataProvider().errors()
     else:
         print "Tiene pinta de estar bien"
 

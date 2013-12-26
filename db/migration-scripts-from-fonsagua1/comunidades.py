@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import processing
 
 from PyQt4.QtCore import QPyNullVariant
 
@@ -22,8 +21,6 @@ class CopyAttributes():
         self.of.setFields(ofields)
         if ilayer.hasGeometryType():
             self.of.setGeometry(ifeat.geometry())
-
-        self.codigoscomunidad = processing.getobject("comunidades").dataProvider().uniqueValues(1)
         
     def copy(self, o, i, processfunction=None):
         '''
@@ -76,11 +73,86 @@ class CopyAttributes():
 
     def comunidadesSpecific(self):
         self.of.setAttribute('n_iglesias', self.iatts[self.ilayer.fieldNameIndex('nIglCat')] + self.iatts[self.ilayer.fieldNameIndex('nIglEva')])
+        
+    def doPatronatos(self):
+        if self.iatts[self.ilayer.fieldNameIndex('HayPatront')] and self.iatts[self.ilayer.fieldNameIndex('HayPatront')] != 'No':
+            adescos = [x for x in iface.legendInterface().layers() if x.name() == 'adescos'][0]
+            adescos.dataProvider().clearErrors()
+            adescosfields = adescos.dataProvider().fields()
+            adescosfeat = QgsFeature()
+            adescosfeat.setFields(adescosfields)
+            adescosfeat.setAttribute('cod_comunidad', self.iatts[self.ilayer.fieldNameIndex('CodigoC')])
+            adescosfeat.setAttribute('n_hombres', self.iatts[self.ilayer.fieldNameIndex('NumHomPt')])
+            adescosfeat.setAttribute('n_mujeres', self.iatts[self.ilayer.fieldNameIndex('NumMujPt')])
+            adescosfeat.setAttribute('presidencia', self.iatts[self.ilayer.fieldNameIndex('NombPresPt')])
+            adescosfeat.setAttribute('antiguedad', self.iatts[self.ilayer.fieldNameIndex('AntigPt')])
+            adescosfeat.setAttribute('anho_const', self.iatts[self.ilayer.fieldNameIndex('AnPersJur')])
+            adescosfeat.setAttribute('legalizada', self.siNo2Chb(self.iatts[self.ilayer.fieldNameIndex('PatrPj')]))
+            # ca.copy('', 'NCompPt') TRIGGER
+            # ca.copy('', 'HayComApoy') Solo 1, eliminamos a conciencia
+
+            (res, foo) = adescos.dataProvider().addFeatures([adescosfeat])
+            if not res:
+                print "Error adescos"
+                print adescos.dataProvider().errors()
+                return
+    
+    def doJuntasAgua(self):
+        if self.iatts[self.ilayer.fieldNameIndex('hayJAgua')] and self.iatts[self.ilayer.fieldNameIndex('hayJAgua')] != 'No':
+            ja = [x for x in iface.legendInterface().layers() if x.name() == 'juntas_agua'][0]
+            ja.dataProvider().clearErrors()
+            jafields = ja.dataProvider().fields()
+            jafeat = QgsFeature()
+            jafeat.setFields(jafields)
+            
+            relacion = [x for x in iface.legendInterface().layers() if x.name() == 'honduras_relacion_comunidades_abastecimientos'][0]
+            cod_abastecimiento = None
+            for rfeat in relacion.getFeatures():
+                if rfeat.attributes()[0] == self.iatts[self.ilayer.fieldNameIndex('CodigoC')]:
+                    jafeat.setAttribute('cod_abastecimiento', rfeat.attributes()[2])
+                    cod_abastecimiento = rfeat.attributes()[2]
+                    break
+                else:
+                    continue
+            
+            if not cod_abastecimiento:
+                print "La comunidad %s no tiene abastecimiento" % self.iatts[self.ilayer.fieldNameIndex('CodigoC')]
+                return        
+            abastecimiento = [x for x in iface.legendInterface().layers() if x.name() == 'abastecimientos'][0]
+            abastecimientofeat = QgsFeature()
+            abastecimiento.getFeatures( QgsFeatureRequest(QgsExpression('cod_abastecimiento = ' + cod_abastecimiento))).nextFeature( abastecimientofeat )
+            
+            abastecimientohonduras = [x for x in iface.legendInterface().layers() if x.name() == 'honduras_abastecimiento'][0]
+            abastecimientohondurasfeat = QgsFeature()
+            abastecimientohonduras.getFeatures( QgsFeatureRequest(QgsExpression('CODIGOAB = ' + cod_abastecimiento))).nextFeature( abastecimientohondurasfeat )
+            
+            jafeat.setAttribute('ubicacion', self.iatts[self.ilayer.fieldNameIndex('CodigoC')])
+            jafeat.setAttribute('per_juridica', self.siNo2Chb(self.iatts[self.ilayer.fieldNameIndex('JAguaPrsJ')]))
+            jafeat.setAttribute('anho_per_juridica', self.iatts[self.ilayer.fieldNameIndex('EstJAPJ')])
+            jafeat.setAttribute('antiguedad', self.iatts[self.ilayer.fieldNameIndex('AntJAgua')])
+            jafeat.setAttribute('red_juntas', self.siNo2Chb(self.iatts[self.ilayer.fieldNameIndex('PertTedJA')]))
+            jafeat.setAttribute('nom_red_juntas', self.iatts[self.ilayer.fieldNameIndex('QueRedJA')])
+            if abastecimientohondurasfeat.attributes()[26].startswith('S'):
+                jafeat.setAttribute('reglamento', 'true')
+            # jafeat.setAttribute('', self.iatts[self.ilayer.fieldNameIndex('JAComApoy')]) Sin datos
+            
+            
+            (res, foo) = ja.dataProvider().addFeatures([jafeat])
+            if not res:
+                print "Error juntas agua"
+                print ja.dataProvider().errors()
+                return
+                
+            
+            bien = abastecimiento.dataProvider().changeAttributeValues({abastecimientofeat.id():{abastecimiento.fieldNameIndex('h_juntas_agua'):'true'}})
+            if not bien:
+                print "error"
+                return
 
 
 def myfunction():
-    ilayer = processing.getobject("honduras_comunidades")
-    olayer = processing.getobject("comunidades")
+    ilayer = [x for x in iface.legendInterface().layers() if x.name() == 'honduras_comunidades'][0]
+    olayer = [x for x in iface.legendInterface().layers() if x.name() == 'comunidades'][0]
     olayer.dataProvider().clearErrors()
     caps = olayer.dataProvider().capabilities()
 
@@ -125,23 +197,7 @@ def myfunction():
         ca.copy('tip_origen', 'TipoPOrige')
         ca.copy('antiguedad', 'AntigDesp')
         
-        # TODO
-        # ORGANIZACIONES Y COOPERATIVAS
-        # ca.copy('', 'HayPatront')
-        # ca.copy('', 'NCompPt')
-        # ca.copy('', 'NumMujPt')
-        # ca.copy('', 'NumHomPt')
-        # ca.copy('', 'NombPresPt')
-        # ca.copy('', 'AntigPt')
-        # ca.copy('', 'AnPersJur')
-        # ca.copy('', 'HayComApoy')
-        # ca.copy('', 'HayJAgua')
-        # ca.copy('', 'JAguaPrsJ')
-        # ca.copy('', 'EstJAPJ')
-        # ca.copy('', 'AntJAgua')
-        # ca.copy('', 'PertTedJA')
-        # ca.copy('', 'QueRedJA')
-        # ca.copy('', 'JAComApoy')
+        ca.copy('h_adescos', 'HayPatront', ca.siNo2Chb)
         
         if ifeat.attributes()[ilayer.fieldNameIndex('HaySPFam')].startswith('S'):
             otrasorg.append({'cod_comunidad':ifeat.attributes()[ilayer.fieldNameIndex('CodigoC')], 'tipo_organizacion':u'Asociaci\xf3n de padres y madres de familia'})
@@ -153,10 +209,10 @@ def myfunction():
         # ca.copy('', 'BankComuna')
         # ca.copy('', 'ExistCODEL')
         ca.copy('exp_ongs', 'ExpONGs', ca.siNo2Chb)
-        # ca.copy('', 'PatrPj')
+        
         ca.copy('h_cargos_publicos', 'PersCPub', ca.siNo2Chb)
         
-         # TODO. Trigger. Comprobar que da bien.
+         # Trigger. Comprobar que da bien.
         # ca.copy('f_primario', 'FamAgropec')
         # ca.copy('f_secundario', 'FamIndust')
         # ca.copy('f_terciario', 'FamServ')
@@ -169,7 +225,7 @@ def myfunction():
         ca.copy('cp_otros', 'CPOtros')
         ca.copy('sub_otros', 'CPOtrSubs', ca.siNo2Chb)
         
-         # TODO. Trigger. Comprobar que da bien.
+        # Trigger. Comprobar que da bien.
         # ca.copy('f_c_ajena', 'NFamCuenAj')
         
         ca.copy('ca_cafe', 'CortaCafe')
@@ -194,7 +250,7 @@ def myfunction():
         ca.copy('sup_total_riego', 'SupRegTot')
         ca.copy('tip_regadio', 'TipoRegad')
         
-        # TODO. Trigger. Comprobar que da bien.
+        # Trigger. Comprobar que da bien.
         # ca.copy('produccion', 'SacosFam')
         # ca.copy('consumo', 'SacFConsPr')
         ca.copy('h_cooperativas', 'ExistCoopP', ca.siNo2Chb)
@@ -210,7 +266,7 @@ def myfunction():
         # TODO: Son lempiras/mes, cambiar etiqueta
         ca.copy('tarifa_electricidad', 'Cuota')
         ca.copy('telf_fijo', 'HayTelfijo', ca.siNo2Chb)
-        # TODO: Avisar del cambio bueno/malo/regular
+        # Avisar del cambio bueno/malo/regular
         ca.copy('acceso_ver', 'CarrtVeran', lambda v: 'Transitable' if v in ['Bueno', 'Regular'] else 'Intrasitable')
         ca.copy('acceso_inv', 'CarrtInv')
         ca.copy('trans_publico', 'TransPub', ca.siNo2Chb)
@@ -243,7 +299,7 @@ def myfunction():
         ca.copy('utm_z', 'AlturaC')
         ca.copy('coment_gen', 'ComMunic')
 
-        # TODO. Trigger. Comprobar que da bien.
+        # Trigger. Comprobar que da bien.
         # ca.copy('tot_adultos', 'TotalAdult')
         # ca.copy('tot_ninhos', 'TotalNin')
         # ca.copy('tot_ancianos', 'TotalAncia')
@@ -278,7 +334,6 @@ def myfunction():
         # ca.copy('', 'TipAsisSan')
         
         ca.copy('sist_abastecimiento', 'HayAbast')
-        # TODO. si somos buenos a este campo hay que darle una vuelta, los datos estan mal
         ca.copy('n_viv_abast', 'ParcViv')
         
         # TODO. Igual hay que cambiar cosas
@@ -340,7 +395,7 @@ def myfunction():
         ca.copy('coc_lenha', 'Fogon')
         ca.copy('coc_lenha_mej', 'Estufa')
         
-        # TODO. Trigger. Comprobar que da bien.
+        # Trigger. Comprobar que da bien.
         # ca.copy('', 'x')
         # ca.copy('', 'y')
 
@@ -371,11 +426,10 @@ def myfunction():
         ca.copy('tip_almacenamiento', 'TipoAlmA')
         ca.copy('n_lavaderos', 'NLavad')
         ca.copy('n_pilas', 'npilas')
-        # TODO
-        # ca.copy('', 'haytratagr')
-        # TODO: revisar nbarr pq tiene datos no numericos
+        
+        # TODO ca.copy('', 'haytratagr')
         ca.copy('n_barriles', 'nbarr')
-        # TODO. Trigger. Comprobar que da bien.
+        # Trigger. Comprobar que da bien.
         ca.copy('cons_hab', 'ConsumHab')
         ca.copy('t_medio_fuente', 'TMedioFu')
         ca.copy('seca_suficiencia', 'Suficiente', ca.siNo2Chb)
@@ -386,7 +440,7 @@ def myfunction():
         ca.copy('coste_agua', 'CosAguaExt')
         ca.copy('coment_hab', 'ComHabita')
         ca.copy('res_hab_agua', 'resHabitos')
-        # TODO. Trigger. Comprobar que da bien.
+        # Trigger. Comprobar que da bien.
         # ca.copy('tot_s_abast', 'totcom') tot_ll_abast
         # ca.copy('tot_s_sin_abast', 'totnocom') tot_ll_sin_abast
         ca.copy('disp_basuras', 'DispBasur')
@@ -417,18 +471,16 @@ def myfunction():
         ca.copy('lug_agua_cercano', 'lugarprox')
         
         ca.comunidadesSpecific()
-        
-        newFeatures.append(ca.getNewFeature())
-
-    (res, foo) = olayer.dataProvider().addFeatures(newFeatures)
-    res = True
-    if not res:
-        print "************** Error guardando la capa ********* "
-        print olayer.dataProvider().errors()
-        return
+        (res, foo) = olayer.dataProvider().addFeatures([ca.getNewFeature()])
+        if not res:
+            print "************** Error guardando la capa ********* "
+            print olayer.dataProvider().errors()
+            return
+        ca.doPatronatos()
+        ca.doJuntasAgua()
 
 
-    otrasorglayer = processing.getobject("otras_organizaciones")
+    otrasorglayer = [x for x in iface.legendInterface().layers() if x.name() == 'otras_organizaciones'][0]
     otrasorglayer.dataProvider().clearErrors()
     otrasorgfields = otrasorglayer.dataProvider().fields()
     otrasorgfeats = []
@@ -445,5 +497,7 @@ def myfunction():
         print "Error otras organizaciones"
         print otrasorglayer.dataProvider().errors()
         return
+    
+    
 
 myfunction()

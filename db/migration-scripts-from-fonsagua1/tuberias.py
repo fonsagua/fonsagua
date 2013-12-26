@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import processing
 
 from PyQt4.QtCore import QPyNullVariant
 
@@ -9,8 +8,14 @@ class CopyAttributes():
         self.iatts = ifeat.attributes()
         self.of = QgsFeature()
         self.of.setFields(ofields)
+        a = ifeat.geometry().convertToMultiType()
+        if not a:
+            print "error multitype"
         self.of.setGeometry(ifeat.geometry())
 
+        self.codigoscomunidad = [x for x in iface.legendInterface().layers() if x.name() == 'comunidades'][0].dataProvider().uniqueValues(1)
+        self.codigosabastecimiento = [x for x in iface.legendInterface().layers() if x.name() == 'abastecimientos'][0].dataProvider().uniqueValues(0)
+        
     def copy(self, o, i, processfunction=None):
         '''
         copy of inputFeature.i attr to ouputFeature.o attr
@@ -45,7 +50,32 @@ class CopyAttributes():
         if v:
             return 'true'
         return 'false'
-        
+
+    def toCodigoC(self, v):
+        '''
+        takes 8 characters from v and use it as codigoc if that value is valid codigoc
+        if not COMUNIDAD_FALSA is used as codigoc
+        '''
+        codigoc = v[0:8]
+        if codigoc in self.codigoscomunidad:
+            return codigoc
+        return 'COMUNIDAD_FALSA'
+    
+    def toCodigoAB(self, v):
+        '''
+        takes 8 characters from v and use it as codigoc if that value is valid codigoab
+        if not DUMB is used as codigoab
+        '''
+        codigoab = v[0:8]
+        if codigoab in self.codigosabastecimiento:
+            return codigoab
+        return 'DUMB'
+    
+    def gal2metroc(self, v):
+        if v:
+            return v/264.17
+        return 0
+
     def getNewFeature(self):
         return self.of
 
@@ -54,17 +84,17 @@ class CopyAttributes():
     
     def specificData(self):
         tipologia = self.iatts[self.ilayer.fieldNameIndex('Tipo')]
-        if (tipologia == 'Aduccin'):
+        if (tipologia.startswith('Adu')):
             self.of.setAttribute('tipologia_tuberia', 'Aducci' + unichr(243) + 'n')
         else:
-            if (tipologia == 'Impulsin'):
+            if (tipologia.startswith('Impul')):
                 self.of.setAttribute('tipologia_tuberia', 'Impulsi' + unichr(243) + 'n')
             else:
-                if (tipologia == 'Distribucin'):
+                if (tipologia.startswith('Distri')):
                     self.of.setAttribute('tipologia_tuberia', 'Distribuci' + unichr(243) + 'n')
 
-ilayer = processing.getobject("tuberias")
-olayer = processing.getobject("tuberias_sqlite")
+ilayer = [x for x in iface.legendInterface().layers() if x.name() == 'honduras_tuberias'][0]
+olayer = [x for x in iface.legendInterface().layers() if x.name() == 'tuberias'][0]
 olayer.dataProvider().clearErrors()
 caps = olayer.dataProvider().capabilities()
 
@@ -77,11 +107,13 @@ if caps & QgsVectorDataProvider.AddFeatures:
         if (ca.validRow()):
             ca.copy('cod_abastecimiento', 'CodigoAb')
             ca.copy('diametro', 'Diametro')
-            ca.copy('cod_tuberia', 'CodigoTub')
-            ca.copy('fugas', 'Fugas', ca.siNo2Chb)
-            ca.copy('loc_fugas', 'FugLoc')
             ca.copy('estado', 'Estado')
             ca.copy('material', 'Material')
+            ca.copy('cod_tuberia', 'CodigoTub')
+            ca.copy('fugas', 'Fugas', ca.siNo2Chb)
+            ca.copy('loc_fugas', 'FugLoc', lambda v: v if v else None)
+            
+            
             
             ca.specificData()
             
@@ -93,7 +125,8 @@ if caps & QgsVectorDataProvider.AddFeatures:
     (res, outFeats) = olayer.dataProvider().addFeatures( newFeatures )
 
     if not res:
-        print "Error guardando la capa"
+        print "************** Error guardando la capa ********* "
+        print olayer.dataProvider().errors()
     else:
         print "Tiene pinta de estar bien"
 

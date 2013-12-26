@@ -78,6 +78,8 @@ if caps & QgsVectorDataProvider.AddFeatures:
         if (ca.validRow()):
             ca.copy('nombre', 'Nombre')
             ca.copy('cod_comunidad', 'CodigoC')
+            # NumAulas Decide eliminarse por no ser importante
+            # ExistePreB, PBNinhos, PBNinhas
             ca.copy('cod_c_educativo', 'id_cedu')
             ca.copy('tot_alumnos', 'AlumnosTot')
             ca.copy('n_profesores', 'ProfesoTot')

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import processing
 
 from PyQt4.QtCore import QPyNullVariant
 
@@ -9,8 +8,12 @@ class CopyAttributes():
         self.iatts = ifeat.attributes()
         self.of = QgsFeature()
         self.of.setFields(ofields)
-        self.of.setGeometry(ifeat.geometry())
+        if ilayer.hasGeometryType():
+            self.of.setGeometry(ifeat.geometry())
 
+        self.codigoscomunidad = [x for x in iface.legendInterface().layers() if x.name() == 'comunidades'][0].dataProvider().uniqueValues(1)
+        self.codigosabastecimiento = [x for x in iface.legendInterface().layers() if x.name() == 'abastecimientos'][0].dataProvider().uniqueValues(0)
+    
     def copy(self, o, i, processfunction=None):
         '''
         copy of inputFeature.i attr to ouputFeature.o attr
@@ -45,7 +48,32 @@ class CopyAttributes():
         if v:
             return 'true'
         return 'false'
-        
+
+    def toCodigoC(self, v):
+        '''
+        takes 8 characters from v and use it as codigoc if that value is valid codigoc
+        if not COMUNIDAD_FALSA is used as codigoc
+        '''
+        codigoc = v[0:8]
+        if codigoc in self.codigoscomunidad:
+            return codigoc
+        return 'COMUNIDAD_FALSA'
+    
+    def toCodigoAB(self, v):
+        '''
+        takes 8 characters from v and use it as codigoc if that value is valid codigoab
+        if not DUMB is used as codigoab
+        '''
+        codigoab = v[0:8]
+        if codigoab in self.codigosabastecimiento:
+            return codigoab
+        return 'DUMB'
+    
+    def gal2metroc(self, v):
+        if v:
+            return v/264.17
+        return 0
+
     def getNewFeature(self):
         return self.of
 
@@ -62,8 +90,8 @@ class CopyAttributes():
             else:
                 self.of.setAttribute('energia', energia)
 
-ilayer = processing.getobject("bombas")
-olayer = processing.getobject("bombeos")
+ilayer = [x for x in iface.legendInterface().layers() if x.name() == 'honduras_bombas'][0]
+olayer = [x for x in iface.legendInterface().layers() if x.name() == 'bombeos'][0]
 olayer.dataProvider().clearErrors()
 caps = olayer.dataProvider().capabilities()
 
@@ -73,12 +101,9 @@ if caps & QgsVectorDataProvider.AddFeatures:
     newFeatures = []
     for ifeat in ilayer.getFeatures():
         ca = CopyAttributes(ifeat, ofields, ilayer)
-        if (not ca.validRow()):
-            ca.of.setAttribute('cod_abastecimiento', 'DUMB')
-        else:
-            ca.copy('cod_abastecimiento', 'CodigoAb')
-            
-        ca.copy('cod_bombeo', 'CodigoB')
+        
+        ca.copy('cod_abastecimiento', 'CodigB', ca.toCodigoAB)
+        ca.copy('cod_bombeo', 'CodigB')
         ca.copy('tipologia_bomba', 'Tipo')
         ca.copy('potencia', 'Potencia')
         ca.copy('caudal', 'Caudal')
@@ -96,7 +121,8 @@ if caps & QgsVectorDataProvider.AddFeatures:
     (res, outFeats) = olayer.dataProvider().addFeatures( newFeatures )
 
     if not res:
-        print "Error guardando la capa"
+        print "************** Error guardando la capa ********* "
+        print olayer.dataProvider().errors()
     else:
         print "Tiene pinta de estar bien"
 

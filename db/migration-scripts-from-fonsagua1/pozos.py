@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import processing
 
 from PyQt4.QtCore import QPyNullVariant
 
@@ -10,6 +9,9 @@ class CopyAttributes():
         self.of = QgsFeature()
         self.of.setFields(ofields)
         self.of.setGeometry(ifeat.geometry())
+
+        self.codigoscomunidad = [x for x in iface.legendInterface().layers() if x.name() == 'comunidades'][0].dataProvider().uniqueValues(1)
+        self.codigosabastecimiento = [x for x in iface.legendInterface().layers() if x.name() == 'abastecimientos'][0].dataProvider().uniqueValues(0)
 
     def copy(self, o, i, processfunction=None):
         '''
@@ -61,7 +63,33 @@ class CopyAttributes():
         if v:
             return 'true'
         return 'false'
-        
+ 
+    def toCodigoC(self, v):
+        '''
+        takes 8 characters from v and use it as codigoc if that value is valid codigoc
+        if not COMUNIDAD_FALSA is used as codigoc
+        '''
+        codigoc = v[0:8]
+        if codigoc in self.codigoscomunidad:
+            return codigoc
+        return 'COMUNIDAD_FALSA'
+    
+    def toCodigoAB(self, v):
+        '''
+        takes 8 characters from v and use it as codigoc if that value is valid codigoab
+        if not DUMB is used as codigoab
+        '''
+        codigoab = v[0:8]
+        if codigoab in self.codigosabastecimiento:
+            return codigoab
+        return 'DUMB'
+    
+    def gal2metroc(self, v):
+        if v:
+            return v/264.17
+        return 0
+
+
     def getNewFeature(self):
         return self.of
 
@@ -80,8 +108,8 @@ class CopyAttributes():
         self.of.setAttribute('tipo_fuente', 'Pozo')
         return None
 
-ilayer = processing.getobject("pozos")
-olayer = processing.getobject("fuentes")
+ilayer = [x for x in iface.legendInterface().layers() if x.name() == 'honduras_pozos'][0]
+olayer = [x for x in iface.legendInterface().layers() if x.name() == 'fuentes'][0]
 olayer.dataProvider().clearErrors()
 caps = olayer.dataProvider().capabilities()
 
@@ -92,7 +120,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
     for ifeat in ilayer.getFeatures():
         ca = CopyAttributes(ifeat, ofields, ilayer)
         if (ca.validRow()):
-            # El codigo 06072401P01 está repetido
+            # El codigo 06072401P01 está repetido, se le pone a uno de ellos 06072401P03
             ca.copy('cod_fuente', 'IdFuente')
             ca.copy('comunidad', 'CodigoC')
             ca.copy('fuente', 'Nombre')
@@ -112,11 +140,11 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('utm_y', 'y')
             ca.copy('utm_z', 'Altura')
             ca.copy('nom_propietario', 'Propietari')
-
+            ca.copy('reperforado', 'ProfSubcc', lambda v: 'true' if v else 'false')
+            ca.copy('rep_distancia', 'ProfSubcc')
+            
             # TODO
-            #ca.copy('', 'AlturaC')
-            #ca.copy('', 'HayProfund')
-            #ca.copy('', 'ProfSubcc')
+            #ca.copy('', 'AlturaC')            
             #ca.copy('', 'AltCaptVia')
             #ca.copy('', 'FuncVerano')
             #ca.copy('', 'UsoOficio')
@@ -124,7 +152,6 @@ if caps & QgsVectorDataProvider.AddFeatures:
             #ca.copy('', 'AseoPerson')
             #ca.copy('', 'OtrosUsos')
             #ca.copy('', 'UsoBebida')
-            #ca.copy('', 'DescrLitol')
             
             # Éstos no parecen tener datos
             #ca.copy('', 'AgrInv')
@@ -142,7 +169,8 @@ if caps & QgsVectorDataProvider.AddFeatures:
     (res, outFeats) = olayer.dataProvider().addFeatures( newFeatures )
 
     if not res:
-        print "Error guardando la capa"
+        print "************** Error guardando la capa ********* "
+        print olayer.dataProvider().errors()
     else:
         print "Tiene pinta de estar bien"
 
