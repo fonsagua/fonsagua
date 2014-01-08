@@ -60,3 +60,7 @@ INSERT INTO dominios.funcionamiento_verano (item) VALUES
 ALTER TABLE dominios.funcionamiento_verano OWNER TO fonsagua;
 
 ALTER TABLE fonsagua.fuentes ADD COLUMN funcionamiento_verano VARCHAR REFERENCES dominios.funcionamiento_verano(item);
+
+
+
+insert into dominios.tipo_organizacion values ('Caja rural');

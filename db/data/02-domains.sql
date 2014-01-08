@@ -365,6 +365,7 @@ INSERT INTO dominios.tipo_organizacion (item) VALUES
        ('Cooperativa de producción'),
        ('Comité de iglesia'),
        ('Comité de jóvenes'),
+       ('Caja rural'),
        ('Otros');
 
 ALTER TABLE dominios.tipo_organizacion OWNER TO fonsagua;

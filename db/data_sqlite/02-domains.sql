@@ -317,6 +317,7 @@ INSERT INTO tipo_organizacion (item) SELECT
        ('Cooperativa de producción') UNION SELECT
        ('Comité de iglesia') UNION SELECT
        ('Comité de jóvenes') UNION SELECT
+       ('Caja rural') UNION SELECT
        ('Otros');
 
 

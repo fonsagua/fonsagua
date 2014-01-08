@@ -1,18 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtCore import QPyNullVariant
-
-
-# Para escribir menos
-#ilayer = processing.getobject("comunidades")
-#ifields = ilayer.dataProvider().fields().toList()
-#for f in ifields:
-#print "of.setAttribute('', iatts[ilayer.fieldNameIndex('%s')])"%(f.name())
-
-
-##
-## RECUERDA PONER EL ENCODING DE LA CAPA ORIGINAL EN WINDOWS-1250 EN LA CAPA ORIGINAL
-##
 class CopyAttributesComunidades():
     def __init__(self, ifeat, ofields, ilayer):
         self.ilayer = ilayer
@@ -177,10 +164,6 @@ def myfunction():
         ca.copy('canton', 'nomaldea')
         ca.copy('cod_canton', 'CodAldea')
         ca.copy('cuenca', 'Cuenca')
-        # TODO: LimiteN
-        # TODO: LimiteS
-        # TODO: LimiteE
-        # TODO: LimiteO
         ca.copy('n_familias', 'NumFam')
         ca.copy('n_habitantes', 'NumHab')
         ca.copy('n_viviendas', 'NumViv')
@@ -203,11 +186,11 @@ def myfunction():
             otrasorg.append({'cod_comunidad':ifeat.attributes()[ilayer.fieldNameIndex('CodigoC')], 'tipo_organizacion':u'Asociaci\xf3n de padres y madres de familia'})
         
         if ifeat.attributes()[ilayer.fieldNameIndex('NomCoopP')]:
-            
             otrasorg.append({'cod_comunidad':ifeat.attributes()[ilayer.fieldNameIndex('CodigoC')], 'nombre':ifeat.attributes()[ilayer.fieldNameIndex('NomCoopP')], 'tipo_organizacion':'Cooperativa de producci\xf3n', 'actividad':ifeat.attributes()[ilayer.fieldNameIndex('ActivPrinc')]})
-            
-        # ca.copy('', 'BankComuna')
-        # ca.copy('', 'ExistCODEL')
+        
+        if ifeat.attributes()[ilayer.fieldNameIndex('BankComuna')].startswith('S'):
+            otrasorg.append({'cod_comunidad':ifeat.attributes()[ilayer.fieldNameIndex('CodigoC')], 'nombre':'Banco comunal', 'tipo_organizacion':'Caja rural', 'actividad':''})
+
         ca.copy('exp_ongs', 'ExpONGs', ca.siNo2Chb)
         
         ca.copy('h_cargos_publicos', 'PersCPub', ca.siNo2Chb)
