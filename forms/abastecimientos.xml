@@ -6892,7 +6892,7 @@
                             <at name="classname">com.jeta.forms.components.label.JETALabel</at>
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
-                              <at name="text">Coste energía ($):</at>
+                              <at name="text">Coste energía (lempiras):</at>
                               <at name="height">13</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -6901,8 +6901,8 @@
                                 <at name="size">11</at>
                                </object>
                               </at>
-                              <at name="name"/>
                               <at name="width">124</at>
+                              <at name="name"></at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -10658,7 +10658,7 @@
                             <at name="classname">com.jeta.forms.components.label.JETALabel</at>
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
-                              <at name="text">Coste ($/mes):</at>
+                              <at name="text">Coste (lempiras/mes):</at>
                               <at name="height">13</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -10667,8 +10667,8 @@
                                 <at name="size">11</at>
                                </object>
                               </at>
-                              <at name="name"/>
                               <at name="width">124</at>
+                              <at name="name"></at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -11642,7 +11642,7 @@
                             <at name="classname">com.jeta.forms.components.label.JETALabel</at>
                             <at name="properties">
                              <object classname="com.jeta.forms.store.support.PropertyMap">
-                              <at name="text">Coste ($):</at>
+                              <at name="text">Coste (lempiras):</at>
                               <at name="height">13</at>
                               <at name="font">
                                <object classname="com.jeta.forms.store.properties.FontProperty">
@@ -11651,8 +11651,8 @@
                                 <at name="size">11</at>
                                </object>
                               </at>
-                              <at name="name"/>
                               <at name="width">124</at>
+                              <at name="name"></at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
