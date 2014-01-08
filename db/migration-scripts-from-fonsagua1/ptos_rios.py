@@ -25,7 +25,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('comunidad', 'codigoc')
             ca.copy('fuente', 'Nombre')
             ca.copy('utm_z', 'Altura')
-            #ca.copy('', 'FuncVerano') TODO
+            ca.copy('funcionamiento_verano', 'FuncVerano', lambda v: None if not v else 'Disminuye caudal' if v.startswith('D') else 'Se seca' if v.startswith('S') else u'No var\xeda')
             ca.copy('alternativa_viable', 'AlterCViab', ca.siNo2Chb)
             ca.copy('uso', 'SeUtiliza', ca.siNo2Chb)
             ca.copy('comentarios', 'Coment')

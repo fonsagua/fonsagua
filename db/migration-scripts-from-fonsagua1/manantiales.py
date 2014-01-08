@@ -44,7 +44,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('nom_propietario', 'Propietari')
             ca.copy('uso_bebida', 'UsoBebida', ca.siNo2Chb)
             ca.copy('alternativa_viable', 'Alternativ', ca.siNo2Chb)
-            #ca.copy('', 'FuncionVer')
+            ca.copy('funcionamiento_verano', 'FuncionVer', lambda v: None if not v else 'Disminuye caudal' if v.startswith('D') else 'Se seca' if v.startswith('S') else u'No var\xeda')
 
             
             ca.specificData()

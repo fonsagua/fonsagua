@@ -1153,6 +1153,8 @@ CREATE TABLE fuentes (
        rep_metodo VARCHAR,
        n_limpiezas INTEGER,
        alternativa_viable VARCHAR(5) DEFAULT 'false',
+       funcionamiento_verano VARCHAR
+	       REFERENCES funcionamiento_verano(item),
        comentarios VARCHAR
 
 );

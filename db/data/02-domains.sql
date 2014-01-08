@@ -781,6 +781,20 @@ INSERT INTO dominios.tipo_pozo (item) VALUES
 
 ALTER TABLE dominios.tipo_pozo OWNER TO fonsagua;
 
+CREATE TABLE dominios.funcionamiento_verano (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO dominios.funcionamiento_verano (item) VALUES
+       (' '),
+       ('No varía caudal'),
+       ('Disminuye caudal'),
+       ('Se seca');
+
+ALTER TABLE dominios.funcionamiento_verano OWNER TO fonsagua;
+
 
 CREATE TABLE dominios.cond_muestra (
        item VARCHAR

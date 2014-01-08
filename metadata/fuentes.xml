@@ -343,6 +343,17 @@
 			</CONDITION>
 		</ENABLEIF>
 	    </FIELD>
+
+       	    <FIELD>
+		<FIELDNAME>funcionamiento_verano</FIELDNAME>
+		<DOMAINREADER>
+			<DRTYPE>db</DRTYPE>
+			<DRDBSCHEMA>dominios</DRDBSCHEMA>
+			<DRDBTABLE>funcionamiento_verano</DRDBTABLE>
+			<DRDBCOLUMNALIAS>item</DRDBCOLUMNALIAS>
+			<DRDBCOLUMNVALUE>item</DRDBCOLUMNVALUE>
+		</DOMAINREADER>
+	    </FIELD>
        </RECORDSET>
 
 </LAYER>

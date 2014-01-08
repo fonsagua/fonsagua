@@ -29,7 +29,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
     for ifeat in ilayer.getFeatures():
         ca = CopyAttributesPozos(ifeat, ofields, ilayer)
         if (ca.validRow()):
-            # El codigo 06072401P01 está repetido, se le pone a uno de ellos 06072401P03
+            # El codigo 06072401P01 estÃ¡ repetido, se le pone a uno de ellos 06072401P03
             ca.copy('cod_fuente', 'IdFuente')
             ca.copy('comunidad', 'CodigoC')
             ca.copy('fuente', 'Nombre')
@@ -53,7 +53,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('rep_distancia', 'ProfSubcc')
             ca.copy('uso_bebida', 'UsoBebida', ca.siNo2Chb)
             ca.copy('alternativa_viable', 'AltCaptVia', ca.siNo2Chb)
-            #ca.copy('', 'FuncVerano')
+            ca.copy('funcionamiento_verano', 'FuncVerano', lambda v: None if not v else 'Disminuye caudal' if v.startswith('D') else 'Se seca' if v.startswith('S') else u'No var\xeda')
 
             
             ca.specificData()

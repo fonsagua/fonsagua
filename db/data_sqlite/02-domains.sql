@@ -678,6 +678,18 @@ INSERT INTO tipo_pozo (item) SELECT
        ('Perforado');
 
 
+CREATE TABLE funcionamiento_verano (
+       item VARCHAR
+	       PRIMARY KEY
+);
+
+INSERT INTO funcionamiento_verano (item) SELECT
+       (' ') UNION SELECT
+       ('No varía caudal') UNION SELECT
+       ('Disminuye caudal') UNION SELECT
+       ('Se seca');
+
+
 CREATE TABLE cond_muestra (
        item VARCHAR
 	       PRIMARY KEY

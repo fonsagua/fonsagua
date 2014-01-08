@@ -43,3 +43,20 @@ ALTER TABLE fonsagua.niveles_freaticos OWNER TO fonsagua;
 ALTER TABLE fonsagua.fuentes ADD COLUMN uso_bebida boolean;
 
 ALTER TABLE fonsagua.fuentes ADD COLUMN alternativa_viable boolean;
+
+
+CREATE TABLE dominios.funcionamiento_verano (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO dominios.funcionamiento_verano (item) VALUES
+       (' '),
+       ('No varía caudal'),
+       ('Disminuye caudal'),
+       ('Se seca');
+
+ALTER TABLE dominios.funcionamiento_verano OWNER TO fonsagua;
+
+ALTER TABLE fonsagua.fuentes ADD COLUMN funcionamiento_verano VARCHAR REFERENCES dominios.funcionamiento_verano(item);

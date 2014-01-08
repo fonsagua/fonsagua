@@ -1220,6 +1220,8 @@ CREATE TABLE fonsagua.fuentes (
        rep_metodo VARCHAR,
        n_limpiezas INTEGER,
        alternativa_viable BOOLEAN,
+       funcionamiento_verano VARCHAR
+	       REFERENCES dominios.funcionamiento_verano(item),
        comentarios VARCHAR
 
 );
