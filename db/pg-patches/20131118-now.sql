@@ -64,3 +64,7 @@ ALTER TABLE fonsagua.fuentes ADD COLUMN funcionamiento_verano VARCHAR REFERENCES
 
 
 insert into dominios.tipo_organizacion values ('Caja rural');
+
+
+ALTER TABLE fonsagua.abastecimientos ADD COLUMN tarifa_variable BOOLEAN;
+ALTER TABLE fonsagua.abastecimientos ADD COLUMN cuota_variable NUMERIC(12,2);

@@ -59,27 +59,12 @@ if caps & QgsVectorDataProvider.AddFeatures:
         ca.copy('ong', 'GESTORONG')
         ca.copy('frec_pago', 'FREQPAGO')
         
-        
-        # TODO Ahora tenemos distintos tipos de cuotas
-        ca.copy('cuota_domiciliar', 'CUOTAAGUA')
-        ca.copy('cuota_comercial', 'CUOTAAGUA')
-        ca.copy('cuota_cantarera', 'CUOTAAGUA')
-        ca.copy('cuota_otros', 'CUOTAAGUA')
-        
-
+        ca.copy('tarifa_agua',  'HAYCUOTAF', ca.siNo2Chb)
+        ca.copy('cuota_domiciliar', 'CUOTAF')
+        ca.copy('tarifa_variable',  'HAYCUOTAV', ca.siNo2Chb)
+        ca.copy('cuota_variable', 'CUOTAV')
         
         ca.specificData()
-        
-        
-        
-        """ TODO
-        # Ahora tenemos distintos tipos de cuotas
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('CUOTAAGUA')])
-        'HAYCUOTAF'
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('CUOTAF')])
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('HAYCUOTAV')])
-        of.setAttribute('', iatts[ilayer.fieldNameIndex('CUOTAV')])
-        """
         
         # Se obtiene de comunidades: HAYJAGUA, HAYREGLAM, 
         # NLLAVESPUB, DISTLLPUB, NUMMUJ, HAYDIBOM  Sin datos

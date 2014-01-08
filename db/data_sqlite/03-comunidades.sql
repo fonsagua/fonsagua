@@ -676,6 +676,8 @@ CREATE TABLE abastecimientos (
        cuota_comercial NUMERIC(12,2),
        cuota_cantarera NUMERIC(12,2),
        cuota_otros NUMERIC(12,2),
+       tarifa_variable VARCHAR(5) DEFAULT 'false',
+       cuota_variable NUMERIC(12,2),
        frec_pago VARCHAR,
        gastos_cubiertos VARCHAR,
        mora_porcent NUMERIC(12,2),
