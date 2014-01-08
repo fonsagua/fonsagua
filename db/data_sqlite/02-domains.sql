@@ -329,10 +329,10 @@ CREATE TABLE niveles (
 
 INSERT INTO niveles (item) SELECT
        (' ') UNION SELECT
-       ('Parvularia') UNION SELECT
-       ('Primaria') UNION SELECT
-       ('Básica') UNION SELECT
-       ('Media');
+       ('De 1 a 6') UNION SELECT
+       ('De 1 a 9') UNION SELECT
+       ('De 1 a 12') UNION SELECT
+       ('De 7 a 12');
 
 
 CREATE TABLE tipo_servicio (
