@@ -41,3 +41,5 @@ CREATE TABLE fonsagua.niveles_freaticos (
 ALTER TABLE fonsagua.niveles_freaticos OWNER TO fonsagua;
 
 ALTER TABLE fonsagua.fuentes ADD COLUMN uso_bebida boolean;
+
+ALTER TABLE fonsagua.fuentes ADD COLUMN alternativa_viable boolean;

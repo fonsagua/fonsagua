@@ -52,9 +52,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('reperforado', 'ProfSubcc', lambda v: 'true' if v else 'false')
             ca.copy('rep_distancia', 'ProfSubcc')
             ca.copy('uso_bebida', 'UsoBebida', ca.siNo2Chb)
-            
-            # TODO
-            #ca.copy('', 'AltCaptVia')
+            ca.copy('alternativa_viable', 'AltCaptVia', ca.siNo2Chb)
             #ca.copy('', 'FuncVerano')
 
             

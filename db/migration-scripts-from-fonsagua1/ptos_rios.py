@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 class CopyAttributesRios(CopyAttributes):
   
     def validRow(self):
@@ -27,7 +26,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('fuente', 'Nombre')
             ca.copy('utm_z', 'Altura')
             #ca.copy('', 'FuncVerano') TODO
-            #ca.copy('', 'AlterCViab') TODO
+            ca.copy('alternativa_viable', 'AlterCViab', ca.siNo2Chb)
             ca.copy('uso', 'SeUtiliza', ca.siNo2Chb)
             ca.copy('comentarios', 'Coment')
             ca.copy('dist_linea_electrica', 'dist_elec', ca.str2meters)

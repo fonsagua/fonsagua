@@ -1219,6 +1219,7 @@ CREATE TABLE fonsagua.fuentes (
        limpiezas BOOLEAN,
        rep_metodo VARCHAR,
        n_limpiezas INTEGER,
+       alternativa_viable BOOLEAN,
        comentarios VARCHAR
 
 );

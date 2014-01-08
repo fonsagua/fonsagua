@@ -1152,6 +1152,7 @@ CREATE TABLE fuentes (
        limpiezas VARCHAR(5) DEFAULT 'false',
        rep_metodo VARCHAR,
        n_limpiezas INTEGER,
+       alternativa_viable VARCHAR(5) DEFAULT 'false',
        comentarios VARCHAR
 
 );
