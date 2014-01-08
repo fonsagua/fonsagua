@@ -16,7 +16,7 @@ UPDATE fonsagua.preferencias_disenho SET f_var_horaria=2, f_var_estacional=3, do
 
 SELECT is(
        fonsagua.demanda_poblacion_function('TEST-DEMANDA-POBLACION-FUNCTION', 'Domiciliar', 160)::numeric(6,2),
-       0.03)
+       0.03);
 
 SELECT * from finish();
 ROLLBACK;

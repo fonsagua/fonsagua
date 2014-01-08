@@ -30,8 +30,6 @@ if caps & QgsVectorDataProvider.AddFeatures:
         if (ca.validRow()):
             ca.copy('nombre', 'Nombre')
             ca.copy('cod_comunidad', 'CodigoC')
-            # NumAulas Decide eliminarse por no ser importante
-            # ExistePreB, PBNinhos, PBNinhas
             ca.copy('cod_c_educativo', 'id_cedu')
             ca.copy('tot_alumnos', 'AlumnosTot')
             ca.copy('n_profesores', 'ProfesoTot')
@@ -43,12 +41,10 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('utm_x', 'x')
             ca.copy('utm_y', 'y')
             ca.copy('utm_z', 'z')
-            
+            ca.copy('niveles', 'GradosExis', lambda v: None if not v else 'De 1 a 9' if v.find('9') != -1 else 'De 1 a 6')
             ca.specificData()
+
             
-            # TODO
-            # Aclarar la traduccion de grados (con numeros) a los niveles descriptivos
-            #ca.copy('niveles', 'GradosExis')
             
             newFeatures.append(ca.getNewFeature())
 
