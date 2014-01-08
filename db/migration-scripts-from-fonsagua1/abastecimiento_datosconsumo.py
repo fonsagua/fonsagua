@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtCore import QPyNullVariant
-
 import sqlite3
 
 def myfunction():
@@ -10,7 +8,7 @@ def myfunction():
     caps = olayer.dataProvider().capabilities()
     ofields = olayer.dataProvider().fields()
    
-    conn = sqlite3.connect('/home/fpuga/Escritorio/migracion/130918_data_Marcovia/_DB/fonsagua.sqlite3')
+    conn = sqlite3.connect(SQLITE_HONDURAS_PATH)
     c = conn.cursor()
     newFeatures = []
     for row in c.execute('SELECT codigoab, usosagua, nmiembros, (vdeposito * nveces)*1000 FROM abastecimiento_datosconsumo'):

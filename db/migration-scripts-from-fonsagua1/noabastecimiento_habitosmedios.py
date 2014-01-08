@@ -10,7 +10,7 @@ def myfunction():
     caps = olayer.dataProvider().capabilities()
     ofields = olayer.dataProvider().fields()
    
-    conn = sqlite3.connect('/home/fpuga/Escritorio/migracion/130918_data_Marcovia/_DB/fonsagua.sqlite3')
+    conn = sqlite3.connect(SQLITE_HONDURAS_PATH)
     c = conn.cursor()
     newFeatures = []
     for row in c.execute('SELECT codigoc, usos, nmiembrosf, (vdeposito * nvecesli)*1000 FROM noabastecimiento_habitosmedios'):

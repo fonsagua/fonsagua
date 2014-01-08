@@ -13,7 +13,7 @@ from PyQt4.QtCore import QPyNullVariant
 ##
 ## RECUERDA PONER EL ENCODING DE LA CAPA ORIGINAL EN WINDOWS-1250 EN LA CAPA ORIGINAL
 ##
-class CopyAttributes():
+class CopyAttributesComunidades():
     def __init__(self, ifeat, ofields, ilayer):
         self.ilayer = ilayer
         self.iatts = ifeat.attributes()
@@ -163,7 +163,7 @@ def myfunction():
     newFeatures = []
     otrasorg = []
     for ifeat in ilayer.getFeatures():
-        ca = CopyAttributes(ifeat, ofields, ilayer)
+        ca = CopyAttributesComunidades(ifeat, ofields, ilayer)
         ca.copy('comunidad', 'NombreC')
         ca.copy('cod_comunidad', 'CodigoC')
         ca.copy('cod_caserio', 'CodigoC')

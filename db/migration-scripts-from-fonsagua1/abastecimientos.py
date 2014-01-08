@@ -1,56 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtCore import QPyNullVariant
-
-class CopyAttributes():
-    def __init__(self, ifeat, ofields, ilayer):
-        self.ilayer = ilayer
-        self.iatts = ifeat.attributes()
-        self.of = QgsFeature()
-        self.of.setFields(ofields)
-        a = ifeat.geometry().convertToMultiType()
-        if not a:
-            print "error multitype"
-        self.of.setGeometry(ifeat.geometry())
-        
-    def copy(self, o, i, processfunction=None):
-        '''
-        copy of inputFeature.i attr to ouputFeature.o attr
-        if processfunction is provided applies it first to to the value of i
-        '''
-        ivalue = self.iatts[self.ilayer.fieldNameIndex(i)]
-        
-
-        if processfunction:
-            self.of.setAttribute(o, processfunction(ivalue))
-        else:
-            self.of.setAttribute(o, ivalue)
-
-    def siNo2Chb(self, str):
-        '''
-        str should be 'Si/No/Null) and returns 'true/false'
-        uses startswith to avoid encoding problems
-        '''
-        if str and str.startswith('S'):
-            return 'true'
-        return 'false'
-
-    def v2int(self, v):
-        '''
-        must be improved, the idea is convert float to int or liberal strings to int
-        '''
-        if v:
-            return int(v)
-        return 0
-    
-    def isTrue(self, v):
-        if v:
-            return 'true'
-        return 'false'
-        
-    def getNewFeature(self):
-        return self.of
-    
+class CopyAttributesAbastecimientos(CopyAttributes):
     def specificData(self):
         tipomant = self.iatts[self.ilayer.fieldNameIndex('TIPOMANT')]
         if (tipomant.lower() == 'correctivo'):
@@ -80,7 +30,7 @@ ofields = olayer.dataProvider().fields()
 if caps & QgsVectorDataProvider.AddFeatures:
     newFeatures = []
     for ifeat in ilayer.getFeatures():
-        ca = CopyAttributes(ifeat, ofields, ilayer)
+        ca = CopyAttributesAbastecimientos(ifeat, ofields, ilayer)
         
         ca.copy('cod_abastecimiento', 'CODIGOAB')
         ca.copy('tot_consumo', 'CONSTOTAL')
@@ -94,7 +44,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
         ca.copy('tarifa_agua', 'SEPAGAAG', ca.siNo2Chb)
         ca.copy('coste_mantenimiento', 'COSTEMANT')
         ca.copy('con_calidad', 'CONTRCALID', ca.siNo2Chb)
-        ca.copy('frec_con_calidad', 'CODIGOAB')
+        ca.copy('frec_con_calidad', 'freqContro')
         ca.copy('coment_desinfeccion', 'COMCLORO')
         ca.copy('coment_sis', 'COMABAST')
         ca.copy('gestion', 'GESTOR')
@@ -116,13 +66,11 @@ if caps & QgsVectorDataProvider.AddFeatures:
         ca.copy('cuota_cantarera', 'CUOTAAGUA')
         ca.copy('cuota_otros', 'CUOTAAGUA')
         
+
+        
         ca.specificData()
         
-        valoracion_sistema
-        of.setAttribute('sist_cobros', iatts[ilayer.fieldNameIndex('VALOR')])
-        of.setAttribute('nivel_serv', iatts[ilayer.fieldNameIndex('VALCONSUM')])
-        of.setAttribute('agua_suf', self.siNo2Chb(iatts[ilayer.fieldNameIndex('CANTSUF')]))
-        of.setAttribute('serv_continuo', self.siNo2Chb(iatts[ilayer.fieldNameIndex('AGUACONT')]))
+        
         
         """ TODO
         # Ahora tenemos distintos tipos de cuotas
