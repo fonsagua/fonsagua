@@ -379,10 +379,10 @@ CREATE TABLE dominios.niveles (
 
 INSERT INTO dominios.niveles (item) VALUES
        (' '),
-       ('Parvularia'),
-       ('Primaria'),
-       ('Básica'),
-       ('Media');
+       ('De 1 a 6'),
+       ('De 1 a 9'),
+       ('De 1 a 12'),
+       ('De 7 a 12');
 
 ALTER TABLE dominios.niveles OWNER TO fonsagua;
 
