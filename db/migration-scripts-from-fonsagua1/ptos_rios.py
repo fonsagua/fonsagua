@@ -26,27 +26,14 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('comunidad', 'codigoc')
             ca.copy('fuente', 'Nombre')
             ca.copy('utm_z', 'Altura')
-            #ca.copy('', 'AlturaC') Eliminado a conciencia
             #ca.copy('', 'FuncVerano') TODO
             #ca.copy('', 'AlterCViab') TODO
             ca.copy('uso', 'SeUtiliza', ca.siNo2Chb)
-            #ca.copy('', 'UsoOficio') TODO
-            #ca.copy('', 'UsoLavarRo') TODO
-            #ca.copy('', 'AseoPerson') TODO
-            #ca.copy('', 'OtrosUsos') TODO
-            #ca.copy('', 'UsoBebida') TODO
             ca.copy('comentarios', 'Coment')
             ca.copy('dist_linea_electrica', 'dist_elec', ca.str2meters)
             ca.copy('utm_x', 'x')
             ca.copy('utm_y', 'y')
-            
-            # Éstos no tienen datos. Se elminan a conciencia
-            #ca.copy('', 'AgrInv')
-            #ca.copy('', 'AgrVeran')
-            #ca.copy('', 'GanadInv')
-            #ca.copy('', 'GanadVeran')
-            #ca.copy('', 'DomesInv')
-            #ca.copy('', 'DomestVera')
+            ca.copy('uso_bebida', 'UsoBebida', ca.siNo2Chb)
             
             ca.specificData()
             

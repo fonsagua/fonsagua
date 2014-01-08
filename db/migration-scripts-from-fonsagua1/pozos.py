@@ -51,25 +51,12 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('nom_propietario', 'Propietari')
             ca.copy('reperforado', 'ProfSubcc', lambda v: 'true' if v else 'false')
             ca.copy('rep_distancia', 'ProfSubcc')
+            ca.copy('uso_bebida', 'UsoBebida', ca.siNo2Chb)
             
             # TODO
-            #ca.copy('', 'AlturaC')            
             #ca.copy('', 'AltCaptVia')
             #ca.copy('', 'FuncVerano')
-            #ca.copy('', 'UsoOficio')
-            #ca.copy('', 'UsoLavarR')
-            #ca.copy('', 'AseoPerson')
-            #ca.copy('', 'OtrosUsos')
-            #ca.copy('', 'UsoBebida')
-            
-            # Éstos no parecen tener datos
-            #ca.copy('', 'AgrInv')
-            #ca.copy('', 'AgrVeran')
-            #ca.copy('', 'GanadInv')
-            #ca.copy('', 'GanadVeran')
-            #ca.copy('', 'DomesInv')
-            #ca.copy('', 'DomestVera')
-            #ca.copy('', 'EnsayosBom')
+
             
             ca.specificData()
             

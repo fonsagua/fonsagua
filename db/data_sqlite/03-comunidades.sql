@@ -1122,6 +1122,7 @@ CREATE TABLE fuentes (
        utm_y FLOAT,
        utm_z FLOAT,
        uso VARCHAR(5) DEFAULT 'false',
+       uso_bebida VARCHAR(5) DEFAULT 'false',
        dom_numero INTEGER,
        dom_cantaradas INTEGER,
        agr_numero INTEGER,

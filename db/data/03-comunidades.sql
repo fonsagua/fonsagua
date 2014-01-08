@@ -1189,6 +1189,7 @@ CREATE TABLE fonsagua.fuentes (
        utm_y FLOAT,
        utm_z FLOAT,
        uso BOOLEAN,
+       uso_bebida BOOLEAN,
        dom_numero INTEGER,
        dom_cantaradas INTEGER,
        agr_numero INTEGER,

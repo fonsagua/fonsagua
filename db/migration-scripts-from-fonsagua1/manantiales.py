@@ -42,25 +42,12 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('utm_y', 'y')
             ca.copy('utm_z', 'Altura')
             ca.copy('nom_propietario', 'Propietari')
+            ca.copy('uso_bebida', 'UsoBebida', ca.siNo2Chb)
 
             # TODO
-            #ca.copy('', 'AlturaCom')
+            
             #ca.copy('', 'FuncionVer')
             #ca.copy('', 'Alternativ')
-            #ca.copy('', 'UsoOficio')
-            #ca.copy('', 'UsoLavarRo')
-            #ca.copy('', 'AseoPerson')
-            #ca.copy('', 'OtrosUsos')
-            #ca.copy('', 'UsoBebida')
-            
-            # Éstos no parecen tener datos
-            #ca.copy('', 'AgrInv')
-            #ca.copy('', 'AgrVeran')
-            #ca.copy('', 'GanadInv')
-            #ca.copy('', 'GanadVeran')
-            #ca.copy('', 'DomesInv')
-            #ca.copy('', 'DomestVera')
-            #ca.copy('', 'EnsayosBom')
             
             ca.specificData()
             
