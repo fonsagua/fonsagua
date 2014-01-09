@@ -34,20 +34,5 @@ def myfunction():
         print olayer.dataProvider().errors()
         return
 
-    # updateComunidades(auxCodes)
-    
-def updateComunidades(auxCodes):
-    comunidades = [x for x in iface.legendInterface().layers() if x.name() == 'comunidades'][0]
-    comunidades.dataProvider().clearErrors()
-    comunidadesFields = comunidades.dataProvider().fields()
-    comunidadesIdAtts = {}
-    for feature in comunidades.getFeatures():
-        idx = comunidades.fieldNameIndex('cod_comunidad')
-        if feature.attributes()[idx] in auxCodes:
-            comunidadesIdAtts[feature.id()] = {comunidades.fieldNameIndex('h_cooperativas'):'true'}
-    r = comunidades.dataProvider().changeAttributeValues(comunidadesIdAtts)
-    if not r:
-        print 'Error'
-
 
 myfunction()

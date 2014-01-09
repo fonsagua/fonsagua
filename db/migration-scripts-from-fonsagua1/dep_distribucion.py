@@ -23,8 +23,6 @@ if caps & QgsVectorDataProvider.AddFeatures:
         ca = CopyAttributesDepDistribucion(ifeat, ofields, ilayer)
         ca.copy('cod_abastecimiento', 'CodigoDepD', ca.toCodigoAB)
         
-        # Los códigos 06070301T01, 06070701T01 y 06070901T01 están repetidos
-        # y se eliminan a mano del original
         ca.copy('cod_dep_distribucion', 'CodigoDepD')
         ca.copy('estado', 'Estado')
         ca.copy('volumen', 'Capacidad', ca.gal2metroc)

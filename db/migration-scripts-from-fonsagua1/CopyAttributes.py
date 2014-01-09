@@ -12,7 +12,7 @@ class CopyAttributes():
             if ifeat.geometry().wkbType() != QGis.WKBPoint and ifeat.geometry().wkbType() != QGis.WKBMultiPoint:
                 res = ifeat.geometry().convertToMultiType()
                 if not res:
-                    raise "Error al convertir a Multitype"
+                    raise Exception("Error al convertir a Multitype")
             self.of.setGeometry(ifeat.geometry())
         
         self.codigoscomunidad = [x for x in iface.legendInterface().layers() if x.name() == 'comunidades'][0].dataProvider().uniqueValues(1)
@@ -87,7 +87,15 @@ class CopyAttributes():
         codigoab = v[0:8]
         if codigoab in self.codigosabastecimiento:
             return codigoab
+        print "Codigo abastecimiento no existe: %s, usamos DUMB" % (codigoab) 
         return 'DUMB'
+    
+    def toDate(self, v):
+        '''
+        tries to build a date in the format dd/mm/aaaa
+        Now only replace - by /
+        '''
+        return v.replace('-', '/') if v else v
     
     def gal2metroc(self, v):
         if v:

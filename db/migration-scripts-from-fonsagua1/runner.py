@@ -11,10 +11,11 @@
 ## RECUERDA PONER EL ENCODING DE LA CAPA ORIGINAL EN WINDOWS-1250 EN LA CAPA ORIGINAL
 ##
 
-valoracion_sistema
+#valoracion_sistema
 
 
 execfile('/home/development/fonsagua/fonsagua/db/migration-scripts-from-fonsagua1/CopyAttributes.py')
+execfile('/home/development/fonsagua/fonsagua/db/migration-scripts-from-fonsagua1/LayerMigration.py')
 execfile('/home/development/fonsagua/fonsagua/db/migration-scripts-from-fonsagua1/abastecimientos.py')
 execfile('/home/development/fonsagua/fonsagua/db/migration-scripts-from-fonsagua1/comunidades.py')
 execfile('/home/development/fonsagua/fonsagua/db/migration-scripts-from-fonsagua1/relacion_comunidades_abastecimientos.py')
@@ -43,3 +44,5 @@ execfile('/home/development/fonsagua/fonsagua/db/migration-scripts-from-fonsagua
 execfile('/home/development/fonsagua/fonsagua/db/migration-scripts-from-fonsagua1/comunidades_riegoorganizacion.py')
 execfile('/home/development/fonsagua/fonsagua/db/migration-scripts-from-fonsagua1/comunidades_consumocomparado.py')
 execfile('/home/development/fonsagua/fonsagua/db/migration-scripts-from-fonsagua1/comunidades_riegoproduccioncomunidad.py')
+execfile('/home/development/fonsagua/fonsagua/db/migration-scripts-from-fonsagua1/abastecimiento_nfreatpozo.py')
+execfile('/home/development/fonsagua/fonsagua/db/migration-scripts-from-fonsagua1/abastecimiento_perstecnico.py')

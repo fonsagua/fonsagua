@@ -12,12 +12,8 @@ if caps & QgsVectorDataProvider.AddFeatures:
     for ifeat in ilayer.getFeatures():
         ca = CopyAttributes(ifeat, ofields, ilayer)
        
-        # Las captaciones 06070902T01, 06070706P01, 06070706P02 y 06070706P01
-        # no tienen el cod de abast a pesar de que si existen
-        # 06072301P02 se elimina, por tener null y no codab valido
         ca.copy('cod_abastecimiento', 'CodigoCap', ca.toCodigoAB)
 
-        # Codigo 06071901P01 estaba repetido, se ha cambiado uno a P02
         ca.copy('cod_captacion', 'CodigoCap')
         ca.copy('sistema', 'Sistema')
         ca.copy('estado', 'Estado')

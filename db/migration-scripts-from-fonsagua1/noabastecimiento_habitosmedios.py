@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtCore import QPyNullVariant
 
 import sqlite3
 

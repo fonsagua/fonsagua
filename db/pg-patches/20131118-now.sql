@@ -4,16 +4,31 @@ alter table fonsagua.otros_servicios drop constraint otros_servicios_tipo_servic
 update dominios.tipo_servicio set item='Instalación deportiva' where item='Intalación deportiva';
 
 
+CREATE TABLE dominios.genero (
+       item VARCHAR
+	       PRIMARY KEY
+
+);
+
+INSERT INTO dominios.genero (item) VALUES
+       (' '),
+       ('Femenino'),
+       ('Masculino');
+
+ALTER TABLE dominios.genero OWNER TO fonsagua;
+
+
 
 CREATE TABLE fonsagua.personal_tecnico (
        gid SERIAL PRIMARY KEY,
        cod_abastecimiento VARCHAR
-              NOT NULL
-              REFERENCES fonsagua.abastecimientos(cod_abastecimiento)
-              ON DELETE CASCADE
-              ON UPDATE CASCADE,
+	       NOT NULL
+	       REFERENCES fonsagua.abastecimientos(cod_abastecimiento)
+	       ON DELETE CASCADE
+	       ON UPDATE CASCADE,
        nombre VARCHAR,
-       genero VARCHAR,
+       genero VARCHAR
+	       REFERENCES dominios.genero(item),
        origen VARCHAR,
        cargo VARCHAR
 

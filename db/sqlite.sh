@@ -14,20 +14,20 @@ done
 #ogr2ogr -append -progress -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nlt MULTIPOLYGON -nln departamentos -dsco SPATIALITE=YES -sql "select OGC_FID as gid, GEOMETRY as geom, cod as cdpto, depto as dpto from m1102vA001970_HN" $DB_PATH ./data_sqlite/datos/departamentos/m1102vA001970_HN.shp
 
 # departamentos
-ogr2ogr -append -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nlt MULTIPOLYGON $DB_PATH ./data_sqlite/datos/departamento/m1102vA001970_HN.shp
+ogr2ogr -append -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nlt MULTIPOLYGON -dsco SPATIALITE=YES $DB_PATH ./data_sqlite/datos/departamento/m1102vA001970_HN.shp
 spatialite $DB_PATH "INSERT INTO departamentos SELECT ogc_fid, cod, depto, geometry from m1102vA001970_HN;"
 spatialite $DB_PATH "DROP TABLE m1102vA001970_HN;"
 
 # municipios
-ogr2ogr -append -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nlt MULTIPOLYGON $DB_PATH ./data_sqlite/datos/municipio/m1103vA002001_HN.shp
+ogr2ogr -append -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nlt MULTIPOLYGON -dsco SPATIALITE=YES $DB_PATH ./data_sqlite/datos/municipio/m1103vA002001_HN.shp
 spatialite $DB_PATH "INSERT INTO municipios SELECT ogc_fid, cod_muni, nombre, geometry from m1103vA002001_HN;DROP TABLE m1103vA002001_HN;"
 
 # aldeas
-ogr2ogr -append -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nlt MULTIPOLYGON $DB_PATH ./data_sqlite/datos/aldea/m1104vA002001_HN.shp
+ogr2ogr -append -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nlt MULTIPOLYGON -dsco SPATIALITE=YES $DB_PATH ./data_sqlite/datos/aldea/m1104vA002001_HN.shp
 spatialite $DB_PATH "INSERT INTO cantones SELECT ogc_fid, cod_aldea, nombre, geometry from m1104vA002001_HN WHERE cod_depto IN ('06', '17'); DROP TABLE m1104vA002001_HN;"
 
 # paises_limitrofes
-ogr2ogr -append -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nln paises_limitrofes -nlt MULTIPOLYGON $DB_PATH ./data_sqlite/datos/paises_limitrofes/paises_vecinos.shp
+ogr2ogr -append -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nln paises_limitrofes -nlt MULTIPOLYGON -dsco SPATIALITE=YES $DB_PATH ./data_sqlite/datos/paises_limitrofes/paises_vecinos.shp
 
 # ELLE
 sqlite3 $DB_PATH "DELETE FROM _map; DELETE FROM _map_overview; DELETE FROM _map_style; DELETE FROM _map_overview_style"

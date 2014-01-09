@@ -1,62 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class CopyAttributesComunidades():
-    def __init__(self, ifeat, ofields, ilayer):
-        self.ilayer = ilayer
-        self.iatts = ifeat.attributes()
-        self.of = QgsFeature()
-        self.of.setFields(ofields)
-        if ilayer.hasGeometryType():
-            self.of.setGeometry(ifeat.geometry())
-        
-    def copy(self, o, i, processfunction=None):
-        '''
-        copy of inputFeature.i attr to ouputFeature.o attr
-        if processfunction is provided applies it first to to the value of i
-        '''
-        ivalue = self.iatts[self.ilayer.fieldNameIndex(i)]
-        
-
-        if processfunction:
-            self.of.setAttribute(o, processfunction(ivalue))
-        else:
-            self.of.setAttribute(o, ivalue)
-         
-    def siNo2Chb(self, strvalue):
-        '''
-        str should be 'Si/No/Null) and returns 'true/false'
-        uses startswith to avoid encoding problems
-        '''
-        if strvalue and strvalue.startswith('S'):
-            return 'true'
-        return 'false'
-        
-    def v2int(self, v):
-        '''
-        must be improved, the idea is convert float to int or liberal strings to int
-        '''
-        if v:
-            return int(v)
-        return 0
-    
-    def isTrue(self, v):
-        if v:
-            return 'true'
-        return 'false'
-        
-    def toCodigoC(self, v):
-       '''
-       takes 8 characters from v and use it as codigoc if that value is valid codigoc
-       if not COMUNIDAD_FALSA is used as codigoc
-       '''
-       codigoc = v[0:8]
-       if codigoc in self.codigoscomunidad:
-           return codigoc
-       return 'COMUNIDAD_FALSA'
-
-     
-    def getNewFeature(self):
-        return self.of
+class CopyAttributesComunidades(CopyAttributes):
 
     def comunidadesSpecific(self):
         self.of.setAttribute('n_iglesias', self.iatts[self.ilayer.fieldNameIndex('nIglCat')] + self.iatts[self.ilayer.fieldNameIndex('nIglEva')])
@@ -155,7 +99,7 @@ def myfunction():
         ca.copy('cod_comunidad', 'CodigoC')
         ca.copy('cod_caserio', 'CodigoC')
         ca.copy('caserio', 'NombreC')
-        ca.copy('fecha', 'Fecha')
+        ca.copy('fecha', 'Fecha', ca.toDate)
         ca.copy('punto_descripcion', 'Descrpt')
         ca.copy('departamento', 'Nomdep')
         ca.copy('cod_departamento', 'Nomdep')
@@ -419,7 +363,7 @@ def myfunction():
         ca.copy('seca_t_espera', 'TEspCola')
         ca.copy('lluvia_suficiencia', 'LlSufic')
         ca.copy('lluvia_t_espera', 'LlTespCola')
-        ca.copy('f_compra', 'CosAguaExt', ca.siNo2Chb)
+        ca.copy('f_compra', 'CosAguaExt', lambda v: 'true' if v else 'false')
         ca.copy('coste_agua', 'CosAguaExt')
         ca.copy('coment_hab', 'ComHabita')
         ca.copy('res_hab_agua', 'resHabitos')

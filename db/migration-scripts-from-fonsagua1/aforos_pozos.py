@@ -21,7 +21,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
         if (ca.validRow()):
             ca.copy('cod_fuente', 'idfuente')
             ca.copy('aforo', 'aforo', ca.gal2metroc)
-            ca.copy('fecha', 'fecha', lambda v: v.replace('-', '/') if v else None)
+            ca.copy('fecha', 'fecha', ca.toDate)
             
             newFeatures.append(ca.getNewFeature())
 

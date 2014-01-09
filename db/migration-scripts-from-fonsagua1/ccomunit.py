@@ -30,7 +30,6 @@ def myfunction():
         newFeatures.append(ca.getNewFeature())
 
     (res, foo) = olayer.dataProvider().addFeatures(newFeatures)
-    res = True
     if not res:
         print "************** Error guardando la capa ********* "
         print olayer.dataProvider().errors()
