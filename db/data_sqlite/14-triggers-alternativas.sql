@@ -14,10 +14,10 @@ FOR EACH ROW BEGIN
 	UPDATE alternativas SET dot_sec_terciario = 0 WHERE (dot_sec_terciario IS NULL OR dot_sec_terciario < 0) AND gid = NEW.gid;
 	UPDATE alternativas SET pobl_actual = (SELECT IFNULL(SUM(n_hab_alternativa), 0) FROM comunidades_implicadas WHERE cod_alternativa = alternativas.cod_alternativa) WHERE gid = NEW.gid;
 
-	UPDATE alternativas SET pobl_futura = ((SELECT CEIL(pobl_actual * (1 + (COALESCE(tasa_crecimiento, 0) * COALESCE(ano_horiz_sistema, 0) / 100))) FROM preferencias_disenho a JOIN alternativas b ON a.cod_alternativa = b.cod_alternativa WHERE b.gid = alternativas.gid) / 86400) WHERE gid = NEW.gid;
+	UPDATE alternativas SET pobl_futura = (SELECT CEIL(pobl_actual * (1 + (COALESCE(tasa_crecimiento, 0) * COALESCE(ano_horiz_sistema, 0) / 100))) FROM preferencias_disenho a JOIN alternativas b ON a.cod_alternativa = b.cod_alternativa WHERE b.gid = alternativas.gid) WHERE gid = NEW.gid;
 
-	UPDATE alternativas SET dem_poblacion = (SELECT COALESCE(f_var_estacional, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * (SELECT COALESCE(dot_cantareras, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * pobl_futura WHERE gid = NEW.gid AND tipo_distribucion = 'Cantareras';
-	UPDATE alternativas SET dem_poblacion = (SELECT COALESCE(f_var_estacional, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * (SELECT COALESCE(dot_domiciliar, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * pobl_futura WHERE gid = NEW.gid AND tipo_distribucion = 'Domiciliar';
+	UPDATE alternativas SET dem_poblacion = (SELECT COALESCE(f_var_estacional, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * (SELECT COALESCE(dot_cantareras, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * pobl_futura / 86400.0 WHERE gid = NEW.gid AND tipo_distribucion = 'Cantareras';
+	UPDATE alternativas SET dem_poblacion = (SELECT COALESCE(f_var_estacional, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * (SELECT COALESCE(dot_domiciliar, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * pobl_futura / 86400.0 WHERE gid = NEW.gid AND tipo_distribucion = 'Domiciliar';
 	UPDATE alternativas SET dem_poblacion = 0 WHERE gid = NEW.gid AND tipo_distribucion != 'Domiciliar' AND tipo_distribucion != 'Cantareras';
 
 	UPDATE alternativas SET dem_centros = (SELECT COALESCE(f_var_estacional, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * (n_cent_educativos * dot_cent_educativos + n_cent_salud * dot_cent_salud + n_cent_otros * dot_cent_otros) / 86400.0 WHERE gid = NEW.gid;
@@ -45,10 +45,10 @@ FOR EACH ROW BEGIN
 	UPDATE alternativas SET dot_sec_terciario = 0 WHERE (dot_sec_terciario IS NULL OR dot_sec_terciario < 0) AND gid = NEW.gid;
 	UPDATE alternativas SET pobl_actual = (SELECT IFNULL(SUM(n_hab_alternativa), 0) FROM comunidades_implicadas WHERE cod_alternativa = alternativas.cod_alternativa) WHERE gid = NEW.gid;
 
-	UPDATE alternativas SET pobl_futura = ((SELECT CEIL(pobl_actual * (1 + (COALESCE(tasa_crecimiento, 0) * COALESCE(ano_horiz_sistema, 0) / 100))) FROM preferencias_disenho a JOIN alternativas b ON a.cod_alternativa = b.cod_alternativa WHERE b.gid = alternativas.gid) / 86400) WHERE gid = NEW.gid;
+	UPDATE alternativas SET pobl_futura = (SELECT CEIL(pobl_actual * (1 + (COALESCE(tasa_crecimiento, 0) * COALESCE(ano_horiz_sistema, 0) / 100))) FROM preferencias_disenho a JOIN alternativas b ON a.cod_alternativa = b.cod_alternativa WHERE b.gid = alternativas.gid) WHERE gid = NEW.gid;
 
-	UPDATE alternativas SET dem_poblacion = (SELECT COALESCE(f_var_estacional, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * (SELECT COALESCE(dot_cantareras, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * pobl_futura WHERE gid = NEW.gid AND tipo_distribucion = 'Cantareras';
-	UPDATE alternativas SET dem_poblacion = (SELECT COALESCE(f_var_estacional, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * (SELECT COALESCE(dot_domiciliar, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * pobl_futura WHERE gid = NEW.gid AND tipo_distribucion = 'Domiciliar';
+	UPDATE alternativas SET dem_poblacion = (SELECT COALESCE(f_var_estacional, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * (SELECT COALESCE(dot_cantareras, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * pobl_futura / 86400.0 WHERE gid = NEW.gid AND tipo_distribucion = 'Cantareras';
+	UPDATE alternativas SET dem_poblacion = (SELECT COALESCE(f_var_estacional, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * (SELECT COALESCE(dot_domiciliar, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * pobl_futura / 86400.0 WHERE gid = NEW.gid AND tipo_distribucion = 'Domiciliar';
 	UPDATE alternativas SET dem_poblacion = 0 WHERE gid = NEW.gid AND tipo_distribucion != 'Domiciliar' AND tipo_distribucion != 'Cantareras';
 
 	UPDATE alternativas SET dem_centros = (SELECT COALESCE(f_var_estacional, 0) FROM preferencias_disenho WHERE cod_alternativa = alternativas.cod_alternativa) * (n_cent_educativos * dot_cent_educativos + n_cent_salud * dot_cent_salud + n_cent_otros * dot_cent_otros) / 86400.0 WHERE gid = NEW.gid;
