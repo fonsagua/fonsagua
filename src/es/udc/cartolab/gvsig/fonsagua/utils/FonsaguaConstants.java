@@ -48,11 +48,11 @@ public interface FonsaguaConstants {
 	    "precio_tubo" };
     public static final String[] TUBERIAS_COMERCIALES_TABLE_ALIAS = { "ID",
 	    "Material", "Diámetro (mm)", "Presión (m.c.a)", "Rugosidad (D-W)",
-	    "Precio ($/6m)" };
+	    "Precio (lemp/6m)" };
     public static final String BOMBAS_COMERCIALES_NAME = "preferencias_bombas";
     public static final String[] BOMBAS_COMERCIALES_TABLE_FIELDS = {
 	    "id_bomba", "potencia", "precio_m" };
     public static final String[] BOMBAS_COMERCIALES_TABLE_ALIAS = { "ID",
-	    "Potencia (CV)", "Precio ($)" };
+	    "Potencia (CV)", "Precio (lemp)" };
 
 }
