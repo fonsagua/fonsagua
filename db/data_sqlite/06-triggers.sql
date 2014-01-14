@@ -16,22 +16,6 @@ END;
 
 
 
-DROP TRIGGER IF EXISTS adescos_compute_fields_insert_trigger;
-CREATE TRIGGER adescos_compute_fields_insert_trigger
-AFTER INSERT ON adescos
-FOR EACH ROW BEGIN
-	UPDATE adescos SET tot_miembros = IFNULL(n_hombres, 0) + IFNULL(n_mujeres, 0) WHERE gid = NEW.gid;
-END;
-
-DROP TRIGGER IF EXISTS adescos_compute_fields_update_trigger;
-CREATE TRIGGER adescos_compute_fields_update_trigger
-AFTER UPDATE ON adescos
-FOR EACH ROW BEGIN
-	UPDATE adescos SET tot_miembros = IFNULL(n_hombres, 0) + IFNULL(n_mujeres, 0) WHERE gid = NEW.gid;
-END;
-
-
-
 DROP TRIGGER IF EXISTS amenazas_compute_fields_insert_trigger;
 CREATE TRIGGER amenazas_compute_fields_insert_trigger
 AFTER INSERT ON amenazas
@@ -430,6 +414,7 @@ DROP TRIGGER IF EXISTS adescos_compute_fields_insert_trigger;
 CREATE TRIGGER adescos_compute_fields_insert_trigger
 AFTER INSERT ON adescos
 FOR EACH ROW BEGIN
+	UPDATE adescos SET tot_miembros = IFNULL(n_hombres, 0) + IFNULL(n_mujeres, 0) WHERE gid = NEW.gid;
 	UPDATE comunidades SET n_adescos = 0 WHERE cod_comunidad = NEW.cod_comunidad;
 END;
 
@@ -437,15 +422,9 @@ DROP TRIGGER IF EXISTS adescos_compute_fields_update_trigger;
 CREATE TRIGGER adescos_compute_fields_update_trigger
 AFTER UPDATE ON adescos
 FOR EACH ROW BEGIN
+	UPDATE adescos SET tot_miembros = IFNULL(n_hombres, 0) + IFNULL(n_mujeres, 0) WHERE gid = NEW.gid;
 	UPDATE comunidades SET n_adescos = 0 WHERE cod_comunidad = OLD.cod_comunidad;
 	UPDATE comunidades SET n_adescos = 0 WHERE cod_comunidad = NEW.cod_comunidad;
-END;
-
-DROP TRIGGER IF EXISTS adescos_compute_fields_update_trigger;
-CREATE TRIGGER adescos_compute_fields_update_trigger
-AFTER DELETE ON adescos
-FOR EACH ROW BEGIN
-	UPDATE comunidades SET n_adescos = 0 WHERE cod_comunidad = OLD.cod_comunidad;
 END;
 
 
