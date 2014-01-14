@@ -28,7 +28,9 @@ public class DatabaseDirectAccessQueries {
     public static DefaultTableModel getFuentesIntersectingAlternative(
 	    String codAlt) throws SQLException {
 
-	String query = "SELECT fuentes.fuente AS \"Fuente\", fuentes.tipo_fuente AS \"Tipo fuente\", fuentes.aforo AS \"Aforo\", fuentes.q_ecologico AS \"Q eco (l/s)\", (SELECT q_usar FROM fonsagua.fuentes_implicadas WHERE fuente = fuentes.fuente) AS \"Q usar (l/s)\" FROM ( SELECT fuente, tipo_fuente, COALESCE(aforo.aforo,0) AS aforo,  CASE WHEN tipo_fuente IN ('Manantial', 'Punto rio') THEN COALESCE(aforo.aforo,0) * (SELECT coef_q_ecologico FROM fonsagua.preferencias_disenho WHERE cod_alternativa = '####') ELSE NULL END AS q_ecologico FROM fonsagua.fuentes AS fuente JOIN fonsagua.alternativas AS alt ON st_intersects(alt.geom, fuente.geom) FULL OUTER JOIN (select cod_fuente, min(aforo) as aforo from fonsagua.aforos group by cod_fuente) AS aforo ON fuente.cod_fuente = aforo.cod_fuente WHERE alt.cod_alternativa = '####' UNION SELECT fuente, tipo_fuente_alternativa AS tipo_fuente, aforo, q_ecologico FROM fonsagua.alt_fuentes WHERE cod_alternativa = '####' AND existencia_elemento <> 'Existente' UNION SELECT embalse, 'Embalse', aforo, NULL FROM fonsagua.alt_embalses WHERE cod_alternativa = '####' AND existencia_elemento <> 'Existente' ) AS fuentes;";
+	// This query contains a FULL OUTER JOIN made manually by two left joins
+	// so it can work in SQLite
+	String query = "SELECT fuentes.fuente AS \"Fuente\", fuentes.tipo_fuente AS \"Tipo fuente\", fuentes.aforo AS \"Aforo\", fuentes.q_ecologico AS \"Q eco (l/s)\", (SELECT q_usar FROM fonsagua.fuentes_implicadas WHERE fuente = fuentes.fuente) AS \"Q usar (l/s)\" FROM ( SELECT fuente, tipo_fuente, COALESCE(aforo.aforo,0) AS aforo,  CASE WHEN tipo_fuente IN ('Manantial', 'Punto rio') THEN COALESCE(aforo.aforo,0) * (SELECT coef_q_ecologico FROM fonsagua.preferencias_disenho WHERE cod_alternativa = '####') ELSE NULL END AS q_ecologico FROM fonsagua.fuentes AS fuente JOIN fonsagua.alternativas AS alt ON st_intersects(alt.geom, fuente.geom) LEFT JOIN (select cod_fuente, min(aforo) as aforo from fonsagua.aforos group by cod_fuente) AS aforo ON fuente.cod_fuente = aforo.cod_fuente WHERE alt.cod_alternativa = '####' UNION ALL SELECT fuente, tipo_fuente, COALESCE(aforo.aforo,0) AS aforo,  CASE WHEN tipo_fuente IN ('Manantial', 'Punto rio') THEN COALESCE(aforo.aforo,0) * (SELECT coef_q_ecologico FROM fonsagua.preferencias_disenho WHERE cod_alternativa = '####') ELSE NULL END AS q_ecologico FROM (select cod_fuente, min(aforo) as aforo from fonsagua.aforos group by cod_fuente) AS aforo LEFT JOIN fonsagua.fuentes AS fuente ON fuente.cod_fuente = aforo.cod_fuente JOIN fonsagua.alternativas AS alt ON st_intersects(alt.geom, fuente.geom) WHERE alt.cod_alternativa = '####' AND fuente.cod_fuente IS NULL UNION SELECT fuente, tipo_fuente_alternativa AS tipo_fuente, aforo, q_ecologico FROM fonsagua.alt_fuentes WHERE cod_alternativa = '####' AND existencia_elemento <> 'Existente' UNION SELECT embalse, 'Embalse', aforo, NULL FROM fonsagua.alt_embalses WHERE cod_alternativa = '####' AND existencia_elemento <> 'Existente' ) AS fuentes;";
 	ResultSet rs = convertAndExecuteQuery(codAlt, query);
 
 	DefaultTableModel modelo = new OnlyOneColumnEditable(4);
@@ -40,7 +42,9 @@ public class DatabaseDirectAccessQueries {
     public static DefaultTableModel getComunitiesIntersectingAlternative(
 	    String codAlt) throws SQLException {
 
-	String query = "SELECT c.comunidad AS \"Comunidad\", c.cod_comunidad AS \"Cod. Comunidad\", c.n_habitantes AS \"Habitantes totales\", ci.n_hab_alternativa AS \"Habitantes alternativa\", ci.gid FROM fonsagua.comunidades AS c JOIN fonsagua.alternativas AS a ON st_intersects(a.geom, c.geom) FULL OUTER JOIN fonsagua.comunidades_implicadas AS ci ON ci.cod_comunidad = c.cod_comunidad AND a.cod_alternativa = ci.cod_alternativa WHERE a.cod_alternativa = '####';";
+	// This query contains a FULL OUTER JOIN made manually by two left joins
+	// so it can work in SQLite
+	String query = "SELECT c.comunidad AS \"Comunidad\", c.cod_comunidad AS \"Cod. Comunidad\", c.n_habitantes AS \"Habitantes totales\", ci.n_hab_alternativa AS \"Habitantes alternativa\", ci.gid FROM fonsagua.comunidades AS c JOIN fonsagua.alternativas AS a ON st_intersects(a.geom, c.geom) LEFT JOIN fonsagua.comunidades_implicadas AS ci ON ci.cod_comunidad = c.cod_comunidad AND a.cod_alternativa = ci.cod_alternativa WHERE a.cod_alternativa = '####' UNION ALL SELECT c.comunidad AS \"Comunidad\", c.cod_comunidad AS \"Cod. Comunidad\", c.n_habitantes AS \"Habitantes totales\", ci.n_hab_alternativa AS \"Habitantes alternativa\", ci.gid FROM fonsagua.comunidades_implicadas AS ci LEFT JOIN fonsagua.comunidades AS c ON ci.cod_comunidad = c.cod_comunidad LEFT JOIN fonsagua.alternativas AS a ON st_intersects(a.geom, c.geom) AND a.cod_alternativa = ci.cod_alternativa WHERE a.cod_alternativa = '####' AND (a.cod_alternativa IS NULL OR c.cod_comunidad IS NULL);";
 	ResultSet rs = convertAndExecuteQuery(codAlt, query);
 
 	DefaultTableModel modelo = new OnlyOneColumnEditable(3);
@@ -211,7 +215,7 @@ public class DatabaseDirectAccessQueries {
     public static String getQueryWithOutDataSchemaIfSQLiteSession(String sql) {
 	DBSession session = DBSession.getCurrentSession();
 	if (session instanceof DBSessionSpatiaLite) {
-	    return sql.replace(FonsaguaConstants.dataSchema, "");
+	    return sql.replace(FonsaguaConstants.dataSchema + ".", "");
 	}
 	return sql;
     }
