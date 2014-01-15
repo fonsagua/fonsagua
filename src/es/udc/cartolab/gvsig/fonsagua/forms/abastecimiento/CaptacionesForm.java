@@ -34,7 +34,9 @@ public class CaptacionesForm extends BasicAbstractForm {
 
     @Override
     protected void fillSpecificValues() {
+	setFillingValues(true);
 	bombeosDomainHandler.updateComboBoxValues();
+	setFillingValues(false);
     }
 
     @Override
