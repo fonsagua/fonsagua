@@ -27,7 +27,7 @@ ofields = olayer.dataProvider().fields()
 if caps & QgsVectorDataProvider.AddFeatures:
     newFeatures = []
     for ifeat in ilayer.getFeatures():
-        ca = CopyAttributesManantiales(ifeat, ofields, ilayer)
+        ca = CopyAttributesManantiales(ifeat, ofields, ilayer, 'IdFuente')
         if (ca.validRow()):
             ca.copy('cod_fuente', 'IdFuente')
             ca.copy('comunidad', 'codigoc')
@@ -40,11 +40,11 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('dist_linea_electrica', 'dist_elec', ca.str2meters)
             ca.copy('utm_x', 'x')
             ca.copy('utm_y', 'y')
-            ca.copy('utm_z', 'Altura')
+            ca.copy('utm_z', 'Altura', ca.toZ)
             ca.copy('nom_propietario', 'Propietari')
             ca.copy('uso_bebida', 'UsoBebida', ca.siNo2Chb)
             ca.copy('alternativa_viable', 'Alternativ', ca.siNo2Chb)
-            ca.copy('funcionamiento_verano', 'FuncionVer', lambda v: None if not v else 'Disminuye caudal' if v.startswith('D') else 'Se seca' if v.startswith('S') else u'No var\xeda')
+            ca.copy('funcionamiento_verano', 'FuncionVer', lambda v: None if not v else 'Disminuye caudal' if v.startswith('D') else 'Se seca' if v.startswith('S') else u'No var\xeda caudal')
 
             
             ca.specificData()

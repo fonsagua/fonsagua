@@ -22,7 +22,7 @@ def myfunction():
         ca.copy('cod_servicio', 'id_ccomun')
         ca.copy('cod_comunidad', 'id_ccomun', ca.toCodigoC)
         ca.copy('tipo_servicio', 'Tipo', lambda v: 'Otros' if not v else 'Iglesia' if v.startswith('Igle') else u'Instalaci\xf3n deportiva' if v.startswith('Insta') else 'Centro comunitario' if v.startswith('Casa') else 'Otros')
-        ca.copy('utm_z', 'z')
+        ca.copy('utm_z', 'z', ca.toZ)
         ca.copy('utm_x', 'x')
         ca.copy('utm_y', 'y')
         

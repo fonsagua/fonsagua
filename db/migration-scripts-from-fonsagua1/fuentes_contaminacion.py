@@ -28,7 +28,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
         ca.copy('descripcion', 'Descripc')
         ca.copy('utm_x', 'x')
         ca.copy('utm_y', 'y')
-        ca.copy('utm_z', 'Altura')
+        ca.copy('utm_z', 'Altura', ca.toZ)
         
         ca.specificData()
         

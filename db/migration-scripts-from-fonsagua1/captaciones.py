@@ -20,7 +20,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
         ca.copy('volumen', 'Volumen', ca.gal2metroc)
         ca.copy('utm_x', 'x')
         ca.copy('utm_y', 'y')
-        ca.copy('utm_z', 'z')
+        ca.copy('utm_z', 'z', ca.toZ)
         
         
         # Contiene la misma información que sistema

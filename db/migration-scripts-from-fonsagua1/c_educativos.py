@@ -26,7 +26,7 @@ ofields = olayer.dataProvider().fields()
 if caps & QgsVectorDataProvider.AddFeatures:
     newFeatures = []
     for ifeat in ilayer.getFeatures():
-        ca = CopyAttributesCEducativos(ifeat, ofields, ilayer)
+        ca = CopyAttributesCEducativos(ifeat, ofields, ilayer, 'id_cedu')
         if (ca.validRow()):
             ca.copy('nombre', 'Nombre')
             ca.copy('cod_comunidad', 'CodigoC')
@@ -40,12 +40,10 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('programa', 'cualescsal')
             ca.copy('utm_x', 'x')
             ca.copy('utm_y', 'y')
-            ca.copy('utm_z', 'z')
+            ca.copy('utm_z', 'z', ca.toZ)
             ca.copy('niveles', 'GradosExis', lambda v: None if not v else 'De 1 a 9' if v.find('9') != -1 else 'De 1 a 6')
             ca.specificData()
-
-            
-            
+               
             newFeatures.append(ca.getNewFeature())
 
     (res, outFeats) = olayer.dataProvider().addFeatures( newFeatures )

@@ -47,13 +47,13 @@ if caps & QgsVectorDataProvider.AddFeatures:
             ca.copy('dist_linea_electrica', 'dist_elec', ca.str2meters)
             ca.copy('utm_x', 'x')
             ca.copy('utm_y', 'y')
-            ca.copy('utm_z', 'Altura')
+            ca.copy('utm_z', 'Altura', ca.toZ)
             ca.copy('nom_propietario', 'Propietari')
             ca.copy('reperforado', 'ProfSubcc', lambda v: 'true' if v else 'false')
             ca.copy('rep_distancia', 'ProfSubcc')
             ca.copy('uso_bebida', 'UsoBebida', ca.siNo2Chb)
             ca.copy('alternativa_viable', 'AltCaptVia', ca.siNo2Chb)
-            ca.copy('funcionamiento_verano', 'FuncVerano', lambda v: None if not v else 'Disminuye caudal' if v.startswith('D') else 'Se seca' if v.startswith('S') else u'No var\xeda')
+            ca.copy('funcionamiento_verano', 'FuncVerano', lambda v: None if not v else 'Disminuye caudal' if v.startswith('D') else 'Se seca' if v.startswith('S') else u'No var\xeda caudal')
 
             
             ca.specificData()

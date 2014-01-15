@@ -19,13 +19,13 @@ ofields = olayer.dataProvider().fields()
 if caps & QgsVectorDataProvider.AddFeatures:
     newFeatures = []
     for ifeat in ilayer.getFeatures():
-        ca = CopyAttributesRios(ifeat, ofields, ilayer)
+        ca = CopyAttributesRios(ifeat, ofields, ilayer, 'IdFuente')
         if (ca.validRow()):
             ca.copy('cod_fuente', 'IdFuente')
             ca.copy('comunidad', 'codigoc')
             ca.copy('fuente', 'Nombre')
-            ca.copy('utm_z', 'Altura')
-            ca.copy('funcionamiento_verano', 'FuncVerano', lambda v: None if not v else 'Disminuye caudal' if v.startswith('D') else 'Se seca' if v.startswith('S') else u'No var\xeda')
+            ca.copy('utm_z', 'Altura', ca.toZ)
+            ca.copy('funcionamiento_verano', 'FuncVerano', lambda v: None if not v else 'Disminuye caudal' if v.startswith('D') else 'Se seca' if v.startswith('S') else u'No var\xeda caudal')
             ca.copy('alternativa_viable', 'AlterCViab', ca.siNo2Chb)
             ca.copy('uso', 'SeUtiliza', ca.siNo2Chb)
             ca.copy('comentarios', 'Coment')

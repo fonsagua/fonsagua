@@ -14,4 +14,12 @@ class LayerMigration():
         (res, foo) = self.olayer.dataProvider().addFeatures(features)
         if not res:
             raise Exception("Error guardando: %s\n\n%s" %(self.olayer.name(), self.olayer.dataProvider().errors()))
+        
+        zindex = self.ilayer.fieldNameIndex('utm_z')
+        if  zindex != -1:
+            for feat in self.ilayer.getFeatures():
+                z = feat.attributes()[zindex]
+                if  z and z < 0:
+                    raise Exception("Z menor que cero")
+                
         print "%s parece correcta" % (self.olayer.name())

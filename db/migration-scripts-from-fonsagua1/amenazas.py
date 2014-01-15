@@ -17,7 +17,7 @@ def myfunction():
         ca.copy('cod_amenaza', 'CodigoFR')
         ca.copy('tipo_amenaza', 'TipoFR', lambda v: 'Deslizamientos' if v.startswith('Desliza') else u'Desbordamiento de r\xedo' if v.startswith('Desbor') else 'Inundaciones' if v.startswith('Inun') else 'Puntos de asalto' if v.startswith('Inse') else 'Otros')
         ca.copy('n_fam_afectadas', 'FamiliasAf')
-        ca.copy('utm_z', 'Altura')
+        ca.copy('utm_z', 'Altura', ca.toZ)
         ca.copy('utm_x', 'x')
         ca.copy('utm_y', 'y')
         ca.copy('cod_comunidad', 'codigoc')

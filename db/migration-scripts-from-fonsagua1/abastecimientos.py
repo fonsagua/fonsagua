@@ -25,7 +25,7 @@ class Abastecimientos(LayerMigration):
     def execute(self):
         newFeatures = []
         for ifeat in self.ilayer.getFeatures():
-            ca = CopyAttributesAbastecimientos(ifeat, self.ofields, self.ilayer)
+            ca = CopyAttributesAbastecimientos(ifeat, self.ofields, self.ilayer, 'CODIGOAB')
             
             ca.copy('cod_abastecimiento', 'CODIGOAB')
             ca.copy('tot_consumo', 'CONSTOTAL')

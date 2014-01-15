@@ -34,7 +34,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
         ca.copy('estado', 'Estado')
         ca.copy('utm_x', 'x')
         ca.copy('utm_y', 'y')
-        ca.copy('utm_z', 'z')
+        ca.copy('utm_z', 'z', ca.toZ)
         
         ca.specificData()
         

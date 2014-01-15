@@ -94,7 +94,8 @@ def myfunction():
     newFeatures = []
     otrasorg = []
     for ifeat in ilayer.getFeatures():
-        ca = CopyAttributesComunidades(ifeat, ofields, ilayer)
+        ca = CopyAttributesComunidades(ifeat, ofields, ilayer, 'CodigoC')
+        
         ca.copy('comunidad', 'NombreC')
         ca.copy('cod_comunidad', 'CodigoC')
         ca.copy('cod_caserio', 'CodigoC')
@@ -127,13 +128,13 @@ def myfunction():
         ca.copy('h_adescos', 'HayPatront', ca.siNo2Chb)
         
         if ifeat.attributes()[ilayer.fieldNameIndex('HaySPFam')].startswith('S'):
-            otrasorg.append({'cod_comunidad':ifeat.attributes()[ilayer.fieldNameIndex('CodigoC')], 'tipo_organizacion':u'Asociaci\xf3n de padres y madres de familia'})
+            otrasorg.append({'cod_comunidad':ca.pkvalue, 'tipo_organizacion':u'Asociaci\xf3n de padres y madres de familia'})
         
         if ifeat.attributes()[ilayer.fieldNameIndex('NomCoopP')]:
-            otrasorg.append({'cod_comunidad':ifeat.attributes()[ilayer.fieldNameIndex('CodigoC')], 'nombre':ifeat.attributes()[ilayer.fieldNameIndex('NomCoopP')], 'tipo_organizacion':'Cooperativa de producci\xf3n', 'actividad':ifeat.attributes()[ilayer.fieldNameIndex('ActivPrinc')]})
+            otrasorg.append({'cod_comunidad':ca.pkvalue, 'nombre':ifeat.attributes()[ilayer.fieldNameIndex('NomCoopP')], 'tipo_organizacion':'Cooperativa de producci\xf3n', 'actividad':ifeat.attributes()[ilayer.fieldNameIndex('ActivPrinc')]})
         
         if ifeat.attributes()[ilayer.fieldNameIndex('BankComuna')].startswith('S'):
-            otrasorg.append({'cod_comunidad':ifeat.attributes()[ilayer.fieldNameIndex('CodigoC')], 'nombre':'Banco comunal', 'tipo_organizacion':'Caja rural', 'actividad':''})
+            otrasorg.append({'cod_comunidad':ca.pkvalue, 'nombre':'Banco comunal', 'tipo_organizacion':'Caja rural', 'actividad':''})
 
         ca.copy('exp_ongs', 'ExpONGs', ca.siNo2Chb)
         
@@ -223,7 +224,7 @@ def myfunction():
         ca.copy('coment_agua', 'ComInfraAg')
         ca.copy('coment_pob', 'ComDatPob')
         ca.copy('resum_censo', 'ResDatPob')
-        ca.copy('utm_z', 'AlturaC')
+        ca.copy('utm_z', 'AlturaC', ca.toZ)
         ca.copy('coment_gen', 'ComMunic')
 
         # Trigger. Comprobar que da bien.
@@ -260,7 +261,7 @@ def myfunction():
         # ca.copy('f_dat_sanidad', 'FntelnfEtd')
         # ca.copy('', 'TipAsisSan')
         
-        ca.copy('sist_abastecimiento', 'HayAbast')
+        ca.copy('sist_abastecimiento', 'HayAbast', lambda v: None if not v else 'Si' if v.startswith('S') else 'No' if v.startswith('N') else 'Parcial')
         ca.copy('n_viv_abast', 'ParcViv')
         
         # TODO. Igual hay que cambiar cosas

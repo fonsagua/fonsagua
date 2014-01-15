@@ -29,7 +29,7 @@ if caps & QgsVectorDataProvider.AddFeatures:
         ca.copy('t_llenado', 'HorasLlen')
         ca.copy('utm_x', 'x')
         ca.copy('utm_y', 'y')
-        ca.copy('utm_z', 'z')
+        ca.copy('utm_z', 'z', ca.toZ)
         
         ca.specificData()
         newFeatures.append(ca.getNewFeature())
