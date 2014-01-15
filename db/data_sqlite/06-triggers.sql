@@ -4,6 +4,8 @@ AFTER INSERT ON abastecimientos
 FOR EACH ROW BEGIN
 	UPDATE abastecimientos SET tot_consumo = NULL WHERE cod_abastecimiento = NEW.cod_abastecimiento;
 	UPDATE abastecimientos SET tot_consumo = (SELECT SUM(consumo)/SUM(n_miembros) AS consumo_medio FROM datos_consumo WHERE cod_abastecimiento = abastecimientos.cod_abastecimiento GROUP BY cod_abastecimiento HAVING SUM(n_miembros) > 0), tot_acometidas = IFNULL(n_a_domiciliar, 0) + IFNULL(n_a_cantarera, 0) + IFNULL(n_a_comercial, 0) + IFNULL(n_a_otras, 0) WHERE cod_abastecimiento = NEW.cod_abastecimiento;
+	UPDATE abastecimientos SET cons_domestico = NULL;
+	UPDATE abastecimientos SET cons_domestico = tot_consumo / miembros WHERE tot_consumo IS NOT NULL AND cod_abastecimiento = NEW.cod_abastecimiento AND miembros > 0;
 END;
 
 DROP TRIGGER IF EXISTS abastecimientos_compute_fields_update_trigger;
@@ -12,6 +14,8 @@ AFTER UPDATE ON abastecimientos
 FOR EACH ROW BEGIN
 	UPDATE abastecimientos SET tot_consumo = NULL WHERE cod_abastecimiento = NEW.cod_abastecimiento;
 	UPDATE abastecimientos SET tot_consumo = (SELECT SUM(consumo)/SUM(n_miembros) AS consumo_medio FROM datos_consumo WHERE cod_abastecimiento = abastecimientos.cod_abastecimiento GROUP BY cod_abastecimiento HAVING SUM(n_miembros) > 0), tot_acometidas = IFNULL(n_a_domiciliar, 0) + IFNULL(n_a_cantarera, 0) + IFNULL(n_a_comercial, 0) + IFNULL(n_a_otras, 0) WHERE cod_abastecimiento = NEW.cod_abastecimiento;
+	UPDATE abastecimientos SET cons_domestico = NULL;
+	UPDATE abastecimientos SET cons_domestico = tot_consumo / miembros WHERE tot_consumo IS NOT NULL AND cod_abastecimiento = NEW.cod_abastecimiento AND miembros > 0;
 END;
 
 
@@ -119,7 +123,7 @@ CREATE TRIGGER comunidades_compute_fields_insert_trigger
 AFTER INSERT ON comunidades
 FOR EACH ROW BEGIN
 	UPDATE comunidades SET n_adescos = NULL;
-	UPDATE comunidades SET n_adescos = (SELECT COUNT(*) FROM adescos WHERE cod_comunidad = comunidades.cod_comunidad) WHERE cod_comunidad = NEW.cod_comunidad AND h_adescos;
+	UPDATE comunidades SET n_adescos = (SELECT COUNT(*) FROM adescos WHERE cod_comunidad = comunidades.cod_comunidad) WHERE cod_comunidad = NEW.cod_comunidad AND h_adescos = 'true';
 
 	UPDATE comunidades SET produccion = (SELECT SUM(produccion)/COUNT(*) FROM produccion_consumo WHERE comunidades.cod_comunidad = cod_comunidad), consumo = (SELECT SUM(consumo)/COUNT(*) FROM produccion_consumo WHERE comunidades.cod_comunidad = cod_comunidad) WHERE cod_comunidad = NEW.cod_comunidad;
 
@@ -182,7 +186,7 @@ CREATE TRIGGER comunidades_compute_fields_update_trigger
 AFTER UPDATE ON comunidades
 FOR EACH ROW BEGIN
 	UPDATE comunidades SET n_adescos = NULL;
-	UPDATE comunidades SET n_adescos = (SELECT COUNT(*) FROM adescos WHERE cod_comunidad = comunidades.cod_comunidad) WHERE cod_comunidad = NEW.cod_comunidad AND h_adescos;
+	UPDATE comunidades SET n_adescos = (SELECT COUNT(*) FROM adescos WHERE cod_comunidad = comunidades.cod_comunidad) WHERE cod_comunidad = NEW.cod_comunidad AND h_adescos = 'true';
 
 	UPDATE comunidades SET produccion = (SELECT SUM(produccion)/COUNT(*) FROM produccion_consumo WHERE comunidades.cod_comunidad = cod_comunidad), consumo = (SELECT SUM(consumo)/COUNT(*) FROM produccion_consumo WHERE comunidades.cod_comunidad = cod_comunidad) WHERE cod_comunidad = NEW.cod_comunidad;
 
@@ -268,6 +272,22 @@ CREATE TRIGGER dep_intermedios_compute_fields_update_trigger
 AFTER UPDATE ON dep_intermedios
 FOR EACH ROW BEGIN
 	UPDATE dep_intermedios SET utm_x = X(geom), utm_y = Y(geom) WHERE gid = NEW.gid AND geom IS NOT NULL;
+END;
+
+
+
+DROP TRIGGER IF EXISTS fuentes_compute_fields_insert_trigger;
+CREATE TRIGGER fuentes_compute_fields_insert_trigger
+AFTER INSERT ON fuentes
+FOR EACH ROW BEGIN
+	UPDATE fuentes SET utm_x = X(geom), utm_y = Y(geom) WHERE gid = NEW.gid AND geom IS NOT NULL;
+END;
+
+DROP TRIGGER IF EXISTS fuentes_compute_fields_update_trigger;
+CREATE TRIGGER fuentes_compute_fields_update_trigger
+AFTER UPDATE ON fuentes
+FOR EACH ROW BEGIN
+	UPDATE fuentes SET utm_x = X(geom), utm_y = Y(geom) WHERE gid = NEW.gid AND geom IS NOT NULL;
 END;
 
 
