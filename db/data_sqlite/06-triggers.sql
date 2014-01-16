@@ -2,20 +2,16 @@ DROP TRIGGER IF EXISTS abastecimientos_compute_fields_insert_trigger;
 CREATE TRIGGER abastecimientos_compute_fields_insert_trigger
 AFTER INSERT ON abastecimientos
 FOR EACH ROW BEGIN
-	UPDATE abastecimientos SET tot_consumo = NULL WHERE cod_abastecimiento = NEW.cod_abastecimiento;
-	UPDATE abastecimientos SET tot_consumo = (SELECT SUM(consumo)/SUM(n_miembros) AS consumo_medio FROM datos_consumo WHERE cod_abastecimiento = abastecimientos.cod_abastecimiento GROUP BY cod_abastecimiento HAVING SUM(n_miembros) > 0), tot_acometidas = IFNULL(n_a_domiciliar, 0) + IFNULL(n_a_cantarera, 0) + IFNULL(n_a_comercial, 0) + IFNULL(n_a_otras, 0) WHERE cod_abastecimiento = NEW.cod_abastecimiento;
-	UPDATE abastecimientos SET cons_domestico = NULL;
-	UPDATE abastecimientos SET cons_domestico = tot_consumo / miembros WHERE tot_consumo IS NOT NULL AND cod_abastecimiento = NEW.cod_abastecimiento AND miembros > 0;
+	UPDATE abastecimientos SET tot_consumo = NULL, cons_domestico = NULL, tot_acometidas = NULL WHERE cod_abastecimiento = NEW.cod_abastecimiento;
+	UPDATE abastecimientos SET cons_domestico = (SELECT SUM(consumo)/SUM(n_miembros) FROM datos_consumo WHERE cod_abastecimiento = abastecimientos.cod_abastecimiento GROUP BY cod_abastecimiento HAVING SUM(n_miembros) > 0), tot_consumo = (SELECT SUM(consumo) FROM datos_consumo WHERE cod_abastecimiento = abastecimientos.cod_abastecimiento GROUP BY cod_abastecimiento), tot_acometidas = IFNULL(n_a_domiciliar, 0) + IFNULL(n_a_cantarera, 0) + IFNULL(n_a_comercial, 0) + IFNULL(n_a_otras, 0) WHERE cod_abastecimiento = NEW.cod_abastecimiento;
 END;
 
 DROP TRIGGER IF EXISTS abastecimientos_compute_fields_update_trigger;
 CREATE TRIGGER abastecimientos_compute_fields_update_trigger
 AFTER UPDATE ON abastecimientos
 FOR EACH ROW BEGIN
-	UPDATE abastecimientos SET tot_consumo = NULL WHERE cod_abastecimiento = NEW.cod_abastecimiento;
-	UPDATE abastecimientos SET tot_consumo = (SELECT SUM(consumo)/SUM(n_miembros) AS consumo_medio FROM datos_consumo WHERE cod_abastecimiento = abastecimientos.cod_abastecimiento GROUP BY cod_abastecimiento HAVING SUM(n_miembros) > 0), tot_acometidas = IFNULL(n_a_domiciliar, 0) + IFNULL(n_a_cantarera, 0) + IFNULL(n_a_comercial, 0) + IFNULL(n_a_otras, 0) WHERE cod_abastecimiento = NEW.cod_abastecimiento;
-	UPDATE abastecimientos SET cons_domestico = NULL;
-	UPDATE abastecimientos SET cons_domestico = tot_consumo / miembros WHERE tot_consumo IS NOT NULL AND cod_abastecimiento = NEW.cod_abastecimiento AND miembros > 0;
+	UPDATE abastecimientos SET tot_consumo = NULL, cons_domestico = NULL, tot_acometidas = NULL WHERE cod_abastecimiento = NEW.cod_abastecimiento;
+	UPDATE abastecimientos SET cons_domestico = (SELECT SUM(consumo)/SUM(n_miembros) FROM datos_consumo WHERE cod_abastecimiento = abastecimientos.cod_abastecimiento GROUP BY cod_abastecimiento HAVING SUM(n_miembros) > 0), tot_consumo = (SELECT SUM(consumo) FROM datos_consumo WHERE cod_abastecimiento = abastecimientos.cod_abastecimiento GROUP BY cod_abastecimiento), tot_acometidas = IFNULL(n_a_domiciliar, 0) + IFNULL(n_a_cantarera, 0) + IFNULL(n_a_comercial, 0) + IFNULL(n_a_otras, 0) WHERE cod_abastecimiento = NEW.cod_abastecimiento;
 END;
 
 
