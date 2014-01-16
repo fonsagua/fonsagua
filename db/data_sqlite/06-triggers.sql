@@ -118,7 +118,7 @@ DROP TRIGGER IF EXISTS comunidades_compute_fields_insert_trigger;
 CREATE TRIGGER comunidades_compute_fields_insert_trigger
 AFTER INSERT ON comunidades
 FOR EACH ROW BEGIN
-	UPDATE comunidades SET n_adescos = NULL;
+	UPDATE comunidades SET n_adescos = NULL WHERE gid = NEW.gid;
 	UPDATE comunidades SET n_adescos = (SELECT COUNT(*) FROM adescos WHERE cod_comunidad = comunidades.cod_comunidad) WHERE cod_comunidad = NEW.cod_comunidad AND h_adescos = 'true';
 
 	UPDATE comunidades SET produccion = (SELECT SUM(produccion)/COUNT(*) FROM produccion_consumo WHERE comunidades.cod_comunidad = cod_comunidad), consumo = (SELECT SUM(consumo)/COUNT(*) FROM produccion_consumo WHERE comunidades.cod_comunidad = cod_comunidad) WHERE cod_comunidad = NEW.cod_comunidad;
@@ -181,7 +181,7 @@ DROP TRIGGER IF EXISTS comunidades_compute_fields_update_trigger;
 CREATE TRIGGER comunidades_compute_fields_update_trigger
 AFTER UPDATE ON comunidades
 FOR EACH ROW BEGIN
-	UPDATE comunidades SET n_adescos = NULL;
+	UPDATE comunidades SET n_adescos = NULL WHERE gid = NEW.gid;
 	UPDATE comunidades SET n_adescos = (SELECT COUNT(*) FROM adescos WHERE cod_comunidad = comunidades.cod_comunidad) WHERE cod_comunidad = NEW.cod_comunidad AND h_adescos = 'true';
 
 	UPDATE comunidades SET produccion = (SELECT SUM(produccion)/COUNT(*) FROM produccion_consumo WHERE comunidades.cod_comunidad = cod_comunidad), consumo = (SELECT SUM(consumo)/COUNT(*) FROM produccion_consumo WHERE comunidades.cod_comunidad = cod_comunidad) WHERE cod_comunidad = NEW.cod_comunidad;
@@ -292,13 +292,13 @@ DROP TRIGGER IF EXISTS gest_comercial_compute_fields_insert_trigger;
 CREATE TRIGGER gest_comercial_compute_fields_insert_trigger
 AFTER INSERT ON gest_comercial
 FOR EACH ROW BEGIN
-	UPDATE gest_comercial SET a_no_contabilizada = NULL;
+	UPDATE gest_comercial SET a_no_contabilizada = NULL WHERE gid = NEW.gid;
 	UPDATE gest_comercial SET a_no_contabilizada = produccion - facturacion WHERE gid = NEW.gid AND produccion IS NOT NULL AND facturacion IS NOT NULL;
 
-	UPDATE gest_comercial SET pct_a_no_contabilizada = NULL;
+	UPDATE gest_comercial SET pct_a_no_contabilizada = NULL WHERE gid = NEW.gid;
 	UPDATE gest_comercial SET pct_a_no_contabilizada = a_no_contabilizada * 100 / produccion WHERE gid = NEW.gid AND a_no_contabilizada IS NOT NULL;
 
-	UPDATE gest_comercial SET pct_a_no_contabilizada = NULL;
+	UPDATE gest_comercial SET pct_a_no_contabilizada = NULL WHERE gid = NEW.gid;
 	UPDATE gest_comercial SET micromedicion = con_medidor * 100 / acometidas WHERE gid = NEW.gid AND con_medidor IS NOT NULL AND acometidas IS NOT NULL AND acometidas > 0;
 END;
 
@@ -306,13 +306,13 @@ DROP TRIGGER IF EXISTS gest_comercial_compute_fields_update_trigger;
 CREATE TRIGGER gest_comercial_compute_fields_update_trigger
 AFTER UPDATE ON gest_comercial
 FOR EACH ROW BEGIN
-	UPDATE gest_comercial SET a_no_contabilizada = NULL;
+	UPDATE gest_comercial SET a_no_contabilizada = NULL WHERE gid = NEW.gid;
 	UPDATE gest_comercial SET a_no_contabilizada = produccion - facturacion WHERE gid = NEW.gid AND produccion IS NOT NULL AND facturacion IS NOT NULL;
 
-	UPDATE gest_comercial SET pct_a_no_contabilizada = NULL;
+	UPDATE gest_comercial SET pct_a_no_contabilizada = NULL WHERE gid = NEW.gid;
 	UPDATE gest_comercial SET pct_a_no_contabilizada = a_no_contabilizada * 100 / produccion WHERE gid = NEW.gid AND a_no_contabilizada IS NOT NULL;
 
-	UPDATE gest_comercial SET pct_a_no_contabilizada = NULL;
+	UPDATE gest_comercial SET pct_a_no_contabilizada = NULL WHERE gid = NEW.gid;
 	UPDATE gest_comercial SET micromedicion = con_medidor * 100 / acometidas WHERE gid = NEW.gid AND con_medidor IS NOT NULL AND acometidas IS NOT NULL AND acometidas > 0;
 END;
 
@@ -324,19 +324,19 @@ AFTER INSERT ON gest_financiera
 FOR EACH ROW BEGIN
 	UPDATE gest_financiera SET cost_totales = IFNULL(cost_energetico, 0) + IFNULL(cost_quimico, 0) + IFNULL(cost_personal, 0) + IFNULL(cost_diversos, 0) WHERE gid = NEW.gid;
 
-	UPDATE gest_financiera SET cost_produccion = NULL;
+	UPDATE gest_financiera SET cost_produccion = NULL WHERE gid = NEW.gid;
 	UPDATE gest_financiera SET cost_produccion = cost_totales / produccion WHERE gid = NEW.gid AND produccion > 0 AND produccion IS NOT NULL;
 
-	UPDATE gest_financiera SET ingr_produccion = NULL;
+	UPDATE gest_financiera SET ingr_produccion = NULL WHERE gid = NEW.gid;
 	UPDATE gest_financiera SET ingr_produccion = ingr_totales / produccion WHERE gid = NEW.gid AND produccion > 0 AND produccion IS NOT NULL AND ingr_totales IS NOT NULL;
 
-	UPDATE gest_financiera SET fact_produc = NULL;
+	UPDATE gest_financiera SET fact_produc = NULL WHERE gid = NEW.gid;
 	UPDATE gest_financiera SET fact_produc = facturacion / produccion WHERE gid = NEW.gid AND produccion > 0 AND produccion IS NOT NULL AND facturacion IS NOT NULL;
 
-	UPDATE gest_financiera SET margen_utilidad = NULL;
+	UPDATE gest_financiera SET margen_utilidad = NULL WHERE gid = NEW.gid;
 	UPDATE gest_financiera SET margen_utilidad = (ingr_totales - cost_totales) / fact_produc WHERE gid = NEW.gid AND fact_produc > 0 AND fact_produc IS NOT NULL AND ingr_totales IS NOT NULL AND cost_totales IS NOT NULL;
 
-	UPDATE gest_financiera SET razon_liquidez = NULL;
+	UPDATE gest_financiera SET razon_liquidez = NULL WHERE gid = NEW.gid;
 	UPDATE gest_financiera SET razon_liquidez = activos_corrientes / pasivos_corrientes WHERE gid = NEW.gid AND pasivos_corrientes > 0 AND pasivos_corrientes IS NOT NULL AND activos_corrientes IS NOT NULL;
 END;
 
@@ -346,19 +346,19 @@ AFTER UPDATE ON gest_financiera
 FOR EACH ROW BEGIN
 	UPDATE gest_financiera SET cost_totales = IFNULL(cost_energetico, 0) + IFNULL(cost_quimico, 0) + IFNULL(cost_personal, 0) + IFNULL(cost_diversos, 0) WHERE gid = NEW.gid;
 
-	UPDATE gest_financiera SET cost_produccion = NULL;
+	UPDATE gest_financiera SET cost_produccion = NULL WHERE gid = NEW.gid;
 	UPDATE gest_financiera SET cost_produccion = cost_totales / produccion WHERE gid = NEW.gid AND produccion > 0 AND produccion IS NOT NULL;
 
-	UPDATE gest_financiera SET ingr_produccion = NULL;
+	UPDATE gest_financiera SET ingr_produccion = NULL WHERE gid = NEW.gid;
 	UPDATE gest_financiera SET ingr_produccion = ingr_totales / produccion WHERE gid = NEW.gid AND produccion > 0 AND produccion IS NOT NULL AND ingr_totales IS NOT NULL;
 
-	UPDATE gest_financiera SET fact_produc = NULL;
+	UPDATE gest_financiera SET fact_produc = NULL WHERE gid = NEW.gid;
 	UPDATE gest_financiera SET fact_produc = facturacion / produccion WHERE gid = NEW.gid AND produccion > 0 AND produccion IS NOT NULL AND facturacion IS NOT NULL;
 
-	UPDATE gest_financiera SET margen_utilidad = NULL;
+	UPDATE gest_financiera SET margen_utilidad = NULL WHERE gid = NEW.gid;
 	UPDATE gest_financiera SET margen_utilidad = (ingr_totales - cost_totales) / fact_produc WHERE gid = NEW.gid AND fact_produc > 0 AND fact_produc IS NOT NULL AND ingr_totales IS NOT NULL AND cost_totales IS NOT NULL;
 
-	UPDATE gest_financiera SET razon_liquidez = NULL;
+	UPDATE gest_financiera SET razon_liquidez = NULL WHERE gid = NEW.gid;
 	UPDATE gest_financiera SET razon_liquidez = activos_corrientes / pasivos_corrientes WHERE gid = NEW.gid AND pasivos_corrientes > 0 AND pasivos_corrientes IS NOT NULL AND activos_corrientes IS NOT NULL;
 END;
 
