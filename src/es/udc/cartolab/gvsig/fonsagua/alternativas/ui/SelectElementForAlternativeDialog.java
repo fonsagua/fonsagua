@@ -34,8 +34,6 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
     public SelectElementForAlternativeDialog(int editableColumnIdx) {
 	super();
 	doubleFormat = DoubleFormatNT.getDisplayingFormat();
-	doubleFormat.setMinimumFractionDigits(2);
-	doubleFormat.setMaximumFractionDigits(2);
 	this.editableColumnIdx = editableColumnIdx;
 	addTablePanel();
 	addAcceptCancelPanel(this, this);
