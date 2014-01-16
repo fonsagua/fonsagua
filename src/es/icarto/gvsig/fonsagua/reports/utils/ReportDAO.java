@@ -132,6 +132,9 @@ public class ReportDAO {
     // TODO: Try to make a generic method
     public static String[][] getDataOfElementOfAbastecimientoByCommunity(
 	    String elementTableName, String[] colNames, String communityCode) {
+	for (int i = 0; i < colNames.length; i++) {
+	    colNames[i] = "d." + colNames[i];
+	}
 	String[] tableNames = { AbastecimientosForm.NAME,
 		"r_abastecimientos_comunidades", ComunidadesForm.NAME,
 		elementTableName };
@@ -173,6 +176,9 @@ public class ReportDAO {
     // TODO: Try to make a generic method
     public static String[][] getDataOfElementOfFuentesByCommunity(
 	    String elementTableName, String[] colNames, String communityCode) {
+	for (int i = 0; i < colNames.length; i++) {
+	    colNames[i] = "d." + colNames[i];
+	}
 	String[] tableNames = { FuentesForm.NAME, "r_abastecimientos_fuentes",
 		"r_abastecimientos_comunidades", elementTableName };
 	String[] joinFields = { "a." + FuentesForm.PKFIELD,
@@ -194,7 +200,9 @@ public class ReportDAO {
 	String tipoDistribucion = getFonsaguaTableValueByColumnName(
 		AlternativasForm.NAME, AlternativasForm.PKFIELD,
 		alternativeCode, "tipo_distribucion");
-	if (tipoDistribucion.equalsIgnoreCase("Cantareras")) {
+	if (tipoDistribucion == null) {
+	    return null;
+	} else if (tipoDistribucion.equalsIgnoreCase("Cantareras")) {
 	    return getFonsaguaTableValueByColumnName(PreferenciasForm.NAME,
 		    AlternativasForm.PKFIELD, alternativeCode, "dot_cantareras");
 	} else if (tipoDistribucion.equalsIgnoreCase("Domiciliar")) {
