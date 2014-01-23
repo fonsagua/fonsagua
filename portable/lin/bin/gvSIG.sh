@@ -21,7 +21,7 @@ export JAVA_HOME="../jre/1.6.0_20"
 ###################################################################
 
 # gvSIG native libraries location 
-GVSIG_NATIVE_LIBS=${GVSIG_HOME}/native:${HOME}/.depman/lib
+GVSIG_NATIVE_LIBS=${GVSIG_HOME}/native
 
 # Proj4 data files
 export PROJ_LIB="${GVSIG_HOME}/gvSIG/extensiones/org.gvsig.crs.extension/data"
@@ -30,7 +30,7 @@ export PROJ_LIB="${GVSIG_HOME}/gvSIG/extensiones/org.gvsig.crs.extension/data"
 export GDAL_DATA="${GVSIG_HOME}/data/gdal"
 
 # Native libraries path
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$GVSIG_NATIVE_LIBS"
+export LD_LIBRARY_PATH="$GVSIG_NATIVE_LIBS:$LD_LIBRARY_PATH"
 
 
 
