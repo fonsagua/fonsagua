@@ -19,7 +19,6 @@ class CopyAttributesComunidades(CopyAttributes):
             adescosfeat.setAttribute('antiguedad', self.iatts[self.ilayer.fieldNameIndex('AntigPt')])
             adescosfeat.setAttribute('anho_const', self.iatts[self.ilayer.fieldNameIndex('AnPersJur')])
             adescosfeat.setAttribute('legalizada', self.siNo2Chb(self.iatts[self.ilayer.fieldNameIndex('PatrPj')]))
-            # ca.copy('', 'NCompPt') TRIGGER
             # ca.copy('', 'HayComApoy') Solo 1, eliminamos a conciencia
 
             (res, foo) = adescos.dataProvider().addFeatures([adescosfeat])
