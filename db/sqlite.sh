@@ -28,7 +28,7 @@ ogr2ogr -append -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -n
 spatialite $DB_PATH "INSERT INTO cantones SELECT ogc_fid, cod_aldea, nombre, geometry from m1104vA002001_HN WHERE cod_depto IN ('06', '17'); SELECT DiscardGeometryColumn('m1104vA002001_HN', 'GEOMETRY'); DROP TABLE m1104vA002001_HN;"
 
 # paises_limitrofes
-ogr2ogr -append -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nln paises_limitrofes -nlt MULTIPOLYGON -dsco SPATIALITE=YES $DB_PATH ./data_sqlite/datos/paises_limitrofes/paises_vecinos.shp -gt 65536 --config OGR_SQLITE_CACHE 512
+# ogr2ogr -append -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nln paises_limitrofes -nlt MULTIPOLYGON -dsco SPATIALITE=YES $DB_PATH ./data_sqlite/datos/paises_limitrofes/paises_vecinos.shp -gt 65536 --config OGR_SQLITE_CACHE 512
 
 # ELLE
 sqlite3 $DB_PATH "DELETE FROM _map; DELETE FROM _map_overview; DELETE FROM _map_style; DELETE FROM _map_overview_style"
@@ -42,8 +42,8 @@ sqlite3 $DB_PATH < /tmp/_map_style.sql
 sqlite3 $DB_PATH < /tmp/_map_overview_style.sql
 
 
-sqlite3 $DB_PATH "DELETE FROM _map WHERE nombre_capa IN ('cabecera_municipal', 'casas_cultura', 'cb_centros_educativos', 'cb_centros_salud', 'ciudades', 'cuencas', 'cb_fuentes', 'pozos', 'resto_paises_mesoamerica', 'el_salvador', 'batimetria', 'areas_protegidas', 'bosques_pais');"
-sqlite3 $DB_PATH "DELETE FROM _map_style WHERE nombre_capa IN ('cabecera_municipal', 'casas_cultura', 'cb_centros_educativos', 'cb_centros_salud', 'ciudades', 'cuencas', 'cb_fuentes', 'pozos', 'resto_paises_mesoamerica', 'el_salvador', 'batimetria', 'areas_protegidas', 'bosques_pais');"
+sqlite3 $DB_PATH "DELETE FROM _map WHERE nombre_capa IN ('cabecera_municipal', 'casas_cultura', 'cb_centros_educativos', 'cb_centros_salud', 'ciudades', 'cuencas', 'cb_fuentes', 'pozos', 'paises_limitrofes', 'resto_paises_mesoamerica', 'el_salvador', 'batimetria', 'areas_protegidas', 'bosques_pais');"
+sqlite3 $DB_PATH "DELETE FROM _map_style WHERE nombre_capa IN ('cabecera_municipal', 'casas_cultura', 'cb_centros_educativos', 'cb_centros_salud', 'ciudades', 'cuencas', 'cb_fuentes', 'pozos', 'paises_limitrofes', 'resto_paises_mesoamerica', 'el_salvador', 'batimetria', 'areas_protegidas', 'bosques_pais');"
 
 
 # sqlite3 $DB_PATH "VACUUM;"
