@@ -269,7 +269,8 @@ CREATE TABLE fonsagua.alt_tuberias (
        sistema VARCHAR
 	       REFERENCES dominios.sistema(item),
        tuberia_comercial VARCHAR
-	       REFERENCES fonsagua.preferencias_tuberias(id_tub),
+	       REFERENCES fonsagua.preferencias_tuberias(id_tub)
+	       ON UPDATE CASCADE,
        material VARCHAR,
        rugosidad NUMERIC(12,4),
        diametro NUMERIC(12,2),

@@ -83,3 +83,11 @@ insert into dominios.tipo_organizacion values ('Caja rural');
 
 ALTER TABLE fonsagua.abastecimientos ADD COLUMN tarifa_variable BOOLEAN;
 ALTER TABLE fonsagua.abastecimientos ADD COLUMN cuota_variable NUMERIC(12,2);
+
+
+
+
+update alt_tuberias set tuberia_comercial = trim(tuberia_comercial);
+alter table fonsagua.alt_tuberias drop constraint alt_tuberias_tuberia_comercial_fkey, add constraint alt_tuberias_tuberia_comercial_fkey foreign key (tuberia_comercial) references preferencias_tuberias(id_tub) on update cascade;
+update preferencias_tuberias set id_tub = replace(id_tub, 'HO', 'HG');
+

@@ -248,7 +248,8 @@ CREATE TABLE alt_tuberias (
        sistema VARCHAR
 	       REFERENCES sistema(item),
        tuberia_comercial VARCHAR
-	       REFERENCES preferencias_tuberias(id_tub),
+	       REFERENCES preferencias_tuberias(id_tub)
+	       ON UPDATE CASCADE,
        material VARCHAR,
        rugosidad NUMERIC(12,4),
        diametro NUMERIC(12,2),
