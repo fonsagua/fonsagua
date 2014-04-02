@@ -1,0 +1,179 @@
+
+// ===== VARIABLES =====
+
+// --- Colors ---
+@grey-bg:	#F0F0F0;
+@grey:		#F2F1F0;
+@cafe:		#2B2A28;
+@cafe2:		#474745;
+@cafe3:		#7B7B77;
+
+// ===== MIXINS =====
+.margin-std (@top: 20px; @bottom: 40px) {
+    margin-top: @top;
+    margin-bottom: @bottom;
+}
+
+// ===== GENERAL =====
+
+/* --- Tipography --- */
+
+@font-face {
+    font-family: 'titulos';
+    src: url('fonts/expletussans-medium-webfont.eot');
+    src: url('fonts/expletussans-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/expletussans-medium-webfont.woff') format('woff'),
+         url('fonts/JosefinSans-Regular.ttf') format('truetype'),
+         url('fonts/expletussans-medium-webfont.svg#ubuntubold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+}
+
+p, a, h1, h2, h3, h4 {
+	//font-family: "titulos";
+}
+
+/* --- General classes --- */
+
+p {
+    color: @cafe3;
+    margin: 10px 0 20px 0;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a, h1, h2, h3, h4 {
+	color: @cafe2;
+}
+
+h1, h3 {
+	margin: 40px 0 15px 0;
+}
+
+li {
+	color: @cafe3;
+}
+
+table {
+	background-color: white;
+	font-size: 0.8em;
+	& h3 {
+		font-size: 1.4em;
+	}
+}
+
+.img {
+    border: 0px;
+}
+
+body {
+   background-color: @grey-bg;
+}
+
+.container {
+	max-width: 720px;
+}
+
+/* --- navbar --- */
+
+.navbar {
+    background-color: @cafe;
+}
+
+.navbar-brand {
+    padding-top: 10px;
+}
+
+#brand-title {
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px black;
+}
+
+.navbar-collapse {
+	font-size: 13px;
+}
+
+.dropdown-menu {
+	background-color: @cafe;
+	& > li > a {
+		color: @cafe3;
+	}
+}
+
+.dropdown-menu > li > a:hover {
+	background-color: @cafe3;
+}
+
+/* --- jumbotron --- */
+
+.jumbotron {
+  text-align: center;
+  background-color: transparent;
+}
+
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
+/* --- people images --- */
+
+.people-img {
+	padding-left: 0;
+}
+
+/* --- about images --- */
+
+#about-content img {
+	margin-right: 20px;
+}
+
+/* --- footer --- */
+
+#footer {
+    background-color: @cafe;
+    border-top: 1px solid #080808;
+    margin-top: 40px;
+    padding-top: 13px;
+    height: 60px;
+    & .logo {
+        padding: 0 1% 0 1%;
+    }
+}
+
+#twitter-contacto {
+    margin-top: 8px;
+    & img {
+        height: 15px;
+        opacity: 0.7;
+    }
+    & a {
+        color: @cafe3;
+        font-size: 0.9em;
+    }
+    & a:hover {
+        color: white;
+        img {
+            opacity: 1;
+        }
+    }
+    & #separador-contacto {
+        padding-right: 30px;
+    }
+}
+
+#carto-ets-udc {
+    & img {
+        height: 30px;
+        opacity: 0.7;
+    }
+    & img:hover {
+        opacity: 1;
+    }
+}
