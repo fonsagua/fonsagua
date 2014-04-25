@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="7.09375"
-   height="8.9408407"
+   width="8.9399996"
+   height="8.9399996"
    id="svg3633"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
@@ -27,7 +27,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="25.458693"
+     inkscape:zoom="6.7507554"
      inkscape:cx="0.21291321"
      inkscape:cy="2.0479876"
      inkscape:document-units="px"
@@ -37,10 +37,10 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1366"
-     inkscape:window-height="692"
+     inkscape:window-width="1280"
+     inkscape:window-height="950"
      inkscape:window-x="0"
-     inkscape:window-y="24"
+     inkscape:window-y="25"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata3638">
@@ -50,7 +50,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -58,12 +58,13 @@
      inkscape:label="Capa 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-598,-579.84041)">
+     transform="translate(-598,-579.84125)">
     <g
        id="g3755"
        inkscape:export-filename="/media/Lynch/_WEBs_proceso/Cartoweb_2014/fonsagua_repo_final/images/favicon.png"
        inkscape:export-xdpi="161.05869"
-       inkscape:export-ydpi="161.05869">
+       inkscape:export-ydpi="161.05869"
+       transform="translate(0.96307883,0)">
       <rect
          y="585.85669"
          x="603.07623"
