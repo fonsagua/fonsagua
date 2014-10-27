@@ -26,6 +26,7 @@ import com.iver.andami.ui.mdiManager.IWindow;
 import com.iver.andami.ui.mdiManager.WindowInfo;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 
+import es.udc.cartolab.gvsig.fonsagua.FormsGeneralMenuExtension;
 import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
@@ -257,6 +258,8 @@ public class NewAlternativeDialog extends JPanel implements IWindow,
 		edition.stopEditing(altLayer, false);
 
 		OpenAlternativeExtension.openAlternative(values[0]);
+		FormsGeneralMenuExtension.openForm(AlternativasForm.NAME)
+			.last();
 	    } else if (e.getSource() == cancelButton) {
 		new ToggleEditing().stopEditing(altLayer, true);
 	    }
