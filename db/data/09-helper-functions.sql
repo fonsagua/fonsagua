@@ -20,7 +20,7 @@ CREATE OR REPLACE FUNCTION fonsagua.demanda_poblacion_function(cod_alt VARCHAR, 
        BEGIN
        	SELECT COALESCE(dot_domiciliar, 0), COALESCE(dot_cantareras, 0) INTO dot_sist_domiciliar_t, dot_sist_cantareras_t FROM fonsagua.preferencias_disenho WHERE cod_alternativa = cod_alt;
 
-	IF (tipo_distribucion = 'Domiciliar') THEN dotacion = dot_sist_domiciliar_t;
+	IF (tipo_distribucion = 'Llave pública') THEN dotacion = dot_sist_domiciliar_t;
 	ELSIF (tipo_distribucion = 'Cantareras') THEN dotacion = dot_sist_cantareras_t;
 	ELSE dotacion = 0;
 	END IF;

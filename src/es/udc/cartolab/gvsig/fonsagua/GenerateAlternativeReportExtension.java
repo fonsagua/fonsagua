@@ -23,7 +23,7 @@ public class GenerateAlternativeReportExtension extends AbstractExtension {
 	    Map<String, String> departNames = FonsaguaFilterFields
 		    .getDepartments();
 	    Map<String, String> municNames = FonsaguaFilterFields
-		    .getMuniccipalities();
+		    .getMunicipalities();
 	    Map<String, String> cantonNames = FonsaguaFilterFields
 		    .getCantones();
 	    String[][] alternativas = FonsaguaFilterFields.getAlternatives();

@@ -132,7 +132,7 @@ public class CommunityRTFReport extends RTFReport {
 		RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Municipio: ", rs.getString("municipio"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Cantón: ", rs.getString("canton"),
+	data.add(new ReportListItem("Aldea: ", rs.getString("canton"),
 		RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -194,9 +194,9 @@ public class CommunityRTFReport extends RTFReport {
 
 	RtfReportStyles.writeHeading3(document, "1.3.1 Datos del patronato");
 	data.clear();
-	data.add(new ReportListItem("Existencia de ADESCOS: ", rs
+	data.add(new ReportListItem("Existencia de patronatos: ", rs
 		.getString("h_adescos"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Número de ADESCOS: ", rs
+	data.add(new ReportListItem("Número de patronatos: ", rs
 		.getString("n_adescos"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -445,9 +445,9 @@ public class CommunityRTFReport extends RTFReport {
 	RtfReportStyles.writeHeading4(document,
 		"1.6.1.2 Vivienda por tipo de cocina");
 	data.clear();
-	data.add(new ReportListItem("De leña: ", rs.getString("coc_lenha"),
+	data.add(new ReportListItem("Fogón: ", rs.getString("coc_lenha"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("De leña mejorada: ", rs
+	data.add(new ReportListItem("Fogón mejorado: ", rs
 		.getString("coc_lenha_mej"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -458,7 +458,7 @@ public class CommunityRTFReport extends RTFReport {
 		.getString("electricidad"), RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Número de viviendas con electricidad: ", rs
 		.getString("viv_electricidad"), RtfReportStyles.normalStyle));
-	data.add(new ReportListItem("Tarifa ($): ", rs
+	data.add(new ReportListItem("Tarifa (L): ", rs
 		.getString("tarifa_electricidad"), RtfReportStyles.normalStyle));
 	data.add(new ReportListItem("Alumbrado Público: ", rs
 		.getString("alumbrado"), RtfReportStyles.normalBoldStyle));
@@ -489,9 +489,9 @@ public class CommunityRTFReport extends RTFReport {
 		RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Tipo de asistencia sanitaria: ", null,
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Unidad de salud: ", rs
+	data.add(new ReportListItem("CESAR: ", rs
 		.getString("as_unidad_salud"), RtfReportStyles.normalStyle));
-	data.add(new ReportListItem("Clínica comunal: ", rs
+	data.add(new ReportListItem("CESAMO: ", rs
 		.getString("as_clinica_comunal"), RtfReportStyles.normalStyle));
 	data.add(new ReportListItem("Promotor de salud: ", rs
 		.getString("as_promotor"), RtfReportStyles.normalStyle));
@@ -499,13 +499,13 @@ public class CommunityRTFReport extends RTFReport {
 		RtfReportStyles.normalStyle));
 	data.add(new ReportListItem("Número de centros de salud: ", rs
 		.getString("n_cent_salud"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Tiempo medio a Unidad de Salud (min): ", rs
+	data.add(new ReportListItem("Tiempo medio a CESAR (min): ", rs
 		.getString("t_unidad_salud"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Tiempo medio a clínica comunal (min): ", rs
+	data.add(new ReportListItem("Tiempo medio a CESAMO (min): ", rs
 		.getString("t_clinica_comunal"),
 		RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem(
-		"Frecuencia de visita de médico a clínica (meses): ", rs
+		"Frecuencia de visita de médico a CESAR/CESAMO (meses): ", rs
 			.getString("frec_med_clinica"),
 		RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem(
@@ -592,7 +592,8 @@ public class CommunityRTFReport extends RTFReport {
 	document.add(otros_detalle);
 
 	data.clear();
-	data.add(new ReportListItem("Existe comité de gestión de riesgos: ", rs
+	data.add(new ReportListItem(
+		"Existe comité de gestión de riesgos (CODEL): ", rs
 		.getString("comite_riesgos"), RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Está activo el comité: ", rs
 		.getString("comite_activo"), RtfReportStyles.normalStyle));
@@ -852,7 +853,7 @@ public class CommunityRTFReport extends RTFReport {
 		.getString("let_monte"), RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Nº de letrinas por tipo: ", null,
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("De hoyo: ", rs.getString("let_hoyo"),
+	data.add(new ReportListItem("Fosa simple: ", rs.getString("let_hoyo"),
 		RtfReportStyles.normalStyle));
 	data.add(new ReportListItem("Cierre hidráulico: ", rs
 		.getString("let_hidra"), RtfReportStyles.normalStyle));

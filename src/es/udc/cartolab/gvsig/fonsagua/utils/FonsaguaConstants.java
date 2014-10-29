@@ -11,16 +11,16 @@ public interface FonsaguaConstants {
     public static final String limitsSchema = "limites_administrativos";
 
     public static final String departamentosTable = "departamentos";
-    public static final String departamentosPK = "cdpto";
-    public static final String departamentosName = "dpto";
+    public static final String departamentosPK = "cod";
+    public static final String departamentosName = "depto";
 
     public static final String municipiosTable = "municipios";
-    public static final String municipiosPK = "cod_munic";
-    public static final String municipiosName = "munic";
+    public static final String municipiosPK = "cod_muni";
+    public static final String municipiosName = "nombre";
 
     public static final String cantonesTable = "cantones";
-    public static final String cantonesPK = "cod_canton";
-    public static final String cantonesName = "canton";
+    public static final String cantonesPK = "cod_aldea";
+    public static final String cantonesName = "nombre";
 
     public static final String CROQUIS_TABLENAME = "comunidades_croquis";
     public static final String CROQUIS_FIELDNAME = "croquis";
@@ -45,14 +45,14 @@ public interface FonsaguaConstants {
     public static final String TUBERIAS_COMERCIALES_NAME = "preferencias_tuberias";
     public static final String[] TUBERIAS_COMERCIALES_TABLE_FIELDS = {
 	    "id_tub", "material", "diametro", "presion", "rugosidad",
-	    "precio_tubo" };
+	    "precio_tubo", "precio_m" };
     public static final String[] TUBERIAS_COMERCIALES_TABLE_ALIAS = { "ID",
 	    "Material", "Diámetro (mm)", "Presión (m.c.a)", "Rugosidad (D-W)",
-	    "Precio (lemp/6m)" };
+	    "Precio (L/6m)", "Precio (L/m)" };
     public static final String BOMBAS_COMERCIALES_NAME = "preferencias_bombas";
     public static final String[] BOMBAS_COMERCIALES_TABLE_FIELDS = {
 	    "id_bomba", "potencia", "precio_m" };
     public static final String[] BOMBAS_COMERCIALES_TABLE_ALIAS = { "ID",
-	    "Potencia (CV)", "Precio (lemp)" };
+	    "Potencia (CV)", "Precio (L)" };
 
 }
