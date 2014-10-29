@@ -807,15 +807,9 @@ CREATE TABLE fonsagua.datos_consumo (
 	       REFERENCES dominios.tipo_distribucion(item)
 	       ON DELETE CASCADE
 	       ON UPDATE CASCADE,
-       mujeres BOOLEAN,
-       hombres BOOLEAN,
-       ninhas BOOLEAN,
-       ninhos BOOLEAN,
-       tiempo INTEGER,
        usos_agua VARCHAR,
        consumo FLOAT,
        n_miembros INTEGER
-
 );
 
 

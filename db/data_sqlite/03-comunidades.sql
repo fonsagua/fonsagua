@@ -773,18 +773,12 @@ CREATE TABLE datos_consumo (
 	       REFERENCES tipo_distribucion(item)
 	       ON DELETE CASCADE
 	       ON UPDATE CASCADE,
-       mujeres VARCHAR(5) DEFAULT 'false',
-       hombres VARCHAR(5) DEFAULT 'false',
-       ninhas VARCHAR(5) DEFAULT 'false',
-       ninhos VARCHAR(5) DEFAULT 'false',
-       tiempo INTEGER,
        usos_agua VARCHAR,
        consumo FLOAT,
        n_miembros INTEGER,
        FOREIGN KEY (cod_comunidad, cod_abastecimiento)
 		REFERENCES r_abastecimientos_comunidades (cod_comunidad, cod_abastecimiento)
 		ON UPDATE CASCADE ON DELETE CASCADE
-
 );
 
 

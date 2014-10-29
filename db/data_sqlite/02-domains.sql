@@ -252,8 +252,8 @@ CREATE TABLE dist_let_agua (
 
 INSERT INTO dist_let_agua (item) SELECT
        (' ') UNION SELECT
-       ('Más de 30 m') UNION SELECT
-       ('Menos de 30 m');
+       ('Más de 15 m') UNION SELECT
+       ('Menos de 15 m');
 
 
 CREATE TABLE disp_basuras (
@@ -329,10 +329,11 @@ CREATE TABLE niveles (
 
 INSERT INTO niveles (item) SELECT
        (' ') UNION SELECT
-       ('De 1 a 6') UNION SELECT
-       ('De 1 a 9') UNION SELECT
-       ('De 1 a 12') UNION SELECT
-       ('De 7 a 12');
+       ('Pre-escolar') UNION SELECT
+       ('Primaria') UNION SELECT
+       ('Básica') UNION SELECT
+       ('Media') UNION SELECT
+       ('Superior');
 
 
 CREATE TABLE tipo_servicio (
@@ -438,7 +439,7 @@ CREATE TABLE tipo_distribucion (
 INSERT INTO tipo_distribucion (item) SELECT
        (' ') UNION SELECT
        ('Cantareras') UNION SELECT
-       ('Domiciliar');
+       ('Llave pública');
 
 
 CREATE TABLE tipo_contaminacion (
@@ -466,8 +467,7 @@ INSERT INTO gestion (item) SELECT
        (' ') UNION SELECT
        ('Municipal') UNION SELECT
        ('Comunidad') UNION SELECT
-       ('ONG') UNION SELECT
-       ('ANDA');
+       ('ONG');
 
 
 CREATE TABLE tipo_sistema (
@@ -519,8 +519,7 @@ INSERT INTO tipo_fuente (item) SELECT
        ('Manantial') UNION SELECT
        ('Pozo') UNION SELECT
        ('Punto rio') UNION SELECT
-       ('Embalse') UNION SELECT
-       ('Infraestructura ANDA');
+       ('Embalse');
 
 
 CREATE TABLE sistema (
@@ -597,8 +596,7 @@ CREATE TABLE material (
 INSERT INTO material (item) SELECT
        (' ') UNION SELECT
        ('PVC') UNION SELECT
-       ('HG') UNION SELECT
-       ('HF');
+       ('HG');
 
 
 CREATE TABLE tipologia_bomba (

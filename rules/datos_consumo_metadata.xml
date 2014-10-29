@@ -32,52 +32,6 @@
 		</DOMAINREADER>
 	    </FIELD>
        	    <FIELD>
-		<FIELDNAME>mujeres</FIELDNAME>
-		<ENABLEIF>
-			<CONDITION>
-				<COMPONENT>tipo</COMPONENT>
-				<VALUE>Cantareras</VALUE>
-			</CONDITION>
-		</ENABLEIF>
-	    </FIELD>
-       	    <FIELD>
-		<FIELDNAME>hombres</FIELDNAME>
-		<ENABLEIF>
-			<CONDITION>
-				<COMPONENT>tipo</COMPONENT>
-				<VALUE>Cantareras</VALUE>
-			</CONDITION>
-		</ENABLEIF>
-	    </FIELD>
-       	    <FIELD>
-		<FIELDNAME>ninhas</FIELDNAME>
-		<ENABLEIF>
-			<CONDITION>
-				<COMPONENT>tipo</COMPONENT>
-				<VALUE>Cantareras</VALUE>
-			</CONDITION>
-		</ENABLEIF>
-	    </FIELD>
-       	    <FIELD>
-		<FIELDNAME>ninhos</FIELDNAME>
-		<ENABLEIF>
-			<CONDITION>
-				<COMPONENT>tipo</COMPONENT>
-				<VALUE>Cantareras</VALUE>
-			</CONDITION>
-		</ENABLEIF>
-	    </FIELD>
-       	    <FIELD>
-		<FIELDNAME>tiempo</FIELDNAME>
-		<VALIDATIONRULE>INTEGER_POSITIVE</VALIDATIONRULE>
-		<ENABLEIF>
-			<CONDITION>
-				<COMPONENT>tipo</COMPONENT>
-				<VALUE>Cantareras</VALUE>
-			</CONDITION>
-		</ENABLEIF>
-	    </FIELD>
-       	    <FIELD>
 		<FIELDNAME>consumo</FIELDNAME>
 		<VALIDATIONRULE>DOUBLE_POSITIVE</VALIDATIONRULE>
 	    </FIELD>

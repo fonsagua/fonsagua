@@ -87,7 +87,7 @@ public class NewAlternativeExtension extends Extension {
 		}
 
 		Map<String, String> municNames = FonsaguaFilterFields
-			.getMuniccipalities();
+			.getMunicipalities();
 
 		String departCode;
 		for (String key : municNames.keySet()) {

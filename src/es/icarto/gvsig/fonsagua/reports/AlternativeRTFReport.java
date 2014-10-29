@@ -97,7 +97,7 @@ public class AlternativeRTFReport extends RTFReport {
 		.getString("departamento"), RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Municipio: ", rs.getString("municipio"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Cantón: ", rs.getString("canton"),
+	data.add(new ReportListItem("Aldea: ", rs.getString("canton"),
 		RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -136,7 +136,7 @@ public class AlternativeRTFReport extends RTFReport {
 	data.add(new ReportListItem("Tipo de distribución: ", rs
 		.getString("tipo_distribucion"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Cantón: ", rs.getString("tipo_sistema"),
+	data.add(new ReportListItem("Tipo de sistema: ", rs.getString("tipo_sistema"),
 		RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
@@ -237,7 +237,7 @@ public class AlternativeRTFReport extends RTFReport {
 
 	RtfReportStyles.writeHeading3(document, "1.3.2 Letrinas");
 	data.clear();
-	data.add(new ReportListItem("Nº de letrinas de hoyo: ", rs
+	data.add(new ReportListItem("Nº de fosas simples: ", rs
 		.getString("let_hoyo"), RtfReportStyles.normalBoldStyle));
 	data.add(new ReportListItem("Nº de fosas sépticas: ", rs
 		.getString("let_septica"), RtfReportStyles.normalBoldStyle));
@@ -268,46 +268,46 @@ public class AlternativeRTFReport extends RTFReport {
 	RtfReportStyles.writeHeading3(document, "1.4.1 Abastecimiento");
 	data.clear();
 	data.add(new ReportListItem(
-		"Diseño de sistemas y previos a ejecución ($): ", rs
+		"Diseño de sistemas y previos a ejecución (L): ", rs
 			.getString("total_disenho"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportListItem("Elementos captación-distribución ($): ",
+	data.add(new ReportListItem("Elementos captación-distribución (L): ",
 		rs.getString("total_conduccion"), RtfReportStyles.normalStyle));
-	data.add(new ReportListItem("Distribución ($): ", rs
+	data.add(new ReportListItem("Distribución (L): ", rs
 		.getString("total_distribucion"), RtfReportStyles.normalStyle));
-	data.add(new ReportListItem("Pilas ($): ", rs.getString("total_pilas"),
+	data.add(new ReportListItem("Pilas (L): ", rs.getString("total_pilas"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportListItem("Protección y conservación ($): ", rs
+	data.add(new ReportListItem("Protección y conservación (L): ", rs
 		.getString("total_proteccion"), RtfReportStyles.normalStyle));
-	data.add(new ReportListItem("Personal ($): ", rs
+	data.add(new ReportListItem("Personal (L): ", rs
 		.getString("total_personal"), RtfReportStyles.normalStyle));
 	data.add(new ReportListItem(
-		"Implementación del sistema y acompañamiento comunitario ($): ",
+		"Implementación del sistema y acompañamiento comunitario (L): ",
 		rs.getString("total_implementacion"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportListItem("Coste total del abastecimiento ($): ", rs
+	data.add(new ReportListItem("Coste total del abastecimiento (L): ", rs
 		.getString("total_abastecimiento"),
 		RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
 	RtfReportStyles.writeHeading3(document, "1.4.2 Saneamiento");
 	data.clear();
-	data.add(new ReportListItem("Coste total del saneamiento ($): ", rs
+	data.add(new ReportListItem("Coste total del saneamiento (L): ", rs
 		.getString("total_saneamiento"),
 		RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
 	RtfReportStyles.writeHeading3(document, "1.4.3 Costes totales");
 	data.clear();
-	data.add(new ReportListItem("COSTE TOTAL ALTERNATIVA ($): ", rs
+	data.add(new ReportListItem("COSTE TOTAL ALTERNATIVA (L): ", rs
 		.getString("total"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("COSTE POR PERSONA ($): ", rs
+	data.add(new ReportListItem("COSTE POR PERSONA (L): ", rs
 		.getString("total_persona"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 
 	RtfReportStyles.writeHeading3(document, "1.4.4 Cuota");
 	Paragraph attribute = new Paragraph(
-		"Cálculo estimado de la cuota a pagar por la población actual ($/persona/mes): ",
+		"Cálculo estimado de la cuota a pagar por la población actual (L/persona/mes): ",
 		RtfReportStyles.normalBoldStyle);
 
 	document.add(attribute);
@@ -316,33 +316,33 @@ public class AlternativeRTFReport extends RTFReport {
 	data.clear();
 	data.add(new ReportListItem("Bomba: ", null,
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Amortización ($/mes): ", rs
+	data.add(new ReportListItem("Amortización (L/mes): ", rs
 		.getString("amortizacion_bomba"), RtfReportStyles.normalStyle));
-	data.add(new ReportListItem("Consumo ($/mes): ", rs
+	data.add(new ReportListItem("Consumo (L/mes): ", rs
 		.getString("consumo_bomba"), RtfReportStyles.normalStyle));
-	data.add(new ReportListItem("Mantenimiento preventivo ($/mes): ", rs
+	data.add(new ReportListItem("Mantenimiento preventivo (L/mes): ", rs
 		.getString("mantenimiento_bomba"), RtfReportStyles.normalStyle));
-	data.add(new ReportListItem("Amortización de tuberías ($/mes): ", rs
+	data.add(new ReportListItem("Amortización de tuberías (L/mes): ", rs
 		.getString("amortizacion_tuberias"),
 		RtfReportStyles.normalStyle));
-	data.add(new ReportListItem("Análisis de agua ($/mes): ", rs
+	data.add(new ReportListItem("Análisis de agua (L/mes): ", rs
 		.getString("analisis_agua"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Cloro ($/mes): ", rs.getString("cloro"),
+	data.add(new ReportListItem("Cloro (L/mes): ", rs.getString("cloro"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Fungible ($/mes): ", rs
+	data.add(new ReportListItem("Fungible (L/mes): ", rs
 		.getString("fungible"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Reparaciones y herramientas ($/mes): ", rs
+	data.add(new ReportListItem("Reparaciones y herramientas (L/mes): ", rs
 		.getString("reparaciones"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Fontanero ($/mes): ", rs
+	data.add(new ReportListItem("Fontanero (L/mes): ", rs
 		.getString("fontanero"), RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("Asistencia técnica ($/mes): ", rs
+	data.add(new ReportListItem("Asistencia técnica (L/mes): ", rs
 		.getString("asistencia"), RtfReportStyles.normalBoldStyle));
 	ReportUtils.writeDataList(document, data);
 	document.add(Chunk.NEWLINE);
 	data.clear();
-	data.add(new ReportListItem("CUOTA ($/mes): ", rs.getString("cuota"),
+	data.add(new ReportListItem("CUOTA (L/mes): ", rs.getString("cuota"),
 		RtfReportStyles.normalBoldStyle));
-	data.add(new ReportListItem("CUOTA POR PERSONA ($/P*mes): ", rs
+	data.add(new ReportListItem("CUOTA POR PERSONA (L/persona/mes): ", rs
 		.getString("cuota_persona"), RtfReportStyles.normalStyle));
 	ReportUtils.writeDataList(document, data);
 

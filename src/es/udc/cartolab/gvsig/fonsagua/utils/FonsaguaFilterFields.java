@@ -25,10 +25,80 @@ public class FonsaguaFilterFields {
 	for (String[] depart : departamentos) {
 	    departNames.put(depart[0], depart[1]);
 	}
+
+	Map<String, Map<String, List<String>>> divCodes = getDivCodesFromDBCantones();
+
+	List<String> emptyDepts = new ArrayList<String>();
+	for (String key : departNames.keySet()) {
+	    if (!divCodes.keySet().contains(key)) {
+		emptyDepts.add(key);
+	    }
+	}
+
+	for (String key : emptyDepts) {
+	    departNames.remove(key);
+	}
+
 	return departNames;
     }
 
-    public static Map<String, String> getMuniccipalities() throws SQLException {
+    public static Map<String, String> getUnfilteredDepartments() throws SQLException {
+	String[] fields = new String[2];
+	String[] orderBy = new String[1];
+	Map<String, String> departNames = new HashMap<String, String>();
+	fields[0] = FonsaguaConstants.departamentosPK;
+	fields[1] = FonsaguaConstants.departamentosName;
+	orderBy[0] = FonsaguaConstants.departamentosPK;
+	String[][] departamentos = DBSession.getCurrentSession().getTable(
+		FonsaguaConstants.departamentosTable,
+		FonsaguaConstants.limitsSchema, fields, "", orderBy, false);
+	for (String[] depart : departamentos) {
+	    departNames.put(depart[0], depart[1]);
+	}
+	return departNames;
+    }
+
+    public static Map<String, String> getMunicipalities() throws SQLException {
+	String[] fields = new String[2];
+	String[] orderBy = new String[1];
+	Map<String, String> municNames = new HashMap<String, String>();
+	fields[0] = FonsaguaConstants.municipiosPK;
+	fields[1] = FonsaguaConstants.municipiosName;
+	orderBy[0] = FonsaguaConstants.municipiosPK;
+	String[][] municipios = DBSession.getCurrentSession().getTable(
+		FonsaguaConstants.municipiosTable,
+		FonsaguaConstants.limitsSchema, fields, "", orderBy, false);
+	for (String[] munic : municipios) {
+	    if ((munic[0] != null) && (munic[0].length() >= 2)) {
+		municNames.put(munic[0], munic[1]);
+	    }
+	}
+
+	Map<String, Map<String, List<String>>> divCodes = getDivCodesFromDBCantones();
+
+	List<String> emptyMunics = new ArrayList<String>();
+	for (String key : municNames.keySet()) {
+	    boolean empty = true;
+	    for (String key2 : divCodes.keySet()) {
+		if (divCodes.get(key2).keySet().contains(key)) {
+		    empty = false;
+		    break;
+		}
+	    }
+	    if (empty) {
+		emptyMunics.add(key);
+	    }
+	}
+
+	for (String key : emptyMunics) {
+	    municNames.remove(key);
+	}
+
+	return municNames;
+    }
+
+    public static Map<String, String> getUnfilteredMunicipalities()
+	    throws SQLException {
 	String[] fields = new String[2];
 	String[] orderBy = new String[1];
 	Map<String, String> municNames = new HashMap<String, String>();
@@ -114,6 +184,32 @@ public class FonsaguaFilterFields {
 		}
 		divsCodes.get(departCode).get(municCode).get(element[1])
 			.add(element[0]);
+	    }
+	}
+	return divsCodes;
+    }
+
+    public static Map<String, Map<String, List<String>>> getDivCodesFromDBCantones()
+	    throws SQLException {
+	String departCode;
+	String municCode;
+	Map<String, String> cantones = getCantones();
+	Map<String, Map<String, List<String>>> divsCodes = new HashMap<String, Map<String, List<String>>>();
+	for (String key : cantones.keySet()) {
+	    if (key.length() >= 4) {
+		departCode = key.substring(0, 2);
+		municCode = key.substring(0, 4);
+		if (!divsCodes.containsKey(departCode)) {
+		    divsCodes.put(departCode,
+			    new HashMap<String, List<String>>());
+		}
+		if (!divsCodes.get(departCode).containsKey(municCode)) {
+		    divsCodes.get(departCode).put(municCode,
+			    new ArrayList<String>());
+		}
+		if (!divsCodes.get(departCode).get(municCode).contains(key)) {
+		    divsCodes.get(departCode).get(municCode).add(key);
+		}
 	    }
 	}
 	return divsCodes;

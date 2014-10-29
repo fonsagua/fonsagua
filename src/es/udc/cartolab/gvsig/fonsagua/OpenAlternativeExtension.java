@@ -41,7 +41,7 @@ public class OpenAlternativeExtension extends OpenAbstractExtension {
 	    Map<String, String> departNames = FonsaguaFilterFields
 		    .getDepartments();
 	    Map<String, String> municNames = FonsaguaFilterFields
-		    .getMuniccipalities();
+		    .getMunicipalities();
 	    Map<String, String> cantonNames = FonsaguaFilterFields
 		    .getCantones();
 

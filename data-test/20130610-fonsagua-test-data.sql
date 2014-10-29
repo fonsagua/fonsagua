@@ -280,7 +280,7 @@ INSERT INTO r_abastecimientos_comunidades (cod_abastecimiento, cod_comunidad) VA
 -- Data for Name: datos_consumo; Type: TABLE DATA; Schema: fonsagua; Owner: fonsagua
 --
 
-INSERT INTO datos_consumo (gid, cod_comunidad, cod_abastecimiento, tipo_distribucion, mujeres, hombres, ninhas, ninhos, tiempo, usos_agua, consumo, n_miembros) VALUES (1, '01010101', '010101A01', 'Domiciliar', false, false, false, false, NULL, '', 20, 5);
+INSERT INTO datos_consumo (gid, cod_comunidad, cod_abastecimiento, tipo_distribucion, mujeres, hombres, ninhas, ninhos, tiempo, usos_agua, consumo, n_miembros) VALUES (1, '01010101', '010101A01', 'Llave pública', false, false, false, false, NULL, '', 20, 5);
 INSERT INTO datos_consumo (gid, cod_comunidad, cod_abastecimiento, tipo_distribucion, mujeres, hombres, ninhas, ninhos, tiempo, usos_agua, consumo, n_miembros) VALUES (3, '01010101', '010101A02', 'Cantareras', false, false, false, false, NULL, '', 10, 5);
 
 

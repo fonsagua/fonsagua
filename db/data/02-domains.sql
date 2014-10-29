@@ -292,8 +292,8 @@ CREATE TABLE dominios.dist_let_agua (
 
 INSERT INTO dominios.dist_let_agua (item) VALUES
        (' '),
-       ('Más de 30 m'),
-       ('Menos de 30 m');
+       ('Más de 15 m'),
+       ('Menos de 15 m');
 
 ALTER TABLE dominios.dist_let_agua OWNER TO fonsagua;
 
@@ -379,10 +379,11 @@ CREATE TABLE dominios.niveles (
 
 INSERT INTO dominios.niveles (item) VALUES
        (' '),
-       ('De 1 a 6'),
-       ('De 1 a 9'),
-       ('De 1 a 12'),
-       ('De 7 a 12');
+       ('Pre-escolar'),
+       ('Primaria'),
+       ('Básica'),
+       ('Media'),
+       ('Superior');
 
 ALTER TABLE dominios.niveles OWNER TO fonsagua;
 
@@ -390,7 +391,6 @@ ALTER TABLE dominios.niveles OWNER TO fonsagua;
 CREATE TABLE dominios.tipo_servicio (
        item VARCHAR
 	       PRIMARY KEY
-
 );
 
 INSERT INTO dominios.tipo_servicio (item) VALUES
@@ -504,7 +504,7 @@ CREATE TABLE dominios.tipo_distribucion (
 INSERT INTO dominios.tipo_distribucion (item) VALUES
        (' '),
        ('Cantareras'),
-       ('Domiciliar');
+       ('Llave pública');
 
 ALTER TABLE dominios.tipo_distribucion OWNER TO fonsagua;
 
@@ -512,7 +512,6 @@ ALTER TABLE dominios.tipo_distribucion OWNER TO fonsagua;
 CREATE TABLE dominios.tipo_contaminacion (
        item VARCHAR
 	       PRIMARY KEY
-
 );
 
 INSERT INTO dominios.tipo_contaminacion (item) VALUES
@@ -536,8 +535,7 @@ INSERT INTO dominios.gestion (item) VALUES
        (' '),
        ('Municipal'),
        ('Comunidad'),
-       ('ONG'),
-       ('ANDA');
+       ('ONG');
 
 ALTER TABLE dominios.gestion OWNER TO fonsagua;
 
@@ -597,8 +595,7 @@ INSERT INTO dominios.tipo_fuente (item) VALUES
        ('Manantial'),
        ('Pozo'),
        ('Punto rio'),
-       ('Embalse'),
-       ('Infraestructura ANDA');
+       ('Embalse');
 
 ALTER TABLE dominios.tipo_fuente OWNER TO fonsagua;
 
@@ -687,8 +684,7 @@ CREATE TABLE dominios.material (
 INSERT INTO dominios.material (item) VALUES
        (' '),
        ('PVC'),
-       ('HG'),
-       ('HF');
+       ('HG');
 
 ALTER TABLE dominios.material OWNER TO fonsagua;
 
