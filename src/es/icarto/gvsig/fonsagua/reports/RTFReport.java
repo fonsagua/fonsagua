@@ -58,21 +58,24 @@ public abstract class RTFReport {
 
     protected void writeHeader() {
 	try {
-	    Table tableHeader = new Table(3);
+	    Table tableHeader = new Table(4);
 	    tableHeader.setWidth(100f);
-	    float[] cellWidts = { 131f, 161f, 131f };// TotalSize=425f
+	    float[] cellWidts = { 125f, 50f, 165f, 85f };// TotalSize=425f
 	    tableHeader.setWidths(cellWidts);
 	    tableHeader.setBorder(Rectangle.NO_BORDER);
 
-	    RtfCell leftImageCell = new RtfCell(getLeftHeaderImage());
-	    leftImageCell.setHorizontalAlignment(Chunk.ALIGN_LEFT);
+	    RtfCell leftImageCell1 = new RtfCell(getLeftHeaderImage1());
+	    leftImageCell1.setHorizontalAlignment(Chunk.ALIGN_LEFT);
+	    RtfCell leftImageCell2 = new RtfCell(getLeftHeaderImage2());
+	    leftImageCell2.setHorizontalAlignment(Chunk.ALIGN_LEFT);
 	    RtfCell centerCell = new RtfCell(new Paragraph(getHeaderText(),
 		    RtfReportStyles.headerFooterTextStyle));
 	    centerCell.setHorizontalAlignment(Chunk.ALIGN_CENTER);
 	    RtfCell rightImageCell = new RtfCell(getRightHeaderImage());
 	    rightImageCell.setHorizontalAlignment(Chunk.ALIGN_RIGHT);
 
-	    tableHeader.addCell(leftImageCell);
+	    tableHeader.addCell(leftImageCell1);
+	    tableHeader.addCell(leftImageCell2);
 	    tableHeader.addCell(centerCell);
 	    tableHeader.addCell(rightImageCell);
 	    tableHeader.addCell(new RtfCell());
@@ -98,8 +101,8 @@ public abstract class RTFReport {
 	Image image = null;
 	try {
 	    image = Image.getInstance(getClass().getClassLoader()
-		    .getResource("images/logo_esf.jpg").getPath());
-	    image.scalePercent((float) 35.00);
+		    .getResource("images/logo_esf_galicia.jpg").getPath());
+	    image.scalePercent((float) 30.00);
 	    image.setAlignment(Chunk.ALIGN_RIGHT);
 	} catch (BadElementException e) {
 	    e.printStackTrace();
@@ -111,11 +114,28 @@ public abstract class RTFReport {
 	return image;
     }
 
-    protected Image getLeftHeaderImage() {
+    protected Image getLeftHeaderImage1() {
 	Image image = null;
 	try {
 	    image = Image.getInstance(getClass().getClassLoader()
-		    .getResource("images/logo_anda.jpg").getPath());
+		    .getResource("images/logo_nasmar.jpg").getPath());
+	    image.scalePercent((float) 10.00);
+	    image.setAlignment(Chunk.ALIGN_LEFT);
+	} catch (BadElementException e) {
+	    e.printStackTrace();
+	} catch (MalformedURLException e) {
+	    e.printStackTrace();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
+	return image;
+    }
+
+    protected Image getLeftHeaderImage2() {
+	Image image = null;
+	try {
+	    image = Image.getInstance(getClass().getClassLoader()
+		    .getResource("images/logo_ahjasa.jpg").getPath());
 	    image.scalePercent((float) 50.00);
 	    image.setAlignment(Chunk.ALIGN_LEFT);
 	} catch (BadElementException e) {
