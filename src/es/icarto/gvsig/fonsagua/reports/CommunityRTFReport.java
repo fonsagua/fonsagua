@@ -44,9 +44,10 @@ public class CommunityRTFReport extends RTFReport {
 
     @Override
     protected String getSubtitle() {
-	return "(COMUNIDAD DE "
-		+ ReportDAO.getCommunityValueByColumnName("comunidad", pkValue)
-			.toUpperCase() + ")";
+	String name = ReportDAO.getCommunityValueByColumnName("comunidad",
+		pkValue);
+	return "(COMUNIDAD DE " + (name != null ? name.toUpperCase() : "")
+		+ ")";
     }
 
     @Override
