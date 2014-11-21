@@ -36,7 +36,7 @@ SELECT is(demanda, 0.07)
        FROM fonsagua.alternativas
        WHERE gid = currval('fonsagua.alternativas_gid_seq');
 
-UPDATE fonsagua.alternativas SET tipo_distribucion='Cantareras' WHERE gid = currval('fonsagua.alternativas_gid_seq');
+UPDATE fonsagua.alternativas SET tipo_distribucion='Llave pública' WHERE gid = currval('fonsagua.alternativas_gid_seq');
 
 SELECT is(demanda, 0.49)
        FROM fonsagua.alternativas

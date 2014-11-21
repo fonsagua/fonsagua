@@ -438,7 +438,7 @@ CREATE TABLE tipo_distribucion (
 
 INSERT INTO tipo_distribucion (item) SELECT
        (' ') UNION SELECT
-       ('Cantareras') UNION SELECT
+       ('Domiciliar') UNION SELECT
        ('Llave pública');
 
 
