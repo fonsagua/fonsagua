@@ -503,7 +503,7 @@ CREATE TABLE dominios.tipo_distribucion (
 
 INSERT INTO dominios.tipo_distribucion (item) VALUES
        (' '),
-       ('Cantareras'),
+       ('Domiciliar'),
        ('Llave pública');
 
 ALTER TABLE dominios.tipo_distribucion OWNER TO fonsagua;
