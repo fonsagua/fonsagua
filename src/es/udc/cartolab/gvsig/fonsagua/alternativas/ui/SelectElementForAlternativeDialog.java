@@ -15,7 +15,9 @@ import javax.swing.table.TableModel;
 
 import com.iver.andami.PluginServices;
 
-import es.icarto.gvsig.fonsagua.reports.ui.AcceptCancelPanel;
+import es.icarto.gvsig.commons.gui.AbstractIWindow;
+import es.icarto.gvsig.commons.gui.OkCancelPanel;
+import es.icarto.gvsig.commons.gui.WidgetFactory;
 import es.udc.cartolab.gvsig.navtable.dataacces.IController;
 import es.udc.cartolab.gvsig.navtable.format.DoubleFormatNT;
 
@@ -27,7 +29,7 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
     protected DefaultTableModel model;
     private DefaultTableModel filteredModel;
     protected String code;
-    private int editableColumnIdx;
+    private final int editableColumnIdx;
 
     protected final NumberFormat doubleFormat;
 
@@ -36,7 +38,7 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
 	doubleFormat = DoubleFormatNT.getDisplayingFormat();
 	this.editableColumnIdx = editableColumnIdx;
 	addTablePanel();
-	addAcceptCancelPanel(this, this);
+	WidgetFactory.okCancelPanel(this, this, this);
     }
 
     private void addTablePanel() {
@@ -48,7 +50,7 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
 
     @Override
     public void actionPerformed(ActionEvent e) {
-	if (e.getActionCommand().equals(AcceptCancelPanel.OK_ACTION_COMMAND)) {
+	if (e.getActionCommand().equals(OkCancelPanel.OK_ACTION_COMMAND)) {
 	    try {
 		if (table.isEditing()) {
 		    table.getCellEditor().stopCellEditing();

@@ -10,8 +10,8 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import es.icarto.gvsig.commons.gui.tables.NotEditableTableModel;
 import es.icarto.gvsig.fonsagua.reports.utils.ReportUtils;
-import es.icarto.gvsig.navtableforms.gui.tables.model.NotEditableTableModel;
 import es.udc.cartolab.gvsig.epanet.exceptions.ExternalError;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.PreferenciasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ComunidadesForm;

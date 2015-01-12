@@ -15,26 +15,28 @@ import org.apache.log4j.Logger;
 
 import com.iver.andami.PluginServices;
 
-import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.AbstractIWindow;
+import es.icarto.gvsig.commons.gui.AbstractIWindow;
+import es.icarto.gvsig.commons.gui.WidgetFactory;
 
 @SuppressWarnings("serial")
-public abstract class FilteredDialog extends AbstractIWindow implements ActionListener {
+public abstract class FilteredDialog extends AbstractIWindow implements
+	ActionListener {
     private final static Logger logger = Logger.getLogger(FilteredDialog.class);
 
     /*
      * The next properties are the ones related to the interface itself, so they
      * don't need a real explanation
      */
-   
+
     // Here we store the relationships departamento -> municipio -> cantón ->
     // element filtered by those fields
-    private Map<String, Map<String, Map<String, List<String>>>> divsCodes;
+    private final Map<String, Map<String, Map<String, List<String>>>> divsCodes;
     // Translation from cod_departamento to nombre_departamento
-    private Map<String, String> departNames;
+    private final Map<String, String> departNames;
     // Translation from cod_municipio to nombre_municipio
-    private Map<String, String> municNames;
+    private final Map<String, String> municNames;
     // Translation from cod_canton to nombre_canton
-    private Map<String, String> cantonNames;
+    private final Map<String, String> cantonNames;
 
     private JComboBox departCombo = null;
     private JComboBox municCombo = null;
@@ -54,7 +56,7 @@ public abstract class FilteredDialog extends AbstractIWindow implements ActionLi
 	this.cantonNames = cantonNames;
 	try {
 	    initialize();
-	    addAcceptCancelPanel(this, this);
+	    WidgetFactory.okCancelPanel(this, this, this);
 	} catch (Exception e) {
 	    logger.error(e.getMessage(), e);
 	}
@@ -170,8 +172,8 @@ public abstract class FilteredDialog extends AbstractIWindow implements ActionLi
     }
 
     private class Item {
-	private String id;
-	private String description;
+	private final String id;
+	private final String description;
 
 	public Item(String id, String description) {
 	    this.id = id;

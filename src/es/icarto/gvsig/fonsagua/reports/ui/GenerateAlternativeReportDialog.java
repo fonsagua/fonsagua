@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiManager.WindowInfo;
 
+import es.icarto.gvsig.commons.gui.OkCancelPanel;
 import es.icarto.gvsig.fonsagua.reports.AlternativeRTFReport;
 import es.udc.cartolab.gvsig.fonsagua.utils.FilteredDialog;
 import es.udc.cartolab.gvsig.fonsagua.utils.SaveFileDialog;
@@ -22,14 +23,15 @@ public class GenerateAlternativeReportDialog extends FilteredDialog {
 	    Map<String, String> departNames, Map<String, String> municNames,
 	    Map<String, String> cantonNames) {
 	super(divsCodes, departNames, municNames, cantonNames);
-	setWindowTitle(PluginServices.getText(this, "generate_alternative_report_title"));
-	setWindowInfoProperties(WindowInfo.MODALDIALOG | WindowInfo.PALETTE | WindowInfo.NOTCLOSABLE);
+	setWindowTitle(PluginServices.getText(this,
+		"generate_alternative_report_title"));
+	setWindowInfoProperties(WindowInfo.MODALDIALOG | WindowInfo.PALETTE
+		| WindowInfo.NOTCLOSABLE);
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
-	if (e.getActionCommand().equals(AcceptCancelPanel.OK_ACTION_COMMAND)) {
+	if (e.getActionCommand().equals(OkCancelPanel.OK_ACTION_COMMAND)) {
 	    String alternativeCode = elementCombo.getSelectedItem().toString();
 	    SaveFileDialog sfd = new SaveFileDialog(PluginServices.getText(
 		    this, "rtfFiles"), "rtf");

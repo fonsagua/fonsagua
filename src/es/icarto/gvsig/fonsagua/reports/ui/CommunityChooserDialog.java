@@ -10,8 +10,10 @@ import javax.swing.JOptionPane;
 import com.iver.andami.PluginServices;
 import com.iver.utiles.swing.JComboBox;
 
+import es.icarto.gvsig.commons.gui.AbstractIWindow;
+import es.icarto.gvsig.commons.gui.OkCancelPanel;
+import es.icarto.gvsig.commons.gui.WidgetFactory;
 import es.icarto.gvsig.fonsagua.reports.CommunityRTFReport;
-import es.udc.cartolab.gvsig.fonsagua.alternativas.ui.AbstractIWindow;
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 import es.udc.cartolab.gvsig.fonsagua.utils.SaveFileDialog;
 
@@ -25,7 +27,7 @@ public class CommunityChooserDialog extends AbstractIWindow implements
 	super();
 	setWindowTitle(PluginServices.getText(this, "choose_community"));
 	addCommunityCB();
-	addAcceptCancelPanel(this, this);
+	WidgetFactory.okCancelPanel(this, this, this);
     }
 
     private void addCommunityCB() {
@@ -39,7 +41,7 @@ public class CommunityChooserDialog extends AbstractIWindow implements
     @Override
     public void actionPerformed(ActionEvent e) {
 
-	if (e.getActionCommand().equals(AcceptCancelPanel.OK_ACTION_COMMAND)) {
+	if (e.getActionCommand().equals(OkCancelPanel.OK_ACTION_COMMAND)) {
 	    String communityCode = cb.getSelectedItem().toString();
 	    SaveFileDialog sfd = new SaveFileDialog(PluginServices.getText(
 		    this, "rtfFiles"), "rtf");

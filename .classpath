@@ -19,11 +19,12 @@
 	<classpathentry kind="src" path="/extCopyFeatures"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/gvsig-epanet"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/extNavTableForms"/>
-	<classpathentry kind="lib" path="/extDBConnection/lib/formsrt.jar"/>
-	<classpathentry kind="src" path="/elle"/>
-	<classpathentry kind="lib" path="/extNavTable/lib/miglayout-3.7.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/iText-rtf-2.1.5.jar"/>
 	<classpathentry kind="lib" path="lib/iText-2.1.5.jar"/>
 	<classpathentry kind="lib" path="lib/opencsv-2.3.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/extELLE"/>
+	<classpathentry kind="lib" path="/es.icarto.gvsig.commons/lib/miglayout-3.7.3.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/es.icarto.gvsig.commons"/>
+	<classpathentry kind="lib" path="/es.icarto.gvsig.commons/lib/formsrt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

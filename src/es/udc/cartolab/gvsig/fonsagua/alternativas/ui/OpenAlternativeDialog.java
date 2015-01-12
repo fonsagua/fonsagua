@@ -7,7 +7,7 @@ import java.util.Map;
 import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiManager.WindowInfo;
 
-import es.icarto.gvsig.fonsagua.reports.ui.AcceptCancelPanel;
+import es.icarto.gvsig.commons.gui.OkCancelPanel;
 import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 import es.udc.cartolab.gvsig.fonsagua.utils.FilteredDialog;
@@ -21,13 +21,14 @@ public class OpenAlternativeDialog extends FilteredDialog {
 	    Map<String, String> cantonNames) {
 	super(divsCodes, departNames, municNames, cantonNames);
 	setWindowTitle(PluginServices.getText(this, "open_alternative"));
-	setWindowInfoProperties(WindowInfo.MODALDIALOG | WindowInfo.PALETTE | WindowInfo.NOTCLOSABLE);
+	setWindowInfoProperties(WindowInfo.MODALDIALOG | WindowInfo.PALETTE
+		| WindowInfo.NOTCLOSABLE);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 	try {
-	    if (e.getActionCommand().equals(AcceptCancelPanel.OK_ACTION_COMMAND)) {
+	    if (e.getActionCommand().equals(OkCancelPanel.OK_ACTION_COMMAND)) {
 		String alternCod = elementCombo.getSelectedItem().toString();
 		OpenAlternativeExtension.openAlternative(alternCod);
 		OpenAlternativeExtension

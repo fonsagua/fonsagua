@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiManager.WindowInfo;
 
+import es.icarto.gvsig.commons.gui.OkCancelPanel;
 import es.udc.cartolab.gvsig.fonsagua.utils.FilteredDialog;
 import es.udc.cartolab.gvsig.fonsagua.utils.SaveFileDialog;
 
@@ -29,7 +30,7 @@ public class GenerateAlternativeBudgetReportDialog extends FilteredDialog {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-	if (e.getActionCommand().equals(AcceptCancelPanel.OK_ACTION_COMMAND)) {
+	if (e.getActionCommand().equals(OkCancelPanel.OK_ACTION_COMMAND)) {
 	    String alternativeCode = elementCombo.getSelectedItem().toString();
 	    SaveFileDialog sfd = new SaveFileDialog(PluginServices.getText(
 		    this, "csvFiles"), "csv");

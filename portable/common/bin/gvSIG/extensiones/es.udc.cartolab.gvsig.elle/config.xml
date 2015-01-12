@@ -4,6 +4,7 @@
 	<depends plugin-name="com.iver.cit.gvsig.cad"/>
 	<depends plugin-name="com.iver.cit.gvsig.wms"/>
 	<depends plugin-name="es.udc.cartolab.gvsig.users"/>
+	<depends plugin-name="es.icarto.gvsig.commons"/>
 	<libraries library-dir="lib"/>
 	<resourceBundle name="text"/>
 	<label-set class-name="com.iver.cit.gvsig.project.documents.view.gui.View">

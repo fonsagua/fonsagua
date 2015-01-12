@@ -80,7 +80,7 @@
 	
 	<property name="custom-projects" value="
 		extDBConnection,
-		elle,
+		extELLE,
 		extCopyFeatures,
 		extNavTableForms,
 		extTOCExtra,
