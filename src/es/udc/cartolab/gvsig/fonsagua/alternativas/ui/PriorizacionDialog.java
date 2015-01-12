@@ -49,7 +49,7 @@ public class PriorizacionDialog extends JPanel implements ActionListener,
     public PriorizacionDialog(String communityCode, String communityName) {
 	FormPanel formBody;
 	InputStream stream = getClass().getClassLoader().getResourceAsStream(
-		"ui/" + NAME + ".xml");
+		"forms/" + NAME + ".xml");
 	try {
 	    formBody = new FormPanel(stream);
 	    formBody.setFocusCycleRoot(true);

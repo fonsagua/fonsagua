@@ -20,7 +20,7 @@ public abstract class BasicAbstractForm extends AbstractForm {
     public FormPanel getFormBody() {
 	if (formBody == null) {
 	    InputStream stream = getClass().getClassLoader()
-		    .getResourceAsStream("ui/" + getBasicName() + ".xml");
+		    .getResourceAsStream("forms/" + getBasicName() + ".xml");
 	    try {
 		formBody = new FormPanel(stream);
 	    } catch (FormException e) {

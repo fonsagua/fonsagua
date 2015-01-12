@@ -86,7 +86,7 @@ public class PredesignDialog extends JPanel implements SingletonWindow,
 	FormPanel formBody;
 	nf = NumberFormat.getInstance();
 	InputStream stream = getClass().getClassLoader().getResourceAsStream(
-		"ui/" + NAME + ".xml");
+		"forms/" + NAME + ".xml");
 	try {
 	    formBody = new FormPanel(stream);
 	    formBody.setFocusCycleRoot(true);

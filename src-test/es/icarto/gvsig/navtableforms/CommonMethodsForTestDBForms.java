@@ -170,7 +170,7 @@ public abstract class CommonMethodsForTestDBForms {
     }
 
     protected String getUIFile() {
-	return "ui/" + getTableName() + ".xml";
+	return "forms/" + getTableName() + ".xml";
     }
 
     protected String getMetadataFile() {
