@@ -99,7 +99,7 @@ public class DatabaseDirectAccessQueries {
 
     public static List<String[]> getTuberiasForBudget(String codAlt)
 	    throws SQLException {
-	String query = "SELECT pt.id_tub, pt.material, pt.diametro, COALESCE(longitud_total,0) FROM ##dataSchema##.preferencias_tuberias pt LEFT JOIN (SELECT tuberia_comercial, sum(long_tuberia) AS longitud_total FROM ##dataSchema##.alt_tuberias WHERE cod_alternativa = '####' GROUP BY tuberia_comercial) t ON pt.id_tub = t.tuberia_comercial ORDER BY pt.id_tub ;";
+	String query = "SELECT pt.id_tub, pt.material, pt.diametro, tipologia_tuberia, COALESCE(longitud_total,0) FROM ##dataSchema##.preferencias_tuberias pt LEFT JOIN (SELECT tuberia_comercial, tipologia_tuberia, sum(long_tuberia) AS longitud_total FROM ##dataSchema##.alt_tuberias WHERE cod_alternativa = '####' GROUP BY tuberia_comercial, tipologia_tuberia) t ON pt.id_tub = t.tuberia_comercial ORDER BY pt.id_tub, tipologia_tuberia ;";
 	ResultSet rs = convertAndExecuteQuery(codAlt, query);
 
 	List<String[]> list = new ArrayList<String[]>();
@@ -109,7 +109,8 @@ public class DatabaseDirectAccessQueries {
 		    ReportUtils.getValueFormatted(rs.getString(1)),
 		    ReportUtils.getValueFormatted(rs.getString(2)),
 		    ReportUtils.getValueFormatted(rs.getString(3)),
-		    ReportUtils.getValueFormatted(rs.getString(4)) });
+		    ReportUtils.getValueFormatted(rs.getString(4)),
+		    ReportUtils.getValueFormatted(rs.getString(5)) });
 	}
 	return list;
     }

@@ -51,7 +51,7 @@ public class BudgetReportData {
 		ReportUtils.getValueFormatted(table[0][1]) });
 	list.add(new String[] { "Tipo de sistema",
 		ReportUtils.getValueFormatted(table[0][2]) });
-	list.add(new String[] { "Deamanda total(l/s)",
+	list.add(new String[] { "Demanda total(l/s)",
 		ReportUtils.getValueFormatted(table[0][3]) });
 	list.add(new String[] { "Número total de población implicada",
 		ReportUtils.getValueFormatted(table[0][4]) });
@@ -100,7 +100,8 @@ public class BudgetReportData {
 	fillTable(list, depositos, 5);
 
 	list.add(new String[] { "Tuberias" });
-	list.add(new String[] { "ID", "Material", "Diametro", "Longitud total" });
+	list.add(new String[] { "ID", "Material", "Diametro",
+		"Tipo de tuberia", "Longitud total" });
 	List<String[]> tuberias = DatabaseDirectAccessQueries
 		.getTuberiasForBudget(codAlt);
 
