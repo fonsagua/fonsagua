@@ -9,11 +9,9 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/appgvSIG"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/extDBConnection"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/libFMap/lib/driver-manager-1.1.jar" sourcepath="/libDriverManager"/>
 	<classpathentry kind="lib" path="/libFMap/lib/gdbms-0.8-SNAPSHOT.jar" sourcepath="/libGDBMS"/>
 	<classpathentry kind="lib" path="/_fwAndami/lib/org.gvsig.exceptions.jar" sourcepath="/libExceptions/src"/>
 	<classpathentry kind="src" path="/extCAD"/>
-	<classpathentry kind="lib" path="/libFMap/lib/org.cresques.cts.jar" sourcepath="/libProjection/src"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/libIverUtiles"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="/extCopyFeatures"/>
@@ -26,5 +24,7 @@
 	<classpathentry kind="lib" path="/es.icarto.gvsig.commons/lib/miglayout-3.7.3.1.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/es.icarto.gvsig.commons"/>
 	<classpathentry kind="lib" path="/es.icarto.gvsig.commons/lib/formsrt.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/libProjection"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/libDriverManager"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
