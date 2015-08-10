@@ -48,6 +48,9 @@
 		<copy todir="${dist}/metadata">
 	 		<fileset dir="metadata" includes="*" />
 		</copy>
+		<copy todir="${dist}/i18n">
+	 		<fileset dir="i18n" includes="*" />
+		</copy>
 
 	</target>
 

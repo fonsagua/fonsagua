@@ -1,12 +1,21 @@
 package es.icarto.gvsig.navtableforms;
 
+import java.io.File;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiManager.WindowInfo;
 import com.iver.cit.gvsig.fmap.layers.FLyrVect;
 import com.jeta.forms.components.panel.FormPanel;
 import com.jeta.forms.gui.common.FormException;
+
+import es.icarto.gvsig.navtableforms.gui.i18n.resource.I18nResource;
+import es.icarto.gvsig.navtableforms.gui.i18n.resource.JavaBundleI18nResource;
 
 @SuppressWarnings("serial")
 public abstract class BasicAbstractForm extends AbstractForm {
@@ -34,6 +43,19 @@ public abstract class BasicAbstractForm extends AbstractForm {
     public String getXMLPath() {
 	return this.getClass().getClassLoader()
 		.getResource("metadata/" + getBasicName() + ".xml").getPath();
+    }
+
+    @Override
+    public I18nResource[] getI18nResources() {
+	try {
+	    return new I18nResource[] {
+		    new JavaBundleI18nResource(getBasicName(), this.getClass().getClassLoader()
+			.getResource("i18n/").getPath())
+	    };
+	} catch (MalformedURLException e) {
+	    e.printStackTrace();
+	    return null;
+	}
     }
 
     @Override
