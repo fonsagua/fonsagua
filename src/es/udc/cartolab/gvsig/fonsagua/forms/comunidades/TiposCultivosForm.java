@@ -1,9 +1,9 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.comunidades;
 
-import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
+import es.icarto.gvsig.navtableforms.BasicAbstractSubForm;
 
 @SuppressWarnings("serial")
-public class TiposCultivosForm extends AbstractSubForm {
+public class TiposCultivosForm extends BasicAbstractSubForm {
 
     public static final String NAME = "tipos_cultivos";
     public static String[] colNames = {

@@ -1,9 +1,9 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.abastecimiento;
 
-import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
+import es.icarto.gvsig.navtableforms.BasicAbstractSubForm;
 
 @SuppressWarnings("serial")
-public class GestComercialForm extends AbstractSubForm {
+public class GestComercialForm extends BasicAbstractSubForm {
 
     public static final String NAME = "gest_comercial";
     public static String[] colNames = {

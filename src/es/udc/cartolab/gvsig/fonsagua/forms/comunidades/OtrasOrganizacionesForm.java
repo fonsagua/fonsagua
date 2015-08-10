@@ -1,9 +1,9 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.comunidades;
 
-import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
+import es.icarto.gvsig.navtableforms.BasicAbstractSubForm;
 
 @SuppressWarnings("serial")
-public class OtrasOrganizacionesForm extends AbstractSubForm {
+public class OtrasOrganizacionesForm extends BasicAbstractSubForm {
 
     public static final String NAME = "otras_organizaciones";
     public static String[] colNames = {

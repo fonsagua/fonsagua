@@ -4,11 +4,11 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
 
-import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
+import es.icarto.gvsig.navtableforms.BasicAbstractSubForm;
 import es.icarto.gvsig.navtableforms.ormlite.domainvalidator.listeners.DependentComboboxHandler;
 
 @SuppressWarnings("serial")
-public class DatosConsumoForm extends AbstractSubForm {
+public class DatosConsumoForm extends BasicAbstractSubForm {
 
     public static final String NAME = "datos_consumo";
     public static String[] colNames = { "cod_comunidad", "tipo_distribucion",
