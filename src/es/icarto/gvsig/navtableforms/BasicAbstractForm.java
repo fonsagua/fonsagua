@@ -1,12 +1,7 @@
 package es.icarto.gvsig.navtableforms;
 
-import java.io.File;
 import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiManager.WindowInfo;

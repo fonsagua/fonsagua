@@ -1,9 +1,9 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.fuentes;
 
-import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
+import es.icarto.gvsig.navtableforms.BasicAbstractSubForm;
 
 @SuppressWarnings("serial")
-public class AforosForm extends AbstractSubForm {
+public class AforosForm extends BasicAbstractSubForm {
 
     public static final String NAME = "aforos";
     public static String[] colNames = {

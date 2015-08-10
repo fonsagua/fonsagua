@@ -34,8 +34,7 @@ public class ComunidadesForm extends BasicAbstractForm {
     public ComunidadesForm(FLyrVect layer) {
 	super(layer);
 	addTableHandler(new AlphanumericTableHandler(AdescosForm.NAME,
-		getWidgetComponents(), PKFIELD, AdescosForm.colNames,
-		AdescosForm.colAlias));
+		getWidgetComponents(), PKFIELD, AdescosForm.colNames));
 	addTableHandler(new AlphanumericTableHandler(EntrevistadoresForm.NAME,
 		getWidgetComponents(), PKFIELD, EntrevistadoresForm.colNames,
 		EntrevistadoresForm.colAlias));

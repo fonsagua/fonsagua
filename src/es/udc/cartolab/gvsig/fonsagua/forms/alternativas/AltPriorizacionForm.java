@@ -1,9 +1,9 @@
 package es.udc.cartolab.gvsig.fonsagua.forms.alternativas;
 
-import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
+import es.icarto.gvsig.navtableforms.BasicAbstractSubForm;
 
 @SuppressWarnings("serial")
-public class AltPriorizacionForm extends AbstractSubForm {
+public class AltPriorizacionForm extends BasicAbstractSubForm {
 
     public static final String NAME = "priorizacion_alternativa";
     public static final String[] colNames = { "cod_alternativa",

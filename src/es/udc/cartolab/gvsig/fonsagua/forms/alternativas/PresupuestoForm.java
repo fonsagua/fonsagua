@@ -12,13 +12,13 @@ import java.util.Map;
 
 import javax.swing.JTextField;
 
-import es.icarto.gvsig.navtableforms.gui.tables.AbstractSubForm;
+import es.icarto.gvsig.navtableforms.BasicAbstractSubForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
 import es.udc.cartolab.gvsig.navtable.format.DoubleFormatNT;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 @SuppressWarnings("serial")
-public class PresupuestoForm extends AbstractSubForm implements KeyListener,
+public class PresupuestoForm extends BasicAbstractSubForm implements KeyListener,
 	FocusListener {
 
     public static final String NAME = "presupuesto";
