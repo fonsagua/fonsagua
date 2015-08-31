@@ -38,8 +38,11 @@ public class NewAlternativeExtension extends Extension {
 	CADListenerManager.removeEndGeometryListener(KEY_NAME);
 	CADListenerManager.addEndGeometryListener(KEY_NAME, listener);
 
-	new StartEditing().startEditing(view, layer);
+	if (!layer.isEditing()) {
+	    new StartEditing().startEditing(view, layer);
+	}
 
+	CADExtension.initFocus();
 	CADExtension.setCADTool(AreaCADTool.AREA_ACTION_COMMAND, true);
 
     }
