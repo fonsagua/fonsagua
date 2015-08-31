@@ -370,9 +370,8 @@ public class PredesignDialog extends JPanel implements SingletonWindow,
 		&& (((Item) tuberia).getValue() > 0)) {
 	    Double aux = nf.parse(caudal_bombeo).doubleValue()
 		    / 1000
-		    / (Math.pow(
-			    (Math.PI * (((Item) tuberia)).getValue() / 2 / 1000),
-			    2));
+		    / (Math.PI *
+		    Math.pow((((Item) tuberia)).getValue() / 2 / 1000, 2));
 	    ((JTextField) widgets.get(widgetName)).setText(String.format(
 		    "%.2f", aux));
 	} else {
