@@ -298,7 +298,7 @@ FOR EACH ROW BEGIN
 	UPDATE gest_comercial SET pct_a_no_contabilizada = NULL WHERE gid = NEW.gid;
 	UPDATE gest_comercial SET pct_a_no_contabilizada = a_no_contabilizada * 100 / produccion WHERE gid = NEW.gid AND a_no_contabilizada IS NOT NULL;
 
-	UPDATE gest_comercial SET pct_a_no_contabilizada = NULL WHERE gid = NEW.gid;
+	UPDATE gest_comercial SET micromedicion = NULL WHERE gid = NEW.gid;
 	UPDATE gest_comercial SET micromedicion = con_medidor * 100 / acometidas WHERE gid = NEW.gid AND con_medidor IS NOT NULL AND acometidas IS NOT NULL AND acometidas > 0;
 END;
 
@@ -312,7 +312,7 @@ FOR EACH ROW BEGIN
 	UPDATE gest_comercial SET pct_a_no_contabilizada = NULL WHERE gid = NEW.gid;
 	UPDATE gest_comercial SET pct_a_no_contabilizada = a_no_contabilizada * 100 / produccion WHERE gid = NEW.gid AND a_no_contabilizada IS NOT NULL;
 
-	UPDATE gest_comercial SET pct_a_no_contabilizada = NULL WHERE gid = NEW.gid;
+	UPDATE gest_comercial SET micromedicion = NULL WHERE gid = NEW.gid;
 	UPDATE gest_comercial SET micromedicion = con_medidor * 100 / acometidas WHERE gid = NEW.gid AND con_medidor IS NOT NULL AND acometidas IS NOT NULL AND acometidas > 0;
 END;
 
