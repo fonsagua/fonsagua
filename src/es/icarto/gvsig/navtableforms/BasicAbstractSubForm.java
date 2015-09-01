@@ -22,4 +22,10 @@ public abstract class BasicAbstractSubForm extends AbstractSubForm {
 	}
     }
 
+    @Override
+    protected String getMetadataPath() {
+	return this.getClass().getClassLoader()
+		.getResource("metadata/" + getBasicName() + "_metadata.xml").getPath();
+    }
+
 }
