@@ -542,7 +542,7 @@ CREATE TABLE tipo_construccion (
 INSERT INTO tipo_construccion (item) SELECT
        (' ') UNION SELECT
        ('Ladrillo') UNION SELECT
-       ('Fibrocemento') UNION SELECT
+       ('Ferrocemento') UNION SELECT
        ('Concreto');
 
 
