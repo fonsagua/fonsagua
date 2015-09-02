@@ -213,8 +213,7 @@ INSERT INTO origen_aguas (item) SELECT
        (' ') UNION SELECT
        ('Manantial') UNION SELECT
        ('Río') UNION SELECT
-       ('Pozo') UNION SELECT
-       ('Anda');
+       ('Pozo');
 
 
 CREATE TABLE ag_gris_calle (
