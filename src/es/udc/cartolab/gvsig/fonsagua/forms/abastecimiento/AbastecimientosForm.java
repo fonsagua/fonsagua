@@ -44,8 +44,7 @@ public class AbastecimientosForm extends BasicAbstractForm {
 		getWidgetComponents(), PKFIELD, GestComercialForm.colNames,
 		GestComercialForm.colAlias));
 	addTableHandler(new AlphanumericTableHandler(GestFinancieraForm.NAME,
-		getWidgetComponents(), PKFIELD, GestFinancieraForm.colNames,
-		GestFinancieraForm.colAlias));
+		getWidgetComponents(), PKFIELD, GestFinancieraForm.colNames));
 	addTableHandler(new AlphanumericTableHandler(EvaluacionForm.NAME,
 		getWidgetComponents(), PKFIELD, EvaluacionForm.colNames,
 		EvaluacionForm.colAlias));
