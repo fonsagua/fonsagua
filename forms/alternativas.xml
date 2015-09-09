@@ -108,7 +108,7 @@
                       </at>
                       <at name="componentclass">com.jeta.forms.gui.form.FormComponent</at>
                      </super>
-                     <at name="id">embedded.571647011</at>
+                     <at name="id">embedded.1172422847</at>
                      <at name="rowspecs">CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:8DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:8DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:8DLU:NONE,CENTER:3DLU:NONE,CENTER:DEFAULT:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE</at>
                      <at name="colspecs">FILL:1DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:DEFAULT:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:6DLU:NONE,FILL:3DLU:NONE,FILL:6DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE</at>
                      <at name="components">
@@ -419,7 +419,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.comunidades.dd</at>
+                              <at name="name">i18n.comunidades_implicadas.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -895,7 +895,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.n_centros_educ.dd</at>
+                              <at name="name">i18n.n_cent_educativos.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -962,7 +962,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.n_centros_salud.dd</at>
+                              <at name="name">i18n.n_cent_salud.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -1029,7 +1029,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.n_otros_cent.dd</at>
+                              <at name="name">i18n.n_cent_otros.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -1096,7 +1096,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.dot_cent.1.dd</at>
+                              <at name="name">i18n.dot_cent_educativos.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -1163,7 +1163,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.dot_cent.2.dd</at>
+                              <at name="name">i18n.dot_cent_salud.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -1230,7 +1230,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.dot_cent.3.dd</at>
+                              <at name="name">i18n.dot_cent_otros.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -1923,7 +1923,7 @@
                                </object>
                               </at>
                               <at name="width">565</at>
-                              <at name="name">i18n.oferta_fuentes.dd</at>
+                              <at name="name">i18n.fuentes_implicadas.dd</at>
                               <at name="titleColor" object="color">0,50,150</at>
                               <at name="border">
                                <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
@@ -2429,7 +2429,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.dem_activ_econ.dd.html</at>
+                              <at name="name">i18n.dem_econ.dd.html</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -2496,7 +2496,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.dem_total.dd</at>
+                              <at name="name">i18n.demanda.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -2564,7 +2564,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.caudal_total.dd.html</at>
+                              <at name="name">i18n.caudal_fuentes.dd.html</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -3020,7 +3020,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.dot_sect_prim.dd.html</at>
+                              <at name="name">i18n.dot_sec_primario.dd.html</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -3088,7 +3088,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.dot_sect_terc.dd.html</at>
+                              <at name="name">i18n.dot_sec_terciario.dd.html</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -3156,7 +3156,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.dot_sect_sec.dd.html</at>
+                              <at name="name">i18n.dot_sec_secundario.dd.html</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -3663,7 +3663,7 @@
                       </at>
                       <at name="componentclass">com.jeta.forms.gui.form.FormComponent</at>
                      </super>
-                     <at name="id">embedded.1517314673</at>
+                     <at name="id">embedded.690677910</at>
                      <at name="rowspecs">CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:6DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE</at>
                      <at name="colspecs">FILL:1DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:6DLU:NONE,FILL:3DLU:NONE,FILL:6DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE</at>
                      <at name="components">
@@ -4161,7 +4161,7 @@
                                </object>
                               </at>
                               <at name="width">209</at>
-                              <at name="name">i18n.fuentes_embalses.dd</at>
+                              <at name="name">i18n.alt_fuentes_embalses.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -4307,7 +4307,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.depositos.dd</at>
+                              <at name="name">i18n.alt_depositos.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -4453,7 +4453,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.tuberias.dd</at>
+                              <at name="name">i18n.alt_tuberias.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -4599,7 +4599,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.bombeos.dd</at>
+                              <at name="name">i18n.alt_bombeos.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -4745,7 +4745,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.conexiones.dd</at>
+                              <at name="name">i18n.alt_conexiones.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -4891,7 +4891,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.n_acometidas.dd</at>
+                              <at name="name">i18n.n_acomedidas.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -5074,7 +5074,7 @@
                                </object>
                               </at>
                               <at name="width">565</at>
-                              <at name="name">i18n.comentarios_altern.dd</at>
+                              <at name="name">i18n.coment_alternativa.dd</at>
                               <at name="titleColor" object="color">0,50,150</at>
                               <at name="border">
                                <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
@@ -5828,7 +5828,7 @@
                       </at>
                       <at name="componentclass">com.jeta.forms.gui.form.FormComponent</at>
                      </super>
-                     <at name="id">embedded.2011237907</at>
+                     <at name="id">embedded.1651426055</at>
                      <at name="rowspecs">CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:6DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:12DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE,CENTER:3DLU:NONE</at>
                      <at name="colspecs">FILL:1DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:6DLU:NONE,FILL:3DLU:NONE,FILL:6DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:9DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE,FILL:3DLU:NONE</at>
                      <at name="components">
@@ -6031,7 +6031,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.tipo_saneamiento</at>
+                              <at name="name">i18n.tipo_saneamiento.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -6326,7 +6326,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.n_trampa_agua.dd</at>
+                              <at name="name">i18n.trat_trampa.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -6393,7 +6393,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.n_biofiltros.dd</at>
+                              <at name="name">i18n.trat_biofiltros.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -6460,7 +6460,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.n_otros.dd</at>
+                              <at name="name">i18n.trat_otros.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -6527,7 +6527,7 @@
                                </object>
                               </at>
                               <at name="width">108</at>
-                              <at name="name">i18n.tipo_otros.dd</at>
+                              <at name="name">i18n.coment_otros.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -6712,7 +6712,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.n_fosa_simple.dd</at>
+                              <at name="name">i18n.let_hoyo.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -6779,7 +6779,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.n_fosa_septica.dd</at>
+                              <at name="name">i18n.let_septica.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -6846,7 +6846,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.n_cierre_hidraulico.dd</at>
+                              <at name="name">i18n.let_hidraulica.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -6913,7 +6913,7 @@
                                </object>
                               </at>
                               <at name="width">124</at>
-                              <at name="name">i18n.n_aboneras.dd</at>
+                              <at name="name">i18n.let_abonera.dd</at>
                               <at name="fill">
                                <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
                                 <at name="name">fill</at>
@@ -7584,7 +7584,7 @@
                                </object>
                               </at>
                               <at name="width">565</at>
-                              <at name="name">i18n.comentarios_saneam.dd</at>
+                              <at name="name">i18n.coment_saneamiento.dd</at>
                               <at name="titleColor" object="color">0,50,150</at>
                               <at name="border">
                                <object classname="com.jeta.forms.store.properties.CompoundBorderProperty">
@@ -9809,7 +9809,7 @@
              </object>
             </at>
             <at name="width">134</at>
-            <at name="name">i18n.aldea.dd</at>
+            <at name="name">i18n.canton.dd</at>
             <at name="fill">
              <object classname="com.jeta.forms.store.properties.effects.PaintProperty">
               <at name="name">fill</at>
