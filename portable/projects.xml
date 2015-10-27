@@ -37,12 +37,10 @@
 		extGPE-gvSIG,
 		extAddEventTheme,
 		extExpressionField,
-		extGeoreferencing,
 		extTableExport,
 		extTableImport,
 		org.gvsig.copypastegeom,
-		extDerivedGeometries,
-		org.gvsig.installer.app.extension
+		extDerivedGeometries
 	"/>
 
 	<property name="custom-projects" value="
