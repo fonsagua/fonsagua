@@ -105,7 +105,7 @@ public class OpenAlternativeExtension extends OpenAbstractExtension {
 	TankExtension.setExternalEnability(validAlternative);
 	ValveExtension.setExternalEnability(validAlternative);
 
-	SourceExtension.setExternalEnability(true);
+	SourceExtension.setExternalEnability((code !=null));
     }
 
     public static boolean getValidAlternative() {
