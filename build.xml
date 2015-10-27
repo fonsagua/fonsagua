@@ -45,8 +45,8 @@
 		<copy todir="${dist}/forms">
 			<fileset dir="forms" includes="*" excludes="*.jfrm"/>
 		</copy>
-		<copy todir="${dist}/metadata">
-	 		<fileset dir="metadata" includes="*" />
+		<copy todir="${dist}/rules">
+	 		<fileset dir="rules" includes="*" />
 		</copy>
 		<copy todir="${dist}/i18n">
 	 		<fileset dir="i18n" includes="*" />
