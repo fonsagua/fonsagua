@@ -29,8 +29,8 @@ public class OpenAllAlternativesExtension extends OpenAbstractExtension {
 	    removeGroupAlternative(view);
 	    loadGroupAlternative(view, "");
 	    zoomToLayer(view, FonsaguaConstants.departamentosTable);
-	    OpenAlternativeExtension.setValidAlternative(false);
 	    OpenAlternativeExtension.setCode((String) null);
+	    OpenAlternativeExtension.setValidAlternative(false);
 	} catch (Exception e) {
 	    NotificationManager.addError(
 		    "Error desconocido cargando las capas", e);

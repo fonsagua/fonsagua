@@ -1,10 +1,13 @@
 package es.udc.cartolab.gvsig.fonsagua.config;
 
+import java.sql.Types;
+import java.text.ParseException;
 import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
 
 import com.hardcode.gdbms.driver.exceptions.ReadDriverException;
 import com.hardcode.gdbms.engine.values.Value;
-import com.hardcode.gdbms.engine.values.ValueFactory;
 import com.iver.andami.PluginServices;
 import com.iver.cit.gvsig.CADExtension;
 import com.iver.cit.gvsig.EditionManager;
@@ -20,8 +23,12 @@ import es.udc.cartolab.gvsig.epanet.exceptions.ExternalError;
 import es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.navtable.ToggleEditing;
+import es.udc.cartolab.gvsig.navtable.format.ValueFactoryNT;
 
 public class FonsaguaEndGeometryListener implements EndGeometryListener {
+    
+    private static final Logger logger = Logger
+	    .getLogger(FonsaguaEndGeometryListener.class);
 
     @Override
     public void endGeometry(FLayer layer, String cadToolKey) {
@@ -42,13 +49,14 @@ public class FonsaguaEndGeometryListener implements EndGeometryListener {
 		Value[] attributes = iRowEdited.getAttributes();
 		int idx = lv.getRecordset().getFieldIndexByName(
 			AlternativasForm.PKFIELD);
-		attributes[idx] = ValueFactory
-			.createValue(OpenAlternativeExtension.getCode());
+		attributes[idx] = ValueFactoryNT.createValueByType(OpenAlternativeExtension.getCode(), Types.VARCHAR);
 		iRowEdited.setAttributes(attributes);
 
 		lv.getRecordset().removeSelectionListener(lyrEd);
 	    } catch (ReadDriverException e) {
-		e.printStackTrace();
+		logger.error(e.getStackTrace(), e);
+	    } catch (ParseException e) {
+		logger.error(e.getStackTrace(), e);
 	    }
 	    try {
 		new ToggleEditing().stopEditing(layer, false);
