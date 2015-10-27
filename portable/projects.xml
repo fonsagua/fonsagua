@@ -1,100 +1,64 @@
 <project name="fonsagua-projects">
 
-	<!-- Removed
-		extOracleSpatial,
-		libArcIMS,
-		extArcims,
-		gvsig-bindings,
-		extSDE,
-		appCatalogAndGazetteerClient,
-		extCatalogAndGazetteer,
-		extCenterViewToPoint,
-		org.gvsig.chartlegend,
-		extTableSummarize,
-		extSelectionTools,
-		extQuickInfo,
-		extHyperlink,
-		extQuickPrint,
-		extLayerLoadingOrder,
-		org.gvsig.installer.app.extension
-		binaries
-		org.gvsig.consecutivenumber,
-	-->
 
 	<!-- libSpatialite must be compiled after libFMap -->
+
 	<property name="gvSIG_dist_projects_on_main_svn" value="
 		libExceptions,
 		libInternationalization,
 		libIverUtiles,
 		libUIComponent,
 		_fwAndami,
-		libGeoUtils,
 		libCorePlugin,
 		libProjection,
 		libRaster,
-		libDXF,
 		libDriverManager,
 		libRemoteServices,
 		libGDBMS,
 		libFMap,
 		libSpatialite,
+		appgvSIG,
+		extRasterTools-SE,
+		extScripting,
+		libJCRS,
+		extJCRS,
+		extSymbology,
+		extJDBC,
+		extCAD,
+		extIconThemeBase,
+		libDwg,
+		extDwg,
+		extGeoProcessing,
+		extGeoprocessingExtensions,
 		libGPE,
 		libGPE-XML,
 		libGPE-GML,
 		libGPE-KML,
-		appgvSIG,
-		libJCRS,
-		extJCRS,
-		libTopology,
-		libDwg,
-		extDwg,
-		extSymbology,
-		extRasterTools-SE,
-		extAddEventTheme,
-		extJDBC,
-		extCAD,
 		extGPE-gvSIG,
-		extDataLocator,
-		extGeoProcessing,
-		extGeoprocessingExtensions,
-		extGeoreferencing,
-		extScripting,
-		extAnnotations,
+		extAddEventTheme,
 		extExpressionField,
-		extWCS,
-		extWFS2,
-		extWMS,
-		extIconThemeBase,
-		extProjectBackup,
-		extDerivedGeometries,
-		extI18n,
-		extHelp,
+		extGeoreferencing,
+		extTableExport,
 		extTableImport,
-		extTableExport
-	"/>
-	
-	<property name="gvSIG_dist_projects_on_other_svn" value="
 		org.gvsig.copypastegeom,
-		org.gvsig.selectduplicates,
-		org.gvsig.newgeoprocess,
-		es.icarto.gvsig.commons,
-		extNavTable
+		extDerivedGeometries,
+		org.gvsig.installer.app.extension
 	"/>
-	
+
 	<property name="custom-projects" value="
+		es.icarto.gvsig.commons,
+		extGPX,
+		extNavTable,
 		extDBConnection,
 		extELLE,
 		extCopyFeatures,
 		extNavTableForms,
-		extTOCExtra,
 		gvsig-epanet,
-		jgpx,
 		fonsagua
 	"/>
-		
+
 	<property name="gvSIG_dist" value="
 		${gvSIG_dist_projects_on_main_svn},
-		${gvSIG_dist_projects_on_other_svn},
 		${custom-projects}
 	"/>
 
