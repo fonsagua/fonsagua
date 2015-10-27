@@ -1,0 +1,9 @@
+<AndamiProperties>
+	<ApplicationImages>
+		<SplashImages>
+			<Splash path="theme/splash.png" timer="10000" x="270" y="240" fontsize="18" color="80,170,240"/>
+		</SplashImages>
+		<Icon path="theme/icon.png"/>
+	</ApplicationImages>
+	<ApplicationName value="gvSIG-Fonsagua"/>
+</AndamiProperties>
