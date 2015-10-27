@@ -192,7 +192,11 @@ CREATE TABLE alt_fuentes (
        q_calculo NUMERIC(12,2),
        altura NUMERIC(12,2),
        presion NUMERIC(12,2),
-       altura_total NUMERIC(12,2)
+       altura_total NUMERIC(12,2),
+       cota NUMERIC(12,2),
+       profundidad_pozo NUMERIC(12,2),
+       margen_fondo NUMERIC(12,2),
+       nivel_dinamico NUMERIC(12,2)
 
 );
 

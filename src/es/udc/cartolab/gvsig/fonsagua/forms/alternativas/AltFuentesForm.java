@@ -16,6 +16,8 @@ public class AltFuentesForm extends BasicAbstractForm {
     };
     public AltFuentesForm(FLyrVect layer) {
 	super(layer);
+	addCalculation(new AlturaCalculation(this));
+	addCalculation(new NivelDinamicoCalculation(this));
     }
 
     @Override
