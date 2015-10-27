@@ -97,7 +97,7 @@
 
 
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenGeneralExtension" active="true">
-			<tool-bar name="fonsagua" position="29">
+			<tool-bar name="fonsagua_toolbar" position="29">
 				<action-tool icon="open_general" tooltip="open_general" action-command="open_general"
 					position="1" />
 			</tool-bar>
@@ -107,7 +107,7 @@
 		</extension>
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenAllAlternativesExtension" active="true">
-			<tool-bar name="fonsagua" position="29"> 
+			<tool-bar name="fonsagua_toolbar" position="29"> 
 				<action-tool icon="open_all_alternatives" tooltip="open_all_alternatives" action-command="open_all_alternatives"
 					position="2" />
 			</tool-bar>
@@ -119,14 +119,14 @@
 		
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormsExtension" active="true">
-			<tool-bar name="fonsagua" position="29"> 
+			<tool-bar name="fonsagua_toolbar" position="29"> 
 				<action-tool icon="forms-icon" tooltip="open_form" action-command=""
 					position="4" />
 			</tool-bar>
 		</extension>
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.FormPointExtension" active="true">
-			<tool-bar name="fonsagua" position="29"> 
+			<tool-bar name="fonsagua_toolbar" position="29"> 
 				<selectable-tool icon="form-point" tooltip="form-point" action-command="" 
 					position="5" />
 			</tool-bar>
@@ -135,7 +135,7 @@
 		
 			
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.NewAlternativeExtension" active="true">
-			<tool-bar name="fonsagua" position="29"> 
+			<tool-bar name="fonsagua_toolbar" position="29"> 
 				<action-tool icon="new_alternative" tooltip="new_alternative" action-command="new_alternative"
 					position="7" />
 			</tool-bar>
@@ -145,7 +145,7 @@
 		</extension>
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.OpenAlternativeExtension" active="true">
-			<tool-bar name="fonsagua" position="29"> 
+			<tool-bar name="fonsagua_toolbar" position="29"> 
 				<action-tool icon="open_alternative" tooltip="open_alternative" action-command="open_alternative"
 					position="8" />
 			</tool-bar>
@@ -155,7 +155,7 @@
 		</extension>
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.AlternativePriorExtension" active="true">
-			<tool-bar name="fonsagua" position="29"> 
+			<tool-bar name="fonsagua_toolbar" position="29"> 
 				<action-tool icon="alternative_prior" tooltip="priorization" action-command="alternative_prior"
 					position="9" />
 			</tool-bar>
@@ -165,7 +165,7 @@
         </extension> 
 				
         <extension class-name="es.udc.cartolab.gvsig.fonsagua.AlternativePreferencesExtension" active="true">
-        	<tool-bar name="fonsagua2" position="36"> 
+        	<tool-bar name="fonsagua2_toolbar" position="36"> 
         		<action-tool icon="alternative_preferences" tooltip="alternative_preferences" action-command="alternative_preferences"
 					position="1" />
 			</tool-bar>
@@ -175,7 +175,7 @@
         </extension>
         
         <extension class-name="es.udc.cartolab.gvsig.fonsagua.PredesignExtension" active="true">
-        	<tool-bar name="fonsagua2" position="36"> 
+        	<tool-bar name="fonsagua2_toolbar" position="36"> 
         		<action-tool icon="predesign" tooltip="predesign" action-command="predesign"
         		position="2" />
         	</tool-bar>
@@ -185,7 +185,7 @@
         </extension>
         
         <extension class-name="es.udc.cartolab.gvsig.fonsagua.AlternativeBudgetExtension" active="true">
-			<tool-bar name="fonsagua2" position="36"> 
+			<tool-bar name="fonsagua2_toolbar" position="36"> 
 				<action-tool icon="alternative_budget" tooltip="alternative_budget" action-command="alternative_budget"
         			position="3" />
         	</tool-bar>
@@ -195,7 +195,7 @@
         </extension>
         
         <extension class-name="es.udc.cartolab.gvsig.fonsagua.GenerateCommunityReportExtension" active="true">
-       		<tool-bar name="fonsagua2" position="36"> 
+       		<tool-bar name="fonsagua2_toolbar" position="36"> 
         		<action-tool icon="generate_community_report" tooltip="community_report_tooltip" action-command="generate_community_report"
         		position="4" />
         	</tool-bar>
@@ -205,7 +205,7 @@
 		</extension>
         
         <extension class-name="es.udc.cartolab.gvsig.fonsagua.GenerateAlternativeReportExtension" active="true">
-        	<tool-bar name="fonsagua2" position="36"> 
+        	<tool-bar name="fonsagua2_toolbar" position="36"> 
         		<action-tool icon="generate_alternative_report" tooltip="alternative_report_tooltip" action-command="generate_alternative_report"
         		position="5" />
         	</tool-bar>	
@@ -215,7 +215,7 @@
 		</extension>
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.AlternativeBudgetReportExtension" active="true">
-        	<tool-bar name="fonsagua2" position="36"> 
+        	<tool-bar name="fonsagua2_toolbar" position="36"> 
         		<action-tool icon="alternative_budget_report" tooltip="alternative_budget_report_tooltip" action-command="alternative_budget_report"
         		position="6" />
         	</tool-bar>	
@@ -226,7 +226,7 @@
 	
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.AutoFormsExtension" active="true">
-			<tool-bar name="fonsagua3" position="5000"> 
+			<tool-bar name="fonsagua3_toolbar" position="5000"> 
 				<selectable-tool icon="auto-forms" tooltip="enable_auto_forms"
 					action-command="auto-forms" position="110" name="auto-forms" />
 			</tool-bar>
@@ -234,7 +234,7 @@
 
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.EmptyExtension" active="true">
 		<!-- Workaround to allow activate and deactivate the autoforms extensions button -->
-			<tool-bar name="fonsagua3" position="5000">
+			<tool-bar name="fonsagua3_toolbar" position="5000">
 				<selectable-tool icon="auto-forms" tooltip="disable_auto_forms" 
 				action-command="empty" position="110" name="auto-forms" />
 			</tool-bar>
