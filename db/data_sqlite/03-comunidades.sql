@@ -371,7 +371,7 @@ CREATE TABLE entrevistados (
        nombre VARCHAR,
        cargo VARCHAR,
        telefono VARCHAR,
-       fecha Date
+       fecha VARCHAR
 
 );
 
