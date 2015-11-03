@@ -188,17 +188,17 @@ CREATE TABLE comunidades (
        pend_media FLOAT,
        pend_elevada FLOAT,
        veg_residencial VARCHAR(5) DEFAULT 'false',
-       veg_res_sup FLOAT,
        veg_industrial VARCHAR(5) DEFAULT 'false',
-       veg_ind_sup FLOAT,
        veg_agricola VARCHAR(5) DEFAULT 'false',
-       veg_agr_tip VARCHAR
-	       REFERENCES veg_agr_tip(item),
-       veg_agr_sup FLOAT,
        veg_forestal VARCHAR(5) DEFAULT 'false',
-       veg_for_tip VARCHAR
-	       REFERENCES veg_for_tip(item),
+       veg_coniferas NUMERIC(10,3),
+       veg_latifoliado NUMERIC(10,3),
+       veg_mixto NUMERIC(10,3),
        veg_for_sup FLOAT,
+       veg_mangle NUMERIC(10,3),
+       veg_matorral NUMERIC(10,3),
+       veg_pasto NUMERIC(10,3),
+       veg_otros NUMERIC(10,3),
        deforestacion VARCHAR
 	       REFERENCES deforestacion(item),
        avance_fagricola VARCHAR

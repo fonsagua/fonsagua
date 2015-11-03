@@ -125,32 +125,6 @@ INSERT INTO acceso_inv (item) SELECT
        ('Intransitable');
 
 
-CREATE TABLE veg_agr_tip (
-       item VARCHAR
-	       PRIMARY KEY
-
-);
-
-INSERT INTO veg_agr_tip (item) SELECT
-       (' ') UNION SELECT
-       ('Pastizal') UNION SELECT
-       ('Cultivos');
-
-
-CREATE TABLE veg_for_tip (
-       item VARCHAR
-	       PRIMARY KEY
-
-);
-
-INSERT INTO veg_for_tip (item) SELECT
-       (' ') UNION SELECT
-       ('Raleado') UNION SELECT
-       ('Frondoso') UNION SELECT
-       ('Matorral') UNION SELECT
-       ('Mangle');
-
-
 CREATE TABLE deforestacion (
        item VARCHAR
 	       PRIMARY KEY
