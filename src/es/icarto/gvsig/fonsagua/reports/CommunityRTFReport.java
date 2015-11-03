@@ -365,26 +365,35 @@ public class CommunityRTFReport extends RTFReport {
 	    data.clear();
 	    data.add(new ReportListItem("Residencial: ", rs
 		    .getString("veg_residencial"),
-		    RtfReportStyles.normalBoldStyle));
-	    data.add(new ReportListItem("Superficie (%): ", rs
-		    .getString("veg_res_sup"), RtfReportStyles.normalStyle));
+		    RtfReportStyles.normalStyle));
 	    data.add(new ReportListItem("Industrial: ", rs
 		    .getString("veg_industrial"),
-		    RtfReportStyles.normalBoldStyle));
-	    data.add(new ReportListItem("Superficie (%): ", rs
-		    .getString("veg_ind_sup"), RtfReportStyles.normalStyle));
+		    RtfReportStyles.normalStyle));
 	    data.add(new ReportListItem("Agrícola: ", rs.getString("veg_agricola"),
-		    RtfReportStyles.normalBoldStyle));
-	    data.add(new ReportListItem("Tipo de vegetación: ", rs
-		    .getString("veg_agr_tip"), RtfReportStyles.normalStyle));
-	    data.add(new ReportListItem("Superficie (%): ", rs
-		    .getString("veg_agr_sup"), RtfReportStyles.normalStyle));
+		    RtfReportStyles.normalStyle));
 	    data.add(new ReportListItem("Forestal: ", rs.getString("veg_forestal"),
-		    RtfReportStyles.normalBoldStyle));
-	    data.add(new ReportListItem("Tipo de vegetación: ", rs
-		    .getString("veg_for_tip"), RtfReportStyles.normalStyle));
-	    data.add(new ReportListItem("Superficie (%): ", rs
+		    RtfReportStyles.normalStyle));
+	    ReportUtils.writeDataList(document, data);
+	    
+	    RtfReportStyles.writeHeading4(document, "1.5.2.2 Tipo de vegetación");
+	    data.clear();
+	    data.add(new ReportListItem("Boque Coníferas: ", rs
+		    .getString("veg_coniferas"), RtfReportStyles.normalStyle));
+	    data.add(new ReportListItem("Bosque Latifoliado: ", rs
+		    .getString("veg_latifoliado"), RtfReportStyles.normalStyle));
+	    data.add(new ReportListItem("Bosque Mixto: ", rs
+		    .getString("veg_mixto"), RtfReportStyles.normalStyle));
+	    data.add(new ReportListItem("Cultivos: ", rs
 		    .getString("veg_for_sup"), RtfReportStyles.normalStyle));
+	    data.add(new ReportListItem("Mangle: ", rs
+		    .getString("veg_mangle"), RtfReportStyles.normalStyle));
+	    data.add(new ReportListItem("Matorral: ", rs
+		    .getString("veg_matorral"), RtfReportStyles.normalStyle));
+	    data.add(new ReportListItem("Pasto: ", rs
+		    .getString("veg_pasto"), RtfReportStyles.normalStyle));
+	    data.add(new ReportListItem("Otros: ", rs
+		    .getString("veg_otros"), RtfReportStyles.normalStyle));
+	    
 	    ReportUtils.writeDataList(document, data);
 
 	    RtfReportStyles.writeHeading4(document, "1.5.2.2 Características");
