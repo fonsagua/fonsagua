@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiManager.IWindow;
@@ -28,6 +29,9 @@ public class ShowCroquisListener extends BaseCroquisListener {
 	try {
 	    @SuppressWarnings("serial")
 	    class CroquisWindow extends JPanel implements IWindow {
+		public CroquisWindow() {
+		    super(new BorderLayout());
+		}
 
 		@Override
 		public WindowInfo getWindowInfo() {
@@ -58,7 +62,7 @@ public class ShowCroquisListener extends BaseCroquisListener {
 		Image image = ImageIO.read(is);
 		JLabel label = new JLabel(new ImageIcon(image));
 		CroquisWindow panel = new CroquisWindow();
-		panel.add(label, BorderLayout.CENTER);
+		panel.add(new JScrollPane(label), BorderLayout.CENTER);
 		PluginServices.getMDIManager().addWindow(panel);
 	    }
 	} catch (SQLException e1) {
