@@ -754,13 +754,12 @@ public class CommunityRTFReport extends RTFReport {
     private void writeSection2_3(ResultSet rs, ArrayList<ReportListItem> data)
 	    throws SQLException, DocumentException {
 	RtfReportStyles.writeHeading3(document, "2.3.1 Valoración");
-	ValoracionSistemaForm.colNames[0] = "b.cod_comunidad";
-	ValoracionSistemaForm.colNames[1] = "b.cod_abastecimiento";
+	String[] valSistemaColNames = ReportUtils.cloneArray(ValoracionSistemaForm.colNames);
 
 	ReportUtils.writeTable(document, ValoracionSistemaForm.colAlias,
 		ReportDAO.getDataOfElementOfAbastecimientoByCommunity(
 			ValoracionSistemaForm.NAME,
-			ValoracionSistemaForm.colNames, pkValue));
+			valSistemaColNames, pkValue));
 
 	Paragraph attribute = new Paragraph(
 		"Comentarios sobre la calidad del agua: ",
@@ -779,9 +778,9 @@ public class CommunityRTFReport extends RTFReport {
 		"2.4.1 Datos de la Junta de Agua");
 	String[] juntasColAlias = ReportUtils.addAliasToArray(
 		JuntasAguaForm.colAlias, "Cod. Abast.");
-	JuntasAguaForm.colNames[JuntasAguaForm.colNames.length - 1] = "n_mujeres";
 	String[] juntasColNames = ReportUtils.addAliasToArray(
 		JuntasAguaForm.colNames, "cod_abastecimiento");
+	juntasColNames[JuntasAguaForm.colNames.length - 1] = "n_mujeres";
 	ReportUtils.writeTable(document, juntasColAlias, ReportDAO
 		.getDataOfElementOfAbastecimientoByCommunity(
 			JuntasAguaForm.NAME, juntasColNames, pkValue));

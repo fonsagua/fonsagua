@@ -139,4 +139,12 @@ public class ReportUtils {
 	newColAlias[newColAlias.length - 1] = newAlias;
 	return newColAlias;
     }
+
+    public static String[] cloneArray(String[] colNames) {
+	String[] cloned = new String[colNames.length];
+	for (int i=0; i<colNames.length; i++) {
+	    cloned[i] = new String(colNames[i]);
+	}
+	return cloned;
+    }
 }
