@@ -63,7 +63,7 @@ public class AlternativasForm extends BasicAbstractForm {
 	fuentesImplicadas = (JTable) formBody
 		.getComponentByName("fuentes_implicadas");
 	fuentesImplicadasListener = new MyListener(
-		new SelectFuentesForAlternativeDialog(4));
+		new SelectFuentesForAlternativeDialog(5));
 	fuentesImplicadas.addMouseListener(fuentesImplicadasListener);
 	fuentesImplicadas.getTableHeader().setReorderingAllowed(false);
 

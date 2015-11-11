@@ -30,13 +30,51 @@ public class DatabaseDirectAccessQueries {
 
 	// This query contains a FULL OUTER JOIN made manually by two left joins
 	// so it can work in SQLite
-	String query = "SELECT fuentes.fuente AS \"Fuente\", fuentes.tipo_fuente AS \"Tipo fuente\", fuentes.aforo AS \"Aforo\", fuentes.q_ecologico AS \"Q eco (l/s)\", (SELECT q_usar FROM fonsagua.fuentes_implicadas WHERE fuente = fuentes.fuente) AS \"Q usar (l/s)\" FROM ( SELECT fuente, tipo_fuente, COALESCE(aforo.aforo,0) AS aforo,  CASE WHEN tipo_fuente IN ('Manantial', 'Punto rio') THEN COALESCE(aforo.aforo,0) * (SELECT coef_q_ecologico FROM fonsagua.preferencias_disenho WHERE cod_alternativa = '####') ELSE NULL END AS q_ecologico FROM fonsagua.fuentes AS fuente JOIN fonsagua.alternativas AS alt ON st_intersects(alt.geom, fuente.geom) LEFT JOIN (select cod_fuente, min(aforo) as aforo from fonsagua.aforos group by cod_fuente) AS aforo ON fuente.cod_fuente = aforo.cod_fuente WHERE alt.cod_alternativa = '####' UNION ALL SELECT fuente, tipo_fuente, COALESCE(aforo.aforo,0) AS aforo,  CASE WHEN tipo_fuente IN ('Manantial', 'Punto rio') THEN COALESCE(aforo.aforo,0) * (SELECT coef_q_ecologico FROM fonsagua.preferencias_disenho WHERE cod_alternativa = '####') ELSE NULL END AS q_ecologico FROM (select cod_fuente, min(aforo) as aforo from fonsagua.aforos group by cod_fuente) AS aforo LEFT JOIN fonsagua.fuentes AS fuente ON fuente.cod_fuente = aforo.cod_fuente JOIN fonsagua.alternativas AS alt ON st_intersects(alt.geom, fuente.geom) WHERE alt.cod_alternativa = '####' AND fuente.cod_fuente IS NULL UNION SELECT fuente, tipo_fuente_alternativa AS tipo_fuente, aforo, q_ecologico FROM fonsagua.alt_fuentes WHERE cod_alternativa = '####' AND existencia_elemento <> 'Existente' UNION SELECT embalse, 'Embalse', aforo, NULL FROM fonsagua.alt_embalses WHERE cod_alternativa = '####' AND existencia_elemento <> 'Existente' ) AS fuentes;";
+	String query = "SELECT \n" +
+		"    fuentes.cod_fuente AS \"Código\",\n" +
+		"    fuentes.fuente AS \"Fuente\",\n" +
+		"    fuentes.tipo_fuente AS \"Tipo fuente\",\n" +
+		"    fuentes.aforo AS \"Aforo\",\n" +
+		"    fuentes.q_ecologico AS \"Q eco (l/s)\",\n" +
+		"    (SELECT q_usar FROM fonsagua.fuentes_implicadas WHERE cod_fuente = fuentes.cod_fuente AND cod_alternativa = '####') AS \"Q usar (l/s)\"\n" +
+		"FROM (\n" +
+		"    SELECT \n" +
+		"        fuente,\n" +
+		"        fuente.cod_fuente,\n" +
+		"        tipo_fuente,\n" +
+		"        COALESCE(aforo.aforo,0) AS aforo,\n" +
+		"        CASE WHEN tipo_fuente IN ('Manantial', 'Punto rio') THEN COALESCE(aforo.aforo,0) * (SELECT coef_q_ecologico FROM fonsagua.preferencias_disenho WHERE cod_alternativa = '####') ELSE NULL END AS q_ecologico\n" +
+		"    FROM\n" +
+		"        fonsagua.fuentes AS fuente\n" +
+		"    JOIN\n" +
+		"        fonsagua.alternativas AS alt ON st_intersects(alt.geom, fuente.geom)\n" +
+		"    LEFT JOIN\n" +
+		"        (select cod_fuente, min(aforo) as aforo from fonsagua.aforos group by cod_fuente) AS aforo ON fuente.cod_fuente = aforo.cod_fuente WHERE alt.cod_alternativa = '####'\n" +
+		"UNION ALL\n" +
+		"    SELECT\n" +
+		"        fuente,\n" +
+		"        fuente.cod_fuente,\n" +
+		"        tipo_fuente,\n" +
+		"        COALESCE(aforo.aforo,0) AS aforo,\n" +
+		"        CASE WHEN tipo_fuente IN ('Manantial', 'Punto rio') THEN COALESCE(aforo.aforo,0) * (SELECT coef_q_ecologico FROM fonsagua.preferencias_disenho WHERE cod_alternativa = '####') ELSE NULL END AS q_ecologico\n" +
+		"    FROM\n" +
+		"        (select cod_fuente, min(aforo) as aforo from fonsagua.aforos group by cod_fuente) AS aforo\n" +
+		"    LEFT JOIN\n" +
+		"        fonsagua.fuentes AS fuente ON fuente.cod_fuente = aforo.cod_fuente\n" +
+		"    JOIN\n" +
+		"        fonsagua.alternativas AS alt ON st_intersects(alt.geom, fuente.geom)\n" +
+		"    WHERE\n" +
+		"        alt.cod_alternativa = '####' AND fuente.cod_fuente IS NULL\n" +
+		"UNION\n" +
+		"    SELECT fuente, cod_fuente, tipo_fuente_alternativa AS tipo_fuente, aforo, q_ecologico FROM fonsagua.alt_fuentes WHERE cod_alternativa = '####' AND existencia_elemento <> 'Existente'\n" +
+		"UNION\n" +
+		"    SELECT embalse, cod_embalse, 'Embalse', aforo, NULL FROM fonsagua.alt_embalses WHERE cod_alternativa = '####' AND existencia_elemento <> 'Existente'\n" +
+		") AS fuentes;";
 	ResultSet rs = convertAndExecuteQuery(codAlt, query);
 
-	DefaultTableModel modelo = new OnlyOneColumnEditable(4);
+	DefaultTableModel modelo = new OnlyOneColumnEditable(5);
 	ConversorResultSetADefaultTableModel.rellena(rs, modelo);
 	return modelo;
-
     }
 
     public static DefaultTableModel getComunitiesIntersectingAlternative(
@@ -146,6 +184,7 @@ public class DatabaseDirectAccessQueries {
 	    values[3] = model.getValueAt(row, 2);
 	    values[4] = model.getValueAt(row, 3);
 	    values[5] = model.getValueAt(row, 4);
+	    values[6] = model.getValueAt(row, 5);
 	    session.insertRow(FonsaguaConstants.dataSchema,
 		    FonsaguaConstants.FUENTES_IMPLICADAS, columnNames, values);
 	}

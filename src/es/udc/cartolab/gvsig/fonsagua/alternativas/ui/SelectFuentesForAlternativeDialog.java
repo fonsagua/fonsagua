@@ -41,13 +41,13 @@ public class SelectFuentesForAlternativeDialog extends
 	    }
 	    e.printStackTrace();
 	}
-	table.getColumnModel().getColumn(2)
-		.setCellRenderer(new DecimalFormatRenderer());
 	table.getColumnModel().getColumn(3)
 		.setCellRenderer(new DecimalFormatRenderer());
 	table.getColumnModel().getColumn(4)
 		.setCellRenderer(new DecimalFormatRenderer());
-	table.getColumnModel().getColumn(4)
+	table.getColumnModel().getColumn(5)
+		.setCellRenderer(new DecimalFormatRenderer());
+	table.getColumnModel().getColumn(5)
 		.setCellEditor(new DecimalCellEditor());
     }
 
@@ -66,7 +66,7 @@ public class SelectFuentesForAlternativeDialog extends
 		    getEditableColumnIdx() - 1);
 
 	    if (editableColumnValue.doubleValue() > 0) {
-		String tipo_fuente = (String) org.getValueAt(row, 1);
+		String tipo_fuente = (String) org.getValueAt(row, 2);
 		if (tipo_fuente.equals("Punto rio")
 			|| tipo_fuente.equals("Manantial")) {
 		    if (baseValue.compareTo(editableColumnValue) >= 0) {
