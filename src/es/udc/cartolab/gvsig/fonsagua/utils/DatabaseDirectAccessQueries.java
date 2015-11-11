@@ -63,7 +63,7 @@ public class DatabaseDirectAccessQueries {
 
     public static DefaultTableModel getFuentesImplicadasTable(String codAlt)
 	    throws SQLException {
-	String query = "SELECT fuente AS \"Fuente\", tipo_fuente AS \"Tipo fuente\", aforo AS \"Aforo\", q_ecol AS \"Q eco (l/s)\", q_usar AS \"Q usar (l/s)\" FROM fonsagua.fuentes_implicadas WHERE cod_alternativa = '####'";
+	String query = "SELECT cod_fuente AS \"Código\", fuente AS \"Fuente\", tipo_fuente AS \"Tipo fuente\", aforo AS \"Aforo\", q_ecol AS \"Q eco (l/s)\", q_usar AS \"Q usar (l/s)\" FROM fonsagua.fuentes_implicadas WHERE cod_alternativa = '####'";
 	ResultSet rs = convertAndExecuteQuery(codAlt, query);
 
 	DefaultTableModel model = new NotEditableTableModel();

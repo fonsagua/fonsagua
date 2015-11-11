@@ -141,12 +141,14 @@ CREATE TABLE fuentes_implicadas (
        	       ON DELETE CASCADE
 	       ON UPDATE CASCADE,
        fuente VARCHAR,
+       cod_fuente VARCHAR NOT NULL,
        tipo_fuente VARCHAR
 	       NOT NULL
 	       REFERENCES tipo_fuente(item),
        aforo NUMERIC(12,2),
        q_ecol NUMERIC(12,2),
-       q_usar NUMERIC(12,2)
+       q_usar NUMERIC(12,2),
+       UNIQUE (cod_alternativa, cod_fuente)
 
 );
 
