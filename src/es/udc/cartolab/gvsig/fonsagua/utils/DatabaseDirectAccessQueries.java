@@ -52,6 +52,15 @@ public class DatabaseDirectAccessQueries {
 	return modelo;
     }
 
+    public static boolean codeExistsInAltFuentes(String codAlt,
+	    String codFuente, String gid) throws SQLException {
+	String query = String
+		.format("SELECT gid, cod_fuente FROM alt_fuentes WHERE cod_alternativa = '####' AND cod_fuente = '%s' AND gid != %s",
+			codFuente, gid);
+	ResultSet rs = convertAndExecuteQuery(codAlt, query);
+	return rs.next();
+    }
+
     public static DefaultTableModel getFuentesImplicadasTable(String codAlt)
 	    throws SQLException {
 	String query = "SELECT fuente AS \"Fuente\", tipo_fuente AS \"Tipo fuente\", aforo AS \"Aforo\", q_ecol AS \"Q eco (l/s)\", q_usar AS \"Q usar (l/s)\" FROM fonsagua.fuentes_implicadas WHERE cod_alternativa = '####'";
@@ -124,7 +133,8 @@ public class DatabaseDirectAccessQueries {
 	session.deleteRows(FonsaguaConstants.dataSchema,
 		FonsaguaConstants.FUENTES_IMPLICADAS, whereClause);
 
-	final String[] columnNames = { "cod_alternativa", "fuente",
+	final String[] columnNames = { "cod_alternativa", "cod_fuente",
+		"fuente",
 		"tipo_fuente", "aforo", "q_ecol", "q_usar" };
 
 	Object[] values;

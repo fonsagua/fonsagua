@@ -181,7 +181,7 @@ CREATE TABLE alt_fuentes (
 	       ON DELETE CASCADE
 	       ON UPDATE CASCADE,
        fuente VARCHAR,
-       cod_fuente VARCHAR,
+       cod_fuente VARCHAR NOT NULL,
        tipo_fuente_alternativa VARCHAR
 	       REFERENCES tipo_fuente_alternativa(item),
        existencia_elemento VARCHAR
@@ -196,7 +196,8 @@ CREATE TABLE alt_fuentes (
        cota NUMERIC(12,2),
        profundidad_pozo NUMERIC(12,2),
        margen_fondo NUMERIC(12,2),
-       nivel_dinamico NUMERIC(12,2)
+       nivel_dinamico NUMERIC(12,2),
+       UNIQUE (cod_alternativa, cod_fuente)
 
 );
 
