@@ -20,6 +20,9 @@ import com.iver.andami.ui.mdiManager.WindowInfo;
 
 public class ShowCroquisListener extends BaseCroquisListener {
 
+    public static final int IMAGE_WIDTH = 750;
+    public static final int IMAGE_HEIGHT = 550;
+
     public ShowCroquisListener(String comunidadId) {
 	super(comunidadId);
     }
@@ -41,8 +44,8 @@ public class ShowCroquisListener extends BaseCroquisListener {
 				| WindowInfo.RESIZABLE | WindowInfo.PALETTE
 				| WindowInfo.MAXIMIZABLE);
 			viewInfo.setTitle("Croquis Comunidad");
-			viewInfo.setWidth(800);
-			viewInfo.setHeight(600);
+			viewInfo.setWidth(IMAGE_WIDTH + 50);
+			viewInfo.setHeight(IMAGE_HEIGHT + 50);
 		    }
 		    return viewInfo;
 		}
