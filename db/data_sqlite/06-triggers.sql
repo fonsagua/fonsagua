@@ -141,19 +141,18 @@ FOR EACH ROW BEGIN
 	UPDATE comunidades SET tot_ancianos = IFNULL(n_ancianos, 0) + IFNULL(n_ancianas, 0) WHERE cod_comunidad = NEW.cod_comunidad;
 
 	UPDATE comunidades SET f_c_propia = IFNULL(cp_granos, 0) + IFNULL(cp_ganaderia, 0) + IFNULL(cp_frutales, 0) + IFNULL(cp_otros, 0) WHERE cod_comunidad = NEW.cod_comunidad;
-
 	UPDATE comunidades SET f_c_ajena = IFNULL(ca_cafe, 0) + IFNULL(ca_canha, 0) + IFNULL(ca_frutales, 0) + IFNULL(ca_otros, 0) WHERE cod_comunidad = NEW.cod_comunidad;
-
-	UPDATE comunidades SET f_c_ajena = IFNULL(ca_cafe, 0) + IFNULL(ca_canha, 0) + IFNULL(ca_frutales, 0) + IFNULL(ca_otros, 0) WHERE cod_comunidad = NEW.cod_comunidad;
-
 	UPDATE comunidades SET f_primario = NULL WHERE cod_comunidad = NEW.cod_comunidad;
-	UPDATE comunidades SET f_primario = (IFNULL(f_c_propia, 0) + IFNULL(f_c_ajena, 0)) * 100 / n_familias WHERE cod_comunidad = NEW.cod_comunidad AND n_familias IS NOT NULL AND n_familias > 0;
+	UPDATE comunidades SET f_primario = round( (IFNULL(f_c_propia, 0) + IFNULL(f_c_ajena, 0)) * 100.0 / n_familias , 1 ) WHERE cod_comunidad = NEW.cod_comunidad AND n_familias IS NOT NULL AND n_familias > 0;
 
+	UPDATE comunidades SET f_industria = IFNULL(f_indus_for, 0) + IFNULL(f_indus_inf, 0) WHERE cod_comunidad = NEW.cod_comunidad;
+	UPDATE comunidades SET f_construccion = IFNULL(f_const_for, 0) + IFNULL(f_const_inf, 0) WHERE cod_comunidad = NEW.cod_comunidad;
 	UPDATE comunidades SET f_secundario = NULL WHERE cod_comunidad = NEW.cod_comunidad;
-	UPDATE comunidades SET f_secundario = (IFNULL(f_industria, 0) + IFNULL(f_construccion, 0) + IFNULL(f_maquila, 0) + IFNULL(f_otros_sec, 0)) * 100 / n_familias WHERE cod_comunidad = NEW.cod_comunidad AND n_familias IS NOT NULL AND n_familias > 0;
+	UPDATE comunidades SET f_secundario = round ( (IFNULL(f_industria, 0) + IFNULL(f_construccion, 0) + IFNULL(f_maquila, 0) + IFNULL(f_otros_sec, 0)) * 100.0 / n_familias , 1 ) WHERE cod_comunidad = NEW.cod_comunidad AND n_familias IS NOT NULL AND n_familias > 0;
 
+	UPDATE comunidades SET f_comercio = IFNULL(f_comer_for, 0) + IFNULL(f_comer_inf, 0) WHERE cod_comunidad = NEW.cod_comunidad;
 	UPDATE comunidades SET f_terciario = NULL WHERE cod_comunidad = NEW.cod_comunidad;
-	UPDATE comunidades SET f_terciario = (IFNULL(f_comercio, 0) + IFNULL(f_otros_ter, 0)) * 100 / n_familias WHERE cod_comunidad = NEW.cod_comunidad AND n_familias IS NOT NULL AND n_familias > 0;
+	UPDATE comunidades SET f_terciario = round( (IFNULL(f_comercio, 0) + IFNULL(f_otros_ter, 0)) * 100.0 / n_familias , 1 ) WHERE cod_comunidad = NEW.cod_comunidad AND n_familias IS NOT NULL AND n_familias > 0;
 
 	UPDATE comunidades SET area_cultivada = 0 WHERE cod_comunidad = NEW.cod_comunidad;
 	UPDATE comunidades SET area_cultivada = area_cultivada + (f_propietarias * prop_area_cultivada) WHERE cod_comunidad = NEW.cod_comunidad AND f_propietarias IS NOT NULL AND prop_area_cultivada IS NOT NULL;
@@ -168,11 +167,7 @@ FOR EACH ROW BEGIN
 
 	UPDATE comunidades SET tot_ll_sin_abast = IFNULL(aba_ll_nacimiento, 0) + IFNULL(aba_ll_rio, 0) + IFNULL(aba_ll_quebrada, 0) + IFNULL(aba_ll_lluvia, 0) + IFNULL(aba_ll_broquel, 0) + IFNULL(aba_ll_broquel_com, 0) + IFNULL(aba_ll_compra, 0) + IFNULL(aba_ll_vecino, 0) WHERE cod_comunidad = NEW.cod_comunidad;
 
-	UPDATE comunidades SET f_industria = IFNULL(f_indus_for, 0) + IFNULL(f_indus_inf, 0) WHERE cod_comunidad = NEW.cod_comunidad;
 
-	UPDATE comunidades SET f_construccion = IFNULL(f_const_for, 0) + IFNULL(f_const_inf, 0) WHERE cod_comunidad = NEW.cod_comunidad;
-
-	UPDATE comunidades SET f_comercio = IFNULL(f_comer_for, 0) + IFNULL(f_comer_inf, 0) WHERE cod_comunidad = NEW.cod_comunidad;
 END;
 
 
@@ -204,19 +199,18 @@ FOR EACH ROW BEGIN
 	UPDATE comunidades SET tot_ancianos = IFNULL(n_ancianos, 0) + IFNULL(n_ancianas, 0) WHERE cod_comunidad = NEW.cod_comunidad;
 
 	UPDATE comunidades SET f_c_propia = IFNULL(cp_granos, 0) + IFNULL(cp_ganaderia, 0) + IFNULL(cp_frutales, 0) + IFNULL(cp_otros, 0) WHERE cod_comunidad = NEW.cod_comunidad;
-
 	UPDATE comunidades SET f_c_ajena = IFNULL(ca_cafe, 0) + IFNULL(ca_canha, 0) + IFNULL(ca_frutales, 0) + IFNULL(ca_otros, 0) WHERE cod_comunidad = NEW.cod_comunidad;
-
-	UPDATE comunidades SET f_c_ajena = IFNULL(ca_cafe, 0) + IFNULL(ca_canha, 0) + IFNULL(ca_frutales, 0) + IFNULL(ca_otros, 0) WHERE cod_comunidad = NEW.cod_comunidad;
-
 	UPDATE comunidades SET f_primario = NULL WHERE cod_comunidad = NEW.cod_comunidad;
-	UPDATE comunidades SET f_primario = (IFNULL(f_c_propia, 0) + IFNULL(f_c_ajena, 0)) * 100 / n_familias WHERE cod_comunidad = NEW.cod_comunidad AND n_familias IS NOT NULL AND n_familias > 0;
+	UPDATE comunidades SET f_primario = round ( (IFNULL(f_c_propia, 0) + IFNULL(f_c_ajena, 0)) * 100.0 / n_familias , 1 ) WHERE cod_comunidad = NEW.cod_comunidad AND n_familias IS NOT NULL AND n_familias > 0;
 
+	UPDATE comunidades SET f_industria = IFNULL(f_indus_for, 0) + IFNULL(f_indus_inf, 0) WHERE cod_comunidad = NEW.cod_comunidad;
+	UPDATE comunidades SET f_construccion = IFNULL(f_const_for, 0) + IFNULL(f_const_inf, 0) WHERE cod_comunidad = NEW.cod_comunidad;
 	UPDATE comunidades SET f_secundario = NULL WHERE cod_comunidad = NEW.cod_comunidad;
-	UPDATE comunidades SET f_secundario = (IFNULL(f_industria, 0) + IFNULL(f_construccion, 0) + IFNULL(f_maquila, 0) + IFNULL(f_otros_sec, 0)) * 100 / n_familias WHERE cod_comunidad = NEW.cod_comunidad AND n_familias IS NOT NULL AND n_familias > 0;
+	UPDATE comunidades SET f_secundario = round ( (IFNULL(f_industria, 0) + IFNULL(f_construccion, 0) + IFNULL(f_maquila, 0) + IFNULL(f_otros_sec, 0)) * 100.0 / n_familias , 1 ) WHERE cod_comunidad = NEW.cod_comunidad AND n_familias IS NOT NULL AND n_familias > 0;
 
+	UPDATE comunidades SET f_comercio = IFNULL(f_comer_for, 0) + IFNULL(f_comer_inf, 0) WHERE cod_comunidad = NEW.cod_comunidad;
 	UPDATE comunidades SET f_terciario = NULL WHERE cod_comunidad = NEW.cod_comunidad;
-	UPDATE comunidades SET f_terciario = (IFNULL(f_comercio, 0) + IFNULL(f_otros_ter, 0)) * 100 / n_familias WHERE cod_comunidad = NEW.cod_comunidad AND n_familias IS NOT NULL AND n_familias > 0;
+	UPDATE comunidades SET f_terciario = round ( (IFNULL(f_comercio, 0) + IFNULL(f_otros_ter, 0)) * 100.0 / n_familias , 1 ) WHERE cod_comunidad = NEW.cod_comunidad AND n_familias IS NOT NULL AND n_familias > 0;
 
 	UPDATE comunidades SET area_cultivada = 0 WHERE cod_comunidad = NEW.cod_comunidad;
 	UPDATE comunidades SET area_cultivada = area_cultivada + (f_propietarias * prop_area_cultivada) WHERE cod_comunidad = NEW.cod_comunidad AND f_propietarias IS NOT NULL AND prop_area_cultivada IS NOT NULL;
@@ -231,11 +225,6 @@ FOR EACH ROW BEGIN
 
 	UPDATE comunidades SET tot_ll_sin_abast = IFNULL(aba_ll_nacimiento, 0) + IFNULL(aba_ll_rio, 0) + IFNULL(aba_ll_quebrada, 0) + IFNULL(aba_ll_lluvia, 0) + IFNULL(aba_ll_broquel, 0) + IFNULL(aba_ll_broquel_com, 0) + IFNULL(aba_ll_compra, 0) + IFNULL(aba_ll_vecino, 0) WHERE cod_comunidad = NEW.cod_comunidad;
 
-	UPDATE comunidades SET f_industria = IFNULL(f_indus_for, 0) + IFNULL(f_indus_inf, 0) WHERE cod_comunidad = NEW.cod_comunidad;
-
-	UPDATE comunidades SET f_construccion = IFNULL(f_const_for, 0) + IFNULL(f_const_inf, 0) WHERE cod_comunidad = NEW.cod_comunidad;
-
-	UPDATE comunidades SET f_comercio = IFNULL(f_comer_for, 0) + IFNULL(f_comer_inf, 0) WHERE cod_comunidad = NEW.cod_comunidad;
 END;
 
 
