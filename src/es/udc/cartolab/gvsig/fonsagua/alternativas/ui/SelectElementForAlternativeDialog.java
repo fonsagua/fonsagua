@@ -1,5 +1,6 @@
 package es.udc.cartolab.gvsig.fonsagua.alternativas.ui;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -7,6 +8,7 @@ import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.HashMap;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,7 +25,7 @@ import es.udc.cartolab.gvsig.navtable.format.DoubleFormatNT;
 
 @SuppressWarnings("serial")
 public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
-	implements ActionListener {
+implements ActionListener {
 
     protected JTable table;
     protected DefaultTableModel model;
@@ -112,5 +114,15 @@ public abstract class SelectElementForAlternativeDialog extends AbstractIWindow
 
     public abstract void setAutomaticValue(IController layerController,
 	    HashMap<String, JComponent> widgets);
+
+    @Override
+    protected JButton getDefaultButton() {
+	return null;
+    }
+
+    @Override
+    protected Component getDefaultFocusComponent() {
+	return null;
+    }
 
 }

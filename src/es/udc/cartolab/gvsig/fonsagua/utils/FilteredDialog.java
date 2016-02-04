@@ -1,5 +1,6 @@
 package es.udc.cartolab.gvsig.fonsagua.utils;
 
+import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -8,6 +9,7 @@ import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
@@ -20,7 +22,7 @@ import es.icarto.gvsig.commons.gui.WidgetFactory;
 
 @SuppressWarnings("serial")
 public abstract class FilteredDialog extends AbstractIWindow implements
-	ActionListener {
+ActionListener {
     private final static Logger logger = Logger.getLogger(FilteredDialog.class);
 
     /*
@@ -184,6 +186,16 @@ public abstract class FilteredDialog extends AbstractIWindow implements
 	public String toString() {
 	    return description;
 	}
+    }
+
+    @Override
+    protected JButton getDefaultButton() {
+	return null;
+    }
+
+    @Override
+    protected Component getDefaultFocusComponent() {
+	return null;
     }
 
 }

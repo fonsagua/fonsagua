@@ -1,9 +1,11 @@
 package es.icarto.gvsig.fonsagua.reports.ui;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -22,12 +24,13 @@ public class CommunityChooserDialog extends AbstractIWindow implements
 	ActionListener {
 
     private JComboBox cb;
+    private final OkCancelPanel okPanel;
 
     public CommunityChooserDialog() {
 	super();
 	setWindowTitle(PluginServices.getText(this, "choose_community"));
 	addCommunityCB();
-	WidgetFactory.okCancelPanel(this, this, this);
+	okPanel = WidgetFactory.okCancelPanel(this, this, this);
     }
 
     private void addCommunityCB() {
@@ -55,6 +58,16 @@ public class CommunityChooserDialog extends AbstractIWindow implements
 	    }
 	}
 	PluginServices.getMDIManager().closeWindow(this);
+    }
+
+    @Override
+    protected JButton getDefaultButton() {
+	return okPanel.getOkButton();
+    }
+
+    @Override
+    protected Component getDefaultFocusComponent() {
+	return null;
     }
 
 }
