@@ -13,7 +13,7 @@ GVSIG_HOME=`dirname "$0"`
 cd "${GVSIG_HOME}"
 
 # Java home
-export JAVA_HOME="../jre/1.6.0_20"
+export JAVA_HOME="../jre"
 
 
 ###################################################################

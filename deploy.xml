@@ -18,13 +18,17 @@
 	<import file="../${this-folder}/portable/projects.xml" />
 
 	<!-- DON'T TOUCH BELOW THIS LINE -->
+	
+	<!-- Overrides source and target compile versions of appgvSIG/build.xml -->
+	<property name="JavaSourceVersion" value="1.6"/>
+	<property name="JavaTargetVersion" value="1.6"/>
 
 	<import file="../appgvSIG/build.xml"/>
 
 	<property name="base-lin" value="base-lin" />
 	<property name="base-win" value="base-win" />
-	<property name="base-win-path" value="${base-path}${base-win}.zip" />
-	<property name="base-lin-path" value="${base-path}${base-lin}.tgz" />
+	<property name="base-win-path" value="${base-path}${base-win}" />
+	<property name="base-lin-path" value="${base-path}${base-lin}" />
 
 	<target name="makePortables" depends="buildFromSource, makePortableLinux, makePortableWindows">
 	</target>
@@ -56,18 +60,12 @@
 	<target name="makePortableLinux" depends="buildFromSource">
 
 		<failIfAnyExists file1="/tmp/${name-lin}" file2="/tmp/${base-lin}" />
-
-		<!--  ant tar task does not preserve permissions, so we use native executable -->
-		<exec executable="tar" output="/dev/null" os="Linux" dir="/tmp">
-        	<arg value="-xz"/>
-        	<arg value="--preserve-permissions"/>
-        	<arg value="--preserve-order"/>
-        	<arg value="--file=${base-lin-path}"/>
-    	</exec>
-
-		<!-- Renames the folder to the final name of the portable -->
-		<move file="/tmp/${base-lin}" tofile="/tmp/${name-lin}" />
-
+		
+		<!-- copy ant task does not preserve permissions, so executable bit will be gone -->
+		<exec executable="cp">
+		    <arg line="-R ${base-lin-path} /tmp/${name-lin}"/>
+		</exec>
+		
 		<copy todir="/tmp/${name-lin}/cfg">
 			<fileset dir="${base-path}base-common/cfg/" />
 		</copy>
@@ -126,52 +124,51 @@
 	<target name="makePortableWindows" depends="buildFromSource">
 
 		<failIfAnyExists file1="/tmp/${name-win}" file2="/tmp/${base-win}" />
-
-		<unzip src="${base-win-path}" dest="/tmp"> </unzip>
-
-		<!-- Renames the folder to the final name of the portable -->
-		<move file="/tmp/${base-win}" tofile="/tmp/${name-win}"/>
+		
+		<copy todir="/tmp/${name-win}">
+			<fileset dir="${base-win-path}"/>
+		</copy>
 
 		<copy todir="/tmp/${name-win}/cfg">
-					<fileset dir="${base-path}base-common/cfg/" />
-				</copy>
+			<fileset dir="${base-path}base-common/cfg/" />
+		</copy>
 
-				<copy todir="/tmp/${name-win}/bin">
-					<fileset dir="${base-path}/base-common/bin/">
-						<include name="*" />
-					</fileset>
-				</copy>
+		<copy todir="/tmp/${name-win}/bin">
+			<fileset dir="${base-path}/base-common/bin/">
+				<include name="*" />
+			</fileset>
+		</copy>
 
-				<copy todir="/tmp/${name-win}/bin/theme">
-					<fileset dir="${andami}/theme/" />
-				</copy>
+		<copy todir="/tmp/${name-win}/bin/theme">
+			<fileset dir="${andami}/theme/" />
+		</copy>
 
-				<!-- Move to the portable version the extensions and the libs -->
-				<copy todir="/tmp/${name-win}/bin/" file="${andami}/andami.jar" flatten="yes"/>
+		<!-- Move to the portable version the extensions and the libs -->
+		<copy todir="/tmp/${name-win}/bin/" file="${andami}/andami.jar" flatten="yes"/>
 
-				<copy todir="/tmp/${name-win}/bin/lib">
-					<fileset dir="${andami}/lib/"/>
-				</copy>
+		<copy todir="/tmp/${name-win}/bin/lib">
+			<fileset dir="${andami}/lib/"/>
+		</copy>
 
-				<copy todir="/tmp/${name-win}/bin/gvSIG">
-					<fileset dir="${andami}/gvSIG/"/>
-				</copy>
+		<copy todir="/tmp/${name-win}/bin/gvSIG">
+			<fileset dir="${andami}/gvSIG/"/>
+		</copy>
 
-				<!-- NATIVAS -->
+		<!-- NATIVAS -->
 
-				<copy todir="/tmp/${name-win}/bin/">
-					<fileset dir="../binaries/w32">
-						<type type="file" />
-						<include name="*" />
-						<exclude name="build.xml" />
-					</fileset>
-				</copy>
+		<copy todir="/tmp/${name-win}/bin/">
+			<fileset dir="../binaries/w32">
+				<type type="file" />
+				<include name="*" />
+				<exclude name="build.xml" />
+			</fileset>
+		</copy>
 
-				<!-- Copies the custom files -->
-				<copy todir="/tmp/${name-win}/" overwrite="yes">
-					<fileset dir="${custom-portable-path}common" />
-					<fileset dir="${custom-portable-path}win" />
-				</copy>
+		<!-- Copies the custom files -->
+		<copy todir="/tmp/${name-win}/" overwrite="yes">
+			<fileset dir="${custom-portable-path}common" />
+			<fileset dir="${custom-portable-path}win" />
+		</copy>
 
 		<zip destfile="/tmp/${name-win}.zip" basedir="/tmp/${name-win}" />
 
@@ -186,7 +183,6 @@
 		<ant antfile="../appgvSIG/build.xml" target="buildNumber" inheritall="false" />
 
 		<!-- TODO:
-			This target compile for 1.5. Maybe we should use 1.6
 			Maybe "make-binary-distribution" should be used. That target makes: clean-all, build-number, build-all
 			We should thing about debug=on and debug-level
 		-->
