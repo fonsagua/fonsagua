@@ -13,7 +13,7 @@ for file in `ls ./data_sqlite/*.sql` ; do
     spatialite -bail $DB_PATH < $file
 done
 
-
+cartografia_base() {
 # departamentos
 ogr2ogr -append -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nlt MULTIPOLYGON -dsco SPATIALITE=YES $DB_PATH ./data_sqlite/datos/departamento/m1102vA001970_HN.shp -gt 65536 --config OGR_SQLITE_CACHE 512
 spatialite $DB_PATH "INSERT INTO departamentos SELECT ogc_fid, cod, depto, geometry from m1102vA001970_HN;"
@@ -46,9 +46,6 @@ sqlite3 $DB_PATH "DELETE FROM _map WHERE nombre_capa IN ('cabecera_municipal', '
 sqlite3 $DB_PATH "DELETE FROM _map_style WHERE nombre_capa IN ('cabecera_municipal', 'casas_cultura', 'cb_centros_educativos', 'cb_centros_salud', 'ciudades', 'cuencas', 'cb_fuentes', 'pozos', 'paises_limitrofes', 'resto_paises_mesoamerica', 'el_salvador', 'batimetria', 'areas_protegidas', 'bosques_pais');"
 
 
-# sqlite3 $DB_PATH "VACUUM;"
-# exit 1
-
 
 layer=carreteras
 ogr2ogr -append -progress -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nln $layer -nlt MULTILINESTRING $DB_PATH ./data_sqlite/datos/recortadas/${layer}.shp -dsco SPATIALITE=yes -gt 65536 --config OGR_SQLITE_CACHE 512
@@ -57,7 +54,9 @@ layer=curvas_nivel_10m
 ogr2ogr -append -progress -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nln $layer -nlt MULTILINESTRING $DB_PATH ./data_sqlite/datos/recortadas/${layer}.shp -dsco SPATIALITE=yes -gt 65536 --config OGR_SQLITE_CACHE 512
 
 layer=rios
-ogr2ogr -append -progress -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nln $layer -nlt MULTILINESTRING $DB_PATH ./data_sqlite/datos/recortadas/${layer}.shp -dsco SPATIALITE=yes -gt 65536 --config OGR_SQLITE_CACHE 512
+ogr2ogr -append -progress -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nln $layer -nlt MULTILINESTRING $DB_PATH ./data_sqlite/datos/recortadas/${layer}.shp -dsco SPATIALITE=yes -gt 65536 --config OGR_SQLITE_CACHE 512    
+}
+
 
 sqlite3 $DB_PATH "VACUUM;"
 
