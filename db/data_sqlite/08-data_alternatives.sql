@@ -51,6 +51,7 @@ CREATE TABLE alternativas (
 );
 
 SELECT addgeometrycolumn('alternativas', 'geom', 32616, 'MULTIPOLYGON', 2);
+SELECT CreateSpatialIndex('alternativas', 'geom');
 
 
 CREATE TABLE preferencias_disenho (
@@ -173,6 +174,7 @@ CREATE TABLE alt_embalses (
 );
 
 SELECT addgeometrycolumn('alt_embalses', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('alt_embalses', 'geom');
 
 
 CREATE TABLE alt_fuentes (
@@ -204,6 +206,7 @@ CREATE TABLE alt_fuentes (
 );
 
 SELECT addgeometrycolumn('alt_fuentes', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('alt_fuentes', 'geom');
 
 
 CREATE TABLE alt_depositos (
@@ -237,6 +240,7 @@ CREATE TABLE alt_depositos (
 );
 
 SELECT addgeometrycolumn('alt_depositos', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('alt_depositos', 'geom');
 
 
 CREATE TABLE alt_tuberias (
@@ -269,6 +273,7 @@ CREATE TABLE alt_tuberias (
 );
 
 SELECT addgeometrycolumn('alt_tuberias', 'geom', 32616, 'MULTILINESTRING', 2);
+SELECT CreateSpatialIndex('alt_tuberias', 'geom');
 
 
 CREATE TABLE alt_bombeos (
@@ -300,6 +305,7 @@ CREATE TABLE alt_bombeos (
 );
 
 SELECT addgeometrycolumn('alt_bombeos', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('alt_bombeos', 'geom');
 
 
 CREATE TABLE alt_conexiones (
@@ -321,6 +327,7 @@ CREATE TABLE alt_conexiones (
 );
 
 SELECT addgeometrycolumn('alt_conexiones', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('alt_conexiones', 'geom');
 
 
 CREATE TABLE alt_valvulas (
@@ -344,6 +351,7 @@ CREATE TABLE alt_valvulas (
 );
 
 SELECT addgeometrycolumn('alt_valvulas', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('alt_valvulas', 'geom');
 
 
 CREATE TABLE presupuesto (

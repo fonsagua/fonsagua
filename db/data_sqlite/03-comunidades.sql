@@ -322,6 +322,7 @@ CREATE TABLE comunidades (
 );
 
 SELECT addgeometrycolumn('comunidades', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('comunidades', 'geom');
 
 
 CREATE TABLE puntos_viviendas (
@@ -344,7 +345,7 @@ CREATE TABLE puntos_viviendas (
 );
 
 SELECT addgeometrycolumn('puntos_viviendas', 'geom', 32616, 'POINT', 2);
-
+SELECT CreateSpatialIndex('puntos_viviendas', 'geom');
 
 CREATE TABLE entrevistadores (
        gid INTEGER PRIMARY KEY,
@@ -499,6 +500,7 @@ CREATE TABLE areas_potenciales_riego (
 );
 
 SELECT addgeometrycolumn('areas_potenciales_riego', 'geom', 32616, 'MULTIPOLYGON', 2);
+SELECT CreateSpatialIndex('areas_potenciales_riego', 'geom');
 
 
 CREATE TABLE ganaderia (
@@ -563,6 +565,7 @@ CREATE TABLE centros_educativos (
 );
 
 SELECT addgeometrycolumn('centros_educativos', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('centros_educativos', 'geom');
 
 
 CREATE TABLE centros_salud (
@@ -583,6 +586,7 @@ CREATE TABLE centros_salud (
 );
 
 SELECT addgeometrycolumn('centros_salud', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('centros_salud', 'geom');
 
 
 CREATE TABLE otros_servicios (
@@ -606,6 +610,7 @@ CREATE TABLE otros_servicios (
 );
 
 SELECT addgeometrycolumn('otros_servicios', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('otros_servicios', 'geom');
 
 
 CREATE TABLE capacitaciones_riesgos (
@@ -642,6 +647,7 @@ CREATE TABLE amenazas (
 );
 
 SELECT addgeometrycolumn('amenazas', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('amenazas', 'geom');
 
 
 CREATE TABLE implicacion_comunidad (
@@ -732,6 +738,7 @@ CREATE TABLE abastecimientos (
 );
 
 SELECT addgeometrycolumn('abastecimientos', 'geom', 32616, 'MULTIPOLYGON', 2);
+SELECT CreateSpatialIndex('abastecimientos', 'geom');
 
 
 CREATE TABLE r_abastecimientos_comunidades (
@@ -818,6 +825,7 @@ CREATE TABLE fuentes_contaminacion (
 );
 
 SELECT addgeometrycolumn('fuentes_contaminacion', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('fuentes_contaminacion', 'geom');
 
 
 CREATE TABLE juntas_agua (
@@ -891,6 +899,7 @@ CREATE TABLE bombeos (
 );
 
 SELECT addgeometrycolumn('bombeos', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('bombeos', 'geom');
 
 
 CREATE TABLE cobertura (
@@ -938,6 +947,7 @@ CREATE TABLE captaciones (
 );
 
 SELECT addgeometrycolumn('captaciones', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('captaciones', 'geom');
 
 
 CREATE TABLE dep_intermedios (
@@ -971,6 +981,7 @@ CREATE TABLE dep_intermedios (
 );
 
 SELECT addgeometrycolumn('dep_intermedios', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('dep_intermedios', 'geom');
 
 
 CREATE TABLE dep_distribucion (
@@ -1002,6 +1013,7 @@ CREATE TABLE dep_distribucion (
 );
 
 SELECT addgeometrycolumn('dep_distribucion', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('dep_distribucion', 'geom');
 
 
 CREATE TABLE tuberias (
@@ -1032,6 +1044,7 @@ CREATE TABLE tuberias (
 );
 
 SELECT addgeometrycolumn('tuberias', 'geom', 32616, 'MULTILINESTRING', 2);
+SELECT CreateSpatialIndex('tuberias', 'geom');
 
 
 CREATE TABLE gest_comercial (
@@ -1156,6 +1169,7 @@ CREATE TABLE fuentes (
 );
 
 SELECT addgeometrycolumn('fuentes', 'geom', 32616, 'POINT', 2);
+SELECT CreateSpatialIndex('fuentes', 'geom');
 
 
 CREATE TABLE r_abastecimientos_fuentes (

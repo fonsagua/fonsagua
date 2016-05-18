@@ -5,6 +5,7 @@ CREATE TABLE departamentos (
 );
 
 SELECT addgeometrycolumn('departamentos', 'geom', 32616, 'MULTIPOLYGON', 2);
+SELECT CreateSpatialIndex('departamentos', 'geom');
 
 
 CREATE TABLE municipios (
@@ -14,6 +15,7 @@ CREATE TABLE municipios (
 );
 
 SELECT addgeometrycolumn('municipios', 'geom', 32616, 'MULTIPOLYGON', 2);
+SELECT CreateSpatialIndex('municipios', 'geom');
 
 
 CREATE TABLE cantones (
@@ -23,6 +25,6 @@ CREATE TABLE cantones (
 );
 
 SELECT addgeometrycolumn('cantones', 'geom', 32616, 'MULTIPOLYGON', 2);
-
+SELECT CreateSpatialIndex('cantones', 'geom');
 
 
