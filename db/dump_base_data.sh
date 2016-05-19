@@ -1,6 +1,7 @@
 #!/bin/sh
 
-TABLES='carreteras curvas_nivel_10m rios equipamientos puertos_aeropuertos caserios_comunidades areas_protegidas_2011 usos_suelo_2003 oceano honduras paises_limitrofes departamentos municipios cantones'
+TABLES='carreteras curvas_nivel_10m rios equipamientos puertos_aeropuertos caserios_comunidades areas_protegidas_2011 usos_suelo_2003 oceano paises_limitrofes departamentos municipios cantones'
+# honduras
 OUTFILE=/tmp/backup_base.sql
 
 echo 'BEGIN TRANSACTION;' > $OUTFILE
@@ -16,7 +17,7 @@ spatialite $1 "update caserios_comunidades set geometry=st_geomfromtext(astext(g
 spatialite $1 "update areas_protegidas_2011 set geometry=st_geomfromtext(astext(geometry), 32616);"
 spatialite $1 "update usos_suelo_2003 set geometry=st_geomfromtext(astext(geometry), 32616);"
 spatialite $1 "update geometry_columns set srid=32616 where f_table_name='oceano';update oceano set geometry=st_geomfromtext(astext(geometry), 32616);"
-spatialite $1 "update geometry_columns set srid=32616 where f_table_name='honduras';update honduras set geometry=st_geomfromtext(astext(geometry), 32616);"
+# spatialite $1 "update geometry_columns set srid=32616 where f_table_name='honduras';update honduras set geometry=st_geomfromtext(astext(geometry), 32616);"
 spatialite $1 "update paises_limitrofes set geometry=st_geomfromtext(astext(geometry), 32616);"
 
 
