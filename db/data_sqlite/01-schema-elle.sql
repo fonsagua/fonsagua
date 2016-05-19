@@ -1712,7 +1712,7 @@ INSERT INTO "_map_style" VALUES('aldeas','base','gvl','<?xml version="1.0" encod
 <xml-tag xmlns="http://www.gvsig.gva.es">
     <property key="className" value="com.iver.cit.gvsig.fmap.rendering.styling.labeling.AttrInTableLabelingStrategy"/>
     <property key="labelingStrategy" value="labelingStrategy"/>
-    <property key="TextField" value="nombre"/>
+    <property key="TextField" value="canton"/>
     <property key="fontSize" value="8"/>
     <property key="fontName" value="Arial"/>
     <property key="fontStyle" value="0"/>
@@ -1782,7 +1782,7 @@ INSERT INTO "_map_style" VALUES('municipios','base','gvl','<?xml version="1.0" e
 <xml-tag xmlns="http://www.gvsig.gva.es">
     <property key="className" value="com.iver.cit.gvsig.fmap.rendering.styling.labeling.AttrInTableLabelingStrategy"/>
     <property key="labelingStrategy" value="labelingStrategy"/>
-    <property key="TextField" value="nombre"/>
+    <property key="TextField" value="munic"/>
     <property key="fontSize" value="8"/>
     <property key="fontName" value="Arial"/>
     <property key="fontStyle" value="1"/>
