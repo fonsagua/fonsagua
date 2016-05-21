@@ -48,7 +48,8 @@ public class DemandVsOffert implements NodesChecker {
 	    } else if (node instanceof JunctionWrapper) {
 		if (nodeDemand < 0) {
 		    // TODO: Not a really good form to check if the node is a
-		    // Source
+		    // Source. A SourceWrapper class should be created to
+		    // annotate this kind of structures
 		    offert += Math.abs(nodeDemand);
 		} else {
 		    Value[] row = node.getFeature().getAttributes();
