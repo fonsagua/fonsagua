@@ -30,6 +30,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.comunidades.ValoracionSistemaForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.AforosForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.AnaliticasForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.fuentes.FuentesForm;
+import es.udc.cartolab.gvsig.fonsagua.utils.FormatUtils;
 
 public class CommunityRTFReport extends RTFReport {
 
@@ -54,7 +55,7 @@ public class CommunityRTFReport extends RTFReport {
     protected String getHeaderText() {
 	return "Informe de Diagnóstico Comunitario \n"
 		+ "Fecha de levantamiento: "
-		+ ReportUtils.getValueFormatted(ReportDAO
+		+ FormatUtils.getValueFormatted(ReportDAO
 			.getCommunityValueByColumnName("fecha", pkValue));
     }
 

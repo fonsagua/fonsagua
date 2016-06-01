@@ -153,11 +153,11 @@ public class DatabaseDirectAccessQueries {
 
 	while (rs.next()) {
 	    list.add(new String[] {
-		    ReportUtils.getValueFormatted(rs.getString(1)),
-		    ReportUtils.getValueFormatted(rs.getString(2)),
-		    ReportUtils.getValueFormatted(rs.getString(3)),
-		    ReportUtils.getValueFormatted(rs.getString(4)),
-		    ReportUtils.getValueFormatted(rs.getString(5)) });
+		    FormatUtils.getValueFormatted(rs.getString(1)),
+		    FormatUtils.getValueFormatted(rs.getString(2)),
+		    FormatUtils.getValueFormatted(rs.getString(3)),
+		    FormatUtils.getValueFormatted(rs.getString(4)),
+		    FormatUtils.getValueFormatted(rs.getString(5)) });
 	}
 	return list;
     }

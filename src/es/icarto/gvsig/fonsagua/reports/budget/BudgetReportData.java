@@ -14,6 +14,7 @@ import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AltFuentesForm;
 import es.udc.cartolab.gvsig.fonsagua.forms.alternativas.AlternativasForm;
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
 import es.udc.cartolab.gvsig.fonsagua.utils.FonsaguaConstants;
+import es.udc.cartolab.gvsig.fonsagua.utils.FormatUtils;
 import es.udc.cartolab.gvsig.users.utils.DBSession;
 
 public class BudgetReportData {
@@ -46,38 +47,38 @@ public class BudgetReportData {
 		new String[] { "cod_alternativa" }, false);
 
 	list.add(new String[] { "Tipo de actuación",
-		ReportUtils.getValueFormatted(table[0][0]) });
+		FormatUtils.getValueFormatted(table[0][0]) });
 	list.add(new String[] { "Tipo de distribución",
-		ReportUtils.getValueFormatted(table[0][1]) });
+		FormatUtils.getValueFormatted(table[0][1]) });
 	list.add(new String[] { "Tipo de sistema",
-		ReportUtils.getValueFormatted(table[0][2]) });
+		FormatUtils.getValueFormatted(table[0][2]) });
 	list.add(new String[] { "Demanda total(l/s)",
-		ReportUtils.getValueFormatted(table[0][3]) });
+		FormatUtils.getValueFormatted(table[0][3]) });
 	list.add(new String[] { "Número total de población implicada",
-		ReportUtils.getValueFormatted(table[0][4]) });
+		FormatUtils.getValueFormatted(table[0][4]) });
 	list.add(new String[] { "Número de centros de salud considerados",
-		ReportUtils.getValueFormatted(table[0][5]) });
+		FormatUtils.getValueFormatted(table[0][5]) });
 	list.add(new String[] { "Número de otros centros considerados",
-		ReportUtils.getValueFormatted(table[0][6]) });
+		FormatUtils.getValueFormatted(table[0][6]) });
 
 	list.add(new String[] { "Número de acometidas",
-		ReportUtils.getValueFormatted(table[0][7]) });
+		FormatUtils.getValueFormatted(table[0][7]) });
 	list.add(new String[] { "Nº de trampas de agua",
-		ReportUtils.getValueFormatted(table[0][8]) });
+		FormatUtils.getValueFormatted(table[0][8]) });
 	list.add(new String[] { "Nº de biofiltros",
-		ReportUtils.getValueFormatted(table[0][9]) });
+		FormatUtils.getValueFormatted(table[0][9]) });
 	list.add(new String[] { "Nº de otros tratamientos",
-		ReportUtils.getValueFormatted(table[0][10]) });
+		FormatUtils.getValueFormatted(table[0][10]) });
 	list.add(new String[] { "Otros (Tipo)",
-		ReportUtils.getValueFormatted(table[0][11]) });
+		FormatUtils.getValueFormatted(table[0][11]) });
 	list.add(new String[] { "Nº de letrinas de hoyo",
-		ReportUtils.getValueFormatted(table[0][12]) });
+		FormatUtils.getValueFormatted(table[0][12]) });
 	list.add(new String[] { "Nº de fosas sépticas",
-		ReportUtils.getValueFormatted(table[0][13]) });
+		FormatUtils.getValueFormatted(table[0][13]) });
 	list.add(new String[] { "Nº letrinas de cierre hidráulico",
-		ReportUtils.getValueFormatted(table[0][14]) });
+		FormatUtils.getValueFormatted(table[0][14]) });
 	list.add(new String[] { "Nº de letrinas aboneras",
-		ReportUtils.getValueFormatted(table[0][15]) });
+		FormatUtils.getValueFormatted(table[0][15]) });
 
 	list.add(new String[] { "Fuentes" });
 	list.add(new String[] { "Tipo de fuente", "Estado",
@@ -124,7 +125,7 @@ public class BudgetReportData {
 	    int minRows) {
 	for (String[] row : table) {
 	    for (int i = 0; i < row.length; i++) {
-		row[i] = ReportUtils.getValueFormatted(row[i]);
+		row[i] = FormatUtils.getValueFormatted(row[i]);
 	    }
 	    list.add(row);
 	}

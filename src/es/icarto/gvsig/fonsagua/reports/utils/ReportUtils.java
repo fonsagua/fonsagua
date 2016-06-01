@@ -1,13 +1,7 @@
 package es.icarto.gvsig.fonsagua.reports.utils;
 
 import java.awt.Color;
-import java.text.DateFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.Date;
-import java.util.Locale;
 
 import com.lowagie.text.BadElementException;
 import com.lowagie.text.Chunk;
@@ -20,9 +14,9 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.Table;
 import com.lowagie.text.rtf.table.RtfCell;
 
-public class ReportUtils {
+import es.udc.cartolab.gvsig.fonsagua.utils.FormatUtils;
 
-    private final static Locale loc = new Locale("es");
+public class ReportUtils {
 
     public static void writeDataList(Document document,
 	    Collection<ReportListItem> data) {
@@ -36,7 +30,7 @@ public class ReportUtils {
 	    Phrase phrase = new Phrase();
 	    phrase.add(new Chunk(reportData.getAttribute(), reportData
 		    .getStyle()));
-	    phrase.add(new Chunk(getValueFormatted(reportData.getValue()),
+	    phrase.add(new Chunk(FormatUtils.getValueFormatted(reportData.getValue()),
 		    RtfReportStyles.normalStyle));
 	    list.add(new ListItem(phrase));
 	}
@@ -70,7 +64,7 @@ public class ReportUtils {
 	    for (String[] row : data) {
 		for (String cell : row) {
 		    RtfCell valueCell = new RtfCell(
-			    new Phrase(getValueFormatted(cell),
+			    new Phrase(FormatUtils.getValueFormatted(cell),
 				    RtfReportStyles.tableStyle));
 		    valueCell.setHorizontalAlignment(Chunk.ALIGN_CENTER);
 		    table.addCell(valueCell);
@@ -83,52 +77,6 @@ public class ReportUtils {
 	} catch (DocumentException e) {
 	    e.printStackTrace();
 	}
-    }
-
-    public static String getValueFormatted(String value) {
-	if (value == null) {
-	    return "";
-	} else if (value.equalsIgnoreCase("t")) {
-	    return "Sí";
-	} else if (value.equalsIgnoreCase("f")) {
-	    return "No";
-	} else if (value.contains("-")) {
-	    return getDateFormatted(value);
-	} else if (value.contains(".")) {
-	    return getDoubleFormatted(value);
-	} else {
-	    return value;
-	}
-    }
-
-    private static String getDoubleFormatted(String doubleString) {
-	NumberFormat nf_in = NumberFormat.getNumberInstance(Locale.UK);
-	NumberFormat nf_out = NumberFormat.getNumberInstance(loc);
-	double doubleNumber;
-	String doubleFormatted = null;
-	try {
-	    doubleNumber = nf_in.parse(doubleString).doubleValue();
-	    nf_out.setMinimumFractionDigits(2);
-	    nf_out.setMaximumFractionDigits(2);
-	    doubleFormatted = nf_out.format(doubleNumber);
-	} catch (ParseException e) {
-	    return doubleString;
-	}
-	return doubleFormatted;
-
-    }
-
-    private static String getDateFormatted(String dateString) {
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-	String dateFormatted = null;
-	try {
-	    Date date = formatter.parse(dateString);
-	    DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, loc);
-	    dateFormatted = df.format(date);
-	} catch (ParseException e) {
-	    return dateString;
-	}
-	return dateFormatted;
     }
 
     public static String[] addAliasToArray(String[] colAlias, String newAlias) {
