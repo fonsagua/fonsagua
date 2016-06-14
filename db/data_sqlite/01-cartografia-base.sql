@@ -61,36 +61,6 @@ SELECT addgeometrycolumn('caserios_comunidades', 'geom', 32616, 'POINT', 2);
 SELECT CreateSpatialIndex('caserios_comunidades', 'geom');
 
 
-CREATE TABLE areas_protegidas_2011(
-gid INTEGER PRIMARY KEY,
-"NUMEROS" DOUBLE,
-"NOMBRE" TEXT,
-"CATEGORIA" TEXT,
-"DECRETO_NO" TEXT,
-"OBSERVACIO" TEXT,
-"AREA" DOUBLE,
-"PERIMETER" DOUBLE,
-"ACRES" DOUBLE,
-"Hectares" DOUBLE,
-"CUENCA" TEXT,
-"ENDFAUNA" TEXT,
-"ENDFLORA" TEXT,
-"ECOREGIÓN" TEXT,
-"ADMINISTRA" TEXT,
-"TIPO_ADMON" TEXT,
-"SP_PEXTINC" TEXT,
-"CATEG_UICN" TEXT,
-"ENFOQUE" TEXT,
-"DESCRIPCIO" TEXT,
-"PRES_INSTI" TEXT,
-"UBICACIÓN" TEXT,
-"Shape_Leng" DOUBLE,
-"Shape_Area" DOUBLE
-);
-SELECT addgeometrycolumn('areas_protegidas_2011', 'geom', 32616, 'MULTIPOLYGON', 2);
-SELECT CreateSpatialIndex('areas_protegidas_2011', 'geom');
-
-
 CREATE TABLE oceano(
 gid INTEGER PRIMARY KEY,
 "Nombre" TEXT

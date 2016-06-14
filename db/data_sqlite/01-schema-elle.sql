@@ -72,7 +72,6 @@ INSERT INTO "_map" VALUES('alternativas','alt_conexiones','alt_conexiones',37,'t
 INSERT INTO "_map" VALUES('alternativas','alt_tuberias','alt_tuberias',36,'true','49999.0',NULL,'Alternativa','fonsagua',NULL);
 INSERT INTO "_map" VALUES('general','fuentes','fuentes',27,'true','49999.0',NULL,'sistemas_abastecimiento','fonsagua',NULL);
 INSERT INTO "_map" VALUES('base','caserios_comunidades','caserios_comunidades',7,'false','30000',NULL,'limites_administrativos','',NULL);
-INSERT INTO "_map" VALUES('base','areas_protegidas_2011','areas_protegidas_2011',8,'false','50000','5000','medio_fisico','',NULL);
 INSERT INTO "_map" VALUES('base','oceano','oceano',1,'true',NULL,NULL,'limites_administrativos','',NULL);
 INSERT INTO "_map" VALUES('base','paises_limitrofes','paises_limitrofes',2,'true',NULL,NULL,'limites_administrativos','',NULL);
 
@@ -1886,40 +1885,6 @@ INSERT INTO "_map_style" VALUES('caserios_comunidades','base','gvl','<?xml versi
     <property key="Unit" value="-1"/>
     <property key="referenceSystem" value="0"/>
 </xml-tag>');
-INSERT INTO "_map_style" VALUES('areas_protegidas_2011','base','gvl','<?xml version="1.0" encoding="ISO-8859-1"?>
-<xml-tag xmlns="http://www.gvsig.gva.es">
-    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
-    <xml-tag>
-        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleFillSymbol"/>
-        <property key="color" value="204,255,153,129"/>
-        <property key="hasFill" value="true"/>
-        <property key="desc"/>
-        <property key="isShapeVisible" value="true"/>
-        <property key="referenceSystem" value="0"/>
-        <property key="unit" value="-1"/>
-        <property key="hasOutline" value="true"/>
-        <xml-tag>
-            <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleLineSymbol"/>
-            <property key="isShapeVisible" value="true"/>
-            <property key="desc"/>
-            <property key="unit" value="-1"/>
-            <property key="referenceSystem" value="0"/>
-            <property key="color" value="51,153,0,255"/>
-            <xml-tag>
-                <property key="className" value="com.iver.cit.gvsig.fmap.core.styles.SimpleLineStyle"/>
-                <property key="desc"/>
-                <property key="dashArray" value="2.0,2.0,"/>
-                <property key="lineWidth" value="1.0"/>
-                <property key="dashPhase" value="0.0"/>
-                <property key="endCap" value="0"/>
-                <property key="lineJoin" value="2"/>
-                <property key="miterLimit" value="10.0"/>
-                <property key="offset" value="-0.0"/>
-                <property key="unit" value="0"/>
-            </xml-tag>
-        </xml-tag>
-    </xml-tag>
-</xml-tag>',NULL);
 
 INSERT INTO "_map_style" VALUES('oceano','base','gvl','<?xml version="1.0" encoding="ISO-8859-1"?>
 <xml-tag xmlns="http://www.gvsig.gva.es">
