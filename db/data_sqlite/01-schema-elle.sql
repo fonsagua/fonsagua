@@ -71,7 +71,6 @@ INSERT INTO "_map" VALUES('alternativas','alt_depositos','alt_depositos',38,'tru
 INSERT INTO "_map" VALUES('alternativas','alt_conexiones','alt_conexiones',37,'true','49999.0',NULL,'Alternativa','fonsagua',NULL);
 INSERT INTO "_map" VALUES('alternativas','alt_tuberias','alt_tuberias',36,'true','49999.0',NULL,'Alternativa','fonsagua',NULL);
 INSERT INTO "_map" VALUES('general','fuentes','fuentes',27,'true','49999.0',NULL,'sistemas_abastecimiento','fonsagua',NULL);
-INSERT INTO "_map" VALUES('base','equipamientos','equipamientos',12,'false','50000',NULL,'infraestructuras','',NULL);
 INSERT INTO "_map" VALUES('base','caserios_comunidades','caserios_comunidades',7,'false','30000',NULL,'limites_administrativos','',NULL);
 INSERT INTO "_map" VALUES('base','areas_protegidas_2011','areas_protegidas_2011',8,'false','50000','5000','medio_fisico','',NULL);
 INSERT INTO "_map" VALUES('base','usos_suelo_2003','usos_suelo_2003',10,'false','30000',NULL,'medio_fisico','',NULL);
@@ -1831,59 +1830,6 @@ INSERT INTO "_map_style" VALUES('otros_servicios','general','gvl','<xml-tag xmln
     </xml-tag>
 </xml-tag>
 ',NULL);
-INSERT INTO "_map_style" VALUES('equipamientos','base','gvl','<xml-tag xmlns="http://www.gvsig.gva.es">
-    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
-    <xml-tag>
-        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.MultiLayerMarkerSymbol"/>
-        <property key="isShapeVisible" value="true"/>
-        <property key="desc" value="Default"/>
-        <property key="size" value="20.0"/>
-        <property key="unit" value="-1"/>
-        <property key="referenceSystem" value="1"/>
-        <xml-tag>
-            <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
-            <property key="desc"/>
-            <property key="isShapeVisible" value="true"/>
-            <property key="color" value="51,51,51,255"/>
-            <property key="rotation" value="0.0"/>
-            <property key="offsetX" value="0.0"/>
-            <property key="offsetY" value="0.0"/>
-            <property key="size" value="20.0"/>
-            <property key="outline" value="false"/>
-            <property key="unit" value="-1"/>
-            <property key="referenceSystem" value="1"/>
-            <property key="markerStyle" value="0"/>
-        </xml-tag>
-        <xml-tag>
-            <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
-            <property key="desc"/>
-            <property key="isShapeVisible" value="true"/>
-            <property key="color" value="255,255,255,255"/>
-            <property key="rotation" value="0.0"/>
-            <property key="offsetX" value="0.0"/>
-            <property key="offsetY" value="3.0"/>
-            <property key="size" value="8.0"/>
-            <property key="outline" value="false"/>
-            <property key="unit" value="-1"/>
-            <property key="referenceSystem" value="1"/>
-            <property key="markerStyle" value="1"/>
-        </xml-tag>
-        <xml-tag>
-            <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
-            <property key="desc"/>
-            <property key="isShapeVisible" value="true"/>
-            <property key="color" value="255,255,255,255"/>
-            <property key="rotation" value="0.0"/>
-            <property key="offsetX" value="0.0"/>
-            <property key="offsetY" value="-3.0"/>
-            <property key="size" value="12.0"/>
-            <property key="outline" value="false"/>
-            <property key="unit" value="-1"/>
-            <property key="referenceSystem" value="1"/>
-            <property key="markerStyle" value="5"/>
-        </xml-tag>
-    </xml-tag>
-</xml-tag>',NULL);
 
 INSERT INTO "_map_style" VALUES('caserios_comunidades','base','gvl','<?xml version="1.0" encoding="ISO-8859-1"?>
 <xml-tag xmlns="http://www.gvsig.gva.es">

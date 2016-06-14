@@ -27,20 +27,6 @@ SELECT addgeometrycolumn('rios', 'geom', 32616, 'MULTILINESTRING', 2);
 SELECT CreateSpatialIndex('rios', 'geom');
 
 
-CREATE TABLE equipamientos(
-gid INTEGER PRIMARY KEY,
-"CABECERA" INTEGER,
-"POLICIA" TEXT,
-"CODMUN" TEXT,
-"NOMBRE" TEXT,
-"INFLUENCIA" TEXT,
-"Juzgados" TEXT,
-"TIPO" TEXT
-);
-SELECT addgeometrycolumn('equipamientos', 'geom', 32616, 'POINT', 2);
-SELECT CreateSpatialIndex('equipamientos', 'geom');
-
-
 CREATE TABLE caserios_comunidades(
 gid INTEGER PRIMARY KEY,
 "COD_CASERI" TEXT,
