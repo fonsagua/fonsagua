@@ -8,10 +8,13 @@ fi
 # Al usar el comando spatialite en lugar de sqlite no es necesario inicializar a mano el metadata
 # spatialite -bail $DB_PATH "SELECT InitSpatialMetaData();"
 
+echo "BEGIN TRANSACTION;" > /tmp/foo.sql
 for file in `ls ./data_sqlite/*.sql` ; do
     echo $file
-    spatialite -bail $DB_PATH < $file
+    cat $file >> /tmp/foo.sql
 done
+echo "COMMIT;" >> /tmp/foo.sql
+spatialite -bail $DB_PATH < /tmp/foo.sql
 
 cartografia_base() {
 # departamentos

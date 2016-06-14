@@ -1,8 +1,8 @@
 CREATE TABLE carreteras(
 gid INTEGER PRIMARY KEY,
-"CODIGO" DOUBLE,
-"DESCRIPC" TEXT,
-"TIPO" TEXT,
+codigo FLOAT,
+descripc VARCHAR,
+tipo VARCHAR
 );
 SELECT addgeometrycolumn('carreteras', 'geom', 32616, 'MULTILINESTRING', 2);
 SELECT CreateSpatialIndex('carreteras', 'geom');
@@ -10,9 +10,9 @@ SELECT CreateSpatialIndex('carreteras', 'geom');
 
 CREATE TABLE curvas_nivel_10m(
 gid INTEGER PRIMARY KEY,
-"ID" INTEGER,
-"elevacion" INTEGER,
-"tipo" TEXT
+id INTEGER,
+elevacion INTEGER,
+tipo VARCHAR
 );
 SELECT addgeometrycolumn('curvas_nivel_10m', 'geom', 32616, 'MULTILINESTRING', 2);
 SELECT CreateSpatialIndex('curvas_nivel_10m', 'geom');
@@ -20,8 +20,8 @@ SELECT CreateSpatialIndex('curvas_nivel_10m', 'geom');
 
 CREATE TABLE rios(
 gid INTEGER PRIMARY KEY,
-"Codigo" INTEGER,
-"Descripc" TEXT,
+codigo INTEGER,
+descripc VARCHAR
 );
 SELECT addgeometrycolumn('rios', 'geom', 32616, 'MULTILINESTRING', 2);
 SELECT CreateSpatialIndex('rios', 'geom');
@@ -29,33 +29,33 @@ SELECT CreateSpatialIndex('rios', 'geom');
 
 CREATE TABLE caserios_comunidades(
 gid INTEGER PRIMARY KEY,
-"COD_CASERI" TEXT,
-"CASERIO" TEXT,
-"SEX_H" DOUBLE,
-"SEX_M" DOUBLE,
-"ED_0A10" DOUBLE,
-"ED_11A20" DOUBLE,
-"ED_21A30" DOUBLE,
-"ED_31A40" DOUBLE,
-"ED_41A50" DOUBLE,
-"ED_51A60" DOUBLE,
-"ED_61A70" DOUBLE,
-"ED_71A80" DOUBLE,
-"ED_81A90" DOUBLE,
-"ED_91A100" DOUBLE,
-"ED__101" DOUBLE,
-"DD_CODIGO" DOUBLE,
-"DM_CODIGO" DOUBLE,
-"DA_CODIGO" DOUBLE,
-"DC_CODIGO" DOUBLE,
-"COD_MUNI" TEXT,
-"COD_ALDEA" TEXT,
-"POB_TOTAL" DOUBLE,
-"CATEGORíA" TEXT,
-"MUNICIPIO" TEXT,
-"DEPARTAMEN" TEXT,
-"ALDEA" TEXT,
-"COD_DPTO" TEXT
+cod_caseri VARCHAR,
+caserio VARCHAR,
+sex_h FLOAT,
+sex_m FLOAT,
+ed_0a10 FLOAT,
+ed_11a20 FLOAT,
+ed_21a30 FLOAT,
+ed_31a40 FLOAT,
+ed_41a50 FLOAT,
+ed_51a60 FLOAT,
+ed_61a70 FLOAT,
+ed_71a80 FLOAT,
+ed_81a90 FLOAT,
+ed_91a100 FLOAT,
+ed__101 FLOAT,
+dd_codigo FLOAT,
+dm_codigo FLOAT,
+da_codigo FLOAT,
+dc_codigo FLOAT,
+cod_muni VARCHAR,
+cod_aldea VARCHAR,
+pob_total FLOAT,
+categoria VARCHAR,
+municipio VARCHAR,
+departamen VARCHAR,
+aldea VARCHAR,
+cod_dpto VARCHAR
 );
 SELECT addgeometrycolumn('caserios_comunidades', 'geom', 32616, 'POINT', 2);
 SELECT CreateSpatialIndex('caserios_comunidades', 'geom');
@@ -63,7 +63,7 @@ SELECT CreateSpatialIndex('caserios_comunidades', 'geom');
 
 CREATE TABLE oceano(
 gid INTEGER PRIMARY KEY,
-"Nombre" TEXT
+nombre VARCHAR
 );
 SELECT addgeometrycolumn('oceano', 'geom', 32616, 'MULTIPOLYGON', 2);
 SELECT CreateSpatialIndex('oceano', 'geom');
@@ -71,8 +71,8 @@ SELECT CreateSpatialIndex('oceano', 'geom');
 
 CREATE TABLE paises_limitrofes(
 gid INTEGER PRIMARY KEY,
-"PAIS" TEXT,
-"CODPAIS" TEXT
+pais VARCHAR,
+codpais VARCHAR
 );
 SELECT addgeometrycolumn('paises_limitrofes', 'geom', 32616, 'MULTIPOLYGON', 2);
 SELECT CreateSpatialIndex('paises_limitrofes', 'geom');
