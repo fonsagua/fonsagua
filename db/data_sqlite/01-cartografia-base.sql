@@ -1,16 +1,15 @@
 CREATE TABLE carreteras(
-"PK_UID" INTEGER PRIMARY KEY AUTOINCREMENT,
+gid INTEGER PRIMARY KEY,
 "CODIGO" DOUBLE,
 "DESCRIPC" TEXT,
 "TIPO" TEXT,
-"Shape_Leng" DOUBLE
 );
 SELECT addgeometrycolumn('carreteras', 'geom', 32616, 'MULTILINESTRING', 2);
 SELECT CreateSpatialIndex('carreteras', 'geom');
 
 
 CREATE TABLE curvas_nivel_10m(
-"PK_UID" INTEGER PRIMARY KEY AUTOINCREMENT,
+gid INTEGER PRIMARY KEY,
 "ID" INTEGER,
 "elevacion" INTEGER,
 "tipo" TEXT
@@ -20,17 +19,16 @@ SELECT CreateSpatialIndex('curvas_nivel_10m', 'geom');
 
 
 CREATE TABLE rios(
-"PK_UID" INTEGER PRIMARY KEY AUTOINCREMENT,
+gid INTEGER PRIMARY KEY,
 "Codigo" INTEGER,
 "Descripc" TEXT,
-"Shape_Leng" DOUBLE
 );
 SELECT addgeometrycolumn('rios', 'geom', 32616, 'MULTILINESTRING', 2);
 SELECT CreateSpatialIndex('rios', 'geom');
 
 
 CREATE TABLE equipamientos(
-"PK_UID" INTEGER PRIMARY KEY AUTOINCREMENT,
+gid INTEGER PRIMARY KEY,
 "CABECERA" INTEGER,
 "POLICIA" TEXT,
 "CODMUN" TEXT,
@@ -43,20 +41,8 @@ SELECT addgeometrycolumn('equipamientos', 'geom', 32616, 'POINT', 2);
 SELECT CreateSpatialIndex('equipamientos', 'geom');
 
 
-CREATE TABLE puertos_aeropuertos(
-"PK_UID" INTEGER PRIMARY KEY AUTOINCREMENT,
-"OGC_FID" DOUBLE,
-"tipo" TEXT,
-"nombre" TEXT,
-"latd" DOUBLE,
-"lond" DOUBLE
-);
-SELECT addgeometrycolumn('puertos_aeropuertos', 'geom', 32616, 'POINT', 2);
-SELECT CreateSpatialIndex('puertos_aeropuertos', 'geom');
-
-
 CREATE TABLE caserios_comunidades(
-"PK_UID" INTEGER PRIMARY KEY AUTOINCREMENT,
+gid INTEGER PRIMARY KEY,
 "COD_CASERI" TEXT,
 "CASERIO" TEXT,
 "SEX_H" DOUBLE,
@@ -90,7 +76,7 @@ SELECT CreateSpatialIndex('caserios_comunidades', 'geom');
 
 
 CREATE TABLE areas_protegidas_2011(
-"PK_UID" INTEGER PRIMARY KEY AUTOINCREMENT,
+gid INTEGER PRIMARY KEY,
 "NUMEROS" DOUBLE,
 "NOMBRE" TEXT,
 "CATEGORIA" TEXT,
@@ -120,7 +106,7 @@ SELECT CreateSpatialIndex('areas_protegidas_2011', 'geom');
 
 
 CREATE TABLE usos_suelo_2003(
-"PK_UID" INTEGER PRIMARY KEY AUTOINCREMENT,
+gid INTEGER PRIMARY KEY,
 "ID" DOUBLE,
 "GRIDCODE" DOUBLE,
 "Class_name" TEXT,
@@ -134,7 +120,7 @@ SELECT CreateSpatialIndex('usos_suelo_2003', 'geom');
 
 
 CREATE TABLE oceano(
-"PK_UID" INTEGER PRIMARY KEY AUTOINCREMENT,
+gid INTEGER PRIMARY KEY,
 "Nombre" TEXT
 );
 SELECT addgeometrycolumn('oceano', 'geom', 32616, 'MULTIPOLYGON', 2);
@@ -142,7 +128,7 @@ SELECT CreateSpatialIndex('oceano', 'geom');
 
 
 CREATE TABLE honduras(
-"PK_UID" INTEGER PRIMARY KEY AUTOINCREMENT,
+gid INTEGER PRIMARY KEY,
 "PAIS" TEXT,
 "CODPAIS" TEXT
 );
@@ -152,7 +138,7 @@ SELECT CreateSpatialIndex('honduras', 'geom');
 
 
 CREATE TABLE paises_limitrofes(
-"PK_UID" INTEGER PRIMARY KEY AUTOINCREMENT,
+gid INTEGER PRIMARY KEY,
 "PAIS" TEXT,
 "CODPAIS" TEXT
 );
