@@ -69,16 +69,6 @@ SELECT addgeometrycolumn('oceano', 'geom', 32616, 'MULTIPOLYGON', 2);
 SELECT CreateSpatialIndex('oceano', 'geom');
 
 
-CREATE TABLE honduras(
-gid INTEGER PRIMARY KEY,
-"PAIS" TEXT,
-"CODPAIS" TEXT
-);
-SELECT addgeometrycolumn('honduras', 'geom', 32616, 'MULTIPOLYGON', 2);
-SELECT CreateSpatialIndex('honduras', 'geom');
-
-
-
 CREATE TABLE paises_limitrofes(
 gid INTEGER PRIMARY KEY,
 "PAIS" TEXT,
