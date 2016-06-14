@@ -91,20 +91,6 @@ SELECT addgeometrycolumn('areas_protegidas_2011', 'geom', 32616, 'MULTIPOLYGON',
 SELECT CreateSpatialIndex('areas_protegidas_2011', 'geom');
 
 
-CREATE TABLE usos_suelo_2003(
-gid INTEGER PRIMARY KEY,
-"ID" DOUBLE,
-"GRIDCODE" DOUBLE,
-"Class_name" TEXT,
-"Area" DOUBLE,
-"Hectares" DOUBLE,
-"Shape_Leng" DOUBLE,
-"Shape_Area" DOUBLE
-);
-SELECT addgeometrycolumn('usos_suelo_2003', 'geom', 32616, 'MULTIPOLYGON', 2);
-SELECT CreateSpatialIndex('usos_suelo_2003', 'geom');
-
-
 CREATE TABLE oceano(
 gid INTEGER PRIMARY KEY,
 "Nombre" TEXT

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TABLES='carreteras curvas_nivel_10m rios caserios_comunidades areas_protegidas_2011 usos_suelo_2003 oceano paises_limitrofes departamentos municipios cantones'
+TABLES='carreteras curvas_nivel_10m rios caserios_comunidades areas_protegidas_2011 oceano paises_limitrofes departamentos municipios cantones'
 # honduras
 OUTFILE=/tmp/backup_base.sql
 
