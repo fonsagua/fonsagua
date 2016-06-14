@@ -16,6 +16,9 @@ done
 echo "COMMIT;" >> /tmp/foo.sql
 spatialite -bail $DB_PATH < /tmp/foo.sql
 
+spatialite -bail $DB_PATH < ./data_nasmar/97-limites-administrativos-data-nasmar.sql
+spatialite -bail $DB_PATH < ./data_nasmar/98-base-data-nasmar.sql
+
 cartografia_base() {
 # departamentos
 ogr2ogr -append -s_srs EPSG:32616 -t_srs EPSG:32616 -f SQLite -dialect sqlite -nlt MULTIPOLYGON -dsco SPATIALITE=YES $DB_PATH ./data_sqlite/datos/departamento/m1102vA001970_HN.shp -gt 65536 --config OGR_SQLITE_CACHE 512

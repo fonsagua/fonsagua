@@ -62,8 +62,7 @@ SELECT CreateSpatialIndex('caserios_comunidades', 'geom');
 
 
 CREATE TABLE oceano(
-gid INTEGER PRIMARY KEY,
-nombre VARCHAR
+gid INTEGER PRIMARY KEY
 );
 SELECT addgeometrycolumn('oceano', 'geom', 32616, 'MULTIPOLYGON', 2);
 SELECT CreateSpatialIndex('oceano', 'geom');

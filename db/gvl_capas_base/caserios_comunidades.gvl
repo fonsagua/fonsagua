@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.MultiLayerMarkerSymbol"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="desc"/>
+        <property key="size" value="10.0"/>
+        <property key="unit" value="-1"/>
+        <property key="referenceSystem" value="0"/>
+        <xml-tag>
+            <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+            <property key="desc"/>
+            <property key="isShapeVisible" value="true"/>
+            <property key="color" value="255,255,255,255"/>
+            <property key="rotation" value="0.0"/>
+            <property key="offsetX" value="0.0"/>
+            <property key="offsetY" value="0.0"/>
+            <property key="size" value="10.0"/>
+            <property key="outline" value="true"/>
+            <property key="unit" value="-1"/>
+            <property key="referenceSystem" value="0"/>
+            <property key="markerStyle" value="0"/>
+            <property key="outlineColor" value="0,0,0,255"/>
+            <property key="outlineSize" value="0.0"/>
+        </xml-tag>
+        <xml-tag>
+            <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleMarkerSymbol"/>
+            <property key="desc"/>
+            <property key="isShapeVisible" value="true"/>
+            <property key="color" value="102,0,0,255"/>
+            <property key="rotation" value="0.0"/>
+            <property key="offsetX" value="0.0"/>
+            <property key="offsetY" value="0.0"/>
+            <property key="size" value="7.0"/>
+            <property key="outline" value="false"/>
+            <property key="unit" value="-1"/>
+            <property key="referenceSystem" value="0"/>
+            <property key="markerStyle" value="0"/>
+        </xml-tag>
+    </xml-tag>
+</xml-tag>

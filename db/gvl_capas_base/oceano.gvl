@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xml-tag xmlns="http://www.gvsig.gva.es">
+    <property key="className" value="com.iver.cit.gvsig.fmap.rendering.SingleSymbolLegend"/>
+    <xml-tag>
+        <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleFillSymbol"/>
+        <property key="color" value="153,204,255,255"/>
+        <property key="hasFill" value="true"/>
+        <property key="desc"/>
+        <property key="isShapeVisible" value="true"/>
+        <property key="referenceSystem" value="0"/>
+        <property key="unit" value="-1"/>
+        <property key="hasOutline" value="false"/>
+        <xml-tag>
+            <property key="className" value="com.iver.cit.gvsig.fmap.core.symbols.SimpleLineSymbol"/>
+            <property key="isShapeVisible" value="true"/>
+            <property key="desc"/>
+            <property key="unit" value="-1"/>
+            <property key="referenceSystem" value="0"/>
+            <property key="color" value="128,128,128,255"/>
+            <xml-tag>
+                <property key="className" value="com.iver.cit.gvsig.fmap.core.styles.SimpleLineStyle"/>
+                <property key="desc"/>
+                <property key="lineWidth" value="1.0"/>
+                <property key="dashPhase" value="0.0"/>
+                <property key="endCap" value="0"/>
+                <property key="lineJoin" value="2"/>
+                <property key="miterLimit" value="10.0"/>
+                <property key="offset" value="0.0"/>
+                <property key="unit" value="0"/>
+            </xml-tag>
+        </xml-tag>
+    </xml-tag>
+</xml-tag>
