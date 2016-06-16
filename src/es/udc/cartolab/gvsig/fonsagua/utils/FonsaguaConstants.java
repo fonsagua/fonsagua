@@ -11,16 +11,16 @@ public interface FonsaguaConstants {
     public static final String limitsSchema = "limites_administrativos";
 
     public static final String departamentosTable = "departamentos";
-    public static final String departamentosPK = "cod";
-    public static final String departamentosName = "depto";
+    public static final String departamentosPK = "cdpto";
+    public static final String departamentosName = "dpto";
 
     public static final String municipiosTable = "municipios";
-    public static final String municipiosPK = "cod_muni";
-    public static final String municipiosName = "nombre";
+    public static final String municipiosPK = "cod_munic";
+    public static final String municipiosName = "munic";
 
     public static final String cantonesTable = "cantones";
-    public static final String cantonesPK = "cod_aldea";
-    public static final String cantonesName = "nombre";
+    public static final String cantonesPK = "cod_canton";
+    public static final String cantonesName = "canton";
 
     public static final String CROQUIS_TABLENAME = "comunidades_croquis";
     public static final String CROQUIS_FIELDNAME = "croquis";
