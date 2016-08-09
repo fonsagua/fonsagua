@@ -224,6 +224,12 @@
 				position="32003"/>
 		</extension>
 	
+		<extension class-name="es.udc.cartolab.gvsig.fonsagua.ImporterExtension" active="true">
+			<tool-bar name="fonsagua2_toolbar" position="36"> 
+				<action-tool icon="es.udc.cartolab.gvsig.fonsagua.ImporterExtension" tooltip="es.udc.cartolab.gvsig.fonsagua.ImporterExtension"
+					action-command="" position="7" />
+			</tool-bar>
+		</extension>
 		
 		<extension class-name="es.udc.cartolab.gvsig.fonsagua.AutoFormsExtension" active="true">
 			<tool-bar name="fonsagua3_toolbar" position="5000"> 

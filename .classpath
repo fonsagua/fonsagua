@@ -27,5 +27,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/libProjection"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/libDriverManager"/>
 	<classpathentry kind="lib" path="/libFMap/lib/jts-1.12.jar"/>
+	<classpathentry kind="src" path="/extGPX"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
