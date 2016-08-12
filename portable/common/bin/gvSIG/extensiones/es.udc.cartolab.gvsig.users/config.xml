@@ -8,8 +8,12 @@
         <extension
             class-name="es.udc.cartolab.gvsig.users.SpatiaLiteDBConnectionExtension"
             active="true" description="Connect DB">
-            <menu action-command="DBConnect" icon="DBConnect"
-                text="data_base_menu/connectToDBSpatiaLite" position="20000"/>
+            
+            <menu text="fonsagua_tools_menu/data_base_menu/connectToDBSpatiaLite"
+				action-command="DBConnect"
+				icon="DBConnect"
+				position="31050"/> 
+				
             <tool-bar name="dbconnection" position="20">
                 <action-tool action-command="DBConnect" icon="DBConnect"
                     tooltip="connectToDBSpatiaLite" position="1"/>
@@ -19,7 +23,7 @@
             class-name="es.udc.cartolab.gvsig.users.CloseSessionExtension"
             active="true" description="Close session">
             <menu action-command="CLOSE" icon="DBClose"
-                text="data_base_menu/close_session" position="20900"/>
+                text="fonsagua_tools_menu/data_base_menu/close_session" position="31051"/>
             <tool-bar name="dbconnection" position="20">
                 <action-tool action-command="CLOSE" icon="DBClose"
                     tooltip="close_session" position="2"/>

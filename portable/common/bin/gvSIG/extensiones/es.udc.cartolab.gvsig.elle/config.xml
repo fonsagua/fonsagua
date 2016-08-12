@@ -21,31 +21,33 @@
         <extension
             class-name="es.udc.cartolab.gvsig.elle.LoadMapExtension"
             active="true" description="Load map">
+            <!--
             <menu action-command="LoadMap" icon="load-map"
-                text="data_base_menu/Load_map" position="20100"/>
+                text="fonsagua_tools_menu/data_base_menu/Load_map" position="31060"/>
+            -->
         </extension>
         <extension
             class-name="es.udc.cartolab.gvsig.elle.SaveMapExtension"
-            active="true" description="save_map">
+            active="false" description="save_map">
             <menu action-command="SaveMap" icon="save-map"
-                text="data_base_menu/save_map" position="20200"/>
+                text="fonsagua_tools_menu/data_base_menu/save_map" position="31061"/>
         </extension>
         <extension class-name="es.udc.cartolab.gvsig.elle.DeleteMapExtension" 
-        	description="delete_map" active="true">
-			<menu text="data_base_menu/delete_map" icon="delete-map"
-				action-command="DeleteMap" position="20300" />
+        	description="delete_map" active="false">
+			<menu text="fonsagua_tools_menu/data_base_menu/delete_map" icon="delete-map"
+				action-command="DeleteMap" position="31062" />
 		</extension>
         <extension
             class-name="es.udc.cartolab.gvsig.elle.LoadAllLegendsExtension"
-            active="true" description="Load_several_legends">
+            active="false" description="Load_several_legends">
             <menu action-command="LOADLEGENDS" icon="load-legends"
-                text="data_base_menu/load_legends" position="20400"/>
+                text="fonsagua_tools_menu/data_base_menu/load_legends" position="31063"/>
         </extension>
         <extension
             class-name="es.udc.cartolab.gvsig.elle.SaveAllLegendsExtension"
-            active="true" description="Save_several_legends">
+            active="false" description="Save_several_legends">
             <menu action-command="ALL" icon="save-all-legends"
-                text="data_base_menu/Save_legends" position="20500"/>
+                text="fonsagua_tools_menu/data_base_menu/Save_legends" position="31064"/>
         </extension>
     </extensions>
 </plugin-config>

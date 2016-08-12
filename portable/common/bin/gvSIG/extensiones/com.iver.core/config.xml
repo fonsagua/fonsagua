@@ -4,7 +4,7 @@
     <libraries library-dir="."/>
     <extensions>
         <extension class-name="com.iver.core.menus.ToolbarMenus"
-            priority="99999" active="true" description="Active toolbar menues"/>
+            priority="99999" active="false" description="Active toolbar menues"/>
         <extension class-name="com.iver.core.Consola" priority="1"
             active="true" description="Extensión encargada de abrir la ventana de la consola."/>
         <extension class-name="com.iver.core.PreferencesExtension"
