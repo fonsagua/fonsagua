@@ -40,26 +40,17 @@ public class MyMouseListener implements MouseListener {
 	model.setSelectionInterval(row, row);
 
 	JPopupMenu popup = new JPopupMenu();
+	JMenuItem createComunidad = createComunidad(table, row);
+	JMenuItem removeRow = removeRow(table, row);
 
-	// ExtensionPoint extensionPoint = (ExtensionPoint)
-	// ExtensionPointsSingleton
-	// .getInstance().get(CONTEXT_MENU);
-	// Iterator<INavTableContextMenu> it =
-	// extensionPoint.values().iterator();
-	//
-	// while (it.hasNext()) {
-	// INavTableContextMenu c = it.next();
-	// c.setNavtableInstance(navtable);
-	// if (c.isVisible()) {
-	// for (JMenuItem m : c.getMenuItems()) {
-	// popup.add(m);
-	// }
-	// }
-	// if (it.hasNext()) {
-	// popup.add(new JSeparator());
-	// }
-	// }
+	popup.add(createComunidad);
+	popup.add(removeRow);
+	if (popup.getComponents().length != 0) {
+	    popup.show(table, e.getX(), e.getY());
+	}
+    }
 
+    private JMenuItem createComunidad(final JTable table, final int row) {
 	JMenuItem menu = new JMenuItem("Crear Comunidad");
 	menu.addActionListener(new ActionListener() {
 
@@ -89,11 +80,21 @@ public class MyMouseListener implements MouseListener {
 		model.reCheckErrors();
 	    }
 	});
+	return menu;
+    }
 
-	popup.add(menu);
-	if (popup.getComponents().length != 0) {
-	    popup.show(table, e.getX(), e.getY());
-	}
+    private JMenuItem removeRow(final JTable table, final int row) {
+	JMenuItem menu = new JMenuItem("Eliminar fila");
+	menu.addActionListener(new ActionListener() {
+
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		ImporterTM model = (ImporterTM) table.getModel();
+		model.removeRow(row);
+		model.reCheckErrors();
+	    }
+	});
+	return menu;
     }
 
     @Override

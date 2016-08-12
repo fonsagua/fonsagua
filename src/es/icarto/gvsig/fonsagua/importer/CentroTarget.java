@@ -251,6 +251,9 @@ public class CentroTarget extends JDBCTarget {
 	    String parentPKValue, IGeometry geom, int row) {
 
 	Entity comunidad = getParent(table, Comunidad.f(), parentPKValue);
+	if (comunidad == null) {
+	    return null;
+	}
 	double distance = comunidad.distanceTo(geom);
 	if (distance > MIN_DISTANCE_TO_PARENT) {
 	    return new ImportError("Elemento a más de 2km de la comunidad", row);

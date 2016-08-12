@@ -8,6 +8,7 @@
 	<depends plugin-name="es.udc.cartolab.gvsig.epanet"/>
 	<depends plugin-name="es.icarto.gvsig.navtableforms"/>
 	<depends plugin-name="es.udc.cartolab.gvsig.elle"/>
+	<depends plugin-name="org.gvsig.gpx"/>
 
 	<libraries library-dir="lib"/>
 	<resourceBundle name="text"/>
