@@ -89,6 +89,9 @@ public class ComunidadTarget extends JDBCTarget {
 	String pointStr = "ST_GeomFromText( '" + point.toText() + "' )";
 
 	Aldea aldea = Aldea.f().thatIntersectsWith(pointStr);
+	if (aldea == null) {
+	    return null;
+	}
 	Caserio caserio = Caserio.f().closestTo(pointStr, aldea);
 	if (caserio != null) {
 	    double d = caserio.distanceTo(point);
@@ -195,6 +198,12 @@ public class ComunidadTarget extends JDBCTarget {
 	Geometry point = table.getGeom(row).toJTSGeometry();
 	String pointStr = "ST_GeomFromText( '" + point.toText() + "' )";
 	Aldea aldea = Aldea.f().thatIntersectsWith(pointStr);
+	if (aldea == null) {
+	    String errorMsg = String
+		    .format("No hay ninguna aldea en las coordenadas de '%s'",
+			    code);
+	    return new ImportError(errorMsg, row);
+	}
 	if (!code.startsWith(aldea.getPK())) {
 	    String errorMsg = String.format(
 		    "La comunidad '%s' no está en la aldea que indica su código",

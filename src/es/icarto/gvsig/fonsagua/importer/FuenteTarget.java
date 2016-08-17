@@ -81,6 +81,9 @@ public class FuenteTarget extends JDBCTarget {
 	String pointStr = "ST_GeomFromText( '" + point.toText() + "' )";
 
 	Aldea aldea = Aldea.f().thatIntersectsWith(pointStr);
+	if (aldea == null) {
+	    return null;
+	}
 
 	DefaultTableModel results3 = maxCode(tablename, pkname, 6,
 		aldea.getPK());
@@ -173,6 +176,12 @@ public class FuenteTarget extends JDBCTarget {
 	Geometry point = table.getGeom(row).toJTSGeometry();
 	String pointStr = "ST_GeomFromText( '" + point.toText() + "' )";
 	Aldea aldea = Aldea.f().thatIntersectsWith(pointStr);
+	if (aldea == null) {
+	    String errorMsg = String
+		    .format("No hay ninguna aldea en las coordenadas de '%s'",
+			    code);
+	    return new ImportError(errorMsg, row);
+	}
 	if (!code.startsWith(aldea.getPK())) {
 	    String errorMsg = String.format("La fuente '%s' no está en la aldea que indica su código",
 		    code);

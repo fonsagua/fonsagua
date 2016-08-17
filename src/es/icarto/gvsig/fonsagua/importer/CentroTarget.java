@@ -85,6 +85,9 @@ public class CentroTarget extends JDBCTarget {
 	String pointStr = "ST_GeomFromText( '" + point.toText() + "' )";
 
 	Aldea aldea = Aldea.f().thatIntersectsWith(pointStr);
+	if (aldea == null) {
+	    return null;
+	}
 	Comunidad parent = Comunidad.f().closestTo(pointStr, aldea);
 	if (parent != null) {
 	    double d = parent.distanceTo(point);
@@ -238,6 +241,12 @@ public class CentroTarget extends JDBCTarget {
 	Geometry point = table.getGeom(row).toJTSGeometry();
 	String pointStr = "ST_GeomFromText( '" + point.toText() + "' )";
 	Aldea aldea = Aldea.f().thatIntersectsWith(pointStr);
+	if (aldea == null) {
+	    String errorMsg = String
+		    .format("No hay ninguna aldea en las coordenadas de '%s'",
+			    code);
+	    return new ImportError(errorMsg, row);
+	}
 	if (!code.startsWith(aldea.getPK())) {
 	    String errorMsg = String
 		    .format("El elemento de %s '%s' no está en la aldea que indica su código",
