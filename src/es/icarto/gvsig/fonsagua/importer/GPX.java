@@ -45,11 +45,14 @@ public class GPX implements Reader {
     private void initSimpleHeader() {
 	simpleHeader = new ArrayList<SimpleHeaderField>();
 	try {
-	    for (int i = 0; i < driver.getFieldCount(); i++) {
+	    final int columnCount = driver.getFieldCount();
+	    for (int i = 0; i < columnCount; i++) {
 		String fieldName = driver.getFieldName(i);
 		SimpleHeaderField sh = new SimpleHeaderField(fieldName, i);
 		simpleHeader.add(sh);
 	    }
+	    simpleHeader.add(new SimpleHeaderField("x", columnCount));
+	    simpleHeader.add(new SimpleHeaderField("y", columnCount + 1));
 	} catch (ReadDriverException e) {
 	    logger.error(e.getStackTrace(), e);
 	    throw new RuntimeException("Error leyendo el fichero dbf", e);
@@ -59,34 +62,30 @@ public class GPX implements Reader {
     private void initValues() {
 	values = new DefaultTableModel();
 
-	// TODO
-	// Probablemente crear mi propio table model es lo que tiene más
-	// sentido. O una clase genérica propia que encapsule un table model
-
-	// Hay que gestionar la reproyección de los puntos
-
-	// Tiene sentido mostrar la x/y lat/lng originales y un campo adicional
-	// con los valores proyectados ya sacados de la geometría final
-
-	// Añadir regla para vértices de parcelas y como generar el polígono a
-	// partir de los vértices
-	values.addColumn("id");
-	values.addColumn("x");
-	values.addColumn("y");
-	// values.addColumn("orggeom");
-
 	try {
-	    for (int i = 0; i < driver.getRowCount(); i++) {
-		Object rowData[] = new Object[4];
-		rowData[0] = driver.getFieldValue(i, 0).toString();
-		if (driver.getShapeType(i) == FShape.POINT) {
-		    final IGeometry geom = driver.getShape(i);
-		    FPoint2D point = (FPoint2D) geom.getInternalShape();
-		    rowData[1] = point.getX() + "";
-		    rowData[2] = point.getY() + "";
-		    // rowData[3] = geom;
-		    values.addRow(rowData);
+	    final long rowCount = driver.getRowCount();
+	    final int columnCount = driver.getFieldCount();
+	    for (int i=0; i< columnCount;i++) {
+		values.addColumn(driver.getFieldName(i));
+	    }
+	    values.addColumn("x");
+	    values.addColumn("y");
+	    
+	    for (int i = 0; i < rowCount; i++) {
+		if (driver.getShapeType(i) != FShape.POINT) {
+		    return;
 		}
+		Object rowData[] = new Object[columnCount + 2];
+		for (int column = 0; column < columnCount; column++) {
+		    rowData[column] = driver.getFieldValue(i, column).toString();		    
+		}
+		
+		final IGeometry geom = driver.getShape(i);
+		FPoint2D point = (FPoint2D) geom.getInternalShape();
+		rowData[columnCount] = point.getX() + "";
+		rowData[columnCount + 1] = point.getY() + "";
+		values.addRow(rowData);
+		
 	    }
 	} catch (ReadDriverException e) {
 	    logger.error(e.getStackTrace(), e);

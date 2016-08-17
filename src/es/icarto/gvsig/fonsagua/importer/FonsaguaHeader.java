@@ -28,22 +28,32 @@ public class FonsaguaHeader {
 
 	HeaderField h2 = new HeaderField("x");
 	h2.setNotDefinedField(false);
-	Set<String> s2 = new HashSet<String>(2);
+	Set<String> s2 = new HashSet<String>(3);
 	s2.add("lat");
 	s2.add("x");
+	s2.add("easting");
 	h2.setRuleNames(s2);
 
 	HeaderField h3 = new HeaderField("y");
 	h3.setNotDefinedField(false);
-	Set<String> s3 = new HashSet<String>(4);
+	Set<String> s3 = new HashSet<String>(5);
 	s3.add("lng");
 	s3.add("y");
 	s3.add("lon");
 	s3.add("long");
+	s3.add("northing");
 	h3.setRuleNames(s3);
+	
+	HeaderField h4 = new HeaderField("altura");
+	h4.setNotDefinedField(false);
+	Set<String> s4 = new HashSet<String>(3);
+	s4.add("elev");
+	s4.add("elevacion");
+	s4.add("altura");
+	h4.setRuleNames(s4);
 
-	List<HeaderField> l = new ArrayList<HeaderField>(3);
-	Collections.addAll(l, h1, h2, h3);
+	List<HeaderField> l = new ArrayList<HeaderField>(4);
+	Collections.addAll(l, h1, h2, h3, h4);
 	return l;
     }
 
