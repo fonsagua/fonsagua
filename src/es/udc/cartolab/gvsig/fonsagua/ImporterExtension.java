@@ -1,13 +1,16 @@
 package es.udc.cartolab.gvsig.fonsagua;
 
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
+import com.iver.andami.PluginServices;
+
 import es.icarto.gvsig.commons.AbstractExtension;
-import es.icarto.gvsig.fonsagua.importer.GPX;
 import es.icarto.gvsig.fonsagua.importer.FonsaguaHeader;
 import es.icarto.gvsig.fonsagua.importer.FonsaguaOutput;
 import es.icarto.gvsig.fonsagua.importer.FonsaguaRuler;
+import es.icarto.gvsig.fonsagua.importer.GPX;
 import es.icarto.gvsig.importer.FileToImport;
 import es.icarto.gvsig.importer.Header;
 import es.icarto.gvsig.importer.ImportManager;
@@ -27,7 +30,10 @@ public class ImporterExtension extends AbstractExtension {
 
     @Override
     public void initialize() {
-	super.initialize();
+	String iconName = "importerextension";
+	URL iconUrl = this.getClass().getClassLoader()
+		.getResource("images/" + iconName.toLowerCase() + ".png");
+	PluginServices.getIconTheme().registerDefault(iconName, iconUrl);
 	XLS xls = new XLS();
 	xls.setHeaderLine(XLS.FIRST_NOT_EMPTY);
 	List<Reader> readers = Arrays.asList(new DBF(), new GPX(), xls);
