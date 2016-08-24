@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=gvSIG-Fonsagua
+Comment=
+# http://unix.stackexchange.com/questions/144422/getting-the-current-path-in-desktop-exec-command
+Exec=bash -c '"$(dirname "$1")"/gvSIG.sh' dummy %k
+Terminal=false
+Type=Application

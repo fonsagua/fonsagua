@@ -5,4 +5,25 @@
         <property key="DefaultProjection" value="EPSG:32616"/>
         <property key="AleatoryFillColor" value="true"/>
     </xml-tag>
+    <xml-tag>
+        <property key="com.iver.andami.pluginName" value="org.gvsig.crs"/>
+        <xml-tag>
+            <property key="groupName" value="recentCrss"/>
+            <xml-tag>
+                <property key="authority" value="EPSG"/>
+                <property key="code" value="32616"/>
+                <property key="name" value="WGS 84 / UTM zone 16N"/>
+                <property key="date" value="2016-08-24 12:59:16.50"/>
+            </xml-tag>
+            <xml-tag>
+                <property key="authority" value="EPSG"/>
+                <property key="code" value="4326"/>
+                <property key="name" value="WGS 84"/>
+                <property key="date" value="2016-08-24 12:59:21.908"/>
+            </xml-tag>
+        </xml-tag>
+        <xml-tag>
+            <property key="groupName" value="recentTransformations"/>
+        </xml-tag>
+    </xml-tag>
 </xml-tag>
