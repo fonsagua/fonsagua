@@ -30,7 +30,8 @@ public class FuenteTarget extends JDBCTarget {
     private final String tablename;
     private final String pkname;
     private final String idDiff;
-    
+    private final String name;
+
     public FuenteTarget() {
 	super(DBSession.getCurrentSession().getJavaConnection());
 	this.tablename = "fuentes";
@@ -40,6 +41,7 @@ public class FuenteTarget extends JDBCTarget {
 	this.pkname = "cod_fuente";
 	this.idDiff = "FU";
 	// geomBuild = new XYPointBuilder("", "");
+	this.name = "La fuente";
     }
 
     @Override
@@ -91,11 +93,11 @@ public class FuenteTarget extends JDBCTarget {
 	String maxCodeInData = results3.getValueAt(0, 0).toString();
 	String maxCodeInTable = table.maxCodeValueForTarget(this.field, i,
 		aldea.getPK());
-	
+
 	String code = codeIt(aldea, maxCodeInData, maxCodeInTable);
 	return code;
     }
-    
+
     private String codeIt(Entity parent, String maxCodeInData, String maxCodeInTable) {
 	String maxCode = "000000" + idDiff + "00";
 	if (maxCode.compareTo(maxCodeInTable) < 0) {
@@ -109,11 +111,12 @@ public class FuenteTarget extends JDBCTarget {
 	String code = parent.getPK() + idDiff
 		+ String.format("%02d", parseInt);
 	return code;
-	
+
     }
 
     @Override
     public List<ImportError> checkErrors(ImporterTM table, int row) {
+	ErrorCheck errorCheck = new ErrorCheck(this.name);
 	List<ImportError> l = new ArrayList<ImportError>();
 	ImportError error = null;
 
@@ -135,7 +138,8 @@ public class FuenteTarget extends JDBCTarget {
 	    l.add(error);
 	}
 
-	error = checkPointInCorrectAldea(table, tablename, code, row);
+	error = errorCheck
+		.checkPointInCorrectAldea(table, tablename, code, row);
 	if (error != null) {
 	    l.add(error);
 	}
@@ -189,7 +193,7 @@ public class FuenteTarget extends JDBCTarget {
 	}
 	return null;
     }
-    
+
     @Override
     public String getInsertSQL(String parentCode, String code, String geomAsWKT) {
 
