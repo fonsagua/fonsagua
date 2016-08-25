@@ -1,10 +1,10 @@
 <launch4jConfig>
-  <dontWrapJar>false</dontWrapJar>
+  <dontWrapJar>true</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>./_fwAndami/andami.jar</jar>
-  <outfile>./_fwAndami/gvsig-desktop.exe</outfile>
+  <jar>./andami.jar</jar>
+  <outfile>./win/bin/gvsig-desktop.exe</outfile>
   <errTitle>gvSIG launch error</errTitle>
-  <cmdLine>gvSIG gvSIG/extensiones -language pt</cmdLine>
+  <cmdLine>gvSIG gvSIG/extensiones</cmdLine>
   <chdir>.</chdir>
   <priority>normal</priority>
   <downloadUrl>http://java.com/download</downloadUrl>
@@ -12,7 +12,7 @@
   <customProcName>true</customProcName>
   <stayAlive>false</stayAlive>
   <manifest></manifest>
-  <icon>./install/launch4j/images/ico-gvSIG.ico</icon>
+  <icon>./ico-gvSIG.ico</icon>
   <var>PROJ_LIB=./gvSIG/extensiones/org.gvsig.crs/data</var>
   <var>GDAL_DATA=./data/gdal</var>
   <classPath>
