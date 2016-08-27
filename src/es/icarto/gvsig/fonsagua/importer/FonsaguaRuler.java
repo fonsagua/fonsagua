@@ -18,34 +18,34 @@ public class FonsaguaRuler implements Ruler {
 	targets = new ArrayList<Target>();
 	targets.add(new ComunidadTarget());
 
-	Pattern vivPattern = Pattern.compile("^(\\d{8})Vi\\d{2}$",
+	Pattern vivPattern = Pattern.compile("^(\\d{8})VI\\d{2}$",
 		Pattern.CASE_INSENSITIVE);
 	Target vivTarget = new CentroTarget("puntos_viviendas", "cod_vivienda",
-		vivPattern, "Vi", "%02d", "La vivienda");
+		vivPattern, "VI", "%02d", "La vivienda");
 	targets.add(vivTarget);
 
-	Pattern eduPattern = Pattern.compile("^(\\d{8})Ce\\d{2}$",
+	Pattern eduPattern = Pattern.compile("^(\\d{8})CE\\d{2}$",
 		Pattern.CASE_INSENSITIVE);
 	Target eduTarget = new CentroTarget("centros_educativos", "cod_c_educativo",
- eduPattern, "Ce", "%02d", "El colegio");
+		eduPattern, "CE", "%02d", "El colegio");
 	targets.add(eduTarget);
 
-	Pattern reuPattern = Pattern.compile("^(\\d{8})Os\\d{2}$",
+	Pattern reuPattern = Pattern.compile("^(\\d{8})OS\\d{2}$",
 		Pattern.CASE_INSENSITIVE);
 	Target reuTarget = new CentroTarget("otros_servicios", "cod_servicio",
-		reuPattern, "Os", "%02d", "El centro");
+		reuPattern, "OS", "%02d", "El centro");
 	targets.add(reuTarget);
 
-	Pattern saludPattern = Pattern.compile("^(\\d{8})Cs\\d{2}$",
+	Pattern saludPattern = Pattern.compile("^(\\d{8})CS\\d{2}$",
 		Pattern.CASE_INSENSITIVE);
 	Target saludTarget = new CentroTarget("centros_salud", "cod_c_salud",
-		saludPattern, "Cs", "%02d", "El centro de salud");
+		saludPattern, "CS", "%02d", "El centro de salud");
 	targets.add(saludTarget);
 
-	Pattern amenazasPattern = Pattern.compile("^(\\d{8})Ri\\d{2}$",
+	Pattern amenazasPattern = Pattern.compile("^(\\d{8})RI\\d{2}$",
 		Pattern.CASE_INSENSITIVE);
 	Target amenazasTarget = new CentroTarget("amenazas", "cod_amenaza",
-		amenazasPattern, "Ri", "%02d", "El riesgo");
+		amenazasPattern, "RI", "%02d", "El riesgo");
 	targets.add(amenazasTarget);
 
 	targets.add(new FuenteTarget());

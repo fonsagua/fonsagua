@@ -15,6 +15,7 @@ import com.vividsolutions.jts.geom.Geometry;
 import es.icarto.gvsig.commons.utils.Field;
 import es.icarto.gvsig.fonsagua.importer.entities.Aldea;
 import es.icarto.gvsig.fonsagua.importer.entities.Caserio;
+import es.icarto.gvsig.importer.Entity;
 import es.icarto.gvsig.importer.GFactory;
 import es.icarto.gvsig.importer.ImportError;
 import es.icarto.gvsig.importer.ImporterTM;
@@ -30,6 +31,7 @@ public class ComunidadTarget extends JDBCTarget {
     private final String tablename;
     private final String pkname;
     private final String idDiff;
+    private final String digitsDiff;
 
     public ComunidadTarget() {
 	super(DBSession.getCurrentSession().getJavaConnection());
@@ -39,6 +41,7 @@ public class ComunidadTarget extends JDBCTarget {
 	this.pattern = Pattern.compile("^\\d{8}$", Pattern.CASE_INSENSITIVE);
 	this.pkname = "cod_comunidad";
 	this.idDiff = "";
+	this.digitsDiff = "%02d";
 	// geomBuild = new XYPointBuilder("", "");
     }
 
@@ -110,16 +113,29 @@ public class ComunidadTarget extends JDBCTarget {
 	String maxCodeInTable = table.maxCodeValueForTarget(this.field, i,
 		aldea.getPK());
 
-	String maxCode = maxCodeInTable;
+	String code = codeIt(aldea, maxCodeInDB, maxCodeInData, maxCodeInTable);
+
+	return code;
+    }
+
+    private String codeIt(Entity parent, String maxCodeInDB,
+	    String maxCodeInData, String maxCodeInTable) {
+	String maxCode = "000000" + idDiff + "00";
+
 	if (maxCode.compareTo(maxCodeInDB) < 0) {
 	    maxCode = maxCodeInDB;
+	}
+	if (maxCode.compareTo(maxCodeInTable) < 0) {
+	    maxCode = maxCodeInTable;
 	}
 	if (maxCode.compareTo(maxCodeInData) < 0) {
 	    maxCode = maxCodeInData;
 	}
-	int code = Integer.parseInt(maxCode) + 1;
 
-	return code + "";
+	int parseInt = Integer.parseInt(maxCode.substring(6)) + 1;
+	String code = parent.getPK() + idDiff
+		+ String.format(digitsDiff, parseInt);
+	return code;
     }
 
     @Override

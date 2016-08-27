@@ -1,5 +1,6 @@
 package es.icarto.gvsig.fonsagua.importer;
 
+import java.awt.image.ImageObserver;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,6 +25,7 @@ public class FonsaguaOutput implements Output {
 
     private static final Logger logger = Logger.getLogger(FonsaguaOutput.class);
 
+    @Override
     public void process(ImporterTM table, Ruler ruler) {
 
 	reorder(table);
@@ -33,6 +35,7 @@ public class FonsaguaOutput implements Output {
 	if (!dialog.isGood()) {
 	    return;
 	}
+	reorder(table);
 
 	Connection con = DBSession.getCurrentSession().getJavaConnection();
 	Statement statement = null;
@@ -71,12 +74,16 @@ public class FonsaguaOutput implements Output {
 	    JOptionPane.showMessageDialog(null, "Añadidos correctamete");
 	} catch (SQLException e) {
 	    logger.error(e.getStackTrace(), e);
+	    logger.error(e.getCause().getMessage());
 	    try {
 		statement.clearBatch();
 		con.rollback();
 	    } catch (SQLException e1) {
 		logger.error(e1.getStackTrace(), e1);
 	    }
+	    JOptionPane.showMessageDialog(null,
+		    "Ha habido un error añadiendo los datos", "Error",
+		    ImageObserver.ERROR);
 	}
     }
 
