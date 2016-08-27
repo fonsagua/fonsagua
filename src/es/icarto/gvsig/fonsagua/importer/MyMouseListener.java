@@ -36,18 +36,21 @@ public class MyMouseListener implements MouseListener {
 	    return;
 	}
 
-	ListSelectionModel model = table.getSelectionModel();
-	model.setSelectionInterval(row, row);
-
 	JPopupMenu popup = new JPopupMenu();
-	JMenuItem createComunidad = createComunidad(table, row);
-	JMenuItem removeRow = removeRow(table, row);
 
-	popup.add(createComunidad);
+	if (table.getSelectedRowCount() < 2) {
+	    ListSelectionModel model = table.getSelectionModel();
+	    model.setSelectionInterval(row, row);
+	    JMenuItem createComunidad = createComunidad(table, row);
+	    popup.add(createComunidad);
+	}
+
+	JMenuItem removeRow = removeRow(table);
 	popup.add(removeRow);
 	if (popup.getComponents().length != 0) {
 	    popup.show(table, e.getX(), e.getY());
 	}
+
     }
 
     private JMenuItem createComunidad(final JTable table, final int row) {
@@ -83,14 +86,21 @@ public class MyMouseListener implements MouseListener {
 	return menu;
     }
 
-    private JMenuItem removeRow(final JTable table, final int row) {
-	JMenuItem menu = new JMenuItem("Eliminar fila");
+    private JMenuItem removeRow(final JTable table) {
+
+
+	int numRows = table.getSelectedRows().length;
+	String msg = numRows > 1 ? "Eliminar filas" : "Eliminar fila";
+	JMenuItem menu = new JMenuItem(msg);
 	menu.addActionListener(new ActionListener() {
 
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
+		int numRows = table.getSelectedRows().length;
 		ImporterTM model = (ImporterTM) table.getModel();
-		model.removeRow(row);
+		for (int i = 0; i < numRows; i++) {
+		    model.removeRow(table.getSelectedRow());
+		}
 		model.reCheckErrors();
 	    }
 	});
