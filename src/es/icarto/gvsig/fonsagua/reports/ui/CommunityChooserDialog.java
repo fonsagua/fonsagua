@@ -14,14 +14,14 @@ import com.iver.utiles.swing.JComboBox;
 
 import es.icarto.gvsig.commons.gui.AbstractIWindow;
 import es.icarto.gvsig.commons.gui.OkCancelPanel;
+import es.icarto.gvsig.commons.gui.SaveFileDialog;
 import es.icarto.gvsig.commons.gui.WidgetFactory;
 import es.icarto.gvsig.fonsagua.reports.CommunityRTFReport;
 import es.udc.cartolab.gvsig.fonsagua.utils.DatabaseDirectAccessQueries;
-import es.udc.cartolab.gvsig.fonsagua.utils.SaveFileDialog;
 
 @SuppressWarnings("serial")
 public class CommunityChooserDialog extends AbstractIWindow implements
-	ActionListener {
+ActionListener {
 
     private JComboBox cb;
     private final OkCancelPanel okPanel;
@@ -48,6 +48,7 @@ public class CommunityChooserDialog extends AbstractIWindow implements
 	    String communityCode = cb.getSelectedItem().toString();
 	    SaveFileDialog sfd = new SaveFileDialog(PluginServices.getText(
 		    this, "rtfFiles"), "rtf");
+	    sfd.setAskForOverwrite(true);
 	    File fileName = sfd.showDialog();
 	    if (fileName != null) {
 		new CommunityRTFReport(fileName.getAbsolutePath(),

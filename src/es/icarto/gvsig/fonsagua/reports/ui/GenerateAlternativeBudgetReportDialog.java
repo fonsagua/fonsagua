@@ -11,8 +11,8 @@ import com.iver.andami.PluginServices;
 import com.iver.andami.ui.mdiManager.WindowInfo;
 
 import es.icarto.gvsig.commons.gui.OkCancelPanel;
+import es.icarto.gvsig.commons.gui.SaveFileDialog;
 import es.udc.cartolab.gvsig.fonsagua.utils.FilteredDialog;
-import es.udc.cartolab.gvsig.fonsagua.utils.SaveFileDialog;
 
 @SuppressWarnings("serial")
 public class GenerateAlternativeBudgetReportDialog extends FilteredDialog {
@@ -34,6 +34,7 @@ public class GenerateAlternativeBudgetReportDialog extends FilteredDialog {
 	    String alternativeCode = elementCombo.getSelectedItem().toString();
 	    SaveFileDialog sfd = new SaveFileDialog(PluginServices.getText(
 		    this, "csvFiles"), "csv");
+	    sfd.setAskForOverwrite(true);
 	    File fileName = sfd.showDialog();
 	    if (fileName != null) {
 		new AlternativeBudgetCSVReport(fileName.getAbsolutePath(),
