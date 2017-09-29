@@ -12,7 +12,6 @@ Contents:
    :maxdepth: 2
 
    build_first_time
-   instalar_postgresql_server
 
 
 
