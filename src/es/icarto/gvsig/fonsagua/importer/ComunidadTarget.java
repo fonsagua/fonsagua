@@ -104,9 +104,8 @@ public class ComunidadTarget extends JDBCTarget {
 	}
 
 	DefaultTableModel results2 = maxCode(Caserio.tablename, Caserio.pkname,
-		6, aldea.getPK());
-	DefaultTableModel results3 = maxCode(tablename, pkname, 6,
 		aldea.getPK());
+	DefaultTableModel results3 = maxCode(tablename, pkname, aldea.getPK());
 
 	String maxCodeInDB = results2.getValueAt(0, 0).toString();
 	String maxCodeInData = results3.getValueAt(0, 0).toString();

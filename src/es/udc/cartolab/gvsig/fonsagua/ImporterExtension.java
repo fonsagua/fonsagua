@@ -1,6 +1,7 @@
 package es.udc.cartolab.gvsig.fonsagua;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,8 +55,9 @@ public class ImporterExtension extends AbstractExtension {
 	Output output = new FonsaguaOutput();
 	Ruler ruler = new FonsaguaRuler();
 
+	Connection con = DBSession.getCurrentSession().getJavaConnection();
 	ImportManager importManager = new ImportManager(reader, header, output,
-		ruler);
+		ruler, con);
 
 	importManager.readHeader();
 	importManager.processFile();

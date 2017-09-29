@@ -87,8 +87,7 @@ public class FuenteTarget extends JDBCTarget {
 	    return null;
 	}
 
-	DefaultTableModel results3 = maxCode(tablename, pkname, 6,
-		aldea.getPK());
+	DefaultTableModel results3 = maxCode(tablename, pkname, aldea.getPK());
 
 	String maxCodeInData = results3.getValueAt(0, 0).toString();
 	String maxCodeInTable = table.maxCodeValueForTarget(this.field, i,
