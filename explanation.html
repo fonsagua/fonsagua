@@ -73,87 +73,88 @@
 	</nav>
 
 	<div class="container">
-		<h1>gvSIG Fonsagua explained</h1>
+		<h1>¿Cómo funciona gvSIG Fonsagua?</h1>
 
-		<p>gvSIG Fonsagua application is useful to plan water proposals in order to solve the water access in a area.</p>
-		<p>In other words, gvSIG Fonsagua application integrates in an unique tool the capabilities for users to gather, analyse and get information in the context of water and sanitation programs.</p>
+    <p>gvSIG Fonsagua es una aplicación versátil para planificar aspectos relacionados con la gestión del agua y el acceso a la misma en un área determinada.</p>
+		<p>En otras palabras, gvSIG Fonsagua integra en una herramienta única los recursos necesarios para que los usuarios recopilen, analicen y obtengan información en el contexto de los programas de gestión del agua y del saneamiento.</p>
 
 		<img class="img-responsive img-thumbnail" src="images/portada.jpg">
 
-		<p>By using <a href="http://www.gvsig.org/web/">gvSIG software as a platform to develop on</a> and adding to it new functionalities, the users of the new application, named gvSIG Fonsagua, have improved <a href="history.html">the way they did the process</a>. The application allow them to:</p>
+		<p>Partiendo del <a href="http://www.gvsig.org/web/">software gvSIG como plataforma para desarrollar</a> y agregar nuevas funcionalidades, los usuarios de la nueva aplicación, denominada gvSIG Fonsagua, han mejorado sustancialmente la manera en que llevan a cabo su trabajo.</p>
+    <p>Esta aplicación permite</p>
 		<ol>
-			<li><a href="#gps">Import GPS WayPoints in an automated way</a>.</li>
-			<li><a href="#pforms">Introduce data collected in field through personalized forms</a>.</li>
-			<li><a href="#network">Design and calculate Hydraulic networks.</li>
-			<li><a href="#queries">Print reports and use built-in queries to access the database</a>.</li>
-			<li><a href="#dual">Dual data management: SQLite + ShapeFiles</a>.</li>
-			<li><a href="#capabilities">Use all the capabilities available in a GIS application</a>.</li>
+			<li><a href="#gps">Importar Puntos de referencia GPS de una manera automatizada</a>.</li>
+			<li><a href="#pforms">Introducir datos de campo a través de formularios personalizados</a>.</li>
+			<li><a href="#network">Diseñar y calcular redes Hidráulicas.</a></li>
+			<li><a href="#queries">Imprir informes y utilizar consultas integradas para acceder a la base de datos</a>.</li>
+			<li><a href="#dual">Una gestión de los datos dual: SQLite + ShapeFiles</a>.</li>
+			<li><a href="#capabilities">Utilizar todas las capacidades propias de una aplicación GIS</a>.</li>
 		</ol>
 
-		<h3 id="gps">1. Import GPS WayPoints in an automated way.</h3>
+		<h3 id="gps">1. Importar Puntos de referencia GPS de una manera automatizada.</h3>
 		<div class="media">
 			<a class="pull-left">
 			<img class="media-object" src="images/gps.png" alt="gps">
 			</a>
 			<div class="media-body">
-				<p>While gathering field information, the user collects with a GPS tool the points of interest in each community. The application allows the user to import in an automated way those points to the database.</p>
-				<p>GPS extension from gvSIG project was used as a basis to work on, adding the functionality of exporting waypoints to a specific layer.</p>
+				<p>Mientras recopila información de campo y mediante una herramienta de GPS, el usuario recopila los puntos de interés en cada comunidad. La aplicación permite al usuario importar de manera automática esos puntos a la base de datos.</p>
+				<p>La extensión GPS del proyecto gvSIG fue utilizada como base para trabajar, agregando la funcionalidad de exportar los datos a una capa específica.</p>
 				</div>
 		</div>
 
-		<h3 id="pforms">2. Introducing data collected in field through personalized forms.</h3>
+		<h3 id="pforms">2. Introducir datos de campo a través de formularios personalizados.</h3>
 		<div class="media">
 			<a class="pull-right">
 			<img class="media-object" src="images/form.png" alt="personalized forms">
 			</a>
 			<div class="media-body">
-				<p>The user introduces the information into the database through personalized forms, which have been defined taking into account the methodology used to collect field information along the project with <a href="data/Fonsagua_ficha_social.pdf">social (see PDF)</a> and <a href="data/Fonsagua_ficha_tecnica.pdf">technical (see PDF)</a> considerations.</p>
-				<p>The forms have been built using <a href="http://navtable.github.com/">NavTable</a>, other in-house-development, which allows an agile navigation through the database registers.</p>
-				<p><strong>SEE VIDEO TUTORIAL: <a href="use.html#forms">introducing data.</a></strong></p>
+        <p>El usuario introduce la información en la base de datos a través de formularios personalizados. Estos formularios han sido definidos teniendo en cuenta la metodología utilizada para recopilar información de campo a lo largo del proyecto con consideraciones <a href="data/Fonsagua_ficha_social.pdf">sociales (ver PDF)</a> y <a href="data/Fonsagua_ficha_tecnica.pdf">técnicas (ver PDF)</a>.</p>
+        <p>Los formularios han sido desarrollados utilizando <a href="http://navtable.github.com/">NavTable</a>, otro desarrollo interno que permite una navegación ágil a través de los registros de la base de datos.</p>
+				<p><strong>VER VIDEOTUTORIAL: <a href="use.html#forms">introducción de datos.</a></strong></p>
 			</div>
 		</div>
 
-		<h3 id="network">3. Designing and calculating Hydraulic Network.</h3>
+		<h3 id="network">3. Diseñar y calcular redes Hidráulicas.</h3>
 		<div class="media">
 			<a class="pull-left">
 			<img class="media-object" src="images/calc.png" alt="calculating">
 			</a>
 			<div class="media-body">
-				<p>The user is able to design and plan water and sanitation proposals using gvSIG Fonsagua, based in technical and sustainable criteria.</p>
-				<p>The hydraulic module includes developments integrated with gvSIG CAD tools, topological checks and a sub-module to estimate and calculate the network.</p>
-				<p><strong>SEE VIDEO TUTORIALS: <a href="use.html#pumping">pumping system</a> – <a href="use.html#pipes">distribution network</a>.</strong></p>
+        <p>El usuario puede diseñar y planificar propuestas de agua y saneamiento utilizando gvSIG Fonsagua, basado en criterios técnicos y sostenibles.</p>
+				<p>El módulo hidráulico incluye desarrollos integrados con herramientas gvSIG CAD, comprobaciones topológicas y un submódulo para estimar y calcular redes.</p>
+				<p><strong>VER VIDEOTUTORIALES: <a href="use.html#pumping">sistema de bombeo</a> – <a href="use.html#pipes">red de distribución</a>.</strong></p>
 				</div>
 		</div>
 
-		<h3 id="queries">4. Printing built-in queries and reports.</h3>
+		<h3 id="queries">4. Imprir informes y utilizar consultas integradas para acceder a la base de datos.</h3>
 		<div class="media">
 			<a class="pull-right">
 			<img class="media-object" src="images/reports.png" alt="">
 			</a>
 			<div class="media-body">
-				<p>With the data introduced, it is possible to generate reports taking into account the current status of the community or its status after applying one of the alternatives. Besides, the user can query the database with already-built statements and export the data to other formats.</p>
-				<p>The reports are automatically generated using standard Java libraries such as iText and OpenCSV.</p>
+				<p>Una vez introducidos los datos, es posible generar informes teniendo en cuenta el estado actual de la comunidad o su estado después de aplicar una de las alternativas. Además, el usuario puede consultar la base de datos con sentencias predefinidas y exportar los datos a otros formatos.</p>
+				<p>Los informes se generan automáticamente utilizando bibliotecas Java estándar como iText y OpenCSV.</p>
 				</div>
 		</div>
 
 
-		<h3 id="dual">5. Store the information in SHP and SQLite.</h3>
+		<h3 id="dual">5. Gestión de datos dual: SQLite + ShapeFiles.</h3>
 		<div class="media">
 			<a class="pull-left">
 			<img class="media-object thumbnail" src="images/store.png" alt="Store info in SHP/SQLite">
 			</a>
 			<div class="media-body">
-				<p>Project requirements demand us to keep a dual-store data structure, using both SQLite (alphanumeric information) and Shapefiles (geographical information). A separated component was built into the system to manage how the data was retrieved and stored, warranting their integrity.</p>
+				<p>Los requisitos del proyecto nos exigen mantener una estructura de datos dual, utilizando tanto SQLite (información alfanumérica) como archivos Shapefile (información geográfica). El software incluye un componente separado en el sistema para administrar cómo se recuperaron y almacenaron los datos que garantiza su integridad.</p>
 				</div>
 		</div>
 
-		<h3 id="capabilities">6. Using all the capabilities available in a GIS application.</h3>
+		<h3 id="capabilities">6. Utilizar todas las capacidades propias de una aplicación GIS.</h3>
 		<div class="media">
 			<a class="pull-left">
 			<img class="media-object thumbnail" src="images/gvsig.jpg" alt="gvSIG">
 			</a>
 			<div class="media-body">
-				<p><strong>gvSIG</strong> is a Geographic Information System, that is, a desktop application designed for capturing, storing, handling, analyzing and deploying any kind of referenced geographic information in order to solve complex management and planning problems. gvSIG is known for having an user-friendly interface, being able to access the most common formats, both vector and raster ones. It features a wide range of tools for working with geographic-like information (query tools, layout creation, geoprocessing, networks, etc.).</p>
+				<p><strong>gvSIG</strong> es un Sistema de Información Geográfica, es decir, una aplicación de escritorio diseñada para capturar, almacenar, manejar, analizar e implementar cualquier tipo de información geográfica referenciada para resolver problemas complejos de administración y planificación. gvSIG es conocido por tener una interfaz fácil de usar, pudiendo acceder a los formatos más comunes, tanto vectoriales como raster. Además, cuenta con una amplia gama de herramientas para trabajar con información geográfica (herramientas de consulta, creación de diseños, geoprocesamiento, redes, etc.).</p>
 				</div>
 		</div>
 
@@ -165,7 +166,7 @@
     <div class="row">
         <div class="pull-left logo" id="twitter-contacto">
             <a href="https://twitter.com/search?q=gvsig-fonsagua"><img src="images/logo_twitter.svg" alt="logo Twitter" /> gvSIG Fonsagua</a>
-            <a><span id="separador-contacto"></span>
+            <a><span id="separador-contacto"></span></a>
             <a href="newsroom.html#contacto">contacto</a>
         </div>
         <div id="carto-ets-udc">
