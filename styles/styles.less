@@ -116,7 +116,32 @@ table {
 .dropdown-menu > li > a:hover {
 	background-color: @cafe3;
 }
-
+.languages {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 20px;
+}
+.languages {
+  padding: 10px 15px;
+  display: block;
+  a {
+    color: #999;
+  }
+  .active{
+    font-weight: bold;
+    color: white;
+  }
+}
+@media (min-width: 768px){
+  .languages {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .navbar-nav > li.languages > a {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
 /* --- jumbotron --- */
 
 .jumbotron {
@@ -146,7 +171,7 @@ table {
 #footer {
     background-color: @cafe;
     border-top: 1px solid #080808;
-    
+
     position: absolute;
     bottom: 0;
     width: 100%;
