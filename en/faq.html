@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/favicon.png">
+
+    <title>gvSIG Fonsagua | GIS application to manage water and sanitation programs.</title>
+
+    <!-- Bootstrap Styles -->
+    <link rel="stylesheet" media="screen" href="../bs/css/bootstrap.min.css">
+    <!-- [Project] Styles -->
+    <link rel="stylesheet/less" type="text/css" href="../styles/styles.less">
+
+    <!-- No-js warning -->
+    <link rel="stylesheet" type="text/css" href="../styles/no-js.css">
+	<noscript>
+		<div id="no-js">
+			Para utilizar las funcionalidades completas de este sitio es necesario tener
+			JavaScript habilitado (<a href="http://www.enable-javascript.com/es/"
+			target="_blank">instrucciones para habilitar JavaScript en tu navegador web</a>).
+		</div>
+	</noscript>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../bs/js/html5shiv.js"></script>
+      <script src="../bs/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+	<nav class="navbar navbar-static-top navbar-inverse" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+          <a class="navbar-brand" href="index.html"><span id="brand-title">GVSIG<br>FONSAGUA</span></a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav navbar-right">
+			  <li><a href="../index.html">Home</a></li>
+			  <li class="dropdown active">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Application <b class="caret"></b></a>
+				  <ul class="dropdown-menu">
+					<li><a href="../explanation.html">gvSIG Fonsagua explained</a></li>
+					<li><a href="../history.html">History</a></li>
+					<li><a href="../use.html">Learn how to use it</a></li>
+					<li><a href="../people.html">People using it</a></li>
+					<li><a href="../faq.html">Some FAQ</a></li>
+				  </ul>
+				</li>
+			  <li><a href="../about.html">About</a></li>
+			  <li><a href="../team.html">The team</a></li>
+			  <li><a href="../join.html">Join us</a></li>
+			  <li><a href="../newsroom.html">Newsroom</a></li>
+        <li>
+          <div class="languages">
+            <a href="/"><span class="es-lang">es</span></a> /
+            <a href="en"><span class="en-lang active">en</span></a>
+          </div>
+        </li>
+		  </ul>
+		</div><!-- /.navbar-collapse -->
+	  </div><!-- /.container -->
+	</nav>
+
+	<div class="container">
+		<h1>Some FAQ</h1>
+		<p>Find below some Frequently asked questions. If you have some question not collected here, please, get in touch with us!</p>
+		<ol>
+			<li><a href="#use">Is it possible for me to use the application in any situation?</a></li>
+			<li><a href="#replace">Try this application to replace EPANET?</a></li>
+			<li><a href="#gather">Can I use gvSIG Fonsagua to gather information with other methodologies?</a></li>
+			<li><a href="#devel">Do you plan to continue the development?</a></li>
+		</ol>
+
+		<h3 id="use">Is it possible for me to use the application in any situation?</h3>
+		<p><strong>Yes, you can</strong>. Please, <a href="../download.html">download it</a> and help us to <a href="../join.html">improve it</a>!</p>
+		<p>A more detailed explanation: the application is licensed by <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPL3</a>, a <a href="http://www.fsf.org/licensing">Free Software license</a> which allow the users to run the program for any purpose, study and change the source code, redistribute copies of the application and of your own modified versions. Besides of that, it’s <strong>free of charge</strong>.</p>
+
+		<h3 id="replace">Does gvSIG Fonsagua try to replace to EPANET?</h3>
+		<p>No, it has different goals. EPANET is a good tool to design a hydrologic networks before executing them. It gives a lot of power to the user, and it has a medium-high learning curve. gvSIG Fonsagua intends to help the user to easily and quickly plan several proposals and see how they work.</p>
+
+		<h3 id="gather">Can I use it with other methodologies to gather information?</h3>
+		<p>Yes, you can, but probably you will need to adapt a bit the source code of gvSIG Fonsagua.</p>
+		<p>Nowadays, the structure of the program and the forms designed only take into account the methodology used by ISF in their projects to collect <a href="data/Fonsagua_ficha_social.pdf">social (see PDF)</a> and <a href="data/Fonsagua_ficha_tecnica.pdf">technical (see PDF)</a> information. We are working on give more power to the users and help them to design their own forms in an easy way, including other methodologies such as the used by <a href="http://www.waterpointmapping.org/">WaterPointMapping</a>, for example (see roadmap below).</p>
+		<p>If you want to <a href="../join.html">join us to achieve this goal</a>, you’ll be welcomed!</p>
+
+		<h3 id="devel">Do you plan to continue the development?</h3>
+		<p>Yes. Specifically, we have a bunch of things in mind we’d like to work on. For example:</p>
+		<ul>
+			<li>Adapting gvSIG Fonsagua to work with other methologies to gather data and let the user to design their own forms.</li>
+			<li>Generating more powerful reports, including maps and graphs.</li>
+			<li>Including some new advanced CAD tools to help the user to design the alternatives.</li>
+			<li>Developing some analysis algorithms to get information about the data used.</li>
+			<li>Keep updating gvSIG platform over new versions of this software.</li>
+			<li>And more!
+		</ul>
+		<p>If you have a special interest in one of these features, want to help or only keep in touch with the news, see <a href="../join.html">how you can join us</a>.</p>
+
+
+    </div> <!-- /container -->
+
+	<!-- Site footer -->
+    <div id="footer">
+    <div class="container">
+    <div class="row">
+        <div class="pull-left logo" id="twitter-contacto">
+            <a href="https://twitter.com/search?q=gvsig-fonsagua"><img src="../images/logo_twitter.svg" alt="logo Twitter" /> gvSIG Fonsagua</a>
+            <a><span id="separador-contacto"></span></a>
+            <a href="newsroom.html#contacto">contacto</a>
+        </div>
+        <div id="carto-ets-udc">
+        <div class="pull-right logo"><a href="http://www.udc.es/"><img src="../images/simbolo_UDC.svg" title="Universidade da Coruña" alt="simbolo UDC" /></a></div>
+        <div class="pull-right logo"><a href="http://caminos.udc.es/"><img src="../images/logo_ETSCaminosAC.svg" title="ETS Caminos, Canales y Puertos de A Coruña" alt="logo Caminos" /></a></div>
+        <div class="pull-right logo"><a href="http://cartolab.udc.es"><img src="../images/logo_cartolab.svg" title="Laboratorio de Ingeniería Cartográfica" alt="logo Cartolab" /></a></div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- JS -->
+    <script type="text/javascript" src="../bs/js/jquery.js"></script>
+	<script type="text/javascript" src="../bs/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/less.js"></script>
+    <script type="text/javascript" src="../js/project.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/favicon.png">
+
+    <title>gvSIG Fonsagua | GIS application to manage water and sanitation programs.</title>
+
+    <!-- Bootstrap Styles -->
+    <link rel="stylesheet" media="screen" href="../bs/css/bootstrap.min.css">
+    <!-- [Project] Styles -->
+    <link rel="stylesheet/less" type="text/css" href="../styles/styles.less">
+
+    <!-- No-js warning -->
+    <link rel="stylesheet" type="text/css" href="../styles/no-js.css">
+	<noscript>
+		<div id="no-js">
+			Para utilizar las funcionalidades completas de este sitio es necesario tener
+			JavaScript habilitado (<a href="http://www.enable-javascript.com/es/"
+			target="_blank">instrucciones para habilitar JavaScript en tu navegador web</a>).
+		</div>
+	</noscript>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../bs/js/html5shiv.js"></script>
+      <script src="../bs/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+	<nav class="navbar navbar-static-top navbar-inverse" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+          <a class="navbar-brand" href="index.html"><span id="brand-title">GVSIG<br>FONSAGUA</span></a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav navbar-right">
+			  <li><a href="../index.html">Home</a></li>
+			  <li class="dropdown active">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Application <b class="caret"></b></a>
+				  <ul class="dropdown-menu">
+					<li><a href="../explanation.html">gvSIG Fonsagua explained</a></li>
+					<li><a href="../history.html">History</a></li>
+					<li><a href="../use.html">Learn how to use it</a></li>
+					<li><a href="../people.html">People using it</a></li>
+					<li><a href="../faq.html">Some FAQ</a></li>
+				  </ul>
+				</li>
+			  <li><a href="../about.html">About</a></li>
+			  <li><a href="../team.html">The team</a></li>
+			  <li><a href="../join.html">Join us</a></li>
+			  <li><a href="../newsroom.html">Newsroom</a></li>
+        <li>
+          <div class="languages">
+            <a href="/"><span class="es-lang">es</span></a> /
+            <a href="en"><span class="en-lang active">en</span></a>
+          </div>
+        </li>
+		  </ul>
+		</div><!-- /.navbar-collapse -->
+	  </div><!-- /.container -->
+	</nav>
+
+	<div class="container">
+		<h1>gvSIG Fonsagua explained</h1>
+
+		<p>gvSIG Fonsagua application is useful to plan water proposals in order to solve the water access in a area.</p>
+		<p>In other words, gvSIG Fonsagua application integrates in an unique tool the capabilities for users to gather, analyse and get information in the context of water and sanitation programs.</p>
+
+		<img class="img-responsive img-thumbnail" src="../images/portada.jpg">
+
+		<p>By using <a href="http://www.gvsig.org/web/">gvSIG software as a platform to develop on</a> and adding to it new functionalities, the users of the new application, named gvSIG Fonsagua, have improved <a href="history.html">the way they did the process</a>. The application allow them to:</p>
+		<ol>
+			<li><a href="#gps">Import GPS WayPoints in an automated way</a>.</li>
+			<li><a href="#pforms">Introduce data collected in field through personalized forms</a>.</li>
+			<li><a href="#network">Design and calculate Hydraulic networks.</li>
+			<li><a href="#queries">Print reports and use built-in queries to access the database</a>.</li>
+			<li><a href="#dual">Dual data management: SQLite + ShapeFiles</a>.</li>
+			<li><a href="#capabilities">Use all the capabilities available in a GIS application</a>.</li>
+		</ol>
+
+		<h3 id="gps">1. Import GPS WayPoints in an automated way.</h3>
+		<div class="media">
+			<a class="pull-left">
+			<img class="media-object" src="../images/gps.png" alt="gps">
+			</a>
+			<div class="media-body">
+				<p>While gathering field information, the user collects with a GPS tool the points of interest in each community. The application allows the user to import in an automated way those points to the database.</p>
+				<p>GPS extension from gvSIG project was used as a basis to work on, adding the functionality of exporting waypoints to a specific layer.</p>
+				</div>
+		</div>
+
+		<h3 id="pforms">2. Introducing data collected in field through personalized forms.</h3>
+		<div class="media">
+			<a class="pull-right">
+			<img class="media-object" src="../images/form.png" alt="personalized forms">
+			</a>
+			<div class="media-body">
+				<p>The user introduces the information into the database through personalized forms, which have been defined taking into account the methodology used to collect field information along the project with <a href="data/Fonsagua_ficha_social.pdf">social (see PDF)</a> and <a href="data/Fonsagua_ficha_tecnica.pdf">technical (see PDF)</a> considerations.</p>
+				<p>The forms have been built using <a href="http://navtable.github.com/">NavTable</a>, other in-house-development, which allows an agile navigation through the database registers.</p>
+				<p><strong>SEE VIDEO TUTORIAL: <a href="use.html#forms">introducing data.</a></strong></p>
+			</div>
+		</div>
+
+		<h3 id="network">3. Designing and calculating Hydraulic Network.</h3>
+		<div class="media">
+			<a class="pull-left">
+			<img class="media-object" src="../images/calc.png" alt="calculating">
+			</a>
+			<div class="media-body">
+				<p>The user is able to design and plan water and sanitation proposals using gvSIG Fonsagua, based in technical and sustainable criteria.</p>
+				<p>The hydraulic module includes developments integrated with gvSIG CAD tools, topological checks and a sub-module to estimate and calculate the network.</p>
+				<p><strong>SEE VIDEO TUTORIALS: <a href="use.html#pumping">pumping system</a> – <a href="use.html#pipes">distribution network</a>.</strong></p>
+				</div>
+		</div>
+
+		<h3 id="queries">4. Printing built-in queries and reports.</h3>
+		<div class="media">
+			<a class="pull-right">
+			<img class="media-object" src="../images/reports.png" alt="">
+			</a>
+			<div class="media-body">
+				<p>With the data introduced, it is possible to generate reports taking into account the current status of the community or its status after applying one of the alternatives. Besides, the user can query the database with already-built statements and export the data to other formats.</p>
+				<p>The reports are automatically generated using standard Java libraries such as iText and OpenCSV.</p>
+				</div>
+		</div>
+
+
+		<h3 id="dual">5. Store the information in SHP and SQLite.</h3>
+		<div class="media">
+			<a class="pull-left">
+			<img class="media-object thumbnail" src="../images/store.png" alt="Store info in SHP/SQLite">
+			</a>
+			<div class="media-body">
+				<p>Project requirements demand us to keep a dual-store data structure, using both SQLite (alphanumeric information) and Shapefiles (geographical information). A separated component was built into the system to manage how the data was retrieved and stored, warranting their integrity.</p>
+				</div>
+		</div>
+
+		<h3 id="capabilities">6. Using all the capabilities available in a GIS application.</h3>
+		<div class="media">
+			<a class="pull-left">
+			<img class="media-object thumbnail" src="../images/gvsig.jpg" alt="gvSIG">
+			</a>
+			<div class="media-body">
+				<p><strong>gvSIG</strong> is a Geographic Information System, that is, a desktop application designed for capturing, storing, handling, analyzing and deploying any kind of referenced geographic information in order to solve complex management and planning problems. gvSIG is known for having an user-friendly interface, being able to access the most common formats, both vector and raster ones. It features a wide range of tools for working with geographic-like information (query tools, layout creation, geoprocessing, networks, etc.).</p>
+				</div>
+		</div>
+
+    </div> <!-- /container -->
+
+	<!-- Site footer -->
+    <div id="footer">
+    <div class="container">
+    <div class="row">
+        <div class="pull-left logo" id="twitter-contacto">
+            <a href="https://twitter.com/search?q=gvsig-fonsagua"><img src="../images/logo_twitter.svg" alt="logo Twitter" /> gvSIG Fonsagua</a>
+            <a><span id="separador-contacto"></span></a>
+            <a href="newsroom.html#contacto">contacto</a>
+        </div>
+        <div id="carto-ets-udc">
+        <div class="pull-right logo"><a href="http://www.udc.es/"><img src="../images/simbolo_UDC.svg" title="Universidade da Coruña" alt="simbolo UDC" /></a></div>
+        <div class="pull-right logo"><a href="http://caminos.udc.es/"><img src="../images/logo_ETSCaminosAC.svg" title="ETS Caminos, Canales y Puertos de A Coruña" alt="logo Caminos" /></a></div>
+        <div class="pull-right logo"><a href="http://cartolab.udc.es"><img src="../images/logo_cartolab.svg" title="Laboratorio de Ingeniería Cartográfica" alt="logo Cartolab" /></a></div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- JS -->
+    <script type="text/javascript" src="../bs/js/jquery.js"></script>
+	<script type="text/javascript" src="../bs/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/less.js"></script>
+    <script type="text/javascript" src="../js/project.js"></script>
+
+</body>
+</html>
