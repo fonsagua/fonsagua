@@ -1,0 +1,39 @@
+<h1>Funcionalidades de gvSIG Fonsagua</h1>
+
+<p>Dentro de la fase de análisis se identificó una aplicación libre de SIG que se usaría como base para no tener que realizar todos los desarrollos desde cero. La aplicación escogida fue gvSIG, por estar en constante evolución, poseer una amplia base de usuarios hispanohablantes que dan soporte y generan casos de uso, y disponer de las funcionalidades básicas requeridas sobre las que realizar los desarrollos a medida.</p>
+
+funcionalidades_2010.png
+
+<h3>Introducción de información</h3>
+
+<p>La aplicación desarrollada permite introducir información respetando la forma de trabajo en campo de los técnicos. Los puntos GPS que se toman en campo pueden ser introducidos en las capas propias del modelo de datos de la aplicación directamente desde el dispositivo GPS o a partir de ficheros <em title="Estándar para el intercambio de información GPS">GPX</em>.</p>
+
+<p>La información alfanumérica es introducida a partir de formularios diseñados lo más  acorde posible a las fichas de campo para evitar saltos conceptuales. Los formularios realizan automáticamente validaciones que indican al usuario cuando está cometiendo algunos errores habituales, como por ejemplo introducir la elevación de la captación de un sistema por gravedad por debajo del depósito de distribución. Disponen además de opciones para realizar análisis territoriales, zoom al punto que representa el formulario, navegación entre distintos puntos geográficos seleccionados en el mapa, etc.</p>
+    
+<h3>Extracción de información</h3>
+
+<p>Desde la aplicación se puede generar automáticamente el informe de diagnóstico (que refleja la información más relevante y las necesidades de la comunidad) y el informe de alternativas (que muestra información técnica referida a la viabilidad, coste y características de las alternativas de abastecimiento planeadas).</p>
+
+<p>Existe además la posibilidad de exportar a formatos editables una serie de consultas predefinidas sobre los datos y un resumen del presupuesto. Otra opción es la de abrir un diálogo que aglutina datos de diagnóstico y de las alternativas que afectan a esa comunidad para poder hacer comparaciones y priorización.</p>
+
+<h3>Diseño de alternativas de abastecimiento</h3>
+
+<p>El módulo de alternativas de la aplicación, permite realizar el diseño completo de una red de abastecimiento. El proceso de digitalización de una alternativa se divide en tres fases fundamentales:</p>
+
+<ul>
+<li>Selección de fuentes que suministran el abastecimiento y cálculo de la población de diseño.</li>
+<li>Diseño gráfico y técnico del sistema de abastecimiento y realización de cálculos hidráulicos.</li>
+<li>Generación del informe técnico y económico de la alternativa diseñada.</li>
+</ul>
+
+<p>En la primera fase se determina, a través cálculo de los caudales de diseño, la correcta relación entre la población de diseño o población a abastecer y la capacidad de las fuentes en que se instalarán las captaciones. En caso de que esa relación sea correcta el usuario puede proceder al diseño del sistema.</p>
+
+<p>Durante el diseño gráfico se digitalizan todos los elementos que forman el sistema (captaciones, bombeos, depósitos, tuberías) introduciendo las características técnicas de cada uno de ellos. En base a estas características y a su ubicación geográfica, especialmente su cota, la aplicación realiza los cálculos hidráulicos pertinentes de presiones y velocidades, así como el diseño de los bombeos. Indica para cada componente de la red si su funcionamiento se encuentra dentro de los parámetros hidráulicos establecidos por las directrices de abastecimientos a aplicar. Para el diseño de los sistemas el usuario aprovechas las utilidades de los SIG, empleando como base cartografía georreferenciada de la zona de estudio implementada en la aplicación.</p>
+
+<p>El último paso a realizar es el informe técnico y económico de la alternativa. En él se muestra un resumen de los cálculos realizados en el aparatado anterior y un informe económico que muestra el coste de la alternativa, a fin de que el usuario pueda valorar su viabilidad dentro de la comunidad.</p>
+
+<p>Es importante destacar que la aplicación gvSIG Fonsagua no está diseñada para desarrollar proyectos de construcción, para los cuales es necesario realizar una carpeta técnica más detallada, sino que es una herramienta de planificación. Su objetivo es permitir realizar un análisis técnico y social de una determinada zona de estudio en base al cual diseñar y priorizar las alternativas de abastecimiento más acordes al territorio. La priorización de alternativas se basa tanto en criterios sociales (basada en datos de las comunidades), como técnicos (basados en los cálculos hidráulicos realizados en la aplicación) como económicos (basados en los informes finales realizados para cada sistema).</p>
+
+<h3>Acceso a datos</h3>
+
+<p>En el caso hondureño, se implementó una capa de acceso a datos por encima de la propia del software base empleado, que combina un sistema de almacenamiento en shapefile con una base de datos local de tipo SQLite [10]. En el caso del Salvador se usará una base de datos centralizada, por lo que es necesario reescribir una buena parte del código. Esta reescritura se está realizando desacoplando el acceso a datos de modo que los nuevos desarrollos se puedan reaprovechar en otros contextos.</p>

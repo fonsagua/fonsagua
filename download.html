@@ -3,9 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/favicon.png">
 
-    <title>gvSIG Fonsagua | Aplicación SIG para la administración del agua en el contexto de los programas sanitarios</title>
+    <title>gvSIG Fonsagua | Aplicación GIS para para el diseño del Plan Director de abastecimiento de agua y saneamiento en comunidades rurales</title>
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.png">
+	<link rel="icon" sizes="16 32 64" type="svg" href="images/favicon.svg">
+	<link rel="apple-touch-icon" href="images/touch-icon.png" />
 
     <!-- Bootstrap Styles -->
     <link rel="stylesheet" media="screen" href="bs/css/bootstrap.min.css">
@@ -46,56 +50,60 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav navbar-right">
-			  <li><a href="index.html">Inicio</a></li>
+			  <li class="active"><a href="index.html">Inicio</a></li>
 			  <li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">La Aplicación<b class="caret"></b></a>
 				  <ul class="dropdown-menu">
 					<li><a href="explanation.html">¿Cómo funciona gvSIG Fonsagua?</a></li>
+					<li><a href="origin.html">Origenes</a></li>
 					<li><a href="history.html">Historia</a></li>
 					<li><a href="use.html">Aprende a utilizarlo</a></li>
-
+					<li><a href="pgirh.html">Metodología: PGIRH</a></li>
+                    <li><a href="principles.html">Principios y Valores</a></li>
 					<li><a href="faq.html">Preguntas frecuentes</a></li>
 				  </ul>
 				</li>
-			  <li><a href="about.html">El proyecto</a></li>
+			  <li><a href="funders.html">Financiadores</a></li>
 
 			  <li><a href="join.html">Únete</a></li>
 			  <li><a href="newsroom.html">Actividad</a></li>
+	    <!--
         <li>
           <div class="languages">
-            <a href="download.html"><span class="es-lang active">es</span></a> /
-            <a href="en/download.html"><span class="en-lang">en</span></a>
+            <a href=""><span class="es-lang active">es</span></a> /
+            <a href="en/"><span class="en-lang">en</span></a>
           </div>
         </li>
+        -->
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container -->
 	</nav>
 
 	<div class="container">
+
 		<h1>Descarga</h1>
 		<h3>Como una aplicación completa</h3>
-    <p>gvSIG Fonsagua se distribuye como un archivo zip que contiene gvSIG 1.1.2 portátil y un conjunto de aplicaciones, la mayoría desarrolladas por CartoLab, para diseñar redes WatSan. Cómo instalarlo:</p>
+    <p>gvSIG Fonsagua se distribuye como un archivo comprimido que contiene todo lo necesario para ejecutar el software. Cómo instalarlo:</p>
 		<ul>
-			<li>Descarga <strong><a href="https://joinup.ec.europa.eu/system/files/project/gvSIG_FONSAGUA_0.2.6_win.zip">este archivo zip</a></strong> [100MB].</li>
+			<li>Descarga el fichero adecuado para tu sistema operativo desde <strong><a href="https://github.com/fonsagua/fonsagua/releases/latest">nuestra página de releases</a></strong></li>
 			<li>Descomprímelo donde quieras. Incluso en un dispositivo USB. No es necesaria ninguna instalación.</li>
-			<li>Navega hasta el directorio bin y ejecuta <strong>gvSIG.exe</strong>.</li>
+			<li>Navega hasta el directorio bin y ejecuta <strong>gvSIG.exe</strong> si estás en Windows o <strong>gvSIG.sh</strong> si estás en Linux.</li>
 		</ul>
 
 		<h3>Conjunto de datos de prueba</h3>
-    <p>Para utilizar <strong>gvSIG Fonsagua</strong> necesitas una estructura de información predefinida. Puedes utilizar un conjunto de datos que hemos creado para realizar tus propias pruebas en la aplicación. Esta información no es real y ha sido creada exclusivamente con fines de prueba. Para utilizarlo, descomprime los datos donde quieras y establece correctamente la ruta a los mismos presionando el botón de configuración dentro de la aplicación.</p>
-		<ul>
-			<li>Descarga <strong><a href="https://joinup.ec.europa.eu/system/files/project/data_0.2.6.zip">el dataset o conjunto de datos de prueba</a></strong>.</li>
-		</ul>
+    <p>Para utilizar <strong>gvSIG Fonsagua</strong> necesitas una estructura de información predefinida. El fichero <strong>fonsagua.sqlite</strong> dentro del directorio <strong>cfg</strong> es una base de datos ya preparada para trabajar con gvSIG Fonsagua. Además ha sido cargada con Cartografía Base adaptada a los municipios correspondientes a <a href="https://nasmarhonduras.wordpress.com/guascoran/">NASMAR</a> en la zona Sur de Honduras. Puedes preparar tus propios datos y cargarlos en la aplicación <a href="http://fonsagua.github.io/fonsagua/newsroom.html#contacto">o contactarnos</a> si necesitas ayuda.</p>
 
 		<h3>Código fuente</h3>
 		<p>El código fuente puede ser descargado desde <strong><a href="https://github.com/fonsagua">GitHub</a></strong>.</p>
 
 		<h3>Documentación</h3>
-		<p>Existen dos manuales en castellano, uno referido a las herramientas diseñadas para introducir información de campo en la aplicación y otro a las herramientas para el diseño de redes de agua.</p>
+		<p>Existen un amplio manual en castellano sobre el uso de la herramienta. Disponemos de material adicional para talleres, diseño hidráulico, Plan Director, ... <a href="http://fonsagua.github.io/fonsagua/newsroom.html#contacto">Contáctanos</a>.</p>
 		<ul>
-			<li><strong><a href="https://joinup.ec.europa.eu/sites/default/files/distribution/2013-09/20130918_Manual_gvSIG_Fonsagua_FaseI.pdf">Introducción de información de campo</a></strong>.</li>
-			<li><strong><a href="https://joinup.ec.europa.eu/sites/default/files/distribution/2013-09/20130918_Manual_gvSIG_Fonsagua_FaseII.pdf">Diseño de redes hídricas</a></strong>.</li>
+			<li><strong><a href="https://github.com/fonsagua/fonsagua/releases/download/20160916/161129_Manual_Fonsagua_Honduras.pdf">Manual gvSIG Fonsagua</a></strong>.</li>
+			<li><a href="data/140929_Ficha_social.doc">Ficha social de levantamiento de datos en campo</a></li>
+			<li><a href="data/140929_Ficha_tecnica.doc">Ficha técnica de levantamiento de datos en campo</a></li>
+			<li><a href="data/150225_Sistematizacion.pdf">Sistematización de la metodología de Plan Integral de Gestión de Recurso Hídrico</a></li>
 		</ul>
 
     </div> <!-- /container -->
@@ -122,7 +130,6 @@
     <script type="text/javascript" src="bs/js/jquery.js"></script>
 	<script type="text/javascript" src="bs/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/less.js"></script>
-    <script type="text/javascript" src="js/project.js"></script>
 
 </body>
 </html>

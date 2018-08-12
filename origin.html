@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>gvSIG Fonsagua | Aplicación GIS para para el diseño del Plan Director de abastecimiento de agua y saneamiento en comunidades rurales</title>
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.png">
+	<link rel="icon" sizes="16 32 64" type="svg" href="images/favicon.svg">
+	<link rel="apple-touch-icon" href="images/touch-icon.png" />
+
+    <!-- Bootstrap Styles -->
+    <link rel="stylesheet" media="screen" href="bs/css/bootstrap.min.css">
+    <!-- [Project] Styles -->
+    <link rel="stylesheet/less" type="text/css" href="styles/styles.less">
+
+    <!-- No-js warning -->
+    <link rel="stylesheet" type="text/css" href="styles/no-js.css">
+	<noscript>
+		<div id="no-js">
+			Para utilizar las funcionalidades completas de este sitio es necesario tener
+			JavaScript habilitado (<a href="http://www.enable-javascript.com/es/"
+			target="_blank">instrucciones para habilitar JavaScript en tu navegador web</a>).
+		</div>
+	</noscript>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="bs/js/html5shiv.js"></script>
+      <script src="bs/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+	<nav class="navbar navbar-static-top navbar-inverse" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+          <a class="navbar-brand" href="index.html"><span id="brand-title">GVSIG<br>FONSAGUA</span></a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav navbar-right">
+			  <li class="active"><a href="index.html">Inicio</a></li>
+			  <li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">La Aplicación<b class="caret"></b></a>
+				  <ul class="dropdown-menu">
+					<li><a href="explanation.html">¿Cómo funciona gvSIG Fonsagua?</a></li>
+					<li><a href="origin.html">Origenes</a></li>
+					<li><a href="history.html">Historia</a></li>
+					<li><a href="use.html">Aprende a utilizarlo</a></li>
+					<li><a href="pgirh.html">Metodología: PGIRH</a></li>
+                    <li><a href="principles.html">Principios y Valores</a></li>
+					<li><a href="faq.html">Preguntas frecuentes</a></li>
+				  </ul>
+				</li>
+			  <li><a href="funders.html">Financiadores</a></li>
+
+			  <li><a href="join.html">Únete</a></li>
+			  <li><a href="newsroom.html">Actividad</a></li>
+	    <!--
+        <li>
+          <div class="languages">
+            <a href=""><span class="es-lang active">es</span></a> /
+            <a href="en/"><span class="en-lang">en</span></a>
+          </div>
+        </li>
+        -->
+		  </ul>
+		</div><!-- /.navbar-collapse -->
+	  </div><!-- /.container -->
+	</nav>
+
+	<div class="container">
+
+		<h1>Orígenes</h1>
+
+		<h3>Cómo era procesada la información antes de gvSIG Fonsagua</h3>
+		<p>Para planificar las necesidades y mejoras de abastecimiento y saneamiento de una comunidad, los técnicos tienen que recolectar información en campo y gabinete, analizarla y generar alternativas. Antes del desarrollo de gvSIG Fonsagua, si bien existía una metodología, no existían herramientas específicas que la implementaran. Esos procesos se hacían mediante el uso de diferentes herramientas privativas de un modo muy manual, lo que acababa siendo tedioso, lento y propenso al error. Algunas de las herramientas utilizadas eran:</p>
+		<ul>
+			<li><strong>Base de datos de Microsoft Access</strong>: para introducir y almacenar información alfanumérica.</li>
+			<li><strong>ArcView</strong>: para introducir y analizar información geográfica.</li>
+			<li><strong>Microsoft Excel</strong>: para analizar la información recopilada por las dos aplicaciones anteriores.</li>
+		</ul>
+		
+		<h4>Flujo de trabajo previo</h4>
+<p>El personal de las entidades socias locales levantaban la información mediante dispositivos GPS y fichas en campo. Los puntos GPS se exportaban a la aplicación SIG (<em>ESRI ArcGIS</em>) en el formato de ficheros shapefile. Los datos alfanuméricos de las fichas de campo se introducían en la base de datos (<em>Microsoft Access</em>), sin componente espacial. Desde la base de datos se podían generar los informes de diagnóstico y extraer mediante consultas sobre la base de datos, cierta información de las comunidades levantadas. A partir de dichas consultas se realizaban estadísticas y tablas de diagnóstico del municipio (para la memoria municipal).</p>
+
+<p>La generación de las alternativas se realizaba mediante una hoja de cálculo (<em>Microsoft Excel</em>) en la que se calculaban técnicamente los elementos de un sistema de abastecimiento de agua (bombeo, línea de captación, red de distribución,...), así como el presupuesto de las alternativas. Esta hoja de cálculo se alimentaba a partir de datos provenientes tanto de la base de datos como del SIG. Se realizaban consultas en la base de datos que luego se importaban desde la hoja de cálculo y en el SIG se digitalizaban las geometrías que definían las alternativas planteadas. A partir de estas geometrías se obtenían los datos de longitudes, elevaciones, etc. Con estos datos se iba iterando a través de ciertos valores de la hoja de cálculo buscando alternativas válidas. Una vez se consideraba una alternativa como viable los datos de las alternativas planteadas eran exportados de nuevo a la base de datos.</p>
+
+		<p>La figura a continuación muestra los flujos de información entre las aplicaciones:</p>
+		<img class="img-responsive img-thumbnail" src="images/history.png">
+
+<h4>Justificación para la creación de la herramienta</h4>
+
+<p>La forma previa de trabajo, como se observa claramente en la descripción anterior, se trataba de un proceso complejo, farragoso y poco intuitivo, en el que se empleaba un costoso software privativo, de modo que cuando ISF Galicia <a href="history.html">identifica el programa en Honduras</a> plantea a Cartolab la necesidad de mejorar las herramientas.</p>
+
+<p>Tras estudiar los procesos, Cartolab propone una sistematización de la metodología existente y recomienda que la base de las herramientas sean las Tecnologías de la Información Geográfica (TIG) dado que estas son la mejor vía para analizar la relación entre personas y territorio. La herramienta implementada debería desarrollarse bajo la óptica de la denominada Tecnología para el Desarrollo Humano (TpDH), por lo que se recurre al software libre como línea fundamental para los desarrollos informáticos a implementar</p>
+
+<p>Finalmente se ofrece una personalización de un SIG que aglutine en una única herramienta todo el proceso.</p>
+
+		<h3>Cómo gvSIG Fonsagua ayuda a mejorar el proceso</h3>
+		<p>La aplicación gvSIG Fonsagua ha integrado en una única herramienta las herramientas necesarias para que los técnicos recopilen, analicen y obtengan información en el contexto de los programas de Agua y Saneamiento.</p>
+		<p>Tener la información centralizada y automatizar algunos procesos tiene grandes ventajas, tales como:</p>
+		<ul>
+			<li>Facilitar todo el proceso a los técnicos.</li>
+      <li>Toda la información está georreferenciada, lo que les permite crear más y mejores análisis.</li>
+      <li>Minimizar posibles errores humanos en el proceso de reutilización de la información.</li>
+		</ul>
+		<p>La siguiente imagen muestra las <a href="explanation.html">funcionalidades que los usuarios pueden hacer usando gvSIG Fonsagua</a>:</p>
+		<img class="img-responsive img-thumbnail" src="images/portada.jpg">
+		<p>En la tabla siguiente es posible ver cómo ha mejorado los procesos el uso de gvSIG Fonsagua:</p>
+		<table class="table table-bordered">
+		<tbody>
+			<tr>
+				<td></td>
+				<td>
+					<h3><strong>Antes de gvSIG Fonsagua</strong></h3>
+				</td>
+				<td>
+					<h3><strong>Despues de gvSIG Fonsagua</strong></h3>
+				</td>
+			</tr>
+			<tr>
+				<td><strong>Introducción de la información</strong></td>
+				<td>Parte de la información recopilada era almacenada en la Base de Datos Access y el resto de la información se almacenaba por separado en ShapeFiles a través del software ArcGIS.</td>
+				<td>Toda la información se almacena en una única herramienta.</td>
+			</tr>
+			<tr>
+				<td><strong>Generación propuestas</strong></td>
+				<td>Mediante el uso de un programa de hojas de cálculo, los técnicos tomaban los datos de la base de datos y del Sistema de Información Geográfica de manera manual. Parte de la información generada por el plan seleccionado se guardaba en la base de datos y otra en el SIG.</td>
+				<td>El usuario accede a la información guardada anteriormente de forma transparente y automática y los resultados se guardan automáticamente en la base de datos.</td>
+			</tr>
+			<tr>
+				<td><strong>Generación de informes</strong></td>
+				<td>Los informes se realizaban de forma automatizada desde la base de datos, incluidos algunos mapas de manera automática.</td>
+				<td>Sin mejoras significativas.</td>
+			</tr>
+		</tbody>
+		</table>
+
+    </div> <!-- /container -->
+
+	<!-- Site footer -->
+    <div id="footer">
+    <div class="container">
+    <div class="row">
+        <div class="pull-left logo" id="twitter-contacto">
+            <a href="https://twitter.com/search?q=gvsig-fonsagua"><img src="images/logo_twitter.svg" alt="logo Twitter" /><span class="hidden-xs">gvSIG Fonsagua</span></a>
+            <a><span id="separador-contacto"></span></a>
+            <a href="newsroom.html#contacto">Contacto</a>
+        </div>
+        <div id="carto-ets-udc">
+        <div class="pull-right logo"><a href="https://galicia.isf.es/"><img src="images/isf-small.svg" title="Ingeniería sin fronteras" alt="logo ISF" /></a></div>
+        <div class="pull-right logo"><a href="http://cartolab.udc.es"><img src="images/logo_cartolab.svg" title="Laboratorio de Ingeniería Cartográfica" alt="logo Cartolab" /></a></div>
+        <div class="pull-right logo"><a href="http://icarto.es"><img src="images/logo-icarto-circle.svg" title="iCarto" alt="simbolo iCarto" /></a></div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- JS -->
+    <script type="text/javascript" src="bs/js/jquery.js"></script>
+	<script type="text/javascript" src="bs/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/less.js"></script>
+
+</body>
+</html>

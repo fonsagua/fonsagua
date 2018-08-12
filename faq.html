@@ -3,9 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/favicon.png">
 
-    <title>gvSIG Fonsagua | Aplicación SIG para la administración del agua en el contexto de los programas sanitarios</title>
+    <title>gvSIG Fonsagua | Aplicación GIS para para el diseño del Plan Director de abastecimiento de agua y saneamiento en comunidades rurales</title>
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.png">
+	<link rel="icon" sizes="16 32 64" type="svg" href="images/favicon.svg">
+	<link rel="apple-touch-icon" href="images/touch-icon.png" />
 
     <!-- Bootstrap Styles -->
     <link rel="stylesheet" media="screen" href="bs/css/bootstrap.min.css">
@@ -46,37 +50,43 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav navbar-right">
-			  <li><a href="index.html">Inicio</a></li>
-			  <li class="dropdown active">
+			  <li class="active"><a href="index.html">Inicio</a></li>
+			  <li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">La Aplicación<b class="caret"></b></a>
 				  <ul class="dropdown-menu">
 					<li><a href="explanation.html">¿Cómo funciona gvSIG Fonsagua?</a></li>
+					<li><a href="origin.html">Origenes</a></li>
 					<li><a href="history.html">Historia</a></li>
 					<li><a href="use.html">Aprende a utilizarlo</a></li>
-
+					<li><a href="pgirh.html">Metodología: PGIRH</a></li>
+                    <li><a href="principles.html">Principios y Valores</a></li>
 					<li><a href="faq.html">Preguntas frecuentes</a></li>
 				  </ul>
 				</li>
-			  <li><a href="about.html">El proyecto</a></li>
+			  <li><a href="funders.html">Financiadores</a></li>
 
 			  <li><a href="join.html">Únete</a></li>
 			  <li><a href="newsroom.html">Actividad</a></li>
+	    <!--
         <li>
           <div class="languages">
-            <a href="faq.html"><span class="es-lang active">es</span></a> /
-            <a href="en/faq.html"><span class="en-lang">en</span></a>
+            <a href=""><span class="es-lang active">es</span></a> /
+            <a href="en/"><span class="en-lang">en</span></a>
           </div>
         </li>
+        -->
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container -->
 	</nav>
 
 	<div class="container">
+
 		<h1>Preguntas frecuentes</h1>
 		<p>A continuación mostramos algunas de las preguntas más frecuentes sobre gvSIG Fonsagua. Si tienes alguna duda no contemplada en esta sección, por favor, ¡ponte en contacto con nosotros!</p>
 		<ol>
 			<li><a href="#use">¿Puedo utilizar la aplicación en cualquier situación?</a></li>
+			<li><a href="#howtouse">¿Cómo puedo empezar a utilizarlo en mi proyecto?</a></li>
 			<li><a href="#replace">¿Pretende esta aplicación reemplazar a EPANET?</a></li>
 			<li><a href="#gather">¿Puedo utilizar gvSIG Fonsagua para recopilar información con otras metodologías?</a></li>
 			<li><a href="#devel">¿Contempláis la continuación del desarrollo del software?</a></li>
@@ -85,19 +95,27 @@
 		<h3 id="use">¿Puedo utilizar la aplicación en cualquier situación?</h3>
 		<p><strong>Si, puedes</strong>. Por favor, <a href="download.html">decarga el software</a> y ayúdanos a <a href="join.html">mejorarlo</a>!</p>
 		<p>La apilcación se encuentra bajo licencia <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPL3</a>, una <a href="http://www.fsf.org/licensing">Licencia de Software Libre</a> que permite a los usuarios utilizar el programa para cualquier propósito, analizar o cambiar el código fuente, redistribuir copias de la aplicación y de tus propias versiones. Además de esto, es <strong>gratuito</strong>.</p>
+		
+		<h3 id="howtouse">¿Cómo puedo empezar a utilizarlo en mi proyecto?</h3>
+		<p>En este momento gvSIG Fonsagua está muy adaptado a una determinada metodología, Plan Director o <a href="pgirh.html">Plan de Gestión Integral del Recurso Hídrico</a> (PGIRH). Antes de decidirte por esta aplicación es importante conocer las bondades de esta metodología y si encajan con tus necesidades. Para saber sobre Plan Director puedes contactar con <a href="https://galicia.isf.es/">Ingeniería Sin Fronteras</a>.</p>
+		
+		<p>Además debes tener en cuenta que esta aplicación es un Sistema de Información Geográfico, y para usarlo necesitas incluír en la base de datos que incluye la aplicación la cartografía adecuada a tu zona de trabajo. Cualquier persona con experiencia en Información Geográfica puede llevar a cabo este paso.</p>
+		
+		<p>Por último, es importante tener claro que la introducción de una nueva tecnología es siempre problemático, es necesario capacitación y motivación.</p>
 
 		<h3 id="replace">¿Pretende gvSIG Fonsagua reemplazar a EPANET?</h3>
-		<p>No, tiene diferentes objetivos. EPANET es una buena herramienta para diseñar redes hidrológicas antes de ejecutarlas. Proporciona una gran capacidad de control a los usuarios y tiene una curva de aprendizaje media-alta. gvSIG Fonsagua tiene la intención de ayudar al usuario a planificar de manera fácil y rápida varias propuestas y ver cómo funcionan.</p>
+		<p>No, tiene diferentes objetivos. EPANET es una buena herramienta para diseñar redes hidrológicas antes de ejecutarlas. Proporciona una gran capacidad de control a los usuarios y tiene una curva de aprendizaje media-alta. gvSIG Fonsagua usa por debajo EPANET para los cálculos hidráulicos pero proporciona una capa superior con ayudas adicionales y conceptos propios del ámbito de aplicación tipo de los proyectos de cooperación.</p>
 
 		<h3 id="gather">¿Puedo utilizar gvSIG Fonsagua para recopilar información con otras metodologías?</h3>
 		<p>Por supuesto, puedes, pero probablemente necesitarás adaptar el código fuente de gvSIG Fonsagua.</p>
-		<p>Actualmente, la estructura del software y los formularios están diseñados exclusivamente para la metodología utilizada por ISF en sus proyectos para recolectar información de tipo <a href="data/Fonsagua_ficha_social.pdf">social (ver PDF)</a> y <a href="data/Fonsagua_ficha_tecnica.pdf">técnica (ver PDF)</a>. Estamos trabajando para conseguir dar más poder a los usuarios y ayudarlos a diseñar sus propios formularios de una manera sencila, que incluya otras metodologías como la utilizada por <a href="http://www.waterpointmapping.org/">WaterPointMapping</a>, por ejemplo (ver hoja de ruta a continuación).</p>
+		<p>Actualmente, la estructura del software y los formularios están diseñados exclusivamente para la metodología utilizada por ISF en sus proyectos para recolectar información de tipo <a href="data/140929_Ficha_social.doc">social (ver DOC)</a> y <a href="data/140929_Ficha_tecnica.doc">técnica (ver DOC)</a>. Estamos trabajando para conseguir dar más poder a los usuarios y ayudarlos a diseñar sus propios formularios de una manera sencila, que incluya otras metodologías como la utilizada por <a href="http://www.waterpointmapping.org/">WaterPointMapping</a>, o por ejemplo permitir compartir la información con proyectos como <a href="http://www.siasar.org/">SIASAR</a>.</p>
 		<p>Si quieres <a href="join.html">unirte a nosotros para lograr este objetivo</a>, ¡eres bienvenido!</p>
 
 		<h3 id="devel">¿Continuaréis con el desarrollo de gvSIG Fonsagua?</h3>
 		<p>Si. En concreto tenemos un montón de cosas en mente sobre las que nos gustaría trabajar. Por ejemplo:</p>
 		<ul>
 			<li>Adaptar gvSIG Fonsagua para trabajar con otras metodologías en la recopilación de datos y permitir que el usuario diseñe sus propios formularios.</li>
+			<li>Permitir la importación/exportación de datos de otros proyectos como <a href="http://www.siasar.org/">SIASAR</a></li>
 			<li>Generación de informes más potentes, incluidos mapas y gráficos.</li>
 			<li>Incluir nuevas herramientas CAD avanzadas para ayudar al usuario a diseñar alternativas.</li>
 			<li>Desarrollar nuevos algoritmos de análisis para obtener información sobre los datos utilizados.</li>
@@ -131,7 +149,6 @@
     <script type="text/javascript" src="bs/js/jquery.js"></script>
 	<script type="text/javascript" src="bs/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/less.js"></script>
-    <script type="text/javascript" src="js/project.js"></script>
 
 </body>
 </html>

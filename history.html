@@ -3,9 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/favicon.png">
 
-    <title>gvSIG Fonsagua | Aplicación SIG para la administración del agua en el contexto de los programas sanitarios</title>
+    <title>gvSIG Fonsagua | Aplicación GIS para para el diseño del Plan Director de abastecimiento de agua y saneamiento en comunidades rurales</title>
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.png">
+	<link rel="icon" sizes="16 32 64" type="svg" href="images/favicon.svg">
+	<link rel="apple-touch-icon" href="images/touch-icon.png" />
 
     <!-- Bootstrap Styles -->
     <link rel="stylesheet" media="screen" href="bs/css/bootstrap.min.css">
@@ -46,84 +50,65 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav navbar-right">
-			  <li><a href="index.html">Inicio</a></li>
-			  <li class="dropdown active">
+			  <li class="active"><a href="index.html">Inicio</a></li>
+			  <li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">La Aplicación<b class="caret"></b></a>
 				  <ul class="dropdown-menu">
 					<li><a href="explanation.html">¿Cómo funciona gvSIG Fonsagua?</a></li>
+					<li><a href="origin.html">Origenes</a></li>
 					<li><a href="history.html">Historia</a></li>
 					<li><a href="use.html">Aprende a utilizarlo</a></li>
-
+					<li><a href="pgirh.html">Metodología: PGIRH</a></li>
+                    <li><a href="principles.html">Principios y Valores</a></li>
 					<li><a href="faq.html">Preguntas frecuentes</a></li>
 				  </ul>
 				</li>
-			  <li><a href="about.html">El proyecto</a></li>
+			  <li><a href="funders.html">Financiadores</a></li>
 
 			  <li><a href="join.html">Únete</a></li>
 			  <li><a href="newsroom.html">Actividad</a></li>
+	    <!--
         <li>
           <div class="languages">
-            <a href="history.html"><span class="es-lang active">es</span></a> /
-            <a href="en/history.html"><span class="en-lang">en</span></a>
+            <a href=""><span class="es-lang active">es</span></a> /
+            <a href="en/"><span class="en-lang">en</span></a>
           </div>
         </li>
+        -->
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container -->
 	</nav>
 
 	<div class="container">
-		<h1>Historia: gvSIG Fonsagua</h1>
 
-		<h3>Cómo era procesada la información antes de gvSIG Fonsagua</h3>
-		<p>Dentro del <a href="about.html">programa de Cooperación Internacional</a>, los técnicos tienen que gestionar diversas fuentes de datos y analizarlos para generar alternativas en proyectos de Agua y Saneamiento. Antes del desarrollo de gvSIG Fonsagua, esos procesos se hacían mediante el uso de diferentes herramientas de un modo completamente manual. Algunas de las herramientas utilizadas eran:</p>
-		<ul>
-			<li><strong>Base de datos de Microsoft Access</strong>: para introducir y almacenar información alfanumérica.</li>
-			<li><strong>ArcGIS</strong>: para introducir y analizar información geográfica.</li>
-			<li><strong>Microsoft Excel</strong>: para analizar la información recopilada por las dos aplicaciones anteriores.</li>
-		</ul>
-		<p>La figura a continuación muestra los flujos de información entre las aplicaciones:</p>
-		<img class="img-responsive img-thumbnail" src="images/history.png">
+		<h1>Historia</h1>
+		
+		<p><a href="http://galicia.isf.es">Ingeniería Sin Fronteras Galicia</a>(ISF Galicia) comenzó a trabajar en La Libertad (El Salvador) en el año 2004 incorporándose a los proyectos que ISF Cataluña llevaba desarrollando en la zona con sus socios locales <a href="http://www.cordes.org.sv/">CORDES</a> y <a href="http://www.acua.org.sv/">ACUA</a>. La línea central de este proyecto era la elaboración del Plan Director de Abastecimiento y Saneamiento en varias comunidades rurales del Sur de la Libertad. El Plan Director conforma un instrumento de diagnóstico de la situación de acceso al agua y el saneamiento basado en la defensa del recurso hídrico y en el fortalecimiento de las estructuras de acción ciudadana articuladas entorno al derecho al agua.</p>
 
-		<h3>Cómo gvSIG Fonsagua ayudó a mejorar el proceso</h3>
-		<p>La aplicación gvSIG Fonsagua ha integrado en una única herramienta las herramientas necesarias para que los técnicos recopilen, analicen y obtengan información en el contexto de los programas de Agua y Saneamiento.</p>
-		<p>Tener la información centralizada y automatizar algunos procesos tiene grandes ventajas, tales como:</p>
-		<ul>
-			<li>Facilitar todo el proceso a los técnicos.</li>
-      <li>Toda la información está georreferenciada, lo que les permite crear más y mejores análisis.</li>
-      <li>Minimizar posibles errores humanos en el proceso de reutilización de la información.</li>
-		</ul>
-		<p>La siguiente imagen muestra las <a href="explanation.html">funcionalidades que los usuarios pueden hacer usando gvSIG Fonsagua</a>:</p>
-		<img class="img-responsive img-thumbnail" src="images/portada.jpg">
-		<p>En la tabla siguiente es posible ver cómo ha mejorado los procesos el uso de gvSIG Fonsagua:</p>
-		<table class="table table-bordered">
-		<tbody>
-			<tr>
-				<td></td>
-				<td>
-					<h3><strong>Antes de gvSIG Fonsagua</strong></h3>
-				</td>
-				<td>
-					<h3><strong>Despues de gvSIG Fonsagua</strong></h3>
-				</td>
-			</tr>
-			<tr>
-				<td><strong>Introducción de la información</strong></td>
-				<td>Parte de la información recopilada era almacenada en la Base de Datos Access y el resto de la información se almacenaba por separado en ShapeFiles a través del software ArcGIS.</td>
-				<td>Toda la información se almacena en una única herramienta.</td>
-			</tr>
-			<tr>
-				<td><strong>Generación propuestas</strong></td>
-				<td>Mediante el uso de un programa de hojas de cálculo, los técnicos tomaban los datos de la base de datos y del Sistema de Información Geográfica de manera manual. Parte de la información generada por el plan seleccionado se guardaba en la base de datos y otra en el SIG.</td>
-				<td>El usuario accede a la información guardada anteriormente de forma transparente y automática y los resultados se guardan automáticamente en la base de datos.</td>
-			</tr>
-			<tr>
-				<td><strong>Generación de informes</strong></td>
-				<td>Los informes se realizaban de forma automatizada desde la base de datos, incluidos algunos mapas de manera automática.</td>
-				<td>Sin mejoras significativas.</td>
-			</tr>
-		</tbody>
-		</table>
+<p>A finales de 2007, ISF Galicia identifica un programa a varios años (2008 a 2012) de acceso al agua en Honduras dentro del convenio: "Reducción de la vulnerabilidad en áreas empobrecidas, a través del acceso al agua potable, el saneamiento y la gestión sostenible de los recursos hídricos y del territorio con enfoque de cuenca hidrográfica en El Salvador, Honduras y Nicaragua"” que tres asociaciones de la Federación Española de Ingeniería Sin Fronteras ejecutan con el apoyo de la Agencia Española de Cooperación Internacional para el Desarrollo (AECID), entre otros financiadores.</p>
+
+<p>ISF Galicia traslada al programa identificado en Honduras la experiencia adquirida en El Salvador adaptando la filosofía y actuaciones del Plan Director, dando lugar a una nueva metodología a la que se denomina Plan de Gestión Integral del Recurso Hídrico (PGIRH). Dentro del proceso de definición del PGIRH, ISF Galicia entra en contacto con <a href="http://cartolab.udc.es/">Cartolab</a>, Laboratorio de Ingeniería Cartográfica, ubicado en la ETS de Ingeniería de Caminos, Canales y Puertos de la Universidade da Coruña, para realizar un estudio de investigación y sistematización sobre las herramientas geomáticas existentes para la elaboración del plan. Fruto de este estudio nace el software gvSIG Fonsagua</p>
+
+    <p>Así, Entre 2009 y 2011 con financiación del fondo 0,7 de la Universidade da Coruña y fondos propios; en el marco del programa a cuatro años financiado por la Xunta de Galicia, Cartolab desarrolló para ISF, Alcaldía de Marcovia y Save The Children Honduras, la aplicación gvSIG Fonsagua para implementar en un sistema de información geográfica la metodología de Plan de Gestión Integral del Recurso Hídrico.</p>
+
+<p>gvSIG Fonsagua se concibió como una herramienta con licencia libre que pudiese ser usada por más instituciones que tuviesen la necesidad de planificar sistemas de abastecimiento en comunidades rurales con metodologías similares al PGIRH.</p>
+
+<p>En el año 2012 la iniciativa inicia una nueva fase con dos hitos fundamentales: la incorporación de la Universidad Nacional Autónoma de Honduras (UNAH) y el proyecto de ISF Cataluña y <a href="http://www.anda.gob.sv">ANDA</a> en El Salvador.</p>
+
+<p>Por un lado durante 2012, Cartolab (y la Universidad de Extremadura) a través de un Proyecto de Cooperación Interuniversitario (PICD) financiado por AECID  comenzó a colaborar con la Universidad Nacional Autónoma de Honduras en la elaboración de un proyecto formativa SIG en la UNAH que incluyera software libre en las maestrías impartidas. Dentro de este mismo proyecto se trabajaba en acercar a los socios locales de ISF a la UNAH, para que esta se convirtiera en una institución de referencia para ellos en temas de SIG.</p>
+
+<p>Por otro lado arranca en 2012 un proyecto de ISF Cataluña y ANDA (Administración Nacional de Acueductos y Alcantarillados de El Salvador) financiado por la AECID, por el cual se acuerda que gvSIG se convierta en una herramienta pública para planificar sistemas rurales en El Salvador.  Durante 2012 y 2013, la empresa iCarto colabora en ese proyecto realizando una serie de cambios y mejoras en la aplicación gvSIG Fonsagua para adaptarlos a las necesidades de ANDA.</p>
+
+<p>Entre los cambios introducidos para ANDA estaba el empleo de un nuevo formato para el almacenamiento de los datos, en base a un servidor central (postgresql) en lugar de con ficheros shapefile como se hacía en versiones previas de Fonsagua. Esto hacía que en la práctica Marcovia (u otras instituciones que carecieran de un servidor central) pudieran aprovecharse del resto de mejoras introducidas por iCarto.</p>
+
+<p>En 2013 Cartolab en el proyecto de ISF de San José de las Conchas financiado por la Xunta de Galicia realizó las adaptaciones necesarias para que gvSIG Fonsagua funcionará no sólo sobre un servidor de base de datos postgresql si no también sobre una base de datos local sqlite/spatialite, de modo que la Alcaldía de Marcovia pudiera emplear el resto de mejoras desarrolladas en el proyecto con ANDA.</p>
+
+<p>En 2014, iCarto realizó una consultoría para ISF y Cartolab en la que se realizó tareas de mantenimiento de gvSIG Fonsagua y realizó una primera capacitación (y toma de contacto) a NASMAR, AJAHSA y los técnicos municipales. Esta primera toma de contacto permitió identificar nuevas mejoras a implementar en la aplicación, en las necesidades más concretas de formación que tenían los técnicos que usarían la aplicación, y en general en la línea de SIG del programa de ISF con NASMAR.</p>
+
+<p>En 2015 y 2016 iCarto realizó otra consultoría para ISF y Cartolab en la que implemento algunas de las mejoras detectadas en fases anteriores y llevó a cabo tareas de formación. En este proyecto se hicieron mejoras de rendimiento de la aplicación (en torno a un 50% bajo algunos supuestos) y se adaptó la herramienta para algunas de las necesidades de NASMAR (bombas sumergidas, ...). Además de capactaciones y seguimiento a la realización de Plan Director en los municipios planificados, se realizaron capacitaciones específicas a personal de la UNAH para poder ser el apoyo local en Información Geográfica y gvSIG Fonsagua para mejorar la sostenibilidad del proyecto.</p>
+
+<p>Entre 2016 y 2017, ISF continuaba extendiendo la aplicación a más municipios de la mancomunidad de NASMAR. A través de la convocatorio de proyectos de la Xunta de Galicia 2016/2017 contó con iCarto y con la UNAH para la realización de varios talleres de formación práctica a los nuevos técnicos que se incorporaban al uso de la herramienta, en aspectos como hidrología básico, Plan Director y GIS. Además de realizar un acompañamiento específico a los técnicos durante la realización de estos de alternativas de abastecimiento. A nivel software la aplicación se vió beneficiada con un nuevo módulo para la importación de datos que simplifica y agiliza enormemente la introducción de datos. Una de las partes más "tediosas" del proceso.</p>
 
     </div> <!-- /container -->
 
@@ -132,7 +117,7 @@
     <div class="container">
     <div class="row">
         <div class="pull-left logo" id="twitter-contacto">
-            <a href="https://twitter.com/search?q=gvsig-fonsagua"><img src="images/logo_twitter.svg" alt="logo Twitter" /><span class="hidden-xs">gvSIG Fonsagua</span></a>
+            <a href="https://twitter.com/search?q=gvSIG Fonsagua"><img src="images/logo_twitter.svg" alt="logo Twitter" /><span class="hidden-xs">gvSIG Fonsagua</span></a>
             <a><span id="separador-contacto"></span></a>
             <a href="newsroom.html#contacto">Contacto</a>
         </div>
@@ -149,7 +134,6 @@
     <script type="text/javascript" src="bs/js/jquery.js"></script>
 	<script type="text/javascript" src="bs/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/less.js"></script>
-    <script type="text/javascript" src="js/project.js"></script>
 
 </body>
 </html>
