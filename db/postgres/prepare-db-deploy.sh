@@ -5,23 +5,18 @@ error() {
     exit -1
 }
 
-dump_base_cartophy()  {
-    pg_dump -n c_base -U fonsagua --no-owner -x  -f /tmp/c_base.sql $1
-    pg_dump -n elle -U fonsagua --no-owner -x  -f /tmp/elle.sql $1
-    pg_dump -n limites_administrativos -U fonsagua --no-owner -x  --data-only -f /tmp/limites_administrativos_data.sql $1
+dump_base_cartophy() {
+    pg_dump -n c_base -U fonsagua --no-owner -x -f /tmp/c_base.sql $1
+    pg_dump -n elle -U fonsagua --no-owner -x -f /tmp/elle.sql $1
+    pg_dump -n limites_administrativos -U fonsagua --no-owner -x --data-only -f /tmp/limites_administrativos_data.sql $1
 }
 
 [ -z $1 ] || dump_base_cartophy $1
 
-output=/tmp/`date +%Y%m%d`-fonsagua-bbdd.sql
-
-
+output=/tmp/$(date +%Y%m%d)-fonsagua-bbdd.sql
 
 CARTOGRAFIA_BASE=/tmp
 [ -d "$CARTOGRAFIA_BASE" ] || error "Falta el directorio de la cartografía base"
-
-
-
 
 echo "" > $output
 # echo "ALTER SCHEMA public OWNER TO fonsagua" >> $output
@@ -51,9 +46,6 @@ cat ./data/17-preferencias_tuberias.sql >> $output || error
 cat ./data/18-triggers-fuentes-implicadas.sql >> $output || error
 cat ./data/19-triggers_preferencias.sql >> $output || error
 cat $CARTOGRAFIA_BASE/limites_administrativos_data.sql >> $output || error
-
-
-
 
 echo "RESET search_path;" >> $output
 echo "select populate_geometry_columns();" >> $output

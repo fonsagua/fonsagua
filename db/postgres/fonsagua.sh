@@ -2,7 +2,7 @@
 
 usage() {
     echo
-    echo "`basename $0` -c config_file -s schema_to_deploy -b path_to_postgresql_bin"
+    echo "$(basename $0) -c config_file -s schema_to_deploy -b path_to_postgresql_bin"
     echo
     echo "-c: config file"
     echo "-s: schema to deploy (consultas, elle, infobase, inventario). 'all' will recreate the whole database"
@@ -29,54 +29,51 @@ config_file=./db_config_devel
 
 schema=all
 
-
 while getopts ":c:s:b:r" opt; do
-  case $opt in
-    c)
-      #If config file exists, load it; else, exit.
-      if [ -e $OPTARG ]
-      then
-          echo "LOG: config file="$OPTARG
-          config_file=$OPTARG
-      else
-          echo "ERROR: file "$OPTARG" not exist"
-          usage
-      fi
-      ;;
-    s)
-      #Use all (recreate the whole database) if schema is not set
-      if [ -z $OPTARG ]
-      then
-          schema=all
-      else
-          schema=$OPTARG
-      fi
-          echo "LOG: schema="$schema
-      ;;
-    b)
-	  DB_BINARIES=$OPTARG
-      ;;
-    r)
-      REAL=1
-      ;;
-    \?)
-      echo "ERROR: Option" $OPTARG "not available"
-      usage
-      ;;
-    :)
-      echo "ERROR: Option" $OPTARG "requires an argument"
-      usage
-      ;;
-  esac
+    case $opt in
+        c)
+            #If config file exists, load it; else, exit.
+            if [ -e $OPTARG ]; then
+                echo "LOG: config file="$OPTARG
+                config_file=$OPTARG
+            else
+                echo "ERROR: file "$OPTARG" not exist"
+                usage
+            fi
+            ;;
+        s)
+            #Use all (recreate the whole database) if schema is not set
+            if [ -z $OPTARG ]; then
+                schema=all
+            else
+                schema=$OPTARG
+            fi
+            echo "LOG: schema="$schema
+            ;;
+        b)
+            DB_BINARIES=$OPTARG
+            ;;
+        r)
+            REAL=1
+            ;;
+        \?)
+            echo "ERROR: Option" $OPTARG "not available"
+            usage
+            ;;
+        :)
+            echo "ERROR: Option" $OPTARG "requires an argument"
+            usage
+            ;;
+    esac
 done
 
 #Check schema & config_file are set
-if [ -z $schema ] ; then
+if [ -z $schema ]; then
     echo "ERROR: schema not set"
     usage
 fi
 
-if [ -z $config_file ] ; then
+if [ -z $config_file ]; then
     echo "ERROR: config file not set"
     usage
 fi
@@ -86,17 +83,17 @@ create-pgpass $config_file
 
 . db_binaries $DB_BINARIES
 
-if [ $schema == "all" ] ; then
+if [ $schema == "all" ]; then
     echo "LOG: drop & create database"
     create-db || error
 
-    for file in `ls ./data/*.sql` ; do
-	$PSQL -h $server -U $user -p $port -d $dbname -f $file || error "Procesando fichero $file"
+    for file in $(ls ./data/*.sql); do
+        $PSQL -h $server -U $user -p $port -d $dbname -f $file || error "Procesando fichero $file"
     done
 
-    if [ $config_file == "./db_config_devel" ] ; then
-	$PSQL -h $server -U $user -p $port -d $dbname -f ../data-test/20130610-fonsagua-test-data.sql
-	$PSQL -h $server -U $superuser -p $port -d $dbname -f ../data-test/20130829-alternativas-test-data.sql
+    if [ $config_file == "./db_config_devel" ]; then
+        $PSQL -h $server -U $user -p $port -d $dbname -f ../data-test/20130610-fonsagua-test-data.sql
+        $PSQL -h $server -U $superuser -p $port -d $dbname -f ../data-test/20130829-alternativas-test-data.sql
     fi
     # ./create-db.sh $config_file
 fi
@@ -105,13 +102,12 @@ $PSQL -h $server -U $superuser -p $port -d $dbname -c "VACUUM ANALYZE;"
 
 # Check BOM files
 
-if hash pg_prove 2>/dev/null ; then
+if hash pg_prove 2> /dev/null; then
     psql -U $superuser -d $dbname -c "CREATE EXTENSION pgtap;"
     pg_prove -U $superuser -d $dbname -h $server ./tests/*.sql
-else 
+else
     echo >&2 "pg_prove not installed db tests skipped"
 fi
-
 
 delete-pgpass $config_file
 

@@ -9,6 +9,7 @@ build/
 
 # Javascript
 node_modules/
+package-lock.json
 
 
 ## Unit test / coverage reports
@@ -23,5 +24,8 @@ node_modules/
 
 
 # Project
-*.class
-config/test_properties
+
+
+# Ignore for Formatters and Linters
+db/postgres/migration-scripts-from-fonsagua1
+portable

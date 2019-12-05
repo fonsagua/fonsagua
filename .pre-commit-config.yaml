@@ -1,0 +1,54 @@
+repos:
+    - repo: https://github.com/python/black
+      rev: stable
+      hooks:
+          - id: black
+            language_version: python3.6
+            verbose: true
+
+    - repo: https://github.com/timothycrosley/isort
+      rev: 4.3.20
+      hooks:
+          - id: isort
+            language_version: python3.6
+            verbose: true
+            types: [python] # En teoría no haría falta
+            additional_dependencies: ["isort[pyproject]"]
+
+    - repo: local
+      hooks:
+          - id: stylelint
+            name: stylelint
+            entry: npx stylelint
+            args: [--fix, --ignore-path, .ignore]
+            language: system
+            types: [file]
+            files: \.(vue|htm|html|css|sss|less|scss|sass|mak|mako|jinja2)$
+            verbose: true
+
+          - id: prettier
+            name: prettier
+            entry: npx prettier
+            args: [--write, --ignore-path, .ignore]
+            language: system
+            types: [file]
+            files: \.(js|json|md|vue|yaml|yml)$ # html
+            verbose: true
+
+          - id: html-beautify
+            name: html-beautify
+            entry: npx html-beautify
+            args: []
+            language: system
+            types: [file]
+            files: \.(htm|html|mak|mako|jinja2)$
+            verbose: true
+            stages: [manual]
+
+          - id: shfmt
+            name: shfmt
+            entry: shfmt
+            args: [-l, -w, -i, "4", -bn, -sr, -ci]
+            language: system
+            types: [shell]
+            verbose: true

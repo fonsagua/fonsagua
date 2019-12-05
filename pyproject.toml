@@ -1,0 +1,41 @@
+[tool.black]
+line-length = 88
+# Mejor ser explícitos con la versión de python y los strings
+target-version = ['py36']
+skip-string-normalization = false
+
+exclude = '''
+/(
+    \.eggs         # exclude a few common directories in the
+  | \.git          # root of the project
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | __pycache__
+
+  | \.egg-info
+  | node_modules
+  | \.idea
+  | \.vscode
+  | \.vagrant
+  | db/postgres/migration\-scripts\-from\-fonsagua1
+)/
+'''
+
+[tool.isort]
+line_length = 88
+atomic = true # `true` cuando la versión de python target y que corre isort es la misma
+include_trailing_comma = true
+multi_line_output = 3 # El 5 ahorra espacio, pero para evitar rewrites de la salida de black
+force_grid_wrap = 0
+lines_after_imports = 2
+use_parentheses = true
+filter_files = true
+skip_glob = ["*.egg", "*.egg-info", "__pycache__", "build/", "node_modules", "migration-scripts-from-fonsagua1"]
+combine_as_imports = false # Revisar
+known_third_party = ["bcrypt", "pyramid", "sqlalchemy", "geoalchemy2", "django", "dateutil"]
+known_first_party = [] # Ajustar en cada proyecto
