@@ -1,0 +1,9 @@
+cantones
+carreteras
+caserios_comunidades
+curvas_nivel_10m
+departamentos
+municipios
+oceano
+paises_limitrofes
+rios

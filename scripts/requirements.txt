@@ -1,0 +1,12 @@
+# -e git+git@gitlab.com:icarto-private/ietl.git@c8c7861da2703c0dbee165f8817328b2edf934a6#egg=ietl
+jupyterlab==1.2.4
+matplotlib==3.1.2
+
+pandas==0.25.1
+xlrd==1.2.0 # Para que pandas pueda leer .xls
+geopandas==0.6.1
+
+
+descartes==1.1.0
+# contextily==0.99.0
+ipympl==0.3.3 # https://github.com/matplotlib/jupyter-matplotlib
