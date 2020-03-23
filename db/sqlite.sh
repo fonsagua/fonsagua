@@ -19,8 +19,8 @@ done
 echo "COMMIT;" >> /tmp/foo.sql
 spatialite -bail $DB_PATH < /tmp/foo.sql
 
-spatialite -bail $DB_PATH < ./data_nasmar/97-limites-administrativos-data-nasmar.sql
-spatialite -bail $DB_PATH < ./data_nasmar/98-base-data-nasmar.sql
+spatialite -bail $DB_PATH < ./data_nasmar/90-limites-administrativos-data-nasmar.sql
+spatialite -bail $DB_PATH < ./data_nasmar/91    -base-data-nasmar.sql
 
 cartografia_base() {
     # departamentos

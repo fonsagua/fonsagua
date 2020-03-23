@@ -317,8 +317,9 @@ CREATE TABLE comunidades (
        necesidad1 VARCHAR,
        necesidad2 VARCHAR,
        necesidad3 VARCHAR,
-       necesidad4 VARCHAR
-
+       necesidad4 VARCHAR,
+       ano_pgirh INTEGER,
+       cod_ine_2013 VARCHAR
 );
 
 SELECT addgeometrycolumn('comunidades', 'geom', 32616, 'POINT', 2);
