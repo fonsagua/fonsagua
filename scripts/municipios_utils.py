@@ -20,7 +20,8 @@ def get_municipios(basepath, filepath):
 
 
 def get_municipios_nasmar_codigos():
-    return sorted(m["cod_municipio"] for m in get_municipios(None, None)[0].values())
+    return sorted(["1703", "1706", "0607", "1701", "0609", "1709", "0606"])
+    # return sorted(m["cod_municipio"] for m in get_municipios(None, None)[0].values())
 
 
 def get_fonsagua_app_tablenames():
